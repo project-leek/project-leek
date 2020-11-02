@@ -1,0 +1,5 @@
+{
+  "vetur.validation.template": false,
+  "vetur.validation.script": false,
+  "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"]
+}
