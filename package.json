@@ -1,0 +1,8 @@
+{
+  "name": "project-leek",
+  "version": "1.0.0",
+  "repository": "https://github.com/project-leek/project-leek.git",
+  "author": "Team leek",
+  "license": "MIT",
+  "private": true
+}
