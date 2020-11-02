@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "esnext"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "noEmit": true // ensure that nobody can accidentally use this config for a build
+  },
+  "files": [
+    "src/vue-shims.d.ts"
+  ],
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": ["node_modules", "dist"],
+}
