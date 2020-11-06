@@ -4,5 +4,10 @@
   "repository": "https://github.com/project-leek/project-leek.git",
   "author": "Team leek",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start:app": "cd packages/app && yarn start",
+    "start:backend": "cd packages/backend && yarn start",
+    "start:commons": "cd packages/commons && yarn start"
+  }
 }
