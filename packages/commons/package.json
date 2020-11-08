@@ -1,0 +1,13 @@
+{
+  "name": "@project-leek/commons",
+  "version": "0.0.1",
+  "main": "dist/",
+  "types": "dist/",
+  "private": "true",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  }
+}

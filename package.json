@@ -9,7 +9,9 @@
       "packages/**"
   ],
   "scripts": {
-    "start": "lerna run start",
+    "start": "lerna run --parallel start",
+    "start:app": "lerna run --include-dependencies --scope @project-leek/app --parallel start",
+    "start:backend": "lerna run --include-dependencies --scope @project-leek/backend --parallel start",
     "build": "lerna run build",
     "build:changed": "lerna run --since origin/master --include-dependents build",
     "lint": "lerna exec -- eslint . --ext .js,.jsx,.ts,.tsx",
@@ -18,8 +20,8 @@
     "test:changed": "lerna run --since origin/master --include-dependents test",
     "test:update": "lerna run test -- -u",
     "test:update:changed": "lerna run --since origin/master --include-dependents test -- -u",
-    "typecheck": "lerna exec -- tsc --noEmit",
-    "typecheck:changed": "lerna exec --since origin/master --include-dependents -- tsc --noEmit"
+    "typecheck": "lerna run typecheck",
+    "typecheck:changed": "lerna exec --since origin/master --include-dependents run typecheck"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
