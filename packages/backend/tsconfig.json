@@ -5,7 +5,6 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "references": [{ "path": "../commons" }],
   "exclude": [
     "test"
   ]

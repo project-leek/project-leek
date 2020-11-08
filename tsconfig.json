@@ -20,11 +20,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "noEmit": true, // ensure that nobody can accidentally use this config for a build
+    "noEmit": true, // ensure that nobody can accidentally use this config for a build
     "sourceMap": true,
     "removeComments": true,
     "downlevelIteration": true,
-    "composite": true
   },
   "exclude": ["node_modules", "dist"],
 }

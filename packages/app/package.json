@@ -1,16 +1,16 @@
 {
   "name": "@project-leek/app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "start": "vite",
     "build": "vite build",
     "typecheck": "./node_modules/.bin/typecheck",
     "lint": "eslint --ext .js,.vue,.ts,.d.ts src/",
     "clean": "shx rm -rf dist/",
-    "reset": "yarn clean && shx rm -rf node_modules/"
+    "reset": "yarn clean"
   },
   "dependencies": {
-    "@project-leek/commons": "0.0.1",
+    "@project-leek/commons": "*",
     "tailwindcss": "1.9.6",
     "vue": "3.0.2",
     "vue-router": "4.0.0-rc.2"

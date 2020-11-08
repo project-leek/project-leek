@@ -3,13 +3,12 @@
   "version": "0.0.1",
   "main": "dist/",
   "types": "dist/",
-  "private": "true",
   "scripts": {
     "start": "tsc --watch",
     "build": "yarn clean && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
-    "reset": "yarn clean && shx rm -rf node_modules/"
+    "reset": "yarn clean"
   }
 }

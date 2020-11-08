@@ -1,6 +1,6 @@
 {
   "name": "project-leek",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/project-leek/project-leek.git",
   "author": "Team leek",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "packages/**"
   ],
   "scripts": {
+    "setup": "yarn && lerna link",
     "start": "lerna run --parallel start",
     "start:app": "lerna run --include-dependencies --scope @project-leek/app --parallel start",
     "start:backend": "lerna run --include-dependencies --scope @project-leek/backend --parallel start",
@@ -23,7 +24,7 @@
     "typecheck": "lerna run typecheck",
     "typecheck:changed": "lerna exec --since origin/master --include-dependents run typecheck",
     "clean": "lerna run clean",
-    "reset": "lerna run reset && shx rm -rf node_modules && yarn"
+    "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
