@@ -3,9 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "exclude": [
-    "test"
-  ]
+    "rootDir": "./src",
+    "noEmit": false,
+    "declaration": true,
+  }
 }

@@ -1,8 +1,8 @@
 import NeDB from 'nedb';
 import path from 'path';
-import { Application } from '../declarations';
+import { Application } from '../../declarations';
 
-export default function (app: Application): NeDB<any> {
+export default (app: Application): NeDB<any> => {
   const dbPath = app.get('nedb');
   const Model = new NeDB({
     filename: path.join(dbPath, 'users.db'),
@@ -12,4 +12,4 @@ export default function (app: Application): NeDB<any> {
   Model.ensureIndex({ fieldName: 'email', unique: true });
 
   return Model;
-}
+};

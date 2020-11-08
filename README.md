@@ -29,8 +29,10 @@ docker run ...
 
 ### Project setup
 
+Checkout project locally. Enter the project folder and run:
+
 ```bash
-yarn
+yarn setup
 ```
 
 ### Start for development

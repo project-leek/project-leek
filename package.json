@@ -1,15 +1,18 @@
 {
   "name": "project-leek",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/project-leek/project-leek.git",
   "author": "Team leek",
   "license": "MIT",
   "private": true,
   "workspaces": [
-      "packages/**"
+    "packages/**"
   ],
   "scripts": {
-    "start": "lerna run start",
+    "setup": "yarn && lerna link",
+    "start": "lerna run --parallel start",
+    "start:app": "lerna run --include-dependencies --scope @project-leek/app --parallel start",
+    "start:backend": "lerna run --include-dependencies --scope @project-leek/backend --parallel start",
     "build": "lerna run build",
     "build:changed": "lerna run --since origin/master --include-dependents build",
     "lint": "lerna exec -- eslint . --ext .js,.jsx,.ts,.tsx",
@@ -18,8 +21,10 @@
     "test:changed": "lerna run --since origin/master --include-dependents test",
     "test:update": "lerna run test -- -u",
     "test:update:changed": "lerna run --since origin/master --include-dependents test -- -u",
-    "typecheck": "lerna exec -- tsc --noEmit",
-    "typecheck:changed": "lerna exec --since origin/master --include-dependents -- tsc --noEmit"
+    "typecheck": "lerna run typecheck",
+    "typecheck:changed": "lerna run --since origin/master --include-dependents typecheck",
+    "clean": "lerna run clean",
+    "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
@@ -39,6 +44,7 @@
     "lerna": "3.22.1",
     "lint-staged": "10.5.1",
     "prettier": "2.1.2",
+    "shx": "0.3.3",
     "ts-jest": "26.4.3",
     "typescript": "4.0.5"
   }

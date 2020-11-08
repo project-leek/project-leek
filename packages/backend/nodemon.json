@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "src/",
+    "config/"
+  ],
+  "ext": "ts,mjs,js,json",
+  "exec": "etsc && node ./dist/index.js",
+  "legacyWatch": true
+}
