@@ -2,11 +2,7 @@
 
 One sentence description.
 
-[![Docker Build](https://github.com/project-leek/project-leek/workflows/Docker%20Build/badge.svg)](https://github.com/project-leek/project-leek/actions?query=workflow%3A%22Docker+Build%22)
-[![Linting](https://github.com/project-leek/project-leek/workflows/Linting/badge.svg)](https://github.com/project-leek/project-leek/actions?query=workflow%3ALinting)
-[![Docker layers](https://images.microbadger.com/badges/image/anbraten/opnv-live.svg)](https://microbadger.com/images/project-leek/project-leek)
-
-[![Docker stats](https://dockeri.co/image/project-leek/project-leek)](https://hub.docker.com/r/project-leek/project-leek)
+[![CI](https://github.com/project-leek/project-leek/workflows/PR%20Checks/badge.svg)](https://github.com/project-leek/project-leek/actions?query=workflow%3A"PR+Checks")
 
 ## Screenshots
 
@@ -21,12 +17,12 @@ One sentence description.
 
 See [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
-
-
 ## Install for production
 
 ```bash
 docker pull ...
+
+docker run ...
 ```
 
 ## Development
@@ -37,11 +33,21 @@ docker pull ...
 yarn
 ```
 
-### Compiles and hot-reloads for development
+### Start for development
+
+Compiles and hot-reloads
 
 ```bash
 yarn start:app
 yarn start:backend
+```
+
+### Linting
+
+```bash
+yarn lint
+
+yarn lint:fix # auto-fix linting
 ```
 
 ### Typechecking
@@ -50,11 +56,10 @@ yarn start:backend
 yarn typecheck
 ```
 
-### Lints and fixes files
+### (Unit-) Testing
 
 ```bash
-yarn lint
+yarn test
 
-yarn lint:fix
+yarn test:update # update snapshots
 ```
-
