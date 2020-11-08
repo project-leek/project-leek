@@ -22,7 +22,7 @@
     "test:update": "lerna run test -- -u",
     "test:update:changed": "lerna run --since origin/master --include-dependents test -- -u",
     "typecheck": "lerna run typecheck",
-    "typecheck:changed": "lerna exec --since origin/master --include-dependents run typecheck",
+    "typecheck:changed": "lerna run --since origin/master --include-dependents typecheck",
     "clean": "lerna run clean",
     "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
   },
