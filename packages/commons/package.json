@@ -6,8 +6,10 @@
   "private": "true",
   "scripts": {
     "start": "tsc --watch",
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "shx rm -rf dist/",
+    "reset": "yarn clean && shx rm -rf node_modules/"
   }
 }

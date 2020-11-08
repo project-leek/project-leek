@@ -24,7 +24,8 @@
     "test": "jest --forceExit",
     "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
     "typecheck": "tsc --noEmit",
-    "clean": "shx rm -rf dist/"
+    "clean": "shx rm -rf dist/",
+    "reset": "yarn clean && shx rm -rf node_modules/"
   },
   "standard": {
     "env": [
@@ -63,8 +64,8 @@
     "@typescript-eslint/eslint-plugin": "4.6.1",
     "@typescript-eslint/parser": "4.6.1",
     "axios": "0.21.0",
-    "esbuild": "^0.8.5",
-    "esbuild-node-tsc": "^1.0.4",
+    "esbuild": "0.8.5",
+    "esbuild-node-tsc": "1.0.4",
     "eslint": "7.13.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-airbnb-typescript": "12.0.0",
@@ -75,7 +76,7 @@
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
     "jest": "26.6.3",
-    "nodemon": "^2.0.6",
+    "nodemon": "2.0.6",
     "prettier": "2.1.2",
     "shx": "0.3.3",
     "ts-jest": "26.4.3",
