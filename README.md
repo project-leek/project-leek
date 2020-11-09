@@ -17,19 +17,27 @@ One sentence description.
 
 See [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
-## How to contribute
+## How to contribute 
 
-just follow these steps:
-1:	check for open code-reviews and do them if available
-2: 	choose an open issues
-3:	assign yourself
-4: 	create a local branch with name: issue-number (without hash) + "-" + issue-title (e.g. 8-setup-mono-repo)
-5: 	codecodecode
-6: 	commit + push
-7: 	in pull-requests: create pull-request for current changes (from your branch to master) (there should be a button)
-8: 	wait for at least 2 other contributers to review your code and for the automated pipeline to finish
-9: 	merge your pull-request
+### For externals
 
+TBD 🤔 
+
+### For official team members
+
+Always check for open [code-reviews](https://github.com/project-leek/project-leek/pulls?q=is%3Aopen+is%3Apr+type%3Apr+review%3Arequired) and do them if available before you start with a new issue.
+
+#### How to start with a new issue
+
+1. choose an open issues from the [project boards Todo column](https://github.com/project-leek/project-leek/projects/1)
+1. 👉🏾 assign the issue to yourself 
+1. create a local branch with name: issue-number (without hash) + "-" + issue-title (e.g. 8-setup-mono-repo)
+1. 👨🏾 👩🏾 ✍🏾 💻 
+1. ⬆️ commit + push 
+1. in [pull-requests](https://github.com/project-leek/project-leek/pulls): create pull-request for current changes (from your branch to master) (there should be a button)
+1. 🕙 wait for at least 2 other contributors to review your code and for the automated pipeline to finish
+1. 🥗 merge your pull-request
+1. 😃 be happy to be a part of this project
 ## Install for production
 
 ```bash
