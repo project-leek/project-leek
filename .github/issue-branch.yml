@@ -1,0 +1,11 @@
+mode: auto
+branchName: '${issue.number}-${issue.title,}'
+branches:
+  - label: question
+    skip: true
+  - label: enhancement
+    prefix: feature/
+  - label: enhancement
+    prefix: feature/
+  - label: bug
+    prefix: bugfix/
