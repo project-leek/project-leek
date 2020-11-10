@@ -1,0 +1,10 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@feathersjs/feathers": "^4.5.9",
+    "feathers": "^2.2.4"
+  }
+}
