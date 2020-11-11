@@ -31,8 +31,8 @@ Always check for open [code-reviews](https://github.com/project-leek/project-lee
 
 1. choose an open issues from the [project boards Todo column](https://github.com/project-leek/project-leek/projects/1)
 1. 👉🏾 assign the issue to yourself 
-1. create a local branch with name: issue-number (without hash) + "-" + issue-title (e.g. 8-setup-mono-repo)
-1. 👨🏾 👩🏾 ✍🏾 💻 
+1. At the moment you assign the issue, a local branch with an auto-generated title will be created for you.
+1. 👨🏾 👩🏾 ✍🏾 💻 ☕  (start coding)
 1. ⬆️ commit + push 
 1. in [pull-requests](https://github.com/project-leek/project-leek/pulls): create pull-request for current changes (from your branch to master) (there should be a button)
 1. 🕙 wait for at least 2 other contributors to review your code and for the automated pipeline to finish
