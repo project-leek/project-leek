@@ -7,14 +7,6 @@ export default class NicksPet {
         this._hunger = 0;
     }
 
-    get name(): string {
-        return this._name
-    }
-
-    set name(newName) {
-        this._name = newName;
-    }
-
     private increaseHunger(increaseValue: number){
         if(increaseValue + this._hunger > 100){
             this._hunger = 100;
