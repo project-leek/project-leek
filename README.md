@@ -37,11 +37,12 @@ yarn setup
 
 ### Start for development
 
-Compiles and hot-reloads
+Compiles and watches files changes with hot-reloading
 
 ```bash
-yarn start:app
-yarn start:backend
+yarn start:app # build and watch app
+yarn start:backend # build and watch backend
+yarn start:commons # build and watch shared commons library
 ```
 
 ### Linting
