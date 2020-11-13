@@ -1,7 +1,5 @@
 import { Application as ExpressFeathers } from '@feathersjs/express';
-
-// A mapping of service names to types. Will be extended in service files.
-export interface ServiceTypes {}
+import { ServiceTypes } from '@project-leek/commons';
 
 type PaginationOptions = { default?: number | undefined; max?: number | undefined };
 
