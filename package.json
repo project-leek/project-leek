@@ -13,6 +13,7 @@
     "start": "lerna run --parallel start",
     "start:app": "lerna run --include-dependencies --scope @project-leek/app --parallel start",
     "start:backend": "lerna run --include-dependencies --scope @project-leek/backend --parallel start",
+    "start:commons": "lerna run --include-dependencies --scope @project-leek/commons --parallel start",
     "build": "lerna run build",
     "build:changed": "lerna run --since origin/master --include-dependents build",
     "lint": "lerna exec -- eslint . --ext .js,.jsx,.ts,.tsx",
