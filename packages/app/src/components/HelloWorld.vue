@@ -6,14 +6,18 @@
       Edit <code>components/HelloWorld.vue</code> to test hot module
       replacement.
     </p>
+    <jans-pet-display/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import JansPetDisplay from './JansPetDisplay.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
+
+  components: { JansPetDisplay },
 
   props: {
     msg: {
