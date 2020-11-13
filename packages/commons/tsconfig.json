@@ -6,5 +6,8 @@
     "rootDir": "./src",
     "noEmit": false,
     "declaration": true,
-  }
+  },
+  "exclude": [
+    "./dist/**/*" // This is what fixed it!
+]
 }
