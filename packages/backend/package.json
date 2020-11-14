@@ -21,7 +21,8 @@
     "start": "nodemon",
     "build": "yarn clean && tsc",
     "test": "jest --forceExit",
-    "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "lint": "eslint src/. test/. --ext .ts",
+    "lint:fix": "yarn lint --fix",
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
