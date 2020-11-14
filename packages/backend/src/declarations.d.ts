@@ -5,6 +5,9 @@ type PaginationOptions = { default?: number | undefined; max?: number | undefine
 
 type ApplicationConfiguration = {
   get(key: 'paginate'): PaginationOptions;
+  get(key: 'nedb'): string;
+  get(key: 'port'): number;
+  get(key: 'host'): string;
 };
 
 // The application instance type that will be used everywhere else
