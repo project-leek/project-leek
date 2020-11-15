@@ -6,9 +6,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:app": "cd packages/app && tailwind build ./style.css -o compiledStyle.css && yarn start",
+    "start:app": "cd packages/app && yarn start",
     "start:backend": "cd packages/backend && yarn start",
-    "start:commons": "cd packages/commons && yarn start"
+    "start:commons": "cd packages/commons && yarn start",
+    "build:css" : "tailwind build ./style.css -o compiledStyle.css"
   },
   "dependencies": {
     "sass": "^1.29.0",
