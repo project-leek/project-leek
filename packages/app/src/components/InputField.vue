@@ -2,14 +2,14 @@
 <div class="bg-blue-100 w-full h-full object-cover card bg-white shadow-2xl flex">
   <div class="container mx-auto mt-8">
 	<div class="mx-auto flex flex-wrap max-width-form text-gray-800">
-		<!-- 	Header	 -->
+		<!-- Header	-->
 		<div class="flex-100">
 			<h1 class="font-bold text-3xl flex-100 mb-8">Gib mal nen neues Tier ein</h1>
 		</div>
-		<!-- 	form	 -->
+		<!--form-->
 		<div class="flex flex-100 mt-8">
 			<form class="flex-100">
-				<!-- 		inputs		 -->
+				<!--inputs-->
 				<div class="flex flex-100">
 					<div class="flex-grow mr-2">
 						<label class="block mb-1 font-bold" for="">Name</label>
