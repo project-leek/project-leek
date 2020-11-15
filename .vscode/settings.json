@@ -1,5 +1,19 @@
 {
   "vetur.validation.template": false,
   "vetur.validation.script": false,
-  "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"]
+  "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"],
+  "actionButtons": {
+    "defaultColor": "#ff0034", // Can also use string color names.
+    "loadNpmCommands":false, // Disables automatic generation of actions for npm commands.
+    "reloadButton":"♻️", // Custom reload button text or icon (default ↻). null value enables automatic reload on configuration change
+    "commands": [
+      {
+        "cwd": "${workspaceFolder}", 	// Terminal initial folder ${workspaceFolder} and os user home as defaults
+        "name": "Start App",
+        "color": "White",
+        "singleInstance": true,
+        "command": "yarn start:app", // This is executed in the terminal.
+      },
+    ]
+  }
 }

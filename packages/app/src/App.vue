@@ -1,20 +1,29 @@
 <template>
-  <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld />
+  <div class="bg-blue-900 content pt-20 px-20 pb-20 grid grid-cols-2 gap-10" >
+    <inputField></inputField>
+    <outputList></outputList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import HelloWorld from './components/HelloWorld.vue';
+import outputList from './components/OutputList.vue';
+import inputField from './components/InputField.vue';
 
 export default defineComponent({
   name: 'App',
-
   components: {
-    HelloWorld,
+    outputList,
+    inputField,
   },
 });
 </script>
+
+<style lang="css">
+@import "../compiledStyle.css";
+
+.content{
+  height: 100vh;
+}
+</style>

@@ -25,7 +25,11 @@
     "typecheck": "lerna run typecheck",
     "typecheck:changed": "lerna run --since origin/master --include-dependents typecheck",
     "clean": "lerna run clean",
-    "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
+    "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup",
+    "startOld:app": "cd packages/app && yarn start",
+    "startOld:backend": "cd packages/backend && yarn start",
+    "startOLD:commons": "cd packages/commons && yarn start",
+    "build:css" : "tailwind build ./style.css -o compiledStyle.css"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
@@ -49,5 +53,9 @@
     "shx": "0.3.3",
     "ts-jest": "26.4.4",
     "typescript": "4.0.5"
+  },
+  "dependencies": {
+    "sass": "^1.29.0",
+    "tailwindcss": "^1.9.6"
   }
 }
