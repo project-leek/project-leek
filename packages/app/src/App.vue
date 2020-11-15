@@ -1,33 +1,29 @@
 <template>
-  <div class="content">
-    <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
-      
-    </div>
+  <div class="bg-blue-900 content pt-20 px-20 pb-20 grid grid-cols-2 gap-10" >
+    <inputField></inputField>
+    <outputList></outputList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import OutputList from './components/OutputList.vue';
-import InputField from './components/InputField.vue';
+import outputList from './components/OutputList.vue';
+import inputField from './components/InputField.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    OutputList,
-    InputField,
+    outputList,
+    inputField,
   },
 });
 </script>
 
-<style lang="scss">
+<style lang="css">
 @import "../compiledStyle.css";
 
 .content{
-  display: grid;
-  background-color: green;
   height: 100vh;
-  min-width: 100wh;
 }
 </style>
