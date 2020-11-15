@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-blue-100 w-full h-full object-cover card bg-white shadow-2xl">
     
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'OutputList',
+  name: 'outputList',
   data() {
     return {
     };
