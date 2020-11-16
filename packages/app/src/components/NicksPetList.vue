@@ -7,10 +7,21 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue';
+    import { defineComponent, onMounted, ref } from 'vue';
+    import { feathers } from '@/lib';
+
     export default defineComponent({
         name: 'NicksPetList',
-        props: ["nicksPets"]
+        props: ["nicksPets"],
+
+        setup(){
+            const nicksPets = ref([]);
+
+            onMounted(async() => {
+                nicksPets.value = await feathers.service('nicksPet').find();
+            });
+
+        },
     });
 </script>
 
