@@ -10,6 +10,7 @@
     "reset": "yarn clean"
   },
   "dependencies": {
+    "@feathersjs/adapter-commons": "4.5.7",
     "@feathersjs/feathers": "4.5.10",
     "@feathersjs/socketio-client": "4.5.10",
     "@project-leek/commons": "*",
