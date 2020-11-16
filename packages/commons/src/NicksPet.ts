@@ -1,10 +1,13 @@
+import {v4 as uuid} from 'uuid';
 export default class NicksPet {
+    _id: string;
     _name: string;
     _hunger: number;
 
     constructor(name: string){
         this._name = name;
         this._hunger = 0;
+        this._id = uuid();
     }
 
     private increaseHunger(increaseValue: number){
