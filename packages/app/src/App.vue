@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-900 content pt-20 px-20 pb-20 grid grid-cols-2 gap-10" >
+  <div class="bg-white content pt-20 px-20 pb-20 grid grid-cols-2 gap-10" >
     <inputField></inputField>
     <outputList></outputList>
   </div>

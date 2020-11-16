@@ -1,5 +1,5 @@
 <template>
-<div class="bg-blue-100 w-full h-full object-cover card bg-white shadow-2xl flex">
+<div class="bg-100 w-full h-full object-cover card shadow-2xl flex">
   <div class="container mx-auto mt-8">
 	<div class="mx-auto flex flex-wrap max-width-form text-gray-800">
 		<!-- Header	-->
