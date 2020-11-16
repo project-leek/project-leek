@@ -11,7 +11,7 @@ declare module './declarations' {
   }
 }
 
-export default function (app: Application): void {
+export default (app: Application): void => {
   const authentication = new AuthenticationService(app);
 
   authentication.register('jwt', new JWTStrategy());
@@ -19,4 +19,4 @@ export default function (app: Application): void {
 
   app.use('/authentication', authentication);
   app.configure(expressOauth());
-}
+};

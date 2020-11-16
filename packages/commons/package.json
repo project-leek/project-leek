@@ -10,5 +10,9 @@
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
+  },
+  "dependencies": {
+    "@feathersjs/feathers": "4.5.10",
+    "feathers-nedb": "5.1.0"
   }
 }
