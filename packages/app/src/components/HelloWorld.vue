@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 
-import { feathers } from '@/lib';
+import feathers from '@/lib/feathers';
 
 export default defineComponent({
   name: 'HelloWorld',
