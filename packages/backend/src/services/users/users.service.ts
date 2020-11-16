@@ -1,10 +1,18 @@
-import { NedbServiceOptions } from 'feathers-nedb';
-import { AbstractUsersService } from '@project-leek/commons';
+import { ServiceAddons } from '@feathersjs/feathers';
+import { Service, NedbServiceOptions } from 'feathers-nedb';
+import { User } from '@project-leek/commons';
 import { Application } from '../../declarations';
 import createModel from './users.model';
 import hooks from './users.hooks';
 
-class UsersService extends AbstractUsersService {
+// Add this service to the service type index
+declare module '../../declarations' {
+  interface ServiceTypes {
+    users: UsersService & ServiceAddons<User>;
+  }
+}
+
+class UsersService extends Service<User> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(options: Partial<NedbServiceOptions>, app: Application) {
     super(options);
