@@ -393,7 +393,7 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@feathersjs/adapter-commons@^4.3.6":
+"@feathersjs/adapter-commons@^4.3.6", "@feathersjs/adapter-commons@^4.5.7":
   version "4.5.7"
   resolved "https://registry.yarnpkg.com/@feathersjs/adapter-commons/-/adapter-commons-4.5.7.tgz#8808bd0392a63713f1a7bead44a2910fcebf8152"
   integrity sha512-968FYEeX5S790dhhPf/u1RBhh8824jW6fRb0bmWqGpzjEkC7dNJ9+m+j3/Gduh1cPGL1a6Nf5sXkkMEFWDJ4tw==

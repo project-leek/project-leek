@@ -12,7 +12,5 @@
     "reset": "yarn clean"
   },
   "dependencies": {
-    "@feathersjs/feathers": "4.5.10",
-    "feathers-nedb": "5.1.0"
   }
 }
