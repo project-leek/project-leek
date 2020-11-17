@@ -14,7 +14,7 @@ jobs:
       matrix:
         command:
           - 'build:changed'
-          # - 'lint:changed'
+          - 'lint:changed'
           - 'test:changed'
           - 'typecheck:changed'
         node-version: [12.x]
