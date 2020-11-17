@@ -11,14 +11,35 @@ interface ServiceTypes {
   users: Service<User>;
 }
 
-export const socket = io({
+export const socket = io('localhost:3030', {
+  path: '/api/v1/socket',
   transports: ['websocket'],
-  autoConnect: false,
-  // timeout: 20 * 1000, // uncomment if your network is slow ;)
+  autoConnect: true,
 });
 
 const feathersClient = feathers<ServiceTypes>();
 feathersClient.configure(socketio(socket, { timeout: 20 * 1000 }));
+
+function debug(...str: string[]) {
+  // eslint-disable-next-line no-console
+  console.log(...str);
+}
+
+socket.on('connect', () => {
+  debug('Backend: connected ;-)');
+});
+
+socket.on('disconnect', () => {
+  debug('Backend: disconnected');
+});
+
+feathersClient.on('login', () => {
+  debug('Backend: authenticated');
+});
+
+feathersClient.on('logout', () => {
+  debug('Backend: unauthenticated bye bye');
+});
 
 feathersClient.on('disconnect', () => {
   socket.disconnect();
