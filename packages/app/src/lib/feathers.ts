@@ -11,10 +11,11 @@ interface ServiceTypes {
   users: Service<User>;
 }
 
-export const socket = io('localhost:3030', {
+export const socket = io({
   path: '/api/v1/socket',
   transports: ['websocket'],
   autoConnect: true,
+  timeout: 20 * 1000,
 });
 
 const feathersClient = feathers<ServiceTypes>();
