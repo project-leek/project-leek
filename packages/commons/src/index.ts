@@ -1,3 +1,4 @@
 import User from './user.class';
+import Rudolfo from './rudolfo.class'
 
-export { User };
+export { User, Rudolfo };
