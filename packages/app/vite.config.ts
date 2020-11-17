@@ -12,14 +12,9 @@ export default {
     },
   ],
   proxy: {
-    '/api/v1/socket': {
-      target: 'ws://localhost:3030/api/v1/socket'
-    },
     '/api': {
       target: 'http://localhost:3030',
       ws: true,
-      // changeOrigin: true,
-      // rewrite: (_path) => _path.replace(/^\/api/, ''),
     },
   },
 };
