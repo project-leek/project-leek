@@ -6,6 +6,9 @@
       Edit <code>components/HelloWorld.vue</code> to test hot module
       replacement.
     </p>
+    <pre>
+      {{ users }}
+    </pre>
   </div>
 </template>
 
@@ -34,6 +37,7 @@ export default defineComponent({
 
     return {
       count,
+      users,
     };
   },
 });
