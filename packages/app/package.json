@@ -14,7 +14,7 @@
     "@feathersjs/feathers": "4.5.10",
     "@feathersjs/socketio-client": "4.5.10",
     "@project-leek/commons": "*",
-    "socket.io-client": "2.3.1",
+    "socket.io-client": "3.0.2",
     "tailwindcss": "1.9.6",
     "vue": "3.0.2",
     "vue-router": "4.0.0-rc.3"
