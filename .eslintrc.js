@@ -62,7 +62,8 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        project: 'packages/*/tsconfig.json',
+        // project: 'packages/*/tsconfig.json',
+        alwaysTryTypes: true // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
       },
     }
   }
