@@ -25,9 +25,9 @@ export default (app: Application): void => {
   };
 
   // Initialize our service with any options it requires
-  app.use('/users', new NicksPetService(options, app));
+  app.use('nicksPets', new NicksPetService(options, app));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('nicksPet');
+  const service = app.service('nicksPets');
 
 };
