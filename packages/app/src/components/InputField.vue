@@ -17,6 +17,7 @@
                     >Name</label
                   >
                   <input
+                    v-model="form.name"
                     class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
                     type="text"
                   />
@@ -26,6 +27,7 @@
                     >Breed</label
                   >
                   <input
+                    v-model="form.breed"
                     class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
                     type="text"
                   />
@@ -37,6 +39,7 @@
                     >Date of Birth</label
                   >
                   <input
+                    v-model="form.dateOfBirth"
                     class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
                     type="date"
                   />
@@ -61,7 +64,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import { Pet } from '@project-leek/commons';
-import feathers from '@/lib/feathers';
+import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'InputField',
@@ -73,8 +76,13 @@ export default defineComponent({
     });
     const createPet = async () => {
       const petti = new Pet(...form);
-      await feathers.service
+      const res = await feathers.services('pets').create(petti);
+      console.log(res);
     };
+    return {
+      createPet,
+      form,
+    }
   },
 });
 </script>
