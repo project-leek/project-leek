@@ -2,18 +2,27 @@
   "vetur.validation.template": false,
   "vetur.validation.script": false,
   "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"],
-  "actionButtons": {
-    "defaultColor": "#ff0034", // Can also use string color names.
-    "loadNpmCommands":false, // Disables automatic generation of actions for npm commands.
-    "reloadButton":"♻️", // Custom reload button text or icon (default ↻). null value enables automatic reload on configuration change
-    "commands": [
+  "editor.tabSize": 2,
+  "eslint.validate": [
       {
-        "cwd": "${workspaceFolder}", 	// Terminal initial folder ${workspaceFolder} and os user home as defaults
-        "name": "Start App",
-        "color": "White",
-        "singleInstance": true,
-        "command": "yarn start:app", // This is executed in the terminal.
+          "language": "vue",
+          "autoFix": false
       },
-    ]
-  }
+      {
+          "language":"html",
+          "autoFix": false
+      },
+      {
+          "language":"javascript",
+          "autoFix": false
+      },
+      {
+          "language":"typescript",
+          "autoFix": false
+      }
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "liveshare.populateGitCoAuthors": "never",
+  "files.trimTrailingWhitespace": true
 }
