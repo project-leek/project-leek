@@ -16,6 +16,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 
 import feathers from '@/lib/feathers';
+import { User } from '@project-leek/commons';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -29,10 +30,10 @@ export default defineComponent({
 
   setup() {
     const count = ref(0);
-    const users = ref([]);
+    const users = ref<User[]>([]);
 
     onMounted(async () => {
-      users.value = await feathers.service('users').find();
+      // users.value = await feathers.service('users').find();
     });
 
     return {
