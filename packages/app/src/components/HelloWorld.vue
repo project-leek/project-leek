@@ -1,19 +1,28 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <button @click="count++">count is: {{ count }}</button>
-    <p>
-      Edit <code>components/HelloWorld.vue</code> to test hot module
-      replacement.
-    </p>
+    <button @click="buttonClick">count is: {{ count }}</button>
+    <PetList />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import feathers from '@/lib/feathers';
+import PetList from './PetList.vue';
+import { Rudolfo } from '../../../backend/node_modules/@project-leek/commons/dist';
+let rudolfoList: Array<Rudolfo> = [];
+
+function buttonClick() {
+  count++;
+  rudolfoList = [];
+  for (let index = 0; index < count; index++) {
+    rudolfoList.push(new Rudolfo());
+  }
+}
+
 export default defineComponent({
   name: 'HelloWorld',
+  components: { PetList },
   props: {
     msg: {
       type: String,
