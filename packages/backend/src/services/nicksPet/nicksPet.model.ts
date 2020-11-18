@@ -5,11 +5,11 @@ import { Application } from '../../declarations';
 export default (app: Application): NeDB<any> => {
   const dbPath = app.get('nedb');
   const Model = new NeDB({
-    filename: path.join(dbPath, 'nicksPet.db'),
+    filename: path.join(dbPath, 'nicksPets.db'),
     autoload: true,
   });
 
-  Model.ensureIndex({ fieldName: 'name', unique: true });
+  Model.ensureIndex({ fieldName: 'id', unique: true });
 
   return Model;
 };

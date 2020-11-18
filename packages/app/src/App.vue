@@ -17,11 +17,9 @@ export default defineComponent({
 
   components: {
     HelloWorld,
-    NicksPetList
+    NicksPetList,
   },
 
-  nicksPets(){
-    return
-  }
+  nicksPets() {},
 });
 </script>
