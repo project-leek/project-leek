@@ -2,16 +2,14 @@
   <div>
     <h2>Jans Pet Display</h2>
     <form @submit.prevent="createJansPet">
-      New Pet for Jan :3
+      <p>New Pet for Jan :3</p>
       <label for="NewJansPetName">Name</label>
       <input id="NewJansPetName" v-model="NewPetName" />
       <label for="NewJansPetDescription">Description</label>
       <input id="NewJansPetDescription" v-model="NewPetDescription" />
       <button type="submit">YEH!</button>
     </form>
-
     <jans-single-pet v-for="pet in JansPetList" :key="pet.id" :pet="pet" />
-    {{ JansPetList }}
   </div>
 </template>
 
@@ -32,11 +30,13 @@ export default defineComponent({
       JansPetList.value = await feathers.service('JansPets').find();
     });
 
-    feathers.service('JansPet').on('created', (jansNewPet) => {
+    feathers.service('JansPets').on('created', (jansNewPet) => {
       JansPetList.value.push(jansNewPet);
     });
-    feathers.service('JansPet').on('deleted', (jansDeletedPet) => {
-      JansPetList.value.pop(jansDeletedPet);
+    feathers.service('JansPets').on('removed', (jansDeletedPet) => {
+      JansPetList.value = JansPetList.value.filter(
+        (value) => value._id !== jansDeletedPet._id
+      );
     });
 
     return {
