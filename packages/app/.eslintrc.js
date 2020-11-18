@@ -1,10 +1,16 @@
+const config = require('../../.eslintrc');
+
 module.exports = {
+  ...config,
   root: true,
   extends: [
+    'airbnb-typescript',
+
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+
     'plugin:import/typescript',
 
     'plugin:vue/vue3-recommended',
@@ -12,18 +18,17 @@ module.exports = {
 
     '@vue/prettier',
     '@vue/prettier/@typescript-eslint',
-
-    'airbnb-base',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: ['./tsconfig.json'],
     sourceType: 'module',
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-    parser: '@typescript-eslint/parser',
     extraFileExtensions: ['.vue'],
   },
   rules: {
+    ...config.rules,
     'no-console': 'error',
     'no-debugger': 'error',
     'no-param-reassign': ['error', { props: false }],

@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "lib": ["dom", "esnext"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "files": [

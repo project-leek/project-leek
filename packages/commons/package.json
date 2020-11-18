@@ -10,5 +10,7 @@
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
+  },
+  "dependencies": {
   }
 }

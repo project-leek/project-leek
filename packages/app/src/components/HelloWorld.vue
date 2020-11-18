@@ -6,11 +6,16 @@
       Edit <code>components/HelloWorld.vue</code> to test hot module
       replacement.
     </p>
+    <pre>
+      {{ users }}
+    </pre>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
+
+import feathers from '@/lib/feathers';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -22,9 +27,17 @@ export default defineComponent({
     },
   },
 
-  data() {
+  setup() {
+    const count = ref(0);
+    const users = ref([]);
+
+    onMounted(async () => {
+      users.value = await feathers.service('users').find();
+    });
+
     return {
-      count: 0,
+      count,
+      users,
     };
   },
 });
