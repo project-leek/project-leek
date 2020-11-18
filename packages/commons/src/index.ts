@@ -1,3 +1,4 @@
+import Pet from './pet.class';
 import User from './user.class';
 
-export { User };
+export { Pet, User };
