@@ -16,8 +16,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import JansPetDisplay from '@/components/JansPetDisplay.vue';
-
-import feathers from '@/lib/feathers';
 import { User } from '@project-leek/commons';
 
 export default defineComponent({
