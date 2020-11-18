@@ -11,9 +11,9 @@
   "scripts": {
     "setup": "yarn && lerna link",
     "start": "yarn build:commons && lerna run --parallel start",
-    "start:app": "yarn build:commons && lerna run --include-dependencies --scope @project-leek/app --parallel start",
-    "start:backend": "yarn build:commons && lerna run --include-dependencies --scope @project-leek/backend --parallel start",
-    "start:commons": "yarn build:commons && lerna run --include-dependencies --scope @project-leek/commons --parallel start",
+    "start:app": "yarn build:commons && lerna run --scope @project-leek/app --parallel start",
+    "start:backend": "yarn build:commons && lerna run --scope @project-leek/backend --parallel start",
+    "start:commons": "yarn build:commons && lerna run --scope @project-leek/commons --parallel start",
     "build": "lerna run build",
     "build:commons": "lerna run --scope @project-leek/commons build",
     "build:changed": "lerna run --since origin/master --include-dependents build",
