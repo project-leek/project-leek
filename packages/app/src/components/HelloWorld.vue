@@ -2,6 +2,10 @@
   <div>
     <button @click="buttonClick">count is: {{ count }}</button>
     <PetList />
+    <h1>{{ msg }}</h1>
+    <pre>
+      {{ users }}
+    </pre>
   </div>
 </template>
 
@@ -26,7 +30,7 @@ export default defineComponent({
   props: {
     msg: {
       type: String,
-      default: 'Hexe',
+      default: 'Rudolfo',
     },
   },
   setup() {
@@ -37,6 +41,7 @@ export default defineComponent({
     });
     return {
       count,
+      users,
     };
   },
 });
