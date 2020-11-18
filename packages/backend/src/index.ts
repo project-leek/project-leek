@@ -50,7 +50,7 @@ async function shutdown(): Promise<void> {
 }
 
 function exitHook() {
-  void shutdown();
+  shutdown();
 }
 
 process.once('SIGINT', exitHook);

@@ -1,6 +1,6 @@
 import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import { AdapterService } from '@feathersjs/adapter-commons';
-import { User } from '@project-leek/commons';
+import { AntonsPet, User } from '@project-leek/commons';
 import socketio from '@feathersjs/socketio-client';
 import io from 'socket.io-client';
 
@@ -9,17 +9,18 @@ type Service<T> = AdapterService<T> & ServiceAddons<T>;
 // Add this service to the service type index
 interface ServiceTypes {
   users: Service<User>;
+  'antons-pets': Service<AntonsPet>;
 }
 
 export const socket = io({
   path: '/api/v1/socket',
   transports: ['websocket'],
   autoConnect: true,
-  timeout: 20 * 1000,
+  // timeout: 20 * 1000,
 });
 
 const feathersClient = feathers<ServiceTypes>();
-feathersClient.configure(socketio(socket, { timeout: 20 * 1000 }));
+feathersClient.configure(socketio(socket));
 
 function debug(...str: string[]) {
   // eslint-disable-next-line no-console
