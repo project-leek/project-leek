@@ -1,7 +1,6 @@
 import NeDB from 'nedb';
 import path from 'path';
 import { Application } from '../../declarations';
-import createModel from './JanPets.model';
 
 export default (app: Application): NeDB<any> => {
   const dbPath = app.get('nedb');
@@ -10,7 +9,7 @@ export default (app: Application): NeDB<any> => {
     autoload: true,
   });
 
-  Model.ensureIndex({ fieldName: 'id', unique: true });
+  Model.ensureIndex({ fieldName: 'id', unique: false });
 
   return Model;
 };

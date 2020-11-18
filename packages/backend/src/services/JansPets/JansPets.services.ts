@@ -1,8 +1,8 @@
-import { ServiceAddons} from "@feathersjs/feathers";
+import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
-import { Application } from "../../declarations";
-import { JansPet } from '@project-leek/commons';
-import createModel from './JansPets.model'
+import JansPet from '@project-leek/commons/src/JansPet.class';
+import { Application } from '../../declarations';
+import createModel from './JansPets.model';
 
 declare module '../../declarations' {
   interface ServiceTypes {
@@ -18,8 +18,8 @@ class JansPetsService extends Service<JansPet> {
 
 export default (app: Application): void => {
   const options = {
-    Model: createModel(app)
+    Model: createModel(app),
   };
   app.use('/JansPets', new JansPetsService(options, app));
-  app.service('users');
+  app.service('JansPets').publish(() => app.channel('anonymous'));
 };

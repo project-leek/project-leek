@@ -6,7 +6,7 @@
       Edit <code>components/HelloWorld.vue</code> to test hot module
       replacement.
     </p>
-    <jans-pet-display/>
+    <jans-pet-display />
     <pre>
       {{ users }}
     </pre>
@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
+import JansPetDisplay from '@/components/JansPetDisplay.vue';
 
 import feathers from '@/lib/feathers';
 
