@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="buttonClick">count is: {{ count }}</button>
-    <PetList v-bind:petList="rudolfoList"/>
+    <PetList :pet-list="rudolfoList" />
     <h1>{{ msg }}</h1>
     <pre>
       {{ users }}
@@ -12,17 +12,8 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import feathers from '@/lib/feathers';
+import { Rudolfo } from '@project-leek/commons';
 import PetList from './PetList.vue';
-import { Rudolfo } from '../../../backend/node_modules/@project-leek/commons/dist';
-let rudolfoList: Array<Rudolfo> = [];
-
-function buttonClick() {
-  count++;
-  rudolfoList = [];
-  for (let index = 0; index < count; index++) {
-    rudolfoList.push(new Rudolfo());
-  }
-}
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -36,12 +27,25 @@ export default defineComponent({
   setup() {
     const count = ref(0);
     const users = ref([]);
+
     onMounted(async () => {
       users.value = await feathers.service('users').find();
     });
+
+    let rudolfoList: Array<Rudolfo> = [];
+
+    function buttonClick() {
+      count.value += 1;
+      rudolfoList = [];
+      for (let index = 0; index < count.value; index += 1) {
+        rudolfoList.push(new Rudolfo());
+      }
+    }
+
     return {
       count,
       users,
+      buttonClick,
     };
   },
 });
