@@ -7,6 +7,9 @@
       replacement.
     </p>
     <jans-pet-display/>
+    <pre>
+      {{ users }}
+    </pre>
   </div>
 </template>
 
@@ -37,6 +40,7 @@ export default defineComponent({
 
     return {
       count,
+      users,
     };
   },
 });
