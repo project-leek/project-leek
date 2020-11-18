@@ -2,11 +2,7 @@
   "vetur.validation.template": false,
   "vetur.validation.script": false,
   "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"],
-  "editor.minimap.enabled": false,
-  "explorer.confirmDragAndDrop": false,
   "editor.tabSize": 2,
-  "editor.renderWhitespace": "all",
-  "breadcrumbs.enabled": false,
   "eslint.validate": [
       {
           "language": "vue",
@@ -26,10 +22,7 @@
       }
   ],
   "javascript.updateImportsOnFileMove.enabled": "never",
-  "editor.renderControlCharacters": false,
-  "window.zoomLevel": 0,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "liveshare.populateGitCoAuthors": "never",
-  "extensions.ignoreRecommendations": true,
   "files.trimTrailingWhitespace": true
 }
