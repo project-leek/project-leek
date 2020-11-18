@@ -13,7 +13,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import feathers from '@/lib/feathers';
 import PetList from './PetList.vue';
-import { Rudolfo } from '../../../backend/node_modules/@project-leek/commons/dist';
+import { Rudolfo } from '@project-leek/commons';
 let rudolfoList: Array<Rudolfo> = [];
 
 function buttonClick() {
