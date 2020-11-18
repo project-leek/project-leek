@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="buttonClick">count is: {{ count }}</button>
-    <PetList />
+    <PetList v-bind:petList="rudolfoList"/>
     <h1>{{ msg }}</h1>
     <pre>
       {{ users }}
