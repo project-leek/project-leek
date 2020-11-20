@@ -8,7 +8,7 @@ import hooks from './users.hooks';
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    users: User & ServiceAddons<User>;
+    users: UsersService & ServiceAddons<User>;
   }
 }
 
@@ -26,7 +26,7 @@ export default (app: Application): void => {
   };
 
   // Initialize our service with any options it requires
-  app.use('/users', new UsersService(options, app));
+  app.use('users', new UsersService(options, app));
 
   // Get our initialized service so that we can register hooks
   const service = app.service('users');

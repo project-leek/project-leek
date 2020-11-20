@@ -14,14 +14,15 @@
     "config": "config/"
   },
   "engines": {
-    "node": "^12.0.0",
+    "node": ">= 12.0.0",
     "yarn": ">= 0.18.0"
   },
   "scripts": {
     "start": "nodemon",
     "build": "yarn clean && tsc",
     "test": "jest --forceExit",
-    "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "lint": "eslint src/. test/. --ext .ts",
+    "lint:fix": "yarn lint --fix",
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
@@ -34,18 +35,19 @@
   },
   "types": "dist/",
   "dependencies": {
-    "@feathersjs/authentication": "4.5.9",
-    "@feathersjs/authentication-local": "4.5.9",
-    "@feathersjs/authentication-oauth": "4.5.9",
-    "@feathersjs/configuration": "4.5.9",
-    "@feathersjs/errors": "4.5.9",
-    "@feathersjs/express": "4.5.9",
-    "@feathersjs/feathers": "4.5.9",
-    "@feathersjs/socketio": "4.5.9",
-    "@feathersjs/transport-commons": "4.5.9",
+    "@feathersjs/authentication": "4.5.10",
+    "@feathersjs/authentication-local": "4.5.10",
+    "@feathersjs/authentication-oauth": "4.5.10",
+    "@feathersjs/configuration": "4.5.10",
+    "@feathersjs/errors": "4.5.10",
+    "@feathersjs/express": "4.5.10",
+    "@feathersjs/feathers": "4.5.10",
+    "@feathersjs/socketio": "4.5.10",
+    "@feathersjs/transport-commons": "4.5.10",
     "@project-leek/commons": "*",
     "compression": "1.7.4",
     "cors": "2.8.5",
+    "express": "4.17.1",
     "feathers-nedb": "5.1.0",
     "helmet": "4.2.0",
     "nedb": "1.8.0",
@@ -60,8 +62,8 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/nedb": "1.8.11",
     "@types/serve-favicon": "2.5.1",
-    "@typescript-eslint/eslint-plugin": "4.6.1",
-    "@typescript-eslint/parser": "4.6.1",
+    "@typescript-eslint/eslint-plugin": "4.7.0",
+    "@typescript-eslint/parser": "4.7.0",
     "axios": "0.21.0",
     "esbuild": "0.8.5",
     "esbuild-node-tsc": "1.0.4",
@@ -69,6 +71,6 @@
     "nodemon": "2.0.6",
     "prettier": "2.1.2",
     "shx": "0.3.3",
-    "ts-jest": "26.4.3"
+    "ts-jest": "26.4.4"
   }
 }
