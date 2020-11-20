@@ -1,7 +1,5 @@
 import { Server } from 'http';
 
-// import pkg from '../package.json';
-
 import app from './app';
 import logger from './logger';
 import webserver from './webserver';
@@ -10,7 +8,7 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 let server: Server;
 
 function start() {
-  // logger.info('Application (%s v%s) starting ...', NODE_ENV, pkg.version);
+  logger.info('Application (%s) starting ...', NODE_ENV);
 
   const hostname = app.get('host');
   const port = app.get('port');
@@ -49,8 +47,9 @@ async function shutdown(): Promise<void> {
   process.exit(0);
 }
 
-function exitHook() {
-  void shutdown();
+function exitHook(): void {
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  shutdown(); // We don't want to handle this promise
 }
 
 process.once('SIGINT', exitHook);
@@ -61,4 +60,4 @@ process.on('uncaughtException', (error) =>
   logger.error('Uncaught exception %s', error.stack || error.message || error),
 );
 
-void start();
+start();
