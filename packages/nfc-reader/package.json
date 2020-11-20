@@ -1,0 +1,17 @@
+{
+  "name": "@project-leek/nfc-reader",
+  "version": "0.0.1",
+  "main": "dist/",
+  "types": "dist/",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "yarn clean && tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "clean": "shx rm -rf dist/",
+    "reset": "yarn clean"
+  },
+  "dependencies": {
+    "evdev": "git://github.com/PixnBits/node-evdev.git#feature/migrate-to-napi"
+  }
+}

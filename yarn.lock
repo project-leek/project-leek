@@ -4732,6 +4732,10 @@ etag@^1.8.1, etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+"evdev@git://github.com/PixnBits/node-evdev.git#feature/migrate-to-napi":
+  version "0.2.5"
+  resolved "git://github.com/PixnBits/node-evdev.git#4f7ceb530064b756baafc116309f94c36a565329"
+
 eventemitter3@^3.1.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
