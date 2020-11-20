@@ -1,9 +1,10 @@
 import { Server } from 'http';
 import url from 'url';
 import axios, { AxiosError } from 'axios';
-
 import { FeathersError } from '@feathersjs/errors';
+
 import app from '../src/app';
+import webserver from '../src/webserver';
 
 const port = app.get('port') || 8998;
 const getUrl = (pathname?: string): string =>
@@ -11,17 +12,18 @@ const getUrl = (pathname?: string): string =>
     hostname: app.get('host') || 'localhost',
     protocol: 'http',
     port,
-    pathname,
+    pathname: pathname && `/api/v1/${pathname}`,
   });
 
 describe('Feathers application tests (with jest)', () => {
   let server: Server;
 
   beforeAll((done) => {
-    server = app.listen(port);
+    server = webserver.listen(port);
     server.once('listening', () => {
       done();
     });
+    app.setup(server);
   });
 
   afterAll((done) => {
@@ -62,7 +64,6 @@ describe('Feathers application tests (with jest)', () => {
       } catch (error) {
         const { response } = error as AxiosError;
 
-        expect(response).toBeDefined();
         if (response) {
           expect(response.status).toBe(404);
           const data = response.data as FeathersError;

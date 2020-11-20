@@ -29,9 +29,9 @@ webserver.use(express.static(app.get('public')));
 
 webserver.use('/api/v1', app);
 
-webserver.get('*', (req, res) => {
-  res.sendFile(path.join(app.get('public'), 'index.html'));
-});
+// webserver.get('*', (req, res) => {
+//   res.sendFile(path.join(app.get('public'), 'index.html'));
+// });
 
 // Configure a middleware for 404s and the error handler
 webserver.use(notFound());
