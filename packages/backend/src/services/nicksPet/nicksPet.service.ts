@@ -21,7 +21,6 @@ class NicksPetService extends Service<NicksPet> {
 export default (app: Application): void => {
   const options = {
     Model: createModel(app),
-    //paginate: app.get('paginate'),
   };
 
   // Initialize our service with any options it requires
@@ -30,5 +29,4 @@ export default (app: Application): void => {
   // Get our initialized service so that we can register hooks
   const service = app.service('nicksPets');
   service.publish(() => app.channel('anonymous'));
-
 };

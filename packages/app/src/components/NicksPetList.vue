@@ -1,24 +1,38 @@
 <template>
-  <div>
-    <h3>gehimbh.de</h3>
-    <div v-for="pet in nicksPets" :key="pet.id">
-      {{ pet.name }}
-      <button @click="deletePet(pet)">X</button>
+  <div class="box-content bg-blue-500 m-2 p-6">
+    <h2 class="text-2xl font-semibold">Nicks Pets</h2>
+    <div v-for="pet in nicksPets" :key="pet._id">
+      <NicksPetItem :pet="pet" @delete-pet="deletePet" />
     </div>
-    <form @submit.prevent="createNewPet">
-      <input v-model="form.petName" type="text" placeholder="name of the pet" />
-      <input type="submit" value="Senden" />
+    <form class="mt-5" @submit.prevent="createNewPet">
+      <h4 class="text-lg">Create New Pet</h4>
+      <div class="flex mx-auto justify-center mt-2">
+        <input
+          v-model="form.petName"
+          class="rounded-full p-1"
+          type="text"
+          placeholder="name of the pet"
+        />
+        <input
+          class="rounded-full w-24 ml-2 bg-green-500 hover:bg-green-600"
+          type="submit"
+          value="Create"
+        />
+      </div>
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { NicksPet } from '@project-leek/commons';
 import { defineComponent, onMounted, reactive, ref } from 'vue';
+import NicksPetItem from './NicksPetItem.vue';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'NicksPetList',
+  components: {
+    NicksPetItem,
+  },
 
   setup() {
     const nicksPets = ref([]);
@@ -37,7 +51,7 @@ export default defineComponent({
     });
 
     const createNewPet = async () => {
-      const newPet = { name: form.petName};
+      const newPet = { name: form.petName };
       await feathers.service('nicksPets').create(newPet);
       form.petName = '';
     };
@@ -46,7 +60,6 @@ export default defineComponent({
       await feathers.service('nicksPets').remove(pet._id);
     };
 
-    console.log('ende: ', nicksPets.value);
     return { nicksPets, form, createNewPet, deletePet };
   },
 });

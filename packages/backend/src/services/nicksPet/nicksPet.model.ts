@@ -9,7 +9,5 @@ export default (app: Application): NeDB<any> => {
     autoload: true,
   });
 
-  Model.ensureIndex({ fieldName: 'id', unique: true });
-
   return Model;
 };

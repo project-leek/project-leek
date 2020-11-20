@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default class NicksPet {
   name: string;
 
