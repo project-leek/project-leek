@@ -26,4 +26,5 @@ export default (app: Application): void => {
 
   // Initialize our service with any options it requires
   app.use('pets', new PetService(options, app));
+  app.service('pets').publish(() => app.channel('anonymous'));
 };
