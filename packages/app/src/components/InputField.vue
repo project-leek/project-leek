@@ -1,69 +1,67 @@
 <template>
   <div class="bg-100 w-full h-full object-cover card shadow-2xl flex">
     <div class="container mx-auto mt-8">
-      <form @submit.prevent="">
-        <div class="mx-auto flex flex-wrap max-width-form text-gray-800">
-          <!-- Header	-->
-          <div class="flex-100">
-            <h1 class="font-bold text-3xl flex-100 mb-8">Gimme a new Pet</h1>
-          </div>
-          <!--form-->
-          <div class="flex flex-100 mt-8">
-            <form class="flex-100">
-              <!--inputs-->
-              <div class="flex flex-100">
-                <div class="flex-grow mr-2">
-                  <label class="block mb-1 font-bold uppercase" for=""
-                    >Name</label
-                  >
-                  <input
-                    v-model="form.name"
-                    class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
-                    type="text"
-                  />
-                </div>
-                <div class="flex-grow ml-2">
-                  <label class="block mb-1 font-bold uppercase" for=""
-                    >Breed</label
-                  >
-                  <input
-                    v-model="form.breed"
-                    class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
-                    type="text"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-100 mt-4">
-                <div class="flex-grow mr-2">
-                  <label class="block mb-1 font-bold uppercase" for=""
-                    >Date of Birth</label
-                  >
-                  <input
-                    v-model="form.dateOfBirth"
-                    class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
-                    type="date"
-                  />
-                </div>
-              </div>
-
-              <div class="flex flex-100 mt-4">
-                <button
-                  class="bg-pink-dribbble flex-50 text-white relative py-4 rounded"
-                >
-                  <div>Save</div>
-                </button>
-              </div>
-            </form>
-          </div>
+      <div class="mx-auto flex flex-wrap max-width-form text-gray-800">
+        <!-- Header	-->
+        <div class="flex-100">
+          <h1 class="font-bold text-3xl flex-100 mb-8">Gimme a new Pet</h1>
         </div>
-      </form>
+        <!--form-->
+        <div class="flex flex-100 mt-8">
+          <form class="flex-100" @submit.prevent="createPet">
+            <!--inputs-->
+            <div class="flex flex-100">
+              <div class="flex-grow mr-2">
+                <label class="block mb-1 font-bold uppercase" for=""
+                  >Name</label
+                >
+                <input
+                  v-model="form.name"
+                  class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
+                  type="text"
+                />
+              </div>
+              <div class="flex-grow ml-2">
+                <label class="block mb-1 font-bold uppercase" for=""
+                  >Breed</label
+                >
+                <input
+                  v-model="form.breed"
+                  class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="flex flex-100 mt-4">
+              <div class="flex-grow mr-2">
+                <label class="block mb-1 font-bold uppercase" for=""
+                  >Date of Birth</label
+                >
+                <input
+                  v-model="form.dateOfBirth"
+                  class="bg-gray-200 w-full rounded-lg py-3 px-3 shadow-inner"
+                  type="date"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-100 mt-4">
+              <input
+                type="submit"
+                value="Save"
+                class="bg-pink-dribbble flex-50 text-white relative py-4 rounded"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
-import { Pet } from '@project-leek/commons';
+import { defineComponent, onMounted, ref, reactive } from 'vue';
+import Pet from '@project-leek/commons';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
@@ -74,15 +72,33 @@ export default defineComponent({
       breed: '',
       dateOfBirth: new Date(),
     });
+
+    const pets = ref<Pet[]>([]);
+
+    onMounted(async () => {
+      const response = await feathers.service('pets').find();
+      pets.value = response.data;
+    });
+
     const createPet = async () => {
-      const petti = new Pet(...form);
-      const res = await feathers.services('pets').create(petti);
-      console.log(res);
+      // Warum geht der Konstruktor nicht?
+      const petti: Pet = {
+        name: form.name,
+        breed: form.breed,
+        dateOfBirth: form.dateOfBirth,
+      };
+      const res = await feathers.service('pets').create(petti);
     };
+
+    feathers.service('pets').on('created', (newPet) => {
+      console.log('schmeckt', newPet, pets.value);
+      pets.value.push(newPet);
+    });
+
     return {
       createPet,
       form,
-    }
+    };
   },
 });
 </script>

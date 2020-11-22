@@ -7,13 +7,10 @@ export default class Pet {
 
   breed: string;
 
-  dateOfBirth: Date;
-
-  constructor(name: string, breed: string, dateOfBirth: Date) {
+  constructor(name: string, breed: string) {
     //  creates a uuid
     this.id = v4();
     this.name = name;
     this.breed = breed;
-    this.dateOfBirth = dateOfBirth;
   }
 }
