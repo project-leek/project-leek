@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white content pt-20 px-20 pb-20 grid grid-cols-2 gap-10" >
-    <inputField></inputField>
-    <outputList></outputList>
+  <div class="bg-white content py-20 px-20 flex justify-center">
+    <inputField class="mx-20"></inputField>
+    <outputList class="mx-20"></outputList>
   </div>
 </template>
 
@@ -21,9 +21,9 @@ export default defineComponent({
 </script>
 
 <style lang="css">
-@import "../compiledStyle.css";
+@import '../compiledStyle.css';
 
-.content{
+.content {
   height: 100vh;
 }
 </style>
