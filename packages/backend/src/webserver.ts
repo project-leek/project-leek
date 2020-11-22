@@ -24,13 +24,12 @@ webserver.use(express.urlencoded({ extended: true }));
 webserver.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 
 // Host the public folder
-// Host the public folder
 webserver.use(express.static(app.get('public')));
 
 webserver.use('/api/v1', app);
 
 // Configure a middleware for 404s and the error handler
 webserver.use(notFound());
-webserver.use(errorHandler({ logger } as any));
+webserver.use(errorHandler({ logger }));
 
 export default webserver;
