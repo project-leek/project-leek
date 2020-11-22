@@ -50,7 +50,10 @@ docker run ...
 
 ### Project setup
 
+> Hint: If using WSL make sure that you place the project files in the linux filesystem and do NOT mount them from Windows as this leads to some problems with build performance and file-watching.
+Otherwise, Node is so slow that it is hardly possible to work
 Checkout project locally. Enter the project folder and run:
+
 
 ```bash
 yarn setup
@@ -87,3 +90,4 @@ yarn test
 
 yarn test:update # update snapshots
 ```
+
