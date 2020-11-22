@@ -8,7 +8,7 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 let server: Server;
 
 function start() {
-  logger.info('Application (%s) starting ...', NODE_ENV);
+  logger.info('Application (%s v%s) starting ...', NODE_ENV, 'unkown');
 
   const hostname = app.get('host');
   const port = app.get('port');
@@ -47,9 +47,9 @@ async function shutdown(): Promise<void> {
   process.exit(0);
 }
 
-function exitHook(): void {
+function exitHook() {
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  shutdown(); // We don't want to handle this promise
+  shutdown(); // this promise is allowed to be floating
 }
 
 process.once('SIGINT', exitHook);

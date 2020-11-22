@@ -40,7 +40,7 @@ describe('Feathers application tests (with jest)', () => {
 
   describe('404', () => {
     it('shows a 404 HTML page', async () => {
-      expect.assertions(2);
+      expect.assertions(3);
 
       try {
         await axios.get(getUrl('path/to/nowhere'), {
@@ -51,21 +51,27 @@ describe('Feathers application tests (with jest)', () => {
       } catch (error) {
         const { response } = error as AxiosError;
 
-        expect(response?.status).toBe(404);
-        expect((response?.data as string).indexOf('<html>')).not.toBe(-1);
+        expect(response).toBeDefined();
+        if (response) {
+          expect(response.status).toBe(404);
+          const data = response.data as string;
+          expect(data.indexOf('<html>')).not.toBe(-1);
+        }
       }
     });
 
     it('shows a 404 JSON error without stack trace', async () => {
-      expect.assertions(4);
+      expect.assertions(5);
 
       try {
         await axios.get(getUrl('path/to/nowhere'));
       } catch (error) {
         const { response } = error as AxiosError;
 
+        expect(response).toBeDefined();
         if (response) {
           expect(response.status).toBe(404);
+
           const data = response.data as FeathersError;
           expect(data.code).toBe(404);
           expect(data.message).toBe('Page not found');
