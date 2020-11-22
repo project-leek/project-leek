@@ -107,7 +107,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 input::placeholder {
   color: #718096;
   font-weight: 300;
