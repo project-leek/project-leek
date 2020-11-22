@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue';
+import NicksPet from '@project-leek/commons';
 import NicksPetItem from './NicksPetItem.vue';
 import feathers from '../lib/feathers';
 
@@ -51,7 +52,7 @@ export default defineComponent({
     });
 
     const createNewPet = async () => {
-      const newPet = { name: form.petName };
+      const newPet: NicksPet = { name: form.petName };
       await feathers.service('nicksPets').create(newPet);
       form.petName = '';
     };
