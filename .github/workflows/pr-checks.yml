@@ -37,7 +37,9 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-${{ env.cache-name }}
             ${{ runner.OS }}-npm-
-      - name: Install dependencies
+      - name: Install node_modules
         run: yarn --frozen-lockfile
+      - name: Build dependencies
+        run: yarn build:dependencies
       - name: Run command - ${{ matrix.command }}
         run: yarn ${{ matrix.command }}
