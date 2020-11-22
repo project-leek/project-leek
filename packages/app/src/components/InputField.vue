@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive } from 'vue';
-import Pet from '@project-leek/commons';
+import { Pet } from '@project-leek/commons';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
@@ -82,18 +82,22 @@ export default defineComponent({
 
     const createPet = async () => {
       // Warum geht der Konstruktor nicht?
+      // const petti = new Pet(form.name, form.breed, form.dateOfBirth);
       const petti: Pet = {
         name: form.name,
         breed: form.breed,
         dateOfBirth: form.dateOfBirth,
       };
-      const res = await feathers.service('pets').create(petti);
-    };
 
-    feathers.service('pets').on('created', (newPet) => {
-      console.log('schmeckt', newPet, pets.value);
-      pets.value.push(newPet);
-    });
+      await feathers
+        .service('pets')
+        .create(petti)
+        .then(() => {
+          form.name = '';
+          form.breed = '';
+          form.dateOfBirth = '';
+        });
+    };
 
     return {
       createPet,
