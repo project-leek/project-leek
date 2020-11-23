@@ -9,7 +9,7 @@
     "packages/**"
   ],
   "scripts": {
-    "setup": "yarn && lerna link",
+    "setup": "yarn",
     "start": "yarn build:commons && lerna run --parallel start",
     "start:app": "yarn build:commons && lerna run --scope @project-leek/app --parallel start",
     "start:backend": "yarn build:commons && lerna run --scope @project-leek/backend --parallel start",
