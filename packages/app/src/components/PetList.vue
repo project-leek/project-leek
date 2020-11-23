@@ -10,6 +10,6 @@
 <script>
 export default {
     name: "PetList",
-    props:["petList"],
+    props:["petlist"],
 };
 </script>

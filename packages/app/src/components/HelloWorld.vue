@@ -1,11 +1,8 @@
 <template>
   <div>
     <button @click="buttonClick">count is: {{ count }}</button>
-    <PetList :pet-list="rudolfoList" />
-    <h1>{{ msg }}</h1>
-    <pre>
-      {{ users }}
-    </pre>
+    <PetList :petlist="rudolfoList" />
+
   </div>
 </template>
 
@@ -18,12 +15,7 @@ import PetList from './PetList.vue';
 export default defineComponent({
   name: 'HelloWorld',
   components: { PetList },
-  props: {
-    msg: {
-      type: String,
-      default: 'Rudolfo',
-    },
-  },
+
   setup() {
     const count = ref(0);
     const users = ref<User[]>([]);
@@ -32,13 +24,17 @@ export default defineComponent({
       // users.value = await feathers.service('users').find();
     });
 
-    let rudolfoList: Array<Rudolfo> = [];
+    const rudolfoList = ref<Rudolfo[]>([]);
 
     function buttonClick() {
       count.value += 1;
-      rudolfoList = [];
+      rudolfoList.value = [];
       for (let index = 0; index < count.value; index += 1) {
-        rudolfoList.push(new Rudolfo());
+        const pet: Rudolfo = {
+          name: "rudolfo",
+          type: "behindert",
+        };
+        rudolfoList.value.push(pet);
       }
     }
 
@@ -46,6 +42,7 @@ export default defineComponent({
       count,
       users,
       buttonClick,
+      rudolfoList,
     };
   },
 });
