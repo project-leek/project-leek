@@ -12,7 +12,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 
-import { User, AntonsPet } from '@project-leek/commons';
+import { AntonsPet } from '@project-leek/commons';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
@@ -42,7 +42,6 @@ export default defineComponent({
     };
 
     feathers.service('antons-pets').on('created', (antonsNewPet) => {
-      console.log('schmeckt', antonsNewPet, antonsPets.value);
       antonsPets.value.push(antonsNewPet);
     });
 
