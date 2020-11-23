@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import feathers from '@/lib/feathers';
-import JansPet from '@project-leek/commons/src/JansPet.class';
+import { JansPet } from '@project-leek/commons';
 
 export default defineComponent({
   name: 'JansPet',

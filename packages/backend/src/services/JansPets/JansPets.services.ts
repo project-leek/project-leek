@@ -1,6 +1,6 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
-import JansPet from '@project-leek/commons/src/JansPet.class';
+import { JansPet } from '@project-leek/commons';
 import { Application } from '../../declarations';
 import createModel from './JansPets.model';
 
