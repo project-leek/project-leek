@@ -49,7 +49,7 @@
               <input
                 type="submit"
                 value="Save"
-                class="bg-pink-dribbble flex-50 text-white relative py-4 rounded"
+                class="bg-pink-500 flex-50 text-white mx-auto py-4 rounded"
               />
             </div>
           </form>
