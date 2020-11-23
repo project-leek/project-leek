@@ -2,7 +2,7 @@
   <div
     class="w-full h-full object-cover card bg-white shadow-2xl max-w-2xl overflow-auto"
   >
-    <entry v-for="pet in pets" :key="pet.name" :pet="pet"></entry>
+    <entry v-for="pet in pets" :key="pet.name" :pet="pet" />
   </div>
 </template>
 

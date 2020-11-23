@@ -21,8 +21,6 @@ export default defineComponent({
 </script>
 
 <style lang="css">
-@import '../compiledStyle.css';
-
 .content {
   height: 100vh;
 }

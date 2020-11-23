@@ -59,24 +59,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
+// set Germany as default TimeZone
+dayjs.locale('de');
 
 export default defineComponent({
   name: 'Entry',
   props: {
     pet: {
       type: Object,
-      default: () => {
-        return {};
-      },
+      required: true,
     },
   },
   computed: {
     dateString() {
-      return moment(String(this.pet.dateOfBirth)).format('DD/MM/YYYY');
+      return dayjs(this.pet.dateOfBirth).format('DD.MM.YYYY');
     },
   },
 });
 </script>
-
-<style scoped></style>

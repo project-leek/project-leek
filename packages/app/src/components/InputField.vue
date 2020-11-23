@@ -89,14 +89,10 @@ export default defineComponent({
         dateOfBirth: form.dateOfBirth,
       };
 
-      await feathers
-        .service('pets')
-        .create(petti)
-        .then(() => {
-          form.name = '';
-          form.breed = '';
-          form.dateOfBirth = '';
-        });
+      await feathers.service('pets').create(petti);
+      form.name = '';
+      form.breed = '';
+      form.dateOfBirth = '';
     };
 
     return {

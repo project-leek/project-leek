@@ -7,6 +7,7 @@ export default (app: Application): NeDB<any> => {
   const Model = new NeDB({
     filename: path.join(dbPath, 'pets.db'),
     autoload: true,
+    inMemoryOnly: process.env.NODE_ENV === 'test',
   });
 
   Model.ensureIndex({ fieldName: '_id', unique: true });
