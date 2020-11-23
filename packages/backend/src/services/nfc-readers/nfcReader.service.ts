@@ -7,7 +7,7 @@ import createModel from './nfcReader.model';
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    nfcReaders: NFCReaderService & ServiceAddons<NFCReader>;
+    'nfc-readers': NFCReaderService & ServiceAddons<NFCReader>;
   }
 }
 
