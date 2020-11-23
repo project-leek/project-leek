@@ -1,19 +1,9 @@
 import NFCTag from './nfc-tag.class';
 
 export default class NFCReader {
-  private static instance: NFCReader;
+  currentTag: NFCTag | null;
 
-  currentTag: NFCTag | undefined;
-
-  private constructor(_currentTag?: NFCTag) {
-    this.currentTag = _currentTag;
-  }
-
-  public static getInstance(): NFCReader {
-    if (!NFCReader.instance) {
-      NFCReader.instance = new NFCReader();
-    }
-
-    return NFCReader.instance;
+  private constructor(currentTag?: NFCTag | null) {
+    this.currentTag = currentTag || null;
   }
 }
