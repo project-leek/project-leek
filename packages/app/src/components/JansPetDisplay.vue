@@ -9,12 +9,13 @@
       <input id="NewJansPetDescription" v-model="NewPetDescription" />
       <button type="submit">YEH!</button>
     </form>
-    <jans-single-pet v-for="pet in JansPetList" :key="pet.id" :pet="pet" />
+    <jans-single-pet v-for="pet in JansPetList" :key="pet._id" :pet="pet" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
+import { JansPet } from '@project-leek/commons';
 import JansSinglePet from '@/components/JansSinglePet.vue';
 import feathers from '../lib/feathers';
 
@@ -24,7 +25,7 @@ export default defineComponent({
   components: { JansSinglePet },
 
   setup() {
-    const JansPetList = ref([]);
+    const JansPetList = ref<JansPet[]>([]);
 
     onMounted(async () => {
       JansPetList.value = await feathers.service('JansPets').find();

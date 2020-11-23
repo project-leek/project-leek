@@ -13,14 +13,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import feathers from '@/lib/feathers';
-import { JansPet } from '@project-leek/commons';
 
 export default defineComponent({
-  name: 'JansPet',
+  name: 'JansSinglePet',
 
   props: {
-    // eslint-disable-next-line vue/require-default-prop
-    pet: JansPet,
+    pet: { type: Object, required: true },
   },
 
   methods: {
