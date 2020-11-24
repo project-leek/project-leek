@@ -20,9 +20,9 @@ export default defineComponent({
   setup() {
     const rudolfos = ref<Rudolfo[]>([]);
     onMounted(async () => {
-      const response = (await feathers
-        .service('rudolfo')
-        .find()) as Paginated<Pet>;
+      const response = (await feathers.service('rudolfo').find()) as Paginated<
+        Pet
+      >;
       rudolfos.value = response.data;
     });
     feathers.service('rudolfo').on('created', (newPet) => {
