@@ -62,6 +62,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive } from 'vue';
 import { Pet } from '@project-leek/commons';
+
 import feathers from '../lib/feathers';
 
 export default defineComponent({

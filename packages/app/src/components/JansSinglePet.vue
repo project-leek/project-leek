@@ -24,7 +24,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import feathers from '@/lib/feathers';
+
+import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'JansSinglePet',
@@ -35,7 +36,7 @@ export default defineComponent({
 
   methods: {
     deleteThisPet() {
-      feathers.service('JansPets').remove(this.pet._id);
+      feathers.service('jans-pets').remove(this.pet._id);
     },
   },
 });

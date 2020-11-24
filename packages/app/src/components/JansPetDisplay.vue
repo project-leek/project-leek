@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-green-200 w-full m-10 p-4 rounded-md">
+  <div class="bg-green-200 w-full m-2 p-2 rounded-md">
     <h2>Jans Pet Display</h2>
     <form
       class="px-2 p-1 my-3 rounded-md border border-green-400"
@@ -31,8 +31,9 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { JansPet } from '@project-leek/commons';
-import JansSinglePet from '@/components/JansSinglePet.vue';
+
 import feathers from '../lib/feathers';
+import JansSinglePet from './JansSinglePet.vue';
 
 export default defineComponent({
   name: 'JansPetDisplay',
@@ -43,13 +44,13 @@ export default defineComponent({
     const JansPetList = ref<JansPet[]>([]);
 
     onMounted(async () => {
-      JansPetList.value = await feathers.service('JansPets').find();
+      JansPetList.value = await feathers.service('jans-pets').find();
     });
 
-    feathers.service('JansPets').on('created', (jansNewPet) => {
+    feathers.service('jans-pets').on('created', (jansNewPet) => {
       JansPetList.value.push(jansNewPet);
     });
-    feathers.service('JansPets').on('removed', (jansDeletedPet) => {
+    feathers.service('jans-pets').on('removed', (jansDeletedPet) => {
       JansPetList.value = JansPetList.value.filter(
         (value) => value._id !== jansDeletedPet._id
       );
@@ -69,7 +70,7 @@ export default defineComponent({
 
   methods: {
     async createJansPet() {
-      await feathers.service('JansPets').create({
+      await feathers.service('jans-pets').create({
         name: this.NewPetName,
         description: this.NewPetDescription,
       });

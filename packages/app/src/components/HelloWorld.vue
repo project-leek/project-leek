@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-
 import { AntonsPet } from '@project-leek/commons';
 
 import feathers from '../lib/feathers';
