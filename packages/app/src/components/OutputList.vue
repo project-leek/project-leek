@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-full object-cover card bg-white shadow-2xl max-w-2xl overflow-auto"
+    class="w-full h-full object-cover card bg-white shadow-2xl max-w-2xl overflow-auto p-2"
   >
     <entry v-for="pet in pets" :key="pet.name" :pet="pet" />
   </div>
