@@ -1,12 +1,9 @@
 export default class JansPet {
-  id: string;
-
   name: string;
 
   description: string;
 
-  constructor(id: string, name: string, description: string) {
-    this.id = id;
+  constructor(name: string, description: string) {
     this.name = name;
     this.description = description;
   }
