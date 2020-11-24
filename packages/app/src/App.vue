@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <HelloWorld />
   </div>
 </template>
@@ -15,3 +15,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="css">
+.app {
+  height: 100vh;
+}
+</style>
