@@ -1,6 +1,6 @@
 <template>
   <div>
-    HERE IS A PETLIST <br />
+    HERE IS MY PETLIST <br />
     <div v-for="rudolfo in rudolfos">
       {{ rudolfo.name }}
       {{ rudolfo.type }}
@@ -11,7 +11,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { Rudolfo } from '@project-leek/commons';
-import { Paginated } from '@feathersjs/feathers';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
@@ -19,15 +18,16 @@ export default defineComponent({
 
   setup() {
     const rudolfos = ref<Rudolfo[]>([]);
+
     onMounted(async () => {
-      const response = (await feathers.service('rudolfo').find()) as Paginated<
-        Pet
-      >;
-      rudolfos.value = response.data;
+      rudolfos.value = await feathers.service('rudolfo').find();
+      console.log(rudolfos);
     });
+
     feathers.service('rudolfo').on('created', (newPet) => {
       rudolfos.value.push(newPet);
     });
+
     return {
       rudolfos,
     };
