@@ -6,12 +6,12 @@ import createModel from './JansPets.model';
 
 declare module '../../declarations' {
   interface ServiceTypes {
-    JansPets: JansPet & ServiceAddons<JansPet>;
+    'jans-pets': JansPet & ServiceAddons<JansPet>;
   }
 }
 
 class JansPetsService extends Service<JansPet> {
-  constructor(options: Partial<NedbServiceOptions>, app: Application) {
+  constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }
 }
@@ -20,6 +20,6 @@ export default (app: Application): void => {
   const options = {
     Model: createModel(app),
   };
-  app.use('/JansPets', new JansPetsService(options, app));
-  app.service('JansPets').publish(() => app.channel('anonymous'));
+  app.use('jans-pets', new JansPetsService(options));
+  app.service('jans-pets').publish(() => app.channel('anonymous'));
 };

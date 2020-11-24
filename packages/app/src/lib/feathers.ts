@@ -9,7 +9,7 @@ type Service<T> = AdapterService<T> & ServiceAddons<T>;
 // Add this service to the service type index
 interface ServiceTypes {
   users: Service<User>;
-  JansPets: Service<JansPet>;
+  'jans-pets': Service<JansPet>;
   pets: Service<Pet>;
 }
 
