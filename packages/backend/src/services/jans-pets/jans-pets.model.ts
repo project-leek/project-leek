@@ -9,6 +9,5 @@ export default (app: Application): NeDB<any> => {
     autoload: true,
   });
 
-
   return Model;
 };
