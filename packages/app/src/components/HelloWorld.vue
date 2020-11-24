@@ -19,17 +19,28 @@
     <div class="jan">
       <jans-pet-display class="wi" />
     </div>
+    <div class="tom">
+      <AddPetForm />
+      <br />
+      <br />
+      <PetList />
+    </div>
+    <div class="nick">
+      <NicksPetList />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { AntonsPet } from '@project-leek/commons';
-
 import feathers from '../lib/feathers';
 import inputField from './InputField.vue';
 import outputList from './OutputList.vue';
 import jansPetDisplay from './JansPetDisplay.vue';
+import PetList from './PetList.vue';
+import AddPetForm from './AddPetForm.vue';
+import NicksPetList from './NicksPetList.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -38,6 +49,9 @@ export default defineComponent({
     inputField,
     outputList,
     jansPetDisplay,
+    PetList,
+    AddPetForm,
+    NicksPetList,
   },
 
   setup() {
