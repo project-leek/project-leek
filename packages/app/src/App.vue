@@ -1,27 +1,24 @@
 <template>
-  <div class="bg-white content py-20 px-20 flex justify-center">
-    <inputField class="mx-20"></inputField>
-    <outputList class="mx-20"></outputList>
+  <div class="app">
+    <hello-world />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import outputList from './components/OutputList.vue';
-import inputField from './components/InputField.vue';
+import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    outputList,
-    inputField,
+    HelloWorld,
   },
 });
 </script>
 
 <style lang="css">
-.content {
+.app {
   height: 100vh;
 }
 </style>

@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <h1>{{ msg }}</h1>
-    <button @click="count++">count is: {{ count }}</button>
-    <button @click="spawnAPet">Spawn a pet</button>
-    <pre>
-      {{ antonsPets }}
-    </pre>
+  <div class="hello-world">
+    <div class="anton">
+      <pre class="p-2">{{ antonsPets }}</pre>
+      <button @click="count++" class="bg-pink-500 text-white p-2 mx-2 rounded">count is: {{ count }}</button>
+      <button @click="spawnAPet" class="bg-pink-500 text-white mx-2 p-2 rounded">Spawn a pet</button>
+    </div>
+    <div class="julian content flex justify-center">
+      <input-field class="m-2" />
+      <output-list class="m-2" />
+    </div>
   </div>
 </template>
 
@@ -13,16 +16,17 @@
 import { defineComponent, onMounted, ref } from 'vue';
 
 import { AntonsPet } from '@project-leek/commons';
+
 import feathers from '../lib/feathers';
+import inputField from './InputField.vue';
+import outputList from './OutputList.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
 
-  props: {
-    msg: {
-      type: String,
-      default: 'Hexe',
-    },
+  components: {
+    inputField,
+    outputList,
   },
 
   setup() {
