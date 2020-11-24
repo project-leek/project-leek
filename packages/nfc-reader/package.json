@@ -1,6 +1,6 @@
 {
   "name": "@project-leek/nfc-reader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/",
   "types": "dist/",
   "scripts": {
