@@ -19,6 +19,9 @@
     <div class="jan">
       <jans-pet-display class="wi" />
     </div>
+    <div class="nick">
+      <NicksPetList />
+    </div>
   </div>
 </template>
 
@@ -30,6 +33,7 @@ import feathers from '../lib/feathers';
 import inputField from './InputField.vue';
 import outputList from './OutputList.vue';
 import jansPetDisplay from './JansPetDisplay.vue';
+import NicksPetList from './NicksPetList.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -38,6 +42,7 @@ export default defineComponent({
     inputField,
     outputList,
     jansPetDisplay,
+    NicksPetList,
   },
 
   setup() {

@@ -1,7 +1,9 @@
 import User from './user.class';
-import JansPet from './JansPet.class';
-import AntonsPet from './antons-pet.class';
-import Pet from './pet.class';
 import NFCReader from './nfc-reader.class';
 
-export { User, AntonsPet, Pet, NFCReader, JansPet };
+import NicksPet from './nicks-pet.class';
+import JansPet from './jans-pet.class';
+import AntonsPet from './antons-pet.class';
+import Pet from './pet.class';
+
+export { User, NFCReader, AntonsPet, Pet, JansPet, NicksPet };
