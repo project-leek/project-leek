@@ -23,7 +23,7 @@
       <button type="submit" class="bg-white rounded-md px-2 m-2">YEH!</button>
     </form>
     <div class="grid gap-2 sm:grid-cols-1 md:grid-cols-2">
-      <jans-single-pet v-for="pet in JansPetList" :key="pet._id" :pet="pet" />
+      <jans-single-pet v-for="pet in jansPetList" :key="pet._id" :pet="pet" />
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default defineComponent({
       jansPetList.value.push(jansNewPet);
     });
     feathers.service('jans-pets').on('removed', (jansDeletedPet) => {
-     jansPetList.value = JansPetList.value.filter(
+      jansPetList.value = jansPetList.value.filter(
         (value) => value._id !== jansDeletedPet._id
       );
     });
