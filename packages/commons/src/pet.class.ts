@@ -1,11 +1,5 @@
 export default class Pet {
-  name: string;
+  name!: string;
 
-  breed: string;
-
-  constructor(name: string, breed: string) {
-    //  creates a uuid
-    this.name = name;
-    this.breed = breed;
-  }
+  breed!: string;
 }
