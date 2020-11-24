@@ -21,9 +21,10 @@
     </div>
     <div class="tom">
       <AddPetForm />
-      <br/>
-      <br/>
-      <PetList/>
+      <br />
+      <br />
+      <PetList />
+    </div>
     <div class="nick">
       <NicksPetList />
     </div>
