@@ -1,9 +1,9 @@
 import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import { AdapterService } from '@feathersjs/adapter-commons';
 import {
-  AntonsPet,
   User,
   NFCReader,
+  AntonsPet,
   Pet,
   JansPet,
   NicksPet,
@@ -16,9 +16,9 @@ type Service<T> = AdapterService<T> & ServiceAddons<T>;
 // Add this service to the service type index
 interface ServiceTypes {
   users: Service<User>;
+  'nfc-readers': Service<NFCReader>;
   'nicks-pets': Service<NicksPet>;
   'jans-pets': Service<JansPet>;
-  'nfc-readers': Service<NFCReader>;
   'antons-pets': Service<AntonsPet>;
   pets: Service<Pet>;
 }

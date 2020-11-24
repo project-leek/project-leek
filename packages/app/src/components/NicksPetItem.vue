@@ -19,12 +19,14 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'NicksPetItem',
+
   props: {
     pet: {
       type: Object,
       required: true,
     },
   },
+
   emits: ['delete-pet'],
 
   setup(props, ctx) {

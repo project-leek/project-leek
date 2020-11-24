@@ -31,6 +31,7 @@ import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'NicksPetList',
+
   components: {
     NicksPetItem,
   },

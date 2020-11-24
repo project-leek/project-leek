@@ -1,13 +1,8 @@
 /* eslint-disable no-console */
 export default class NicksPet {
-  name: string;
+  name!: string;
 
-  hunger: number;
-
-  constructor(name: string) {
-    this.name = name;
-    this.hunger = 0;
-  }
+  hunger = 0;
 
   private increaseHunger(increaseValue: number) {
     if (increaseValue + this.hunger > 100) {
