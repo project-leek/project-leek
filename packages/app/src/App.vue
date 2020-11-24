@@ -1,20 +1,27 @@
 <template>
-  <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld />
+  <div class="bg-white content py-20 px-20 flex justify-center">
+    <inputField class="mx-20"></inputField>
+    <outputList class="mx-20"></outputList>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import HelloWorld from './components/HelloWorld.vue';
+import outputList from './components/OutputList.vue';
+import inputField from './components/InputField.vue';
 
 export default defineComponent({
   name: 'App',
-
   components: {
-    HelloWorld,
+    outputList,
+    inputField,
   },
 });
 </script>
+
+<style lang="css">
+.content {
+  height: 100vh;
+}
+</style>
