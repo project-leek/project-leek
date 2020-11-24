@@ -8,10 +8,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "esnext"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "lib": ["dom", "esnext"]
   },
   "files": [
     "src/vue-shims.d.ts"

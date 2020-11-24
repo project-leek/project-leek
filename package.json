@@ -16,6 +16,7 @@
     "start:commons": "yarn build:dependencies && lerna run --scope @project-leek/commons --parallel start",
     "build": "lerna run build",
     "build:dependencies": "lerna run --scope @project-leek/commons build",
+    "build:dep": "yarn build:dependencies",
     "build:changed": "lerna run --since origin/master --include-dependents build",
     "lint": "lerna run lint",
     "lint:changed": "lerna run --since origin/master --include-dependents lint",
