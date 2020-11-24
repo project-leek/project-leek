@@ -2,8 +2,15 @@
   <div class="hello-world">
     <div class="anton">
       <pre class="p-2">{{ antonsPets }}</pre>
-      <button @click="count++" class="bg-pink-500 text-white p-2 mx-2 rounded">count is: {{ count }}</button>
-      <button @click="spawnAPet" class="bg-pink-500 text-white mx-2 p-2 rounded">Spawn a pet</button>
+      <button class="bg-pink-500 text-white p-2 mx-2 rounded" @click="count++">
+        count is: {{ count }}
+      </button>
+      <button
+        class="bg-pink-500 text-white mx-2 p-2 rounded"
+        @click="spawnAPet"
+      >
+        Spawn a pet
+      </button>
     </div>
     <div class="julian content flex justify-center">
       <input-field class="m-2" />
@@ -40,7 +47,7 @@ export default defineComponent({
 
     const spawnAPet = async () => {
       const newAntonsPet: AntonsPet = {
-        name: `Antons geile Maus geboren am ${Date.now()}`,
+        name: `Antons süße Maus geboren am ${Date.now()}`,
       };
       await feathers.service('antons-pets').create(newAntonsPet);
     };
