@@ -1,11 +1,9 @@
 <template>
   <div>
-    PET FORM:
+    HERE IS MY PET FORM:
     <br />
     <input v-model="name" placeholder="name">
-    <p>name is: {{name}}</p>
-    <input v-model="type" placeholder="type">
-    <p>name is: {{type}}</p>
+    <input v-model="type" placeholder="type"><br/>
     <button @click="createPet">add Pet</button>
 
   </div>
@@ -20,18 +18,19 @@ export default defineComponent({
   name: 'AddPetForm',
 
   setup() {
-    const name = ref("");
-    const type = ref("");
+    const name = ref('');
+    const type = ref('');
 
     const createPet = async () => {
       const pet: Rudolfo = {
-        name: name,
-        type: type,
+        name: name.value,
+        type: type.value,
       };
 
       await feathers.service('rudolfo').create(pet);
-      name.value = "";
-      type.value = "";
+
+      name.value = '';
+      type.value = '';
     };
 
     return {
