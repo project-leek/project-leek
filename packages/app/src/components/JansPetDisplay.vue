@@ -41,23 +41,23 @@ export default defineComponent({
   components: { JansSinglePet },
 
   setup() {
-    const JansPetList = ref<JansPet[]>([]);
+    const jansPetList = ref<JansPet[]>([]);
 
     onMounted(async () => {
-      JansPetList.value = await feathers.service('jans-pets').find();
+      jansPetList.value = await feathers.service('jans-pets').find();
     });
 
     feathers.service('jans-pets').on('created', (jansNewPet) => {
-      JansPetList.value.push(jansNewPet);
+      jansPetList.value.push(jansNewPet);
     });
     feathers.service('jans-pets').on('removed', (jansDeletedPet) => {
-      JansPetList.value = JansPetList.value.filter(
+     jansPetList.value = JansPetList.value.filter(
         (value) => value._id !== jansDeletedPet._id
       );
     });
 
     return {
-      JansPetList,
+      jansPetList,
     };
   },
 
