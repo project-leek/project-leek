@@ -1,12 +1,24 @@
 <template>
-  <div>
-    <p>
+  <div
+    class="rounded-md bg-white p-1 px-2 h-full flex flex-col justify-content-start"
+  >
+    <div class="flex-none">
       <strong>Name: </strong>
       {{ pet.name }}
+    </div>
+    <div class="flex-none">
       <strong>Description: </strong>
       {{ pet.description }}
-      <button @click="deleteThisPet">Remove</button>
-    </p>
+    </div>
+    <div class="flex-auto"></div>
+    <div class="flex self-end">
+      <button
+        class="bg-white border border-gray-300 rounded-md px-2 my-1"
+        @click="deleteThisPet"
+      >
+        Remove
+      </button>
+    </div>
   </div>
 </template>
 
