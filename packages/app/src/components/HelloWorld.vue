@@ -19,16 +19,13 @@
     <div class="jan">
       <jans-pet-display class="wi" />
     </div>
-<<<<<<< HEAD
     <div class="tom">
       <AddPetForm />
       <br/>
       <br/>
       <PetList/>
-=======
     <div class="nick">
       <NicksPetList />
->>>>>>> origin/master
     </div>
   </div>
 </template>
