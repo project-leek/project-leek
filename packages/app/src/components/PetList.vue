@@ -8,28 +8,29 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
-import feathers from '@/lib/feathers';
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
 import { Rudolfo } from '@project-leek/commons';
+import { Paginated } from '@feathersjs/feathers';
+import feathers from '../lib/feathers';
 
-export default defineComponent{
-    name: "PetList",
+export default defineComponent({
+  name: 'PetList',
 
   setup() {
-
     const rudolfos = ref<Rudolfo[]>([]);
     onMounted(async () => {
-      rudolfos.value = await feathers.service('rudolfo').find();
+      const response = (await feathers
+        .service('rudolfo')
+        .find()) as Paginated<Pet>;
+      rudolfos.value = response.data;
     });
-
-
+    feathers.service('rudolfo').on('created', (newPet) => {
+      rudolfos.value.push(newPet);
+    });
     return {
-      count,
-      users,
-      buttonClick,
       rudolfos,
     };
   },
-};
+});
 </script>
