@@ -7,7 +7,7 @@ import nfcReaders from './nfc-readers/nfc-reader.service';
 
 export default (app: Application): void => {
   app.configure(users);
-  app.configure(JansPets);
+  app.configure(jansPets);
   app.configure(antonsPets);
   app.configure(pets);
   app.configure(nfcReaders);
