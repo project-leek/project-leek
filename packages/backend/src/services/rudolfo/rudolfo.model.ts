@@ -7,6 +7,7 @@ export default (app: Application): NeDB<any> => {
   const Model = new NeDB({
     filename: path.join(dbPath, 'rudolfos.db'),
     autoload: true,
+    inMemoryOnly: process.env.NODE_ENV === 'test',
   });
 
   return Model;
