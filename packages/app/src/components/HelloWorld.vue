@@ -19,11 +19,16 @@
     <div class="jan">
       <jans-pet-display class="wi" />
     </div>
+<<<<<<< HEAD
     <div class="tom">
       <AddPetForm />
       <br/>
       <br/>
       <PetList/>
+=======
+    <div class="nick">
+      <NicksPetList />
+>>>>>>> origin/master
     </div>
   </div>
 </template>
@@ -38,6 +43,7 @@ import outputList from './OutputList.vue';
 import jansPetDisplay from './JansPetDisplay.vue';
 import PetList from './PetList.vue';
 import AddPetForm from './AddPetForm.vue';
+import NicksPetList from './NicksPetList.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -48,6 +54,7 @@ export default defineComponent({
     jansPetDisplay,
     PetList,
     AddPetForm,
+    NicksPetList,
   },
 
   setup() {
