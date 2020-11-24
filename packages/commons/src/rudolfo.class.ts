@@ -1,9 +1,5 @@
 export default class Rudolfo {
-    name:string;
-    type:string;
+  name!: string;
 
-    constructor(){
-        this.type = "";
-        this.name = "streuner";
-    }
+  type!: string;
 }
