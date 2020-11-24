@@ -1,0 +1,27 @@
+{
+  "name": "@project-leek/nfc-reader",
+  "version": "0.0.1",
+  "main": "dist/",
+  "types": "dist/",
+  "scripts": {
+    "start": "nodemon",
+    "build": "yarn clean && ncc build src/index.ts -o dist",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "clean": "shx rm -rf dist/",
+    "reset": "yarn clean"
+  },
+  "dependencies": {
+    "@feathersjs/adapter-commons": "4.5.7",
+    "@feathersjs/feathers": "4.5.10",
+    "@feathersjs/socketio-client": "4.5.10",
+    "@project-leek/commons": "*",
+    "evdev": "git://github.com/PixnBits/node-evdev.git#feature/migrate-to-napi",
+    "socket.io-client": "3.0.3"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.25.1",
+    "esbuild-node-tsc": "1.0.5",
+    "nodemon": "2.0.6"
+  }
+}

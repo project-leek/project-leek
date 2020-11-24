@@ -54,7 +54,8 @@ module.exports = {
     'import/no-self-import': 'error',
     'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
     'import/prefer-default-export': 'off',
-    'import/no-unresolved': 'error'
+    'import/no-unresolved': 'error',
+    'no-underscore-dangle': 'off',
   },
   settings: {
     'import/parsers': {
