@@ -2,5 +2,5 @@
 \contentsline {section}{\numberline {1}Einleitung}{1}%
 \contentsline {subsection}{\numberline {1.1}Projekt}{1}%
 \contentsline {subsection}{\numberline {1.2}Unternehmen}{1}%
-\contentsline {section}{\numberline {2}Durchf\~A\IeC {\textonequarter }hrung}{1}%
+\contentsline {section}{\numberline {2}Durchführung}{1}%
 \contentsline {section}{\numberline {3}Technologien}{1}%
