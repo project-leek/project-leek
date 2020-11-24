@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-import feathers from '../lib/feathers';
 import { Rudolfo } from '@project-leek/commons';
+import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'AddPetForm',

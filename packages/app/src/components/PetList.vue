@@ -1,7 +1,7 @@
 <template>
   <div>
     HERE IS MY PETLIST <br />
-    <div v-for="rudolfo in rudolfos">
+    <div v-for="rudolfo in rudolfos" :key="rudolfo._id">
       {{ rudolfo.name }}
       {{ rudolfo.type }}
     </div>
@@ -21,7 +21,6 @@ export default defineComponent({
 
     onMounted(async () => {
       rudolfos.value = await feathers.service('rudolfo').find();
-      console.log(rudolfos);
     });
 
     feathers.service('rudolfo').on('created', (newPet) => {
