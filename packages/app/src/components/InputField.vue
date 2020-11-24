@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-100 w-full h-full object-cover card shadow-2xl flex max-w-2xl p-2">
+  <div
+    class="bg-100 w-full h-full object-cover card shadow-2xl flex max-w-2xl p-2"
+  >
     <div class="container mx-auto mt-8">
       <div class="mx-auto flex flex-wrap max-width-form text-gray-800">
         <!-- Header	-->
@@ -62,6 +64,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive } from 'vue';
 import { Pet } from '@project-leek/commons';
+
 import feathers from '../lib/feathers';
 
 export default defineComponent({

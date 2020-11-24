@@ -16,17 +16,20 @@
       <input-field class="m-2" />
       <output-list class="m-2" />
     </div>
+    <div class="jan">
+      <jans-pet-display class="wi" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-
 import { AntonsPet } from '@project-leek/commons';
 
 import feathers from '../lib/feathers';
 import inputField from './InputField.vue';
 import outputList from './OutputList.vue';
+import jansPetDisplay from './JansPetDisplay.vue';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -34,6 +37,7 @@ export default defineComponent({
   components: {
     inputField,
     outputList,
+    jansPetDisplay,
   },
 
   setup() {

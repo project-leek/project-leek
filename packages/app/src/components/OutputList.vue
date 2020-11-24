@@ -10,6 +10,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Pet } from '@project-leek/commons';
 import { Paginated } from '@feathersjs/feathers';
+
 import feathers from '../lib/feathers';
 import entry from './Entry.vue';
 
@@ -22,9 +23,9 @@ export default defineComponent({
     const pets = ref<Pet[]>([]);
 
     onMounted(async () => {
-      const response = (await feathers.service('pets').find()) as Paginated<
-        Pet
-      >;
+      const response = (await feathers
+        .service('pets')
+        .find()) as Paginated<Pet>;
       pets.value = response.data;
     });
 
