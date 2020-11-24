@@ -9,10 +9,10 @@ We suggest using following plugins for [VSCode](https://code.visualstudio.com/):
 ## Depedencies
 
 To use LaTeX Workshop, you need to install:
- - [TeX-Live](https://tug.org/texlive/) (or equivalent)
+- [TeX-Live](https://tug.org/texlive/) (or equivalent)
 
-    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra`
+    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra texlive-lang-german`
 
- - [latexmk](https://mg.readthedocs.io/latexmk.html)
+- [latexmk](https://mg.readthedocs.io/latexmk.html)
 
     latexmk can be installed on Ubuntu via: `sudo apt install latexmk`
