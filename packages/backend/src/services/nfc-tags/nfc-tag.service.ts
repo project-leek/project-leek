@@ -21,7 +21,6 @@ class NFCTagService extends Service<NFCTag> {
 export default (app: Application): void => {
   const options = {
     Model: createModel(app),
-    paginate: app.get('paginate'),
   };
 
   // Initialize our service with any options it requires
