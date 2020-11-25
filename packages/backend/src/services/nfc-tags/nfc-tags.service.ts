@@ -2,7 +2,7 @@ import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { NFCTag } from '@project-leek/commons';
 import { Application } from '../../declarations';
-import createModel from './nfc-tag.model';
+import createModel from './nfc-tags.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {

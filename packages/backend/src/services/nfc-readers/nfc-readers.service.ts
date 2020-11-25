@@ -2,7 +2,7 @@ import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { NFCReader } from '@project-leek/commons';
 import { Application } from '../../declarations';
-import createModel from './nfc-reader.model';
+import createModel from './nfc-readers.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {
@@ -26,4 +26,5 @@ export default (app: Application): void => {
 
   // Initialize our service with any options it requires
   app.use('nfc-readers', new NFCReaderService(options, app));
+  app.service('nfc-readers').publish(() => app.channel('anonymous'));
 };
