@@ -1,5 +1,14 @@
 <template>
   <div class="hello-world">
+    <div class="nfc-tag">
+      <div
+        class="w-full h-full object-cover card bg-white shadow-2xl max-w-2xl overflow-auto p-2"
+      >
+        <div class="w-5/6 mx-auto my-8 rounded-lg h-40 bg-gray-200">
+          <div class="py-2 w-full h-full">NFC-Tag: {{ nfcTag || '---' }}</div>
+        </div>
+      </div>
+    </div>
     <div class="anton">
       <pre class="p-2">{{ antonsPets }}</pre>
       <button class="bg-pink-500 text-white p-2 mx-2 rounded" @click="count++">
@@ -57,10 +66,16 @@ export default defineComponent({
   setup() {
     const count = ref(0);
     const antonsPets = ref<AntonsPet[]>([]);
+    const nfcTag = ref<string | null>(null);
 
     onMounted(async () => {
       const response = await feathers.service('antons-pets').find();
       antonsPets.value = response.data;
+
+      const nfcReader = await feathers
+        .service('nfc-readers')
+        .get('WyQUw7wYOVLPbPtM');
+      nfcTag.value = nfcReader.attachedTag;
     });
 
     const spawnAPet = async () => {
@@ -74,7 +89,12 @@ export default defineComponent({
       antonsPets.value.push(antonsNewPet);
     });
 
+    feathers.service('nfc-readers').on('patched', (nfcReader) => {
+      nfcTag.value = nfcReader.attachedTag;
+    });
+
     return {
+      nfcTag,
       count,
       spawnAPet,
       antonsPets,
