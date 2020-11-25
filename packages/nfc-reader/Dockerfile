@@ -7,6 +7,6 @@ ENV NODE_ENV=production
 COPY dist/ ./
 
 RUN chown -R node:node /app
-USER node
+USER root
 EXPOSE 3000
 CMD ["node", "index.js"]
