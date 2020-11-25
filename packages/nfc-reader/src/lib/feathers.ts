@@ -50,12 +50,4 @@ feathersClient.on('disconnect', () => {
   socket.disconnect();
 });
 
-feathersClient.hooks({
-  error({ error }) {
-    // TODO: add pretty error toasting
-    // eslint-disable-next-line no-console
-    console.error('feathers-error:', error);
-  },
-});
-
 export default feathersClient;
