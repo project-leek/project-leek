@@ -10,8 +10,6 @@ declare interface NFCReader {
 class NFCReader extends EventEmitter {
   device?: EvdevReader.Device;
 
-  currentTagId: string | null = null;
-
   reader: EvdevReader;
 
   constructor() {
@@ -27,8 +25,8 @@ class NFCReader extends EventEmitter {
       }
 
       if (data.code === 'KEY_ENTER') {
-        this.emit('tag-attached', this.currentTagId);
-        this.currentTagId = null;
+        this.emit('tag-attached', tagBuffer);
+        tagBuffer = '';
         return;
       }
 
