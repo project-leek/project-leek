@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "setup": "yarn",
-    "start": "yarn build:dependencies && lerna run --scope @project-leek/app --scope @project-leek/backend start",
+    "start": "yarn build:dependencies && lerna run --scope @project-leek/app --scope @project-leek/backend --parallel start",
     "start:app": "yarn build:dependencies && lerna run --scope @project-leek/app --parallel start",
     "start:backend": "yarn build:dependencies && lerna run --scope @project-leek/backend --parallel start",
     "start:commons": "yarn build:dependencies && lerna run --scope @project-leek/commons --parallel start",
