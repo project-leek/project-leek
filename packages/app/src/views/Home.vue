@@ -1,19 +1,15 @@
 <template>
-  <div class="app flex">
-    <router-view />
-  </div>
+  <ApiTest />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ApiTest from '../components/SpotifyTest.vue';
 
 export default defineComponent({
-  name: 'App',
+  name: 'Home',
+  components: {
+    ApiTest,
+  },
 });
 </script>
-
-<style lang="css">
-.app {
-  height: 100vh;
-}
-</style>
