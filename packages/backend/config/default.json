@@ -26,6 +26,13 @@
     "local": {
       "usernameField": "email",
       "passwordField": "password"
+    },
+    "oauth": {
+      "redirect": "SPOTIFY_REDIRECT_URI",
+      "spotify": {
+        "key": "SPOTIFY_CLIENT_ID",
+        "secret": "SPOTIFY_CLIENT_SECRET"
+      }
     }
   },
   "nedb": "../data"
