@@ -1,13 +1,6 @@
 import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import { AdapterService } from '@feathersjs/adapter-commons';
-import {
-  User,
-  NFCReader,
-  AntonsPet,
-  Pet,
-  JansPet,
-  NicksPet,
-} from '@project-leek/commons';
+import { User, NFCReader, NFCTag } from '@project-leek/commons';
 import socketio from '@feathersjs/socketio-client';
 import io from 'socket.io-client';
 
@@ -17,10 +10,7 @@ type Service<T> = AdapterService<T> & ServiceAddons<T>;
 interface ServiceTypes {
   users: Service<User>;
   'nfc-readers': Service<NFCReader>;
-  'nicks-pets': Service<NicksPet>;
-  'jans-pets': Service<JansPet>;
-  'antons-pets': Service<AntonsPet>;
-  pets: Service<Pet>;
+  'nfc-tags': Service<NFCTag>;
 }
 
 export const socket = io({
