@@ -18,6 +18,7 @@
     "build:dependencies": "lerna run --scope @project-leek/commons build",
     "build:dep": "yarn build:dependencies",
     "build:changed": "lerna run --since origin/master --include-dependents build",
+    "build:app": "lerna run --include-dependencies --scope @project-leek/app build",
     "lint": "lerna run lint",
     "lint:changed": "lerna run --since origin/master --include-dependents lint",
     "test": "lerna run test",
