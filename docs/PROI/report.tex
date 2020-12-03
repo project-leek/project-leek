@@ -2,6 +2,8 @@
  \usepackage[ngerman]{babel}
  \usepackage[utf8]{inputenc}
  \usepackage[T1]{fontenc}
+ \usepackage{color}
+ \usepackage{hyperref}
 
 \title{Projektbreicht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
@@ -22,16 +24,43 @@
 
 \subsection{NFC Tag}
 \subsubsection{lesen}
+Um mit NFC Tags arbeiten zu können, müssen diese auch auf entschlüsselt bzw. gelesen werden können.
+Hierfür ist ein Hardware NFC-Reader notwendig. Dieser kann über USB mit dem Chip der Box verbunden werden, um von dieser ausgelesen zu werden.
+\colorbox{yellow}{welche library wird genutzt?}
+
 \subsubsection{schreiben}
+Einen NFC-Tag zu beschreiben ist davon abhängig, ob der NFC-Tag über einen eigenen Speicher verfügt.
+Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
+\colorbox{yellow}{Möglich, kann die gleiche library wie zum lesen genutzt werden?}
 
 \subsection{Raspberri Pi}
 \subsubsection{Docker Integration}
+\colorbox{yellow}{möglich  }\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}
+
 \subsubsection{Öffentlich zugängliches Web Interface}
-\subsubsection{Zugriff auf NFC Reader}
+Um den Web Server vom Pi von außerhalb des Netzwerkes erreichen zu können, muss innerhalb des Routers der Port 80 \colorbox{yellow}{port forwarded} werden.
+Dann kann der Pi unter dessen IP xxx.xxx.xxx.xxx:80 erreicht werden.
+Wenn die IP Adresse sich nicht ändern soll, kann auch eine statische IP festgelegt werden \footnote{https://howchoo.com/pi/configure-static-ip-address-raspberry-pi}. Dazu könnte dann eine Domain gekauft werden, die dann z.b. mit Cloudflare auf diese statische IP weiterleitet.
+Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
+
+\subsubsection{URL für UI festlegen}
+\colorbox{red}{todo}
 
 \subsection{User Interface}
+\subsubsection{Zugriff auf NFC Reader im Cloud Szenario}
+Tendenziell sollte es nicht notwendig sein, dass der Raspberri Pi, der das Web-UI hosted, auf den jeweiligen NFC-Reader der Box zugreifen muss.
+Sollte das doch der Fall sein, könnte der Chip der Box ein API Call an den Raspberri Pi mit den NFC-Tag Daten machen, um das jeweilige hinterlegte Event zu triggern.
+
 \subsubsection{Login via Spotify, Youtube, etc.}
+\colorbox{red}{todo: ask julian}
+
 \subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
+Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über diese gleiche Nutzer wiedererkennbar wären.
+Die E-Mail wäre hierbei das einzigartigste Merkmal. Über Scopes in der OAuth Anfrage kann diese auch mitgeliefert werden.
+Das setzt aber voraus, dass Nutzer immer die gleiche E-Mail nutzen, was nicht immer der Fall ist.
+Man könnte dem (bereits eingeloggten) User die Möglichkeit geben, weitere Accounts zu diesem hinzuzufügen, sodass diese Accounts den gleichen Nutzer einloggen.
+Bei diesem Ansatz sollten dann die jeweiligen verbundenen Accounts zu einer unique User-ID verbunden werden.
+
 \subsubsection{Musik Artwork laden}
 \subsubsection{Eigene Bilder hochladen}
 \subsubsection{Spotify connect Lautsprecher auswählen}
