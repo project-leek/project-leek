@@ -21,7 +21,7 @@ app.configure(configuration());
 app.configure(express.rest());
 app.configure(
   socketio({
-    path: '/api/v1/socket',
+    path: '/api/socket',
     serveClient: false,
   }),
 );

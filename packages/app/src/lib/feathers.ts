@@ -15,7 +15,7 @@ interface ServiceTypes {
 }
 
 export const socket = io({
-  path: '/api/v1/socket',
+  path: '/api/socket',
   transports: ['websocket'],
   autoConnect: true,
   // timeout: 20 * 1000,
