@@ -6,34 +6,20 @@
 
 <script lang="ts">
 import { defineComponent, onBeforeMount } from 'vue';
-import feathers from '@feathersjs/feathers';
-import socketio from '@feathersjs/socketio-client';
-import io from 'socket.io-client';
-import auth from '@feathersjs/authentication-client';
-
-const client = feathers();
-const socket = io('http://localhost:3000');
-
-client.configure(socketio(socket));
-client.configure(auth({}));
+import feathers from './lib/feathers';
 
 export default defineComponent({
   name: 'App',
   setup() {
-    const login = async () => {
+    onBeforeMount(async () => {
       try {
-        return await client.reAuthenticate();
+        await feathers.reAuthenticate();
       } catch (error) {
-        console.log('authenticate needed');
-        return null;
+        console.error('authentication needed', error);
       }
-    };
-
-    onBeforeMount(() => {
-      console.log('jedes mal befor ich die seite aufbaue');
-      login();
     });
-    return login;
+
+    return {};
   },
 });
 </script>
