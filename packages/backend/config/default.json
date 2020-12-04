@@ -28,10 +28,11 @@
       "passwordField": "password"
     },
     "oauth": {
-      "redirect": "SPOTIFY_REDIRECT_URI",
+      "redirect": "OAUTH_REDIRECT_URI",
       "spotify": {
         "key": "SPOTIFY_CLIENT_ID",
-        "secret": "SPOTIFY_CLIENT_SECRET"
+        "secret": "SPOTIFY_CLIENT_SECRET",
+        "scope": ["user-read-email", "user-read-private", ]
       }
     }
   },

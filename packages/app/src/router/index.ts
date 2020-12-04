@@ -8,6 +8,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/success',
+    name: 'Response',
+    component: Home,
+  },
+  {
     path: '/oauth/spotify',
     beforeEnter() {
       location.href = 'http://localhost:3030/oauth/spotify';
