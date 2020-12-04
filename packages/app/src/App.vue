@@ -33,7 +33,7 @@ export default defineComponent({
       console.log('jedes mal befor ich die seite aufbaue');
       login();
     });
-    return login, ;
+    return login;
   },
 });
 </script>
