@@ -2,6 +2,8 @@
  \usepackage[ngerman]{babel}
  \usepackage[utf8]{inputenc}
  \usepackage[T1]{fontenc}
+ \usepackage{color}
+ \usepackage{hyperref}
 
 \title{Projektbreicht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
@@ -11,11 +13,57 @@
 \tableofcontents
 
 \section{Einleitung}
-\subsection{Projekt}
 \subsection{Unternehmen}
+\colorbox{red}{was macht macio aus}
+\subsection{Projekt}
+Im Rahmen des Bachelor-Moduls Projekt Informatik möchte Macio deren Portfolio im IoT-Bereich erweitern sowie den Empfangsraum in Kiel verschönern.
+Smarte Spielzeuge mit NFC-Funktion gibt es im Kommerzbereich viele, daher soll dieses Projekt eine Open-Source-Alternative dafür schaffen.
+Genauer handelt es sich um einen Smarten Music Player, der NFC sowie Spotify Connect unterstützt.
+Dieser Music Player hat einen Microcontroller mit NFC-Reader.
+Auf die Box können durch kleine Figuren in Form von z.B. Figuren mit dem integrierten NFC-Tag Events getriggert werden.
+Bei einem Event wird vom Microcontroller über jeweilige Musikdienst-API auf einem verbundenen Gerät Musik abgespielt.
+Die NFC-Tags und zugehörigen Events sollen über ein Web-Frontend konfiguriert werden können.
+Dieses Web-Frontend wird von der Box ausgeliefert und soll für primär eine Smartphone bedienung gestaltet werden.
+Da es sich um ein Open Source Projekt handelt mit entsprechender Lizenz, muss auch eine aussagekräftige, öffentliche Dokumentation verfasst werden.
+Macio stellt die benötigte Hardware und ist für Technische Fragen unterstützend verfügbar.
+
+\subsubsection{Minimal Requirements}
+\begin{enumerate}
+  \item NFC-Tags lesen, schreiben und entschlüsseln
+  \item Mit Spotify Connect verbinden und arbeiten
+  \item Responsive UI konzeptionieren und umsetzen
+  \item Aussagekräftige Dokumentation mit Benutzerhandbuch
+\end{enumerate}
+\subsubsection{Stretch Goals}
+\begin{enumerate}
+  \item Sound Wiedergabe auf der Box selbst
+  \item Unterstützung anderer Musikdienste / Plugin-Subsystem
+  \item 3D-Modellierung und Print einer passenden Box
+  \item Cloud-Anbindung der Box, Auslieferung des UI aus der Cloud
+\end{enumerate}
+
+\section{Machbarkeitsstudie}
+
+\section{Design Mockups}
+\colorbox{red}{setze pdfs ein}
 
 \section{Durchführung}
+\subsubsection{Technologien und Hilfsmittel}
+\colorbox{red}{Vue, vscode, devops krams, etc}
+Entwickelt wird mit Visual Studio Code, da dort einfach ein Subsystem mit Linux genutzt werden kann \footnote{https://code.visualstudio.com/docs/remote/wsl}.
 
-\section{Technologien}
+\subsubsection{Projekt Management}
+\colorbox{red}{ticket pool in github, alles zentral}
 
+\subsubsection{Deployment Cycle}
+\colorbox{red}{ziehe ticket > assigne dir selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
+
+\subsubsection{Probleme während der Durchführung}
+\colorbox{red}{zb }
+\section{Code Walkthrough}
+\colorbox{red}{vielleicht interessante Code Snippets?}
+\section{Testing}
+\colorbox{red}{wie haben wir getestet, haben wir getestet?}
+\section{Technische Diagramme}
+\colorbox{red}{ER Diagramme, UML, solcher krams}
  \end{document}
