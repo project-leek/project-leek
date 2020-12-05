@@ -1,6 +1,6 @@
 <template>
-  <div class="app flex">
-    <router-view />
+  <div class="m-auto">
+    <router-link class="" :to="{ name: 'home' }">Back to home</router-link>
   </div>
 </template>
 
@@ -8,12 +8,6 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'App',
+  name: 'NotFound',
 });
 </script>
-
-<style lang="css">
-.app {
-  height: 100vh;
-}
-</style>
