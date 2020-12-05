@@ -3,9 +3,8 @@ import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
 import {
   isAuthenticated,
   load as loadAuthentication,
-} from '../compositions/authentication';
+} from '../compositions/useAuthentication';
 import Home from '../views/Home.vue';
-import Login from '../views/Login.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
@@ -17,32 +16,27 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: Login,
-    meta: { publicPage: true },
+    component: () => import('../views/auth/Login.vue'),
+    meta: { authentication: 'guests-only' },
   },
   {
     path: '/oauth/callback',
     name: 'oauth-callback',
-    beforeEnter() {
-      // TODO:
-    },
-    component: Home, // add this to create a proper type
-    meta: { publicPage: true },
+    component: () => import('../views/auth/OAuthCallback.vue'),
+    meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/spotify',
-    name: 'oauth-spotify',
-    beforeEnter() {
-      location.href = 'http://localhost:3030/oauth/spotify';
-    },
-    component: Home, // add this to create a proper type
-    meta: { publicPage: true },
+    path: '/oauth/:oauthProvider',
+    name: 'oauth-start',
+    component: () => import('../views/auth/OAuthStart.vue'),
+    meta: { authentication: 'guests-only' },
+    props: true,
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFound,
-    meta: { publicPage: true },
+    meta: { authentication: 'ignored' },
   },
 ];
 
@@ -54,8 +48,15 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   await loadAuthentication();
 
-  if (!isAuthenticated.value && !to.meta.publicPage) {
+  const pageAuthentication = to.meta.authentication || 'needed';
+
+  if (pageAuthentication === 'needed' && !isAuthenticated.value) {
     next({ name: 'login' });
+    return;
+  }
+
+  if (pageAuthentication === 'guests-only' && isAuthenticated.value) {
+    next({ name: 'home' });
     return;
   }
 
