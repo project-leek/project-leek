@@ -18,6 +18,7 @@
     "build:dependencies": "lerna run --scope @project-leek/commons build",
     "build:dep": "yarn build:dependencies",
     "build:changed": "lerna run --since origin/master --include-dependents build",
+    "build:app": "lerna run --include-dependencies --scope @project-leek/app build",
     "lint": "lerna run lint",
     "lint:changed": "lerna run --since origin/master --include-dependents lint",
     "test": "lerna run test",
@@ -33,7 +34,7 @@
     "postcss": "8.1.10"
   },
   "devDependencies": {
-    "@types/jest": "26.0.15",
+    "@types/jest": "26.0.16",
     "@typescript-eslint/eslint-plugin": "4.8.2",
     "@typescript-eslint/parser": "4.8.2",
     "eslint": "7.14.0",
