@@ -22,7 +22,6 @@ export default defineComponent({
       async (_isAuthenticated) => {
         // if not authenticated and on page that requests authentication
         const pageAuthentication = route.meta.authentication || 'needed';
-        console.log(pageAuthentication, _isAuthenticated);
         if (pageAuthentication === 'needed' && !_isAuthenticated) {
           router.replace({ name: 'login' });
         }
