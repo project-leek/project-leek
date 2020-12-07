@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon",
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && ncc build src/index.ts -o dist",
     "test": "jest --forceExit",
     "lint": "eslint src/. test/. --ext .ts",
     "lint:fix": "yarn lint --fix",

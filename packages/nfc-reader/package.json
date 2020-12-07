@@ -12,16 +12,16 @@
     "reset": "yarn clean"
   },
   "dependencies": {
-    "@feathersjs/adapter-commons": "4.5.7",
-    "@feathersjs/feathers": "4.5.10",
-    "@feathersjs/socketio-client": "4.5.10",
+    "@feathersjs/adapter-commons": "4.5.11",
+    "@feathersjs/feathers": "4.5.11",
+    "@feathersjs/socketio-client": "4.5.11",
     "@project-leek/commons": "*",
-    "evdev": "git://github.com/PixnBits/node-evdev.git#feature/migrate-to-napi",
+    "evdev": "git://github.com/anbraten/node-evdev.git",
     "socket.io-client": "2.3.1"
   },
   "devDependencies": {
     "@vercel/ncc": "0.25.1",
-    "esbuild-node-tsc": "1.0.5",
-    "nodemon": "2.0.6"
+    "nodemon": "2.0.6",
+    "ts-node": "^9.1.1"
   }
 }
