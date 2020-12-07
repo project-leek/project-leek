@@ -4,6 +4,8 @@ import { User } from '@project-leek/commons';
 import feathers from '../lib/feathers';
 
 export const user = ref<User | null>(null);
+
+// !!user.value to cast the user variable to a boolean
 export const isAuthenticated = computed(() => !!user.value);
 
 export async function load() {
