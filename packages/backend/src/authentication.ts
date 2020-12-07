@@ -4,8 +4,7 @@ import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentication-oauth';
 
 import { Application } from './declarations';
-import SpotifyAuthenticationService from './spotifyAuthenticationService';
-import hooks from './spotifyAuthenticationService.hooks';
+import hooks from './authentication.hooks';
 
 declare module './declarations' {
   interface ServiceTypes {
@@ -29,10 +28,10 @@ class SpotifyStrategy extends OAuthStrategy {
 
   async getEntityData(profile: SpotifyProfile, existing: any, params: Params) {
     const baseData = await super.getEntityData(profile, existing, params);
-    console.log("wir sind in getEntity Data")
+
     return {
       ...baseData,
-      // You can also set the display name to profile.name
+      // You can also set the display name to profile.
       name: profile.display_name,
       // The GitHub profile image
       avatar: profile.images[0] && profile.images[0].url,
@@ -43,12 +42,12 @@ class SpotifyStrategy extends OAuthStrategy {
 }
 
 export default (app: Application): void => {
-  const authentication = new SpotifyAuthenticationService(app);
+  const authentication = new AuthenticationService(app);
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
   authentication.register('spotify', new SpotifyStrategy());
 
-  app.use('/authentication', authentication);
+  app.use('authentication', authentication);
   app.service('authentication').hooks(hooks);
   app.configure(expressOauth());
 };
