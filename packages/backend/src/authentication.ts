@@ -5,6 +5,7 @@ import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentic
 
 import { Application } from './declarations';
 import SpotifyAuthenticationService from './spotifyAuthenticationService';
+import hooks from './spotifyAuthenticationService.hooks';
 
 declare module './declarations' {
   interface ServiceTypes {
@@ -22,11 +23,7 @@ type SpotifyProfile = OAuthProfile & {
 };
 
 class SpotifyStrategy extends OAuthStrategy {
-  accessToken!: string;
-  refreshToken!: string;
-
   async createEntity(profile: OAuthProfile, params: Params): Promise<any> {
-    var extendedProfile = {...profile, accessToken: this.accessToken,  }
     return super.createEntity(profile, params);
   }
 
@@ -52,5 +49,6 @@ export default (app: Application): void => {
   authentication.register('spotify', new SpotifyStrategy());
 
   app.use('/authentication', authentication);
+  app.service('authentication').hooks(hooks);
   app.configure(expressOauth());
 };
