@@ -402,15 +402,6 @@
     "@feathersjs/errors" "^4.5.11"
     "@feathersjs/feathers" "^4.5.11"
 
-"@feathersjs/adapter-commons@4.5.7":
-  version "4.5.7"
-  resolved "https://registry.yarnpkg.com/@feathersjs/adapter-commons/-/adapter-commons-4.5.7.tgz#8808bd0392a63713f1a7bead44a2910fcebf8152"
-  integrity sha512-968FYEeX5S790dhhPf/u1RBhh8824jW6fRb0bmWqGpzjEkC7dNJ9+m+j3/Gduh1cPGL1a6Nf5sXkkMEFWDJ4tw==
-  dependencies:
-    "@feathersjs/commons" "^4.5.8"
-    "@feathersjs/errors" "^4.5.8"
-    "@feathersjs/feathers" "^4.5.8"
-
 "@feathersjs/authentication-client@4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@feathersjs/authentication-client/-/authentication-client-4.5.11.tgz#e43ba3dc1030519507f4795416e1f8bffbfb5f4e"
@@ -464,7 +455,7 @@
     long-timeout "^0.1.1"
     uuid "^8.3.1"
 
-"@feathersjs/commons@^4.3.0", "@feathersjs/commons@^4.5.11", "@feathersjs/commons@^4.5.8":
+"@feathersjs/commons@^4.3.0", "@feathersjs/commons@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-4.5.11.tgz#4c9d04e6996b823981b714312f7915c4469f0ffd"
   integrity sha512-it/9lc0OER36+2zidopWo6Z4xRqNImQ+qegyQdHEuIDpEsYLXAv6MVHuDccaW2x2UmW5pce75UB7DhQ8yh8J/Q==
@@ -478,7 +469,7 @@
     config "^3.3.3"
     debug "^4.3.1"
 
-"@feathersjs/errors@4.5.11", "@feathersjs/errors@^4.3.4", "@feathersjs/errors@^4.5.11", "@feathersjs/errors@^4.5.8":
+"@feathersjs/errors@4.5.11", "@feathersjs/errors@^4.3.4", "@feathersjs/errors@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@feathersjs/errors/-/errors-4.5.11.tgz#419b4dd9b557fe7a87978363175cbd5e06f8b3b9"
   integrity sha512-KzkUqmaV7/SGK6SM/ILXjMI/EHOGKQE4GgDHCsB4+mcIwb8IZboeHL6IkYjh6MvwjKNDyS728McZvcflDGn/fA==
@@ -498,7 +489,7 @@
     lodash "^4.17.20"
     uberproto "^2.0.6"
 
-"@feathersjs/feathers@4.5.11", "@feathersjs/feathers@^4.5.11", "@feathersjs/feathers@^4.5.8":
+"@feathersjs/feathers@4.5.11", "@feathersjs/feathers@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@feathersjs/feathers/-/feathers-4.5.11.tgz#98999fe3857896bd15a676d4660dd92fe22481c4"
   integrity sha512-13zorhzi9eOwAW+l3oT4K8+CGCljpd9yPkx1XOZZyG5J1RSENWpPhgJ5Oe+qWw6Iqk768UBYp3+W1hLCQa6t2g==
