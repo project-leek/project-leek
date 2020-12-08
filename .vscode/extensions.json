@@ -4,6 +4,7 @@
     "ms-vsliveshare.vsliveshare",
     "bradlc.vscode-tailwindcss",
     "octref.vetur",
-    "dariofuzinato.vue-peek"
+    "dariofuzinato.vue-peek",
+    "editorconfig.editorconfig"
   ]
 }
