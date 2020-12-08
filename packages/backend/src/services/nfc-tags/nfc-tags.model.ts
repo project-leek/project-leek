@@ -9,6 +9,6 @@ export default (app: Application): NeDB<any> => {
     autoload: true,
     inMemoryOnly: process.env.NODE_ENV === 'test',
   });
-
+  Model.ensureIndex({ fieldName: 'nfcId', unique: true });
   return Model;
 };

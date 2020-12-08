@@ -1,8 +1,10 @@
 import { Server } from 'http';
+import { NFCTag } from '@project-leek/commons';
 
 import app from './app';
 import logger from './logger';
 import webserver from './webserver';
+import seedNFCTags from './seed_data/seed_nfc_tags.json';
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
 let server: Server;
@@ -19,6 +21,12 @@ function start() {
   });
 
   app.setup(server);
+
+  const seededTags: Partial<NFCTag>[] = seedNFCTags;
+  app
+    .service('nfc-tags')
+    .create(seededTags)
+    .catch(() => {});
 }
 
 async function stop(): Promise<void> {
