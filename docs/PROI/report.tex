@@ -84,11 +84,27 @@ Man könnte dem (bereits eingeloggten) User die Möglichkeit geben, weitere Acco
 Bei diesem Ansatz sollten dann die jeweiligen verbundenen Accounts zu einer unique User-ID verbunden werden.
 
 \subsubsection{Musik Artwork laden}
+Sollte kein Problem sein, da alle Anfragen ein Array von Bildern enthalten \footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
+
 \subsubsection{Eigene Bilder hochladen}
+Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin "vue-picture-input" helfen.
+Damit könnte mit einem Axios Post an das Backend das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}#
+
 \subsubsection{Spotify connect Lautsprecher auswählen}
+Das auswählen von einem spezifischen Spotify connected Lautsprecher ist möglich.
+Über einen API Call an die Spotify API mit dem Endpunkt "/v1/me/player/device" liefert eine Liste von allen verbundenen Geräten.
+Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei "is_active" den Wert "true".\footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
+
 \subsubsection{Spotify connect Lautsprecher speichern}
+Die Liste von verbundenen Geräten, die über den API Call an die Spotify API erhalten wird, enthält auch einen unique Eintrag "id". Dieser kann gespeichert werden.
+
 \subsubsection{In Cloud UI die jeweilige Box auswählen}
+In dem Szenario, dass wir nur ein Cloud UI bieten für alle Boxen bieten, muss es auch eine Möglichkeit geben, die Boxen auszuwählen, die gerade konfiguriert werden soll.
+Jede Box könnte ein QR-Code erhalten, der beim Einloggen gescannt werden muss. Je nachdem kann diese Box dann im Account hinterlegt werden oder muss bei jedem Login gescannt werden.
+
 \subsubsection{Boxdaten über Cloud UI ändern}
+Dafür müsste eine API gebaut werden, damit der jeweilige Microcontroller der Box mit dem Cloud UI kommunizieren kann.
+
 \subsubsection{Unterstützung von Youtube}
 \subsubsection{Unterstützung von Apple Music}
 \subsubsection{Unterstützung von Deezer}
@@ -97,8 +113,11 @@ Bei diesem Ansatz sollten dann die jeweiligen verbundenen Accounts zu einer uniq
 
 \subsection{Sonstiges}
 \subsubsection{3D Print version}
+Da unsere Box nicht übermäßig groß sein wird, sollten die meisten 3D-Drucker ausreichend sein. Das Modellieren einer 3D-Print Version ist am Ende abhängig von der Expertise der Gruppe. Abgesehen davon sollte es kein Problem darstellen.
+
 \subsubsection{Sound Wiedergabe auf der Box selbst}
 \subsubsection{Box unter 30€ Kosten}
+Ausgehend davon, dass wir nur einen Microcontroller wie den ESP32 nutzen, ist dieses Ziel einfach zu erreichen. Dazu wird noch das Web-UI in der Cloud benötigt sowie Speicher benötigt. \colorbox{red}{wie viel?}
 
 \section{Design Mockups}
 \colorbox{red}{setze pdfs ein}
