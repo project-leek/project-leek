@@ -1,7 +1,6 @@
-import { HookContext } from '@feathersjs/feathers';
 import { User } from '@project-leek/commons';
 
-import { Application } from './declarations';
+import { Application, HookContext } from './declarations';
 
 type AuthenticationData = {
   strategy: string;

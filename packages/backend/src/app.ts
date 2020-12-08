@@ -1,4 +1,4 @@
-import feathers, { HookContext as FeathersHookContext } from '@feathersjs/feathers';
+import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
 import express from '@feathersjs/express';
 import socketio from '@feathersjs/socketio';
@@ -12,7 +12,6 @@ import channels from './channels';
 import authentication from './authentication';
 
 const app: Application = express(feathers());
-export type HookContext<T = any> = { app: Application } & FeathersHookContext<T>;
 
 // Load app configuration
 app.configure(configuration());

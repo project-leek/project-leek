@@ -52,6 +52,7 @@
     "helmet": "4.2.0",
     "nedb": "1.8.0",
     "serve-favicon": "2.5.0",
+    "spotify-web-api-node": "^5.0.0",
     "winston": "3.3.3"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/nedb": "1.8.11",
     "@types/serve-favicon": "2.5.2",
+    "@types/spotify-web-api-node": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "4.9.0",
     "@typescript-eslint/parser": "4.9.0",
     "axios": "0.21.0",
