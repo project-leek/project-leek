@@ -23,7 +23,7 @@ export const socket = io({
 
 const feathersClient = feathers<ServiceTypes>();
 feathersClient.configure(socketio(socket));
-feathersClient.configure(auth({}));
+feathersClient.configure(auth());
 
 function debug(...str: string[]) {
   // eslint-disable-next-line no-console

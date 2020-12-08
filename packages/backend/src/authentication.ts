@@ -14,7 +14,6 @@ declare module './declarations' {
 
 type SpotifyProfileImage = { url: string; height: number | null; width: number | null };
 
-// create a new type for typesafe calls
 type SpotifyProfile = OAuthProfile & {
   display_name: string;
   images: SpotifyProfileImage[];

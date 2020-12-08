@@ -27,7 +27,6 @@ webserver.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 webserver.use(express.static(app.get('public')));
 
 webserver.use('/', app);
-// webserver.use('/api/v1', app);
 
 // Configure a middleware for 404s and the error handler
 webserver.use(notFound());
