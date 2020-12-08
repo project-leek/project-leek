@@ -65,8 +65,6 @@
     "@typescript-eslint/eslint-plugin": "4.9.0",
     "@typescript-eslint/parser": "4.9.0",
     "axios": "0.21.0",
-    "esbuild": "0.8.17",
-    "esbuild-node-tsc": "1.0.5",
     "jest": "26.6.3",
     "nodemon": "2.0.6",
     "prettier": "2.2.1",
