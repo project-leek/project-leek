@@ -21,10 +21,6 @@ type SpotifyProfile = OAuthProfile & {
 };
 
 class SpotifyStrategy extends OAuthStrategy {
-  async createEntity(profile: OAuthProfile, params: Params): Promise<any> {
-    return super.createEntity(profile, params);
-  }
-
   async getEntityData(profile: SpotifyProfile, existing: any, params: Params) {
     const baseData = await super.getEntityData(profile, existing, params);
 
