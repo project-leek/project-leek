@@ -20,7 +20,7 @@
   "scripts": {
     "start": "nodemon",
     "build": "yarn clean && tsc",
-    "test": "jest --forceExit",
+    "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint src/. test/. --ext .ts",
     "lint:fix": "yarn lint --fix",
     "typecheck": "tsc --noEmit",
