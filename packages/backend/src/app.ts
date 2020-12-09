@@ -10,7 +10,6 @@ import appHooks from './app.hooks';
 import channels from './channels';
 
 import authentication from './authentication';
-// Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
 export type HookContext<T = any> = { app: Application } & FeathersHookContext<T>;
@@ -22,7 +21,7 @@ app.configure(configuration());
 app.configure(express.rest());
 app.configure(
   socketio({
-    path: '/api/v1/socket',
+    path: '/api/socket',
     serveClient: false,
   }),
 );
