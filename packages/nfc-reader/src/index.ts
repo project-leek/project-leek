@@ -6,11 +6,11 @@ import feathers, { socket as feathersSocket } from './lib/feathers';
 
 const nfcReader = new NFCReader();
 
-function printError(error: Error | string) {
+function printError(error: Error | string, ...args: string[]) {
   if (typeof error === 'string') {
-    console.error(error);
+    console.error(error, ...args);
   } else {
-    console.error(error.message || error);
+    console.error(error.message || error, ...args);
   }
 }
 
@@ -18,8 +18,9 @@ async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null
   try {
     const tagId = (attachedTag && attachedTag._id) || null;
     await feathers.service('nfc-readers').patch(nfcReaderId, { attachedTag: tagId });
-  } catch (error) {
-    printError('Could not set attached nfc-tag');
+  } catch (_error) {
+    const error = _error as Error;
+    printError('Could not set attached nfc-tag', error.message);
   }
 }
 
@@ -38,6 +39,7 @@ async function updateNfcTag(nfcReaderId: string, tagId: string) {
 
   if (!attachedTag) {
     printError('Could not find nfc-tag.');
+    return;
   }
 
   await setAttachedNfcTag(nfcReaderId, attachedTag);
@@ -71,8 +73,8 @@ async function start() {
     printError(`NFC reader error: ${error.message}`);
   });
 
-  nfcReader.on('open', (deviceId) => {
-    console.log(`Connected to NFC device with id: ${deviceId}`);
+  nfcReader.on('open', (device) => {
+    console.log('Connected to NFC device:', device);
   });
 
   nfcReader.on('tag-attached', (tagId) => {

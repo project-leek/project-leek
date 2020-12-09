@@ -1,12 +1,12 @@
-import { Params, ServiceAddons } from '@feathersjs/feathers';
+import { Params, ServiceAddons, HooksObject } from '@feathersjs/feathers';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
 import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentication-oauth';
 
-import { Application } from './declarations';
+import { Application } from '../../declarations';
 import hooks from './authentication.hooks';
 
-declare module './declarations' {
+declare module '../../declarations' {
   interface ServiceTypes {
     authentication: AuthenticationService & ServiceAddons<any>;
   }
@@ -43,6 +43,8 @@ export default (app: Application): void => {
   authentication.register('spotify', new SpotifyStrategy());
 
   app.use('authentication', authentication);
-  app.service('authentication').hooks(hooks);
+  // TODO remove workaround
+  app.service('authentication').hooks((hooks as unknown) as Partial<HooksObject>);
+
   app.configure(expressOauth());
 };
