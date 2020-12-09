@@ -1,6 +1,5 @@
 import { Params, ServiceAddons, HooksObject } from '@feathersjs/feathers';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
-import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentication-oauth';
 
 import { Application } from '../../declarations';
@@ -39,7 +38,6 @@ class SpotifyStrategy extends OAuthStrategy {
 export default (app: Application): void => {
   const authentication = new AuthenticationService(app);
   authentication.register('jwt', new JWTStrategy());
-  authentication.register('local', new LocalStrategy());
   authentication.register('spotify', new SpotifyStrategy());
 
   app.use('authentication', authentication);

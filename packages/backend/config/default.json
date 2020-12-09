@@ -23,10 +23,6 @@
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
-    "local": {
-      "usernameField": "email",
-      "passwordField": "password"
-    },
     "oauth": {
       "redirect": "OAUTH_REDIRECT_URI",
       "spotify": {
