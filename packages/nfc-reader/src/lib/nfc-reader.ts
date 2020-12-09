@@ -1,4 +1,4 @@
-import EvdevReader from 'evdev';
+import EvdevReader, { Evdev } from 'evdev';
 import { EventEmitter } from 'events';
 
 declare interface NFCReader {
@@ -8,7 +8,7 @@ declare interface NFCReader {
 }
 
 class NFCReader extends EventEmitter {
-  device?: EvdevReader.Device;
+  device?: Evdev.Device;
 
   reader: EvdevReader;
 

@@ -2,14 +2,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "lib": ["ES2019"],
-    "module": "commonjs",
+    "module": "CommonJS",
     "target": "ES2019",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "dist",
+    "rootDir": "src",
+    "resolveJsonModule": true,
     "noEmit": false,
     "declaration": false,
   },
-  "exclude": [
-    "./dist/**/*"
+  "include": [
+    "src/**/*"
   ]
 }
