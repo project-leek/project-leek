@@ -9,8 +9,6 @@ import services from './services';
 import appHooks from './app.hooks';
 import channels from './channels';
 
-import authentication from './authentication';
-
 const app: Application = express(feathers());
 
 // Load app configuration
@@ -27,8 +25,6 @@ app.configure(
 
 // Configure other middleware (see `middleware/index.ts`)
 app.configure(middleware);
-
-app.configure(authentication);
 
 // Set up our services (see `services/index.ts`)
 app.configure(services);

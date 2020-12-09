@@ -1,6 +1,6 @@
 import { User } from '@project-leek/commons';
 
-import { Application, HookContext } from './declarations';
+import { HookContext } from '../../declarations';
 
 type AuthenticationData = {
   strategy: string;
@@ -21,7 +21,6 @@ export default {
           }
 
           const { user } = ctx.result;
-          const app = ctx.app as Application;
 
           if (!user) {
             throw new Error('No user found');
@@ -31,10 +30,8 @@ export default {
           const spotifyAccessToken = data.access_token;
           const spotifyRefreshToken = data.refresh_token;
 
-          await app.service('users').patch(userId, { spotifyAccessToken, spotifyRefreshToken });
+          await ctx.app.service('users').patch(userId, { spotifyAccessToken, spotifyRefreshToken });
         }
-
-        return ctx;
       },
     ],
   },
