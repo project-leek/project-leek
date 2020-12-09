@@ -2,6 +2,8 @@
  \usepackage[ngerman]{babel}
  \usepackage[utf8]{inputenc}
  \usepackage[T1]{fontenc}
+ \usepackage{color}
+ \usepackage{hyperref}
 
 \title{Projektbreicht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
@@ -11,11 +13,58 @@
 \tableofcontents
 
 \section{Einleitung}
-\subsection{Projekt}
 \subsection{Unternehmen}
+\colorbox{red}{was macht macio aus}
+\subsection{Projektidee}
+Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
+Hierfür soll eine smarte Spielzeug-Box gebaut werden.
+Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.\\
+Genauer handelt es sich um eine Musik-Box, die NFC-Chips lesen und Spotify Connect unterstützen soll.
+Auf die Box können dann Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt werden, um spezifische Musik abspielen zu lassen.
+Die Musik wird von Spotify-Connect über eine bereits bestehende Musik-Anlage abgespielt.
+Falls es im Rahmen des Projektes möglich ist, sollen die Nutzer in der Lage sein, zwischen verschiedenen Musikanbietern zu wechseln.
+NFC-Chips und die zugehörige Musik sollen über ein Web-basierte Benutzeroberfläche konfiguriert werden können.
+Diese Benutzeroberfläche soll von der Box ausgeliefert und primär für Smartphone-Bedienung gestaltet werden.
+Da es sich um ein Open Source Projekt mit entsprechender Lizenz handelt, muss auch eine aussagekräftige, öffentliche Dokumentation verfasst werden.
+Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technischen Fragen.
+
+\subsubsection{Minimal Requirements}
+\begin{enumerate}
+  \item NFC-Tags lesen, schreiben und entschlüsseln
+  \item Mit Spotify Connect verbinden und arbeiten
+  \item Responsive UI konzeptionieren und umsetzen
+  \item Aussagekräftige Dokumentation mit Benutzerhandbuch
+\end{enumerate}
+\subsubsection{Stretch Goals}
+\begin{enumerate}
+  \item Sound Wiedergabe auf der Box selbst
+  \item Unterstützung anderer Musikdienste / Plugin-Subsystem
+  \item 3D-Modellierung und Print einer passenden Box
+  \item Cloud-Anbindung der Box, Auslieferung des UI aus der Cloud
+\end{enumerate}
+
+\section{Machbarkeitsstudie}
+
+\section{Design Mockups}
+\colorbox{red}{setze pdfs ein}
 
 \section{Durchführung}
+\subsubsection{Technologien und Hilfsmittel}
+\colorbox{red}{Vue, vscode, devops krams, etc}
+Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
 
-\section{Technologien}
+\subsubsection{Projekt Management}
+\colorbox{red}{ticket pool in github, alles zentral}
 
+\subsubsection{Deployment Cycle}
+\colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
+
+\subsubsection{Probleme während der Durchführung}
+\colorbox{red}{zb }
+\section{Code Walkthrough}
+\colorbox{red}{vielleicht interessante Code Snippets?}
+\section{Testing}
+\colorbox{red}{wie haben wir getestet, haben wir getestet?}
+\section{Technische Diagramme}
+\colorbox{red}{ER Diagramme, UML, solcher krams}
  \end{document}
