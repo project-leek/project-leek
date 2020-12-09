@@ -8,9 +8,13 @@ type SpotifyApiError = Error & {
 };
 
 async function playSpotify(app: Application, user: User, spotifyUri: string) {
+  const oauthSpotifyConfig = app.get('authentication').oauth.spotify;
+
   const spotifyApi = new SpotifyWebApi({
     accessToken: user.spotifyAccessToken,
     refreshToken: user.spotifyRefreshToken,
+    clientId: oauthSpotifyConfig.key,
+    clientSecret: oauthSpotifyConfig.secret,
   });
 
   try {
