@@ -1,4 +1,4 @@
-import { ServiceAddons } from '@feathersjs/feathers';
+import { HooksObject, ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { NFCReader } from '@project-leek/commons';
 import { Application } from '../../declarations';
@@ -30,5 +30,7 @@ export default (app: Application): void => {
 
   const service = app.service('nfc-readers');
   service.publish(() => app.channel('anonymous'));
-  service.hooks(hooks);
+
+  // TODO remove workaround
+  service.hooks((hooks as unknown) as Partial<HooksObject>);
 };
