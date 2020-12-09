@@ -27,6 +27,7 @@ export default (app: Application): void => {
 
   // Initialize our service with any options it requires
   app.use('nfc-readers', new NFCReaderService(options, app));
+
   const service = app.service('nfc-readers');
   service.publish(() => app.channel('anonymous'));
   service.hooks(hooks);

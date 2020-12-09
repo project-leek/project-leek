@@ -1,4 +1,4 @@
-import playSpotify from './playSpotify';
+import playSpotify from './play-spotify';
 
 export default {
   before: {
