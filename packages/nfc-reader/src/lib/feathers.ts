@@ -16,10 +16,9 @@ interface ServiceTypes {
 const apiUrl = process.env.API_URL || '';
 
 export const socket = io(apiUrl, {
-  path: '/api/v1/socket',
+  path: '/api/socket',
   transports: ['websocket'],
   autoConnect: true,
-  // timeout: 20 * 1000,
 });
 
 const feathersClient = feathers<ServiceTypes>();
