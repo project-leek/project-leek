@@ -40,23 +40,23 @@ async function playSpotify(app: Application, user: User, spotifyUri: string) {
   }
 }
 
-export default async (ctx: HookContext<NFCReader>) => {
+export default async (context: HookContext<NFCReader>) => {
   // skip if no tag has been attached or changed
-  if (!ctx.data?.attachedTag || !ctx.id) {
-    return ctx;
+  if (!context.data?.attachedTag || !context.id) {
+    return context;
   }
 
-  const nfcTag = await ctx.app.service('nfc-tags').get(ctx.data.attachedTag);
+  const nfcTag = await context.app.service('nfc-tags').get(context.data.attachedTag);
 
   // skip if not a spotify uri
   if (!/^spotify:/.test(nfcTag.audioUrl)) {
-    return ctx;
+    return context;
   }
 
-  const nfcReader = await ctx.service.get(ctx.id);
-  const user = await ctx.app.service('users').get(nfcReader.owner);
+  const nfcReader = await context.service.get(context.id);
+  const user = await context.app.service('users').get(nfcReader.owner);
 
-  await playSpotify(ctx.app, user, nfcTag.audioUrl);
+  await playSpotify(context.app, user, nfcTag.audioUrl);
 
-  return ctx;
+  return context;
 };
