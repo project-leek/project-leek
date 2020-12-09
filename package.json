@@ -19,6 +19,8 @@
     "build:dep": "yarn build:dependencies",
     "build:changed": "lerna run --since origin/master --include-dependents build",
     "build:app": "lerna run --include-dependencies --scope @project-leek/app build",
+    "build:backend": "lerna run --include-dependencies --scope @project-leek/backend build",
+    "build:nfc-reader": "lerna run --include-dependencies --scope @project-leek/nfc-reader build",
     "lint": "lerna run lint",
     "lint:changed": "lerna run --since origin/master --include-dependents lint",
     "test": "lerna run test",

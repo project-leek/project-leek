@@ -8,8 +8,6 @@ on:
 jobs:
   buildx:
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: --max_old_space_size=12288
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,31 +25,6 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: Setup Node.js - 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-
-      - name: Cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-${{ env.cache-name }}
-            ${{ runner.OS }}-npm-
-
-      - name: Install node_modules
-        run: yarn --frozen-lockfile
-
-      - name: Build dependencies
-        run: yarn build:dependencies
-
-      - name: Build nfc-reader
-        run: |
-          cd packages/nfc-reader
-          yarn build
-
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -60,9 +33,11 @@ jobs:
 
       - name: Build nfc-reader docker
         uses: docker/build-push-action@v2
+        env:
+          DOCKER_BUILDKIT: 1 # support specific dockerignore: https://stackoverflow.com/a/57774684/8461267
         with:
-          context: packages/nfc-reader
-          file: packages/nfc-reader/Dockerfile
+          context: .
+          file: docker/nfc-reader.Dockerfile
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: anbraten/project-leek-nfc-reader:latest
