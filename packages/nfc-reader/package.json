@@ -22,6 +22,6 @@
   "devDependencies": {
     "@vercel/ncc": "0.25.1",
     "nodemon": "2.0.6",
-    "ts-node": "^9.1.1"
+    "ts-node": "9.1.1"
   }
 }
