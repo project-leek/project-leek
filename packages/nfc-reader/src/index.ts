@@ -16,7 +16,7 @@ function printError(error: Error | string) {
 
 async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null) {
   try {
-    const tagId = attachedTag?._id || null;
+    const tagId = (attachedTag && attachedTag._id) || null;
     await feathers.service('nfc-readers').patch(nfcReaderId, { attachedTag: tagId });
   } catch (error) {
     printError('Could not set attached nfc-tag');

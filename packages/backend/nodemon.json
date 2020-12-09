@@ -4,6 +4,6 @@
     "config/"
   ],
   "ext": "ts,mjs,js,json",
-  "exec": "etsc && node ./dist/src/index.js",
+  "exec": "ts-node ./src/index.ts",
   "legacyWatch": true
 }
