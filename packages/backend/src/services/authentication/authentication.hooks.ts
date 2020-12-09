@@ -1,7 +1,6 @@
-import { HookContext } from '@feathersjs/feathers';
 import { User } from '@project-leek/commons';
 
-import { Application } from './declarations';
+import { HookContext } from '../../declarations';
 
 type AuthenticationData = {
   strategy: string;
@@ -13,16 +12,15 @@ type AuthenticationData = {
 export default {
   after: {
     create: [
-      async (ctx: HookContext<AuthenticationData>) => {
-        const { data } = ctx;
+      async (context: HookContext<AuthenticationData>) => {
+        const { data } = context;
 
         if (data && data.strategy === 'spotify') {
-          if (!ctx.result) {
+          if (!context.result) {
             throw new Error('Result not expected to be empty');
           }
 
-          const { user } = ctx.result;
-          const app = ctx.app as Application;
+          const { user } = context.result;
 
           if (!user) {
             throw new Error('No user found');
@@ -32,10 +30,8 @@ export default {
           const spotifyAccessToken = data.access_token;
           const spotifyRefreshToken = data.refresh_token;
 
-          await app.service('users').patch(userId, { spotifyAccessToken, spotifyRefreshToken });
+          await context.app.service('users').patch(userId, { spotifyAccessToken, spotifyRefreshToken });
         }
-
-        return ctx;
       },
     ],
   },

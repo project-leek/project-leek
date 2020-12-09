@@ -32,7 +32,14 @@
       "spotify": {
         "key": "SPOTIFY_CLIENT_ID",
         "secret": "SPOTIFY_CLIENT_SECRET",
-        "scope": ["user-read-email", "user-read-private"]
+        "scope": [
+          "user-read-email",
+          "user-read-private",
+          "user-read-playback-state",
+          "user-modify-playback-state",
+          "user-read-currently-playing",
+          "user-read-recently-played"
+        ]
       }
     }
   },
