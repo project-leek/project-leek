@@ -1,15 +1,33 @@
 <template>
-  <div class="app">
-    <span>Hi, hier kommt noch toller Content hin</span>
+  <div class="app flex">
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+
+import { isAuthenticated } from './compositions/useAuthentication';
 
 export default defineComponent({
   name: 'App',
-  components: {},
+
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+
+    watch(
+      () => isAuthenticated.value,
+      async (_isAuthenticated) => {
+        // if not authenticated and on page that requests authentication
+        const pageAuthentication = route.meta.authentication || 'needed';
+        if (pageAuthentication === 'needed' && !_isAuthenticated) {
+          router.replace({ name: 'login' });
+        }
+      }
+    );
+  },
 });
 </script>
 

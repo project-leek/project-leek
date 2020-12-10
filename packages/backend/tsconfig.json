@@ -1,14 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "esnext",
+    "lib": ["ES2019"],
+    "module": "CommonJS",
+    "target": "ES2019",
     "outDir": "dist",
     "rootDir": ".",
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "src/**/*",

@@ -8,14 +8,20 @@ on:
 jobs:
   buildx:
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: --max_old_space_size=12288
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Fetch origin/master
         run: git fetch --no-tags --prune --depth=1 origin master
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v1
@@ -27,31 +33,6 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: Setup Node.js - 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-
-      - name: Cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-${{ env.cache-name }}
-            ${{ runner.OS }}-npm-
-
-      - name: Install node_modules
-        run: yarn --frozen-lockfile
-
-      - name: Build dependencies
-        run: yarn build:dependencies
-
-      - name: Build nfc-reader
-        run: |
-          cd packages/nfc-reader
-          yarn build
-
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -61,8 +42,10 @@ jobs:
       - name: Build nfc-reader docker
         uses: docker/build-push-action@v2
         with:
-          context: packages/nfc-reader
-          file: packages/nfc-reader/Dockerfile
+          context: .
+          file: docker/nfc-reader.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: anbraten/project-leek-nfc-reader:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max

@@ -1,0 +1,14 @@
+*
+
+!lerna.json
+!tsconfig.json
+!yarn.lock
+!package.json
+
+!packages/commons/src
+!packages/commons/package.json
+!packages/commons/tsconfig.json
+
+!packages/nfc-reader/src
+!packages/nfc-reader/package.json
+!packages/nfc-reader/tsconfig.json
