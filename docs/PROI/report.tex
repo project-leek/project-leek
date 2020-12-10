@@ -90,12 +90,12 @@ Sollte kein Problem sein, da alle Anfragen ein Array von Bildern enthalten \foot
 
 \subsubsection{Eigene Bilder hochladen}
 Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin "vue-picture-input" helfen.
-Damit könnte mit einem Axios Post an das Backend das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}#
+Damit könnte mit einem Axios Post an das Backend das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
 \subsubsection{Spotify connect Lautsprecher auswählen}
 Das auswählen von einem spezifischen Spotify connected Lautsprecher ist möglich.
-Über einen API Call an die Spotify API mit dem Endpunkt "/v1/me/player/device" liefert eine Liste von allen verbundenen Geräten.
-Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei "is_active" den Wert "true".\footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
+Über einen API Call an die Spotify API mit dem Endpunkt \glqq /v1/me/player/device\grqq liefert eine Liste von allen verbundenen Geräten.
+Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei \glqq is_active\grqq den Wert \glqq true\grqq.\footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
 
 \subsubsection{Spotify connect Lautsprecher speichern}
 Die Liste von verbundenen Geräten, die über den API Call an die Spotify API erhalten wird, enthält auch einen unique Eintrag "id". Dieser kann gespeichert werden.
@@ -110,14 +110,11 @@ Dafür müsste eine API gebaut werden, damit der jeweilige Microcontroller der B
 \subsubsection{Unterstützung von Youtube Music}
 \colorbox{red}{TODO: Sollte möglich sein, aber Youtube Music ist ein Premium Inhakt. Gibt es hier etwas ähnliches wie Spotify Connected Speaker?}
 \subsubsection{Unterstützung von Apple Music}
-\colorbox{red}{TODO: Sollte möglich sein, brauch man "Premium" für spezifische Lieder?. Gibt es hier etwas ähnliches wie Spotify Connected Speaker?}
+Ist möglich. Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.com/documentation/musickitjs/} eine Möglichkeit hierfür.
 \subsubsection{Unterstützung von Deezer}
-\colorbox{red}{TODO: Sollte möglich sein, brauch man "Premium" für spezifische Lieder?. Gibt es hier etwas ähnliches wie Spotify Connected Speaker?}
-\subsubsection{Unterstützung von Tidal}
-\colorbox{red}{TODO: Sollte möglich sein, Tidal unterstützt aber kein Free Model (oder doch?). Gibt es hier etwas ähnliches wie Spotify Connected Speaker?}
+Ist dank der Deezer API möglich. \footnote{http://developers.deezer.com/login?redirect=/api}
 \subsubsection{Unterstützung von eigener Musik (USB Stick, MicroSD Karte, Cloud)}
-\colorbox{red}{TODO: Dateien von einer SD Karte oder etc auszulesen sollte genauso gut funktionieren wie ein NFC Chip auszulesen, wenn nicht sogar einfacher mit einer library. Wiedergabe ist da nur schwieriger. Wiedergabe über Spotify ginge nur, wenn man das Directory in Spotify angibt als Offline Quelle, gibt es dafür eine API oder so?}
-
+Das nimmt vorerst zuviel Arbeit in Anspruch und ist daher momentan nicht geplant.
 
 \subsection{Sonstiges}
 \subsubsection{3D Print version}
@@ -127,7 +124,8 @@ Da unsere Box nicht übermäßig groß sein wird, sollten die meisten 3D-Drucker
 \colorbox{red}{todo}
 
 \subsubsection{Box unter 30€ Kosten}
-Ausgehend davon, dass wir nur einen Microcontroller wie den ESP32 nutzen, ist dieses Ziel einfach zu erreichen. Dazu wird noch das Web-UI in der Cloud benötigt sowie Speicher benötigt. \colorbox{red}{wie viel?}
+Ausgehend davon, dass wir nur einen Microcontroller wie den ESP32 nutzen, ist dieses Ziel einfach zu erreichen.
+Dazu wird noch das Web-UI in der Cloud benötigt sowie Speicher benötigt. \colorbox{red}{wie viel?}
 
 \section{Design Mockups}
 \colorbox{red}{setze pdfs ein}
