@@ -41,11 +41,9 @@ jobs:
 
       - name: Build nfc-reader docker
         uses: docker/build-push-action@v2
-        env:
-          DOCKER_BUILDKIT: 1 # support specific dockerignore: https://stackoverflow.com/a/57774684/8461267
         with:
           context: .
-          file: docker/nfc-reader.Dockerfile
+          file: docker/nfc-reader.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: anbraten/project-leek-nfc-reader:latest
