@@ -2,6 +2,7 @@ FROM node:alpine AS build
 WORKDIR /app
 RUN apk add --no-cache make gcc g++ python git linux-headers
 COPY . ./
+RUN ls -la
 RUN yarn
 RUN yarn build:nfc-reader
 
