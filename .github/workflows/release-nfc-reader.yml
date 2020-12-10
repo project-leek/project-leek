@@ -15,6 +15,14 @@ jobs:
       - name: Fetch origin/master
         run: git fetch --no-tags --prune --depth=1 origin master
 
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -41,3 +49,5 @@ jobs:
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: anbraten/project-leek-nfc-reader:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
