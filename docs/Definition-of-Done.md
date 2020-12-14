@@ -4,17 +4,17 @@
 
 An issue is finished successfully when:
 - all of the issue's contents are solved
-- the changes are pushed to its branch (created when assigning yourself)
+- the changes are pushed to its branch (automated on first issue assignment)
 - a pull request to master is opened and successfully closed:
  - all PR-checks successful (build, linting, test, type-check)
- - the changes have been reviewed and approved by two reviewers
+ - the changes have been reviewed and approved by at least two reviewers
  - all open conversations have been resolved
 
-Only then can the issue be closed (can be done via PR).
+The issue can be closed with a PR after completing all steps above.
 
 ## Milestones
 
-A milestone was finished successfully when:
+A milestone is finished successfully when:
 - all issues attached to the milestone are finished
 - a short presentation about the changes of the milestone is made
 - the presentation is reviewed and approved by the whole team
