@@ -54,6 +54,7 @@ Hierfür ist ein Hardware NFC-Reader notwendig. Dieser kann über USB mit dem Ch
 \subsubsection{schreiben}
 Einen NFC-Tag zu beschreiben ist davon abhängig, ob der NFC-Tag über einen eigenen Speicher verfügt.
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
+\\
 \colorbox{yellow}{Möglich, kann die gleiche library wie zum lesen genutzt werden?}
 
 \subsection{Raspberri Pi}
@@ -89,16 +90,16 @@ Bei diesem Ansatz sollten dann die jeweiligen verbundenen Accounts zu einer uniq
 Sollte kein Problem sein, da alle Anfragen ein Array von Bildern enthalten \footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection{Eigene Bilder hochladen}
-Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin "vue-picture-input" helfen.
+Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin \textit{vue-picture-input} helfen.
 Damit könnte mit einem Axios Post an das Backend das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
 \subsubsection{Spotify connect Lautsprecher auswählen}
-Das auswählen von einem spezifischen Spotify connected Lautsprecher ist möglich.
-Über einen API Call an die Spotify API mit dem Endpunkt \glqq /v1/me/player/device\grqq liefert eine Liste von allen verbundenen Geräten.
-Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei \glqq is_active\grqq den Wert \glqq true\grqq.\footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
+Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
+Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} liefert eine Liste von allen verbundenen Geräten.
+Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
 
 \subsubsection{Spotify connect Lautsprecher speichern}
-Die Liste von verbundenen Geräten, die über den API Call an die Spotify API erhalten wird, enthält auch einen unique Eintrag "id". Dieser kann gespeichert werden.
+Die Liste von verbundenen Geräten, die über den API Call an die Spotify API erhalten wird, enthält auch einen unique Eintrag \textit{id}. Dieser kann gespeichert werden.
 
 \subsubsection{In Cloud UI die jeweilige Box auswählen}
 In dem Szenario, dass wir nur ein Cloud UI bieten für alle Boxen bieten, muss es auch eine Möglichkeit geben, die Boxen auszuwählen, die gerade konfiguriert werden soll.
@@ -108,7 +109,7 @@ Jede Box könnte ein QR-Code erhalten, der beim Einloggen gescannt werden muss. 
 Dafür müsste eine API gebaut werden, damit der jeweilige Microcontroller der Box mit dem Cloud UI kommunizieren kann.
 
 \subsubsection{Unterstützung von Youtube Music}
-\colorbox{red}{TODO: Sollte möglich sein, aber Youtube Music ist ein Premium Inhakt. Gibt es hier etwas ähnliches wie Spotify Connected Speaker?}
+Dies könnte umständlicher sein umzusetzen, da es bisher noch keine dedizierte Youtube Music API gibt. In der bisherigen API gibt nur die Möglichkeit, nach Youtube Videos zu suchen \footnote{https://developers.google.com/youtube/v3/}. Dazu kommt auch das Problem, dass ein externes Wiedergabegerät wie bei Spotify Connect derzeitig in der Form noch nicht existiert.
 \subsubsection{Unterstützung von Apple Music}
 Ist möglich. Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.com/documentation/musickitjs/} eine Möglichkeit hierfür.
 \subsubsection{Unterstützung von Deezer}
@@ -121,11 +122,12 @@ Das nimmt vorerst zuviel Arbeit in Anspruch und ist daher momentan nicht geplant
 Da unsere Box nicht übermäßig groß sein wird, sollten die meisten 3D-Drucker ausreichend sein. Das Modellieren einer 3D-Print Version ist am Ende abhängig von der Expertise der Gruppe. Abgesehen davon sollte es kein Problem darstellen.
 
 \subsubsection{Sound Wiedergabe auf der Box selbst}
-\colorbox{red}{todo}
+Manche Pi Modelle verfügen schon über ein Audio Anschluss, die Wiedergabe davon ist aber nicht die qualitativ beste. Daher wäre ein weiteres Audiomodul notwendig. Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten. \footnote{https://www.raspberrypi.org/products/}.
+Zur Wiedergabe auf der Box selbst müsste dafür eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
 
 \subsubsection{Box unter 30€ Kosten}
-Ausgehend davon, dass wir nur einen Microcontroller wie den ESP32 nutzen, ist dieses Ziel einfach zu erreichen.
-Dazu wird noch das Web-UI in der Cloud benötigt sowie Speicher benötigt. \colorbox{red}{wie viel?}
+Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
+Mit aber dem Raspberri Pi Zero W hätte man einerseits schon eingebautes Wlan und ein USB Port für den NFC Reader. Dieser ist für 10\$ erhältlich \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 \section{Design Mockups}
 \colorbox{red}{setze pdfs ein}
@@ -139,7 +141,7 @@ Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Su
 \colorbox{red}{ticket pool in github, alles zentral}
 
 \subsubsection{Deployment Cycle}
-\colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
+\colorbox{red}{TODO: Umformulieren} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
 
 \subsubsection{Probleme während der Durchführung}
 \colorbox{red}{zb }
