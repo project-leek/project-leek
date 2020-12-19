@@ -53,14 +53,14 @@ export default async (context: HookContext<NFCReader>) => {
   const nfcTag = await context.app.service('nfc-tags').get(context.data.attachedTag);
 
   // skip if not a spotify uri
-  if (!/^spotify:/.test(nfcTag.audioUrl)) {
+  if (!/^spotify:/.test(nfcTag.spotifyTrackUri)) {
     return context;
   }
 
   const nfcReader = await context.service.get(context.id);
   const user = await context.app.service('users').get(nfcReader.owner);
 
-  await playSpotify(context.app, user, nfcTag.audioUrl);
+  await playSpotify(context.app, user, nfcTag.spotifyTrackUri);
 
   return context;
 };
