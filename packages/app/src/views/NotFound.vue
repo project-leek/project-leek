@@ -1,6 +1,5 @@
 <template>
   <div class="m-auto">
-    > -->
     <Button :to="{ name: 'home' }" text="Back to home" />
   </div>
 </template>
