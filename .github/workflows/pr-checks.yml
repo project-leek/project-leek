@@ -26,7 +26,7 @@ jobs:
       - name: Fetch origin/master
         run: git fetch --no-tags --prune --depth=1 origin master
       - name: Use Node.js - ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
