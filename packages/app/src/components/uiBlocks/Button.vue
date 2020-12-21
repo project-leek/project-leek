@@ -3,7 +3,7 @@
     class="bg-black cursor-pointer rounded-md text-center p-2 text-white shadow-lg"
     @click="doClick"
   >
-    {{ text }}
+    <span>{{ text }}</span>
   </button>
 </template>
 
@@ -35,23 +35,12 @@ export default defineComponent({
     },
   },
   emits: ['click'],
-  setup(props, ctx) {
+  setup(props) {
     const router = useRouter();
-    const isLoading = ref(false);
 
     const doClick = async () => {
       if (props.disabled) {
         return;
-      }
-
-      if (props.withLoading) {
-        isLoading.value = true;
-        // const asyncFunction = (ctx.$listeners.click as () => Promise<void>);
-        const asyncFunction = ctx.$listeners.click;
-        await asyncFunction();
-        isLoading.value = false;
-      } else {
-        ctx.emit('click');
       }
 
       if (props.to) {
@@ -64,9 +53,9 @@ export default defineComponent({
       }
     };
 
-    return { doClick };
+    return {
+      doClick,
+    };
   },
 });
 </script>
-
-<style scoped></style>
