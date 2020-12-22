@@ -1,9 +1,6 @@
 import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
 
-import {
-  isAuthenticated,
-  load as loadAuthentication,
-} from '../compositions/useAuthentication';
+import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -12,6 +9,12 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: () => import('../components/Welcome.vue'),
+    meta: { authentication: 'guests-only' },
   },
   {
     path: '/login',
@@ -51,7 +54,7 @@ router.beforeEach(async (to, _, next) => {
   const pageAuthentication = to.meta.authentication || 'needed';
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
-    next({ name: 'login' });
+    next({ name: 'welcome' });
     return;
   }
 
