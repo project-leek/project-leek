@@ -3,7 +3,10 @@
     class="bg-black cursor-pointer rounded-md text-center p-2 text-white shadow-lg"
     @click="doClick"
   >
-    <span>{{ text }}</span>
+    <span class="flex">
+      <p class="my-auto font-semibold">{{ text }}</p>
+      <img v-if="imagePath" class="w-8 h-8 ml-4" :src="imagePath" />
+    </span>
   </button>
 </template>
 
@@ -28,6 +31,10 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    imagePath: {
+      type: String,
+      default: null,
     },
   },
   emits: ['click'],
