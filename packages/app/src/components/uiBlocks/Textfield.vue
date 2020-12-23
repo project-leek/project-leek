@@ -1,0 +1,45 @@
+<template>
+  <div class="max-w-max flex flex-col">
+    <!-- label -->
+    <p v-if="label" class="font-bold pl-4">{{ label }}</p>
+    <!-- textfield with icon-->
+    <div class="border-2 border-yellow-400 px-4 py-1 rounded-full focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25 shadow-lg">
+      <span v-if="icon" class="mr-2" :class="['fas', `fa-${icon}`]" />
+      <input
+        class="focus: outline-none bg-transparent placeholder-opacity-50"
+        :placeholder="placeholder"
+        type="text"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+      />
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  props: {
+    placeholder: {
+      type: String,
+      required: true,
+    },
+    modelValue: {
+      type: String,
+      required: true,
+    },
+    icon: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    label: {
+      type: String,
+      required: false,
+      default: '',
+    },
+  },
+  emits: ['update:modelValue'],
+});
+</script>
