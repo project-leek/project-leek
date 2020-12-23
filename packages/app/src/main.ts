@@ -5,6 +5,8 @@ import App from './App.vue';
 import router from './router';
 
 import '../index.css';
+import 'typeface-roboto';
+import 'typeface-baloo';
 
 createApp(App).use(router).mount('#app');
 
