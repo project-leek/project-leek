@@ -1,19 +1,32 @@
 <template>
-  <div id="wrapper" class="p-4">
-    <h1 class="text-4xl w-full mt-14">Smart Music Box</h1>
-    <h1 class="text-4xl w-full">#{{ musicBoxId }}</h1>
-
-    <p class="mt-32 font-bold">
-      The “leading app” for playing your favorite tracks from Spotify or Youtube by putting tags on
-      your Smart Music Box.
-    </p>
-
-    <button class="bg-green-600">Login with Spotify</button>
+  <div
+    id="wrapper"
+    class="w-full flex flex-col items-center h-full p-6 bg-gradient-to-b from-primary to-secondary"
+  >
+    <div id="header">
+      <h1 class="mt-24 font-heading font-light text-white text-4xl">Smart Music Box</h1>
+      <p class="mt-2 font-default">Play your favorite tracks with tags.</p>
+    </div>
+    <Button
+      class="mx-auto mt-40 h-16 ring-2 ring-button ring-opacity-75"
+      text="Login with SPOTIFY"
+      :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
+      image-path="spotify.png"
+    />
   </div>
 </template>
 
 <script>
-export default {};
+import { defineComponent } from 'vue';
+
+import Button from './uiBlocks/Button.vue';
+
+export default defineComponent({
+  name: 'Welcome',
+  components: {
+    Button,
+  },
+});
 </script>
 
 <style></style>
