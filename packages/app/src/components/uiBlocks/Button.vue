@@ -24,7 +24,7 @@ export default defineComponent({
       type: [Object, String],
       default: null,
     },
-    back: {
+    revert: {
       type: Boolean,
       default: false,
     },
@@ -51,7 +51,7 @@ export default defineComponent({
         return;
       }
 
-      if (props.back) {
+      if (props.revert) {
         router.go(-1);
       }
     };
