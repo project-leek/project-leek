@@ -33,12 +33,12 @@
     "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
   },
   "resolutions": {
-    "postcss": "8.1.14"
+    "postcss": "8.2.1"
   },
   "devDependencies": {
     "@types/jest": "26.0.19",
-    "@typescript-eslint/eslint-plugin": "4.9.0",
-    "@typescript-eslint/parser": "4.9.0",
+    "@typescript-eslint/eslint-plugin": "4.11.0",
+    "@typescript-eslint/parser": "4.11.0",
     "dotenv-cli": "4.0.0",
     "eslint": "7.16.0",
     "eslint-config-airbnb-typescript": "12.0.0",
