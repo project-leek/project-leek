@@ -19,7 +19,7 @@ See [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
 ## Docs
 
-You can find some extra project documentation [here](/project-leek/project-leek/tree/docs).
+You can find some extra project documentation [here](../../tree/docs).
 
 ## Contributing
 
