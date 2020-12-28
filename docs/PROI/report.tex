@@ -48,14 +48,14 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 \subsection{NFC Tag}
 \subsubsection{lesen}
 Um mit NFC Tags arbeiten zu können, müssen diese auch auf entschlüsselt bzw. gelesen werden können.
-Hierfür ist ein Hardware NFC-Reader notwendig, der per USB mit der Box verbunden wird.
-\colorbox{yellow}{welche library wird genutzt?}
+Hierfür ist ein Hardware NFC-Reader notwendig, der über USB mit dem Chip der Box kommuniziert.
+Hierfür könnte \textit{evdev} genutzt werden, ein Kernel Modul von Linux. Um das mit Node zu nutzen, kann \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} genutzt werden. Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten gibt es auch Raspberry Pi und Typescript support.
+Das ganze emuliert Keyboard Eingaben und sendet die Tag-IDs auf diese Art.
 
 \subsubsection{schreiben}
 Einen NFC-Tag zu beschreiben ist davon abhängig, ob der NFC-Tag über einen eigenen Speicher verfügt.
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
-\\
-\colorbox{yellow}{Möglich, kann die gleiche library wie zum lesen genutzt werden?}
+Dafür kann die gleiche Library wie zum lesen von NFC-Tags genutzt werden.
 
 \subsection{Raspberri Pi}
 \subsubsection{Docker Integration}
