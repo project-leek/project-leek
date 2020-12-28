@@ -4,6 +4,9 @@ on:
   pull_request_target:
     types: [opened, synchronize, reopened, closed]
 
+env:
+  YARN_CACHE_FOLDER: ~/.yarn
+
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -16,9 +19,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.YARN_CACHE_FOLDER }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.OS }}-yarn-${{ env.cache-name }}
+            ${{ runner.OS }}-yarn-
 
       - name: Set up Node
         uses: actions/setup-node@v2
