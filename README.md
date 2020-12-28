@@ -17,17 +17,13 @@ One sentence description.
 
 See [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
+## Docs
+
+You can find some extra project documentation [here](/project-leek/project-leek/tree/docs).
+
 ## Contributing
 
 [How to contribute](CONTRIBUTING.md)
-
-## Install for production
-
-```bash
-docker pull ...
-
-docker run ...
-```
 
 ## Packages
 

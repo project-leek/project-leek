@@ -2,6 +2,9 @@ name: Build docs
 
 on:
   push:
+    paths:
+      - '.github/workflows/build-docs.yml'
+      - 'docs/**'
     branches:
       - master
 
@@ -24,6 +27,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
+          BRANCH: docs
           FOLDER: docs/
           CLEAN: true
