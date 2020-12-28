@@ -41,5 +41,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           teardown: 'true'
           dist: packages/app/dist
+          build: |
+            echo "dummy"
+
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
