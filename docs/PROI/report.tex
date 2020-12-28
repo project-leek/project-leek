@@ -62,9 +62,9 @@ Dafür kann die gleiche Library wie zum lesen von NFC-Tags genutzt werden.
 Docker auf einem Raspberri Pi laufen zu lassen ist möglich und in vielen Anleitungen online nachlesbar.\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}
 
 \subsubsection{Öffentlich zugängliches Web Interface}
-Um den Web Server vom Pi von außerhalb des Netzwerkes erreichen zu können, muss innerhalb des Routers der Port 80 port forwarded werden.
-Dann kann der Pi unter dessen IP xxx.xxx.xxx.xxx:80 erreicht werden.
-Wenn die IP Adresse sich nicht ändern soll, kann auch eine statische IP festgelegt werden \footnote{https://howchoo.com/pi/configure-static-ip-address-raspberry-pi}. Dazu könnte dann eine Domain gekauft werden, die dann z.b. mit Cloudflare auf diese statische IP weiterleitet.
+Um den Web Server vom Pi von außerhalb des Netzwerkes erreichen zu können, muss innerhalb des Routers der Port 80 ge-forwarded werden.
+Dann kann der Pi unter dessen öffentlicher IP xxx.xxx.xxx.xxx:80 erreicht werden.
+Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
 
 \subsubsection{URL für UI festlegen}
@@ -115,19 +115,19 @@ Ist möglich. Apple Music bietet hier mit deren MusicKit JS\footnote{https://dev
 \subsubsection{Unterstützung von Deezer}
 Ist dank der Deezer API möglich. \footnote{http://developers.deezer.com/login?redirect=/api}
 \subsubsection{Unterstützung von eigener Musik (USB Stick, MicroSD Karte, Cloud)}
-Das nimmt vorerst zuviel Arbeit in Anspruch und ist daher momentan nicht geplant.
+Da hier extrem viele Möglichkeiten mit verschiedensten Problemen existieren, wird dieser Punkt vorest vernachlässigt.
 
 \subsection{Sonstiges}
 \subsubsection{3D Print version}
-Da unsere Box nicht übermäßig groß sein wird, sollten die meisten 3D-Drucker ausreichend sein. Das Modellieren einer 3D-Print Version ist am Ende abhängig von der Expertise der Gruppe. Abgesehen davon sollte es kein Problem darstellen.
+Da unsere Box nicht übermäßig groß sein soll, müssten handelsübliche 3D-Drucker von der Größe ausreichend sein. Das Modellieren einer 3D-Print Version ist am Ende von der Expertise der Gruppe abhängig. Abgesehen davon sollte es kein besonderes Problem darstellen.
 
 \subsubsection{Sound Wiedergabe auf der Box selbst}
-Manche Pi Modelle verfügen schon über ein Audio Anschluss, die Wiedergabe davon ist aber nicht die qualitativ beste. Daher wäre ein weiteres Audiomodul notwendig. Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten. \footnote{https://www.raspberrypi.org/products/}.
-Zur Wiedergabe auf der Box selbst müsste dafür eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
+Manche Pi Modelle verfügen über einen On-Board Audio Anschluss. Die Wiedergabe über diesen ist qualitativ für Musik meist ungeeignet und sollte daher über ein weiteres Audiomodul oder eine externe Soundkarte erfolgen.  Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten. \footnote{https://www.raspberrypi.org/products/}.
+Zur Wiedergabe auf der Box selbst müsste dafür auf dem Raspberry eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird. Hierfür existieren Libraries wie raspotify \footnote{https://github.com/dtcooper/raspotify}.
 
 \subsubsection{Box unter 30€ Kosten}
 Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
-Mit aber dem Raspberri Pi Zero W hätte man einerseits schon eingebautes Wlan und ein USB Port für den NFC Reader. Dieser ist für 10\$ erhältlich \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
+Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader hätte man ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 \section{Design Mockups}
 \colorbox{red}{setze pdfs ein}
