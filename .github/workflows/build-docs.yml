@@ -1,4 +1,4 @@
-name: Publish report
+name: Build docs
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - master
 
 jobs:
-  publish_latex:
+  build_docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Compile LaTeX document
+      - name: Compile LaTeX report
         uses: xu-cheng/latex-action@v2
         with:
           working_directory: docs/report
@@ -20,7 +20,7 @@ jobs:
         run: |
           cp docs/report/report.pdf docs/report.pdf
           rm -r docs/report
-      - name: Deploy 🚀
+      - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
