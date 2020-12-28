@@ -64,7 +64,7 @@ Docker auf einem Raspberri Pi laufen zu lassen ist möglich und in vielen Anleit
 \subsubsection{Öffentlich zugängliches Web Interface}
 Um den Web Server vom Pi von außerhalb des Netzwerkes erreichen zu können, muss innerhalb des Routers der Port 80 ge-forwarded werden.
 Dann kann der Pi unter dessen öffentlicher IP xxx.xxx.xxx.xxx:80 erreicht werden.
-Wenn die IP Adresse sich nicht ändern soll, kann auch eine statische IP festgelegt werden \footnote{https://howchoo.com/pi/configure-static-ip-address-raspberry-pi}. Dazu könnte dann eine Domain gekauft werden, die dann z.b. mit Cloudflare auf diese statische IP weiterleitet.
+Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
 
 \subsubsection{URL für UI festlegen}
