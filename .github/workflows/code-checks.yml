@@ -2,6 +2,16 @@ name: PR Checks
 
 on:
   push:
+    paths:
+      - '.github/workflows/code-checks.yml'
+      - 'packages/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
     branches:
       - master
   pull_request:
