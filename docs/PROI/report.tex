@@ -80,40 +80,42 @@ Sollte das doch der Fall sein, könnte der Chip der Box ein API Call an den Rasp
 Es gibt ein Feathers Plugin welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
 \subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
-Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über diese gleiche Nutzer wiedererkennbar wären.
-Die E-Mail wäre hierbei das einzigartigste Merkmal. Über Scopes in der OAuth Anfrage kann diese auch mitgeliefert werden.
-Das setzt aber voraus, dass Nutzer immer die gleiche E-Mail nutzen, was nicht immer der Fall ist.
-Man könnte dem (bereits eingeloggten) User die Möglichkeit geben, weitere Accounts zu diesem hinzuzufügen, sodass diese Accounts den gleichen Nutzer einloggen.
+Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
+Die E-Mail wäre hierbei ein geeignetes Merkmal, das einzigartig sein sollte. Über Scopes in der OAuth Anfrage wird dieses in der Regel vom jeweiligen Provider mitgeliefert.
+Um die E-Mail als Merkmal zu verwenden, wird vorausgesetzt, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen. Dies kann aber nicht immer gewährleistet werden und hängt stark von dem einzelnen Nutzer ab.
+Man könnte dem (bereits eingeloggten) Nutzer die Möglichkeit geben, weitere Accounts zu dem bestehenden hinzuzufügen, sodass ein Login über unterschiedliche Provider den gleichen Nutzer einloggen.
 Bei diesem Ansatz sollten dann die jeweiligen verbundenen Accounts zu einer unique User-ID verbunden werden.
 
 \subsubsection{Musik Artwork laden}
-Sollte kein Problem sein, da alle Anfragen ein Array von Bildern enthalten \footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
+Sollte bei der Verwendung von Spotify kein Problem sein, da zu jedem Titel / Lied eine Liste von Bildern enthalten sein sollte.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection{Eigene Bilder hochladen}
 Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin \textit{vue-picture-input} helfen.
-Damit könnte mit einem Axios Post an das Backend das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
+Mit einem Axios Post an das Backend könnte das Bild gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
-\subsubsection{Spotify connect Lautsprecher auswählen}
+\subsubsection{Spotify Connect Lautsprecher auswählen}
 Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
-Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} liefert eine Liste von allen verbundenen Geräten.
-Es kann auch der letzte aktive Lautsprecher genutzt werden. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
+Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} erhält man eine Liste von allen verbundenen Geräten, welche man dann dem Endpunkt zum Abspielen eines Liedes übergeben kann.
+Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt aktive genutzt. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
 
-\subsubsection{Spotify connect Lautsprecher speichern}
-Die Liste von verbundenen Geräten, die über den API Call an die Spotify API erhalten wird, enthält auch einen unique Eintrag \textit{id}. Dieser kann gespeichert werden.
+\subsubsection{Spotify Connect Lautsprecher speichern}
+Die Liste von verbundenen Geräten, die über einen Call an die Spotify API erhalten wird, enthält auch einen eindeutiges Feld \textit{id}, welches sich zusammen mit einem Namen speichern lässt.
 
-\subsubsection{In Cloud UI die jeweilige Box auswählen}
-In dem Szenario, dass wir nur ein Cloud UI bieten für alle Boxen bieten, muss es auch eine Möglichkeit geben, die Boxen auszuwählen, die gerade konfiguriert werden soll.
-Jede Box könnte ein QR-Code erhalten, der beim Einloggen gescannt werden muss. Je nachdem kann diese Box dann im Account hinterlegt werden oder muss bei jedem Login gescannt werden.
+\subsubsection{In Cloud Anwendung die jeweilige Box auswählen}
+Bei der Ersteinrichtung der Box könnte sich die Cloud Anwendung mit der MAC Adresse oder einem vom Nutzer gesetzten Namen anmelden.
+Diese Box wäre dann der Cloud Anwendung bekannt und könnte auch in der Cloud Anwendung ausgewählt werden.
 
-\subsubsection{Boxdaten über Cloud UI ändern}
+\subsubsection{Boxdaten über Cloud Anwendung ändern}
 Dafür müsste eine API gebaut werden, damit der jeweilige Microcontroller der Box mit dem Cloud UI kommunizieren kann.
 
 \subsubsection{Unterstützung von Youtube Music}
-Eine Umsetzung könnte sich als umständlich erweisen, da es bisher noch keine dedizierte Youtube Music API gibt. In der bisherigen API gibt nur die Möglichkeit, nach Youtube Videos zu suchen \footnote{https://developers.google.com/youtube/v3/}. Dazu kommt auch das Problem, dass ein externes Wiedergabegerät wie bei Spotify Connect derzeitig in der Form noch nicht existiert.
+Eine Umsetzung könnte sich als umständlich erweisen, da es bisher noch keine dedizierte Youtube Music API gibt.
+\subsubsection{Unterstützung von Youtube}
+Youtube bietet die Möglichkeit, nach Videos zu suchen \footnote{https://developers.google.com/youtube/v3/}. Um diese Videos auf dem Raspberry als Musik abzuspielen würde sich `youtube-dl` zum downloaden der Videos als `.mp3` Dateien und  `omxplayer` zum Abspielen anbieten. Hierfür wäre allerdings ein entsprechender Lautsprecher am Raspberry erforderlich. Ein vergleichbares System zu Spotify Connect existiert derzeit in dieser Form noch nicht für Youtube.
 \subsubsection{Unterstützung von Apple Music}
-Ist möglich. Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.com/documentation/musickitjs/} eine Möglichkeit hierfür.
+Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.com/documentation/musickitjs/} eine Möglichkeit, um Musik abzuspielen.
 \subsubsection{Unterstützung von Deezer}
-Ist dank der Deezer API möglich. \footnote{http://developers.deezer.com/login?redirect=/api}
+Deezer lässt sich vergleichbar zu Spotify über eine API steuern. \footnote{http://developers.deezer.com/login?redirect=/api}
 \subsubsection{Unterstützung von eigener Musik (USB Stick, MicroSD Karte, Cloud)}
 Da hier extrem viele Möglichkeiten mit verschiedensten Problemen existieren, wird dieser Punkt vorest vernachlässigt.
 
