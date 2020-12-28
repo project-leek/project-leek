@@ -2,9 +2,9 @@
   <div class="m-auto">
     <pre>{{ user }}</pre>
     <p>Suchefeld</p>
-    <Textfield class="mb-4" v-model="text" icon="search" placeholder="Titelsuche"></Textfield>
+    <Textfield v-model="text" class="mb-4" icon="search" placeholder="Titelsuche" />
     <p>Textfield</p>
-    <Textfield class="mb-4" v-model="text" label="Title" placeholder="Titelsuche"></Textfield>
+    <Textfield v-model="text" class="mb-4" label="Title" placeholder="Titelsuche" />
     <div
       class="cursor-pointer bg-green-600 rounded-full text-center p-2 text-white"
       @click="logout"
