@@ -1,21 +1,19 @@
-name: Release App
+name: Preview app
 
 on:
-  push:
-    tags:
-      - 'app-*'
+  pull_request_target:
+    types: [opened, synchronize, reopened, closed]
 
 env:
   YARN_CACHE_FOLDER: ~/.yarn
 
 jobs:
-  build-and-deploy:
+  preview:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
       - name: Caching
         uses: actions/cache@v2
@@ -36,16 +34,15 @@ jobs:
           yarn --frozen-lockfile
           yarn build:app
 
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.4.1
+      - uses: afc163/surge-preview@v1
+        id: preview_step
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          teardown: 'true'
+          dist: packages/app/dist
+          build: |
+            echo "dummy"
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          SSH: true
-          REPOSITORY_NAME: project-leek/project-leek.github.io
-          BRANCH: master
-          FOLDER: packages/app/dist
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+      - name: Get the preview_url
+        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
