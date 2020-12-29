@@ -5,4 +5,7 @@ export default {
       ws: true,
     },
   },
+  optimizeDeps: {
+		exclude: [ "@fortawesome/fontawesome-free" ]
+	}
 };

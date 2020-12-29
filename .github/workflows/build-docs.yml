@@ -1,0 +1,32 @@
+name: Build docs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-docs.yml'
+      - 'docs/**'
+    branches:
+      - master
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Compile LaTeX report
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: docs/report
+          root_file: report.tex
+      - name: Prepare docs folder
+        run: |
+          cp docs/report/report.pdf docs/report.pdf
+          rm -r docs/report
+      - name: Deploy docs 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: docs
+          FOLDER: docs/
+          CLEAN: true
