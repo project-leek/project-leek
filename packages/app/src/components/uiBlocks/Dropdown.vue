@@ -1,35 +1,37 @@
 <template>
-  <div
-    class="bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col border-yellow-400 border-2 divide-y-2 divide-yellow-50"
-  >
-    <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-      <span class="flex-1">{{ getHeaderText() }}</span>
-      <img
-        v-if="dropdownExtended"
-        class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 ml-2 w-5 h-5 justify-end"
-        src="../../assets/icons/chevron-down.svg"
-      />
-      <img
-        v-else
-        class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 ml-2 w-5 h-5 justify-end"
-        src="../../assets/icons/chevron-right.svg"
-      />
-    </div>
-    <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6">
-      <div
-        v-for="(item, index) in selectableItemValues"
-        :key="index"
-        class="w-full pl-2"
-        @click="itemClick(item)"
-      >
-        {{ item }}
-      </div>
-      <div v-if="addItemOption" class="flex w-full items-center pt-0.5" @click="addItem()">
+  <div class="relative h-9">
+    <div
+      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-md border-2 divide-y-2 divide-yellow-50"
+    >
+      <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
+        <span class="flex-1">{{ getHeaderText() }}</span>
         <img
-          class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mr-2 w-5 h-5 justify-start"
-          src="../../assets/icons/plus.svg"
+          v-if="dropdownExtended"
+          class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
+          src="../../assets/icons/chevron-down.svg"
         />
-        <span class="flex-1">{{ addItemText }}</span>
+        <img
+          v-else
+          class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
+          src="../../assets/icons/chevron-right.svg"
+        />
+      </div>
+      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static">
+        <div
+          v-for="(item, index) in selectableItemValues"
+          :key="index"
+          class="w-full pl-2"
+          @click="itemClick(item)"
+        >
+          {{ item }}
+        </div>
+        <div v-if="addItemOption" class="flex w-full items-center pt-0.5" @click="addItem()">
+          <img
+            class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mr-2 w-5 h-5 justify-start"
+            src="../../assets/icons/plus.svg"
+          />
+          <span class="flex-1">{{ addItemText }}</span>
+        </div>
       </div>
     </div>
   </div>
