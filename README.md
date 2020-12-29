@@ -1,6 +1,6 @@
-# Project leek
+# Leek
 
-One sentence description.
+Leek is a music box which can be used to play songs from different providers by putting nfc-tags (possibly bound to toys) on the box.
 
 [![CI](https://github.com/project-leek/project-leek/workflows/PR%20Checks/badge.svg)](https://github.com/project-leek/project-leek/actions?query=workflow%3A"PR+Checks")
 
@@ -10,24 +10,22 @@ One sentence description.
 
 ## Features
 
-* first
-* second
+- Manage nfc-tags with modern web UI
+- No extra account needed => Login with third-party providers like Spotify
+- Select Spotify connected device to play music
+- Open source project which can simply be self-hosted
 
 ## Roadmap
 
 See [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
+## Docs
+
+You can find some extra project documentation [here](../../tree/docs).
+
 ## Contributing
 
 [How to contribute](CONTRIBUTING.md)
-
-## Install for production
-
-```bash
-docker pull ...
-
-docker run ...
-```
 
 ## Packages
 

@@ -4,6 +4,8 @@ import { socket as feathersSocket } from './lib/feathers';
 import App from './App.vue';
 import router from './router';
 
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all';
 import '../index.css';
 import 'typeface-roboto';
 import 'typeface-baloo';
