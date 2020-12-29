@@ -1,4 +1,5 @@
 <template>
+  <img src="cube.png" width="500" height="500" style="position: absolute" />
   <div
     id="wrapper"
     class="w-full flex flex-col items-center h-full p-6 bg-gradient-to-b from-primary to-secondary"
