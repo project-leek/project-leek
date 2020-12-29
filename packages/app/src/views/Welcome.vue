@@ -7,7 +7,7 @@
     <div class="z-10 col-start-1 col-end-1 row-start-1 row-end-10 md:row-end-6 grid grid-cols-2">
       <img
         class="col-start-1 col-end-1 max-h-full transform -translate-x-24 rotate-12"
-        src="cube.png"
+        src="../assets/cube.png"
       />
     </div>
     <!-- header Text -->
@@ -30,7 +30,7 @@
     <div class="z-10 col-start-1 col-end-1 row-start-25 row-end-31 grid grid-cols-2">
       <img
         class="justify-self-end col-start-2 col-end-2 max-h-full transform translate-x-24 rotate-45"
-        src="cube.png"
+        src="../assets/cube.png"
       />
     </div>
   </div>
@@ -39,7 +39,7 @@
 <script>
 import { defineComponent } from 'vue';
 
-import Button from './uiBlocks/Button.vue';
+import Button from '../components/uiBlocks/Button.vue';
 
 export default defineComponent({
   name: 'Welcome',

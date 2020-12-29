@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/welcome',
     name: 'welcome',
-    component: () => import('../components/Welcome.vue'),
+    component: () => import('../views/Welcome.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
