@@ -1,7 +1,8 @@
 <template>
-  <div class="relative h-9">
+  <div class="relative h-10 min-w-min">
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-md border-2 divide-y-2 divide-yellow-50"
+      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-lg border-2 divide-y-2 divide-yellow-50"
+      :class="{ 'z-50': dropdownExtended }"
     >
       <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
         <span class="flex-1">{{ getHeaderText() }}</span>
@@ -16,16 +17,20 @@
           src="../../assets/icons/chevron-right.svg"
         />
       </div>
-      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static">
+      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
         <div
           v-for="(item, index) in selectableItemValues"
           :key="index"
-          class="w-full pl-2"
+          class="w-full pl-2 rounded-2xl hover:bg-yellow-200"
           @click="itemClick(item)"
         >
           {{ item }}
         </div>
-        <div v-if="addItemOption" class="flex w-full items-center pt-0.5" @click="addItem()">
+        <div
+          v-if="addItemOption"
+          class="flex w-full items-center pt-0.5 rounded-2xl hover:bg-yellow-200"
+          @click="addItem()"
+        >
           <img
             class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mr-2 w-5 h-5 justify-start"
             src="../../assets/icons/plus.svg"
