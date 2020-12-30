@@ -17,12 +17,6 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/auth/Login.vue'),
-    meta: { authentication: 'guests-only' },
-  },
-  {
     path: '/oauth/callback',
     name: 'oauth-callback',
     component: () => import('../views/auth/OAuthCallback.vue'),
