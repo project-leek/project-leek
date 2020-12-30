@@ -23,7 +23,7 @@ export default defineComponent({
         // if not authenticated and on page that requests authentication
         const pageAuthentication = route.meta.authentication || 'needed';
         if (pageAuthentication === 'needed' && !_isAuthenticated) {
-          router.replace({ name: 'login' });
+          router.replace({ name: 'welcome' });
         }
       }
     );
