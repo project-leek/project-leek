@@ -1,6 +1,5 @@
 <template>
   <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
-    <!-- this is a basic template to fill the divs with content. The divs already match roughly the sizes of the figma design -->
     <header class="h-1/5 bg-blue-300 flex items-center justify-center text-4xl text-gray-800">
       header
     </header>
