@@ -1,12 +1,11 @@
 <template>
   <button
-    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex"
+    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
     <span class="flex px-2">
-      <span v-if="icon" class="mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
-      <img v-if="imagePath" class="w-10 h-10 mr-2 br" :src="imagePath" />
-      <p :class="['my-auto', 'font-heading', 'font-extralight', `text-${textsize}`]">
+      <span v-if="icon" class="mr-4 my-auto" :class="[icon, `text-${iconsize}`]" />
+      <p class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
         {{ text }}
       </p>
     </span>
@@ -35,16 +34,17 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    imagePath: {
-      type: String,
-      default: null,
-    },
     icon: {
       type: String,
       required: false,
       default: '',
     },
-    size: {
+    textSize: {
+      type: Number,
+      required: false,
+      default: 3,
+    },
+    iconSize: {
       type: Number,
       required: false,
       default: 3,
@@ -69,17 +69,23 @@ export default defineComponent({
       }
     };
 
-    const textsize = ref('');
-    if (props.size === 1) {
-      textsize.value = 'xl';
-    } else if (props.size > 1) {
-      const tmpSize = props.size > 9 ? 9 : props.size;
-      textsize.value = `${tmpSize}xl`;
-    }
+    const getSize = (size) => {
+      if (size === 1) {
+        return 'xl';
+      }
+      if (props.textSize > 1) {
+        const tmpSize = size > 9 ? 9 : size;
+        return `${tmpSize}xl`;
+      }
+      throw Error('invalid number for size. Size must be greater than zero');
+    };
 
+    const textsize = ref(getSize(props.textSize));
+    const iconsize = ref(getSize(props.iconSize));
     return {
       doClick,
       textsize,
+      iconsize,
     };
   },
 });
