@@ -3,7 +3,7 @@
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
         icon="fas fa-plus-square"
-        text="Hinzufügen"
+        text="Tag hinzufügen"
         :textSize="2"
         class="w-10/12 py-2 pl-3 mb-6 justify-start"
       />
