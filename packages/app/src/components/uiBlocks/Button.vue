@@ -4,6 +4,7 @@
     @click="doClick"
   >
     <span class="flex px-2">
+      <span v-if="icon" class="mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
       <img v-if="imagePath" class="w-10 h-10 mr-2 br" :src="imagePath" />
       <p class="my-auto font-heading text-3xl font-extralight">{{ text }}</p>
     </span>
@@ -35,6 +36,11 @@ export default defineComponent({
     imagePath: {
       type: String,
       default: null,
+    },
+    icon: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
   emits: ['click'],
