@@ -20,10 +20,12 @@
     <!-- login button -->
     <div class="z-20 col-start-1 col-end-1 row-start-20 row-end-25 flex justify-center">
       <Button
-        class="h-16 ring-2 ring-button ring-opacity-75"
-        text="Login with SPOTIFY"
+        class="h-3/6 items-center ring-2 ring-button ring-opacity-75 px-4"
+        text="Login with Spotify"
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
-        image-path="spotify.png"
+        icon="fab fa-spotify"
+        :textSize="3"
+        :iconSize="5"
       />
     </div>
     <!-- cube -->
