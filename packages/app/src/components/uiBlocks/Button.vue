@@ -73,11 +73,10 @@ export default defineComponent({
       if (size === 1) {
         return 'xl';
       }
-      if (props.textSize > 1) {
-        const tmpSize = size > 9 ? 9 : size;
-        return `${tmpSize}xl`;
+      if (size > 1 && size <= 9) {
+        return `${size}xl`;
       }
-      throw Error('invalid number for size. Size must be greater than zero');
+      throw Error('invalid number for size. Size must be between 1 and 9');
     };
 
     const textsize = ref(getSize(props.textSize));
