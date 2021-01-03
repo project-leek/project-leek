@@ -1,7 +1,7 @@
 import { NFCReader, User } from '@project-leek/commons';
 import SpotifyWebApi from 'spotify-web-api-node';
 
-import { HookContext, Application } from '../../../declarations';
+import { Application, HookContext } from '../../../declarations';
 
 type SpotifyApiError = Error & {
   statusCode: number;

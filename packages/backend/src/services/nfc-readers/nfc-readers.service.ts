@@ -1,9 +1,10 @@
 import { HooksObject, ServiceAddons } from '@feathersjs/feathers';
-import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { NFCReader } from '@project-leek/commons';
+import { NedbServiceOptions, Service } from 'feathers-nedb';
+
 import { Application } from '../../declarations';
-import createModel from './nfc-readers.model';
 import hooks from './hooks';
+import createModel from './nfc-readers.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {

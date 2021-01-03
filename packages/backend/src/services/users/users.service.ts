@@ -1,9 +1,10 @@
 import { ServiceAddons } from '@feathersjs/feathers';
-import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { User } from '@project-leek/commons';
+import { NedbServiceOptions, Service } from 'feathers-nedb';
+
 import { Application } from '../../declarations';
-import createModel from './users.model';
 import hooks from './users.hooks';
+import createModel from './users.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {

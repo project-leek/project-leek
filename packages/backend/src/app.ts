@@ -1,13 +1,13 @@
-import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
 import express from '@feathersjs/express';
+import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio';
 
+import appHooks from './app.hooks';
+import channels from './channels';
 import { Application } from './declarations';
 import middleware from './middleware';
 import services from './services';
-import appHooks from './app.hooks';
-import channels from './channels';
 
 const app: Application = express(feathers());
 

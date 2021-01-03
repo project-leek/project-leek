@@ -1,6 +1,6 @@
-import { Params, ServiceAddons, HooksObject } from '@feathersjs/feathers';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
 import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentication-oauth';
+import { HooksObject, Params, ServiceAddons } from '@feathersjs/feathers';
 
 import { Application } from '../../declarations';
 import hooks from './authentication.hooks';
