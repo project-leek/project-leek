@@ -24,13 +24,8 @@
     "sourceMap": true,
     "removeComments": true,
     "downlevelIteration": true,
-    "paths": {
-      "@project-leek/*": ["./packages/*/src"]
-    }
-  },
-
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    // "paths": {
+    //   "@project-leek/*": ["./packages/*/src"] // TODO check if helpful
+    // }
+  }
 }
