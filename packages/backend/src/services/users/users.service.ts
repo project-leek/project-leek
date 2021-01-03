@@ -15,7 +15,7 @@ declare module '../../declarations' {
 
 class UsersService extends Service<User> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  constructor(options: Partial<NedbServiceOptions>, app: Application) {
+  constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }
 }
@@ -27,7 +27,7 @@ export default (app: Application): void => {
   };
 
   // Initialize our service with any options it requires
-  app.use('users', new UsersService(options, app));
+  app.use('users', new UsersService(options));
 
   // Get our initialized service so that we can register hooks
   const service = app.service('users');

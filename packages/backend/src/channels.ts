@@ -1,7 +1,5 @@
 import '@feathersjs/transport-commons';
 
-import { HookContext } from '@feathersjs/feathers';
-
 import { Application } from './declarations';
 
 export default (app: Application): void => {
@@ -15,7 +13,7 @@ export default (app: Application): void => {
     app.channel('anonymous').join(connection);
   });
 
-  app.on('login', (authResult: any, { connection }: any): void => {
+  app.on('login', (_: unknown, { connection }: any): void => {
     // connection can be undefined if there is no
     // real-time connection, e.g. when logging in via REST
     if (connection) {
@@ -43,7 +41,7 @@ export default (app: Application): void => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  app.publish((data: any, hook: HookContext) => {
+  app.publish(() => {
     // Here you can add event publishers to channels set up in `channels.ts`
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 

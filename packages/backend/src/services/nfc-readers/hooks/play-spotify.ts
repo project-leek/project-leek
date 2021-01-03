@@ -44,7 +44,7 @@ async function playSpotify(app: Application, user: User, spotifyUri: string) {
   }
 }
 
-export default async (context: HookContext<NFCReader>) => {
+export default async (context: HookContext<NFCReader>): Promise<HookContext> => {
   // skip if no tag has been attached or changed
   if (!context.data?.attachedTag || !context.id) {
     return context;
