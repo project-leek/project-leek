@@ -7,6 +7,15 @@ The PROI report is the final report needed for our module "Projekt Informatik".
 
 You can find the latest version of it [here](report.pdf).
 
+## Mockups
+The following mockups are created with Figma:
+
+- [version 1](https://www.figma.com/proto/RevVhXP9iyGxmch31H0Tce/Project-Leek?node-id=378%3A707&scaling=min-zoom)
+- [version 2](https://www.figma.com/proto/RevVhXP9iyGxmch31H0Tce/Project-Leek?node-id=23%3A439&scaling=scale-down)
+- [version 3](https://www.figma.com/proto/RevVhXP9iyGxmch31H0Tce/Project-Leek?node-id=460%3A648&scaling=scale-down)
+
+The exported mockups can be found [here](mockups/) as well.
+
 ## Contribute to docs
 
 Create a Pull-Request with the needed files changed in `docs/`.
