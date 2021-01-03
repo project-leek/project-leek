@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "build": "yarn clean && ncc build src/index.ts -o dist",
-    "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"

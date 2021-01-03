@@ -1,24 +1,19 @@
 {
-  "extends": "../../config/tsconfig.base.json",
-
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "src",
-    // "importHelpers": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "experimentalDecorators": true,
-    // "lib": ["dom", "esnext"]
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "importHelpers": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "esnext"]
   },
-
-  "references": [
-    { "path": "../commons" }
-  ],
-
   "files": [
     "src/vue-shims.d.ts"
   ],
-
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+  ]
 }

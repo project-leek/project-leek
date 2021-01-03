@@ -1,14 +1,13 @@
 {
-  "extends": "../../config/tsconfig.base.json",
-
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "src",
-    "composite": true,
+    "module": "esnext",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "noEmit": false,
     "declaration": true,
   },
-
-  "include": ["src"]
+  "exclude": [
+    "./dist/**/*"
+  ]
 }
