@@ -1,8 +1,10 @@
 <template>
   <div class="relative h-10 min-w-min">
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-lg border-2 divide-y-2 divide-yellow-50"
+      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
       :class="{ 'z-50': dropdownExtended }"
+      tabindex="0"
+      @focusout="dropdownExtended = false"
     >
       <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
         <span class="flex-1">{{ getHeaderText() }}</span>
