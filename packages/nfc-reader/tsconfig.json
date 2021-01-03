@@ -13,5 +13,9 @@
     "declaration": false,
   },
 
+  "references": [
+    { "path": "../commons" }
+  ],
+
   "include": ["src"]
 }
