@@ -1,7 +1,7 @@
 <template>
   <div class="relative h-10 min-w-min">
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-yellow-400 shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
+      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-button shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
       :class="{ 'z-50': dropdownExtended }"
       tabindex="0"
       @focusout="dropdownExtended = false"
@@ -10,12 +10,12 @@
         <span class="flex-1">{{ getHeaderText() }}</span>
         <img
           v-if="dropdownExtended"
-          class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
+          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
           src="../../assets/icons/chevron-down.svg"
         />
         <img
           v-else
-          class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
+          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
           src="../../assets/icons/chevron-right.svg"
         />
       </div>
@@ -34,7 +34,7 @@
           @click="addItem()"
         >
           <img
-            class="flex-none bg-gradient-to-b from-yellow-500 to-yellow-300 rounded-full p-0.5 mr-2 w-5 h-5 justify-start"
+            class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 w-6 h-6 justify-start"
             src="../../assets/icons/plus.svg"
           />
           <span class="flex-1">{{ addItemText }}</span>
