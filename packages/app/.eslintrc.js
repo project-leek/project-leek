@@ -1,24 +1,12 @@
-const config = require('../../.eslintrc');
-
 module.exports = {
-  ...config,
-  root: true,
-  extends: [
-    'airbnb-typescript',
+  extends: [],
 
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  env: {
+    es6: true,
+    node: true,
+    node: true,
+  },
 
-    'plugin:import/typescript',
-
-    'plugin:vue/vue3-recommended',
-    '@vue/typescript/recommended',
-
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
-  ],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -27,8 +15,15 @@ module.exports = {
     tsconfigRootDir: __dirname,
     extraFileExtensions: ['.vue'],
   },
+
+  extends: [
+    '../../config/.eslintrc.base.js',
+
+    'plugin:vue/vue3-recommended',
+    '@vue/typescript/recommended',
+  ],
+
   rules: {
-    ...config.rules,
     'no-console': 'error',
     'no-debugger': 'error',
     'no-param-reassign': ['error', { props: false }],
@@ -41,6 +36,7 @@ module.exports = {
       },
     ],
   },
+
   overrides: [
     {
       files: ['*.vue', '*.js'],
