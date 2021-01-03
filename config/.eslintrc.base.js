@@ -39,7 +39,7 @@ module.exports = {
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-cycle': 'error',
-    'import/no-relative-parent-imports': 'error',
+    // 'import/no-relative-parent-imports': 'error', // TODO: disable for now
     'import/no-duplicates': 'error',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
