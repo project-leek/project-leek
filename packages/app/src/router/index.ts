@@ -1,9 +1,6 @@
 import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
 
-import {
-  isAuthenticated,
-  load as loadAuthentication,
-} from '../compositions/useAuthentication';
+import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -18,6 +15,12 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('../views/auth/Login.vue'),
     meta: { authentication: 'guests-only' },
+  },
+  {
+    path: '/tag-details/:id',
+    name: 'Tag Details',
+    component: () => import('../views/TagDetails.vue'),
+    meta: { authentication: 'needed' },
   },
   {
     path: '/oauth/callback',
