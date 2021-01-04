@@ -1,11 +1,11 @@
 <template>
   <button
-    class="bg-black cursor-pointer rounded-md text-center p-2 text-white shadow-lg"
+    class="bg-button border-2 border-button cursor-pointer text-center px-3 py-10 text-white shadow-xl rounded-full flex items-center"
     @click="doClick"
   >
-    <span class="flex">
-      <p class="my-auto font-semibold">{{ text }}</p>
-      <img v-if="imagePath" class="w-8 h-8 ml-4" :src="imagePath" />
+    <span class="flex px-2">
+      <img v-if="imagePath" class="w-10 h-10 mr-2 br" :src="imagePath" />
+      <p class="my-auto font-heading text-3xl font-extralight">{{ text }}</p>
     </span>
   </button>
 </template>
