@@ -1,24 +1,9 @@
-name: Code Checks
+name: PR Checks
 
 on:
-  push:
-    paths:
-      - '.github/workflows/code-checks.yml'
-      - 'packages/**'
-      - '.eslintrc.js'
-      - '.gitignore'
-      - 'lerna.json'
-      - 'package.json'
-      - 'prettier.config.js'
-      - 'tsconfig.json'
-      - 'yarn.lock'
+  pull_request:
     branches:
       - master
-  release:
-    types:
-      - published
-      - created
-      - edited
 
 env:
   YARN_CACHE_FOLDER: ~/.yarn
@@ -28,12 +13,13 @@ jobs:
     name: Run - yarn ${{ matrix.command }}, node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         command:
-          - 'build'
-          - 'lint'
-          - 'test'
-          - 'typecheck'
+          - 'build:changed'
+          - 'lint:changed'
+          - 'test:changed'
+          - 'typecheck:changed'
         node-version: [12.x]
         python-version: [3.9.x]
     env:
