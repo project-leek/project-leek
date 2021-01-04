@@ -46,6 +46,6 @@ jobs:
           file: docker/nfc-reader.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
-          tags: anbraten/project-leek-nfc-reader:latest
+          tags: anbraten/leek-box-nfc-reader:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
