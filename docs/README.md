@@ -1,6 +1,6 @@
 # Docs
 
-This directory contains the docs of the leek-box.
+This directory contains the docs of the leek.
 
 ## Build your own box
 

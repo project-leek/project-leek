@@ -1,5 +1,5 @@
 {
-  "name": "@leek-box/app",
+  "name": "@leek/app",
   "version": "0.0.1",
   "scripts": {
     "start": "vite",
@@ -15,7 +15,7 @@
     "@feathersjs/feathers": "4.5.11",
     "@feathersjs/socketio-client": "4.5.11",
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@leek-box/commons": "*",
+    "@leek/commons": "*",
     "typeface-baloo": "1.1.13",
     "typeface-roboto": "1.1.13",
     "socket.io-client": "2.3.1",

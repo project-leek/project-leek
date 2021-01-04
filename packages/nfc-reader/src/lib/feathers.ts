@@ -1,6 +1,6 @@
 import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import { AdapterService } from '@feathersjs/adapter-commons';
-import { User, NFCReader, NFCTag } from '@leek-box/commons';
+import { User, NFCReader, NFCTag } from '@leek/commons';
 import socketio from '@feathersjs/socketio-client';
 import io from 'socket.io-client';
 

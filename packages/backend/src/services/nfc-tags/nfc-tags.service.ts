@@ -1,6 +1,6 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
-import { NFCTag } from '@leek-box/commons';
+import { NFCTag } from '@leek/commons';
 import { Application } from '../../declarations';
 import createModel from './nfc-tags.model';
 

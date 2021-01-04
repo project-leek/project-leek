@@ -1,4 +1,4 @@
-# Use a leek-box
+# Use a leek
 
 ## Connect the leek-box to your wifi
 

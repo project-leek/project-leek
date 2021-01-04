@@ -35,7 +35,7 @@ TBD
 
 #### Backend container setup
 
-This container is the actual backend which is used by the leek-boxes app.
+This container is the actual backend which is used by the leeks app.
 It has an websocket and REST interface to manage the database which holds all data of the app.
 
 TBD

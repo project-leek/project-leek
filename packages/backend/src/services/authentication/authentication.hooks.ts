@@ -1,4 +1,4 @@
-import { User } from '@leek-box/commons';
+import { User } from '@leek/commons';
 
 import { HookContext } from '../../declarations';
 

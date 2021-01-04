@@ -1,4 +1,4 @@
-# @leek-box/backend
+# @leek/backend
 
 ## About
 

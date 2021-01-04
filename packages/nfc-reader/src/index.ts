@@ -1,5 +1,5 @@
 import { Paginated } from '@feathersjs/feathers';
-import { NFCTag } from '@leek-box/commons';
+import { NFCTag } from '@leek/commons';
 
 import NFCReader from './lib/nfc-reader';
 import feathers, { socket as feathersSocket } from './lib/feathers';
