@@ -1,6 +1,4 @@
 module.exports = {
-  extends: [],
-
   env: {
     es6: true,
     node: true,
