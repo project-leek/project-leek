@@ -1,0 +1,60 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  YARN_CACHE_FOLDER: ~/.yarn
+
+jobs:
+  status-checks:
+    name: Run - yarn ${{ matrix.command }}, node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        command:
+          - 'build:changed'
+          - 'lint:changed'
+          - 'test:changed'
+          - 'typecheck:changed'
+        node-version: [12.x]
+        python-version: [3.9.x]
+    env:
+      NODE_OPTIONS: --max_old_space_size=12288
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch origin/master
+        run: git fetch --no-tags --prune --depth=1 origin master
+
+      - name: Use Node.js - ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Use Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Caching
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.YARN_CACHE_FOLDER }}
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-${{ env.cache-name }}
+            ${{ runner.OS }}-yarn-
+
+      - name: Install node_modules
+        run: yarn --frozen-lockfile
+
+      - name: Build dependencies
+        run: yarn build:dependencies
+
+      - name: Run command - ${{ matrix.command }}
+        run: yarn ${{ matrix.command }}
