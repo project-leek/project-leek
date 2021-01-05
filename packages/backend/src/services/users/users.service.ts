@@ -1,6 +1,6 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
-import { User } from '@project-leek/commons';
+import { User } from '@leek/commons';
 import { Application } from '../../declarations';
 import createModel from './users.model';
 import hooks from './users.hooks';
