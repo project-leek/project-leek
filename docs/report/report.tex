@@ -50,7 +50,6 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden. Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden. Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.
-Hierbei werden Keyboard Eingaben emuliert, die die Tag-IDs senden.
 
 \subsubsection{schreiben}
 Ein NFC-Tag hat generell eine feste ID.
