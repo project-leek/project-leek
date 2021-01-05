@@ -36,7 +36,6 @@ export default defineComponent({
 
       selectedGroup.value = allGroups.find((element) => element._id === props.modelValue);
       selectedGroupName.value = selectedGroup.value?.name;
-      console.log(selectedGroupName.value);
     });
 
     function onUpdate() {
