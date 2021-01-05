@@ -7,7 +7,7 @@
       @focusout="dropdownExtended = false"
     >
       <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-        <span class="flex-1">{{ getHeaderText() }}</span>
+        <span class="flex-1">{{ headerText }}</span>
         <img
           v-if="dropdownExtended"
           class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -83,21 +83,20 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props) {
-    const currentlySelectedItemValue = ref(props.modelValue);
     const dropdownExtended = ref(false);
     const router = useRouter();
+    const headerText = computed({
+      get: () => {
+        if (props.modelValue === null) {
+          return props.placeholderText;
+        }
+        return props.modelValue;
+      },
+    });
 
     function itemClick(itemValue: number) {
-      currentlySelectedItemValue.value = itemValue;
       dropdownExtended.value = false;
       this.$emit('update:modelValue', itemValue);
-    }
-
-    function getHeaderText() {
-      if (currentlySelectedItemValue.value == null) {
-        return props.placeholderText;
-      }
-      return currentlySelectedItemValue.value;
     }
 
     function addItem() {
@@ -107,7 +106,7 @@ export default defineComponent({
     return {
       addItem,
       itemClick,
-      getHeaderText,
+      headerText,
       dropdownExtended,
     };
   },

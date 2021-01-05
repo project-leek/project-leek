@@ -4,8 +4,10 @@
       header
     </header>
     <main
-      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex items-center justify-center text-4xl text-gray-800"
+      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex flex-col items-center justify-center text-4xl text-gray-800"
     >
+      <tag-group-selector v-model="testGroupId" />
+      {{ testGroupId }}
       {{ searchInput }}
     </main>
     <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
@@ -17,15 +19,19 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
+import TagGroupSelector from '../components/tagDetails/tagGroupSelector.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
     Textfield,
+    TagGroupSelector,
   },
   setup() {
     const searchInput = ref('');
-    return { searchInput };
+    const testGroupId = ref<string>();
+
+    return { searchInput, testGroupId };
   },
 });
 </script>
