@@ -1,6 +1,14 @@
 # Docs
 
-This directory contains the docs of the project-leek.
+This directory contains the docs of the leek.
+
+## Build your own box
+
+Check the [build guide](Build.md) to learn how to build your own leek-box.
+
+## Use a leek-box
+
+Check the [usage guide](Usage.md) to learn how to use a leek-box.
 
 ## PROI - Report
 The PROI report is the final report needed for our module "Projekt Informatik".
