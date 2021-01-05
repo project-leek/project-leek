@@ -1,6 +1,6 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Service, NedbServiceOptions } from 'feathers-nedb';
-import { TagGroup } from '@project-leek/commons';
+import { TagGroup } from '@leek/commons';
 import { Application } from '../../declarations';
 import createModel from './tag-groups.model';
 

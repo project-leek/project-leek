@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { TagGroup } from '@project-leek/commons';
+import { TagGroup } from '@leek/commons';
 import { defineComponent, onMounted, ref } from 'vue';
 import feathers from '../../lib/feathers';
 import Dropdown from '../uiBlocks/Dropdown.vue';
