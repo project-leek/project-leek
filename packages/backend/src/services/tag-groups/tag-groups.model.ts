@@ -10,5 +10,7 @@ export default (app: Application): NeDB<any> => {
     inMemoryOnly: process.env.NODE_ENV === 'test',
   });
 
+  Model.ensureIndex({ fieldName: 'name', unique: true });
+
   return Model;
 };
