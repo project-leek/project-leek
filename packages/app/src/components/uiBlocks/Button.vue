@@ -7,12 +7,12 @@
       <span
         v-if="icon"
         class="my-auto"
-        :class="[{ 'm-auto': rounded }, icon, `text-${iconsize}`]"
+        :class="[{ 'm-auto': rounded }, icon, { 'mx-auto': !rounded && !text }, {'ml-2' : text}, `text-${iconsize}`]"
       />
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
-        :class="[{ 'ml-4': icon }, `text-${textsize}`]"
+        :class="[{ 'ml-4': icon }, { 'mx-auto': !rounded && !icon }, `text-${textsize}`]"
       >
         {{ text }}
       </p>
@@ -97,10 +97,10 @@ export default defineComponent({
         strSize = 'lg';
       } else if (size === 5) {
         strSize = 'xl';
-      } else if (size > 5 && size <= 14) {
-        strSize = `${size - 5}xl`;
+      } else if (size > 5 && size <= 13) {
+        strSize = `${size - 4}xl`;
       } else {
-        throw Error('invalid number for size. Size must be between 1 and 9');
+        throw Error('invalid number for size. Size must be between 1 and 13');
       }
       return strSize;
     };

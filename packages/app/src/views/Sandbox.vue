@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full bg-red-500">
     <h1 class="text-3xl text-center bg-primary py-2">Sandbox</h1>
     <div class="p-2">
       <!-- Dropdown -->
       <h1 class="text-2xl text-center bg-secondary py-1">Dropdown</h1>
       <Dropdown
-        v-model="selValue"
+        v-model="dropDownValue"
         class="mb-5 h-20"
         service="nfc-tags"
         value-property="nfcId"
@@ -15,13 +15,13 @@
       <!-- Button -->
       <h1 class="text-2xl text-center bg-secondary py-1">Buttons</h1>
       <Button class="w-full h-15 my-5" text="Drück mich!" />
-      <Button class="w-full h-15 my-5" icon="fas fa-sun" text="Drück mich!" />
+      <Button class="w-full h-20 my-5" :icon-size="4" icon="fas fa-sun" text="Drück mich!" />
       <Button class="w-full h-15 my-5" icon="fas fa-sun" />
       <Button class="h-20 w-20 my-5" icon="fas fa-sun" round />
 
       <!-- Textfield -->
       <h1 class="text-2xl text-center bg-secondary py-1">Textfield</h1>
-      <Textfield class="w-full h-15 my-5" />
+      <Textfield v-model="textValue" placeholder="Type here!" class="w-full h-15 my-5" />
     </div>
   </div>
 </template>
@@ -41,9 +41,11 @@ export default defineComponent({
   },
   setup() {
     const dropDownValue = ref(new ListItem());
+    const textValue = ref('');
 
     return {
       dropDownValue,
+      textValue,
     };
   },
 });
