@@ -8,6 +8,10 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 let server: Server;
 
 async function seed() {
+  await app.service('tag-groups').create({ name: 'macio' });
+  await app.service('tag-groups').create({ name: 'Weihnachten' });
+  await app.service('tag-groups').create({ name: 'Tiere' });
+
   await app.service('nfc-readers').create({
     _id: '', // use a fixed id to prevent duplicates
     owner: 'aE6IRWdETCdeOGjo',

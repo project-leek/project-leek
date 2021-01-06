@@ -20,12 +20,13 @@ export default defineComponent({
     modelValue: {
       type: String,
       required: true,
+      default: '',
     },
   },
   emits: ['update:modelValue'],
   setup(props) {
     let allGroups: TagGroup[];
-    const allGroupNames = ref<string[]>();
+    const allGroupNames = ref<string[]>([]);
 
     const selectedGroup = ref<TagGroup>();
     const selectedGroupName = ref<string>();
