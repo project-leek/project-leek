@@ -1,5 +1,5 @@
 {
-  "name": "@project-leek/nfc-reader",
+  "name": "@leek/nfc-reader",
   "version": "0.0.4",
   "main": "dist/",
   "types": "dist/",
@@ -15,7 +15,7 @@
     "@feathersjs/adapter-commons": "4.5.11",
     "@feathersjs/feathers": "4.5.11",
     "@feathersjs/socketio-client": "4.5.11",
-    "@project-leek/commons": "*",
+    "@leek/commons": "*",
     "evdev": "git://github.com/anbraten/node-evdev.git",
     "socket.io-client": "2.3.1"
   },

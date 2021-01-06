@@ -1,17 +1,19 @@
 <template>
   <button
-    class="bg-button border-2 border-button cursor-pointer text-center px-3 py-10 text-white shadow-xl rounded-full flex items-center"
+    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
     <span class="flex px-2">
-      <img v-if="imagePath" class="w-10 h-10 mr-2 br" :src="imagePath" />
-      <p class="my-auto font-heading text-3xl font-extralight">{{ text }}</p>
+      <span v-if="icon" class="mr-4 my-auto" :class="[icon, `text-${iconsize}`]" />
+      <p class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
+        {{ text }}
+      </p>
     </span>
   </button>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -32,9 +34,20 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    imagePath: {
+    icon: {
       type: String,
-      default: null,
+      required: false,
+      default: '',
+    },
+    textSize: {
+      type: Number,
+      required: false,
+      default: 3,
+    },
+    iconSize: {
+      type: Number,
+      required: false,
+      default: 3,
     },
   },
   emits: ['click'],
@@ -56,8 +69,22 @@ export default defineComponent({
       }
     };
 
+    const getSize = (size) => {
+      if (size === 1) {
+        return 'xl';
+      }
+      if (size > 1 && size <= 9) {
+        return `${size}xl`;
+      }
+      throw Error('invalid number for size. Size must be between 1 and 9');
+    };
+
+    const textsize = ref(getSize(props.textSize));
+    const iconsize = ref(getSize(props.iconSize));
     return {
       doClick,
+      textsize,
+      iconsize,
     };
   },
 });

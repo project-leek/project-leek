@@ -1,5 +1,5 @@
 {
-  "name": "@project-leek/app",
+  "name": "@leek/app",
   "version": "0.0.1",
   "scripts": {
     "start": "vite",
@@ -15,7 +15,7 @@
     "@feathersjs/feathers": "4.5.11",
     "@feathersjs/socketio-client": "4.5.11",
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@project-leek/commons": "*",
+    "@leek/commons": "*",
     "typeface-baloo": "1.1.13",
     "typeface-roboto": "1.1.13",
     "socket.io-client": "2.3.1",
@@ -31,7 +31,7 @@
     "@vue/eslint-config-typescript": "7.0.0",
     "@vuedx/typecheck": "0.2.4-0",
     "autoprefixer": "10.1.0",
-    "eslint": "7.16.0",
+    "eslint": "7.17.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "3.3.0",
