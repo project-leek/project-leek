@@ -1,7 +1,8 @@
 <template>
   <div class="relative h-10 min-w-min">
+    <span v-if="label" class="ml-6 text-base text-white font-heading">{{ label }}</span>
     <div
-      class="bg-white p-1 pr-3 rounded-2xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
+      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
       :class="{ 'z-50': dropdownExtended }"
     >
       <div class="flex items-center pl-2" @click="dropdownExtended = !dropdownExtended">
@@ -101,6 +102,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: 'Please add an element',
+    },
+    label: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
   emits: ['update:modelValue'],

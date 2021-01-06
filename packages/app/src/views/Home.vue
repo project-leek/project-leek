@@ -16,6 +16,7 @@
         class="w-3/4 h-20"
         service="nfc-tags"
         value-property="nfcId"
+        label = "NFC-Tag"
         add-item-option
       />
     </main>
