@@ -3,8 +3,6 @@
     <div
       class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-button shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
       :class="{ 'z-50': dropdownExtended }"
-      tabindex="0"
-      @focusout="dropdownExtended = false"
     >
       <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
         <span class="flex-1">{{ getHeaderText() }}</span>
@@ -23,21 +21,23 @@
         <div
           v-for="(item, index) in selectableItemValues"
           :key="index"
-          class="w-full pl-2 rounded-2xl hover:bg-yellow-200"
+          class="flex w-full pl-2 rounded-2xl hover:bg-yellow-200"
           @click="itemClick(item)"
         >
-          {{ item }}
+          <span class="hidden"> {{ item.id }} </span>
+          <span>{{ item.value }}</span>
+          <Button class="w-1 h-1" text="+" />
         </div>
         <div
           v-if="addItemOption"
           class="flex w-full items-center pt-0.5 rounded-2xl hover:bg-yellow-200"
-          @click="addItem()"
         >
           <img
-            class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 w-6 h-6 justify-start"
+            class="bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 h-6"
             src="../../assets/icons/plus.svg"
+            @click="addItem()"
           />
-          <span class="flex-1">{{ addItemText }}</span>
+          <input v-model="newItemValue" class="" :placeholder="addItemText" />
         </div>
       </div>
     </div>
@@ -45,14 +45,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted } from 'vue';
+import feathers from '../../lib/feathers';
+import Button from './Button.vue';
 
 export default defineComponent({
   name: 'Dropdown',
+  components: { Button },
   props: {
-    selectableItemValues: {
-      type: Array,
+    service: {
+      type: String,
       required: true,
     },
     modelValue: {
@@ -70,38 +72,65 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    addTargetProperty: {
+      type: String,
+      required: false,
+      default: 'value',
+    },
     addItemText: {
       type: String,
       required: false,
       default: 'Please add an element',
-    },
-    addItemRedirectTo: {
-      type: String,
-      required: false,
-      default: '',
     },
   },
   emits: ['update:modelValue'],
   setup(props) {
     const currentlySelectedItemValue = ref(props.modelValue);
     const dropdownExtended = ref(false);
-    const router = useRouter();
+    const selectableItemValues = ref([{ id: 0, value: '' }]);
+    const newItemValue = ref('');
+
+    function getProperty(arr: Array, property: string) {
+      const res = [];
+      arr.forEach((element) => {
+        const tmp = {
+          id: element._id,
+          value: element[property],
+        };
+
+        res.push(tmp);
+      });
+
+      return res;
+    }
+
+    onMounted(async () => {
+      const allValues = (await feathers.service(props.service).find()).data;
+      selectableItemValues.value = getProperty(allValues, props.addTargetProperty);
+    });
 
     function itemClick(itemValue: number) {
-      currentlySelectedItemValue.value = itemValue;
+      currentlySelectedItemValue.value = itemValue.value;
       dropdownExtended.value = false;
       this.$emit('update:modelValue', itemValue);
     }
 
     function getHeaderText() {
-      if (currentlySelectedItemValue.value == null) {
+      if (currentlySelectedItemValue.value == null || currentlySelectedItemValue.value === '') {
         return props.placeholderText;
       }
       return currentlySelectedItemValue.value;
     }
 
-    function addItem() {
-      router.push(props.addItemRedirectTo);
+    async function addItem() {
+      const newItem = {};
+      newItem[props.addTargetProperty] = newItemValue.value;
+      const result = await feathers.service(props.service).create(newItem).data;
+      return result;
+    }
+
+    async function removeItem() {
+
     }
 
     return {
@@ -109,6 +138,8 @@ export default defineComponent({
       itemClick,
       getHeaderText,
       dropdownExtended,
+      selectableItemValues,
+      newItemValue,
     };
   },
 });
