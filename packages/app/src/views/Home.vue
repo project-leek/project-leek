@@ -4,10 +4,10 @@
       <Button
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :textSize="2"
+        :text-size="2"
         class="w-10/12 py-2 pl-3 mb-6 justify-start"
       />
-       {{ selValue.id }}
+      {{ selValue.id }}
       {{ selValue.value }}
     </header>
     <main
@@ -19,7 +19,7 @@
         v-model="selValue"
         class="w-full h-20"
         service="nfc-tags"
-        add-target-property="nfcId"
+        value-property="nfcId"
         add-item-option
       />
     </main>
@@ -33,7 +33,7 @@
 import { defineComponent, ref } from 'vue';
 import Button from '../components/uiBlocks/Button.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
-import Dropdown from '../components/uiBlocks/Dropdown.vue';
+import Dropdown, { ListItem } from '../components/uiBlocks/Dropdown.vue';
 
 export default defineComponent({
   name: 'Home',
@@ -44,7 +44,7 @@ export default defineComponent({
   },
   setup() {
     const searchInput = ref('');
-    const selValue = ref('');
+    const selValue = ref(new ListItem());
     return { searchInput, selValue };
   },
 });

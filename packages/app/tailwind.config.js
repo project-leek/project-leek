@@ -16,6 +16,7 @@ module.exports = {
     borderColor: theme => ({
       ...theme('colors'),
       'button': '#FFA800 ',
+      'secondary': '#FFC700',
     }),
     ringColor: theme => ({
       ...theme('colors'),

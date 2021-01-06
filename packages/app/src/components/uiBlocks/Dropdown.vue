@@ -6,38 +6,45 @@
     >
       <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
         <span class="flex-1">{{ getHeaderText() }}</span>
-        <img
+        <Button
           v-if="dropdownExtended"
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-down.svg"
+          class="flex-none rounded-full"
+          icon="fas fa-chevron-down"
+          :icon-size="1"
         />
-        <img
-          v-else
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-right.svg"
-        />
+        <Button v-else class="flex-none rounded-full" icon="fas fa-chevron-right" :icon-size="1" />
       </div>
       <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
-        <div
-          v-for="(item, index) in selectableItemValues"
-          :key="index"
-          class="flex w-full pl-2 rounded-2xl hover:bg-yellow-200"
-          @click="itemClick(item)"
-        >
-          <span class="hidden"> {{ item.id }} </span>
-          <span>{{ item.value }}</span>
-          <Button class="w-1 h-1" text="+" />
+        <div v-for="(item, index) in selectableItemValues" :key="index">
+          <hr class="w-full border-dotted border-secondary border-1 my-2" />
+          <div id="item" class="flex w-full my-1">
+            <span class="hidden"> {{ item.id }} </span>
+            <span class="flex-1 px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
+              {{ item.value }}
+            </span>
+            <Button
+              class="w-12 justify-self-end"
+              icon="far fa-trash-alt"
+              :icon-size="1"
+              @click="removeItem(item)"
+            />
+          </div>
         </div>
-        <div
-          v-if="addItemOption"
-          class="flex w-full items-center pt-0.5 rounded-2xl hover:bg-yellow-200"
-        >
-          <img
-            class="bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 h-6"
-            src="../../assets/icons/plus.svg"
-            @click="addItem()"
-          />
-          <input v-model="newItemValue" class="" :placeholder="addItemText" />
+        <div v-if="addItemOption" class="">
+          <hr class="w-full border-solid border-secondary border-1 my-2" />
+          <div id="addItemSection" class="flex w-full items-center pt-0.5">
+            <input
+              v-model="newItemValue"
+              class="flex-1 px-2 rounded-2xl"
+              :placeholder="addItemText"
+            />
+            <Button
+              class="w-12 justify-self-end"
+              icon="fas fa-plus"
+              :icon-size="1"
+              @click="addItem()"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -49,6 +56,17 @@ import { defineComponent, ref, onMounted } from 'vue';
 import feathers from '../../lib/feathers';
 import Button from './Button.vue';
 
+export class ListItem {
+  id: number | null;
+
+  value: string | null;
+
+  constructor(id?: number, val?: string) {
+    this.id = id || null;
+    this.value = val || null;
+  }
+}
+
 export default defineComponent({
   name: 'Dropdown',
   components: { Button },
@@ -58,7 +76,7 @@ export default defineComponent({
       required: true,
     },
     modelValue: {
-      type: String,
+      type: Object,
       required: false,
       default: null,
     },
@@ -72,7 +90,7 @@ export default defineComponent({
       required: false,
       default: false,
     },
-    addTargetProperty: {
+    valueProperty: {
       type: String,
       required: false,
       default: 'value',
@@ -85,9 +103,9 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props) {
-    const currentlySelectedItemValue = ref(props.modelValue);
+    const selectedItem = ref(props.modelValue);
     const dropdownExtended = ref(false);
-    const selectableItemValues = ref([{ id: 0, value: '' }]);
+    const selectableItemValues = ref([]);
     const newItemValue = ref('');
 
     function getProperty(arr: Array, property: string) {
@@ -104,39 +122,52 @@ export default defineComponent({
       return res;
     }
 
-    onMounted(async () => {
+    async function loadItems() {
       const allValues = (await feathers.service(props.service).find()).data;
-      selectableItemValues.value = getProperty(allValues, props.addTargetProperty);
+      if (allValues) {
+        selectableItemValues.value = getProperty(allValues, props.valueProperty);
+      }
+    }
+
+    onMounted(async () => {
+      await loadItems();
     });
 
-    function itemClick(itemValue: number) {
-      currentlySelectedItemValue.value = itemValue.value;
+    function itemClick(item: ListItem) {
+      selectedItem.value.id = item.id;
+      selectedItem.value.value = item.value;
       dropdownExtended.value = false;
-      this.$emit('update:modelValue', itemValue);
+      this.$emit('update:modelValue', item);
     }
 
     function getHeaderText() {
-      if (currentlySelectedItemValue.value == null || currentlySelectedItemValue.value === '') {
+      if (selectedItem.value == null || selectedItem.value === '') {
         return props.placeholderText;
       }
-      return currentlySelectedItemValue.value;
+      return selectedItem.value.value;
     }
 
     async function addItem() {
       const newItem = {};
-      newItem[props.addTargetProperty] = newItemValue.value;
-      const result = await feathers.service(props.service).create(newItem).data;
-      return result;
+      newItem[props.valueProperty] = newItemValue.value;
+      const res = await feathers.service(props.service).create(newItem).data;
+      newItemValue.value = '';
+      await loadItems();
     }
 
-    async function removeItem() {
-
+    async function removeItem(item) {
+      if (item.id === selectedItem.value.id) {
+        selectedItem.value = new ListItem();
+      }
+      await feathers.service(props.service).remove(item.id);
+      await loadItems();
     }
 
     return {
-      addItem,
       itemClick,
       getHeaderText,
+      addItem,
+      removeItem,
       dropdownExtended,
       selectableItemValues,
       newItemValue,

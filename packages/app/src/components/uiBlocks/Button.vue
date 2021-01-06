@@ -1,11 +1,11 @@
 <template>
   <button
-    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
     <span class="flex px-2">
       <span v-if="icon" class="mr-4 my-auto" :class="[icon, `text-${iconsize}`]" />
-      <p class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
+      <p v-if="text" class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
         {{ text }}
       </p>
     </span>
@@ -20,7 +20,8 @@ export default defineComponent({
   props: {
     text: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     to: {
       type: [Object, String],
@@ -51,7 +52,7 @@ export default defineComponent({
     },
   },
   emits: ['click'],
-  setup(props) {
+  setup(props, ctx) {
     const router = useRouter();
 
     const doClick = async () => {
@@ -67,6 +68,7 @@ export default defineComponent({
       if (props.revert) {
         router.go(-1);
       }
+      ctx.emit('click');
     };
 
     const getSize = (size) => {
