@@ -4,7 +4,11 @@
     @click="doClick"
   >
     <span class="text flex h-full w-full">
-      <span v-if="icon" class="" :class="[{ 'm-auto': rounded }, icon, `text-${iconsize}`]" />
+      <span
+        v-if="icon"
+        class="my-auto"
+        :class="[{ 'm-auto': rounded }, icon, `text-${iconsize}`]"
+      />
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
