@@ -4,18 +4,16 @@
       <Button
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :text-size="2"
+        :text-size="5"
         class="w-10/12 py-2 pl-3 mb-6 justify-start"
       />
     </header>
     <main
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex items-center justify-center text-4xl text-gray-800"
     >
-      {{ searchInput }}
-      {{ selValue.value }}
       <Dropdown
         v-model="selValue"
-        class="w-full h-20"
+        class="w-3/4 h-20"
         service="nfc-tags"
         value-property="nfcId"
         add-item-option

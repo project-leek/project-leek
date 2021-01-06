@@ -1,47 +1,49 @@
 <template>
   <div class="relative h-10 min-w-min">
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-button shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
+      class="bg-white p-1 pr-3 rounded-2xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
       :class="{ 'z-50': dropdownExtended }"
     >
-      <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-        <span class="flex-1">{{ getHeaderText() }}</span>
+      <div class="flex items-center pl-2" @click="dropdownExtended = !dropdownExtended">
+        <span class="">{{ getHeaderText() }}</span>
         <Button
           v-if="dropdownExtended"
-          class="flex-none rounded-full"
+          class="ml-auto w-8 h-8"
           icon="fas fa-chevron-down"
-          :icon-size="1"
+          :icon-size="3"
+          round
         />
-        <Button v-else class="flex-none rounded-full" icon="fas fa-chevron-right" :icon-size="1" />
+        <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
       </div>
-      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
+      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
         <div v-for="(item, index) in selectableItemValues" :key="index">
           <hr class="w-full border-dotted border-secondary border-1 my-2" />
-          <div id="item" class="flex w-full m-1">
-            <span class="hidden"> {{ item.id }} </span>
-            <span class="flex-1 px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
+          <div id="item" class="flex w-full">
+            <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
               {{ item.value }}
             </span>
             <Button
-              class="w-12 justify-self-end"
+              class="w-8 h-8 ml-auto"
               icon="far fa-trash-alt"
-              :icon-size="1"
+              :icon-size="3"
+              round
               @click="removeItem(item)"
             />
           </div>
         </div>
         <div v-if="addItemOption" class="">
           <hr class="w-full border-solid border-secondary border-1 my-2" />
-          <div id="addItemSection" class="flex w-full items-center pt-0.5 mx-1">
+          <div id="addItemSection" class="flex w-full items-center pt-0.5">
             <input
               v-model="newItemValue"
-              class="flex-1 p-2 rounded-2xl focus:outline-none"
+              class="p-2 rounded-2xl focus:outline-none"
               :placeholder="addItemText"
             />
             <Button
-              class="w-12 h-12 justify-self-end"
+              class="ml-auto w-8 h-8"
               icon="fas fa-plus"
-              :icon-size="1"
+              :icon-size="3"
+              round
               @click="addItem()"
             />
           </div>
