@@ -17,7 +17,7 @@
       <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
         <div v-for="(item, index) in selectableItemValues" :key="index">
           <hr class="w-full border-dotted border-secondary border-1 my-2" />
-          <div id="item" class="flex w-full my-1">
+          <div id="item" class="flex w-full m-1">
             <span class="hidden"> {{ item.id }} </span>
             <span class="flex-1 px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
               {{ item.value }}
@@ -32,14 +32,14 @@
         </div>
         <div v-if="addItemOption" class="">
           <hr class="w-full border-solid border-secondary border-1 my-2" />
-          <div id="addItemSection" class="flex w-full items-center pt-0.5">
+          <div id="addItemSection" class="flex w-full items-center pt-0.5 mx-1">
             <input
               v-model="newItemValue"
-              class="flex-1 px-2 rounded-2xl"
+              class="flex-1 p-2 rounded-2xl focus:outline-none"
               :placeholder="addItemText"
             />
             <Button
-              class="w-12 justify-self-end"
+              class="w-12 h-12 justify-self-end"
               icon="fas fa-plus"
               :icon-size="1"
               @click="addItem()"
@@ -102,7 +102,7 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props) {
+  setup(props, ctx) {
     const selectedItem = ref(props.modelValue);
     const dropdownExtended = ref(false);
     const selectableItemValues = ref([]);
@@ -158,6 +158,7 @@ export default defineComponent({
     async function removeItem(item) {
       if (item.id === selectedItem.value.id) {
         selectedItem.value = new ListItem();
+        this.$emit('update:modelValue', selectedItem.value);
       }
       await feathers.service(props.service).remove(item.id);
       await loadItems();
