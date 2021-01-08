@@ -110,7 +110,7 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props, ctx) {
+  setup(props) {
     const selectedItem = ref(props.modelValue);
     const dropdownExtended = ref(false);
     const selectableItemValues = ref([]);
