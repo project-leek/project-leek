@@ -2,6 +2,16 @@ name: Preview app
 
 on:
   pull_request_target:
+    paths:
+      - '.github/workflows/preview-app.yml'
+      - 'packages/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
     types: [opened, synchronize, reopened, closed]
 
 env:
