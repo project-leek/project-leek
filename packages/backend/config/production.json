@@ -1,4 +1,4 @@
 {
-  "host": "project-leek-backend-app.feathersjs.com",
+  "host": "localhost",
   "port": "PORT"
 }

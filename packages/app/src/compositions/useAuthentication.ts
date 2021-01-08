@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue';
-import { User } from '@project-leek/commons';
+import { User } from '@leek/commons';
 
 import feathers from '../lib/feathers';
 
