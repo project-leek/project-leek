@@ -158,7 +158,7 @@ export default defineComponent({
     async function addItem() {
       const newItem = {};
       newItem[props.valueProperty] = newItemValue.value;
-      const res = await feathers.service(props.service).create(newItem).data;
+      await feathers.service(props.service).create(newItem).data;
       newItemValue.value = '';
       await loadItems();
     }
