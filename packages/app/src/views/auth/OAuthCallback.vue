@@ -13,7 +13,7 @@ export default defineComponent({
     const router = useRouter();
 
     onMounted(() => {
-      router.push({ name: 'home' });
+      void router.push({ name: 'home' });
     });
   },
 });

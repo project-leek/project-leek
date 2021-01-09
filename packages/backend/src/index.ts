@@ -37,7 +37,8 @@ function start() {
   app.setup(server);
 
   seed().catch((error: Error) => {
-    console.log('Seeding failed', error.message);
+    // eslint-disable-next-line no-console
+    console.error('Seeding failed', error.message);
   });
 }
 
