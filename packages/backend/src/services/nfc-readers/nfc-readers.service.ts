@@ -1,7 +1,6 @@
 import { HooksObject, ServiceAddons } from '@feathersjs/feathers';
-import { NFCReader } from '@project-leek/commons';
-import { NedbServiceOptions, Service } from 'feathers-nedb';
-
+import { Service, NedbServiceOptions } from 'feathers-nedb';
+import { NFCReader } from '@leek/commons';
 import { Application } from '../../declarations';
 import hooks from './hooks';
 import createModel from './nfc-readers.model';

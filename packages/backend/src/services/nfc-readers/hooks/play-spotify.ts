@@ -1,4 +1,4 @@
-import { NFCReader, User } from '@project-leek/commons';
+import { NFCReader, User } from '@leek/commons';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 import { Application, HookContext } from '../../../declarations';
