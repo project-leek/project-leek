@@ -1,12 +1,14 @@
 <template>
-  <div class="w-20 bg-red-400">
-    <img class=" w-full h-20  object-scale-down" :src="image" />
-    <div id="TagName" class="text-2xl text-white font-semibold">{{ name }}</div>
+  <div class="h-full">
+    <img class="w-full h-full object-scale-down" :src="image" />
+    <div id="TagName" class="text-white font-semibold" :class="[`text-${textSizeText}`]">
+      {{ name }}
+    </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   props: {
@@ -19,10 +21,37 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    textSize: {
+      type: Number,
+      required: false,
+      default: 5,
+    },
   },
   setup(props) {
     const image = `./${props.img}`;
-    return { image };
+
+    const getSize = (size) => {
+      let strSize = '';
+      if (size === 1) {
+        strSize = 'xs';
+      } else if (size === 2) {
+        strSize = 'sm';
+      } else if (size === 3) {
+        strSize = 'base';
+      } else if (size === 4) {
+        strSize = 'lg';
+      } else if (size === 5) {
+        strSize = 'xl';
+      } else if (size > 5 && size <= 13) {
+        strSize = `${size - 4}xl`;
+      } else {
+        throw Error('invalid number for size. Size must be between 1 and 13');
+      }
+      return strSize;
+    };
+    const textSizeText = ref(getSize(props.textSize));
+
+    return { image, textSizeText };
   },
 });
 </script>

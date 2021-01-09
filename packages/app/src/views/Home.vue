@@ -11,17 +11,20 @@
     <main
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex flex-col text-4xl text-gray-800"
     >
-      <div class="w-full bg-blue-900 h-64">
-        <div class="text-white text-2xl pl-10 pb-2">Zuletzt gehört</div>
-        <tag-entry class="bg-opacity-20 bg-white w-32" name="Dynamite" img="logo.png" />
+      <div class="w-full flex bg-gradient-to-b from-darkBlue to-darkViolet h-64">
+        <div class="text-white text-2xl h-1/5 flex items-center pl-10">
+          <span> Zuletzt gehört </span>
+          <Button round icon="fas fa-chevron-down" class="ju mr-5 h-7 w-7 my-5" />
+        </div>
+        <tag-entry class="bg-opacity-30 pl-10 bg-black w-32" name="Dynamite" img="logo.png" />
       </div>
 
       <Dropdown
         v-model="selValue"
-        class="w-3/4 h-20"
+        class="mx-auto w-3/4 h-20"
         service="nfc-tags"
         value-property="nfcId"
-        label = "NFC-Tag"
+        label="NFC-Tag"
         add-item-option
       />
     </main>

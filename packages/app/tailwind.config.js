@@ -4,14 +4,19 @@ module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     gradientColorStops: theme => ({
+      ...theme('colors'),
       'primary': '#FF9900',
       'secondary': '#FFC700',
+      'darkViolet': '#1A0139',
+      'darkBlue': '#000115',
     }),
     backgroundColor: theme => ({
       ...theme('colors'),
       'primary': '#FF9900',
       'secondary': '#FFC700',
       'button': '#FFB800 ',
+      'darkViolet': '#1A0139',
+      'darkBlue': '#000115',
     }),
     borderColor: theme => ({
       ...theme('colors'),
