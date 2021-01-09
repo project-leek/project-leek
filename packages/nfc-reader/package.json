@@ -17,7 +17,7 @@
     "@feathersjs/socketio-client": "4.5.11",
     "@leek/commons": "*",
     "evdev": "git://github.com/anbraten/node-evdev.git",
-    "socket.io-client": "2.3.1"
+    "socket.io-client": "2.4.0"
   },
   "devDependencies": {
     "@vercel/ncc": "0.26.1",

@@ -24,6 +24,13 @@ The following mockups are created with Figma:
 
 The exported mockups can be found [here](mockups/) as well.
 
+## Diagrams
+
+### Activity Diagrams
+The following mockups are created with [LucidChart](https://app.lucidchart.com/lucidchart/invitations/accept/332f0381-366a-423a-a45f-b93b857126e6).
+The exported activity diagrams can be found [here](diagrams/activity_diagrams) as well.
+
+
 ## Contribute to docs
 
 Create a Pull-Request with the needed files changed in `docs/`.
