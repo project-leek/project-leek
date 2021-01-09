@@ -17,6 +17,11 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
+    path: '/sandbox',
+    name: 'Sandbox',
+    component: () => import('../views/Sandbox.vue'),
+  },
+  {
     path: '/oauth/callback',
     name: 'oauth-callback',
     component: () => import('../views/auth/OAuthCallback.vue'),
