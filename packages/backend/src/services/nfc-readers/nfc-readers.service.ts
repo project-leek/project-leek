@@ -1,9 +1,10 @@
 import { HooksObject, ServiceAddons } from '@feathersjs/feathers';
-import { Service, NedbServiceOptions } from 'feathers-nedb';
 import { NFCReader } from '@leek/commons';
+import { NedbServiceOptions, Service } from 'feathers-nedb';
+
 import { Application } from '../../declarations';
-import createModel from './nfc-readers.model';
 import hooks from './hooks';
+import createModel from './nfc-readers.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {
@@ -13,8 +14,7 @@ declare module '../../declarations' {
 }
 
 class NFCReaderService extends Service<NFCReader> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  constructor(options: Partial<NedbServiceOptions>, app: Application) {
+  constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }
 }
@@ -26,7 +26,7 @@ export default (app: Application): void => {
   };
 
   // Initialize our service with any options it requires
-  app.use('nfc-readers', new NFCReaderService(options, app));
+  app.use('nfc-readers', new NFCReaderService(options));
 
   const service = app.service('nfc-readers');
   service.publish(() => app.channel('anonymous'));

@@ -4,7 +4,7 @@
       <Button
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :textSize="2"
+        :text-size="2"
         class="w-10/12 py-2 pl-3 mb-6 justify-start"
       />
     </header>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
 import Button from '../components/uiBlocks/Button.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
