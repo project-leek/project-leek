@@ -45,11 +45,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Dropdown',
+
   props: {
     selectableItemValues: {
       type: Array,
@@ -81,8 +82,10 @@ export default defineComponent({
       default: '',
     },
   },
+
   emits: ['update:modelValue'],
-  setup(props) {
+
+  setup(props, context) {
     const currentlySelectedItemValue = ref(props.modelValue);
     const dropdownExtended = ref(false);
     const router = useRouter();
@@ -90,7 +93,7 @@ export default defineComponent({
     function itemClick(itemValue: number) {
       currentlySelectedItemValue.value = itemValue;
       dropdownExtended.value = false;
-      this.$emit('update:modelValue', itemValue);
+      context.emit('update:modelValue', itemValue);
     }
 
     function getHeaderText() {
@@ -101,7 +104,7 @@ export default defineComponent({
     }
 
     function addItem() {
-      router.push(props.addItemRedirectTo);
+      void router.push(props.addItemRedirectTo);
     }
 
     return {
