@@ -1,0 +1,60 @@
+name: Preview app
+
+on:
+  pull_request_target:
+    paths:
+      - '.github/workflows/preview-app.yml'
+      - 'packages/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
+    types: [opened, synchronize, reopened, closed]
+
+env:
+  YARN_CACHE_FOLDER: ~/.yarn
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Caching
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.YARN_CACHE_FOLDER }}
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-${{ env.cache-name }}
+            ${{ runner.OS }}-yarn-
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Install and Build 🔧
+        run: |
+          yarn --frozen-lockfile
+          yarn build:app
+
+      # https://surge.sh/help/adding-a-200-page-for-client-side-routing
+      - run: |
+          cp packages/app/dist/index.html packages/app/dist/200.html
+
+      - uses: afc163/surge-preview@v1
+        id: preview_step
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          teardown: 'true'
+          dist: packages/app/dist
+          build: |
+            echo "dummy"
+
+      - name: Get the preview_url
+        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
