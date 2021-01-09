@@ -13,7 +13,6 @@ declare module '../../declarations' {
 }
 
 class NFCTagService extends Service<NFCTag> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }

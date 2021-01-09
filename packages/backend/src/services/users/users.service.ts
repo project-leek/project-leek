@@ -14,7 +14,6 @@ declare module '../../declarations' {
 }
 
 class UsersService extends Service<User> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }

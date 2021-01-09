@@ -42,7 +42,6 @@ export default (app: Application): void => {
     }
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   app.publish(() => {
     // Here you can add event publishers to channels set up in `channels.ts`
     // To publish only for a specific event use `app.publish(eventname, () => {})`

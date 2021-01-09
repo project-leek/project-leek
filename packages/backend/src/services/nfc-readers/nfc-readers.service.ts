@@ -14,7 +14,6 @@ declare module '../../declarations' {
 }
 
 class NFCReaderService extends Service<NFCReader> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }
