@@ -14,7 +14,7 @@
     "@feathersjs/authentication-client": "4.5.11",
     "@feathersjs/feathers": "4.5.11",
     "@feathersjs/socketio-client": "4.5.11",
-    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-free": "5.15.1",
     "@leek/commons": "*",
     "typeface-baloo": "1.1.13",
     "typeface-roboto": "1.1.13",
