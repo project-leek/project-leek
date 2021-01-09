@@ -1,6 +1,9 @@
 import { Application as ExpressFeathers } from '@feathersjs/express';
 import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
+import { AbstractEntity } from '@leek/commons';
 
+// A mapping of service names to types. Will be extended in service files.
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ServiceTypes {}
 
 export type PaginationOptions = { default?: number; max?: number };
@@ -44,6 +47,6 @@ export interface Application extends ExpressFeathers<ServiceTypes> {
   get(key: 'authentication'): AuthenticationConfig;
 }
 
-export interface HookContext<T = any> extends FeathersHookContext<T> {
+export interface HookContext<T = AbstractEntity> extends FeathersHookContext<T> {
   app: Application;
 }

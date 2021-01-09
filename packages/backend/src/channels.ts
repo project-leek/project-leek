@@ -1,5 +1,7 @@
 import '@feathersjs/transport-commons';
 
+import { RealTimeConnection } from '@feathersjs/transport-commons/lib/channels/channel/base';
+
 import { Application } from './declarations';
 
 export default (app: Application): void => {
@@ -8,12 +10,12 @@ export default (app: Application): void => {
     return;
   }
 
-  app.on('connection', (connection: any): void => {
+  app.on('connection', (connection: RealTimeConnection): void => {
     // On a new real-time connection, add it to the anonymous channel
     app.channel('anonymous').join(connection);
   });
 
-  app.on('login', (_: unknown, { connection }: any): void => {
+  app.on('login', (_: unknown, { connection }: { connection: RealTimeConnection }): void => {
     // connection can be undefined if there is no
     // real-time connection, e.g. when logging in via REST
     if (connection) {
