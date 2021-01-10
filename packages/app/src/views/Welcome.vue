@@ -24,8 +24,8 @@
         text="Login with Spotify"
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
         icon="fab fa-spotify"
-        :textSize="3"
-        :iconSize="5"
+        :text-size="3"
+        :icon-size="5"
       />
     </div>
     <!-- cube -->

@@ -93,12 +93,12 @@ module.exports = {
       },
       {
         selector: 'enumMember',
-        format: ['UPPER_CASE', 'PascalCase'], // TODO: should be only UPPER_CASE
+        format: ['UPPER_CASE'],
       },
     ],
-    // TODO: the following rules should be set to error at some point
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/no-unsafe-assignment': 'warn',
+    '@typescript-eslint/no-unsafe-assignment': 'error',
+    // TODO: the following rules should be set to error at some point
     '@typescript-eslint/no-unsafe-member-access': 'warn',
     '@typescript-eslint/no-unsafe-call': 'warn',
     '@typescript-eslint/no-unsafe-return': 'warn',
