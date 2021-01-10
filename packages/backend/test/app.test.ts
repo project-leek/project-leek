@@ -1,7 +1,7 @@
+import { FeathersError } from '@feathersjs/errors';
+import axios, { AxiosError } from 'axios';
 import { Server } from 'http';
 import url from 'url';
-import axios, { AxiosError } from 'axios';
-import { FeathersError } from '@feathersjs/errors';
 
 import app from '../src/app';
 import webserver from '../src/webserver';

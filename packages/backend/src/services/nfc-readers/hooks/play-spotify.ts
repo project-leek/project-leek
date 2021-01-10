@@ -1,7 +1,7 @@
 import { NFCReader, User } from '@leek/commons';
 import SpotifyWebApi from 'spotify-web-api-node';
 
-import { HookContext, Application } from '../../../declarations';
+import { Application, HookContext } from '../../../declarations';
 
 type SpotifyApiError = Error & {
   statusCode: number;
@@ -44,7 +44,7 @@ async function playSpotify(app: Application, user: User, spotifyUri: string) {
   }
 }
 
-export default async (context: HookContext<NFCReader>) => {
+export default async (context: HookContext<NFCReader>): Promise<HookContext> => {
   // skip if no tag has been attached or changed
   if (!context.data?.attachedTag || !context.id) {
     return context;

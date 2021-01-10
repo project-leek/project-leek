@@ -109,6 +109,7 @@ export default defineComponent({
       default: '',
     },
   },
+
   emits: ['update:modelValue'],
   setup(props) {
     const selectedItem = ref(props.modelValue);

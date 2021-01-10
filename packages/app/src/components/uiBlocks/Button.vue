@@ -26,9 +26,9 @@
   </button>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script lang="ts">
+import { defineComponent, PropType, ref } from 'vue';
+import { RouteLocationRaw, useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {
@@ -38,7 +38,7 @@ export default defineComponent({
       default: '',
     },
     to: {
-      type: [Object, String],
+      type: [Object, String] as PropType<RouteLocationRaw>,
       default: null,
     },
     revert: {
@@ -70,18 +70,19 @@ export default defineComponent({
       default: false,
     },
   },
+
   emits: ['click'],
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
 
-    const doClick = async () => {
+    const doClick = () => {
       if (props.disabled) {
         return;
       }
 
       if (props.to) {
-        router.push(props.to);
+        void router.push(props.to);
         return;
       }
 
@@ -113,6 +114,7 @@ export default defineComponent({
 
     const textsize = ref(getSize(props.textSize));
     const iconsize = ref(getSize(props.iconSize));
+
     return {
       doClick,
       textsize,
