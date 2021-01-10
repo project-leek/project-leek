@@ -19,7 +19,11 @@ module.exports = {
 
     'plugin:vue/vue3-recommended',
     '@vue/typescript/recommended',
+    'prettier',
+    'prettier/vue',
+    // 'plugin:vue-scoped-css/recommended',
   ],
+
 
   rules: {
     'no-console': 'error',
