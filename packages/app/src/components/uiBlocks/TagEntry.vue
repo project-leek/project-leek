@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full">
-    <img class="w-full h-full object-scale-down" :src="image" />
-    <div id="TagName" class="text-white font-semibold" :class="[`text-${textSizeText}`]">
+  <div class="flex flex-col">
+    <img class="pb" :src="image" />
+    <div id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSizeText}`]">
       {{ name }}
     </div>
   </div>

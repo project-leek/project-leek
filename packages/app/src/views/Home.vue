@@ -11,12 +11,14 @@
     <main
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex flex-col text-4xl text-gray-800"
     >
-      <div class="w-full flex bg-gradient-to-b from-darkBlue to-darkViolet h-64">
-        <div class="text-white text-2xl h-1/5 flex items-center pl-10">
+      <div class="w-full flex flex-col bg-gradient-to-b from-darkBlue to-darkViolet h-64">
+        <div class="text-white w-full text-2xl h-1/5 flex items-center pl-10">
           <span> Zuletzt gehört </span>
-          <Button round icon="fas fa-chevron-down" class="ju mr-5 h-7 w-7 my-5" />
+          <Button round icon="fas fa-chevron-down" class="ml-auto mr-5 h-7 w-7 my-5" />
         </div>
-        <tag-entry class="bg-opacity-30 pl-10 bg-black w-32" name="Dynamite" img="logo.png" />
+        <div id="carousel" class="flex flex-grow items-center">
+          <tag-entry class="bg-opacity-30 bg-black w-20" name="Dynamite" img="stadt.jpg" />
+        </div>
       </div>
 
       <Dropdown
