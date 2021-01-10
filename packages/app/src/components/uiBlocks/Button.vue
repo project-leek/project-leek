@@ -7,7 +7,13 @@
       <span
         v-if="icon"
         class="my-auto"
-        :class="[{ 'm-auto': rounded }, icon, { 'mx-auto': !rounded && !text }, {'ml-2' : text}, `text-${iconsize}`]"
+        :class="[
+          { 'm-auto': rounded },
+          icon,
+          { 'mx-auto': !rounded && !text },
+          { 'ml-2': text },
+          `text-${iconsize}`,
+        ]"
       />
       <p
         v-if="text"
