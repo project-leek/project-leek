@@ -39,6 +39,7 @@ module.exports = {
     'vue/attribute-hyphenation': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-unsafe-member-access': 'error',
+    'prettier/prettier': 'error',
   },
 
   overrides: [
