@@ -1,5 +1,6 @@
 <template>
-  <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
+  <div
+  id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
         icon="fas fa-plus-square"
@@ -16,7 +17,7 @@
         class="w-3/4 h-20"
         service="nfc-tags"
         value-property="nfcId"
-        label = "NFC-Tag"
+        label="NFC-Tag"
         add-item-option
       />
     </main>
@@ -28,9 +29,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
 import Button from '../components/uiBlocks/Button.vue';
-import Textfield from '../components/uiBlocks/Textfield.vue';
 import Dropdown, { ListItem } from '../components/uiBlocks/Dropdown.vue';
+import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'Home',

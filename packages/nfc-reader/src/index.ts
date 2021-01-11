@@ -1,15 +1,22 @@
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
 
-import NFCReader from './lib/nfc-reader';
 import feathers, { socket as feathersSocket } from './lib/feathers';
+import NFCReader from './lib/nfc-reader';
 
 const nfcReader = new NFCReader();
 
+function log(message?: unknown, ...optionalParams: unknown[]) {
+  // eslint-disable-next-line no-console
+  console.log(message, ...optionalParams);
+}
+
 function printError(error: Error | string, ...args: string[]) {
   if (typeof error === 'string') {
+    // eslint-disable-next-line no-console
     console.error(error, ...args);
   } else {
+    // eslint-disable-next-line no-console
     console.error(error.message || error, ...args);
   }
 }
@@ -43,13 +50,13 @@ async function updateNfcTag(nfcReaderId: string, tagId: string) {
   }
 
   await setAttachedNfcTag(nfcReaderId, attachedTag);
-  console.log('Attached tag to nfc-reader');
+  log('Attached tag to nfc-reader');
 
   // reset the attached-tag after 5 seconds as it is normally only attached for a short period of time
   setTimeout(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     setAttachedNfcTag(nfcReaderId, null); // we do not need to await this promise
-    console.log('Detached tag from nfc-reader');
+    log('Detached tag from nfc-reader');
   }, 1000 * 5);
 }
 
@@ -74,11 +81,11 @@ async function start() {
   });
 
   nfcReader.on('open', (device) => {
-    console.log('Connected to NFC device:', device);
+    log('Connected to NFC device:', device);
   });
 
   nfcReader.on('tag-attached', (tagId) => {
-    console.log('Tag attached:', tagId);
+    log('Tag attached:', tagId);
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     updateNfcTag(nfcReaderId, tagId); // we do not need to await this promise
   });

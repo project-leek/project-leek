@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "build": "yarn clean && ncc build src/index.ts -o dist",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
     "typecheck": "tsc --noEmit",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
@@ -17,7 +17,7 @@
     "@feathersjs/socketio-client": "4.5.11",
     "@leek/commons": "*",
     "evdev": "git://github.com/anbraten/node-evdev.git",
-    "socket.io-client": "2.3.1"
+    "socket.io-client": "2.4.0"
   },
   "devDependencies": {
     "@vercel/ncc": "0.26.1",
