@@ -17,6 +17,12 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
+    path: '/try',
+    name: 'try',
+    component: () => import('../views/Try.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  {
     path: '/sandbox',
     name: 'Sandbox',
     component: () => import('../views/Sandbox.vue'),
