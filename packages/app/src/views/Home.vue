@@ -12,12 +12,20 @@
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex flex-col text-4xl text-gray-800"
     >
       <div class="w-full flex flex-col bg-gradient-to-b from-darkBlue to-darkViolet h-64">
-        <div class="text-white w-full text-2xl h-1/5 flex items-center pl-10">
+        <div class="text-white w-full text-xl h-1/5 flex items-center pl-10">
           <span> Zuletzt gehört </span>
           <Button round icon="fas fa-chevron-down" class="ml-auto mr-5 h-7 w-7 my-5" />
         </div>
-        <div id="carousel" class="flex flex-grow items-center">
-          <tag-entry class="bg-opacity-30 bg-black w-20" name="Dynamite" img="stadt.jpg" />
+        <div id="carousel" class="flex flex-row flex-grow items-center overflow-y-hidden">
+          <div class="bg-red-500 w-"></div>
+          <tag-entry
+            class="ml-8 w-32 min-w-max"
+            style="min-width: 130px"
+            name="City Song"
+            img="stadt.jpg"
+          />
+          <tag-entry class="ml-10 w-32" style="min-width: 130px" name="Japan Song" img="frau.jpg" />
+          <tag-entry class="ml-10 w-32" style="min-width: 130px" name="Japan Song" img="logo.png" />
         </div>
       </div>
 
@@ -40,9 +48,9 @@
 import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
-import Textfield from '../components/uiBlocks/Textfield.vue';
-import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import Dropdown, { ListItem } from '../components/uiBlocks/Dropdown.vue';
+import TagEntry from '../components/uiBlocks/TagEntry.vue';
+import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'Home',
