@@ -22,6 +22,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
+  { //delete this path after merging
+    path: '/sandboxtom',
+    name: 'sandboxtom',
+    component: () => import('../views/ChangeImage.vue'),
+    meta: { authentication: 'guests-only' },
+  },
   {
     path: '/oauth/:oauthProvider',
     name: 'oauth-start',
