@@ -96,7 +96,7 @@ module.exports = {
     'promise/prefer-await-to-callbacks': 'error',
 
     // import rules
-    'import/no-unresolved': 'off', // disable as this is handled by tsc itself
+    'import/no-unresolved': 'error', // disable as this is handled by tsc itself
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-cycle': 'error',
