@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col flex-shrink-0">
     <div class="relative pb-1/1">
       <img class="absolute w-full h-full rounded-xl" :src="image" />
     </div>

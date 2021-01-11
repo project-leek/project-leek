@@ -16,16 +16,10 @@
           <span> Zuletzt gehört </span>
           <Button round icon="fas fa-chevron-down" class="ml-auto mr-5 h-7 w-7 my-5" />
         </div>
-        <div id="carousel" class="flex flex-row flex-grow items-center overflow-y-hidden">
-          <div class="bg-red-500 w-"></div>
-          <tag-entry
-            class="ml-8 w-32 min-w-max"
-            style="min-width: 130px"
-            name="City Song"
-            img="stadt.jpg"
-          />
-          <tag-entry class="ml-10 w-32" style="min-width: 130px" name="Japan Song" img="frau.jpg" />
-          <tag-entry class="ml-10 w-32" style="min-width: 130px" name="Japan Song" img="logo.png" />
+        <div id="carousel" class="flex flex-row flex-grow content-start pt-5 overflow-x-scroll">
+          <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
+          <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
+          <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
         </div>
       </div>
 
