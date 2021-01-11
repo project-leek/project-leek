@@ -6,6 +6,6 @@ export default {
     },
   },
   optimizeDeps: {
-		exclude: [ "@fortawesome/fontawesome-free" ]
-	}
+    exclude: ['@fortawesome/fontawesome-free'],
+  },
 };
