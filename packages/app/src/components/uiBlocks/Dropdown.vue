@@ -65,7 +65,9 @@ import ListItem from './Dropdown.ListItem';
 
 export default defineComponent({
   name: 'Dropdown',
+
   components: { Button },
+
   props: {
     service: {
       type: String,
@@ -104,6 +106,7 @@ export default defineComponent({
   },
 
   emits: ['update:modelValue'],
+
   setup(props, ctx) {
     const selectedItem = ref<string>(props.modelValue);
     const dropdownExtended = ref<boolean>(false);
@@ -113,20 +116,15 @@ export default defineComponent({
     const service = feathers.service(props.service) as Service<AbstractEntity>;
 
     function getProperty(arr: AbstractEntity[], property: string): ListItem[] {
-      const res: ListItem[];
-      arr.forEach((element) => {
-        const li = {
+      return arr.map((element) => {
+        return {
           id: element._id,
           value: element[property] as string,
         };
-
-        res.push(li);
       });
-
-      return res;
     }
 
-    async function loadItems() {
+    async function loadItems(): Promise<void> {
       const allValues = await service.find();
       if (allValues && allValues.data) {
         selectableItemValues.value = getProperty(allValues.data, props.valueProperty);
@@ -137,7 +135,7 @@ export default defineComponent({
       await loadItems();
     });
 
-    function itemClick(item: ListItem) {
+    function itemClick(item: ListItem): void {
       selectedItem.value.id = item.id;
       selectedItem.value.value = item.value;
       dropdownExtended.value = false;
@@ -151,7 +149,7 @@ export default defineComponent({
       return selectedItem.value.value as string;
     }
 
-    async function addItem() {
+    async function addItem(): Promise<void> {
       const newItem = {};
       newItem[props.valueProperty] = newItemValue.value;
       await service.create(newItem).data;
@@ -159,7 +157,7 @@ export default defineComponent({
       await loadItems();
     }
 
-    async function removeItem(item: ListItem) {
+    async function removeItem(item: ListItem): Promise<void> {
       if (item.id === selectedItem.value.id) {
         selectedItem.value = new ListItem();
         ctx.emit('update:modelValue', selectedItem.value);
