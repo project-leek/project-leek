@@ -17,6 +17,13 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
+    //TODO : remove this route before merging
+    path: '/sandbox',
+    name: 'sandbox',
+    component: () => import('../views/Sandbox.vue'),
+    meta: { authentication: 'guests-only' },
+  },
+  {
     path: '/oauth/callback',
     name: 'oauth-callback',
     component: () => import('../views/auth/OAuthCallback.vue'),
