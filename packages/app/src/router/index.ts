@@ -50,7 +50,7 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   await loadAuthentication();
 
-  const pageAuthentication = to.meta.authentication || 'needed';
+  const pageAuthentication = (to.meta.authentication as string) || 'needed';
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
     next({ name: 'welcome' });

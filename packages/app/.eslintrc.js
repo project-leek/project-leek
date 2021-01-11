@@ -19,7 +19,10 @@ module.exports = {
 
     'plugin:vue/vue3-recommended',
     '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint'
   ],
+
 
   rules: {
     'no-console': 'error',
@@ -33,6 +36,10 @@ module.exports = {
         groups: ['props', 'data', 'computed', 'methods', 'setup'],
       },
     ],
+    'vue/attribute-hyphenation': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unsafe-member-access': 'error',
+    'prettier/prettier': 'error',
   },
 
   overrides: [
