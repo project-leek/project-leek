@@ -18,13 +18,6 @@ module.exports = {
   ],
 
   rules: {
-    'no-unused-expressions': 'off',
-    '@typescript-eslint/no-unused-expressions': ['error'],
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/no-floating-promises': 'error',
-    '@typescript-eslint/explicit-module-boundary-types': 'error',
     'no-restricted-imports': [
       'error',
       {
@@ -34,20 +27,15 @@ module.exports = {
     'no-console': 'error',
     curly: ['warn', 'all'],
     'no-useless-concat': 'error',
-    'promise/prefer-await-to-then': 'error',
-    'promise/prefer-await-to-callbacks': 'error',
-    // import rules
-    'import/no-unresolved': 'off', // disable as this is handled by tsc itself
-    'import/first': 'error',
-    'import/newline-after-import': 'error',
-    'import/no-cycle': 'error',
-    // 'import/no-relative-parent-imports': 'error', // TODO: disable for now
-    'import/no-duplicates': 'error',
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
-    // disable different sort rules because simple-import-sort takes care of this
-    'sort-imports': 'off',
-    'import/order': 'off',
+    'no-unused-expressions': 'off',
+    'no-unused-vars': 'off',
+
+    // typescript rule
+    '@typescript-eslint/no-unused-expressions': ['error'],
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-floating-promises': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/naming-convention': [
       'error',
       {
@@ -93,23 +81,37 @@ module.exports = {
       },
       {
         selector: 'enumMember',
-        format: ['UPPER_CASE', 'PascalCase'], // TODO: should be only UPPER_CASE
+        format: ['UPPER_CASE'],
       },
     ],
-    // TODO: the following rules should be set to error at some point
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/no-unsafe-assignment': 'warn',
-    '@typescript-eslint/no-unsafe-member-access': 'warn',
-    '@typescript-eslint/no-unsafe-call': 'warn',
-    '@typescript-eslint/no-unsafe-return': 'warn',
-    '@typescript-eslint/restrict-template-expressions': 'warn',
-  },
+    '@typescript-eslint/no-unsafe-assignment': 'error',
+    '@typescript-eslint/no-unsafe-member-access': 'error',
+    '@typescript-eslint/no-unsafe-call': 'error',
+    '@typescript-eslint/no-unsafe-return': 'error',
+    '@typescript-eslint/restrict-template-expressions': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
 
-  // parserOptions: {
-  //   sourceType: 'module',
-  //   tsconfigRootDir: __dirname,
-  //   project: ['./tsconfig.eslint.json'],
-  // },
+    // promise rules
+    'promise/prefer-await-to-then': 'error',
+    'promise/prefer-await-to-callbacks': 'error',
+
+    // import rules
+    'import/no-unresolved': 'error', // disable as this is handled by tsc itself
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-cycle': 'error',
+    // 'import/no-relative-parent-imports': 'error', // TODO: disable for now
+    'import/no-duplicates': 'error',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    // disable different sort rules because simple-import-sort takes care of this
+    'sort-imports': 'off',
+    'import/order': 'off',
+
+    // prettier rule
+    'prettier/prettier': 'error',
+  },
 
   overrides: [
     // {

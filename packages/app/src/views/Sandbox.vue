@@ -28,8 +28,10 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
+
 import Button from '../components/uiBlocks/Button.vue';
-import Dropdown, { ListItem } from '../components/uiBlocks/Dropdown.vue';
+import ListItem from '../components/uiBlocks/Dropdown.ListItem';
+import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({

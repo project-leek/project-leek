@@ -10,7 +10,8 @@ export const isAuthenticated = computed(() => !!user.value);
 export async function load(): Promise<void> {
   try {
     await feathers.reAuthenticate();
-    user.value = (await feathers.get('authentication')).user;
+    const authentication = await feathers.get('authentication');
+    user.value = authentication ? authentication.user : null;
   } catch (ignore) {
     // this error can be ignored
   }

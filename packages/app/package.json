@@ -5,7 +5,7 @@
     "start": "vite",
     "build": "vite build",
     "typecheck": "./node_modules/.bin/typecheck",
-    "lint": "eslint --ext .js,.vue,.ts,.d.ts src/",
+    "lint": "eslint --ext .js,.vue,.ts,.d.ts --cache src/",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
   },
