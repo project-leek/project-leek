@@ -7,7 +7,7 @@ type SpotifyApiError = Error & {
   statusCode: number;
 };
 
-async function playSpotify(app: Application, user: User, spotifyUri: string) {
+async function playSpotify(app: Application, user: User, spotifyUri: string): Promise<void> {
   const oauthSpotifyConfig = app.get('authentication').oauth.spotify;
 
   const spotifyApi = new SpotifyWebApi({
