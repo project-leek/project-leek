@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col">
-    <img class="pb" :src="image" />
+    <div class="relative pb-1/1">
+      <img class="absolute w-full h-full rounded-xl" :src="image" />
+    </div>
     <div id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSizeText}`]">
       {{ name }}
     </div>
@@ -24,7 +26,7 @@ export default defineComponent({
     textSize: {
       type: Number,
       required: false,
-      default: 5,
+      default: 3,
     },
   },
   setup(props) {

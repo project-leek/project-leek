@@ -1,4 +1,3 @@
-
 module.exports = {
   future: {},
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -128,6 +127,7 @@ module.exports = {
         '97/100': '97%',
         '98/100': '98%',
         '99/100': '99%',
+        '1/1': '100%',
       },
       fontFamily: {
         default: ["Roboto", "sans-serif"],
