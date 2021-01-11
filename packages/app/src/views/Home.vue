@@ -30,8 +30,8 @@
 import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
+import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
-import ListItem from '../components/uiBlocks/DropDownListItem';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
