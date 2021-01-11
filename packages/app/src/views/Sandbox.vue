@@ -42,8 +42,7 @@ export default defineComponent({
     Textfield,
   },
   setup() {
-    const dropDownValue = ref<ListItem>();
-    dropDownValue.value = new ListItem();
+    const dropDownValue = ref(new ListItem());
     const textValue = ref('');
 
     return {
