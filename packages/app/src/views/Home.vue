@@ -1,6 +1,5 @@
 <template>
-  <div
-  id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
+  <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
         icon="fas fa-plus-square"
@@ -31,7 +30,8 @@
 import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
-import Dropdown, { ListItem } from '../components/uiBlocks/Dropdown.vue';
+import Dropdown from '../components/uiBlocks/Dropdown.vue';
+import ListItem from '../components/uiBlocks/DropDownListItem';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -42,8 +42,8 @@ export default defineComponent({
     Dropdown,
   },
   setup() {
-    const searchInput = ref('');
-    const selValue = ref(new ListItem());
+    const searchInput = ref<string>('');
+    const selValue = ref<ListItem>(new ListItem());
     return { searchInput, selValue };
   },
 });

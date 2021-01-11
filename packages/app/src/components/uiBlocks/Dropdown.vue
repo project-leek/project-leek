@@ -18,7 +18,7 @@
       </div>
       <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
         <div v-for="(item, index) in selectableItemValues" :key="index">
-          <hr class="w-full border-dotted border-secondary border-1 my-2" >
+          <hr class="w-full border-dotted border-secondary border-1 my-2" />
           <div id="item" class="flex w-full">
             <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
               {{ item.value }}
@@ -32,11 +32,9 @@
             />
           </div>
         </div>
-        <div v-if="addItemOption"
-class="">
-          <hr class="w-full border-solid border-secondary border-1 my-2" >
-          <div id="addItemSection"
-class="flex w-full items-center pt-0.5">
+        <div v-if="addItemOption" class="">
+          <hr class="w-full border-solid border-secondary border-1 my-2" />
+          <div id="addItemSection" class="flex w-full items-center pt-0.5">
             <input
               v-model="newItemValue"
               class="p-2 rounded-2xl focus:outline-none"
@@ -57,21 +55,13 @@ class="flex w-full items-center pt-0.5">
 </template>
 
 <script lang="ts">
+import { Service } from '@feathersjs/feathers';
+import { AbstractEntity } from '@leek/commons';
 import { defineComponent, onMounted, ref } from 'vue';
 
 import feathers from '../../lib/feathers';
 import Button from './Button.vue';
-
-export class ListItem {
-  id: number | null;
-
-  value: string | null;
-
-  constructor(id?: number, val?: string) {
-    this.id = id || null;
-    this.value = val || null;
-  }
-}
+import ListItem from './Dropdown.ListItem';
 
 export default defineComponent({
   name: 'Dropdown',
@@ -114,30 +104,32 @@ export default defineComponent({
   },
 
   emits: ['update:modelValue'],
-  setup(props) {
-    const selectedItem = ref(props.modelValue);
-    const dropdownExtended = ref(false);
-    const selectableItemValues = ref([]);
-    const newItemValue = ref('');
+  setup(props, ctx) {
+    const selectedItem = ref<string>(props.modelValue);
+    const dropdownExtended = ref<boolean>(false);
+    const selectableItemValues = ref<ListItem[]>([]);
+    const newItemValue = ref<string>('');
 
-    function getProperty(arr: Array, property: string) {
-      const res = [];
+    const service = feathers.service(props.service) as Service<AbstractEntity>;
+
+    function getProperty(arr: AbstractEntity[], property: string): ListItem[] {
+      const res: ListItem[];
       arr.forEach((element) => {
-        const tmp = {
+        const li = {
           id: element._id,
-          value: element[property],
+          value: element[property] as string,
         };
 
-        res.push(tmp);
+        res.push(li);
       });
 
       return res;
     }
 
     async function loadItems() {
-      const allValues = (await feathers.service(props.service).find()).data;
-      if (allValues) {
-        selectableItemValues.value = getProperty(allValues, props.valueProperty);
+      const allValues = await service.find();
+      if (allValues && allValues.data) {
+        selectableItemValues.value = getProperty(allValues.data, props.valueProperty);
       }
     }
 
@@ -149,30 +141,30 @@ export default defineComponent({
       selectedItem.value.id = item.id;
       selectedItem.value.value = item.value;
       dropdownExtended.value = false;
-      this.$emit('update:modelValue', item);
+      ctx.emit('update:modelValue', item);
     }
 
-    function getHeaderText() {
+    function getHeaderText(): string {
       if (selectedItem.value == null || selectedItem.value === '') {
         return props.placeholderText;
       }
-      return selectedItem.value.value;
+      return selectedItem.value.value as string;
     }
 
     async function addItem() {
       const newItem = {};
       newItem[props.valueProperty] = newItemValue.value;
-      await feathers.service(props.service).create(newItem).data;
+      await service.create(newItem).data;
       newItemValue.value = '';
       await loadItems();
     }
 
-    async function removeItem(item) {
+    async function removeItem(item: ListItem) {
       if (item.id === selectedItem.value.id) {
         selectedItem.value = new ListItem();
-        this.$emit('update:modelValue', selectedItem.value);
+        ctx.emit('update:modelValue', selectedItem.value);
       }
-      await feathers.service(props.service).remove(item.id);
+      await service.remove(item.id);
       await loadItems();
     }
 
