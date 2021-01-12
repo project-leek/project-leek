@@ -3,6 +3,7 @@
     <div class="w-72 h-96">
       <add-tag-step-info v-model="tag" />
     </div>
+    <textfield v-model="tag.name" placeholder="Test for AddTagInfoStep" class="w-full h-15 my-5" />
     <h1 class="text-3xl text-center bg-primary py-2">Sandbox</h1>
     <div class="p-2">
       <!-- Dropdown -->
