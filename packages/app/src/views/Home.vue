@@ -11,14 +11,7 @@
     <main
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex items-center justify-center text-4xl text-gray-800"
     >
-      <Dropdown
-        v-model="selValue"
-        class="w-3/4 h-20"
-        service="nfc-tags"
-        value-property="nfcId"
-        label="NFC-Tag"
-        add-item-option
-      />
+    <AddTagStepTrack />
     </main>
     <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
       <Textfield v-model="searchInput" class="w-5/6" placeholder="Titelsuche" icon="search" />
@@ -29,9 +22,9 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import AddTagStepTrack from '../components/addTag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
-import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -39,7 +32,7 @@ export default defineComponent({
   components: {
     Button,
     Textfield,
-    Dropdown,
+    AddTagStepTrack,
   },
   setup() {
     const searchInput = ref<string>('');
