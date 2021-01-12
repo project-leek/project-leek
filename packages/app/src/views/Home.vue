@@ -48,17 +48,6 @@ export default defineComponent({
     const searchInput = ref<string>('');
     const selValue = ref<ListItem>(new ListItem());
 
-    function update(): void {
-      let t = 'adasd';
-      const i = { zu: '' } as ListItem;
-
-      t = i;
-
-      const u = t;
-
-      searchInput.value = { zu: 122 };
-    }
-
     return { searchInput, selValue };
   },
 });
