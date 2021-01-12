@@ -19,7 +19,7 @@
       <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
         <div v-for="(item, index) in selectableItemValues" :key="index">
           <hr class="w-full border-dotted border-secondary border-1 my-2" />
-          <div id="item" class="flex w-full">
+          <div class="item flex w-full">
             <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
               {{ item.value }}
             </span>
@@ -34,7 +34,7 @@
         </div>
         <div v-if="addItemOption" class="">
           <hr class="w-full border-solid border-secondary border-1 my-2" />
-          <div id="addItemSection" class="flex w-full items-center pt-0.5">
+          <div class="add-item-section flex w-full items-center pt-0.5">
             <input
               v-model="newItemValue"
               class="p-2 rounded-2xl focus:outline-none"
