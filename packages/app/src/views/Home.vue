@@ -1,7 +1,8 @@
 <template>
-  <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
+  <div class="app mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
+        :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
         :text-size="5"
@@ -36,14 +37,28 @@ import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'Home',
+
   components: {
     Button,
     Textfield,
     Dropdown,
   },
+
   setup() {
     const searchInput = ref<string>('');
     const selValue = ref<ListItem>(new ListItem());
+
+    function update(): void {
+      let t = 'adasd';
+      const i = { zu: '' } as ListItem;
+
+      t = i;
+
+      const u = t;
+
+      searchInput.value = { zu: 122 };
+    }
+
     return { searchInput, selValue };
   },
 });
