@@ -23,6 +23,11 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Sandbox.vue'),
   },
   {
+    path: '/tagsandbox',
+    name: 'tagsandbox',
+    component: (): Component => import('../views/AddTagImageSandbox.vue'),
+  },
+  {
     path: '/oauth/callback',
     name: 'oauth-callback',
     component: (): Component => import('../views/auth/OAuthCallback.vue'),
