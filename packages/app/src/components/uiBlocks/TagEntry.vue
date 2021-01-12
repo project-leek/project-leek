@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -30,7 +30,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const image = ref<string>(`./${props.img}`);
+    const image = computed(() => `./${props.img}`);
     return { image };
   },
 });

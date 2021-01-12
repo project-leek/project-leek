@@ -16,7 +16,7 @@
           <span> Zuletzt gehört </span>
           <Button round icon="fas fa-chevron-down" class="ml-auto mr-5 h-7 w-7 my-5" />
         </div>
-        <div id="carousel" class="flex flex-row flex-grow content-start pt-5 overflow-x-scroll">
+        <div id="carousel" class="flex flex-row flex-grow content-start pt-5 overflow-x-auto">
           <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
           <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
           <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
