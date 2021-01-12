@@ -1,5 +1,5 @@
 {
-  "eslint.workingDirectories": ["./packages/app", "./packages/backend", "./packages/common"],
+  "eslint.workingDirectories": ["./packages/*/"],
   "editor.tabSize": 2,
   "eslint.validate": [
       {
