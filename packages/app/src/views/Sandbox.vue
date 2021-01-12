@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
@@ -42,8 +42,8 @@ export default defineComponent({
     Textfield,
   },
   setup() {
-    const dropDownValue = ref(new ListItem());
-    const textValue = ref('');
+    const dropDownValue = ref<ListItem>(new ListItem());
+    const textValue = ref<string>('');
 
     return {
       dropDownValue,
