@@ -24,7 +24,7 @@ export const socket = io(apiUrl, {
 const feathersClient = feathers<ServiceTypes>();
 feathersClient.configure(socketio(socket));
 
-function debug(...str: string[]) {
+function debug(...str: string[]): void {
   // eslint-disable-next-line no-console
   console.log(...str);
 }

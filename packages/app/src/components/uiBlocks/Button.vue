@@ -1,11 +1,25 @@
 <template>
   <button
-    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
-    <span class="flex px-2">
-      <span v-if="icon" class="mr-4 my-auto" :class="[icon, `text-${iconsize}`]" />
-      <p class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
+    <span class="text flex h-full w-full">
+      <span
+        v-if="icon"
+        class="my-auto"
+        :class="[
+          { 'm-auto': rounded },
+          icon,
+          { 'mx-auto': !rounded && !text },
+          { 'ml-2': text },
+          `text-${iconsize}`,
+        ]"
+      />
+      <p
+        v-if="text"
+        class="my-auto font-heading font-extralight"
+        :class="[{ 'ml-4': icon }, { 'mx-auto': !rounded && !icon }, `text-${textsize}`]"
+      >
         {{ text }}
       </p>
     </span>
@@ -20,7 +34,8 @@ export default defineComponent({
   props: {
     text: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     to: {
       type: [Object, String] as PropType<RouteLocationRaw>,
@@ -49,14 +64,19 @@ export default defineComponent({
       required: false,
       default: 3,
     },
+    round: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   emits: ['click'],
-
-  setup(props) {
+  setup(props, ctx) {
     const router = useRouter();
+    const rounded = ref(props.round);
 
-    const doClick = () => {
+    const doClick = (): void => {
       if (props.disabled) {
         return;
       }
@@ -69,18 +89,36 @@ export default defineComponent({
       if (props.revert) {
         router.go(-1);
       }
+
+      ctx.emit('click');
     };
 
-    const getSize = (size: number) => {
+    const getSize = (size): string => {
       if (size === 1) {
+        return 'xs';
+      }
+
+      if (size === 2) {
+        return 'sm';
+      }
+
+      if (size === 3) {
+        return 'md';
+      }
+
+      if (size === 4) {
+        return 'lg';
+      }
+
+      if (size === 5) {
         return 'xl';
       }
 
-      if (size > 1 && size <= 9) {
-        return `${size}xl`;
+      if (size > 5 && size <= 13) {
+        return `${size - 4}xl`;
       }
 
-      throw Error('invalid number for size. Size must be between 1 and 9');
+      throw Error('invalid number for size. Size must be between 1 and 13');
     };
 
     const textsize = ref(getSize(props.textSize));
@@ -90,6 +128,7 @@ export default defineComponent({
       doClick,
       textsize,
       iconsize,
+      rounded,
     };
   },
 });
