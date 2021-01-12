@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
+  <div class="home mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
         icon="fas fa-plus-square"
@@ -36,14 +36,17 @@ import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'Home',
+
   components: {
     Button,
     Textfield,
     Dropdown,
   },
+
   setup() {
     const searchInput = ref<string>('');
     const selValue = ref<ListItem>(new ListItem());
+
     return { searchInput, selValue };
   },
 });
