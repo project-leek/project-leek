@@ -1,6 +1,5 @@
 <template>
   <div
-    id="z-0 backgroundWrapper"
     class="overflow-hidden bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full"
   >
     <!-- cube -->
@@ -38,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
