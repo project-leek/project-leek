@@ -72,7 +72,6 @@ export default defineComponent({
   },
 
   emits: ['click'],
-
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
