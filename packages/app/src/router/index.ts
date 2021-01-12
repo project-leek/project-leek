@@ -1,3 +1,4 @@
+import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
@@ -13,26 +14,24 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/welcome',
     name: 'welcome',
-    component: () => import('../views/Welcome.vue'),
+    component: (): Component => import('../views/Welcome.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
-    //TODO : remove this route before merging
     path: '/sandbox',
-    name: 'sandbox',
-    component: () => import('../views/Sandbox.vue'),
-    meta: { authentication: 'guests-only' },
+    name: 'Sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
   },
   {
     path: '/oauth/callback',
     name: 'oauth-callback',
-    component: () => import('../views/auth/OAuthCallback.vue'),
+    component: (): Component => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
     path: '/oauth/:oauthProvider',
     name: 'oauth-start',
-    component: () => import('../views/auth/OAuthStart.vue'),
+    component: (): Component => import('../views/auth/OAuthStart.vue'),
     meta: { authentication: 'guests-only' },
     props: true,
   },

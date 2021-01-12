@@ -2,14 +2,15 @@
   "extends": "../../config/tsconfig.base.json",
 
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "src",
-    // "importHelpers": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "experimentalDecorators": true,
-    // "lib": ["dom", "esnext"]
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client"],
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
 
   "references": [
@@ -20,5 +21,5 @@
     "src/vue-shims.d.ts"
   ],
 
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

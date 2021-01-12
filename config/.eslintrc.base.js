@@ -90,13 +90,14 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 'error',
     '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/restrict-template-expressions': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
 
     // promise rules
     'promise/prefer-await-to-then': 'error',
     'promise/prefer-await-to-callbacks': 'error',
 
     // import rules
-    'import/no-unresolved': 'off', // disable as this is handled by tsc itself
+    'import/no-unresolved': 'error', // disable as this is handled by tsc itself
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-cycle': 'error',
