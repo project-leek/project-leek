@@ -1,3 +1,4 @@
+//TODO: Remove this file before merging into master
 <template>
   <div id="wrapper" class="mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">Sandbox</header>

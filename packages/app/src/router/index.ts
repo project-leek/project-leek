@@ -23,8 +23,9 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Sandbox.vue'),
   },
   {
-    path: '/tagsandbox',
-    name: 'tagsandbox',
+    //TODO: remove this path before merging
+    path: '/test',
+    name: 'test',
     component: (): Component => import('../views/AddTagImageSandbox.vue'),
   },
   {
