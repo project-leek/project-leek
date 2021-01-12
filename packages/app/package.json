@@ -4,7 +4,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "typecheck": "./node_modules/.bin/typecheck",
+    "typecheck": "vuedx-typecheck .",
     "lint": "eslint --ext .js,.vue,.ts,.d.ts --cache src/",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
@@ -29,7 +29,7 @@
     "@vue/compiler-sfc": "3.0.5",
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "7.0.0",
-    "@vuedx/typecheck": "0.2.4-0",
+    "@vuedx/typecheck": "0.5.0",
     "autoprefixer": "10.1.0",
     "eslint": "7.17.0",
     "eslint-config-airbnb-base": "14.2.1",
