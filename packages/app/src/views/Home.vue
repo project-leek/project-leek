@@ -14,7 +14,7 @@
       {{ searchInput }}
     </main>
     <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
-      <Textfield v-model="searchInput" class="w-5/6" placeholder="Titelsuche" icon="search" />
+      <textfield v-model="searchInput" class="w-5/6" placeholder="Titelsuche" icon="search" />
     </footer>
   </div>
 </template>
