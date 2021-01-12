@@ -3,14 +3,14 @@
     <div class="relative pb-1/1">
       <img class="absolute w-full h-full rounded-xl" :src="image" />
     </div>
-    <div id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSizeText}`]">
+    <div id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSize}`]">
       {{ name }}
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -24,36 +24,14 @@ export default defineComponent({
       required: true,
     },
     textSize: {
-      type: Number,
+      type: String,
       required: false,
-      default: 3,
+      default: 'base',
     },
   },
   setup(props) {
     const image = `./${props.img}`;
-
-    const getSize = (size) => {
-      let strSize = '';
-      if (size === 1) {
-        strSize = 'xs';
-      } else if (size === 2) {
-        strSize = 'sm';
-      } else if (size === 3) {
-        strSize = 'base';
-      } else if (size === 4) {
-        strSize = 'lg';
-      } else if (size === 5) {
-        strSize = 'xl';
-      } else if (size > 5 && size <= 13) {
-        strSize = `${size - 4}xl`;
-      } else {
-        throw Error('invalid number for size. Size must be between 1 and 13');
-      }
-      return strSize;
-    };
-    const textSizeText = ref(getSize(props.textSize));
-
-    return { image, textSizeText };
+    return { image };
   },
 });
 </script>
