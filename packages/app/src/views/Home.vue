@@ -1,5 +1,5 @@
 <template>
-  <div class="app mx-auto max-w-lg h-full w-full flex flex-col">
+  <div class="home mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
         icon="fas fa-plus-square"
