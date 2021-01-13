@@ -30,7 +30,7 @@
 
     <div id="liste">
       <ul>
-        <li v-for="track in tracks" :key="track.uri" @click="changeTrack">
+        <li v-for="track in tracks" :key="track.uri" @click="changeTrack(track)">
           <span :class="{ 'bg-red-400': selectedTrack && selectedTrack.uri === track.uri }">
             {{ track.title }}
           </span>

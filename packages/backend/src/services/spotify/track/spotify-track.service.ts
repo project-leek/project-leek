@@ -8,7 +8,7 @@ import { Application } from '../../../declarations';
 // Add this service to the service type index
 declare module '../../../declarations' {
   interface ServiceTypes {
-    'spotify-track': SpotifyTrackService & ServiceAddons<SpotifyTrack>;
+    'spotify-tracks': SpotifyTrackService & ServiceAddons<SpotifyTrack>;
   }
 }
 
@@ -69,7 +69,7 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
 }
 
 export default (app: Application): void => {
-  app.use('spotify-track', new SpotifyTrackService(app));
-  const service = app.service('spotify-track');
+  app.use('spotify-tracks', new SpotifyTrackService(app));
+  const service = app.service('spotify-tracks');
   service.publish(() => app.channel('authenticated'));
 };
