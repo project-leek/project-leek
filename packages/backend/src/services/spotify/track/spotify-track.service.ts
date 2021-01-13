@@ -1,5 +1,5 @@
 import { AdapterService, ServiceOptions } from '@feathersjs/adapter-commons';
-import { Id, NullableId, Params, Query, ServiceAddons, ServiceMethods } from '@feathersjs/feathers';
+import { Params, Query, ServiceAddons } from '@feathersjs/feathers';
 import { SpotifyTrack, User } from '@leek/commons';
 import SpotifyWebApi from 'spotify-web-api-node';
 
@@ -51,7 +51,11 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
 
       if (trackResp.body.tracks) {
         const tracks = trackResp.body.tracks.items;
-        return tracks.map((track) => new SpotifyTrack(track.uri, track.name, track.artists, track.album));
+        return tracks.map((track) => {
+          const artists = track.artists.map((artist) => artist.name);
+          const imageUri = track.album.images[0].url;
+          return new SpotifyTrack(track.uri, track.name, artists, imageUri);
+        });
       }
     } catch (_error) {
       const error = _error as SpotifyApiError;

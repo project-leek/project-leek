@@ -1,19 +1,16 @@
-export default class SpotifyTrack {
+import { AbstractEntity } from './abstract-entity.class';
+
+export default class SpotifyTrack extends AbstractEntity {
   uri: string;
   title: string;
   artists: string[];
   imageUri: string;
 
-  constructor(
-    uri: string,
-    title: string,
-    artists: SpotifyApi.ArtistObjectSimplified[],
-    album: SpotifyApi.AlbumObjectSimplified,
-  ) {
+  constructor(uri: string, title: string, artists: string[], imageUri: string) {
+    super();
     this.uri = uri;
     this.title = title;
-    this.artists = [];
-    this.artists = artists.map((artist) => artist.name);
-    this.imageUri = album.images[0].url;
+    this.artists = artists;
+    this.imageUri = imageUri;
   }
 }
