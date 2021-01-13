@@ -29,7 +29,7 @@ export default (app: Application): void => {
   app.use('nfc-readers', new NFCReaderService(options));
 
   const service = app.service('nfc-readers');
-  service.publish(() => app.channel('anonymous'));
+  service.publish(() => app.channel('authenticated'));
 
   // TODO remove workaround
   service.hooks((hooks as unknown) as Partial<HooksObject>);

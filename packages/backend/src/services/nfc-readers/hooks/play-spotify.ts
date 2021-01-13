@@ -1,4 +1,5 @@
-import { NFCReader, User } from '@leek/commons';
+import { Paginated } from '@feathersjs/feathers';
+import { NFCReader, NFCTag, User } from '@leek/commons';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 import { Application, HookContext } from '../../../declarations';
@@ -46,13 +47,19 @@ async function playSpotify(app: Application, user: User, spotifyUri: string): Pr
 
 export default async (context: HookContext<NFCReader>): Promise<HookContext> => {
   // skip if no tag has been attached or changed
-  if (!context.data?.attachedTag || !context.id) {
+  if (!context.data || !context.data?.attachedTagData || !context.id) {
     return context;
   }
 
-  const nfcTag = await context.app.service('nfc-tags').get(context.data.attachedTag);
+  const query = { nfcData: context.data.attachedTagData };
+  const nfcTagSearchResult = (await context.app.service('nfc-tags').find({ query })) as Paginated<NFCTag>;
 
-  // skip if not a spotify uri
+  if (nfcTagSearchResult.total !== 1) {
+    return context;
+  }
+
+  const nfcTag = nfcTagSearchResult.data[0];
+
   if (!/^spotify:/.test(nfcTag.spotifyTrackUri)) {
     return context;
   }

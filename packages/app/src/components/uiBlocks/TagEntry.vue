@@ -31,10 +31,10 @@ export default defineComponent({
     },
     textSize: {
       type: String,
-      required: false,
       default: 'base',
     },
   },
+
   setup(props) {
     const image = computed(() => props.img);
     return { image };

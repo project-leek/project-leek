@@ -12,7 +12,7 @@ export default (app: Application): NeDB<NFCTag> => {
     inMemoryOnly: process.env.NODE_ENV === 'test',
   });
 
-  model.ensureIndex({ fieldName: 'nfcId', unique: true });
+  model.ensureIndex({ fieldName: 'nfcData', unique: true });
 
   return model;
 };
