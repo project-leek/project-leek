@@ -25,20 +25,18 @@ export default defineComponent({
   props: {
     placeholder: {
       type: String,
-      required: true,
+      default: '',
     },
     modelValue: {
       type: String,
-      required: true,
+      default: '',
     },
     icon: {
       type: String,
-      required: false,
       default: '',
     },
     label: {
       type: String,
-      required: false,
       default: '',
     },
   },

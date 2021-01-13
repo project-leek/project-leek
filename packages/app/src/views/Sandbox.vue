@@ -9,13 +9,15 @@
       <!-- Dropdown -->
       <h1 class="text-2xl text-center bg-secondary py-1">Dropdown</h1>
       <Dropdown
-        v-model="dropDownValue"
+        v-model="dropdownValue"
         class="mb-5 h-20"
-        service="nfc-tags"
-        value-property="nfcId"
         label="NFC-Tag"
-        add-item-option
+        enable-add-item
+        :items="dropdownItems"
+        @add-item="addDropdownItem"
+        @remove-item="removeDropdownItem"
       />
+
       <!-- Button -->
       <h1 class="text-2xl text-center bg-secondary py-1">Buttons</h1>
       <Button class="w-full h-15 my-5" text="Drück mich!" />
@@ -49,12 +51,29 @@ export default defineComponent({
     AddTagStepInfo,
   },
   setup() {
-    const dropDownValue = ref<ListItem>(new ListItem());
+    const dropdownItems = ref<ListItem[]>([
+      //use date-now as id to be unique
+      new ListItem(Date.now() + 1, 'Horst'),
+      new ListItem(Date.now() + 2, 'Ilse'),
+      new ListItem(Date.now() + 3, 'Anne'),
+    ]);
+    const dropdownValue = ref<ListItem>(dropdownItems.value[0]);
+    const addDropdownItem = (value: string): void => {
+      const listItem = new ListItem(Date.now(), value);
+      dropdownItems.value.push(listItem);
+    };
+    const removeDropdownItem = (item: ListItem): void => {
+      dropdownItems.value = dropdownItems.value.filter((_item) => _item.id !== item.id);
+    };
+
     const textValue = ref<string>('');
     const tag = ref<NFCTag>(new NFCTag());
 
     return {
-      dropDownValue,
+      dropdownItems,
+      dropdownValue,
+      addDropdownItem,
+      removeDropdownItem,
       textValue,
       tag,
     };
