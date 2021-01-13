@@ -1,19 +1,25 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../config/tsconfig.base.json",
+
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "esnext",
     "module": "esnext",
-    "importHelpers": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "experimentalDecorators": true,
-    "lib": ["dom", "esnext"]
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client"],
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
+
+  "references": [
+    { "path": "../commons" }
+  ],
+
   "files": [
     "src/vue-shims.d.ts"
   ],
-  "include": [
-    "src/**/*",
-  ]
+
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

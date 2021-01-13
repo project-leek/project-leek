@@ -1,10 +1,12 @@
-import { User } from '@project-leek/commons';
+import { User } from '@leek/commons';
 
 import { HookContext } from '../../declarations';
 
 type AuthenticationData = {
   strategy: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   access_token?: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   refresh_token?: string;
   user?: User;
 };
@@ -12,7 +14,7 @@ type AuthenticationData = {
 export default {
   after: {
     create: [
-      async (context: HookContext<AuthenticationData>) => {
+      async (context: HookContext<AuthenticationData>): Promise<HookContext<AuthenticationData>> => {
         const { data } = context;
 
         if (data && data.strategy === 'spotify') {
@@ -32,6 +34,8 @@ export default {
 
           await context.app.service('users').patch(userId, { spotifyAccessToken, spotifyRefreshToken });
         }
+
+        return context;
       },
     ],
   },

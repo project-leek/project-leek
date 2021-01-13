@@ -4,6 +4,18 @@ on:
   push:
     tags:
       - 'app-*'
+    paths:
+      - '.github/workflows/release-app.yml'
+      - 'packages/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
+    branches:
+      - master
 
 env:
   YARN_CACHE_FOLDER: ~/.yarn

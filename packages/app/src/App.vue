@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 import { isAuthenticated } from './compositions/useAuthentication';
 
@@ -19,11 +19,11 @@ export default defineComponent({
 
     watch(
       () => isAuthenticated.value,
-      async (_isAuthenticated) => {
+      (_isAuthenticated) => {
         // if not authenticated and on page that requests authentication
-        const pageAuthentication = route.meta.authentication || 'needed';
+        const pageAuthentication = (route.meta.authentication as string) || 'needed';
         if (pageAuthentication === 'needed' && !_isAuthenticated) {
-          router.replace({ name: 'login' });
+          void router.replace({ name: 'welcome' });
         }
       }
     );

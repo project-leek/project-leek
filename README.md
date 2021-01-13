@@ -43,15 +43,26 @@ This repository is based on following packages:
 > Hint: If using WSL make sure that you place the project files in the linux filesystem and do NOT mount them from Windows as this leads to some problems with build performance and file-watching.
 Otherwise, Node is so slow that it is hardly possible to work
 
-Checkout project locally. Enter the project folder and run:
+Checkout project locally.
+
+```bash
+git clone https://github.com/project-leek/project-leek/
+# git clone git@github.com:project-leek/project-leek.git
+```
+
+Enter the project folder and run:
 
 ```bash
 yarn setup
 ```
 
+### Edit config
+
+Copy `.env.sample` to `.env` and change the values to your needs.
+
 ### Start for development
 
-Compiles and watches files changes with hot-reloading
+Compile and watch file changes with hot-reloading:
 
 ```bash
 yarn start:app # build and watch app
@@ -77,6 +88,4 @@ yarn typecheck
 
 ```bash
 yarn test
-
-yarn test:update # update snapshots
 ```
