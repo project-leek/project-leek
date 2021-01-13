@@ -23,13 +23,6 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Sandbox.vue'),
   },
   {
-    //TODO: remove this path before merging
-    path: '/test',
-    name: 'test',
-    component: (): Component => import('../views/AddTagImageSandbox.vue'),
-    meta: { authentication: 'guests-only' },
-  },
-  {
     path: '/oauth/callback',
     name: 'oauth-callback',
     component: (): Component => import('../views/auth/OAuthCallback.vue'),
