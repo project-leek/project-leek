@@ -62,6 +62,7 @@ export default defineComponent({
       }
 
       itemIndex.value = itemCount.value;
+      if (itemCount.value === 0) activeItemIndex.value = itemIndex.value;
       itemCount.value += 1;
     });
 
