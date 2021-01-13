@@ -35,13 +35,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { NFCTag } from '@leek/commons';
+import { defineComponent, onMounted, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
+import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'Home',
@@ -56,8 +58,16 @@ export default defineComponent({
 
   setup() {
     const searchInput = ref<string>('');
-
-    return { searchInput };
+    const tags = ref<NFCTag[]>([]);
+    const groupNames = ref<string[]>([]);
+    onMounted(async () => {
+      const res = await feathers.service('nfc-tags').find();
+      tags.value = res.data as NFCTag[];
+      tags.value.forEach((tag) => {
+        if (!groupNames.value.includes(tag.group)) groupNames.value.push(tag.group);
+      });
+    });
+    return { searchInput, groupNames};
   },
 });
 </script>
