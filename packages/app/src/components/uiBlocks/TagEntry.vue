@@ -3,7 +3,12 @@
     <div class="relative pb-1/1">
       <img class="absolute w-full h-full rounded-xl" :src="image" />
     </div>
-    <div v-if="name" id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSize}`]">
+    <div
+      v-if="name"
+      id="TagName"
+      class="h-2/6 text-white font-semibold"
+      :class="[`text-${textSize}`]"
+    >
       {{ name }}
     </div>
   </div>
@@ -21,14 +26,14 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: false,
+      required: true,
     },
     textSize: {
       type: String,
-      required: false,
       default: 'base',
     },
   },
+
   setup(props) {
     const image = computed(() => props.img);
     return { image };
