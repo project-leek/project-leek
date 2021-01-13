@@ -41,6 +41,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import AddTagStepTrack from '../components/addTag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
