@@ -49,7 +49,7 @@ export default defineComponent({
     const activeItemIndex = inject<Ref<number | null>>('activeItemIndex');
 
     if (!activeItemIndex || !itemCount) {
-      throw new Error('du bist schlecht und musst sauber programmieren!');
+      throw new Error('reference injection failed');
     }
 
     const isOpen = computed(() => {
