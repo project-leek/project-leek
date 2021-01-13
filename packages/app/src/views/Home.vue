@@ -22,15 +22,6 @@
           <tag-entry class="ml-8 w-32" name="City Song" img="stadt.jpg" />
         </div>
       </div>
-
-      <Dropdown
-        v-model="selValue"
-        class="mx-auto w-3/4 h-20"
-        service="nfc-tags"
-        value-property="nfcId"
-        label="NFC-Tag"
-        add-item-option
-      />
     </main>
     <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
       <Textfield v-model="searchInput" class="w-5/6" placeholder="Titelsuche" icon="search" />
@@ -42,8 +33,6 @@
 import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
-import ListItem from '../components/uiBlocks/Dropdown.ListItem';
-import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
@@ -54,14 +43,12 @@ export default defineComponent({
     Button,
     Textfield,
     TagEntry,
-    Dropdown,
   },
 
   setup() {
     const searchInput = ref<string>('');
-    const selValue = ref<ListItem>(new ListItem());
 
-    return { searchInput, selValue };
+    return { searchInput };
   },
 });
 </script>
