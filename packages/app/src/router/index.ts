@@ -7,6 +7,19 @@ import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
+    path: '/oauth/callback',
+    name: 'oauth-callback',
+    component: (): Component => import('../views/auth/OAuthCallback.vue'),
+    meta: { authentication: 'guests-only' },
+  },
+  {
+    path: '/oauth/:oauthProvider',
+    name: 'oauth-start',
+    component: (): Component => import('../views/auth/OAuthStart.vue'),
+    meta: { authentication: 'guests-only' },
+    props: true,
+  },
+  {
     path: '/',
     name: 'home',
     component: Home,
@@ -25,22 +38,15 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/sandbox',
-    name: 'Sandbox',
+    name: 'sandbox',
     component: (): Component => import('../views/Sandbox.vue'),
   },
   {
-    path: '/oauth/callback',
-    name: 'oauth-callback',
-    component: (): Component => import('../views/auth/OAuthCallback.vue'),
-    meta: { authentication: 'guests-only' },
+    path: '/tag/add',
+    name: 'add-tag',
+    component: (): Component => import('../views/AddTag.vue'),
   },
-  {
-    path: '/oauth/:oauthProvider',
-    name: 'oauth-start',
-    component: (): Component => import('../views/auth/OAuthStart.vue'),
-    meta: { authentication: 'guests-only' },
-    props: true,
-  },
+  // this should be the last route to catch all unhandled requests
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',

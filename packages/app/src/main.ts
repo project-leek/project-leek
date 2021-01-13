@@ -1,5 +1,4 @@
 import '@fortawesome/fontawesome-free/css/all.css';
-import '@fortawesome/fontawesome-free/js/all';
 import '../index.css';
 import 'typeface-roboto';
 import 'typeface-baloo';

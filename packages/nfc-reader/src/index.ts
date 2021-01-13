@@ -1,6 +1,3 @@
-import { Paginated } from '@feathersjs/feathers';
-import { NFCTag } from '@leek/commons';
-
 import feathers, { socket as feathersSocket } from './lib/feathers';
 import NFCReader from './lib/nfc-reader';
 
@@ -21,40 +18,19 @@ function printError(error: Error | string, ...args: string[]): void {
   }
 }
 
-async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null): Promise<void> {
+async function updateAttachedTagData(nfcReaderId: string, tagData: string | null): Promise<void> {
   try {
-    const tagId = (attachedTag && attachedTag._id) || null;
-    await feathers.service('nfc-readers').patch(nfcReaderId, { attachedTag: tagId });
-  } catch (_error) {
-    const error = _error as Error;
-    printError('Could not set attached nfc-tag', error.message);
-  }
-}
-
-async function updateNfcTag(nfcReaderId: string, tagId: string): Promise<void> {
-  let attachedTag: NFCTag | null = null;
-
-  try {
-    const nfcTagFind = (await feathers.service('nfc-tags').find({ query: { nfcId: tagId } })) as Paginated<NFCTag>;
-
-    if (nfcTagFind && nfcTagFind.data && nfcTagFind.data.length === 1) {
-      [attachedTag] = nfcTagFind.data;
-    }
+    await feathers.service('nfc-readers').patch(nfcReaderId, { attachedTagData: tagData });
   } catch (error) {
-    // ignore
-  }
-
-  if (!attachedTag) {
-    printError('Could not find nfc-tag.');
+    printError('Could not set attached nfc-tag', (error as Error).message);
     return;
   }
 
-  await setAttachedNfcTag(nfcReaderId, attachedTag);
   log('Attached tag to nfc-reader');
 
   // reset the attached-tag after 5 seconds as it is normally only attached for a short period of time
   setTimeout(() => {
-    void setAttachedNfcTag(nfcReaderId, null);
+    void updateAttachedTagData(nfcReaderId, null);
     log('Detached tag from nfc-reader');
   }, 1000 * 5);
 }
@@ -83,9 +59,9 @@ async function start(): Promise<void> {
     log('Connected to NFC device:', device);
   });
 
-  nfcReader.on('tag-attached', (tagId) => {
-    log('Tag attached:', tagId);
-    void updateNfcTag(nfcReaderId, tagId);
+  nfcReader.on('tag-attached', (tagData) => {
+    log('Tag attached:', tagData);
+    void updateAttachedTagData(nfcReaderId, tagData);
   });
 
   try {
