@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-details p-12">
+  <div class="add-tag-step-place-tag-on-reader p-12">
     <img src="../../assets/attach-tag.gif" />
   </div>
 </template>
@@ -12,6 +12,8 @@ import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import feathers from '../../lib/feathers';
 
 export default defineComponent({
+  name: 'AddTagStepPlaceOnReader',
+
   emits: ['proceed', 'update:nfc-tag'],
 
   setup(_, ctx) {
