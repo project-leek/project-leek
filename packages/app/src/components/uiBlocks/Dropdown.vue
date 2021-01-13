@@ -23,6 +23,7 @@
         <div v-for="item in items" :key="item.id">
           <hr class="w-full border-dotted border-secondary border-1 my-2" />
           <div
+            :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
             class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
             @click="selectItem(item)"
           >
@@ -37,14 +38,14 @@
             />
           </div>
         </div>
-        <div v-if="addItemEnabled" class="add-item">
+        <div v-if="enableAddItem" class="add-item">
           <hr class="w-full border-solid border-secondary border-1 my-2" />
           <div class="add-item-section flex w-full items-center pt-0.5">
             <input
               v-model="newItemValue"
               :placeholder="addItemText"
-              @keyup.enter="addItem"
               class="flex-grow p-2 rounded-2xl focus:outline-none"
+              @keyup.enter="addItem"
             />
             <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
           </div>
@@ -76,7 +77,7 @@ export default defineComponent({
       required: false,
       default: 'Please select an item',
     },
-    addItemEnabled: {
+    enableAddItem: {
       type: Boolean,
       required: false,
       default: false,
@@ -101,14 +102,19 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:modelValue', 'add-item', 'remove-item'],
+  emits: ['update:model-value', 'add-item', 'remove-item'],
 
   setup(props, ctx) {
     const dropdownExtended = ref<boolean>(false);
     const newItemValue = ref<string>('');
 
     function selectItem(item: ListItem): void {
-      ctx.emit('update:modelValue', item);
+      if (props.modelValue && props.modelValue.id === item.id) {
+        ctx.emit('update:model-value', null);
+      } else {
+        ctx.emit('update:model-value', item);
+      }
+
       dropdownExtended.value = false;
     }
 
@@ -120,11 +126,13 @@ export default defineComponent({
 
       ctx.emit('add-item', newItemValue.value);
       newItemValue.value = '';
+
+      ctx.emit('update:model-value', null);
     }
 
     function removeItem(item: ListItem): void {
       if (props.modelValue && item.id === props.modelValue.id) {
-        ctx.emit('update:modelValue', null);
+        ctx.emit('update:model-value', null);
       }
 
       ctx.emit('remove-item', item);

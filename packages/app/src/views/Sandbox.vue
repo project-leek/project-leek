@@ -8,7 +8,7 @@
         v-model="dropdownValue"
         class="mb-5 h-20"
         label="NFC-Tag"
-        add-item-option
+        enable-add-item
         :items="dropdownItems"
         @add-item="addDropdownItem"
         @remove-item="removeDropdownItem"
