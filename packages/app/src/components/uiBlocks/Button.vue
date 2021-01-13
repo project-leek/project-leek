@@ -76,7 +76,7 @@ export default defineComponent({
     const router = useRouter();
     const rounded = ref(props.round);
 
-    const doClick = () => {
+    const doClick = (): void => {
       if (props.disabled) {
         return;
       }
@@ -89,27 +89,36 @@ export default defineComponent({
       if (props.revert) {
         router.go(-1);
       }
+
       ctx.emit('click');
     };
 
-    const getSize = (size) => {
-      let strSize = '';
+    const getSize = (size): string => {
       if (size === 1) {
-        strSize = 'xs';
-      } else if (size === 2) {
-        strSize = 'sm';
-      } else if (size === 3) {
-        strSize = 'md';
-      } else if (size === 4) {
-        strSize = 'lg';
-      } else if (size === 5) {
-        strSize = 'xl';
-      } else if (size > 5 && size <= 13) {
-        strSize = `${size - 4}xl`;
-      } else {
-        throw Error('invalid number for size. Size must be between 1 and 13');
+        return 'xs';
       }
-      return strSize;
+
+      if (size === 2) {
+        return 'sm';
+      }
+
+      if (size === 3) {
+        return 'md';
+      }
+
+      if (size === 4) {
+        return 'lg';
+      }
+
+      if (size === 5) {
+        return 'xl';
+      }
+
+      if (size > 5 && size <= 13) {
+        return `${size - 4}xl`;
+      }
+
+      throw Error('invalid number for size. Size must be between 1 and 13');
     };
 
     const textsize = ref(getSize(props.textSize));

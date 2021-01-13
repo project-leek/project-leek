@@ -22,7 +22,7 @@ type SpotifyProfile = OAuthProfile & {
 
 class SpotifyStrategy extends OAuthStrategy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async getEntityData(profile: SpotifyProfile, existing: any, params: Params) {
+  async getEntityData(profile: SpotifyProfile, existing: any, params: Params): Promise<{ [x: string]: any }> {
     const baseData = await super.getEntityData(profile, existing, params);
 
     return {
