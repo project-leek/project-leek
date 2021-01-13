@@ -13,15 +13,6 @@ async function seed(): Promise<void> {
     owner: 'aE6IRWdETCdeOGjo',
     attachedTagData: null,
   });
-  await app
-    .service('nfc-tags')
-    .create({ nfcData: '2589851589', spotifyTrackUri: 'spotify:track:2ej1A2Ze6P2EOW7KfIosZR' });
-  await app
-    .service('nfc-tags')
-    .create({ nfcData: '2589689541', spotifyTrackUri: 'spotify:track:4uLU6hMCjMI75M1A2tKUQC' });
-  await app
-    .service('nfc-tags')
-    .create({ nfcData: '2589928949', spotifyTrackUri: 'spotify:track:6tYlLMni6GwUksie3N6IPA' });
 }
 
 function start(): void {
