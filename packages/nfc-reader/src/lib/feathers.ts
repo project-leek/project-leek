@@ -1,7 +1,7 @@
-import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import { AdapterService } from '@feathersjs/adapter-commons';
-import { User, NFCReader, NFCTag } from '@project-leek/commons';
+import feathers, { ServiceAddons } from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
+import { NFCReader, NFCTag, User } from '@leek/commons';
 import io from 'socket.io-client';
 
 type Service<T> = AdapterService<T> & ServiceAddons<T>;
@@ -24,7 +24,7 @@ export const socket = io(apiUrl, {
 const feathersClient = feathers<ServiceTypes>();
 feathersClient.configure(socketio(socket));
 
-function debug(...str: string[]) {
+function debug(...str: string[]): void {
   // eslint-disable-next-line no-console
   console.log(...str);
 }

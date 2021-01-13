@@ -1,9 +1,7 @@
-import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
+import { Component } from 'vue';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import {
-  isAuthenticated,
-  load as loadAuthentication,
-} from '../compositions/useAuthentication';
+import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -14,21 +12,26 @@ const routes: RouteRecordRaw[] = [
     component: Home,
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/auth/Login.vue'),
+    path: '/welcome',
+    name: 'welcome',
+    component: (): Component => import('../views/Welcome.vue'),
     meta: { authentication: 'guests-only' },
+  },
+  {
+    path: '/sandbox',
+    name: 'Sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
   },
   {
     path: '/oauth/callback',
     name: 'oauth-callback',
-    component: () => import('../views/auth/OAuthCallback.vue'),
+    component: (): Component => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
     path: '/oauth/:oauthProvider',
     name: 'oauth-start',
-    component: () => import('../views/auth/OAuthStart.vue'),
+    component: (): Component => import('../views/auth/OAuthStart.vue'),
     meta: { authentication: 'guests-only' },
     props: true,
   },
@@ -48,10 +51,10 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   await loadAuthentication();
 
-  const pageAuthentication = to.meta.authentication || 'needed';
+  const pageAuthentication = (to.meta.authentication as string) || 'needed';
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
-    next({ name: 'login' });
+    next({ name: 'welcome' });
     return;
   }
 

@@ -1,10 +1,10 @@
-import path from 'path';
 import { errorHandler, notFound } from '@feathersjs/express';
-import favicon from 'serve-favicon';
 import compress from 'compression';
-import helmet from 'helmet';
 import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
+import path from 'path';
+import favicon from 'serve-favicon';
 
 import app from './app';
 import logger from './logger';

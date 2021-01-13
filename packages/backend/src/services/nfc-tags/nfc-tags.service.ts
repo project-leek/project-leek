@@ -1,6 +1,7 @@
 import { ServiceAddons } from '@feathersjs/feathers';
-import { Service, NedbServiceOptions } from 'feathers-nedb';
-import { NFCTag } from '@project-leek/commons';
+import { NFCTag } from '@leek/commons';
+import { NedbServiceOptions, Service } from 'feathers-nedb';
+
 import { Application } from '../../declarations';
 import createModel from './nfc-tags.model';
 
@@ -12,8 +13,7 @@ declare module '../../declarations' {
 }
 
 class NFCTagService extends Service<NFCTag> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  constructor(options: Partial<NedbServiceOptions>, app: Application) {
+  constructor(options: Partial<NedbServiceOptions>) {
     super(options);
   }
 }
@@ -25,6 +25,6 @@ export default (app: Application): void => {
   };
 
   // Initialize our service with any options it requires
-  app.use('nfc-tags', new NFCTagService(options, app));
+  app.use('nfc-tags', new NFCTagService(options));
   app.service('nfc-tags').publish(() => app.channel('anonymous'));
 };

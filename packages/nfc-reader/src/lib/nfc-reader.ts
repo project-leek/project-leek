@@ -41,6 +41,7 @@ class NFCReader extends EventEmitter {
 
   async open(deviceId: string): Promise<string> {
     return new Promise((resolve, reject) => {
+      // eslint-disable-next-line promise/prefer-await-to-callbacks
       this.reader.search('/dev/input/by-id', deviceId, (err, files) => {
         if (err) {
           reject(err);

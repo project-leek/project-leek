@@ -2,6 +2,16 @@ name: Preview app
 
 on:
   pull_request_target:
+    paths:
+      - '.github/workflows/preview-app.yml'
+      - 'packages/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
     types: [opened, synchronize, reopened, closed]
 
 env:
@@ -12,8 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
       - name: Caching
         uses: actions/cache@v2
@@ -33,6 +41,10 @@ jobs:
         run: |
           yarn --frozen-lockfile
           yarn build:app
+
+      # https://surge.sh/help/adding-a-200-page-for-client-side-routing
+      - run: |
+          cp packages/app/dist/index.html packages/app/dist/200.html
 
       - uses: afc163/surge-preview@v1
         id: preview_step

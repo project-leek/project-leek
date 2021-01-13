@@ -1,20 +1,27 @@
 import { Paginated } from '@feathersjs/feathers';
-import { NFCTag } from '@project-leek/commons';
+import { NFCTag } from '@leek/commons';
 
-import NFCReader from './lib/nfc-reader';
 import feathers, { socket as feathersSocket } from './lib/feathers';
+import NFCReader from './lib/nfc-reader';
 
 const nfcReader = new NFCReader();
 
-function printError(error: Error | string, ...args: string[]) {
+function log(message?: unknown, ...optionalParams: unknown[]): void {
+  // eslint-disable-next-line no-console
+  console.log(message, ...optionalParams);
+}
+
+function printError(error: Error | string, ...args: string[]): void {
   if (typeof error === 'string') {
+    // eslint-disable-next-line no-console
     console.error(error, ...args);
   } else {
+    // eslint-disable-next-line no-console
     console.error(error.message || error, ...args);
   }
 }
 
-async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null) {
+async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null): Promise<void> {
   try {
     const tagId = (attachedTag && attachedTag._id) || null;
     await feathers.service('nfc-readers').patch(nfcReaderId, { attachedTag: tagId });
@@ -24,7 +31,7 @@ async function setAttachedNfcTag(nfcReaderId: string, attachedTag: NFCTag | null
   }
 }
 
-async function updateNfcTag(nfcReaderId: string, tagId: string) {
+async function updateNfcTag(nfcReaderId: string, tagId: string): Promise<void> {
   let attachedTag: NFCTag | null = null;
 
   try {
@@ -43,17 +50,16 @@ async function updateNfcTag(nfcReaderId: string, tagId: string) {
   }
 
   await setAttachedNfcTag(nfcReaderId, attachedTag);
-  console.log('Attached tag to nfc-reader');
+  log('Attached tag to nfc-reader');
 
   // reset the attached-tag after 5 seconds as it is normally only attached for a short period of time
   setTimeout(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    setAttachedNfcTag(nfcReaderId, null); // we do not need to await this promise
-    console.log('Detached tag from nfc-reader');
+    void setAttachedNfcTag(nfcReaderId, null);
+    log('Detached tag from nfc-reader');
   }, 1000 * 5);
 }
 
-async function start() {
+async function start(): Promise<void> {
   const nfcReaderId = process.env.NFC_READER_ID || null;
   const apiUrl = process.env.API_URL || null;
 
@@ -74,13 +80,12 @@ async function start() {
   });
 
   nfcReader.on('open', (device) => {
-    console.log('Connected to NFC device:', device);
+    log('Connected to NFC device:', device);
   });
 
   nfcReader.on('tag-attached', (tagId) => {
-    console.log('Tag attached:', tagId);
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    updateNfcTag(nfcReaderId, tagId); // we do not need to await this promise
+    log('Tag attached:', tagId);
+    void updateNfcTag(nfcReaderId, tagId);
   });
 
   try {
@@ -90,5 +95,4 @@ async function start() {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-start(); // this promise should not be awaited
+void start();
