@@ -1,5 +1,7 @@
 <template>
-  <div class="add-tag-step-details p-12">Bitte halte deinen Tag an den Reader!</div>
+  <div class="add-tag-step-details p-12">
+    <img src="../../assets/attach-tag.gif" />
+  </div>
 </template>
 
 <script lang="ts">
