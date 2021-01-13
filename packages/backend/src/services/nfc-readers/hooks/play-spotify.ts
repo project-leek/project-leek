@@ -51,13 +51,10 @@ export default async (context: HookContext<NFCReader>): Promise<HookContext> => 
     return context;
   }
 
-  const { attachedTagData } = context.data;
-  const query = { nfcData: attachedTagData as string };
-
+  const query = { nfcData: context.data.attachedTagData };
   const nfcTagSearchResult = (await context.app.service('nfc-tags').find({ query })) as Paginated<NFCTag>;
 
   if (nfcTagSearchResult.total !== 1) {
-    console.error('Could not find the attached tag.');
     return context;
   }
 
@@ -70,11 +67,7 @@ export default async (context: HookContext<NFCReader>): Promise<HookContext> => 
   const nfcReader = await context.service.get(context.id);
   const user = await context.app.service('users').get(nfcReader.owner);
 
-  try {
-    await playSpotify(context.app, user, nfcTag.spotifyTrackUri);
-  } catch (error) {
-    console.error('Could not play track.', error);
-  }
+  await playSpotify(context.app, user, nfcTag.spotifyTrackUri);
 
   return context;
 };
