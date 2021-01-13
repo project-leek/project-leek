@@ -1,43 +1,53 @@
 <template>
   <div class="relative h-10 min-w-min">
+    <span v-if="label" class="ml-6 text-base text-white font-heading">{{ label }}</span>
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-button shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
+      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
       :class="{ 'z-50': dropdownExtended }"
-      tabindex="0"
-      @focusout="dropdownExtended = false"
     >
-      <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-        <span class="flex-1">{{ getHeaderText() }}</span>
-        <img
+      <div class="flex items-center pl-2" @click="dropdownExtended = !dropdownExtended">
+        <span class="">{{ getHeaderText() }}</span>
+        <Button
           v-if="dropdownExtended"
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-down.svg"
+          class="ml-auto w-8 h-8"
+          icon="fas fa-chevron-down"
+          :icon-size="3"
+          round
         />
-        <img
-          v-else
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-right.svg"
-        />
+        <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
       </div>
-      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
-        <div
-          v-for="(item, index) in selectableItemValues"
-          :key="index"
-          class="w-full pl-2 rounded-2xl hover:bg-yellow-200"
-          @click="itemClick(item)"
-        >
-          {{ item }}
+      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
+        <div v-for="(item, index) in selectableItemValues" :key="index">
+          <hr class="w-full border-dotted border-secondary border-1 my-2" />
+          <div class="item flex w-full">
+            <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
+              {{ item.value }}
+            </span>
+            <Button
+              class="w-8 h-8 ml-auto"
+              icon="far fa-trash-alt"
+              :icon-size="3"
+              round
+              @click="removeItem(item)"
+            />
+          </div>
         </div>
-        <div
-          v-if="addItemOption"
-          class="flex w-full items-center pt-0.5 rounded-2xl hover:bg-yellow-200"
-          @click="addItem()"
-        >
-          <img
-            class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 w-6 h-6 justify-start"
-            src="../../assets/icons/plus.svg"
-          />
-          <span class="flex-1">{{ addItemText }}</span>
+        <div v-if="addItemOption" class="">
+          <hr class="w-full border-solid border-secondary border-1 my-2" />
+          <div class="add-item-section flex w-full items-center pt-0.5">
+            <input
+              v-model="newItemValue"
+              class="p-2 rounded-2xl focus:outline-none"
+              :placeholder="addItemText"
+            />
+            <Button
+              class="ml-auto w-8 h-8"
+              icon="fas fa-plus"
+              :icon-size="3"
+              round
+              @click="addItem()"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -45,19 +55,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { Service } from '@feathersjs/feathers';
+import { AbstractEntity } from '@leek/commons';
+import { defineComponent, onMounted, ref } from 'vue';
+
+import feathers from '../../lib/feathers';
+import Button from './Button.vue';
+import ListItem from './Dropdown.ListItem';
 
 export default defineComponent({
   name: 'Dropdown',
 
+  components: { Button },
+
   props: {
-    selectableItemValues: {
-      type: Array,
+    service: {
+      type: String,
       required: true,
     },
     modelValue: {
-      type: String,
+      type: Object,
       required: false,
       default: null,
     },
@@ -71,12 +88,17 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    valueProperty: {
+      type: String,
+      required: false,
+      default: 'value',
+    },
     addItemText: {
       type: String,
       required: false,
       default: 'Please add an element',
     },
-    addItemRedirectTo: {
+    label: {
       type: String,
       required: false,
       default: '',
@@ -85,33 +107,73 @@ export default defineComponent({
 
   emits: ['update:modelValue'],
 
-  setup(props, context) {
-    const currentlySelectedItemValue = ref(props.modelValue);
-    const dropdownExtended = ref(false);
-    const router = useRouter();
+  setup(props, ctx) {
+    const selectedItem = ref<string>(props.modelValue);
+    const dropdownExtended = ref<boolean>(false);
+    const selectableItemValues = ref<ListItem[]>([]);
+    const newItemValue = ref<string>('');
 
-    function itemClick(itemValue: number) {
-      currentlySelectedItemValue.value = itemValue;
-      dropdownExtended.value = false;
-      context.emit('update:modelValue', itemValue);
+    const service = feathers.service(props.service) as Service<AbstractEntity>;
+
+    function getProperty(arr: AbstractEntity[], property: string): ListItem[] {
+      return arr.map((element) => {
+        return {
+          id: element._id,
+          value: element[property] as string,
+        };
+      });
     }
 
-    function getHeaderText() {
-      if (currentlySelectedItemValue.value == null) {
+    async function loadItems(): Promise<void> {
+      const allValues = await service.find();
+      if (allValues && allValues.data) {
+        selectableItemValues.value = getProperty(allValues.data, props.valueProperty);
+      }
+    }
+
+    onMounted(async () => {
+      await loadItems();
+    });
+
+    function itemClick(item: ListItem): void {
+      selectedItem.value.id = item.id;
+      selectedItem.value.value = item.value;
+      dropdownExtended.value = false;
+      ctx.emit('update:modelValue', item);
+    }
+
+    function getHeaderText(): string {
+      if (selectedItem.value == null || selectedItem.value === '') {
         return props.placeholderText;
       }
-      return currentlySelectedItemValue.value;
+      return selectedItem.value.value as string;
     }
 
-    function addItem() {
-      void router.push(props.addItemRedirectTo);
+    async function addItem(): Promise<void> {
+      const newItem = {};
+      newItem[props.valueProperty] = newItemValue.value;
+      await service.create(newItem).data;
+      newItemValue.value = '';
+      await loadItems();
+    }
+
+    async function removeItem(item: ListItem): Promise<void> {
+      if (item.id === selectedItem.value.id) {
+        selectedItem.value = new ListItem();
+        ctx.emit('update:modelValue', selectedItem.value);
+      }
+      await service.remove(item.id);
+      await loadItems();
     }
 
     return {
-      addItem,
       itemClick,
       getHeaderText,
+      addItem,
+      removeItem,
       dropdownExtended,
+      selectableItemValues,
+      newItemValue,
     };
   },
 });

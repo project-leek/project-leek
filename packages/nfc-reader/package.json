@@ -8,7 +8,7 @@
     "build": "yarn clean && ncc build src/index.ts -o dist",
     "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
     "typecheck": "tsc --noEmit",
-    "clean": "shx rm -rf dist/",
+    "clean": "shx rm -rf dist/ *.tsbuildinfo",
     "reset": "yarn clean"
   },
   "dependencies": {
