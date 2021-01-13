@@ -7,18 +7,19 @@
       <span
         v-if="icon"
         class="my-auto"
-        :class="[
-          { 'm-auto': rounded },
-          icon,
-          { 'mx-auto': !rounded && !text },
-          { 'ml-2': text },
-          `text-${iconsize}`,
-        ]"
+        :class="{
+          'm-auto': rounded,
+          'mx-auto': !rounded && !text,
+          'ml-2': !!text,
+          [`text-${iconsize}`]: true,
+          fas: true,
+          [icon]: true,
+        }"
       />
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
-        :class="[{ 'ml-4': icon }, { 'mx-auto': !rounded && !icon }, `text-${textsize}`]"
+        :class="{ 'ml-4': icon, 'mx-auto': !rounded && !icon, [`text-${textsize}`]: true }"
       >
         {{ text }}
       </p>
