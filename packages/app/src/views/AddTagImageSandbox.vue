@@ -5,7 +5,7 @@
     <main
       class="h-2/3 overflow-x-hidden overflow-y-scroll bg-yellow-300 flex items-center justify-center text-4xl text-gray-800"
     >
-      <AddTagStepImage />
+      <AddTagStepImage img="stadt.jpg" />
     </main>
     <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
       Footer

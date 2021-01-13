@@ -27,6 +27,7 @@ const routes: RouteRecordRaw[] = [
     path: '/test',
     name: 'test',
     component: (): Component => import('../views/AddTagImageSandbox.vue'),
+    meta: { authentication: 'guests-only' },
   },
   {
     path: '/oauth/callback',
