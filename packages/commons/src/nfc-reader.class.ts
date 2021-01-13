@@ -3,7 +3,8 @@ import NFCTag from './nfc-tag.class';
 import User from './user.class';
 
 export default class NFCReader extends AbstractEntity {
-  attachedTag!: Ref<NFCTag> | null;
+  /** The hardware id of an attached tag */
+  attachedTagData!: NFCTag['nfcData'] | null;
 
   owner!: Ref<User>;
 }
