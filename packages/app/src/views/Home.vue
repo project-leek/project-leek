@@ -2,6 +2,7 @@
   <div class="home mx-auto max-w-lg h-full w-full flex flex-col">
     <header class="h-1/5 flex items-end justify-center text-4xl text-gray-800">
       <Button
+        :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
         :text-size="5"

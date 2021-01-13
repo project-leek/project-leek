@@ -41,10 +41,6 @@ export default defineComponent({
       type: [Object, String] as PropType<RouteLocationRaw>,
       default: null,
     },
-    revert: {
-      type: Boolean,
-      default: false,
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -69,6 +65,10 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    back: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: ['click'],
@@ -86,7 +86,7 @@ export default defineComponent({
         return;
       }
 
-      if (props.revert) {
+      if (props.back) {
         router.go(-1);
       }
 
