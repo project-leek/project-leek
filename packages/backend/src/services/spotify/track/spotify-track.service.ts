@@ -52,9 +52,12 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
       if (trackResp.body.tracks) {
         const tracks = trackResp.body.tracks.items;
         return tracks.map((track) => {
-          const artists = track.artists.map((artist) => artist.name);
-          const imageUri = track.album.images[0].url;
-          return new SpotifyTrack(track.uri, track.name, artists, imageUri);
+          return {
+            uri: track.uri,
+            title: track.name,
+            artists: track.artists.map((artist) => artist.name),
+            imageUri: track.album.images[0].url,
+          } as SpotifyTrack;
         });
       }
     } catch (_error) {
