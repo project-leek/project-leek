@@ -93,7 +93,7 @@ export default defineComponent({
       ctx.emit('click');
     };
 
-    const getSize = (size): string => {
+    const getSize = (size: number): string => {
       if (size === 1) {
         return 'xs';
       }
