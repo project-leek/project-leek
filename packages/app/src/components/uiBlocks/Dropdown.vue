@@ -5,7 +5,10 @@
       class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
       :class="{ 'z-50': dropdownExtended }"
     >
-      <div class="flex items-center pl-2" @click="dropdownExtended = !dropdownExtended">
+      <div
+        class="flex items-center pl-2 cursor-pointer"
+        @click="dropdownExtended = !dropdownExtended"
+      >
         <span class="label">{{ (modelValue && modelValue.value) || placeholderText }}</span>
         <Button
           v-if="dropdownExtended"
@@ -19,11 +22,13 @@
       <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
         <div v-for="item in items" :key="item.id">
           <hr class="w-full border-dotted border-secondary border-1 my-2" />
-          <div class="item flex w-full">
-            <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="selectItem(item)">
-              {{ item.value }}
-            </span>
+          <div
+            class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
+            @click="selectItem(item)"
+          >
+            <span class="px-2">{{ item.value }}</span>
             <Button
+              v-if="removeable"
               class="w-8 h-8 ml-auto"
               icon="far fa-trash-alt"
               :icon-size="3"
@@ -32,7 +37,7 @@
             />
           </div>
         </div>
-        <div v-if="addItemOption" class="add-item">
+        <div v-if="addItemEnabled" class="add-item">
           <hr class="w-full border-solid border-secondary border-1 my-2" />
           <div class="add-item-section flex w-full items-center pt-0.5">
             <input
@@ -71,10 +76,14 @@ export default defineComponent({
       required: false,
       default: 'Please select an item',
     },
-    addItemOption: {
+    addItemEnabled: {
       type: Boolean,
       required: false,
       default: false,
+    },
+    removeable: {
+      type: Boolean,
+      default: true,
     },
     addItemText: {
       type: String,
@@ -100,6 +109,7 @@ export default defineComponent({
 
     function selectItem(item: ListItem): void {
       ctx.emit('update:modelValue', item);
+      dropdownExtended.value = false;
     }
 
     function addItem(): void {
