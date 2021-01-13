@@ -8,6 +8,7 @@
 import { Paginated } from '@feathersjs/feathers';
 import { NFCReader, NFCTag } from '@leek/commons';
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import feathers from '../../lib/feathers';
 
@@ -19,6 +20,8 @@ export default defineComponent({
   setup(_, ctx) {
     const nfcTag = ref<NFCTag>();
 
+    const router = useRouter();
+
     const attachedTagListener = (nfcReader: NFCReader): void => {
       void (async (): Promise<void> => {
         // TODO only listen to selected nfc-reader
@@ -28,10 +31,12 @@ export default defineComponent({
 
         const nfcTagResult = (await feathers
           .service('nfc-tags')
-          .find({ query: { nfcId: nfcReader.attachedTagData } })) as Paginated<NFCTag>;
+          .find({ query: { nfcData: nfcReader.attachedTagData } })) as Paginated<NFCTag>;
 
         if (nfcTagResult.total > 0) {
-          throw new Error('Tag is already assigned');
+          alert('Der Tag wurde bereits angelegt!');
+          void router.push({ name: 'home' }); // TODO redirect to edit
+          // throw new Error('Tag is already assigned');
         }
 
         // this should not happen
