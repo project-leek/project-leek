@@ -7,13 +7,20 @@
       <textfield
         v-model="currentTag.name"
         placeholder="e.g. mario figurine"
-        class="bg-white rounded-full"
-        @update="$emit('update:modelValue', currentTag)"
+        class="bg-white rounded-full w-full"
+        @update="$emit('update:nfc-tag', currentTag)"
       />
     </div>
     <div class="w-11/12">
       <span class="text-base text-white text-left p-5">Group</span>
-      <Dropdown v-model="selectedGroup" :items="groupNames" />
+      <Dropdown
+        v-model="selectedGroup"
+        v-model:items="groupNames"
+        :removeable="false"
+        placeholder-text="Select a group"
+        :enable-add-item="true"
+        @update:model-value="selectGroup()"
+      />
     </div>
   </div>
 </template>
@@ -24,22 +31,24 @@ import { defineComponent, PropType, ref } from 'vue';
 
 import feathers from '../../lib/feathers';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
+import Dropdown from '../uiBlocks/Dropdown.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'AddTagStepInfo',
   components: {
     Textfield,
+    Dropdown,
   },
   props: {
-    modelValue: {
+    nfcTag: {
       type: Object as PropType<NFCTag>,
       required: true,
     },
   },
-  emits: { 'update:modelValue': null },
-  setup(props) {
-    const currentTag = ref(props.modelValue);
+  emits: { 'update:nfc-tag': null },
+  setup(props, ctx) {
+    const currentTag = ref(props.nfcTag);
     const groupNames = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
 
@@ -47,16 +56,25 @@ export default defineComponent({
       const allTags = await feathers.service('nfc-tags').find();
       if (allTags instanceof Array) {
         allTags.map((tag: NFCTag) => {
-          groupNames.value.push(new ListItem(tag.group, tag.group));
+          if (tag.group) {
+            groupNames.value.push(new ListItem(tag.group, tag.group));
+          }
         });
       } else {
         allTags.data.map((tag: NFCTag) => {
-          groupNames.value.push(new ListItem(tag.group, tag.group));
+          if (tag.group) {
+            groupNames.value.push(new ListItem(tag.group, tag.group));
+          }
         });
       }
       selectedGroup.value = groupNames.value.find(
         (element) => element.value === currentTag.value.group
       );
+    }
+
+    function selectGroup(): void {
+      currentTag.value.group = selectedGroup.value?.value || '';
+      ctx.emit('update:nfc-tag', currentTag);
     }
 
     loadGroupNames().catch(() => {
@@ -67,6 +85,7 @@ export default defineComponent({
       currentTag,
       groupNames,
       selectedGroup,
+      selectGroup,
     };
   },
 });
