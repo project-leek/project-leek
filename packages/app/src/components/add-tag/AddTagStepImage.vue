@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start">
+  <div class="add-tag-step-image w-full flex flex-grow flex-col justify-start items-start">
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
