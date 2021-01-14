@@ -48,7 +48,17 @@ async function seedTags(): Promise<void> {
     spotifyTrackUri: 'https://api.spotify.com/v1/tracks/2KrxsD86ARO5beq7Q0Drfqa',
     imageUrl: 'https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_960_720.jpg',
     group: 'Entdecken',
+    name: 'good boy',
     nfcData: 'flonke4',
+  });
+
+  await app.service('nfc-tags').create({
+    _id: '123babj123123ajdf', // use a fixed id to prevent duplicates
+    spotifyTrackUri: 'https://api.spotify.com/v1/tracks/2KrxsD86ARO5beq7Q0Drfqa',
+    imageUrl: 'https://cdn.pixabay.com/photo/2020/12/20/04/06/bear-5846065_960_720.jpg',
+    group: 'Entdecken',
+    name: 'Bär in Kiel',
+    nfcData: 'flonke5',
   });
 }
 
