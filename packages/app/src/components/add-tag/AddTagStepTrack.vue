@@ -3,7 +3,7 @@
     <!-- Search -->
     <Textfield
       v-model="search"
-      class="mx-auto -mt-4 mb-4"
+      class="w-full px-4 -mt-5"
       placeholder="Titelsuche"
       icon="fas fa-search"
     />
