@@ -1,19 +1,27 @@
 <template>
-  <div class="add-tag-step-place-tag-on-reader p-12">
-    <img src="../../assets/attach-tag.gif" />
+  <div class="add-tag-step-place-tag-on-reader p-6 w-full flex justify-center items-center">
+    <img src="../../assets/attach-tag.gif" class="transform -translate-x-4 -translate-y-8" />
   </div>
 </template>
 
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCReader, NFCTag } from '@leek/commons';
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import feathers from '../../lib/feathers';
 
 export default defineComponent({
   name: 'AddTagStepPlaceOnReader',
+
+  props: {
+    // eslint-disable-next-line vue/no-unused-properties
+    nfcTag: {
+      type: Object as PropType<NFCTag>,
+      default: null,
+    },
+  },
 
   emits: ['proceed', 'update:nfc-tag'],
 
