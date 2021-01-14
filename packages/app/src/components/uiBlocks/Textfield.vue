@@ -8,7 +8,7 @@
     >
       <span v-if="icon" class="mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
       <input
-        class="focus: outline-none bg-transparent placeholder-opacity-50 text-2xl"
+        class="w-full outline-none bg-transparent placeholder-opacity-50 text-2xl"
         :placeholder="placeholder"
         type="text"
         :value="modelValue"
