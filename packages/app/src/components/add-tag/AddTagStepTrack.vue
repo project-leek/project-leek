@@ -8,25 +8,16 @@
       icon="fas fa-search"
     />
 
-    <!-- Last listened -->
-    <p class="text-white font-heading text-base ml-6">Zuletzt auf Spotify gehört</p>
-    <!-- Replace With Carussel -->
-    <div id="Carussel" class="flex ml-4 mt-2">
-      <div class="w-28 mr-4">
-        <div class="h-28 w-full bg-green-400"></div>
-        <div class="text-white font-heading text-sm">Geschichten aus der Geschichte</div>
-      </div>
-
-      <div class="w-28 mr-4">
-        <div class="h-28 w-full bg-green-400 mr-4"></div>
-        <div class="text-white font-heading text-sm">Philosophie Geschichte</div>
-      </div>
-
-      <div class="w-28">
-        <div class="h-28 w-full bg-green-400 mr-4"></div>
-        <div class="text-white font-heading text-sm">Big Beats</div>
-      </div>
-    </div>
+    <GroupDropDown>
+      <GroupDropDownItem groupname="Zuletzt gehört">
+        <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
+          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
+          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
+          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
+          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
+        </div>
+      </GroupDropDownItem>
+    </GroupDropDown>
 
     <div id="liste">
       <ul>
@@ -45,12 +36,16 @@ import { NFCTag, SpotifyTrack } from '@leek/commons';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
 import feathers from '../../lib/feathers';
+import GroupDropDown from '../uiBlocks/GroupDropDown.vue';
+import GroupDropDownItem from '../uiBlocks/GroupDropDownItem.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'AddTagStepTrack',
   components: {
     Textfield,
+    GroupDropDown,
+    GroupDropDownItem,
   },
   props: {
     nfcTag: {
