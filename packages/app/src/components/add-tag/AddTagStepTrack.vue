@@ -1,21 +1,27 @@
 <template>
-  <div id="content_wrapper" class="flex flex-col overflow-y-auto">
+  <div id="content_wrapper" class="flex flex-col h-full">
     <!-- Search -->
     <Textfield
       v-model="search"
-      class="mx-auto my-8"
+      class="mx-auto -mt-4 mb-4"
       placeholder="Titelsuche"
       icon="fas fa-search"
     />
 
-    <div id="liste" class="flex flex-col">
-      <div
-        v-for="track in tracks"
-        :key="track._id"
-        class="flex flex-row py-4 hover:bg-secondary rounded-2xl w-4/6 mx-auto"
-      >
-        <TagEntry :img="track.imageUri" class="w-16" @click="changeTrack(track)" />
-        <span class="ml-4">{{ track.title }}</span>
+    <span class="ml-10 text-white font-heading"> Passende Songs zu deiner Eingabe: </span>
+    <div class="w-full h-96 mt-5 overflow-y-auto">
+      <div id="liste" class="flex flex-col w-full">
+        <div
+          v-for="track in tracks"
+          :key="track._id"
+          class="flex flex-row py-2 px-2 hover:bg-primary rounded-2xl w-5/6 mx-auto"
+        >
+          <TagEntry :img="track.imageUri" class="w-16" @click="changeTrack(track)" />
+          <div class="flex flex-col">
+            <span class="ml-4 text-lg">{{ track.title }}</span>
+            <span class="ml-4 text-base">{{ track.artists.join(', ') }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -56,6 +62,8 @@ export default defineComponent({
           },
         };
         tracks.value = (await feathers.service('spotify-tracks').find(params)) as SpotifyTrack[];
+      } else if (search.length === 0) {
+        tracks.value = [];
       }
     });
 

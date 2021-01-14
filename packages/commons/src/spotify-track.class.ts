@@ -5,4 +5,8 @@ export default class SpotifyTrack extends AbstractEntity {
   title!: string;
   artists!: string[];
   imageUri!: string;
+
+  public getArtists(): string {
+    return this.artists.join(', ');
+  }
 }
