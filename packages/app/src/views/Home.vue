@@ -11,19 +11,9 @@
     </header>
     <main class="h-2/3 overflow-x-hidden overflow-y-auto flex flex-col text-4xl text-gray-800">
       <GroupDropDown>
-        <GroupDropDownItem groupname="Zuletzt gehört">
+        <GroupDropDownItem v-for="group in groups" :groupname="group.name">
           <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
-            <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-            <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-            <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-            <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-          </div>
-        </GroupDropDownItem>
-        <GroupDropDownItem groupname="Zuletzt gehört">
-          <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
-            <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-            <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-            <tag-entry class="m-4 w-32" img="./stadt.jpg" />
+            <tag-entry class="m-4 w-32" v-for="entry in group.children" :img="entry.imageUrl" :name="entry.name"/>
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
@@ -45,6 +35,11 @@ import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../lib/feathers';
 
+class Group {
+  name = '';
+  children: NFCTag[] = [];
+}
+
 export default defineComponent({
   name: 'Home',
 
@@ -58,16 +53,30 @@ export default defineComponent({
 
   setup() {
     const searchInput = ref<string>('');
-    const tags = ref<NFCTag[]>([]);
-    const groupNames = ref<string[]>([]);
+    const groups = ref<Group[]>([]);
     onMounted(async () => {
-      const res = await feathers.service('nfc-tags').find();
-      tags.value = res.data as NFCTag[];
-      tags.value.forEach((tag) => {
-        if (!groupNames.value.includes(tag.group)) groupNames.value.push(tag.group);
+      const res = (await feathers.service('nfc-tags').find()).data as NFCTag[];
+      //if there is a group with the name of the current data,
+      res.forEach((entry: NFCTag) => {
+        let alreadyExists = false;
+        groups.value.forEach((group) => {
+          if (group.name === entry.group) {
+            alreadyExists = true;
+            //push into children
+            group.children.push(entry);
+          }
+        });
+        //else then create a new
+        if (!alreadyExists) {
+          let newGroup: Group = {
+            name: entry.group,
+            children: [entry],
+          };
+          groups.value.push(newGroup);
+        }
       });
     });
-    return { searchInput, groupNames};
+    return { groups };
   },
 });
 </script>
