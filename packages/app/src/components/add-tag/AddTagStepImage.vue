@@ -3,12 +3,12 @@
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" img="nfcTag.imageUrl-:vorneran" @click="changeImage(true)" />
-      <span v-if="isSpotify" class="fas fa-check-circle transform -translate-x-9"></span>
+      <span v-if="isSpotify" class="far fa-check-circle transform -translate-x-9"></span>
     </div>
     <div class="m-8 text-lg font-semibold text-white">Mit eigenem Bild ersetzen</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
-      <span v-if="!isSpotify" class="fas fa-check-circle transform -translate-x-9"></span>
+      <span v-if="!isSpotify" class="far fa-check-circle transform -translate-x-9"></span>
     </div>
     <Textfield v-model="externalImage" class="m-8 w-full" placeholder="enter URL" />
   </div>
