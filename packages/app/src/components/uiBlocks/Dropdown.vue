@@ -1,15 +1,16 @@
 <template>
-  <div class="relative h-10 min-w-min">
-    <span v-if="label" class="ml-6 text-base text-white font-heading">{{ label }}</span>
+  <div class="relative">
+    <span v-if="label" class="ml-6 font-bold text-white">{{ label }}</span>
     <div
-      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
+      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
       :class="{ 'z-50': dropdownExtended }"
     >
       <div
         class="flex items-center pl-2 cursor-pointer"
         @click="dropdownExtended = !dropdownExtended"
       >
-        <span class="label">{{ (modelValue && modelValue.value) || placeholderText }}</span>
+        <span v-if="modelValue && modelValue.value" class="value">{{ modelValue.value }}</span>
+        <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
         <Button
           v-if="dropdownExtended"
           class="ml-auto w-8 h-8"
