@@ -15,7 +15,7 @@
       <span class="text-base text-white text-left p-5">Group</span>
       <Dropdown
         v-model="selectedGroup"
-        v-model:items="groupNames"
+        v-model:items="groupListItems"
         :removeable="false"
         placeholder-text="Select a group"
         :enable-add-item="true"
@@ -49,25 +49,31 @@ export default defineComponent({
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
-    const groupNames = ref<ListItem[]>([]);
+    const groupNames = ref<string[]>([]);
+    const groupListItems = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
 
     async function loadGroupNames(): Promise<void> {
       const allTags = await feathers.service('nfc-tags').find();
       if (allTags instanceof Array) {
         allTags.map((tag: NFCTag) => {
-          if (tag.group) {
-            groupNames.value.push(new ListItem(tag.group, tag.group));
+          if (tag.group && !groupNames.value.includes(tag.group)) {
+            groupNames.value.push(tag.group);
           }
         });
       } else {
         allTags.data.map((tag: NFCTag) => {
-          if (tag.group) {
-            groupNames.value.push(new ListItem(tag.group, tag.group));
+          if (tag.group && !groupNames.value.includes(tag.group)) {
+            groupNames.value.push(tag.group);
           }
         });
       }
-      selectedGroup.value = groupNames.value.find(
+
+      groupNames.value.map((groupName: string) =>
+        groupListItems.value.push(new ListItem(groupName, groupName))
+      );
+
+      selectedGroup.value = groupListItems.value.find(
         (element) => element.value === currentTag.value.group
       );
     }
@@ -83,7 +89,7 @@ export default defineComponent({
 
     return {
       currentTag,
-      groupNames,
+      groupListItems,
       selectedGroup,
       selectGroup,
     };
