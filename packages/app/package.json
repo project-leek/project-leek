@@ -21,7 +21,7 @@
     "typeface-baloo": "1.1.13",
     "typeface-roboto": "1.1.13",
     "vue": "3.0.5",
-    "vue-router": "4.0.2"
+    "vue-router": "4.0.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.12.0",
