@@ -26,7 +26,8 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     textSize: {
       type: String,
