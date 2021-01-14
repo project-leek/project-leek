@@ -1,21 +1,19 @@
 <template>
-  <div
-    class="bg-gradient-to-b from-primary to-secondary w-full py-5 h-full flex flex-col items-center"
-  >
-    <div class="w-11/12">
-      <span class="text-base text-white text-left p-5">Tag Name</span>
-      <textfield
+  <div class="w-full p-4 h-full flex flex-col items-center">
+    <div class="w-full">
+      <Textfield
         v-model="currentTag.name"
+        label="Tag Name"
         placeholder="z. B. Mario Figur"
-        class="bg-white rounded-full w-full"
+        class="rounded-full"
         @update="$emit('update:nfc-tag', currentTag)"
       />
     </div>
-    <div class="w-11/12">
-      <span class="text-base text-white text-left p-5">Gruppe</span>
+    <div class="w-full mt-8">
       <Dropdown
         v-model="selectedGroup"
         v-model:items="groupListItems"
+        label="Gruppe"
         :removeable="false"
         placeholder-text="Wähle eine Gruppe"
         :enable-add-item="true"
