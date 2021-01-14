@@ -1,47 +1,64 @@
 <template>
-  <div id="content_wrapper" class="flex flex-col h-full">
+  <div class="flex flex-col w-full">
     <!-- Search -->
     <Textfield
       v-model="search"
       class="w-full px-4 -mt-5"
-      placeholder="Titelsuche"
+      placeholder="Suche einen Titel ..."
       icon="fas fa-search"
     />
 
-    <span class="ml-10 text-white font-heading"> {{ info }} </span>
-    <div class="w-full h-96 mt-5 overflow-y-auto">
-      <div id="liste" class="flex flex-col w-full">
-        <div
-          v-for="track in tracks"
-          :key="track._id"
-          class="flex flex-row py-2 px-2 hover:bg-primary rounded-2xl w-5/6 mx-auto"
-          @click="changeTrack(track)"
-        >
-          <TagEntry :img="track.imageUri" class="w-16" />
-          <div class="flex flex-col">
-            <span class="ml-4 text-lg">{{ track.title }}</span>
-            <span class="ml-4 text-base">{{ track.artists.join(', ') }}</span>
+    <div v-if="isLoading" class="loading flex m-auto">
+      <Loading />
+    </div>
+    <template v-else>
+      <div v-if="search.length < 3" class="flex m-auto text-center">
+        <span class="text-white font-heading text-2xl">Wähle ein schönes Lied für deinen Tag!</span>
+      </div>
+      <div v-else-if="search.length >= 3 && tracks.length === 0" class="m-auto text-center">
+        <img class="mb-4" src="../../assets/not-found.gif" />
+        <span class="text-white font-heading text-2xl">Keine Ergebnisse für "{{ search }}"</span>
+      </div>
+      <div v-else class="w-full min-h-0 pt-4 overflow-y-auto">
+        <div class="flex flex-col w-full">
+          <div
+            v-for="track in tracks"
+            :key="track.uri"
+            class="flex flex-row py-2 px-2 rounded-2xl w-5/6 mx-auto"
+            :class="{ 'bg-primary': selectedTrack && track.uri === selectedTrack.uri }"
+            @click="changeTrack(track)"
+          >
+            <TagEntry :img="track.imageUri" class="w-16" />
+            <div class="flex flex-col">
+              <span class="ml-4 text-lg">{{ track.title }}</span>
+              <span class="ml-4 text-base">{{ track.artists.join(', ') }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { NFCTag, SpotifyTrack } from '@leek/commons';
+import { debounce } from 'lodash';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
 import feathers from '../../lib/feathers';
+import Loading from '../uiBlocks/Loading.vue';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'AddTagStepTrack',
+
   components: {
     Textfield,
     TagEntry,
+    Loading,
   },
+
   props: {
     nfcTag: {
       type: Object as PropType<NFCTag>,
@@ -52,27 +69,25 @@ export default defineComponent({
   emits: ['update:nfc-tag'],
   setup(props, ctx) {
     const search = ref<string>('');
+    const isLoading = ref<boolean>(false);
     const tracks = ref<SpotifyTrack[]>([]);
-    const tag = ref<NFCTag>(props.nfcTag);
+    const tag = ref<NFCTag | null>(props.nfcTag);
     const selectedTrack = ref<SpotifyTrack>();
-    const info = ref<string>('');
 
-    watch(search, async (search) => {
-      if (search.length >= 3) {
-        const params = {
-          query: {
-            name: search,
-          },
-        };
-        tracks.value = (await feathers.service('spotify-tracks').find(params)) as SpotifyTrack[];
-        if (tracks.value.length === 0) {
-          info.value = `keine Ergebnisse für ${search}`;
-        } else {
-          info.value = 'Passende Songs zu deiner Suche';
-        }
-      } else if (search.length === 0) {
-        tracks.value = [];
-        info.value = 'Bitte gebe einen Songtitel ein';
+    const doSearch = debounce(async () => {
+      const params = {
+        query: {
+          name: search.value,
+        },
+      };
+      tracks.value = (await feathers.service('spotify-tracks').find(params)) as SpotifyTrack[];
+      isLoading.value = false;
+    }, 1000 * 0.5);
+
+    watch(search, async (_search) => {
+      if (_search.length >= 3) {
+        isLoading.value = true;
+        await doSearch();
       }
     });
 
@@ -85,12 +100,11 @@ export default defineComponent({
 
     return {
       search,
+      isLoading,
       tracks,
       changeTrack,
-      info,
+      selectedTrack,
     };
   },
 });
 </script>
-
-<style></style>
