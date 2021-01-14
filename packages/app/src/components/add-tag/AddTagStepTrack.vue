@@ -1,32 +1,22 @@
 <template>
-  <div id="content_wrapper" class="flex flex-col">
+  <div id="content_wrapper" class="flex flex-col overflow-y-auto">
     <!-- Search -->
     <Textfield
       v-model="search"
-      class="mx-auto mb-8"
+      class="mx-auto my-8"
       placeholder="Titelsuche"
       icon="fas fa-search"
     />
 
-    <GroupDropDown>
-      <GroupDropDownItem groupname="Zuletzt gehört">
-        <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
-          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-        </div>
-      </GroupDropDownItem>
-    </GroupDropDown>
-
-    <div id="liste">
-      <ul>
-        <li v-for="track in tracks" :key="track.uri" @click="changeTrack(track)">
-          <span :class="{ 'bg-red-400': selectedTrack && selectedTrack.uri === track.uri }">
-            {{ track.title }}
-          </span>
-        </li>
-      </ul>
+    <div id="liste" class="flex flex-col">
+      <div
+        v-for="track in tracks"
+        :key="track._id"
+        class="flex flex-row py-4 hover:bg-secondary rounded-2xl w-4/6 mx-auto"
+      >
+        <TagEntry :img="track.imageUri" class="w-16" @click="changeTrack(track)" />
+        <span class="ml-4">{{ track.title }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -36,16 +26,14 @@ import { NFCTag, SpotifyTrack } from '@leek/commons';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
 import feathers from '../../lib/feathers';
-import GroupDropDown from '../uiBlocks/GroupDropDown.vue';
-import GroupDropDownItem from '../uiBlocks/GroupDropDownItem.vue';
+import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'AddTagStepTrack',
   components: {
     Textfield,
-    GroupDropDown,
-    GroupDropDownItem,
+    TagEntry,
   },
   props: {
     nfcTag: {
