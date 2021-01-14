@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
 
@@ -22,14 +22,6 @@ export default defineComponent({
   },
   props: {},
   setup() {
-    const useExplorer = () => {
-      return; //todo implement opening explorer
-    };
-
-    const useSpotify = () => {
-      return; //todo implement showing green border around spotify image
-    };
-
     return {};
   },
 });

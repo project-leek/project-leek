@@ -25,7 +25,9 @@ export default defineComponent({
       // create copy of nfc-tag
       const nfcTag = props.nfcTag;
       nfcTag.group = 'Mukke'; // TODO
-      nfcTag.imageUrl =
+      nfcTag.activeImageUrl =
+        'http://www.nordseeinseln-infos.de/wp-content/uploads/Nordseeinseln_V%C3%B6gel_M%C3%B6wen_Sylt.jpg'; // TODO
+      nfcTag.spotifyImageUrl =
         'http://www.nordseeinseln-infos.de/wp-content/uploads/Nordseeinseln_V%C3%B6gel_M%C3%B6wen_Sylt.jpg'; // TODO
       ctx.emit('update:nfc-tag', nfcTag);
     });
