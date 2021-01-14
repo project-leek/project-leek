@@ -33,7 +33,7 @@ const feathersClient = feathers<ServiceTypes>() as Application;
 feathersClient.configure(socketio(socket));
 feathersClient.configure(auth());
 
-function debug(...str: string[]) {
+function debug(...str: string[]): void {
   // eslint-disable-next-line no-console
   console.log(...str);
 }

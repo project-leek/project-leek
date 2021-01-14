@@ -1,43 +1,54 @@
 <template>
   <div class="relative h-10 min-w-min">
+    <span v-if="label" class="ml-6 text-base text-white font-heading">{{ label }}</span>
     <div
-      class="absolute bg-white rounded-2xl p-0.5 px-1 w-full flex flex-col text-lg border-button shadow-lg border-2 divide-y-2 divide-yellow-50 outline-none"
+      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
       :class="{ 'z-50': dropdownExtended }"
-      tabindex="0"
-      @focusout="dropdownExtended = false"
     >
-      <div class="flex w-full items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-        <span class="flex-1">{{ getHeaderText() }}</span>
-        <img
+      <div
+        class="flex items-center pl-2 cursor-pointer"
+        @click="dropdownExtended = !dropdownExtended"
+      >
+        <span class="label">{{ (modelValue && modelValue.value) || placeholderText }}</span>
+        <Button
           v-if="dropdownExtended"
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-down.svg"
+          class="ml-auto w-8 h-8"
+          icon="fas fa-chevron-down"
+          :icon-size="3"
+          round
         />
-        <img
-          v-else
-          class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mt-0.5 ml-2 w-6 h-6 justify-end self-start"
-          src="../../assets/icons/chevron-right.svg"
-        />
+        <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
       </div>
-      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 mr-6 static z-50">
-        <div
-          v-for="(item, index) in selectableItemValues"
-          :key="index"
-          class="w-full pl-2 rounded-2xl hover:bg-yellow-200"
-          @click="itemClick(item)"
-        >
-          {{ item }}
+      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
+        <div v-for="item in items" :key="item.id">
+          <hr class="w-full border-dotted border-secondary border-1 my-2" />
+          <div
+            :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
+            class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
+            @click="selectItem(item)"
+          >
+            <span class="px-2">{{ item.value }}</span>
+            <Button
+              v-if="removeable"
+              class="w-8 h-8 ml-auto"
+              icon="far fa-trash-alt"
+              :icon-size="3"
+              round
+              @click="removeItem(item)"
+            />
+          </div>
         </div>
-        <div
-          v-if="addItemOption"
-          class="flex w-full items-center pt-0.5 rounded-2xl hover:bg-yellow-200"
-          @click="addItem()"
-        >
-          <img
-            class="flex-none bg-gradient-to-b from-primary to-secondary rounded-full p-0.5 mr-2 w-6 h-6 justify-start"
-            src="../../assets/icons/plus.svg"
-          />
-          <span class="flex-1">{{ addItemText }}</span>
+        <div v-if="enableAddItem" class="add-item">
+          <hr class="w-full border-solid border-secondary border-1 my-2" />
+          <div class="add-item-section flex w-full items-center pt-0.5">
+            <input
+              v-model="newItemValue"
+              :placeholder="addItemText"
+              class="flex-grow p-2 rounded-2xl focus:outline-none"
+              @keyup.enter="addItem"
+            />
+            <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
+          </div>
         </div>
       </div>
     </div>
@@ -45,19 +56,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, PropType, ref } from 'vue';
+
+import Button from './Button.vue';
+import ListItem from './Dropdown.ListItem';
 
 export default defineComponent({
   name: 'Dropdown',
 
+  components: { Button },
+
   props: {
-    selectableItemValues: {
-      type: Array,
-      required: true,
-    },
     modelValue: {
-      type: String,
+      type: Object as PropType<ListItem | null>,
       required: false,
       default: null,
     },
@@ -66,52 +77,73 @@ export default defineComponent({
       required: false,
       default: 'Please select an item',
     },
-    addItemOption: {
+    enableAddItem: {
       type: Boolean,
       required: false,
       default: false,
+    },
+    removeable: {
+      type: Boolean,
+      default: true,
     },
     addItemText: {
       type: String,
       required: false,
       default: 'Please add an element',
     },
-    addItemRedirectTo: {
+    label: {
       type: String,
       required: false,
       default: '',
     },
+    items: {
+      type: Array as PropType<ListItem[]>,
+      default: (): ListItem[] => [],
+    },
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value', 'add-item', 'remove-item'],
 
-  setup(props, context) {
-    const currentlySelectedItemValue = ref(props.modelValue);
-    const dropdownExtended = ref(false);
-    const router = useRouter();
+  setup(props, ctx) {
+    const dropdownExtended = ref<boolean>(false);
+    const newItemValue = ref<string>('');
 
-    function itemClick(itemValue: number) {
-      currentlySelectedItemValue.value = itemValue;
-      dropdownExtended.value = false;
-      context.emit('update:modelValue', itemValue);
-    }
-
-    function getHeaderText() {
-      if (currentlySelectedItemValue.value == null) {
-        return props.placeholderText;
+    function selectItem(item: ListItem): void {
+      if (props.modelValue && props.modelValue.id === item.id) {
+        ctx.emit('update:model-value', null);
+      } else {
+        ctx.emit('update:model-value', item);
       }
-      return currentlySelectedItemValue.value;
+
+      dropdownExtended.value = false;
     }
 
-    function addItem() {
-      void router.push(props.addItemRedirectTo);
+    function addItem(): void {
+      // skip empty inputs
+      if (newItemValue.value === '') {
+        return;
+      }
+
+      ctx.emit('add-item', newItemValue.value);
+      newItemValue.value = '';
+
+      ctx.emit('update:model-value', null);
+    }
+
+    function removeItem(item: ListItem): void {
+      if (props.modelValue && item.id === props.modelValue.id) {
+        ctx.emit('update:model-value', null);
+      }
+
+      ctx.emit('remove-item', item);
     }
 
     return {
+      selectItem,
       addItem,
-      itemClick,
-      getHeaderText,
+      removeItem,
       dropdownExtended,
+      newItemValue,
     };
   },
 });

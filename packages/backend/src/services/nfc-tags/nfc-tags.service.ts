@@ -26,5 +26,5 @@ export default (app: Application): void => {
 
   // Initialize our service with any options it requires
   app.use('nfc-tags', new NFCTagService(options));
-  app.service('nfc-tags').publish(() => app.channel('anonymous'));
+  app.service('nfc-tags').publish(() => app.channel('authenticated'));
 };

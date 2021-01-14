@@ -1,3 +1,4 @@
+import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
@@ -6,6 +7,19 @@ import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
+    path: '/oauth/callback',
+    name: 'oauth-callback',
+    component: (): Component => import('../views/auth/OAuthCallback.vue'),
+    meta: { authentication: 'guests-only' },
+  },
+  {
+    path: '/oauth/:oauthProvider',
+    name: 'oauth-start',
+    component: (): Component => import('../views/auth/OAuthStart.vue'),
+    meta: { authentication: 'guests-only' },
+    props: true,
+  },
+  {
     path: '/',
     name: 'home',
     component: Home,
@@ -13,14 +27,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/welcome',
     name: 'welcome',
-    component: () => import('../views/Welcome.vue'),
+    component: (): Component => import('../views/Welcome.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/callback',
-    name: 'oauth-callback',
-    component: () => import('../views/auth/OAuthCallback.vue'),
-    meta: { authentication: 'guests-only' },
+    path: '/sandbox',
+    name: 'sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
   },
   { //delete this path after merging
     path: '/sandboxtom',
@@ -29,12 +42,11 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/:oauthProvider',
-    name: 'oauth-start',
-    component: () => import('../views/auth/OAuthStart.vue'),
-    meta: { authentication: 'guests-only' },
-    props: true,
+    path: '/tag/add',
+    name: 'add-tag',
+    component: (): Component => import('../views/AddTag.vue'),
   },
+  // this should be the last route to catch all unhandled requests
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
