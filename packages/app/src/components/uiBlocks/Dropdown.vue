@@ -102,7 +102,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:model-value', 'add-item', 'remove-item'],
+  emits: ['update:model-value', 'update:items', 'remove-item'],
 
   setup(props, ctx) {
     const dropdownExtended = ref<boolean>(false);
@@ -123,11 +123,11 @@ export default defineComponent({
       if (newItemValue.value === '') {
         return;
       }
-
-      ctx.emit('add-item', newItemValue.value);
+      const newItem = new ListItem(newItemValue.value, newItemValue.value);
+      ctx.emit('update:items', props.items.concat(newItem));
+      ctx.emit('update:model-value', newItem);
       newItemValue.value = '';
-
-      ctx.emit('update:model-value', null);
+      dropdownExtended.value = false;
     }
 
     function removeItem(item: ListItem): void {
