@@ -2,7 +2,7 @@ import { AdapterService } from '@feathersjs/adapter-commons';
 import auth from '@feathersjs/authentication-client';
 import feathers, { Application as FeathersApplication, ServiceAddons } from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
-import { NFCReader, NFCTag, User } from '@leek/commons';
+import { NFCReader, NFCTag, SpotifyTrack, User } from '@leek/commons';
 import io from 'socket.io-client';
 
 type Service<T> = AdapterService<T> & ServiceAddons<T>;
@@ -12,6 +12,7 @@ interface ServiceTypes {
   users: Service<User>;
   'nfc-readers': Service<NFCReader>;
   'nfc-tags': Service<NFCTag>;
+  'spotify-tracks': Service<SpotifyTrack>;
 }
 
 interface AuthenticationResult {
