@@ -1,5 +1,14 @@
 <template>
   <div class="w-full h-full bg-red-500">
+    <div class="w-72 h-96">
+      <add-tag-step-info :nfc-tag="tag" />
+    </div>
+    <textfield v-model="tag.name" placeholder="Test for AddTagInfoStep" class="w-full h-15 my-5" />
+    <textfield
+      v-model="tag.group"
+      placeholder="Test for AddTagInfoStep Group selection"
+      class="w-full h-15 my-5"
+    />
     <h1 class="text-3xl text-center bg-primary py-2">Sandbox</h1>
     <div class="p-2">
       <!-- Dropdown -->
@@ -23,14 +32,16 @@
 
       <!-- Textfield -->
       <h1 class="text-2xl text-center bg-secondary py-1">Textfield</h1>
-      <Textfield v-model="textValue" placeholder="Type here!" class="w-full h-15 my-5" />
+      <textfield v-model="textValue" placeholder="Type here!" class="w-full h-15 my-5" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { NFCTag } from '@leek/commons';
 import { defineComponent, ref } from 'vue';
 
+import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
@@ -42,6 +53,7 @@ export default defineComponent({
     Button,
     Dropdown,
     Textfield,
+    AddTagStepInfo,
   },
   setup() {
     const dropdownItems = ref<ListItem[]>([
@@ -60,6 +72,7 @@ export default defineComponent({
     };
 
     const textValue = ref<string>('');
+    const tag = ref<NFCTag>(new NFCTag());
 
     return {
       dropdownItems,
@@ -67,6 +80,7 @@ export default defineComponent({
       addDropdownItem,
       removeDropdownItem,
       textValue,
+      tag,
     };
   },
 });
