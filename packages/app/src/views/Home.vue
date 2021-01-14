@@ -11,16 +11,20 @@
     </header>
     <main class="h-2/3 overflow-x-hidden overflow-y-auto flex flex-col text-4xl text-gray-800">
       <GroupDropDown>
-        <GroupDropDownItem v-for="group in groups" :groupname="group.name">
+        <GroupDropDownItem v-for="group in groups" :key="group.name" :groupname="group.name">
           <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
-            <tag-entry class="m-4 w-32" v-for="entry in group.children" :img="entry.imageUrl" :name="entry.name"/>
+            <tag-entry
+              v-for="entry in group.children"
+              :key="entry.nfcData"
+              class="m-4 w-32"
+              :img="entry.imageUrl"
+              :name="entry.name"
+            />
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
     </main>
-    <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800">
-      <Textfield v-model="searchInput" class="w-5/6" placeholder="Titelsuche" icon="search" />
-    </footer>
+    <footer class="flex-grow flex items-center justify-center text-4xl text-gray-800"></footer>
   </div>
 </template>
 
@@ -32,7 +36,6 @@ import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
-import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../lib/feathers';
 
 class Group {
@@ -45,14 +48,12 @@ export default defineComponent({
 
   components: {
     Button,
-    Textfield,
     TagEntry,
     GroupDropDown,
     GroupDropDownItem,
   },
 
   setup() {
-    const searchInput = ref<string>('');
     const groups = ref<Group[]>([]);
     onMounted(async () => {
       const res = (await feathers.service('nfc-tags').find()).data as NFCTag[];
