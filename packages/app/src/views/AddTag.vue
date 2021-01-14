@@ -66,6 +66,7 @@ import { useRouter } from 'vue-router';
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
 import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
+import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import feathers from '../lib/feathers';
 
@@ -78,7 +79,7 @@ export default defineComponent({
 
   setup() {
     const nfcTag = ref<NFCTag | null>(null);
-    const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepImage];
+    const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
     const activeStep = ref<number>(0);
     const router = useRouter();
 
