@@ -2,15 +2,20 @@
   <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start">
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" :img="nfcTag.imageUrl" @click="changeImage(true)" />
+      <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
       <span v-if="isSpotify" class="far fa-check-circle transform -translate-x-9" />
     </div>
-    <div class="m-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
+    <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
+      <TagEntry
+        v-if="externalImage"
+        class="ml-8 w-32"
+        :img="externalImage"
+        @click="changeImage(false)"
+      />
       <span v-if="!isSpotify" class="far fa-check-circle transform -translate-x-9" />
     </div>
-    <Textfield v-model="externalImage" class="m-8 w-full" placeholder="enter URL" />
+    <Textfield v-model="externalImage" class="mb-8 mx-8 mt-2 w-full" placeholder="enter URL" />
   </div>
 </template>
 
@@ -32,16 +37,24 @@ export default defineComponent({
       required: true,
     },
   },
-
-  setup() {
+  emits: { 'update:nfc-tag': null },
+  setup(props, ctx) {
     const isSpotify = ref<boolean>(true);
     const externalImage = ref<string>('');
+    const currentTag = ref<NFCTag>(props.nfcTag);
+    const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
     const changeImage = (val: boolean): void => {
       isSpotify.value = val;
+      if (isSpotify.value) {
+        currentTag.value.imageUrl = spotifyImageUrl.value;
+      } else {
+        currentTag.value.imageUrl = externalImage.value;
+      }
+      ctx.emit('update:nfc-tag', currentTag.value);
     };
 
-    return { externalImage, isSpotify, changeImage };
+    return { externalImage, isSpotify, changeImage, spotifyImageUrl };
   },
 });
 </script>
