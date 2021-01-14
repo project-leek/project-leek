@@ -7,18 +7,6 @@
       placeholder="Titelsuche"
       icon="fas fa-search"
     />
-
-    <GroupDropDown>
-      <GroupDropDownItem groupname="Zuletzt gehört">
-        <div class="flex flex-row flex-grow content-start p-2 overflow-x-auto">
-          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" name="City Song" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-          <tag-entry class="m-4 w-32" img="./stadt.jpg" />
-        </div>
-      </GroupDropDownItem>
-    </GroupDropDown>
-
     <div id="liste">
       <ul>
         <li v-for="track in tracks" :key="track.uri" @click="changeTrack(track)">
@@ -36,16 +24,12 @@ import { NFCTag, SpotifyTrack } from '@leek/commons';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
 import feathers from '../../lib/feathers';
-import GroupDropDown from '../uiBlocks/GroupDropDown.vue';
-import GroupDropDownItem from '../uiBlocks/GroupDropDownItem.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'AddTagStepTrack',
   components: {
     Textfield,
-    GroupDropDown,
-    GroupDropDownItem,
   },
   props: {
     nfcTag: {
