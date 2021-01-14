@@ -10,14 +10,11 @@
         class="bg-white rounded-full"
         @update="$emit('update:modelValue', currentTag)"
       />
-
-
     </div>
     <div class="w-11/12">
       <span class="text-base text-white text-left p-5">Group</span>
       <Dropdown v-model="selectedGroup" :items="groupNames" />
     </div>
-
   </div>
 </template>
 
@@ -57,7 +54,9 @@ export default defineComponent({
           groupNames.value.push(new ListItem(tag.group, tag.group));
         });
       }
-      selectedGroup.value = groupNames.value[currentTag.group];
+      selectedGroup.value = groupNames.value.find(
+        (element) => element.value === currentTag.value.group
+      );
     }
 
     loadGroupNames().catch(() => {
@@ -67,6 +66,7 @@ export default defineComponent({
     return {
       currentTag,
       groupNames,
+      selectedGroup,
     };
   },
 });
