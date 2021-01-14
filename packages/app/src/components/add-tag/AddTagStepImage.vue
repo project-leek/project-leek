@@ -2,13 +2,13 @@
   <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start">
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" img="nfcTag.imageUrl-:vorneran" @click="isSpotify = true" />
-      <span v-if="isSpotify" class="fas fa-check-circle transform -translate-x-9"></span>
+      <TagEntry class="ml-8 w-32" :img="nfcTag.imageUrl" @click="changeImage(true)" />
+      <span v-if="isSpotify" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <div class="m-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" :img="externalImage" @click="isSpotify = false" />
-      <span v-if="!isSpotify" class="fas fa-check-circle transform -translate-x-9"></span>
+      <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
+      <span v-if="!isSpotify" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <Textfield v-model="externalImage" class="m-8 w-full" placeholder="enter URL" />
   </div>
@@ -29,18 +29,19 @@ export default defineComponent({
   props: {
     nfcTag: {
       type: Object as PropType<NFCTag>,
-      required: false, //set to true after testing
-      default: null,
+      required: true,
     },
   },
 
   setup() {
-    const changeImage = () => {
-
-    }
     const isSpotify = ref<boolean>(true);
     const externalImage = ref<string>('');
-    return { externalImage, isSpotify };
+
+    const changeImage = (val: boolean): void => {
+      isSpotify.value = val;
+    };
+
+    return { externalImage, isSpotify, changeImage };
   },
 });
 </script>
