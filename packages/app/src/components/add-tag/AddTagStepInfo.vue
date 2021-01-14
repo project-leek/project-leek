@@ -6,18 +6,18 @@
       <span class="text-base text-white text-left p-5">Tag Name</span>
       <textfield
         v-model="currentTag.name"
-        placeholder="e.g. mario figurine"
+        placeholder="z. B. Mario Figur"
         class="bg-white rounded-full w-full"
         @update="$emit('update:nfc-tag', currentTag)"
       />
     </div>
     <div class="w-11/12">
-      <span class="text-base text-white text-left p-5">Group</span>
+      <span class="text-base text-white text-left p-5">Gruppe</span>
       <Dropdown
         v-model="selectedGroup"
         v-model:items="groupListItems"
         :removeable="false"
-        placeholder-text="Select a group"
+        placeholder-text="Wähle eine Gruppe"
         :enable-add-item="true"
         @update:model-value="selectGroup()"
       />
