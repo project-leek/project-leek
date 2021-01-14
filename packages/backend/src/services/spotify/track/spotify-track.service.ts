@@ -25,7 +25,6 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
   }
 
   async find(params: Params): Promise<SpotifyTrack[]> {
-    console.log('user:', params?.user?._id);
     const user: User = await this.app.service('users').get(params?.user?._id);
     const res = await this.searchForTracks(user, params.query);
     return res;

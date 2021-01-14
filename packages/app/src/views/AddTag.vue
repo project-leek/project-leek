@@ -63,10 +63,9 @@ import { NFCTag } from '@leek/commons';
 import { defineComponent, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import AddTagStepDemo from '../components/add-tag/AddTagStepDemo.vue';
-import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
 import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
+import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import feathers from '../lib/feathers';
 

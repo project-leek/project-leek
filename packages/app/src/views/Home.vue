@@ -37,7 +37,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import AddTagStepTrack from '../components/addTag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
