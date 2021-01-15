@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex flex-col">
+  <div class="home w-full flex flex-col">
     <header class="flex my-5 items-end justify-center text-4xl text-gray-800">
       <Button
         :to="{ name: 'add-tag' }"
