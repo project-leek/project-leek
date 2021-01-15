@@ -9,14 +9,14 @@
       </div>
     </header>
 
-    <main class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto">
+    <div class="bg-yellow-400 w-full flex-grow">
       <component
         :is="steps[activeStep]"
         :nfc-tag="nfcTag"
         @update:nfc-tag="updateTag"
         @proceed="activeStep++"
       />
-    </main>
+    </div>
 
     <footer class="flex flex-col items-center">
       <ul
@@ -27,7 +27,7 @@
         </li>
       </ul>
 
-      <div class="actions flex flex-row w-full justify-center mb-4 px-4">
+      <div class="actions flex flex-row justify-center mb-4">
         <Button
           v-if="activeStep !== 0"
           round

@@ -1,9 +1,9 @@
 import { AdapterService, ServiceOptions } from '@feathersjs/adapter-commons';
-import { Params, ServiceAddons } from '@feathersjs/feathers';
-import { SpotifyTrack } from '@leek/commons';
+import { Params, Query, ServiceAddons } from '@feathersjs/feathers';
+import { SpotifyTrack, User } from '@leek/commons';
+import SpotifyWebApi from 'spotify-web-api-node';
 
 import { Application } from '../../../declarations';
-import { SpotifyApi } from '../../../utils/spotify';
 
 // Add this service to the service type index
 declare module '../../../declarations' {
@@ -11,6 +11,10 @@ declare module '../../../declarations' {
     'spotify-tracks': SpotifyTrackService & ServiceAddons<SpotifyTrack>;
   }
 }
+
+type SpotifyApiError = Error & {
+  statusCode: number;
+};
 
 class SpotifyTrackService extends AdapterService<SpotifyTrack> {
   app: Application;
@@ -21,31 +25,43 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
   }
 
   async find(params: Params): Promise<SpotifyTrack[]> {
-    const user = await this.app.service('users').get(params?.user?._id);
-    const searchQuery = params.query;
-    const spotifyApi = new SpotifyApi(this.app, user);
+    const user: User = await this.app.service('users').get(params?.user?._id);
+    return await this.searchForTracks(user, params.query);
+  }
 
+  async searchForTracks(user: User, searchQuery: Query | undefined): Promise<SpotifyTrack[]> {
     if (searchQuery === undefined) {
       return [];
     }
 
-    await spotifyApi.refreshToken();
+    const oauthSpotifyConfig = this.app.get('authentication').oauth.spotify;
 
-    const query = searchQuery.name as string;
-    const trackResp = await spotifyApi.getApi().searchTracks(`track:${query}`);
+    const spotifyApi = new SpotifyWebApi({
+      accessToken: user.spotifyAccessToken,
+      refreshToken: user.spotifyRefreshToken,
+      clientId: oauthSpotifyConfig.key,
+      clientSecret: oauthSpotifyConfig.secret,
+    });
 
-    if (trackResp.body.tracks) {
-      const tracks = trackResp.body.tracks.items;
-      return tracks.map((track) => {
-        return {
-          uri: track.uri,
-          title: track.name,
-          artists: track.artists.map((artist) => artist.name),
-          imageUri: track.album.images[0].url,
-        } as SpotifyTrack;
-      });
+    try {
+      const query = searchQuery.name as string;
+      const trackResp = await spotifyApi.searchTracks(`track:${query}`);
+
+      if (trackResp.body.tracks) {
+        const tracks = trackResp.body.tracks.items;
+        return tracks.map((track) => {
+          return {
+            uri: track.uri,
+            title: track.name,
+            artists: track.artists.map((artist) => artist.name),
+            imageUri: track.album.images[0].url,
+          } as SpotifyTrack;
+        });
+      }
+    } catch (_error) {
+      const error = _error as SpotifyApiError;
+      throw error;
     }
-
     return [];
   }
 }

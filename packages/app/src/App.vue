@@ -1,8 +1,6 @@
 <template>
-  <div class="app bg-green-800 flex">
-    <div class="flex max-w-xl bg-white lg:rounded-2xl lg:my-8 mx-auto flex-grow">
-      <router-view />
-    </div>
+  <div class="app flex">
+    <router-view />
   </div>
 </template>
 

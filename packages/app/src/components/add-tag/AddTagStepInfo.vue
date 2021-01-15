@@ -1,15 +1,18 @@
 <template>
-  <div class="w-full p-4 h-full flex flex-col items-center">
-    <LabeledInput label="Tag Name" class="w-full">
-      <Textfield
+  <div
+    class="bg-gradient-to-b from-primary to-secondary w-full py-5 h-full flex flex-col items-center"
+  >
+    <div class="w-11/12">
+      <span class="text-base text-white text-left p-5">Tag Name</span>
+      <textfield
         v-model="currentTag.name"
         placeholder="z. B. Mario Figur"
-        class="rounded-full"
+        class="bg-white rounded-full w-full"
         @update="$emit('update:nfc-tag', currentTag)"
       />
-    </LabeledInput>
-
-    <LabeledInput label="Gruppe" class="w-full mt-8">
+    </div>
+    <div class="w-11/12">
+      <span class="text-base text-white text-left p-5">Gruppe</span>
       <Dropdown
         v-model="selectedGroup"
         v-model:items="groupListItems"
@@ -18,7 +21,7 @@
         :enable-add-item="true"
         @update:model-value="selectGroup()"
       />
-    </LabeledInput>
+    </div>
   </div>
 </template>
 
@@ -29,7 +32,6 @@ import { defineComponent, PropType, ref } from 'vue';
 import feathers from '../../lib/feathers';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
-import LabeledInput from '../uiBlocks/LabeledInput.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -37,7 +39,6 @@ export default defineComponent({
   components: {
     Textfield,
     Dropdown,
-    LabeledInput,
   },
   props: {
     nfcTag: {
