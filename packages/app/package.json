@@ -16,6 +16,8 @@
     "@feathersjs/socketio-client": "4.5.11",
     "@fortawesome/fontawesome-free": "5.15.1",
     "@leek/commons": "*",
+    "@types/lodash": "4.14.167",
+    "lodash": "4.17.20",
     "socket.io-client": "2.4.0",
     "tailwindcss": "2.0.2",
     "typeface-baloo": "1.1.13",

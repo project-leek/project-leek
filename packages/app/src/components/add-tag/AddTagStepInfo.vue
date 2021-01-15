@@ -1,25 +1,24 @@
 <template>
   <div class="w-full p-4 h-full flex flex-col items-center">
-    <div class="w-full">
+    <LabeledInput label="Tag Name" class="w-full">
       <Textfield
         v-model="currentTag.name"
-        label="Tag Name"
         placeholder="z. B. Mario Figur"
         class="rounded-full"
         @update="$emit('update:nfc-tag', currentTag)"
       />
-    </div>
-    <div class="w-full mt-8">
+    </LabeledInput>
+
+    <LabeledInput label="Gruppe" class="w-full mt-8">
       <Dropdown
         v-model="selectedGroup"
         v-model:items="groupListItems"
-        label="Gruppe"
         :removeable="false"
         placeholder-text="Wähle eine Gruppe"
         :enable-add-item="true"
         @update:model-value="selectGroup()"
       />
-    </div>
+    </LabeledInput>
   </div>
 </template>
 
@@ -30,6 +29,7 @@ import { defineComponent, PropType, ref } from 'vue';
 import feathers from '../../lib/feathers';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
+import LabeledInput from '../uiBlocks/LabeledInput.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -37,6 +37,7 @@ export default defineComponent({
   components: {
     Textfield,
     Dropdown,
+    LabeledInput,
   },
   props: {
     nfcTag: {

@@ -13,15 +13,15 @@
     <div class="p-2">
       <!-- Dropdown -->
       <h1 class="text-2xl text-center bg-secondary py-1">Dropdown</h1>
-      <Dropdown
-        v-model="dropdownValue"
-        class="mb-5 h-20"
-        label="NFC-Tag"
-        enable-add-item
-        :items="dropdownItems"
-        @add-item="addDropdownItem"
-        @remove-item="removeDropdownItem"
-      />
+      <LabeledInput label="NFC-Tag">
+        <Dropdown
+          v-model="dropdownValue"
+          class="mb-5 h-20"
+          enable-add-item
+          :items="dropdownItems"
+          @add-item="addDropdownItem"
+          @remove-item="removeDropdownItem"
+      /></LabeledInput>
 
       <!-- Button -->
       <h1 class="text-2xl text-center bg-secondary py-1">Buttons</h1>
@@ -45,6 +45,7 @@ import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
+import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -54,6 +55,7 @@ export default defineComponent({
     Dropdown,
     Textfield,
     AddTagStepInfo,
+    LabeledInput,
   },
   setup() {
     const dropdownItems = ref<ListItem[]>([

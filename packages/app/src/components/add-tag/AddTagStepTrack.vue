@@ -1,42 +1,52 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="add-tag-step-track flex flex-col relative h-full">
     <!-- Search -->
-    <Textfield
-      v-model="search"
-      class="w-full px-4 -mt-5"
-      placeholder="Suche einen Titel ..."
-      icon="fas fa-search"
-    />
+    <div class="search px-4">
+      <Textfield
+        v-model="search"
+        class="w-full"
+        placeholder="Suche einen Titel ..."
+        icon="fas fa-search"
+      />
+    </div>
 
-    <div v-if="isLoading" class="loading flex m-auto">
+    <div v-if="isLoading" class="loading flex m-auto p-2">
       <Loading />
     </div>
-    <template v-else>
-      <div v-if="search.length < 3" class="flex m-auto text-center">
-        <span class="text-white font-heading text-2xl">Wähle ein schönes Lied für deinen Tag!</span>
-      </div>
-      <div v-else-if="search.length >= 3 && tracks.length === 0" class="m-auto text-center">
-        <img class="mb-4" src="../../assets/not-found.gif" />
-        <span class="text-white font-heading text-2xl">Keine Ergebnisse für "{{ search }}"</span>
-      </div>
-      <div v-else class="w-full min-h-0 pt-4 overflow-y-auto">
-        <div class="flex flex-col w-full">
-          <div
-            v-for="track in tracks"
-            :key="track.uri"
-            class="flex flex-row py-2 px-2 rounded-2xl w-5/6 mx-auto"
-            :class="{ 'bg-primary': selectedTrack && track.uri === selectedTrack.uri }"
-            @click="changeTrack(track)"
+    <div v-else-if="search.length < 3" class="flex m-auto text-center p-2">
+      <span class="text-white font-heading text-2xl"
+        >Wähle jetzt ein schönes Lied für deinen Tag!</span
+      >
+    </div>
+
+    <div
+      v-else-if="search.length >= 3 && tracks.length === 0"
+      class="m-auto text-center justify-center p-2"
+    >
+      <img class="mb-4" src="../../assets/not-found-die-andere.gif" />
+      <span class="text-white font-heading text-2xl">Keine Ergebnisse für "{{ search }}"</span>
+    </div>
+
+    <ul v-else class="flex flex-col mt-4 pb-6 w-full overflow-y-auto max-h-full">
+      <li
+        v-for="track in tracks"
+        :key="track.uri"
+        class="flex flex-row py-2 px-2 rounded-2xl w-5/6 mx-auto cursor-pointer border border-transparent"
+        :class="{ 'shadow-xl border-yellow-400': selectedTrack && track.uri === selectedTrack.uri }"
+        @click="changeTrack(track)"
+      >
+        <TagEntry :img="track.imageUri" class="w-20" />
+        <div class="flex flex-col text-white">
+          <span
+            class="ml-4 text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis"
+            >{{ track.title }}</span
           >
-            <TagEntry :img="track.imageUri" class="w-16" />
-            <div class="flex flex-col">
-              <span class="ml-4 text-lg">{{ track.title }}</span>
-              <span class="ml-4 text-base">{{ track.artists.join(', ') }}</span>
-            </div>
-          </div>
+          <span class="ml-4 text-base whitespace-nowrap overflow-hidden overflow-ellipsis">{{
+            track.artists.join(', ')
+          }}</span>
         </div>
-      </div>
-    </template>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -71,7 +81,7 @@ export default defineComponent({
     const search = ref<string>('');
     const isLoading = ref<boolean>(false);
     const tracks = ref<SpotifyTrack[]>([]);
-    const tag = ref<NFCTag | null>(props.nfcTag);
+    const tag = ref<NFCTag>(props.nfcTag);
     const selectedTrack = ref<SpotifyTrack>();
 
     const doSearch = debounce(async () => {
@@ -93,9 +103,12 @@ export default defineComponent({
 
     const changeTrack = (track: SpotifyTrack): void => {
       selectedTrack.value = track;
-      tag.value.spotifyTrackUri = track.uri;
-      tag.value.imageUrl = track.imageUri;
-      ctx.emit('update:nfc-tag', tag);
+
+      const tagCopy = tag.value;
+      tagCopy.spotifyTrackUri = track.uri;
+      tagCopy.imageUrl = track.imageUri;
+
+      ctx.emit('update:nfc-tag', tagCopy);
     };
 
     return {
@@ -108,3 +121,21 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.search {
+  position: relative;
+  z-index: 100;
+}
+
+.search::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #fff;
+  content: '';
+  z-index: -1;
+}
+</style>
