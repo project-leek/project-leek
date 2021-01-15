@@ -23,7 +23,7 @@
       v-else-if="search.length >= 3 && tracks.length === 0"
       class="m-auto text-center justify-center p-2"
     >
-      <img class="mb-4" src="../../assets/not-found-die-andere.gif" />
+      <img class="mb-4" src="../../assets/not-found.gif" />
       <span class="text-white font-heading text-2xl">Keine Ergebnisse für "{{ search }}"</span>
     </div>
 
