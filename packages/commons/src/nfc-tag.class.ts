@@ -5,7 +5,9 @@ export default class NFCTag extends AbstractEntity {
 
   spotifyTrackUri!: string;
 
-  imageUrl!: string;
+  spotifyImageUrl!: string;
 
   group!: string;
+
+  activeImageUrl!: string;
 }
