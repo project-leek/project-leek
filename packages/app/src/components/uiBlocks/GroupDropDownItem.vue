@@ -11,7 +11,7 @@
       <Button
         round
         :icon="isOpen ? 'fa-chevron-down' : 'fa-chevron-right'"
-        class="ml-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 transition-all duration-700"
+        class="ml-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 transition-all duration-700 focus: outline-none"
       />
     </div>
     <div
