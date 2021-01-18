@@ -3,7 +3,7 @@
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
-      <span v-if="isSpotify" class="far fa-check-circle transform -translate-x-9" />
+      <span v-if="useSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
@@ -13,7 +13,7 @@
         :img="externalImage"
         @click="changeImage(false)"
       />
-      <span v-if="!isSpotify" class="far fa-check-circle transform -translate-x-9" />
+      <span v-if="!useSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <Textfield v-model="externalImage" class="mb-8 mx-8 mt-2 w-full" placeholder="enter URL" />
   </div>
@@ -39,14 +39,24 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const isSpotify = ref<boolean>(true);
+    const useSpotifyImage = ref<boolean>(true);
     const externalImage = ref<string>('');
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
-    const changeImage = (val: boolean): void => {
-      isSpotify.value = val;
-      if (isSpotify.value) {
+    const correctImageUrl = (val: string): boolean => {
+      const regex = /https:\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
+      if (val != null) {
+        if (regex.exec(val)) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    const changeImage = (useSpotify: boolean): void => {
+      useSpotifyImage.value = useSpotify;
+      if (useSpotifyImage.value) {
         currentTag.value.imageUrl = spotifyImageUrl.value;
       } else {
         currentTag.value.imageUrl = externalImage.value;
@@ -54,7 +64,7 @@ export default defineComponent({
       ctx.emit('update:nfc-tag', currentTag.value);
     };
 
-    return { externalImage, isSpotify, changeImage, spotifyImageUrl };
+    return { externalImage, useSpotifyImage, changeImage, spotifyImageUrl };
   },
 });
 </script>
