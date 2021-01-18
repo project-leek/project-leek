@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col flex-shrink-0">
+  <div class="flex flex-col">
     <div class="relative pb-1/1">
-      <img class="absolute w-full h-full rounded-xl" :src="image" />
+      <img class="absolute w-auto h-full rounded-xl object-cover" :src="img" />
     </div>
     <div
       v-if="name"
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -34,12 +34,5 @@ export default defineComponent({
       default: 'base',
     },
   },
-
-  setup(props) {
-    const image = computed(() => props.img);
-    return { image };
-  },
 });
 </script>
-
-<style lang="scss" scoped></style>
