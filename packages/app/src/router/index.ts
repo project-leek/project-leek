@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/tag-details/:id',
+    path: '/tag/:id',
     name: 'Tag Details',
     component: () => import('../views/TagDetails.vue'),
     meta: { authentication: 'needed' },
