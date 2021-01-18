@@ -1,6 +1,6 @@
 <template>
-  <div class="add-tag-step-place-tag-on-reader p-6 w-full flex justify-center items-center">
-    <img src="../../assets/attach-tag.gif" class="transform -translate-x-4 -translate-y-8" />
+  <div class="add-tag-step-place-tag-on-reader p-6 w-full flex my-auto">
+    <img src="../../assets/attach-tag.gif" />
   </div>
 </template>
 
