@@ -3,25 +3,28 @@
     <div class="w-72 h-96">
       <add-tag-step-info :nfc-tag="tag" />
     </div>
+
     <textfield v-model="tag.name" placeholder="Test for AddTagInfoStep" class="w-full h-15 my-5" />
+
     <textfield
       v-model="tag.group"
       placeholder="Test for AddTagInfoStep Group selection"
       class="w-full h-15 my-5"
     />
+
     <h1 class="text-3xl text-center bg-primary py-2">Sandbox</h1>
     <div class="p-2">
       <!-- Dropdown -->
       <h1 class="text-2xl text-center bg-secondary py-1">Dropdown</h1>
-      <LabeledInput label="NFC-Tag">
+      <LabeledInput class="mb-5 h-20" label="NFC-Tag">
         <Dropdown
           v-model="dropdownValue"
-          class="mb-5 h-20"
           enable-add-item
           :items="dropdownItems"
           @add-item="addDropdownItem"
           @remove-item="removeDropdownItem"
-      /></LabeledInput>
+        />
+      </LabeledInput>
 
       <!-- Button -->
       <h1 class="text-2xl text-center bg-secondary py-1">Buttons</h1>
