@@ -45,7 +45,7 @@ export default defineComponent({
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
     const correctImageUrl = (val: string): boolean => {
-      const regex = /https:\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
+      const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
       if (val != null) {
         if (regex.exec(val)) {
           return true;
