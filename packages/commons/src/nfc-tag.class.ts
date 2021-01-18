@@ -1,9 +1,13 @@
 import { AbstractEntity } from './abstract-entity.class';
 
 export default class NFCTag extends AbstractEntity {
-  nfcId!: string;
+  nfcData!: string;
 
   spotifyTrackUri!: string;
 
+  imageUrl!: string;
+
   name!: string;
+
+  group!: string;
 }

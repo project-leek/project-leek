@@ -1,34 +1,28 @@
-const config = require('../../.eslintrc');
-
 module.exports = {
-  ...config,
-  root: true,
-  extends: [
-    'airbnb-typescript',
+  env: {
+    es6: true,
+    node: true,
+  },
 
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
-
-    'plugin:import/typescript',
-
-    'plugin:vue/vue3-recommended',
-    '@vue/typescript/recommended',
-
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
-  ],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.eslint.json'],
     sourceType: 'module',
     tsconfigRootDir: __dirname,
     extraFileExtensions: ['.vue'],
   },
+
+  extends: [
+    '../../config/.eslintrc.base.js',
+
+    'plugin:vue/vue3-recommended',
+    '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint',
+  ],
+
   rules: {
-    ...config.rules,
     'no-console': 'error',
     'no-debugger': 'error',
     'no-param-reassign': ['error', { props: false }],
@@ -40,7 +34,13 @@ module.exports = {
         groups: ['props', 'data', 'computed', 'methods', 'setup'],
       },
     ],
+    'vue/attribute-hyphenation': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unsafe-member-access': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    'prettier/prettier': 'error',
   },
+
   overrides: [
     {
       files: ['*.vue', '*.js'],

@@ -1,26 +1,28 @@
-import { Params, ServiceAddons, HooksObject } from '@feathersjs/feathers';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
 import { expressOauth, OAuthProfile, OAuthStrategy } from '@feathersjs/authentication-oauth';
+import { HooksObject, Params, ServiceAddons } from '@feathersjs/feathers';
 
 import { Application } from '../../declarations';
 import hooks from './authentication.hooks';
 
 declare module '../../declarations' {
   interface ServiceTypes {
-    authentication: AuthenticationService & ServiceAddons<any>;
+    authentication: AuthenticationService & ServiceAddons<unknown>;
   }
 }
 
 type SpotifyProfileImage = { url: string; height: number | null; width: number | null };
 
 type SpotifyProfile = OAuthProfile & {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   display_name: string;
   images: SpotifyProfileImage[];
   email: string;
 };
 
 class SpotifyStrategy extends OAuthStrategy {
-  async getEntityData(profile: SpotifyProfile, existing: any, params: Params) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async getEntityData(profile: SpotifyProfile, existing: any, params: Params): Promise<{ [x: string]: any }> {
     const baseData = await super.getEntityData(profile, existing, params);
 
     return {

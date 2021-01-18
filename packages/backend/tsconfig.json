@@ -1,16 +1,19 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../config/tsconfig.base.json",
+
   "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "src",
     "lib": ["ES2019"],
     "module": "CommonJS",
     "target": "ES2019",
-    "outDir": "dist",
-    "rootDir": ".",
     "resolveJsonModule": true,
-    "baseUrl": "."
   },
-  "include": [
-    "src/**/*",
-    "test/**/*",
-  ]
+
+  "references": [
+    { "path": "../commons" }
+  ],
+
+  "include": ["src"]
 }

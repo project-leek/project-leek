@@ -1,6 +1,7 @@
 import { AbstractEntity, Ref } from './abstract-entity.class';
-import User from './user.class';
 import NFCReader from './nfc-reader.class';
 import NFCTag from './nfc-tag.class';
+import SpotifyTrack from './spotify-track.class';
+import User from './user.class';
 
-export { User, NFCReader, NFCTag, AbstractEntity, Ref };
+export { AbstractEntity, NFCReader, NFCTag, Ref, SpotifyTrack, User };

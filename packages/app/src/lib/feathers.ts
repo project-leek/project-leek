@@ -1,8 +1,8 @@
-import feathers, { ServiceAddons } from '@feathersjs/feathers';
-import auth from '@feathersjs/authentication-client';
 import { AdapterService } from '@feathersjs/adapter-commons';
-import { User, NFCReader, NFCTag } from '@leek/commons';
+import auth from '@feathersjs/authentication-client';
+import feathers, { Application as FeathersApplication, ServiceAddons } from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
+import { NFCReader, NFCTag, SpotifyTrack, User } from '@leek/commons';
 import io from 'socket.io-client';
 
 type Service<T> = AdapterService<T> & ServiceAddons<T>;
@@ -12,6 +12,11 @@ interface ServiceTypes {
   users: Service<User>;
   'nfc-readers': Service<NFCReader>;
   'nfc-tags': Service<NFCTag>;
+  'spotify-tracks': Service<SpotifyTrack>;
+}
+
+interface AuthenticationResult {
+  user: User;
 }
 
 export const socket = io({
@@ -21,11 +26,15 @@ export const socket = io({
   // timeout: 20 * 1000,
 });
 
-const feathersClient = feathers<ServiceTypes>();
+type Application = FeathersApplication<ServiceTypes> & {
+  get(key: 'authentication'): Promise<AuthenticationResult | null>;
+};
+
+const feathersClient = feathers<ServiceTypes>() as Application;
 feathersClient.configure(socketio(socket));
 feathersClient.configure(auth());
 
-function debug(...str: string[]) {
+function debug(...str: string[]): void {
   // eslint-disable-next-line no-console
   console.log(...str);
 }

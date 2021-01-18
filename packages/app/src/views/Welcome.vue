@@ -1,6 +1,5 @@
 <template>
   <div
-    id="z-0 backgroundWrapper"
     class="overflow-hidden bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full"
   >
     <!-- cube -->
@@ -24,8 +23,8 @@
         text="Login with Spotify"
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
         icon="fab fa-spotify"
-        :textSize="3"
-        :iconSize="5"
+        :text-size="3"
+        :icon-size="5"
       />
     </div>
     <!-- cube -->
@@ -38,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';

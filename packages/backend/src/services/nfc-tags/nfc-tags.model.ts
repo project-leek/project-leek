@@ -1,16 +1,18 @@
+import { NFCTag } from '@leek/commons';
 import NeDB from 'nedb';
 import path from 'path';
+
 import { Application } from '../../declarations';
 
-export default (app: Application): NeDB<any> => {
+export default (app: Application): NeDB<NFCTag> => {
   const dbPath = app.get('nedb');
-  const Model = new NeDB({
+  const model = new NeDB<NFCTag>({
     filename: path.join(dbPath, 'nfc-tags.db'),
     autoload: true,
     inMemoryOnly: process.env.NODE_ENV === 'test',
   });
 
-  Model.ensureIndex({ fieldName: 'nfcId', unique: true });
+  model.ensureIndex({ fieldName: 'nfcData', unique: true });
 
-  return Model;
+  return model;
 };

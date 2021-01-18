@@ -1,34 +1,46 @@
 <template>
   <button
-    class="bg-button border-2 border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
-    <span class="flex px-2">
-      <span v-if="icon" class="mr-4 my-auto" :class="[icon, `text-${iconsize}`]" />
-      <p class="my-auto font-heading font-extralight" :class="[`text-${textsize}`]">
+    <span class="text flex h-full w-full">
+      <span
+        v-if="icon"
+        class="my-auto"
+        :class="{
+          'm-auto': rounded,
+          'mx-auto': !rounded && !text,
+          'ml-2': !!text,
+          [`text-${iconsize}`]: true,
+          fas: true,
+          [icon]: true,
+        }"
+      />
+      <p
+        v-if="text"
+        class="my-auto font-heading font-extralight"
+        :class="{ 'ml-4': icon, 'mx-auto': !rounded && !icon, [`text-${textsize}`]: true }"
+      >
         {{ text }}
       </p>
     </span>
   </button>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script lang="ts">
+import { defineComponent, PropType, ref } from 'vue';
+import { RouteLocationRaw, useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {
     text: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     to: {
-      type: [Object, String],
+      type: [Object, String] as PropType<RouteLocationRaw>,
       default: null,
-    },
-    revert: {
-      type: Boolean,
-      default: false,
     },
     disabled: {
       type: Boolean,
@@ -49,42 +61,75 @@ export default defineComponent({
       required: false,
       default: 3,
     },
+    round: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    back: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ['click'],
-  setup(props) {
-    const router = useRouter();
 
-    const doClick = async () => {
+  emits: ['click'],
+  setup(props, ctx) {
+    const router = useRouter();
+    const rounded = ref(props.round);
+
+    const doClick = (): void => {
       if (props.disabled) {
         return;
       }
 
       if (props.to) {
-        router.push(props.to);
+        void router.push(props.to);
         return;
       }
 
-      if (props.revert) {
+      if (props.back) {
         router.go(-1);
       }
+
+      ctx.emit('click');
     };
 
-    const getSize = (size) => {
+    const getSize = (size: number): string => {
       if (size === 1) {
+        return 'xs';
+      }
+
+      if (size === 2) {
+        return 'sm';
+      }
+
+      if (size === 3) {
+        return 'md';
+      }
+
+      if (size === 4) {
+        return 'lg';
+      }
+
+      if (size === 5) {
         return 'xl';
       }
-      if (size > 1 && size <= 9) {
-        return `${size}xl`;
+
+      if (size > 5 && size <= 13) {
+        return `${size - 4}xl`;
       }
-      throw Error('invalid number for size. Size must be between 1 and 9');
+
+      throw Error('invalid number for size. Size must be between 1 and 13');
     };
 
     const textsize = ref(getSize(props.textSize));
     const iconsize = ref(getSize(props.iconSize));
+
     return {
       doClick,
       textsize,
       iconsize,
+      rounded,
     };
   },
 });
