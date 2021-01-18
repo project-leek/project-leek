@@ -35,8 +35,8 @@
         :class="{ 'shadow-xl border-yellow-400': selectedTrack && track.uri === selectedTrack.uri }"
         @click="changeTrack(track)"
       >
-        <TagEntry :img="track.imageUri" class="w-20" />
-        <div class="flex flex-col text-white">
+        <TagEntry :img="track.imageUri" class="w-20 h-20 flex-shrink-0" />
+        <div class="flex flex-col text-white overflow-hidden">
           <span
             class="ml-4 text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis"
             >{{ track.title }}</span
