@@ -82,7 +82,7 @@ export default defineComponent({
 
     function selectGroup(): void {
       currentTag.value.group = selectedGroup.value?.value || '';
-      ctx.emit('update:nfc-tag', currentTag);
+      ctx.emit('update:nfc-tag', currentTag.value);
     }
 
     loadGroupNames().catch(() => {

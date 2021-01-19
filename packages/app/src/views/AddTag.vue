@@ -62,7 +62,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { defineComponent, Ref, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -85,16 +85,7 @@ export default defineComponent({
     const activeStep = ref<number>(0);
     const router = useRouter();
 
-    const isRef = <T>(item: T | Ref<T>): item is Ref<T> => {
-      return !!(item as Ref<T>).value;
-    };
-
-    const updateTag = (_nfcTag: NFCTag | Ref<NFCTag>): void => {
-      if (isRef(_nfcTag)) {
-        nfcTag.value = _nfcTag.value;
-        return;
-      }
-
+    const updateTag = (_nfcTag: NFCTag): void => {
       nfcTag.value = _nfcTag;
     };
 

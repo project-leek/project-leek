@@ -57,14 +57,14 @@ export default defineComponent({
         }
 
         nfcTag.value.nfcData = nfcReader.attachedTagData;
-        ctx.emit('update:nfc-tag', nfcTag);
+        ctx.emit('update:nfc-tag', nfcTag.value);
         ctx.emit('proceed');
       })();
     };
 
     onMounted(() => {
       nfcTag.value = new NFCTag();
-      ctx.emit('update:nfc-tag', nfcTag);
+      ctx.emit('update:nfc-tag', nfcTag.value);
 
       feathers
         .service('nfc-readers')
