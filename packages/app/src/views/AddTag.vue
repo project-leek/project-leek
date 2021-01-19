@@ -9,7 +9,9 @@
       </div>
     </header>
 
-    <main class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto">
+    <main
+      class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto"
+    >
       <component
         :is="steps[activeStep]"
         :nfc-tag="nfcTag"
