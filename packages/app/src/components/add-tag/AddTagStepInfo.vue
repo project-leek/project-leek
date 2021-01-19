@@ -45,7 +45,10 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: { 'update:nfc-tag': null },
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+  },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
     const groupNames = ref<string[]>([]);

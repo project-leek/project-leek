@@ -23,7 +23,11 @@ export default defineComponent({
     },
   },
 
-  emits: ['proceed', 'update:nfc-tag'],
+  emits: {
+    proceed: (): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+  },
 
   setup(_, ctx) {
     const nfcTag = ref<NFCTag>();
