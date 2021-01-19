@@ -95,7 +95,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:model-value', 'update:items', 'remove-item'],
+  emits: { 'update:model-value': null, 'update:items': null, 'remove-item': null },
 
   setup(props, ctx) {
     const dropdownExtended = ref<boolean>(false);

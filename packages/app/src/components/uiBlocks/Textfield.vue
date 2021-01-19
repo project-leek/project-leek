@@ -34,6 +34,6 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:modelValue'],
+  emits: { 'update:modelValue': null },
 });
 </script>
