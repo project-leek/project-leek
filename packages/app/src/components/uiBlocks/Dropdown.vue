@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
+    class="bg-white p-1 px-1.5 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
     :class="{ 'z-50': dropdownExtended }"
   >
     <div
@@ -43,7 +43,7 @@
           <input
             v-model="newItemValue"
             :placeholder="addItemText"
-            class="flex-grow p-2 rounded-2xl focus:outline-none"
+            class="flex-grow p-1 rounded-2xl focus:outline-none"
             @keyup.enter="addItem"
           />
           <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
