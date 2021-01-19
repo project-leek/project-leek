@@ -3,9 +3,9 @@
     <LabeledInput label="Tag Name" class="w-full col-span-2">
       <Textfield
         v-model="currentTag.name"
-        placeholder="z. B. Mario Figur"
+        :placeholder="'z. B. Mario Figur'"
         class="rounded-full"
-        @update="$emit('update:nfc-tag', currentTag)"
+        @update:nfc-tag="$emit('update:nfc-tag', currentTag)"
       />
     </LabeledInput>
 
@@ -14,7 +14,7 @@
         v-model="selectedGroup"
         v-model:items="groupListItems"
         :removeable="false"
-        placeholder-text="Wähle eine Gruppe"
+        :placeholder-text="'Wähle eine Gruppe'"
         :enable-add-item="true"
         @update:model-value="selectGroup()"
       />
