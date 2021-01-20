@@ -1,7 +1,7 @@
 <template>
   <div
-    class="bg-white p-1 px-1.5 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
-    :class="{ 'z-50': dropdownExtended }"
+    class="bg-white p-2 px-1.5 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25 relative"
+    :class="{ 'rounded-b-none': dropdownExtended }"
   >
     <div
       class="flex items-center pl-2 cursor-pointer"
@@ -11,16 +11,22 @@
       <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
       <Button
         v-if="dropdownExtended"
-        class="ml-auto w-8 h-8"
+        class="ml-auto mr-3 w-8 h-8"
         icon="fas fa-chevron-down"
         :icon-size="3"
         round
       />
       <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
     </div>
-    <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
-      <div v-for="item in items" :key="item.id">
-        <hr class="w-full border-dotted border-secondary border-1 my-2" />
+    <div
+      v-if="dropdownExtended"
+      class="absolute bg-white rounded-b-3xl w-full left-0 top-full z-50 border-2 border-white"
+    >
+      <div
+        v-for="item in items"
+        :key="item.id"
+        class="px-4 w-full border-dotted border-secondary border-t py-2"
+      >
         <div
           :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
           class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
@@ -29,7 +35,7 @@
           <span class="px-2">{{ item.value }}</span>
           <Button
             v-if="removeable"
-            class="w-8 h-8 ml-auto"
+            class="w-8 h-8 ml-auto mr-3"
             icon="far fa-trash-alt"
             :icon-size="3"
             round
@@ -37,8 +43,7 @@
           />
         </div>
       </div>
-      <div v-if="enableAddItem" class="add-item">
-        <hr class="w-full border-solid border-secondary border-1 my-2" />
+      <div v-if="enableAddItem" class="add-item px-4 py-2 border-solid border-secondary border-t">
         <div class="add-item-section flex w-full items-center pt-0.5">
           <input
             v-model="newItemValue"
