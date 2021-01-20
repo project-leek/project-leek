@@ -32,20 +32,35 @@
         </GroupDropDownItem>
       </GroupDropDown>
     </main>
-    <footer class="flex text-gray-800 py-5">
-      <transition name="fade" mode="out-in">
-        <span v-if="!selectedTag" key="love" class="text-xl text-center w-full"
+    <footer class="flex text-gray-800 py-5 overflow-hidden">
+      <transition
+        name="fade"
+        @leave="infoTransitionActive = true"
+        @after-leave="infoTransitionActive = false"
+      >
+        <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full"
           >&copy; {{ new Date().getFullYear() }} - Made with ❤️ by
           <a class="underline" target="_blank" href="https://github.com/project-leek"
             >team leek</a
           ></span
         >
-        <span v-else key="edit" class="flex justify-center w-full text-xl">
+      </transition>
+      <transition name="slide" @after-leave="buttonTransitionActive = false">
+        <span
+          v-if="selectedTag && !infoTransitionActive"
+          key="edit"
+          class="flex justify-center w-full text-xl"
+        >
           <Button
             round
             icon="fas fa-times"
             class="ml-4 my-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="selectedTag = null"
+            @click="
+              () => {
+                selectedTag = null;
+                buttonTransitionActive = true;
+              }
+            "
           />
           <Button
             round
@@ -56,6 +71,7 @@
             round
             text="Löschen"
             class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            @click="deleteTag()"
           />
         </span>
       </transition>
@@ -97,9 +113,19 @@ export default defineComponent({
       selectedTag.value = tag === selectedTag.value ? null : tag;
     };
 
-    onMounted(async () => {
-      const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
+    const infoTransitionActive = ref<boolean>(false);
+    const buttonTransitionActive = ref<boolean>(false);
 
+    const deleteTag = async (): Promise<void> => {
+      if (selectedTag.value != null) {
+        await feathers.service('nfc-tags').remove(selectedTag.value._id);
+        selectedTag.value = null;
+        await loadTags();
+      }
+    };
+
+    const loadTags = async (): Promise<void> => {
+      const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
       groups.value = Object.values(
         res.data.reduce((previous, item) => {
           if (!previous[item.group]) {
@@ -109,29 +135,43 @@ export default defineComponent({
           return previous;
         }, {} as Record<string, NFCTagGroup>)
       );
+    };
+
+    onMounted(async () => {
+      await loadTags();
     });
-    return { groups, selectedTag, toggleTag };
+
+    return {
+      groups,
+      selectedTag,
+      toggleTag,
+      deleteTag,
+      infoTransitionActive,
+      buttonTransitionActive,
+    };
   },
 });
 </script>
 
 <style lang="css" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.7s;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.7s;
 }
 
-.fade-leave-to {
-  opacity: 0;
-}
-
+.fade-leave-to,
 .fade-enter-from {
-  transform: translateY(100%);
+  opacity: 0;
 }
 
-/* .fade-enter-from,
-.fade-leave-to {
-  transform: translateY(100%);
+.slide-leave-to,
+.slide-enter-from {
   opacity: 0;
-} */
+  transform: translateY(100%);
+}
 </style>
