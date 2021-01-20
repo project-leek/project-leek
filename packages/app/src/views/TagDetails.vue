@@ -12,7 +12,7 @@
     </header>
 
     <main
-      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800"
+      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
     >
       <component
         :is="activeDetailsPage"
@@ -27,7 +27,7 @@
       <Button
         v-if="showBackButton"
         icon="fas fa-caret-left"
-        class="w-20 h-20 mx-4"
+        class="w-14 h-14 mx-4"
         round
         @click="goBack()"
       />
@@ -79,12 +79,12 @@ export default defineComponent({
       if (activeDetailsPage.value === EditTag) {
         if (currentNfcTag.value && currentNfcTag.value.nfcData) {
           void feathers.service('nfc-tags').update(routeId, currentNfcTag.value);
-          showBackButton.value = false;
         }
         router.go(-1);
       } else {
         activeDetailsPage.value = EditTag;
       }
+      showBackButton.value = false;
     }
 
     function openImageDetails(): void {
