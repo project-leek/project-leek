@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { Component, defineComponent, onMounted, ref, shallowRef, watch } from 'vue';
+import { Component, defineComponent, onMounted, ref, shallowRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
