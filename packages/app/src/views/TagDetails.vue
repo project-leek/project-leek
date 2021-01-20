@@ -24,15 +24,21 @@
     </main>
 
     <footer class="flex-grow flex items-center justify-evenly text-2xl text-gray-800">
-      <Button :text="'Abbrechen'" class="p-3 px-6" @click="goBack()" />
-      <Button :text="'Speichern'" class="p-3 px-6" @click="saveChanges()" />
+      <Button
+        v-if="showBackButton"
+        icon="fas fa-caret-left"
+        class="w-20 h-20 mx-4"
+        round
+        @click="goBack()"
+      />
+      <Button :text="'Speichern'" class="p-3 mx-4 flex-1" @click="saveChanges()" />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { Component, defineComponent, onMounted, ref, shallowRef } from 'vue';
+import { Component, defineComponent, onMounted, ref, shallowRef, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -50,6 +56,7 @@ export default defineComponent({
     const routeId = useRoute().params.id.toString();
     const router = useRouter();
     const activeDetailsPage = shallowRef<Component>(EditTag);
+    const showBackButton = ref<boolean>(false);
 
     onMounted(async () => {
       try {
@@ -72,6 +79,7 @@ export default defineComponent({
       if (activeDetailsPage.value === EditTag) {
         if (currentNfcTag.value && currentNfcTag.value.nfcData) {
           void feathers.service('nfc-tags').update(routeId, currentNfcTag.value);
+          showBackButton.value = false;
         }
         router.go(-1);
       } else {
@@ -81,10 +89,12 @@ export default defineComponent({
 
     function openImageDetails(): void {
       activeDetailsPage.value = AddTagStepImage;
+      showBackButton.value = true;
     }
 
     function openTrackDetails(): void {
       activeDetailsPage.value = AddTagStepTrack;
+      showBackButton.value = true;
     }
 
     return {
@@ -95,6 +105,7 @@ export default defineComponent({
       activeDetailsPage,
       saveChanges,
       goBack,
+      showBackButton,
     };
   },
 });

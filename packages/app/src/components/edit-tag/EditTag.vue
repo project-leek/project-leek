@@ -19,16 +19,25 @@
         @update:model-value="selectGroup()"
       />
     </LabeledInput>
-    <p class="my-auto font-heading font-extralight text-md">Test</p>
-    <Button class="p-3 px-6 my-auto" :text="'Song ändern'" @click="$emit('open-track-details')" />
+
+    <LabeledInput label="Tag Track" class="w-full col-span-2">
+      <Textfield
+        v-model="selectedTrackName"
+        :placeholder="'z. B. Never gonna give you up'"
+        class="rounded-full"
+        @update:nfc-tag="$emit('update:nfc-tag', currentTag)"
+        @click="$emit('open-track-details')"
+      />
+    </LabeledInput>
+
     <TagEntry class="ml-2 w-32 pt-2" :img="currentTag.imageUrl" />
     <Button class="p-3 px-6 my-auto" :text="'Bild ändern'" @click="$emit('open-image-details')" />
   </div>
 </template>
 
 <script lang="ts">
-import { NFCTag } from '@leek/commons/';
-import { defineComponent, PropType, ref } from 'vue';
+import { NFCTag, SpotifyTrack } from '@leek/commons/';
+import { defineComponent, onMounted, PropType, ref } from 'vue';
 
 import feathers from '../../lib/feathers';
 import Button from '../uiBlocks/Button.vue';
@@ -59,6 +68,17 @@ export default defineComponent({
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
+    const selectedTrack = ref<SpotifyTrack>();
+    const selectedTrackName = ref<string>('');
+
+    async function loadTrack(): Promise<void> {
+      const params = {};
+      const id = currentTag.value.spotifyTrackUri;
+      selectedTrack.value = await feathers.service('spotify-tracks').get(id, params);
+      if (selectedTrack.value) {
+        selectedTrackName.value = selectedTrack.value.title;
+      }
+    }
 
     async function loadGroupNames(): Promise<void> {
       const allTags = await feathers.service('nfc-tags').find();
@@ -85,20 +105,22 @@ export default defineComponent({
       );
     }
 
+    onMounted(async () => {
+      await loadGroupNames();
+      await loadTrack();
+    });
+
     function selectGroup(): void {
       currentTag.value.group = selectedGroup.value?.value || '';
       ctx.emit('update:nfc-tag', currentTag);
     }
-
-    loadGroupNames().catch(() => {
-      throw Error('failed to load group names');
-    });
 
     return {
       currentTag,
       groupListItems,
       selectedGroup,
       selectGroup,
+      selectedTrackName,
     };
   },
 });
