@@ -1,6 +1,6 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex py-5 justify-center text-4xl overlay" :class="{ blurred: selectedTag }">
+    <header class="flex py-5 justify-center text-4xl overlay">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
@@ -23,21 +23,42 @@
               v-for="entry in group.tags"
               :key="entry.nfcData"
               class="m-4 w-2/6 flex-shrink-0 text-4xl"
+              :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"
-              @click="selectedTag = entry"
+              @click="toggleTag(entry)"
             />
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
     </main>
     <footer class="flex text-gray-800 py-5">
-      <span class="text-xl text-center w-full"
-        >&copy; {{ new Date().getFullYear() }} - Made with ❤️ by
-        <a class="underline" target="_blank" href="https://github.com/project-leek"
-          >team leek</a
-        ></span
-      >
+      <transition name="fade" mode="out-in">
+        <span v-if="!selectedTag" key="love" class="text-xl text-center w-full"
+          >&copy; {{ new Date().getFullYear() }} - Made with ❤️ by
+          <a class="underline" target="_blank" href="https://github.com/project-leek"
+            >team leek</a
+          ></span
+        >
+        <span v-else key="edit" class="flex justify-center w-full text-xl">
+          <Button
+            round
+            icon="fas fa-times"
+            class="ml-4 my-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            @click="selectedTag = null"
+          />
+          <Button
+            round
+            text="Bearbeiten"
+            class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+          />
+          <Button
+            round
+            text="Löschen"
+            class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+          />
+        </span>
+      </transition>
     </footer>
   </div>
 </template>
@@ -72,6 +93,10 @@ export default defineComponent({
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
 
+    const toggleTag = (tag: NFCTag): void => {
+      selectedTag.value = tag === selectedTag.value ? null : tag;
+    };
+
     onMounted(async () => {
       const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
 
@@ -85,24 +110,28 @@ export default defineComponent({
         }, {} as Record<string, NFCTagGroup>)
       );
     });
-
-    return { groups, selectedTag };
+    return { groups, selectedTag, toggleTag };
   },
 });
 </script>
 
 <style lang="css" scoped>
-.overlay {
-  position: relative;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.7s;
 }
 
-.overlay.blurred::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(2px);
+.fade-leave-to {
+  opacity: 0;
 }
+
+.fade-enter-from {
+  transform: translateY(100%);
+}
+
+/* .fade-enter-from,
+.fade-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+} */
 </style>
