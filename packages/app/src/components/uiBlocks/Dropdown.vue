@@ -7,7 +7,9 @@
       class="flex items-center pl-2 cursor-pointer"
       @click="dropdownExtended = !dropdownExtended"
     >
-      <span v-if="modelValue && modelValue.value" class="value">{{ modelValue.value }}</span>
+      <span v-if="modelValue && modelValue.value" class="value text-xl">
+        {{ modelValue.value }}
+      </span>
       <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
       <Button
         v-if="dropdownExtended"
@@ -16,23 +18,30 @@
         :icon-size="3"
         round
       />
-      <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
+      <Button
+        v-else
+        class="ml-auto mr-3 w-8 h-8"
+        icon="fas fa-chevron-right"
+        :icon-size="3"
+        round
+      />
     </div>
     <div
       v-if="dropdownExtended"
-      class="absolute bg-white rounded-b-3xl w-full left-0 top-full z-50 border-2 border-white"
+      id="dropdownExtended"
+      class="absolute px-0.5 bg-white rounded-b-3xl w-full -left-0.5 top-full -mt-0.5 z-50 border-2 border-button"
     >
       <div
         v-for="item in items"
         :key="item.id"
-        class="px-4 w-full border-dotted border-secondary border-t py-2"
+        class="py-2 px-1.5 w-full border-dotted border-secondary border-b outline-none"
       >
         <div
           :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
           class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
           @click="selectItem(item)"
         >
-          <span class="px-2">{{ item.value }}</span>
+          <span class="px-2 text-xl">{{ item.value }}</span>
           <Button
             v-if="removeable"
             class="w-8 h-8 ml-auto mr-3"
@@ -78,7 +87,7 @@ export default defineComponent({
     placeholderText: {
       type: String,
       required: false,
-      default: 'Please select an item',
+      default: 'Bitte wähle ein Element...',
     },
     enableAddItem: {
       type: Boolean,
@@ -92,7 +101,7 @@ export default defineComponent({
     addItemText: {
       type: String,
       required: false,
-      default: 'Please add an element',
+      default: 'Bitte füge ein Element hinzu...',
     },
     items: {
       type: Array as PropType<ListItem[]>,
@@ -146,3 +155,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+#dropdownExtended {
+  width: 101.2%;
+}
+</style>

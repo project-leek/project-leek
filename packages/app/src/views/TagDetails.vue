@@ -12,7 +12,7 @@
     </header>
 
     <main
-      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
+      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-black flex items-start justify-center text-2xl text-gray-800 flex-grow"
     >
       <component
         :is="activeDetailsPage"
