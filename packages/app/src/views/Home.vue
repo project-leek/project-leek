@@ -55,12 +55,7 @@
             round
             icon="fas fa-times"
             class="ml-4 my-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="
-              () => {
-                selectedTag = null;
-                buttonTransitionActive = true;
-              }
-            "
+            @click="deselect"
           />
           <Button
             round
@@ -71,7 +66,7 @@
             round
             text="Löschen"
             class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="deleteTag()"
+            @click="deleteTag"
           />
         </span>
       </transition>
@@ -128,6 +123,11 @@ export default defineComponent({
       }
     };
 
+    const deselect = (): void => {
+      selectedTag.value = null;
+      buttonTransitionActive.value = true;
+    };
+
     const loadTags = async (): Promise<void> => {
       const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
       groups.value = Object.values(
@@ -152,6 +152,7 @@ export default defineComponent({
       deleteTag,
       infoTransitionActive,
       buttonTransitionActive,
+      deselect,
     };
   },
 });
