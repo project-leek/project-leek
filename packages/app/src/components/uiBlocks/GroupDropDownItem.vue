@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { NFCTag } from '@leek/commons/dist';
+import { NFCTag } from '@leek/commons';
 import { computed, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue';
 
 import Button from './Button.vue';
