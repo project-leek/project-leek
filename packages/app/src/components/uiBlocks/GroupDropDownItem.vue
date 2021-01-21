@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, Ref, ref } from 'vue';
+import { NFCTag } from '@leek/commons/dist';
+import { computed, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue';
 
 import Button from './Button.vue';
 
@@ -43,10 +44,11 @@ export default defineComponent({
     },
   },
 
-  setup() {
+  setup(props) {
     let itemIndex = ref<number | null>(null);
     const itemCount = inject<Ref<number>>('itemCount');
     const activeItemIndex = inject<Ref<number | null>>('activeItemIndex');
+    const selectedTag = inject<Ref<NFCTag | null>>('selectedTag');
 
     if (!activeItemIndex || !itemCount) {
       throw new Error('reference injection failed');
@@ -70,9 +72,12 @@ export default defineComponent({
       if (!activeItemIndex) {
         return;
       }
-
       activeItemIndex.value = isOpen.value ? null : itemIndex.value;
     };
+
+    watch(isOpen, (newVal) => {
+      if (!newVal && selectedTag?.value?.group === props.groupname) selectedTag.value = null;
+    });
 
     return {
       isOpen,

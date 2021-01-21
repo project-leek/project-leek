@@ -82,7 +82,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, provide, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
@@ -109,8 +109,11 @@ export default defineComponent({
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
 
+    provide('selectedTag', selectedTag);
+
     const toggleTag = (tag: NFCTag): void => {
       selectedTag.value = tag === selectedTag.value ? null : tag;
+      buttonTransitionActive.value = true;
     };
 
     const infoTransitionActive = ref<boolean>(false);
@@ -120,6 +123,7 @@ export default defineComponent({
       if (selectedTag.value != null) {
         await feathers.service('nfc-tags').remove(selectedTag.value._id);
         selectedTag.value = null;
+        buttonTransitionActive.value = true;
         await loadTags();
       }
     };
