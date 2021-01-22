@@ -3,26 +3,20 @@
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
-      <span v-if="choseSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
+      <span v-if="usingSpotifyImage" class="far fa-check-circle transform -translate-x-4" />
     </div>
     <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
-      <TagEntry
-        v-if="externalImage"
-        class="ml-8 w-32"
-        :img="externalImage"
-        @click="changeImage(false)"
-      />
-      <TagEntry v-else class="ml-8 w-32" img="../../assets/icons/image-gallery.svg" />
-      <span v-if="!choseSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
+      <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
+      <span v-if="!usingSpotifyImage" class="far fa-check-circle transform -translate-x-4" />
     </div>
-    <Textfield v-model="externalImage" class="mb-8 mx-8 mt-2 w-full" placeholder="enter URL" />
+    <Textfield v-model="userInput" class="mb-8 mx-8 mt-2" placeholder="enter URL" />
   </div>
 </template>
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
@@ -40,8 +34,9 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const choseSpotifyImage = ref<boolean>(true);
-    const externalImage = ref<string>('');
+    const usingSpotifyImage = ref<boolean>(true);
+    const userInput = ref<string>('');
+    //TODO fix broken svg route
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
@@ -55,17 +50,40 @@ export default defineComponent({
       return false;
     };
 
-    const changeImage = (newValue: boolean): void => {
-      choseSpotifyImage.value = newValue;
-      if (choseSpotifyImage.value) {
+    const externalImage = computed(() => {
+      if (correctImageUrl(userInput.value)) {
+        return userInput.value;
+      }
+      //TODO fix broken svg route
+      usingSpotifyImage.value = true;
+      return '../../assets/icons/plus.svg';
+    });
+
+    const changeImage = (useSpotifyImage: boolean): void => {
+      //Check if externalImage is clicked and a correct URL is provided
+      if (!useSpotifyImage && correctImageUrl(userInput.value)) {
+        usingSpotifyImage.value = false;
+      } else {
+        usingSpotifyImage.value = true;
+      }
+
+      //Depending on chosen Image, save that url as imageUrl
+      if (usingSpotifyImage.value) {
         currentTag.value.imageUrl = spotifyImageUrl.value;
       } else {
-        currentTag.value.imageUrl = externalImage.value;
+        currentTag.value.imageUrl = userInput.value;
       }
+
       ctx.emit('update:nfc-tag', currentTag.value);
     };
 
-    return { externalImage, choseSpotifyImage, changeImage, spotifyImageUrl };
+    return {
+      externalImage,
+      userInput,
+      usingSpotifyImage,
+      changeImage,
+      spotifyImageUrl,
+    };
   },
 });
 </script>

@@ -11,5 +11,5 @@ export default class NFCTag extends AbstractEntity {
 
   group!: string;
 
-  activeImageUrl!: string;
+  imageUrl!: string;
 }
