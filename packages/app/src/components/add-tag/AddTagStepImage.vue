@@ -3,12 +3,18 @@
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
-      <span v-if="usingSpotifyImage" class="far fa-check-circle transform -translate-x-4" />
+      <span
+        v-if="usingSpotifyImage"
+        class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
+      />
     </div>
     <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
-      <span v-if="!usingSpotifyImage" class="far fa-check-circle transform -translate-x-4" />
+      <span
+        v-if="!usingSpotifyImage"
+        class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
+      />
     </div>
     <Textfield v-model="userInput" class="mb-8 mx-8 mt-2" placeholder="enter URL" />
   </div>
