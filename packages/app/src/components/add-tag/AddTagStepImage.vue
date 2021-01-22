@@ -13,6 +13,7 @@
         :img="externalImage"
         @click="changeImage(false)"
       />
+      <TagEntry v-else class="ml-8 w-32" img="../../assets/icons/image-gallery.svg" />
       <span v-if="!useSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <Textfield v-model="externalImage" class="mb-8 mx-8 mt-2 w-full" placeholder="enter URL" />
