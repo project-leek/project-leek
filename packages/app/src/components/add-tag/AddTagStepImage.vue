@@ -3,7 +3,7 @@
     <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
-      <span v-if="useSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
+      <span v-if="choseSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
@@ -14,7 +14,7 @@
         @click="changeImage(false)"
       />
       <TagEntry v-else class="ml-8 w-32" img="../../assets/icons/image-gallery.svg" />
-      <span v-if="!useSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
+      <span v-if="!choseSpotifyImage" class="far fa-check-circle transform -translate-x-9" />
     </div>
     <Textfield v-model="externalImage" class="mb-8 mx-8 mt-2 w-full" placeholder="enter URL" />
   </div>
@@ -40,7 +40,7 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const useSpotifyImage = ref<boolean>(true);
+    const choseSpotifyImage = ref<boolean>(true);
     const externalImage = ref<string>('');
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
@@ -55,9 +55,9 @@ export default defineComponent({
       return false;
     };
 
-    const changeImage = (useSpotify: boolean): void => {
-      useSpotifyImage.value = useSpotify;
-      if (useSpotifyImage.value) {
+    const changeImage = (newValue: boolean): void => {
+      choseSpotifyImage.value = newValue;
+      if (choseSpotifyImage.value) {
         currentTag.value.imageUrl = spotifyImageUrl.value;
       } else {
         currentTag.value.imageUrl = externalImage.value;
@@ -65,7 +65,7 @@ export default defineComponent({
       ctx.emit('update:nfc-tag', currentTag.value);
     };
 
-    return { externalImage, useSpotifyImage, changeImage, spotifyImageUrl };
+    return { externalImage, choseSpotifyImage, changeImage, spotifyImageUrl };
   },
 });
 </script>
