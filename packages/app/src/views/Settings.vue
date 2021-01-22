@@ -4,9 +4,9 @@
       <Button back round icon="fas fa-times" class="h-7 w-7" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6 text-white">
+    <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6">
       <!-- Useranzeige -->
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col justify-center items-center text-white">
         <span class="flex text-xl font-heading">
           <span class="my-auto fab fa-spotify" />
           <span class="ml-2">Nutzer:</span>
@@ -24,7 +24,12 @@
       <span class="flex w-full text-xl">
         <Button round icon="fas fa-caret-left" class="ml-4 my-auto h-12 w-12" />
         <Button text="Speichern" center-text class="mx-2 px-3 py-2 text-2xl flex-grow" />
-        <Button text="Abmelden" center-text class="mx-2 px-3 text-2xl flex-grow" />
+        <Button
+          text="Abmelden"
+          center-text
+          class="mx-2 px-3 text-2xl flex-grow"
+          @click="logoutUser()"
+        />
       </span>
     </footer>
   </div>
@@ -38,14 +43,14 @@ import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
-import { isAuthenticated, user } from '../compositions/useAuthentication';
+import { isAuthenticated, logout, user } from '../compositions/useAuthentication';
 import feathers from '../lib/feathers';
 
 export default defineComponent({
   name: 'Settings',
   components: { Button, Dropdown, LabeledInput },
   setup() {
-    const userEmail = ref<string>();
+    const userEmail = ref<string>('');
     const selectedSpeaker = ref<SpotifySpeaker>();
     const speakers = ref<SpotifySpeaker[]>([]);
 
@@ -68,6 +73,10 @@ export default defineComponent({
       }
     };
 
+    const logoutUser = (): void => {
+      void logout();
+    };
+
     onMounted(async () => {
       await loadSpeakers();
       loadUser();
@@ -77,6 +86,7 @@ export default defineComponent({
       selectedSpeaker,
       speakerList,
       userEmail,
+      logoutUser,
     };
   },
 });
