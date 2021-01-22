@@ -1,22 +1,22 @@
 <template>
-  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start">
-    <div class="m-8 text-lg font-semibold text-white">Bild von Spotify</div>
+  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start p-8 p-8">
+    <div class="text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
+      <TagEntry class="w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
       <span
         v-if="usingSpotifyImage"
         class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
       />
     </div>
-    <div class="mb-2 mx-8 mt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
+    <div class="mb-2 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
-      <TagEntry class="ml-8 w-32" :img="externalImage" @click="changeImage(false)" />
+      <TagEntry class="w-32" :img="externalImage" @click="changeImage(false)" />
       <span
         v-if="!usingSpotifyImage"
         class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
       />
     </div>
-    <Textfield v-model="userInput" class="mb-8 mx-8 mt-2" placeholder="enter URL" />
+    <Textfield v-model="userInput" class="mt-3 w-full" placeholder="enter URL" />
   </div>
 </template>
 
