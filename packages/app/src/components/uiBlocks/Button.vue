@@ -8,7 +8,11 @@
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
-        :class="{ 'ml-4': icon, 'mx-auto': !rounded && !icon, [`text-${textsize}`]: true, 'mx-auto': centerText }"
+        :class="{
+          'ml-4': icon,
+          'mx-auto': (!rounded && !icon) || textCenter,
+          [`text-${textsize}`]: true,
+        }"
       >
         {{ text }}
       </p>
@@ -119,7 +123,6 @@ export default defineComponent({
 
     const textsize = ref(getSize(props.textSize));
     const iconsize = ref(getSize(props.iconSize));
-
 
     const iconClass = computed(() => {
       const classes = [`text-${iconsize.value}`, ...props.icon.split(' ')];
