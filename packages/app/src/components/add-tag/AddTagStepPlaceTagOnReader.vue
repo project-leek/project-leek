@@ -23,7 +23,11 @@ export default defineComponent({
     },
   },
 
-  emits: ['proceed', 'update:nfc-tag'],
+  emits: {
+    proceed: (): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+  },
 
   setup(_, ctx) {
     const nfcTag = ref<NFCTag>();
@@ -53,14 +57,14 @@ export default defineComponent({
         }
 
         nfcTag.value.nfcData = nfcReader.attachedTagData;
-        ctx.emit('update:nfc-tag', nfcTag);
+        ctx.emit('update:nfc-tag', nfcTag.value);
         ctx.emit('proceed');
       })();
     };
 
     onMounted(() => {
       nfcTag.value = new NFCTag();
-      ctx.emit('update:nfc-tag', nfcTag);
+      ctx.emit('update:nfc-tag', nfcTag.value);
 
       feathers
         .service('nfc-readers')
