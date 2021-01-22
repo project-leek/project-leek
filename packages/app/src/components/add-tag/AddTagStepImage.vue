@@ -42,7 +42,6 @@ export default defineComponent({
   setup(props, ctx) {
     const usingSpotifyImage = ref<boolean>(true);
     const userInput = ref<string>('');
-    //TODO fix broken svg route
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
@@ -60,9 +59,8 @@ export default defineComponent({
       if (correctImageUrl(userInput.value)) {
         return userInput.value;
       }
-      //TODO fix broken svg route
       usingSpotifyImage.value = true;
-      return '../../assets/icons/plus.svg';
+      return '/image-gallery.svg';
     });
 
     const changeImage = (useSpotifyImage: boolean): void => {
