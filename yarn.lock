@@ -1959,10 +1959,10 @@
   resolved "https://registry.yarnpkg.com/@types/spotify-api/-/spotify-api-0.0.5.tgz#243254a754c0c60eff79603737d0f997216c7e77"
   integrity sha512-Z+FvB+LVRaeX6HDpPDYo1NwNQbUsjugZ8cgob2Qw2e42bgMJheDBXMiO5KFzftsDdtHUsamR3u9fMw0dAsYojQ==
 
-"@types/spotify-web-api-node@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/spotify-web-api-node/-/spotify-web-api-node-4.0.2.tgz#006c91fecb489fe938d7f16b6873994a8b3870cc"
-  integrity sha512-4Rivh7vIxiY7+vlhVk95AmLfnZPWqtFcCsVg95kpERDfN0MkkS2nDBY6oRfiXdvZ9UkvC+2hH8Z1JXUcAY/icQ==
+"@types/spotify-web-api-node@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/spotify-web-api-node/-/spotify-web-api-node-5.0.0.tgz#2225faf641f2ef085388770a2cdf085109165e9f"
+  integrity sha512-F2fDANMgtZAgocjebCg9z/mJAvz8JR0uzpsOJ9Yr9JRi0vzYuK6LBXanqvVf6B/zTJG5HPEXNyJRK3ZRZ/sYag==
   dependencies:
     "@types/spotify-api" "*"
 
@@ -2059,10 +2059,10 @@
   resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.27.0.tgz#c0cfeebb0bebb56052719efa4a0ecc090a932c76"
   integrity sha512-DllIJQapnU2YwewIhh/4dYesmMQw3h2cFtabECc/zSJHqUbNa0eJuEkRa6DXbZvh1YPWBtYQoPV17NlDpBw1Vw==
 
-"@vitejs/plugin-vue@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.0.6.tgz#698afa5a77a6dcd22cf7757801f46a6f01cdbb53"
-  integrity sha512-cWJewtxnVVpjlhq6DoZ7VP7sF1jTZYVg66ehslZ0tJANWk1uRiCXdqD8yQ4npZ4XewDICQzK+c+9i3Xsubx59w==
+"@vitejs/plugin-vue@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.1.1.tgz#6eccd9aa0a2c3365048bf82b9fee437e995ae15d"
+  integrity sha512-Oia369l4L4Wd6hW0paQ1OUsPbGHd85KQllismua65C45xMu40og5lzGreSuGEtW+6yB0I5FyLrC7tk5yCucHwA==
 
 "@vue/compiler-core@3.0.5", "@vue/compiler-core@^3.0.0", "@vue/compiler-core@^3.0.1", "@vue/compiler-core@^3.0.2":
   version "3.0.5"
@@ -5380,10 +5380,10 @@ hash-sum@^2.0.0:
   resolved "https://registry.yarnpkg.com/hash-sum/-/hash-sum-2.0.0.tgz#81d01bb5de8ea4a214ad5d6ead1b523460b0b45a"
   integrity sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==
 
-helmet@*, helmet@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.3.1.tgz#e374e2fb3f8da045d0233f13299b1fde6e59e4e1"
-  integrity sha512-WsafDyKsIexB0+pUNkq3rL1rB5GVAghR68TP8ssM9DPEMzfBiluEQlVzJ/FEj6Vq2Ag3CNuxf7aYMjXrN0X49Q==
+helmet@*, helmet@4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.4.1.tgz#a17e1444d81d7a83ddc6e6f9bc6e2055b994efe7"
+  integrity sha512-G8tp0wUMI7i8wkMk2xLcEvESg5PiCitFMYgGRc/PwULB0RVhTP5GFdxOwvJwp9XVha8CuS8mnhmE8I/8dx/pbw==
 
 highlight.js@^10.0.0:
   version "10.4.1"
