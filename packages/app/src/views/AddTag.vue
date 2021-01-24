@@ -9,14 +9,16 @@
       </div>
     </header>
 
-    <div class="bg-yellow-400 w-full flex-grow">
+    <main
+      class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto"
+    >
       <component
         :is="steps[activeStep]"
         :nfc-tag="nfcTag"
         @update:nfc-tag="updateTag"
         @proceed="activeStep++"
       />
-    </div>
+    </main>
 
     <footer class="flex flex-col items-center">
       <ul
@@ -27,7 +29,7 @@
         </li>
       </ul>
 
-      <div class="actions flex flex-row justify-center mb-4">
+      <div class="actions flex flex-row w-full justify-center mb-4 px-4">
         <Button
           v-if="activeStep !== 0"
           round
@@ -60,7 +62,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { defineComponent, Ref, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -83,16 +85,7 @@ export default defineComponent({
     const activeStep = ref<number>(0);
     const router = useRouter();
 
-    const isRef = <T>(item: T | Ref<T>): item is Ref<T> => {
-      return !!(item as Ref<T>).value;
-    };
-
-    const updateTag = (_nfcTag: NFCTag | Ref<NFCTag>): void => {
-      if (isRef(_nfcTag)) {
-        nfcTag.value = _nfcTag.value;
-        return;
-      }
-
+    const updateTag = (_nfcTag: NFCTag): void => {
       nfcTag.value = _nfcTag;
     };
 
