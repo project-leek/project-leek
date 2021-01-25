@@ -53,6 +53,7 @@ export default defineComponent({
           return true;
         }
       }
+      usingSpotifyImage.value = true;
       return false;
     };
 
@@ -60,7 +61,6 @@ export default defineComponent({
       if (correctImageUrl(userInput.value)) {
         return userInput.value;
       }
-      usingSpotifyImage.value = true;
       return placeholderImagePath;
     });
 
