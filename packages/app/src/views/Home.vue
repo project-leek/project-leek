@@ -141,7 +141,6 @@ export default defineComponent({
     };
 
     const onRemove = (tag: NFCTag): void => {
-      console.log('hello');
       groups.value = groups.value
         .map((group) => {
           const filteredGroup = group;
