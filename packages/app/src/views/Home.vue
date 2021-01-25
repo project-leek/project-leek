@@ -103,6 +103,7 @@ export default defineComponent({
   setup() {
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
+    const nfcTags = feathers.service('nfc-tags');
 
     provide('selectedTag', selectedTag);
 
@@ -116,10 +117,9 @@ export default defineComponent({
 
     const deleteTag = async (): Promise<void> => {
       if (selectedTag.value != null) {
-        await feathers.service('nfc-tags').remove(selectedTag.value._id);
+        await nfcTags.remove(selectedTag.value._id);
         selectedTag.value = null;
         buttonTransitionActive.value = true;
-        await loadTags();
       }
     };
 
@@ -129,7 +129,7 @@ export default defineComponent({
     };
 
     const loadTags = async (): Promise<void> => {
-      const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
+      const res = (await nfcTags.find()) as Paginated<NFCTag>;
       groups.value = Object.values(
         res.data.reduce((previous, item) => {
           if (!previous[item.group]) {
@@ -143,6 +143,16 @@ export default defineComponent({
 
     onMounted(async () => {
       await loadTags();
+
+      nfcTags.on('removed', (tag: NFCTag) => {
+        groups.value = groups.value
+          .map((group) => {
+            const filteredGroup = group;
+            filteredGroup.tags = group.tags.filter((t) => t._id !== tag._id);
+            return filteredGroup;
+          })
+          .filter((group) => group.tags.length === 0);
+      });
     });
 
     return {
