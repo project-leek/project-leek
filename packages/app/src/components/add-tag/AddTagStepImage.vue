@@ -44,6 +44,7 @@ export default defineComponent({
     const userInput = ref<string>('');
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
+    const placeholderImagePath = '/image-gallery.svg';
 
     const correctImageUrl = (phrase: string): boolean => {
       const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
@@ -60,7 +61,7 @@ export default defineComponent({
         return userInput.value;
       }
       usingSpotifyImage.value = true;
-      return '/image-gallery.svg';
+      return placeholderImagePath;
     });
 
     const changeImage = (useSpotifyImage: boolean): void => {
