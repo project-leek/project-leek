@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start p-8 p-8">
+  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start pl-8 pr-8 pt-6">
     <div class="text-lg font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
@@ -8,7 +8,7 @@
         class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
       />
     </div>
-    <div class="mb-2 text-lg font-semibold text-white">Bild aus dem Internet</div>
+    <div class="pt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
       <TagEntry class="w-32" :img="externalImage" @click="changeImage(false)" />
       <span
@@ -16,7 +16,7 @@
         class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
       />
     </div>
-    <Textfield v-model="userInput" class="mt-3 w-full" placeholder="enter URL" />
+    <Textfield v-model="userInput" class="mt-2 w-full" placeholder="enter URL" />
   </div>
 </template>
 
@@ -45,10 +45,10 @@ export default defineComponent({
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
 
-    const correctImageUrl = (val: string): boolean => {
+    const correctImageUrl = (phrase: string): boolean => {
       const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
-      if (val != null) {
-        if (regex.exec(val)) {
+      if (phrase != null) {
+        if (regex.exec(phrase)) {
           return true;
         }
       }
