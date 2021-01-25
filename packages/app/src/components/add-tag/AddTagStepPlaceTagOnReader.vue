@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-place-tag-on-reader p-12">
+  <div class="add-tag-step-place-tag-on-reader p-6 w-full flex my-auto">
     <img src="../../assets/attach-tag.gif" />
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCReader, NFCTag } from '@leek/commons';
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import feathers from '../../lib/feathers';
@@ -15,7 +15,19 @@ import feathers from '../../lib/feathers';
 export default defineComponent({
   name: 'AddTagStepPlaceOnReader',
 
-  emits: ['proceed', 'update:nfc-tag'],
+  props: {
+    // eslint-disable-next-line vue/no-unused-properties
+    nfcTag: {
+      type: Object as PropType<NFCTag>,
+      default: null,
+    },
+  },
+
+  emits: {
+    proceed: (): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+  },
 
   setup(_, ctx) {
     const nfcTag = ref<NFCTag>();
@@ -45,14 +57,14 @@ export default defineComponent({
         }
 
         nfcTag.value.nfcData = nfcReader.attachedTagData;
-        ctx.emit('update:nfc-tag', nfcTag);
+        ctx.emit('update:nfc-tag', nfcTag.value);
         ctx.emit('proceed');
       })();
     };
 
     onMounted(() => {
       nfcTag.value = new NFCTag();
-      ctx.emit('update:nfc-tag', nfcTag);
+      ctx.emit('update:nfc-tag', nfcTag.value);
 
       feathers
         .service('nfc-readers')

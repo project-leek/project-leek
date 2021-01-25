@@ -4,18 +4,7 @@
     @click="doClick"
   >
     <span class="text flex h-full w-full">
-      <span
-        v-if="icon"
-        class="my-auto"
-        :class="{
-          'm-auto': rounded,
-          'mx-auto': !rounded && !text,
-          'ml-2': !!text,
-          [`text-${iconsize}`]: true,
-          fas: true,
-          [icon]: true,
-        }"
-      />
+      <span v-if="icon" class="my-auto" :class="iconClass" />
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
@@ -28,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -72,7 +61,10 @@ export default defineComponent({
     },
   },
 
-  emits: ['click'],
+  emits: {
+    click: (): boolean => true,
+  },
+
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
@@ -125,10 +117,26 @@ export default defineComponent({
     const textsize = ref(getSize(props.textSize));
     const iconsize = ref(getSize(props.iconSize));
 
+    const iconClass = computed(() => {
+      const classes = [`text-${iconsize.value}`, ...props.icon.split(' ')];
+      if (rounded.value) {
+        classes.push('m-auto');
+      } else if (!props.text) {
+        classes.push('mx-auto');
+      }
+
+      if (props.text) {
+        classes.push('ml-2');
+      }
+
+      return classes;
+    });
+
     return {
+      iconClass,
+
       doClick,
       textsize,
-      iconsize,
       rounded,
     };
   },
