@@ -78,7 +78,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
@@ -140,18 +140,24 @@ export default defineComponent({
       );
     };
 
+    const onRemove = (tag: NFCTag): void => {
+      console.log('hello');
+      groups.value = groups.value
+        .map((group) => {
+          const filteredGroup = group;
+          filteredGroup.tags = group.tags.filter((t) => t._id !== tag._id);
+          return filteredGroup;
+        })
+        .filter((group) => group.tags.length !== 0);
+    };
+
     onMounted(async () => {
       await loadTags();
+      nfcTags.on('removed', onRemove);
+    });
 
-      nfcTags.on('removed', (tag: NFCTag) => {
-        groups.value = groups.value
-          .map((group) => {
-            const filteredGroup = group;
-            filteredGroup.tags = group.tags.filter((t) => t._id !== tag._id);
-            return filteredGroup;
-          })
-          .filter((group) => group.tags.length === 0);
-      });
+    onBeforeUnmount(() => {
+      nfcTags.off('removed', onRemove);
     });
 
     return {
