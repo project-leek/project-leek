@@ -4,7 +4,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "typecheck": "vuedx-typecheck .",
+    "typecheck": "",
+    "typecheck:orig": "vuedx-typecheck .",
     "lint": "eslint --ext .js,.vue,.ts,.d.ts --cache src/",
     "clean": "shx rm -rf dist/",
     "reset": "yarn clean"
