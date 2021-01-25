@@ -17,6 +17,7 @@
           :key="group.name"
           :groupname="group.name"
           class="border-white border-b"
+          @closed="selectedTag = null"
         >
           <div class="flex flex-row content-start overflow-auto">
             <TagEntry
@@ -77,7 +78,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, provide, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
@@ -104,8 +105,6 @@ export default defineComponent({
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
     const nfcTags = feathers.service('nfc-tags');
-
-    provide('selectedTag', selectedTag);
 
     const toggleTag = (tag: NFCTag): void => {
       selectedTag.value = tag === selectedTag.value ? null : tag;
