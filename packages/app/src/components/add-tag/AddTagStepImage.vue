@@ -1,6 +1,6 @@
 <template>
-  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start pl-8 pr-8 pt-6">
-    <div class="text-lg font-semibold text-white">Bild von Spotify</div>
+  <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start px-8 py-5">
+    <div class="text-lg pb-1 font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry class="w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
       <span
@@ -8,7 +8,7 @@
         class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
       />
     </div>
-    <div class="pt-8 text-lg font-semibold text-white">Bild aus dem Internet</div>
+    <div class="pt-8 pb-1 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
       <TagEntry class="w-32" :img="externalImage" @click="changeImage(false)" />
       <span
