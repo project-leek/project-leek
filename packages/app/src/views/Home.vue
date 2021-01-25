@@ -1,6 +1,6 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex py-5 justify-center text-4xl overlay">
+    <header class="flex py-5 justify-center text-4xl">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
@@ -78,7 +78,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
