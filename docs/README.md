@@ -10,6 +10,10 @@ Check the [build guide](Build.md) to learn how to build your own leek-box.
 
 Check the [usage guide](Usage.md) to learn how to use a leek-box.
 
+## Development
+
+Get some information about the [development](Development.md) of this project.
+
 ## PROI - Report
 The PROI report is the final report needed for our module "Projekt Informatik".
 
@@ -29,7 +33,6 @@ The exported mockups can be found [here](mockups/) as well.
 ### Activity Diagrams
 The following mockups are created with [LucidChart](https://app.lucidchart.com/lucidchart/invitations/accept/332f0381-366a-423a-a45f-b93b857126e6).
 The exported activity diagrams can be found [here](diagrams/activity_diagrams) as well.
-
 
 ## Contribute to docs
 
