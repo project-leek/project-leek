@@ -54,18 +54,18 @@
           <Button
             round
             icon="fas fa-times"
-            class="ml-4 my-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 my-auto h-10 w-10 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deselect"
           />
           <Button
             round
             text="Bearbeiten"
-            class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
           />
           <Button
             round
             text="Löschen"
-            class="ml-4 px-3 text-2xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deleteTag"
           />
         </span>
