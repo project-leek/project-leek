@@ -11,7 +11,7 @@
     </header>
 
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
-      <GroupDropDown>
+      <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
           v-for="group in groups"
           :key="group.name"
@@ -32,6 +32,7 @@
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
+      <TagSearchResult v-else />
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
@@ -81,6 +82,7 @@ import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
+import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../lib/feathers';
 
@@ -98,6 +100,7 @@ export default defineComponent({
     GroupDropDown,
     GroupDropDownItem,
     Textfield,
+    TagSearchResult,
   },
 
   setup() {

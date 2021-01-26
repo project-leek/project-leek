@@ -32,6 +32,10 @@ export default defineComponent({
       type: Object as PropType<NFCTag | null>,
       default: null,
     },
+    searchInput: {
+      type: String,
+      default: '',
+    }
   },
 
   emits: {
@@ -39,7 +43,7 @@ export default defineComponent({
     'update:selected-tag': (_payload: NFCTag | null): boolean => true,
   },
 
-  setup() {
+  setup(props) {
     const searchResult = ref<NFCTag[]>([]);
 
     async function loadTags(): Promise<void> {
