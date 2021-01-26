@@ -39,12 +39,9 @@
         @leave="infoTransitionActive = true"
         @after-leave="infoTransitionActive = false"
       >
-        <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full"
-          >&copy; {{ new Date().getFullYear() }} - Made with ❤️ by
-          <a class="underline" target="_blank" href="https://github.com/project-leek"
-            >team leek</a
-          ></span
-        >
+        <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full">
+          <Textfield v-model="searchInput" class="py-2 mx-4" placeholder="Titelsuche" />
+        </span>
       </transition>
       <transition name="slide" @after-leave="buttonTransitionActive = false">
         <span
@@ -84,6 +81,7 @@ import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
+import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../lib/feathers';
 
 type NFCTagGroup = {
@@ -99,12 +97,14 @@ export default defineComponent({
     TagEntry,
     GroupDropDown,
     GroupDropDownItem,
+    Textfield,
   },
 
   setup() {
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
     const nfcTags = feathers.service('nfc-tags');
+    const searchInput = ref<string>('');
 
     const toggleTag = (tag: NFCTag): void => {
       selectedTag.value = tag === selectedTag.value ? null : tag;
@@ -167,6 +167,7 @@ export default defineComponent({
       infoTransitionActive,
       buttonTransitionActive,
       deselect,
+      searchInput,
     };
   },
 });
