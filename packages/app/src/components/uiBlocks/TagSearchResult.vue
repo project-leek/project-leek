@@ -47,13 +47,20 @@ export default defineComponent({
     const allTags = ref<NFCTag[]>([]);
     const searchResult = ref<NFCTag[]>([]);
 
-    async function loadTags(): Promise<void> {
+    const loadTags = async (): Promise<void> => {
       const service = feathers.service('nfc-tags');
       const fearthersResult = (await service.find()) as Paginated<NFCTag>;
       allTags.value = fearthersResult.data;
-    }
+    };
 
-    onMounted(async () => await loadTags());
+    const removeTag = (removedTag: NFCTag): void => {
+      allTags.value = allTags.value.filter((tag) => tag._id !== removedTag._id);
+    };
+
+    onMounted(async () => {
+      await loadTags();
+      feathers.service('nfc-tags').on('removed', removeTag);
+    });
 
     watchEffect(() => {
       let tagName = '';
