@@ -32,7 +32,7 @@
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
-      <TagSearchResult v-else />
+      <TagSearchResult :searchInput="searchInput" v-else />
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
