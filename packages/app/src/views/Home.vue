@@ -35,6 +35,7 @@
       <TagSearchResult
         v-else
         v-model:selectedTag="selectedTag"
+        :search-input="searchInput"
         @tag-selected="toggleSelectedTag($event)"
       />
     </main>
@@ -45,7 +46,7 @@
         @after-leave="infoTransitionActive = false"
       >
         <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full">
-          <Textfield v-model="searchInput" class="py-2 mx-4" placeholder="Titelsuche" />
+          <Textfield v-model="searchInput" class="mx-4" placeholder="Titelsuche" />
         </span>
       </transition>
       <transition name="slide" @after-leave="buttonTransitionActive = false">

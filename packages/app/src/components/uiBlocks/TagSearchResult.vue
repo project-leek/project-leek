@@ -35,7 +35,7 @@ export default defineComponent({
     searchInput: {
       type: String,
       default: '',
-    }
+    },
   },
 
   emits: {
@@ -49,7 +49,14 @@ export default defineComponent({
     async function loadTags(): Promise<void> {
       const service = feathers.service('nfc-tags');
       const allTags = (await service.find()) as Paginated<NFCTag>;
-      searchResult.value = allTags.data;
+      //filter NFC Tag
+      allTags.data.forEach((nfcTag) => {
+        let name = nfcTag.name.toLowerCase();
+        let phrase = props.searchInput.toLowerCase();
+        if (name.search(phrase) > -1) {
+          searchResult.value.push(nfcTag);
+        }
+      });
     }
 
     onMounted(async () => await loadTags());
