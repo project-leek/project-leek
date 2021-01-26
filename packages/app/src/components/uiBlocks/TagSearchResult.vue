@@ -1,12 +1,13 @@
 <template>
-  <div class="p-4">
-    <div v-for="tag in searchResult" :key="tag.nfcData" class="flex justify-items-start pb-2">
-      <TagEntry
-        :img="tag.imageUrl"
-        class="w-20 h-20 flex-shrink-0"
-        :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
-        @click="$emit('tag-selected', tag)"
-      />
+  <div class="px-20 py-8">
+    <div
+      v-for="tag in searchResult"
+      :key="tag.nfcData"
+      class="flex pb-2"
+      :class="{ 'opacity-25 ': selectedTag !== tag && selectedTag !== null }"
+      @click="$emit('tag-selected', tag)"
+    >
+      <TagEntry :img="tag.imageUrl" class="w-20 h-20 flex-shrink-0" />
       <div class="pl-3 flex flex-col text-white overflow-hidden flex-grow">
         <span class="text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
           {{ tag.name }}
