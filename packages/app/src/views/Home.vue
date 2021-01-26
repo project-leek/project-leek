@@ -27,12 +27,16 @@
               :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"
-              @click="toggleTag(entry)"
+              @click="toggleSelectedTag(entry)"
             />
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
-      <TagSearchResult v-else />
+      <TagSearchResult
+        v-else
+        v-model:selectedTag="selectedTag"
+        @tag-selected="toggleSelectedTag($event)"
+      />
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
@@ -109,7 +113,7 @@ export default defineComponent({
     const nfcTags = feathers.service('nfc-tags');
     const searchInput = ref<string>('');
 
-    const toggleTag = (tag: NFCTag): void => {
+    const toggleSelectedTag = (tag: NFCTag): void => {
       selectedTag.value = tag === selectedTag.value ? null : tag;
       buttonTransitionActive.value = true;
     };
@@ -165,7 +169,7 @@ export default defineComponent({
     return {
       groups,
       selectedTag,
-      toggleTag,
+      toggleSelectedTag,
       deleteTag,
       infoTransitionActive,
       buttonTransitionActive,

@@ -7,7 +7,7 @@
       :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
       :img="tag.imageUrl"
       :name="tag.name"
-      @click="$emit('update:selected-tag', tag)"
+      @click="$emit('tag-selected', tag)"
     />
   </div>
 </template>
@@ -40,7 +40,7 @@ export default defineComponent({
 
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:selected-tag': (_payload: NFCTag | null): boolean => true,
+    'tag-selected': (_payload: NFCTag): boolean => true,
   },
 
   setup(props) {
