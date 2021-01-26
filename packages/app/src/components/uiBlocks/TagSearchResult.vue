@@ -1,21 +1,23 @@
 <template>
-  <div v-for="tag in searchResult" :key="tag.nfcData" class="grid grid-cols-2 justify-items-center">
-    <TagEntry
-      :img="tag.imageUrl"
-      class="w-20 h-20 flex-shrink-0"
-      :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
-      @click="$emit('tag-selected', tag)"
-    />
-    <div class="flex flex-col text-white overflow-hidden flex-grow">
-      <span class="text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
-        {{ tag.name }}
-      </span>
-      <span
-        v-if="tag.trackArtists"
-        class="text-base whitespace-nowrap overflow-hidden overflow-ellipsis"
-      >
-        {{ tag.trackArtists }} - {{ tag.trackTitle }}
-      </span>
+  <div class="p-4">
+    <div v-for="tag in searchResult" :key="tag.nfcData" class="flex justify-items-start pb-2">
+      <TagEntry
+        :img="tag.imageUrl"
+        class="w-20 h-20 flex-shrink-0"
+        :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
+        @click="$emit('tag-selected', tag)"
+      />
+      <div class="pl-3 flex flex-col text-white overflow-hidden flex-grow">
+        <span class="text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
+          {{ tag.name }}
+        </span>
+        <span
+          v-if="tag.trackArtists"
+          class="text-base whitespace-nowrap overflow-hidden overflow-ellipsis"
+        >
+          {{ tag.trackArtists }} - {{ tag.trackTitle }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -71,19 +73,28 @@ export default defineComponent({
     });
 
     watchEffect(() => {
-      let tagName = '';
-      const searchPhrase = props.searchInput.toLowerCase();
       searchResult.value = [];
 
       if (allTags.value) {
-        allTags.value.map((nfcTag) => {
-          tagName = nfcTag.name.toLowerCase();
-          if (tagName.search(searchPhrase) > -1) {
+        allTags.value.forEach((nfcTag) => {
+          if (
+            searchingFor(nfcTag.name) ||
+            searchingFor(nfcTag.trackTitle) ||
+            searchingFor(nfcTag.trackArtists)
+          ) {
             searchResult.value.push(nfcTag);
           }
         });
       }
     });
+
+    const searchingFor = (phrase: string): boolean => {
+      if (phrase) {
+        return phrase.toLowerCase().search(props.searchInput.toLowerCase()) > -1;
+      } else {
+        return false;
+      }
+    };
 
     return {
       searchResult,
