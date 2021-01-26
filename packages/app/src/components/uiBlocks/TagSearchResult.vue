@@ -1,14 +1,22 @@
 <template>
-  <div class="grid grid-cols-2">
+  <div v-for="tag in searchResult" :key="tag.nfcData" class="grid grid-cols-2 justify-items-center">
     <TagEntry
-      v-for="tag in searchResult"
-      :key="tag.nfcData"
-      class="m-4 w-2/6 flex-shrink-0 text-4xl"
-      :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
       :img="tag.imageUrl"
-      :name="tag.name"
+      class="w-20 h-20 flex-shrink-0"
+      :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
       @click="$emit('tag-selected', tag)"
     />
+    <div class="flex flex-col text-white overflow-hidden flex-grow">
+      <span class="text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
+        {{ tag.name }}
+      </span>
+      <span
+        v-if="tag.trackArtists"
+        class="text-base whitespace-nowrap overflow-hidden overflow-ellipsis"
+      >
+        {{ tag.trackArtists }} - {{ tag.trackTitle }}
+      </span>
+    </div>
   </div>
 </template>
 
