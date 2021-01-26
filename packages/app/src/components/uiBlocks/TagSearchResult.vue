@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { defineComponent, onMounted, PropType, ref, watchEffect } from 'vue';
 
 import feathers from '../../lib/feathers';
 import TagEntry from './TagEntry.vue';
@@ -44,22 +44,31 @@ export default defineComponent({
   },
 
   setup(props) {
+    const allTags = ref<NFCTag[]>([]);
     const searchResult = ref<NFCTag[]>([]);
 
     async function loadTags(): Promise<void> {
       const service = feathers.service('nfc-tags');
-      const allTags = (await service.find()) as Paginated<NFCTag>;
-      //filter NFC Tag
-      allTags.data.forEach((nfcTag) => {
-        let name = nfcTag.name.toLowerCase();
-        let phrase = props.searchInput.toLowerCase();
-        if (name.search(phrase) > -1) {
-          searchResult.value.push(nfcTag);
-        }
-      });
+      const fearthersResult = (await service.find()) as Paginated<NFCTag>;
+      allTags.value = fearthersResult.data;
     }
 
     onMounted(async () => await loadTags());
+
+    watchEffect(() => {
+      let tagName = '';
+      const searchPhrase = props.searchInput.toLowerCase();
+      searchResult.value = [];
+
+      if (allTags.value) {
+        allTags.value.map((nfcTag) => {
+          tagName = nfcTag.name.toLowerCase();
+          if (tagName.search(searchPhrase) > -1) {
+            searchResult.value.push(nfcTag);
+          }
+        });
+      }
+    });
 
     return {
       searchResult,
