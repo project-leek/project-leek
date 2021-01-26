@@ -3,7 +3,7 @@
     <div
       v-for="tag in searchResult"
       :key="tag.nfcData"
-      class="flex pb-2"
+      class="flex pb-6"
       :class="{ 'opacity-25 ': selectedTag !== tag && selectedTag !== null }"
       @click="$emit('tag-selected', tag)"
     >
