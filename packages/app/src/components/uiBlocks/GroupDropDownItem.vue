@@ -43,7 +43,9 @@ export default defineComponent({
     },
   },
 
-  setup() {
+  emits: ['closed'],
+
+  setup(_, context) {
     let itemIndex = ref<number | null>(null);
     const itemCount = inject<Ref<number>>('itemCount');
     const activeItemIndex = inject<Ref<number | null>>('activeItemIndex');
@@ -70,8 +72,8 @@ export default defineComponent({
       if (!activeItemIndex) {
         return;
       }
-
       activeItemIndex.value = isOpen.value ? null : itemIndex.value;
+      context.emit('closed');
     };
 
     return {
