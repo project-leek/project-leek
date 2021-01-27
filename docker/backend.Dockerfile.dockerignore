@@ -5,12 +5,14 @@
 !yarn.lock
 !package.json
 
-!packages/commons/src
+!config/
+
+!packages/commons/src/
 !packages/commons/package.json
 !packages/commons/tsconfig.json
 
-!packages/backend/src
-!packages/backend/config
-!packages/backend/public
+!packages/backend/src/
+!packages/backend/config/
+!packages/backend/public/
 !packages/backend/package.json
 !packages/backend/tsconfig.json
