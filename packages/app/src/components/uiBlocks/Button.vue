@@ -3,14 +3,14 @@
     class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
     @click="doClick"
   >
-    <span class="text flex h-full w-full">
+    <span class="text flex h-full w-full" :class="{ 'justify-center': bothCenter }">
       <span v-if="icon" class="my-auto" :class="iconClass" />
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
         :class="{
           'ml-4': icon,
-          'mx-auto': (!rounded && !icon) || textCenter,
+          'mx-auto': (!rounded && !icon) || centerText,
           [`text-${textsize}`]: true,
         }"
       >
@@ -54,6 +54,11 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    bothCenter: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     iconSize: {
       type: Number,
       required: false,
@@ -77,7 +82,6 @@ export default defineComponent({
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
-    const textCenter = ref<boolean>(props.centerText);
 
     const doClick = (): void => {
       if (props.disabled) {
@@ -147,7 +151,6 @@ export default defineComponent({
       doClick,
       textsize,
       rounded,
-      textCenter,
     };
   },
 });
