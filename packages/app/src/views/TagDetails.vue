@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-lg h-full w-full flex flex-col overflow-hidden">
+  <div class="bg-white mx-auto max-w-lg h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
       <Button back round icon="fas fa-times" class="h-10 w-10 flex-shrink-0" text="" />
 
@@ -12,7 +12,7 @@
     </header>
 
     <main
-      class="h-2/3 overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
+      class="overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
     >
       <component
         :is="activeDetailsPage"
@@ -23,7 +23,7 @@
       />
     </main>
 
-    <footer class="flex-grow flex items-center justify-evenly text-2xl text-gray-800">
+    <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
       <Button
         v-if="showBackButton"
         icon="fas fa-caret-left"

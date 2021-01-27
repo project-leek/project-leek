@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-4 px-6 h-full items-center space-y-6">
+  <div class="w-full p-4 px-6 items-center space-y-6">
     <LabeledInput label="Tag Name" class="w-full col-span-2">
       <Textfield
         v-model="currentTag.name"
