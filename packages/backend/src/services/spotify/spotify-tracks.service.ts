@@ -54,9 +54,19 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
     const user = await this.app.service('users').get(params?.user?._id);
     const spotifyApi = new SpotifyApi(this.app, user);
 
+    let trackResp = null;
     await spotifyApi.refreshToken();
 
-    const trackResp = await spotifyApi.getApi().getTrack(id);
+    //remove prefix spotify:track:
+    const trackId = id.replace(/^spotify:track:/, '');
+    console.log('trackId:', trackId);
+
+    try {
+      trackResp = await spotifyApi.getApi().getTrack(trackId);
+    } catch (error) {
+      throw error;
+      return {} as SpotifyTrack;
+    }
 
     if (!trackResp.body) {
       throw new Error(`Could not find a track with the id ${id}`);

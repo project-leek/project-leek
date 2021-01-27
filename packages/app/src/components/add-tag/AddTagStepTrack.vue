@@ -108,7 +108,7 @@ export default defineComponent({
       selectedTrack.value = track;
 
       const tagCopy = tag.value;
-      tagCopy.spotifyTrackUri = track.uri;
+      tagCopy.trackUri = track.uri;
       tagCopy.imageUrl = track.imageUri;
       tagCopy.trackTitle = track.title;
       tagCopy.trackArtists = track.artists.join(', ');

@@ -16,7 +16,7 @@
         :removeable="false"
         :placeholder-text="'Wähle eine Gruppe'"
         :enable-add-item="true"
-        @update:model-value="selectGroup()"
+        @update:model-value="selectGroup"
       />
     </LabeledInput>
 
@@ -73,10 +73,14 @@ export default defineComponent({
 
     async function loadTrack(): Promise<void> {
       const params = {};
-      const id = currentTag.value.spotifyTrackUri;
-      selectedTrack.value = await feathers.service('spotify-tracks').get(id, params);
-      if (selectedTrack.value) {
-        selectedTrackName.value = selectedTrack.value.title;
+      const id = currentTag.value.trackUri;
+      try {
+        selectedTrack.value = await feathers.service('spotify-tracks').get(id, params);
+        if (selectedTrack.value) {
+          selectedTrackName.value = selectedTrack.value.title;
+        }
+      } catch (error) {
+        console.log('ERROR:', error);
       }
     }
 

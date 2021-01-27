@@ -18,8 +18,8 @@
         :is="activeDetailsPage"
         v-if="currentNfcTag && currentNfcTag.nfcData"
         :nfc-tag="unsavedNFCTag"
-        @open-image-details="openImageDetails()"
-        @open-track-details="openTrackDetails()"
+        @open-image-details="openImageDetails"
+        @open-track-details="openTrackDetails"
       />
     </main>
 
@@ -29,9 +29,9 @@
         icon="fas fa-caret-left"
         class="w-14 h-14 mx-4"
         round
-        @click="goBack()"
+        @click="goBack"
       />
-      <Button :text="'Speichern'" class="p-3 mx-4 flex-1" @click="saveChanges()" />
+      <Button :text="'Speichern'" class="p-3 mx-4 flex-1" @click="saveChanges" />
     </footer>
   </div>
 </template>
@@ -39,7 +39,7 @@
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
 import { Component, defineComponent, onMounted, ref, shallowRef } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
 import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
@@ -50,17 +50,23 @@ import feathers from '../lib/feathers';
 export default defineComponent({
   name: 'TagDetails',
   components: { Button },
-  setup() {
+  props: {
+    tagId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const currentNfcTag = ref<NFCTag>();
     const unsavedNFCTag = ref<NFCTag>();
-    const routeId = useRoute().params.id.toString();
     const router = useRouter();
     const activeDetailsPage = shallowRef<Component>(EditTag);
     const showBackButton = ref<boolean>(false);
 
     onMounted(async () => {
       try {
-        currentNfcTag.value = await feathers.service('nfc-tags').get(routeId);
+        currentNfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
+        console.log('Error after');
       } finally {
         if (!currentNfcTag.value || !currentNfcTag.value.nfcData) {
           void router.push('/tag-not-found');
@@ -77,8 +83,9 @@ export default defineComponent({
 
     function goBack(): void {
       if (activeDetailsPage.value === EditTag) {
+        console.log('GO Back');
         if (currentNfcTag.value && currentNfcTag.value.nfcData) {
-          void feathers.service('nfc-tags').update(routeId, currentNfcTag.value);
+          void feathers.service('nfc-tags').update(props.tagId, currentNfcTag.value);
         }
         router.go(-1);
       } else {
