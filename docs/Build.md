@@ -89,8 +89,8 @@ Our project is splitted in two docker container. One Container to handle the eve
 
 In the newly created folder there is now an .env file that must be filled with your personal ClientID, Client Secret. You find those in this [guide](https://developer.spotify.com/documentation/general/guides/app-settings/)
 
-**AFTER** you set your id in the env file, run now 
+**AFTER** you set your id in the env file, run now
 ```
-docker-compose up
+sudo docker-compose up
 ```
 in the folder .
