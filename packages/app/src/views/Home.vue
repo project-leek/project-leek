@@ -20,15 +20,18 @@
           @closed="selectedTag = null"
         >
           <div class="flex flex-row content-start overflow-auto">
-            <TagEntry
-              v-for="entry in group.tags"
-              :key="entry.nfcData"
-              class="m-4 w-44 flex-shrink-0 text-4xl"
-              :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
-              :img="entry.imageUrl"
-              :name="entry.name"
-              @click="toggleSelectedTag(entry)"
-            />
+            <div v-for="tag in group.tags" :key="tag.nfcData" class="pb-3">
+              <TagEntry
+                class="mx-4 w-44 flex-shrink-0 text-2xl"
+                :class="{ 'opacity-25': selectedTag !== tag && selectedTag !== null }"
+                :img="tag.imageUrl"
+                @click="toggleSelectedTag(tag)"
+              />
+              <div class="pl-5 text-white text-lg font-semibold">
+                {{ tag.name }}
+                <div class="font-thin italic text-sm">{{ tag.trackTitle }}</div>
+              </div>
+            </div>
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
