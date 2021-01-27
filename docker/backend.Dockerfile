@@ -14,5 +14,6 @@ COPY --from=build /app/packages/backend/dist .
 COPY --from=build /app/packages/backend/config ./config
 COPY --from=build /app/packages/backend/public ./public
 RUN chown -R node:node /app
+RUN ls -la
 USER root
 CMD ["node", "index.js"]
