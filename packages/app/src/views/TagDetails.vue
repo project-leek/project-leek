@@ -66,7 +66,6 @@ export default defineComponent({
     onMounted(async () => {
       try {
         currentNfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
-        console.log('Error after');
       } finally {
         if (!currentNfcTag.value || !currentNfcTag.value.nfcData) {
           void router.push('/tag-not-found');
@@ -83,7 +82,6 @@ export default defineComponent({
 
     function goBack(): void {
       if (activeDetailsPage.value === EditTag) {
-        console.log('GO Back');
         if (currentNfcTag.value && currentNfcTag.value.nfcData) {
           void feathers.service('nfc-tags').update(props.tagId, currentNfcTag.value);
         }
