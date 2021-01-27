@@ -5,6 +5,7 @@
         v-model="currentTag.name"
         :placeholder="'z. B. Mario Figur'"
         class="rounded-full"
+        :required="true"
         @update:nfc-tag="$emit('update:nfc-tag', currentTag)"
       />
     </LabeledInput>
@@ -16,6 +17,7 @@
         :removeable="false"
         :placeholder-text="'Wähle eine Gruppe'"
         :enable-add-item="true"
+        :required="true"
         @update:model-value="selectGroup"
       />
     </LabeledInput>

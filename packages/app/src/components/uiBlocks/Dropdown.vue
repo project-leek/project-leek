@@ -2,7 +2,10 @@
   <div class="w-full flex flex-col text-lg relative">
     <div
       class="bg-white p-2 px-1.5 rounded-3xl flex items-center pl-2 cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
-      :class="{ 'rounded-b-none': dropdownExtended }"
+      :class="{
+        'rounded-b-none': dropdownExtended,
+        'ring-red-600 ring-2 ring-inset': required && !modelValue,
+      }"
       @click="dropdownExtended = !dropdownExtended"
     >
       <span v-if="modelValue && modelValue.value" class="value text-xl">
@@ -103,6 +106,10 @@ export default defineComponent({
     items: {
       type: Array as PropType<ListItem[]>,
       default: (): ListItem[] => [],
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 

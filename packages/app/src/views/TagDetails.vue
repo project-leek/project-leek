@@ -12,8 +12,15 @@
     </header>
 
     <main
-      class="overflow-x-hidden overflow-y-auto bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
+      class="overflow-x-hidden overflow-y-auto bg-gradient-to-b from-primary to-secondary flex flex-col items-start justify-start text-2xl text-gray-800 flex-grow"
     >
+      <span
+        v-if="requiredFieldsEmpty && savedWithEmptyRequiredFields"
+        id="requiredFieldsEmpty"
+        class="text-red-600 text-lg px-8 pt-2"
+      >
+        Einige notwendige Felder sind noch nicht ausgefüllt.
+      </span>
       <component
         :is="activeDetailsPage"
         v-if="currentNfcTag && currentNfcTag.nfcData"
@@ -38,7 +45,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { Component, defineComponent, onMounted, ref, shallowRef } from 'vue';
+import { Component, computed, defineComponent, onMounted, ref, shallowRef } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -59,9 +66,15 @@ export default defineComponent({
   setup(props) {
     const currentNfcTag = ref<NFCTag>();
     const unsavedNFCTag = ref<NFCTag>();
+
     const router = useRouter();
     const activeDetailsPage = shallowRef<Component>(EditTag);
     const showBackButton = ref<boolean>(false);
+
+    const savedWithEmptyRequiredFields = ref<boolean>(false);
+    const requiredFieldsEmpty = computed((): boolean => {
+      return !unsavedNFCTag.value?.name || !unsavedNFCTag.value?.group;
+    });
 
     onMounted(async () => {
       try {
@@ -76,8 +89,23 @@ export default defineComponent({
     });
 
     function saveChanges(): void {
-      currentNfcTag.value = unsavedNFCTag.value;
-      goBack();
+      if (requiredFieldsEmpty.value) {
+        savedWithEmptyRequiredFields.value = true;
+        scrollToTop();
+      } else {
+        currentNfcTag.value = unsavedNFCTag.value;
+        goBack();
+      }
+    }
+
+    function scrollToTop(): void {
+      const main = document.querySelector('main');
+      if (main) {
+        main.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
+      }
     }
 
     function goBack(): void {
@@ -111,6 +139,8 @@ export default defineComponent({
       saveChanges,
       goBack,
       showBackButton,
+      requiredFieldsEmpty,
+      savedWithEmptyRequiredFields,
     };
   },
 });
