@@ -59,7 +59,6 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
 
     //remove prefix spotify:track:
     const trackId = id.replace(/^spotify:track:/, '');
-    console.log('trackId:', trackId);
 
     try {
       trackResp = await spotifyApi.getApi().getTrack(trackId);
