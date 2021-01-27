@@ -6,7 +6,8 @@ on:
       - 'app-*'
     paths:
       - '.github/workflows/release-app.yml'
-      - 'packages/**'
+      - 'packages/app/**'
+      - 'packages/commons/**'
       - '.eslintrc.js'
       - '.gitignore'
       - 'lerna.json'

@@ -76,7 +76,10 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:nfc-tag'],
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+  },
   setup(props, ctx) {
     const search = ref<string>('');
     const isLoading = ref<boolean>(false);
@@ -107,6 +110,8 @@ export default defineComponent({
       const tagCopy = tag.value;
       tagCopy.spotifyTrackUri = track.uri;
       tagCopy.imageUrl = track.imageUri;
+      tagCopy.trackTitle = track.title;
+      tagCopy.trackArtists = track.artists.join(', ');
 
       ctx.emit('update:nfc-tag', tagCopy);
     };

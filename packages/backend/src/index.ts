@@ -23,6 +23,8 @@ async function seedTags(): Promise<void> {
     imageUrl: 'https://cdn.pixabay.com/photo/2020/12/17/14/07/leaves-5839550_960_720.jpg',
     name: 'erster Eintrag',
     group: 'Lieblingstracks',
+    trackTitle: 'Hilfe ich bin gefangen',
+    trackArtists: 'Programmierer',
   });
 
   await app.service('nfc-tags').create({
@@ -32,6 +34,8 @@ async function seedTags(): Promise<void> {
     name: ' zweiter Name',
     group: 'Lieblingstracks',
     nfcData: 'flonke2',
+    trackTitle: 'Macio Macio',
+    trackArtists: 'Tralala',
   });
 
   await app.service('nfc-tags').create({
@@ -41,6 +45,8 @@ async function seedTags(): Promise<void> {
     name: 'name aus dem Tag',
     group: 'Entdecken',
     nfcData: 'flonke3',
+    trackTitle: 'Rosen sind tot',
+    trackArtists: 'Rote Rosen',
   });
 
   await app.service('nfc-tags').create({
@@ -50,6 +56,8 @@ async function seedTags(): Promise<void> {
     group: 'Entdecken',
     name: 'good boy',
     nfcData: 'flonke4',
+    trackTitle: 'Ich hab ein Lied für dich',
+    trackArtists: 'Singer 123 5676',
   });
 
   await app.service('nfc-tags').create({
@@ -59,6 +67,8 @@ async function seedTags(): Promise<void> {
     group: 'Entdecken',
     name: 'Bär in Kiel',
     nfcData: 'flonke5',
+    trackTitle: 'Bärenstark',
+    trackArtists: 'Beer',
   });
 }
 

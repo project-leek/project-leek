@@ -109,7 +109,14 @@ export default defineComponent({
     },
   },
 
-  emits: { 'update:model-value': null, 'update:items': null, 'remove-item': null },
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:model-value': (_payload: ListItem | null): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:items': (_payload: ListItem[]): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'remove-item': (_payload: ListItem): boolean => true,
+  },
 
   setup(props, ctx) {
     const dropdownExtended = ref<boolean>(false);

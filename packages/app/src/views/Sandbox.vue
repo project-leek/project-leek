@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full bg-red-500">
     <div class="w-72 h-96">
-      <add-tag-step-info :nfc-tag="tag" />
+      <TagSearchResult />
     </div>
 
     <textfield v-model="tag.name" placeholder="Test for AddTagInfoStep" class="w-full h-15 my-5" />
@@ -44,11 +44,11 @@
 import { NFCTag } from '@leek/commons';
 import { defineComponent, ref } from 'vue';
 
-import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import Button from '../components/uiBlocks/Button.vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
+import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 
 export default defineComponent({
@@ -57,7 +57,7 @@ export default defineComponent({
     Button,
     Dropdown,
     Textfield,
-    AddTagStepInfo,
+    TagSearchResult,
     LabeledInput,
   },
   setup() {
