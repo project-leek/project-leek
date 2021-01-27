@@ -40,9 +40,11 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const userInput = ref<string>('');
     const currentTag = ref<NFCTag>(props.nfcTag);
     const spotifyImageUrl = ref<string>(currentTag.value.spotifyImageUrl);
+    const userInput = ref<string>(
+      currentTag.value.imageUrl !== spotifyImageUrl.value ? currentTag.value.imageUrl : ''
+    );
     const usingSpotifyImage = ref<boolean>(
       !currentTag.value.imageUrl || currentTag.value.imageUrl === currentTag.value.spotifyImageUrl
     );
