@@ -1,5 +1,5 @@
 <template>
-  <div class="px-20 py-8">
+  <div class="px-10 py-8">
     <div
       v-for="tag in searchResult"
       :key="tag.nfcData"
@@ -7,16 +7,24 @@
       :class="{ 'opacity-25 ': selectedTag !== tag && selectedTag !== null }"
       @click="$emit('tag-selected', tag)"
     >
-      <TagEntry :img="tag.imageUrl" class="w-20 h-20 flex-shrink-0" />
-      <div class="pl-3 flex flex-col text-white overflow-hidden flex-grow">
-        <span class="text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <TagEntry :img="tag.imageUrl" class="w-2/6 flex-shrink-0" />
+      <div class="pl-5 flex flex-col text-white overflow-hidden flex-grow">
+        <span class="text-2xl font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
           {{ tag.name }}
         </span>
         <span
           v-if="tag.trackArtists"
-          class="text-base whitespace-nowrap overflow-hidden overflow-ellipsis"
-        >
-          {{ tag.trackArtists }} - {{ tag.trackTitle }}
+          class="pt-2 text-xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+          ><div class="flex flex-row">
+            <div class="flex flex-col italic font-thin">
+              <div>Artist:</div>
+              <div>Titel:</div>
+            </div>
+            <div class="flex flex-col pl-3">
+              <div>{{ tag.trackArtists }}</div>
+              <div>{{ tag.trackTitle }}</div>
+            </div>
+          </div>
         </span>
       </div>
     </div>
