@@ -2,30 +2,80 @@
 
 This guide should help everybody to build and setup an own version of the leek-box.
 
-## Raspberry PI
+## What do you need?
+* Raspberry PI
+* SD-Card
+* HDMI-Cable
+* Power-Cable
+* Lan-Cable
+* NFC-Reader
 
-We mainly use a Raspberry PI as the computing device behind the leek-box.
+## 1. Setting up the Raspberry PI
+Since the Raspberry is ideally hidden in a fancy box, it is recommended to install the Raspberry Pi OS Lite. This saves resources, as no graphical user interface needs to be rendered if no monitor is connected most of the time anyway.
 
-### Wifi
+### 1.1 Making the SD card bootable
+* Download the Raspberry Pi Imager https://www.raspberrypi.org/software/
+* choose os -> Raspberry Pi OS (other) -> Raspberry Pi OS **Lite**
+* choose SD Card and start writing
 
-To simplify the setup of the PIs wifi we recommend the [comitup](https://github.com/davesteele/comitup) library by davesteele.
+After the Raspberry Pi Imager is ready, the SD card can be plugged into the back of the PI. It now needs to be connected to power, LAN, a monitor and a keyboard.
 
-#### Installation
+### 1.2 Connecting the PI
+When the Raspberry PI is now fully connected, you should be able to log in for the first time. The default login data  is as follows: </br>
+  ```json
+  user: pi
+  password: raspberry
+  ```
+⚠️ The default keyboard setting is English.
+Europeans must therefore watch their z.
 
-1. Install `comitup` from the PPA as described by [this](https://davesteele.github.io/comitup/ppa.html) guide.
+Connect the Pi to the WLAN:
+For the next steps, it is easiest if we connect to the PI via a computer in order to be able to work through the following instructions as quickly as possible. Therefore, we recommend connecting the PI via LAN and establishing an SSH connection.
 
-1. Then setup `comitup` like done by [this](https://github.com/davesteele/comitup/wiki/Installing-Comitup) guide.
+Activate SSH: <br>
+```linux
+  sudo systemctl enable ssh
+  sudo systemctl start ssh
+```
+Connecting to the Pi <br>
+To obtain the PI's ip address run
+```
+ifconfig
+```
+and connect with a ssh-client like [vsCode](https://www.hanselman.com/blog/visual-studio-code-remote-development-over-ssh-to-a-raspberry-pi-is-butter)
 
-1. Edit the `/etc/comitup.conf` file and set the following values:
-    ```conf
-    ap_name=leek-<nnn>
-    ```
+Now that we can comfortably copy and paste commands onto the raspberry, let's get down to the actual wifi setup. <br>
+1. Add the comitup repo as instructed [here](https://davesteele.github.io/comitup/ppa.html)
+2. prepare the pi for the service with
+```
+sudo rm  /etc/wpa_supplicant/wpa_supplicant.conf
+sudo systemctl disable systemd-resolved
+```
+3.  replace the  line '# ap_name: comitup-<nn>' with 'ap_name: leek-<nn>'
+```
+sudo nano /etc/comitup.conf
+```
+4. restart the PI
 
-1. Finally reboot the PI.
+After the restart, a new wifi should be available with the name "leek-"....
+Now connect to the WLAN and follow the prompt to log on to the network or navigate manually to http://10.41.0.1/
 
-### Install docker
+In the new screen, you can now connect to your home WLAN. Every time the box is powered on and does not find a registered Wi-Fi, it will open its configuration hotspot again.
+However, if it finds a known WLAN, the hotspot will be closed and the Pi will use the available WLAN.
 
-TBD
+Finally, with a new ifconfig, we find out the new WLAN IP address, which we will use to address the Pi in the future and set up the box.
+
+
+### 1.3 Install docker
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+get-docker can take quite a while on older Pi's. <br>
+After the process is complete run 'docker' to check if the installation was successfull.
+
+
+## Setup the Project-Leek
 
 #### NFC-Reader container setup
 
