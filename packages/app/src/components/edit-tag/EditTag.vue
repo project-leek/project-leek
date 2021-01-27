@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, SpotifyTrack } from '@leek/commons/';
+import { NFCTag, SpotifyTrack } from '@leek/commons';
 import { defineComponent, onMounted, PropType, ref } from 'vue';
 
 import feathers from '../../lib/feathers';
