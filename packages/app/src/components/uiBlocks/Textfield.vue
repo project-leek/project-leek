@@ -34,6 +34,9 @@ export default defineComponent({
     },
   },
 
-  emits: { 'update:modelValue': null },
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:modelValue': (_payload: string): boolean => true,
+  },
 });
 </script>
