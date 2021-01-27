@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon",
-    "build": "yarn clean && ncc build src/index.ts -o dist",
+    "build": "yarn clean && ncc build src/index.ts -o dist -s -e request-compose && cp -r config/ public/ dist/",
     "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
     "lint:fix": "yarn lint --fix",
@@ -65,6 +65,7 @@
     "@types/spotify-web-api-node": "5.0.0",
     "@typescript-eslint/eslint-plugin": "4.14.0",
     "@typescript-eslint/parser": "4.14.0",
+    "@vercel/ncc": "0.27.0",
     "axios": "0.21.1",
     "jest": "26.6.3",
     "nodemon": "2.0.7",

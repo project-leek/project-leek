@@ -4,14 +4,18 @@ RUN apk add --no-cache make gcc g++ python git linux-headers
 COPY . ./
 RUN ls -la
 RUN yarn
-RUN yarn build:nfc-reader
+RUN yarn build:backend
 
 FROM node:alpine
 ENV NODE_ENV=production
 RUN apk --no-cache add ca-certificates
 WORKDIR /app
-COPY --from=build /app/packages/nfc-reader/dist .
+COPY --from=build /app/packages/backend/dist .
 RUN chown -R node:node /app
 RUN ls -la
+
+# workaround to fix dynamic import (https://github.com/simov/request-compose/pull/3)
+RUN yarn add request-compose
+
 USER root
 CMD ["node", "index.js"]

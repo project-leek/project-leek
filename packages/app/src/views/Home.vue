@@ -11,7 +11,7 @@
     </header>
 
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
-      <GroupDropDown>
+      <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
           v-for="group in groups"
           :key="group.name"
@@ -27,11 +27,17 @@
               :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"
-              @click="toggleTag(entry)"
+              @click="toggleSelectedTag(entry)"
             />
           </div>
         </GroupDropDownItem>
       </GroupDropDown>
+      <TagSearchResult
+        v-else
+        v-model:selectedTag="selectedTag"
+        :search-input="searchInput"
+        @tag-selected="toggleSelectedTag($event)"
+      />
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
@@ -39,12 +45,9 @@
         @leave="infoTransitionActive = true"
         @after-leave="infoTransitionActive = false"
       >
-        <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full"
-          >&copy; {{ new Date().getFullYear() }} - Made with ❤️ by
-          <a class="underline" target="_blank" href="https://github.com/project-leek"
-            >team leek</a
-          ></span
-        >
+        <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full">
+          <Textfield v-model="searchInput" class="mx-4" placeholder="Titelsuche" />
+        </span>
       </transition>
       <transition name="slide" @after-leave="buttonTransitionActive = false">
         <span
@@ -62,6 +65,7 @@
             round
             text="Bearbeiten"
             class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
           <Button
             round
@@ -84,6 +88,8 @@ import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
 import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
+import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
+import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../lib/feathers';
 
 type NFCTagGroup = {
@@ -99,14 +105,17 @@ export default defineComponent({
     TagEntry,
     GroupDropDown,
     GroupDropDownItem,
+    Textfield,
+    TagSearchResult,
   },
 
   setup() {
     const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
     const nfcTags = feathers.service('nfc-tags');
+    const searchInput = ref<string>('');
 
-    const toggleTag = (tag: NFCTag): void => {
+    const toggleSelectedTag = (tag: NFCTag): void => {
       selectedTag.value = tag === selectedTag.value ? null : tag;
       buttonTransitionActive.value = true;
     };
@@ -162,11 +171,12 @@ export default defineComponent({
     return {
       groups,
       selectedTag,
-      toggleTag,
+      toggleSelectedTag,
       deleteTag,
       infoTransitionActive,
       buttonTransitionActive,
       deselect,
+      searchInput,
     };
   },
 });

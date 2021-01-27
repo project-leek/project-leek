@@ -1,35 +1,50 @@
 <template>
-  <div
-    class="bg-white p-1 px-1.5 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
-    :class="{ 'z-50': dropdownExtended }"
-  >
+  <div class="w-full flex flex-col text-lg relative">
     <div
-      class="flex items-center pl-2 cursor-pointer"
+      class="bg-white p-2 px-1.5 rounded-3xl flex items-center pl-2 cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
+      :class="{
+        'rounded-b-none': dropdownExtended,
+        'ring-red-600 ring-2 ring-inset': required && !modelValue,
+      }"
       @click="dropdownExtended = !dropdownExtended"
     >
-      <span v-if="modelValue && modelValue.value" class="value">{{ modelValue.value }}</span>
+      <span v-if="modelValue && modelValue.value" class="value text-xl">
+        {{ modelValue.value }}
+      </span>
       <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
       <Button
         v-if="dropdownExtended"
-        class="ml-auto w-8 h-8"
+        class="ml-auto mr-3 w-8 h-8"
         icon="fas fa-chevron-down"
         :icon-size="3"
         round
       />
-      <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
+      <Button
+        v-else
+        class="ml-auto mr-3 w-8 h-8"
+        icon="fas fa-chevron-right"
+        :icon-size="3"
+        round
+      />
     </div>
-    <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
-      <div v-for="item in items" :key="item.id">
-        <hr class="w-full border-dotted border-secondary border-1 my-2" />
+    <div
+      v-if="dropdownExtended"
+      class="absolute px-0.5 bg-white rounded-b-3xl w-full top-full -mt-0.5 z-50 border-2 border-button"
+    >
+      <div
+        v-for="item in items"
+        :key="item.id"
+        class="py-2 px-1.5 w-full border-dotted border-secondary border-b outline-none"
+      >
         <div
           :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
           class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
           @click="selectItem(item)"
         >
-          <span class="px-2">{{ item.value }}</span>
+          <span class="px-2 text-xl">{{ item.value }}</span>
           <Button
             v-if="removeable"
-            class="w-8 h-8 ml-auto"
+            class="w-8 h-8 ml-auto mr-3"
             icon="far fa-trash-alt"
             :icon-size="3"
             round
@@ -37,8 +52,7 @@
           />
         </div>
       </div>
-      <div v-if="enableAddItem" class="add-item">
-        <hr class="w-full border-solid border-secondary border-1 my-2" />
+      <div v-if="enableAddItem" class="add-item px-4 py-2 border-solid border-secondary border-t">
         <div class="add-item-section flex w-full items-center pt-0.5">
           <input
             v-model="newItemValue"
@@ -73,7 +87,7 @@ export default defineComponent({
     placeholderText: {
       type: String,
       required: false,
-      default: 'Please select an item',
+      default: 'Bitte wähle ein Element...',
     },
     enableAddItem: {
       type: Boolean,
@@ -87,11 +101,15 @@ export default defineComponent({
     addItemText: {
       type: String,
       required: false,
-      default: 'Please add an element',
+      default: 'Bitte füge ein Element hinzu...',
     },
     items: {
       type: Array as PropType<ListItem[]>,
       default: (): ListItem[] => [],
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 

@@ -1,13 +1,13 @@
-name: Release NFC-Reader
+name: Release Backend
 
 on:
   push:
     tags:
-      - 'nfc-reader-*'
+      - 'backend-*'
     paths:
-      - '.github/workflows/release-nfc-reader.yml'
+      - '.github/workflows/release-backend.yml'
       - 'docker/**'
-      - 'packages/nfc-reader/**'
+      - 'packages/backend/**'
       - 'packages/commons/**'
       - '.eslintrc.js'
       - '.gitignore'
@@ -53,13 +53,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build nfc-reader docker
+      - name: Build docker image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: docker/nfc-reader.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
+          file: docker/backend.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
-          tags: anbraten/leek-nfc-reader:latest
+          tags: anbraten/leek-backend:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
