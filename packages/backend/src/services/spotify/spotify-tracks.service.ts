@@ -37,8 +37,9 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
     if (trackResp.body.tracks) {
       const tracks = trackResp.body.tracks.items;
       return tracks.map((track) => {
+        const uriSplit = track.uri.split(':');
         return {
-          uri: track.uri,
+          uri: uriSplit[uriSplit.length - 1],
           title: track.name,
           artists: track.artists.map((artist) => artist.name),
           imageUri: track.album.images[0].url,
@@ -47,6 +48,31 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
     }
 
     return [];
+  }
+
+  async get(id: string, params: Params): Promise<SpotifyTrack> {
+    const user = await this.app.service('users').get(params?.user?._id);
+    const spotifyApi = new SpotifyApi(this.app, user);
+
+    let trackResp = null;
+    await spotifyApi.refreshToken();
+
+    //remove prefix spotify:track:
+    const trackId = id.replace(/^spotify:track:/, '');
+
+    trackResp = await spotifyApi.getApi().getTrack(trackId);
+
+    if (!trackResp.body) {
+      throw new Error(`Could not find a track with the id ${id}`);
+    }
+
+    const track = trackResp.body;
+    return {
+      uri: track.uri,
+      title: track.name,
+      artists: track.artists.map((artist) => artist.name),
+      imageUri: track.album.images[0].url,
+    } as SpotifyTrack;
   }
 }
 

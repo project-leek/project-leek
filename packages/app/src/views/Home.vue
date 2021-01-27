@@ -65,6 +65,7 @@
             round
             text="Bearbeiten"
             class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
           <Button
             round
