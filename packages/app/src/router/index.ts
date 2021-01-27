@@ -31,6 +31,12 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
+    path: '/tag/:tagId',
+    name: 'tag-details',
+    component: (): Component => import('../views/TagDetails.vue'),
+    props: true,
+  },
+  {
     path: '/sandbox',
     name: 'sandbox',
     component: (): Component => import('../views/Sandbox.vue'),
