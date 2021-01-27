@@ -110,6 +110,8 @@ export default defineComponent({
       const tagCopy = tag.value;
       tagCopy.spotifyTrackUri = track.uri;
       tagCopy.imageUrl = track.imageUri;
+      tagCopy.trackTitle = track.title;
+      tagCopy.trackArtists = track.artists.join(', ');
 
       ctx.emit('update:nfc-tag', tagCopy);
     };
