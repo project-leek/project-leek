@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-8 flex flex-row items-center">
-      <Button back round icon="fas fa-times" class="h-7 w-7" />
+      <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6">
@@ -22,13 +22,12 @@
 
     <footer class="flex text-gray-800 py-5">
       <span class="flex w-full text-xl">
-        <Button round icon="fas fa-caret-left" class="ml-4 my-auto h-12 w-12" />
         <Button text="Speichern" center-text class="mx-2 px-3 py-2 text-2xl flex-grow" />
         <Button
           text="Abmelden"
           center-text
           class="mx-2 px-3 text-2xl flex-grow"
-          @click="logoutUser()"
+          @click="logoutUser"
         />
       </span>
     </footer>
@@ -69,7 +68,7 @@ export default defineComponent({
 
     const loadUser = (): void => {
       if (isAuthenticated) {
-        userEmail.value = user.value?.email;
+        if (user.value !== null) userEmail.value = user.value.email;
       }
     };
 
