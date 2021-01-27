@@ -1,10 +1,8 @@
 <template>
-  <div
-    class="bg-white p-2 px-1.5 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25 relative"
-    :class="{ 'rounded-b-none': dropdownExtended }"
-  >
+  <div class="w-full flex flex-col text-lg relative">
     <div
-      class="flex items-center pl-2 cursor-pointer"
+      class="bg-white p-2 px-1.5 rounded-3xl flex items-center pl-2 cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
+      :class="{ 'rounded-b-none': dropdownExtended }"
       @click="dropdownExtended = !dropdownExtended"
     >
       <span v-if="modelValue && modelValue.value" class="value text-xl">
@@ -28,8 +26,7 @@
     </div>
     <div
       v-if="dropdownExtended"
-      id="dropdownExtended"
-      class="absolute px-0.5 bg-white rounded-b-3xl w-full -left-0.5 top-full -mt-0.5 z-50 border-2 border-button"
+      class="absolute px-0.5 bg-white rounded-b-3xl w-full top-full -mt-0.5 z-50 border-2 border-button"
     >
       <div
         v-for="item in items"
@@ -162,9 +159,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-#dropdownExtended {
-  width: 101.2%;
-}
-</style>
