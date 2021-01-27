@@ -6,6 +6,7 @@ on:
       - 'nfc-reader-*'
     paths:
       - '.github/workflows/release-nfc-reader.yml'
+      - 'docker/**'
       - 'packages/nfc-reader/**'
       - 'packages/commons/**'
       - '.eslintrc.js'
