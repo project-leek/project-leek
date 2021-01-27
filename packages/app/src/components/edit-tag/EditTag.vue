@@ -30,8 +30,10 @@
       />
     </LabeledInput>
 
-    <TagEntry class="ml-2 w-32 pt-2" :img="currentTag.imageUrl" />
-    <Button class="p-3 px-6 my-auto" :text="'Bild ändern'" @click="$emit('open-image-details')" />
+    <div class="flex flex-row w-full">
+      <TagEntry class="ml-2 w-32 pt-2" :img="currentTag.imageUrl" />
+      <Button class="p-3 px-6 m-auto" :text="'Bild ändern'" @click="$emit('open-image-details')" />
+    </div>
   </div>
 </template>
 
@@ -64,7 +66,7 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null, 'open-image-details': null, 'open-track-details': null },
   setup(props, ctx) {
-    const currentTag = ref(props.nfcTag);
+    const currentTag = ref<NFCTag>(props.nfcTag);
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
@@ -80,6 +82,7 @@ export default defineComponent({
           selectedTrackName.value = selectedTrack.value.title;
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log('ERROR:', error);
       }
     }

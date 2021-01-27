@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white mx-auto max-w-lg h-full w-full flex flex-col overflow-hidden">
+  <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
       <Button back round icon="fas fa-times" class="h-10 w-10 flex-shrink-0" text="" />
 
@@ -12,7 +12,7 @@
     </header>
 
     <main
-      class="overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
+      class="overflow-x-hidden overflow-y-auto bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
     >
       <component
         :is="activeDetailsPage"
