@@ -8,7 +8,11 @@
       <p
         v-if="text"
         class="my-auto font-heading font-extralight"
-        :class="{ 'ml-4': icon, 'mx-auto': !rounded && !icon, [`text-${textsize}`]: true }"
+        :class="{
+          'ml-4': icon,
+          'mx-auto': (!rounded && !icon) || textCenter,
+          [`text-${textsize}`]: true,
+        }"
       >
         {{ text }}
       </p>
@@ -45,6 +49,11 @@ export default defineComponent({
       required: false,
       default: 3,
     },
+    centerText: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     iconSize: {
       type: Number,
       required: false,
@@ -68,6 +77,7 @@ export default defineComponent({
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
+    const textCenter = ref<boolean>(props.centerText);
 
     const doClick = (): void => {
       if (props.disabled) {
@@ -134,10 +144,10 @@ export default defineComponent({
 
     return {
       iconClass,
-
       doClick,
       textsize,
       rounded,
+      textCenter,
     };
   },
 });

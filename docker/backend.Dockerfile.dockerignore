@@ -11,6 +11,8 @@
 !packages/commons/package.json
 !packages/commons/tsconfig.json
 
-!packages/nfc-reader/src/
-!packages/nfc-reader/package.json
-!packages/nfc-reader/tsconfig.json
+!packages/backend/src/
+!packages/backend/config/
+!packages/backend/public/
+!packages/backend/package.json
+!packages/backend/tsconfig.json

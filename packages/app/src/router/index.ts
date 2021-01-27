@@ -36,6 +36,11 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Sandbox.vue'),
   },
   {
+    path: '/settings',
+    name: 'Settings',
+    component: (): Component => import('../views/Settings.vue'),
+  },
+  {
     path: '/tag/add',
     name: 'add-tag',
     component: (): Component => import('../views/AddTag.vue'),
