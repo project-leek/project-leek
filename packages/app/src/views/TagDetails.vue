@@ -104,7 +104,7 @@ export default defineComponent({
         main.scrollTo({
           top: 0,
           behavior: 'smooth',
-        })
+        });
       }
     }
 
