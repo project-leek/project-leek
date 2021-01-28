@@ -35,11 +35,7 @@
           :text-size="5"
           icon="fas fa-chevron-left"
           class="mr-4 px-4 py-2 text-center"
-          @click="
-            () => {
-              activeStep--;
-            }
-          "
+          @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
@@ -55,11 +51,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
-          @click="
-            () => {
-              activeStep++;
-            }
-          "
+          @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
       </div>
@@ -107,12 +99,22 @@ export default defineComponent({
       alert('Neuen Tag erfolgreich erstellt.');
     };
 
+    const previousStep = (): void => {
+      activeStep.value -= 1;
+    };
+
+    const nextStep = (): void => {
+      activeStep.value += 1;
+    };
+
     return {
       activeStep,
       steps,
       nfcTag,
       updateTag,
       saveTag,
+      previousStep,
+      nextStep,
     };
   },
 });

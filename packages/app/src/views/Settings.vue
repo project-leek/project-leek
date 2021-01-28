@@ -67,7 +67,9 @@ export default defineComponent({
     };
 
     const loadUser = (): void => {
-      if (isAuthenticated && user.value !== null) userEmail.value = user.value.email;
+      if (isAuthenticated && user.value !== null) {
+        userEmail.value = user.value.email;
+      }
     };
 
     const logoutUser = (): void => {
