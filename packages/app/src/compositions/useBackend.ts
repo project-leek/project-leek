@@ -71,11 +71,17 @@ export function setBackendUrl(_backendUrl: string | null): void {
 }
 
 export async function saveBackendUrl(_backendUrl: string): Promise<boolean> {
-  if (!(await isBackendAvailable(_backendUrl))) {
+  let url = _backendUrl;
+
+  if (!url.includes(':')) {
+    url = `${url}:3030`;
+  }
+
+  if (!(await isBackendAvailable(url))) {
     return false;
   }
 
-  setBackendUrl(_backendUrl);
+  setBackendUrl(url);
 
   return true;
 }
