@@ -52,7 +52,7 @@ import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
 import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import EditTag from '../components/edit-tag/EditTag.vue';
 import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 export default defineComponent({
   name: 'TagDetails',

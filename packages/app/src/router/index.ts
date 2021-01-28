@@ -2,6 +2,7 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
+import { isBackendUrlConfigured } from '../compositions/useBackend';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -23,6 +24,12 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/setup',
+    name: 'setup',
+    component: (): Component => import('../views/Setup.vue'),
+    meta: { authentication: 'ignored' },
   },
   {
     path: '/welcome',
@@ -51,6 +58,12 @@ const routes: RouteRecordRaw[] = [
     name: 'add-tag',
     component: (): Component => import('../views/AddTag.vue'),
   },
+  {
+    path: '/sandbox',
+    name: 'sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
+    meta: { authentication: 'ignored' },
+  },
   // this should be the last route to catch all unhandled requests
   {
     path: '/:pathMatch(.*)*',
@@ -66,6 +79,11 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
+  if (!isBackendUrlConfigured.value && to.name !== 'setup') {
+    next({ name: 'setup' });
+    return;
+  }
+
   await loadAuthentication();
 
   const pageAuthentication = (to.meta.authentication as string) || 'needed';

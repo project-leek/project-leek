@@ -62,7 +62,7 @@ async function seedTags(): Promise<void> {
   });
 }
 
-function start(): void {
+async function start(): Promise<void> {
   logger.info('Application (%s v%s) starting ...', NODE_ENV, 'unkown');
 
   const hostname = app.get('host');
@@ -75,15 +75,19 @@ function start(): void {
 
   app.setup(server);
 
-  seedTags().catch((error: Error) => {
+  try {
+    await seed();
+  } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('Seeding tags failed', error.message);
-  });
+    console.error((error as Error).message);
+  }
 
-  seed().catch((error: Error) => {
+  try {
+    await seedTags();
+  } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('Seeding failed', error.message);
-  });
+    console.error((error as Error).message);
+  }
 }
 
 async function stop(): Promise<void> {
@@ -125,4 +129,4 @@ process.on('uncaughtException', (error) =>
   logger.error('Uncaught exception %s', error.stack || error.message || error),
 );
 
-start();
+void start();

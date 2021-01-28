@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { SpotifySpeaker } from '@leek/commons';
+import { Speaker } from '@leek/commons';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
@@ -44,15 +44,15 @@ import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import { isAuthenticated, logout, user } from '../compositions/useAuthentication';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 export default defineComponent({
   name: 'Settings',
   components: { Button, Dropdown, LabeledInput },
   setup() {
     const userEmail = ref<string>('');
-    const selectedSpeaker = ref<SpotifySpeaker>();
-    const speakers = ref<SpotifySpeaker[]>([]);
+    const selectedSpeaker = ref<Speaker>();
+    const speakers = ref<Speaker[]>([]);
 
     const speakerList = computed(() => {
       return speakers.value.map((s) => {
@@ -61,7 +61,7 @@ export default defineComponent({
     });
 
     const loadSpeakers = async (): Promise<void> => {
-      const allSpeakers = (await feathers.service('spotify-speakers').find()) as SpotifySpeaker[];
+      const allSpeakers = (await feathers.service('spotify-speakers').find()) as Speaker[];
       if (allSpeakers) {
         speakers.value = allSpeakers;
       }
@@ -69,7 +69,7 @@ export default defineComponent({
 
     const loadUser = (): void => {
       if (isAuthenticated) {
-        userEmail.value = user.value?.email;
+        userEmail.value = user.value?.email || '';
       }
     };
 

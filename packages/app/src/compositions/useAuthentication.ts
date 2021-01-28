@@ -1,7 +1,7 @@
 import { User } from '@leek/commons';
 import { computed, ref } from 'vue';
 
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 export const user = ref<User | null>(null);
 

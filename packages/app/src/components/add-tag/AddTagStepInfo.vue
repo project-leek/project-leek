@@ -26,7 +26,7 @@
 import { NFCTag } from '@leek/commons/';
 import { defineComponent, PropType, ref } from 'vue';
 
-import feathers from '../../lib/feathers';
+import feathers from '../../compositions/useBackend';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
 import LabeledInput from '../uiBlocks/LabeledInput.vue';
