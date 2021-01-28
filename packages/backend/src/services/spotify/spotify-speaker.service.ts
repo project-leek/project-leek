@@ -1,6 +1,6 @@
 import { AdapterService, ServiceOptions } from '@feathersjs/adapter-commons';
 import { Params, ServiceAddons } from '@feathersjs/feathers';
-import { SpotifySpeaker } from '@leek/commons';
+import { Speaker } from '@leek/commons';
 
 import { Application } from '../../declarations';
 import { SpotifyApi } from '../../utils/spotify';
@@ -8,11 +8,11 @@ import { SpotifyApi } from '../../utils/spotify';
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    'spotify-speakers': SpotifySpeakerService & ServiceAddons<SpotifySpeaker>;
+    'spotify-speakers': SpotifySpeakerService & ServiceAddons<Speaker>;
   }
 }
 
-class SpotifySpeakerService extends AdapterService<SpotifySpeaker> {
+class SpotifySpeakerService extends AdapterService<Speaker> {
   app: Application;
 
   constructor(app: Application, options: Partial<ServiceOptions> = {}) {
@@ -20,7 +20,7 @@ class SpotifySpeakerService extends AdapterService<SpotifySpeaker> {
     this.app = app;
   }
 
-  async find(params: Params): Promise<SpotifySpeaker[]> {
+  async find(params: Params): Promise<Speaker[]> {
     const user = await this.app.service('users').get(params?.user?._id);
     const spotifyApi = new SpotifyApi(this.app, user);
 
@@ -30,12 +30,11 @@ class SpotifySpeakerService extends AdapterService<SpotifySpeaker> {
 
     if (resp.body) {
       const devices = resp.body.devices;
-      return devices.map((d) => {
-        return {
-          _id: d.id,
-          name: d.name,
-        } as SpotifySpeaker;
-      });
+
+      return devices.map<Speaker>((d) => ({
+        _id: d.id || Math.random().toString(36).substring(7), // TODO find better way to handel null ids?
+        name: d.name,
+      }));
     }
 
     return [];

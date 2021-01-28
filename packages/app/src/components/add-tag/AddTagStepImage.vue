@@ -2,18 +2,22 @@
   <div class="add-tag-step-image flex flex-grow flex-col justify-start items-start px-8 py-5">
     <div class="text-lg pb-1 font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
-      <TagEntry class="w-32" :img="spotifyImageUrl" @click="changeImage(true)" />
-      <span
-        v-if="usingSpotifyImage"
-        class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
+      <TagEntry
+        class="w-44"
+        :img="trackImageUrl"
+        :ring="usingTrackImage"
+        ring-color="ring-green-500"
+        @click="changeImage(true)"
       />
     </div>
     <div class="pt-8 pb-1 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
-      <TagEntry class="w-32" :img="externalImage" @click="changeImage(false)" />
-      <span
-        v-if="!usingSpotifyImage"
-        class="text-white text-opacity-60 text-4xl far fa-check-circle transform -translate-x-20 translate-y-10"
+      <TagEntry
+        class="w-44"
+        :img="externalImage"
+        :ring="!usingTrackImage"
+        ring-color="ring-green-500"
+        @click="changeImage(false)"
       />
     </div>
     <Textfield v-model="userInput" class="mt-2 w-full" placeholder="enter URL" />
@@ -40,21 +44,27 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const usingSpotifyImage = ref<boolean>(true);
-    const userInput = ref<string>('');
     const currentTag = ref<NFCTag>(props.nfcTag);
-    const spotifyImageUrl = ref<string>(currentTag.value.imageUrl);
+    const trackImageUrl = ref<string>(currentTag.value.trackImageUrl);
+    const userInput = ref<string>(
+      currentTag.value.imageUrl !== trackImageUrl.value ? currentTag.value.imageUrl : ''
+    );
+    const usingTrackImage = ref<boolean>(
+      !currentTag.value.imageUrl || currentTag.value.imageUrl === currentTag.value.trackImageUrl
+    );
     const placeholderImagePath = '/image-gallery.svg';
 
     const correctImageUrl = (phrase: string): boolean => {
+      let isCorrect = false;
       const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
       if (phrase != null) {
         if (regex.exec(phrase)) {
-          return true;
+          isCorrect = true;
         }
       }
-      usingSpotifyImage.value = true;
-      return false;
+      usingTrackImage.value = !isCorrect;
+      updateTagImage();
+      return isCorrect;
     };
 
     const externalImage = computed(() => {
@@ -64,30 +74,33 @@ export default defineComponent({
       return placeholderImagePath;
     });
 
-    const changeImage = (useSpotifyImage: boolean): void => {
-      //Check if externalImage is clicked and a correct URL is provided
-      if (!useSpotifyImage && correctImageUrl(userInput.value)) {
-        usingSpotifyImage.value = false;
-      } else {
-        usingSpotifyImage.value = true;
-      }
-
+    const updateTagImage = (): void => {
       //Depending on chosen Image, save that url as imageUrl
-      if (usingSpotifyImage.value) {
-        currentTag.value.imageUrl = spotifyImageUrl.value;
+      if (usingTrackImage.value) {
+        currentTag.value.imageUrl = trackImageUrl.value;
       } else {
         currentTag.value.imageUrl = userInput.value;
       }
+    };
 
+    const changeImage = (useTrackImage: boolean): void => {
+      //Check if externalImage is clicked and a correct URL is provided
+      if (!useTrackImage && correctImageUrl(userInput.value)) {
+        usingTrackImage.value = false;
+      } else {
+        usingTrackImage.value = true;
+      }
+
+      updateTagImage();
       ctx.emit('update:nfc-tag', currentTag.value);
     };
 
     return {
       externalImage,
       userInput,
-      usingSpotifyImage,
+      usingTrackImage,
       changeImage,
-      spotifyImageUrl,
+      trackImageUrl,
     };
   },
 });

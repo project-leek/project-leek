@@ -1,21 +1,25 @@
 <template>
   <button
     class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    :type="type"
     @click="doClick"
   >
-    <span class="text flex h-full w-full">
-      <span v-if="icon" class="my-auto" :class="iconClass" />
-      <p
-        v-if="text"
-        class="my-auto font-heading font-extralight"
-        :class="{
-          'ml-4': icon,
-          'mx-auto': (!rounded && !icon) || textCenter,
-          [`text-${textsize}`]: true,
-        }"
-      >
-        {{ text }}
-      </p>
+    <span class="text flex h-full w-full" :class="{ 'justify-center': bothCenter }">
+      <slot>
+        <span v-if="icon" class="my-auto" :class="iconClass" />
+        <p
+          v-if="text || (!text && !icon)"
+          class="my-auto font-heading font-extralight"
+          :class="{
+            'ml-4': icon,
+            'mx-auto': (!rounded && !icon) || centerText,
+            'w-full text-center': centerText,
+            [`text-${textsize}`]: true,
+          }"
+        >
+          {{ text || 'Absenden' }}
+        </p>
+      </slot>
     </span>
   </button>
 </template>
@@ -54,6 +58,11 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    bothCenter: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     iconSize: {
       type: Number,
       required: false,
@@ -68,6 +77,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: null,
+    },
   },
 
   emits: {
@@ -77,7 +90,6 @@ export default defineComponent({
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
-    const textCenter = ref<boolean>(props.centerText);
 
     const doClick = (): void => {
       if (props.disabled) {
@@ -136,7 +148,7 @@ export default defineComponent({
       }
 
       if (props.text) {
-        classes.push('ml-2');
+        classes.push('ml-1');
       }
 
       return classes;
@@ -147,7 +159,6 @@ export default defineComponent({
       doClick,
       textsize,
       rounded,
-      textCenter,
     };
   },
 });
