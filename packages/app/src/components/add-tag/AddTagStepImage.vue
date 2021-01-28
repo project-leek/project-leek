@@ -3,7 +3,7 @@
     <div class="text-lg pb-1 font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry
-        class="w-32"
+        class="w-44"
         :img="spotifyImageUrl"
         :ring="usingSpotifyImage"
         ring-color="ring-green-500"
@@ -13,7 +13,7 @@
     <div class="pt-8 pb-1 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
       <TagEntry
-        class="w-32"
+        class="w-44"
         :img="externalImage"
         :ring="!usingSpotifyImage"
         ring-color="ring-green-500"
