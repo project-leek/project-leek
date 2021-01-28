@@ -6,7 +6,7 @@
         class="w-32"
         :img="spotifyImageUrl"
         :ring="usingSpotifyImage"
-        ring-color="ring-green-800"
+        ring-color="ring-green-500"
         @click="changeImage(true)"
       />
     </div>
@@ -16,7 +16,7 @@
         class="w-32"
         :img="externalImage"
         :ring="!usingSpotifyImage"
-        ring-color="ring-green-800"
+        ring-color="ring-green-500"
         @click="changeImage(false)"
       />
     </div>
