@@ -29,7 +29,8 @@
               />
               <div class="pl-5 text-white text-lg font-semibold">
                 {{ tag.name }}
-                <div class="font-thin italic text-sm">{{ tag.trackTitle }}</div>
+                <!-- TODO fix getting tracktitle
+                  <div class="font-thin italic text-sm">{{ tag.trackTitle }}</div> !-->
               </div>
             </div>
           </div>
