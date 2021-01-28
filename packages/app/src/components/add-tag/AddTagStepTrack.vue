@@ -109,9 +109,7 @@ export default defineComponent({
 
       const tagCopy = tag.value;
       tagCopy.trackUri = track.uri;
-      tagCopy.trackImageUrl = track.imageUri;
-      tagCopy.trackTitle = track.title;
-      tagCopy.trackArtists = track.artist;
+      tagCopy.imageUrl = track.imageUri;
 
       ctx.emit('update:nfc-tag', tagCopy);
     };
