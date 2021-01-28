@@ -29,10 +29,10 @@
       </div>
     </div>
 
-    <div v-if="searchResult.length === 0" class="m-auto text-center justify-center p-2">
+    <!-- <div v-if="searchResult.length === 0" class="m-auto text-center justify-center p-2">
       <img class="mb-4" src="../../assets/not-found.gif" />
       <span class="text-white font-heading text-2xl">Keine Ergebnisse für {{ searchInput }}</span>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -80,7 +80,7 @@ export default defineComponent({
     const allTags = ref<TrackTagTuple[]>([]);
 
     const searchIndex = computed(() => {
-      const test = allTags.value.reduce((previous, current) => {
+      const res = allTags.value.reduce((previous, current) => {
         return [
           ...previous,
           { searchPattern: current.tag.name.toLowerCase(), id: current.tag._id },
@@ -89,14 +89,14 @@ export default defineComponent({
         ];
       }, [] as SearchIndex[]);
 
-      return test;
+      return res;
     });
 
     const searchedIndices = computed(() => {
-      const test = searchIndex.value
+      const res = searchIndex.value
         .filter((s) => s.searchPattern.search(props.searchInput.toLowerCase()) > -1)
         .map((s) => s.id);
-      return test;
+      return res;
     });
 
     const searchResult = computed(() => {
