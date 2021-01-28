@@ -55,14 +55,16 @@ export default defineComponent({
     const placeholderImagePath = '/image-gallery.svg';
 
     const correctImageUrl = (phrase: string): boolean => {
+      let isCorrect = false;
       const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
       if (phrase != null) {
         if (regex.exec(phrase)) {
-          return true;
+          isCorrect = true;
         }
       }
-      usingTrackImage.value = true;
-      return false;
+      usingTrackImage.value = !isCorrect;
+      updateTagImage();
+      return isCorrect;
     };
 
     const externalImage = computed(() => {
@@ -72,6 +74,15 @@ export default defineComponent({
       return placeholderImagePath;
     });
 
+    const updateTagImage = (): void => {
+      //Depending on chosen Image, save that url as imageUrl
+      if (usingTrackImage.value) {
+        currentTag.value.imageUrl = trackImageUrl.value;
+      } else {
+        currentTag.value.imageUrl = userInput.value;
+      }
+    };
+
     const changeImage = (useTrackImage: boolean): void => {
       //Check if externalImage is clicked and a correct URL is provided
       if (!useTrackImage && correctImageUrl(userInput.value)) {
@@ -80,13 +91,7 @@ export default defineComponent({
         usingTrackImage.value = true;
       }
 
-      //Depending on chosen Image, save that url as imageUrl
-      if (usingTrackImage.value) {
-        currentTag.value.imageUrl = trackImageUrl.value;
-      } else {
-        currentTag.value.imageUrl = userInput.value;
-      }
-
+      updateTagImage();
       ctx.emit('update:nfc-tag', currentTag.value);
     };
 
