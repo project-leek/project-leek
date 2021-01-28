@@ -4,9 +4,9 @@ import User from './user.class';
 export default class NFCTag extends AbstractEntity {
   nfcData!: string;
 
-  spotifyTrackUri!: string;
+  trackUri!: string;
 
-  spotifyImageUrl!: string;
+  trackImageUrl!: string;
 
   name!: string;
 

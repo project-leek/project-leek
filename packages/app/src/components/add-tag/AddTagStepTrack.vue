@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-track flex flex-col relative h-full">
+  <div class="add-tag-step-track flex flex-col relative h-full w-full">
     <!-- Search -->
     <div class="search px-4">
       <Textfield
@@ -108,8 +108,8 @@ export default defineComponent({
       selectedTrack.value = track;
 
       const tagCopy = tag.value;
-      tagCopy.spotifyTrackUri = track.uri;
-      tagCopy.imageUrl = track.imageUri;
+      tagCopy.trackUri = track.uri;
+      tagCopy.trackImageUrl = track.imageUri;
       tagCopy.trackTitle = track.title;
       tagCopy.trackArtists = track.artist;
 
