@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon",
-    "build": "yarn clean && ncc build src/index.ts -o dist",
+    "build": "yarn clean && ncc build src/index.ts -o dist -s -e request-compose && cp -r config/ public/ dist/",
     "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
     "lint:fix": "yarn lint --fix",

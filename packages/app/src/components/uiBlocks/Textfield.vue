@@ -1,6 +1,7 @@
 <template>
   <div
     class="textfield flex flex-row border-2 bg-white border-yellow-400 px-4 py-1 rounded-full focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25 shadow-lg"
+    :class="{ 'ring-red-600 ring-2 ring-inset': required && modelValue === '' }"
   >
     <span v-if="icon" class="icon mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
     <input
@@ -31,6 +32,10 @@ export default defineComponent({
     icon: {
       type: String,
       default: '',
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 
