@@ -1,4 +1,5 @@
-import { AbstractEntity } from './abstract-entity.class';
+import { AbstractEntity, Ref } from './abstract-entity.class';
+import User from './user.class';
 
 export default class NFCTag extends AbstractEntity {
   nfcData!: string;
@@ -12,4 +13,6 @@ export default class NFCTag extends AbstractEntity {
   group!: string;
 
   imageUrl!: string;
+
+  owner!: Ref<User>;
 }
