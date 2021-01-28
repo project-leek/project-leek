@@ -41,7 +41,7 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
         return {
           uri: uriSplit[uriSplit.length - 1],
           title: track.name,
-          artists: track.artists.map((artist) => artist.name),
+          artist: track.artists.join(', '),
           imageUri: track.album.images[0].url,
         } as SpotifyTrack;
       });
@@ -70,7 +70,7 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
     return {
       uri: track.uri,
       title: track.name,
-      artists: track.artists.map((artist) => artist.name),
+      artist: track.artists.map((a) => a.name).join(', '),
       imageUri: track.album.images[0].url,
     } as SpotifyTrack;
   }

@@ -42,7 +42,7 @@
             >{{ track.title }}</span
           >
           <span class="ml-4 text-base whitespace-nowrap overflow-hidden overflow-ellipsis">{{
-            track.artists.join(', ')
+            track.artist
           }}</span>
         </div>
       </li>
@@ -109,9 +109,7 @@ export default defineComponent({
 
       const tagCopy = tag.value;
       tagCopy.trackUri = track.uri;
-      tagCopy.trackImageUrl = track.imageUri;
-      tagCopy.trackTitle = track.title;
-      tagCopy.trackArtists = track.artists.join(', ');
+      tagCopy.imageUrl = track.imageUri;
 
       ctx.emit('update:nfc-tag', tagCopy);
     };

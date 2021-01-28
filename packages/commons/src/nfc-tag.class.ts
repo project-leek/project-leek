@@ -9,10 +9,6 @@ export default class NFCTag extends AbstractEntity {
 
   name!: string;
 
-  trackTitle!: string;
-
-  trackArtists!: string;
-
   group!: string;
 
   imageUrl!: string;
