@@ -10,7 +10,7 @@ import { NFCReader, NFCTag } from '@leek/commons';
 import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import feathers from '../../lib/feathers';
+import feathers from '../../compositions/useBackend';
 
 export default defineComponent({
   name: 'AddTagStepPlaceOnReader',

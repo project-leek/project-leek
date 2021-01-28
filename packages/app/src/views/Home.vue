@@ -92,7 +92,7 @@ import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 type NFCTagGroup = {
   name: string;

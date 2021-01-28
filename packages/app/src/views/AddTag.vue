@@ -69,7 +69,7 @@ import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
 import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 export default defineComponent({
   name: 'AddTag',
