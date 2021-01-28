@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
-import { NFCTag, SpotifyTrack } from '@leek/commons';
+import { NFCTag, Track } from '@leek/commons';
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 
 import feathers from '../../compositions/useBackend';
@@ -73,7 +73,7 @@ export default defineComponent({
     };
 
     type TrackTagTuple = {
-      track: SpotifyTrack;
+      track: Track;
       tag: NFCTag;
     };
 
@@ -113,7 +113,7 @@ export default defineComponent({
 
       allTags.value = tagResult.data.map((tag) => ({
         tag,
-        track: tracks.find((track) => track.uri === tag.trackUri) as SpotifyTrack,
+        track: tracks.find((track) => track.uri === tag.trackUri) as Track,
       }));
     };
 
