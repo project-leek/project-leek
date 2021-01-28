@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col">
     <div class="relative pb-1/1">
-      <img class="absolute w-auto h-full rounded-xl object-cover" :src="img" />
+      <img
+        class="absolute w-auto h-full rounded-xl object-cover"
+        :src="img"
+        :class="{ [` ring ${ringColor}`]: ring }"
+      />
     </div>
     <div
       v-if="name"
@@ -32,6 +36,16 @@ export default defineComponent({
     textSize: {
       type: String,
       default: 'base',
+    },
+    ring: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    ringColor: {
+      type: String,
+      required: false,
+      default: 'ring-white',
     },
   },
 });

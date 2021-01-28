@@ -1,5 +1,5 @@
 <template>
-  <div class="add-tag-step-track flex flex-col relative h-full">
+  <div class="add-tag-step-track flex flex-col relative h-full w-full">
     <!-- Search -->
     <div class="search px-4">
       <Textfield

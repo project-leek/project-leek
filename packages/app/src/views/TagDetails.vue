@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white mx-auto max-w-lg h-full w-full flex flex-col overflow-hidden">
+  <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
       <Button back round icon="fas fa-times" class="h-10 w-10 flex-shrink-0" text="" />
 
@@ -12,8 +12,15 @@
     </header>
 
     <main
-      class="overflow-x-hidden overflow-y-scroll bg-gradient-to-b from-primary to-secondary flex items-start justify-center text-2xl text-gray-800 flex-grow"
+      class="overflow-x-hidden overflow-y-auto bg-gradient-to-b from-primary to-secondary flex flex-col items-start justify-start text-2xl text-gray-800 flex-grow"
     >
+      <span
+        v-if="requiredFieldsEmpty && savedWithEmptyRequiredFields"
+        id="requiredFieldsEmpty"
+        class="text-red-600 text-lg px-8 pt-2"
+      >
+        Einige notwendige Felder sind noch nicht ausgefüllt.
+      </span>
       <component
         :is="activeDetailsPage"
         v-if="currentNfcTag && currentNfcTag.nfcData"
@@ -38,7 +45,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { Component, defineComponent, onMounted, ref, shallowRef } from 'vue';
+import { Component, computed, defineComponent, onMounted, ref, shallowRef } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -59,14 +66,19 @@ export default defineComponent({
   setup(props) {
     const currentNfcTag = ref<NFCTag>();
     const unsavedNFCTag = ref<NFCTag>();
+
     const router = useRouter();
     const activeDetailsPage = shallowRef<Component>(EditTag);
     const showBackButton = ref<boolean>(false);
 
+    const savedWithEmptyRequiredFields = ref<boolean>(false);
+    const requiredFieldsEmpty = computed((): boolean => {
+      return !unsavedNFCTag.value?.name || !unsavedNFCTag.value?.group;
+    });
+
     onMounted(async () => {
       try {
         currentNfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
-        console.log('Error after');
       } finally {
         if (!currentNfcTag.value || !currentNfcTag.value.nfcData) {
           void router.push('/tag-not-found');
@@ -77,13 +89,27 @@ export default defineComponent({
     });
 
     function saveChanges(): void {
-      currentNfcTag.value = unsavedNFCTag.value;
-      goBack();
+      if (requiredFieldsEmpty.value) {
+        savedWithEmptyRequiredFields.value = true;
+        scrollToTop();
+      } else {
+        currentNfcTag.value = unsavedNFCTag.value;
+        goBack();
+      }
+    }
+
+    function scrollToTop(): void {
+      const main = document.querySelector('main');
+      if (main) {
+        main.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
     }
 
     function goBack(): void {
       if (activeDetailsPage.value === EditTag) {
-        console.log('GO Back');
         if (currentNfcTag.value && currentNfcTag.value.nfcData) {
           void feathers.service('nfc-tags').update(props.tagId, currentNfcTag.value);
         }
@@ -113,6 +139,8 @@ export default defineComponent({
       saveChanges,
       goBack,
       showBackButton,
+      requiredFieldsEmpty,
+      savedWithEmptyRequiredFields,
     };
   },
 });
