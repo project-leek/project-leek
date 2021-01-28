@@ -37,9 +37,8 @@ class SpotifyTrackService extends AdapterService<Track> {
     if (trackResp.body.tracks) {
       const tracks = trackResp.body.tracks.items;
       return tracks.map((track) => {
-        const uriSplit = track.uri.split(':');
         return {
-          uri: uriSplit[uriSplit.length - 1],
+          uri: track.uri,
           title: track.name,
           artist: track.artists.map((artist) => artist.name).join(', '),
           imageUri: track.album.images[0].url,
