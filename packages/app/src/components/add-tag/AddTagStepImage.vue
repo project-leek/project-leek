@@ -4,8 +4,8 @@
     <div class="flex content-end">
       <TagEntry
         class="w-44"
-        :img="spotifyImageUrl"
-        :ring="usingSpotifyImage"
+        :img="trackImageUrl"
+        :ring="usingTrackImage"
         ring-color="ring-green-500"
         @click="changeImage(true)"
       />
@@ -15,7 +15,7 @@
       <TagEntry
         class="w-44"
         :img="externalImage"
-        :ring="!usingSpotifyImage"
+        :ring="!usingTrackImage"
         ring-color="ring-green-500"
         @click="changeImage(false)"
       />
@@ -45,12 +45,12 @@ export default defineComponent({
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
     const currentTag = ref<NFCTag>(props.nfcTag);
-    const spotifyImageUrl = ref<string>(currentTag.value.spotifyImageUrl);
+    const trackImageUrl = ref<string>(currentTag.value.trackImageUrl);
     const userInput = ref<string>(
-      currentTag.value.imageUrl !== spotifyImageUrl.value ? currentTag.value.imageUrl : ''
+      currentTag.value.imageUrl !== trackImageUrl.value ? currentTag.value.imageUrl : ''
     );
-    const usingSpotifyImage = ref<boolean>(
-      !currentTag.value.imageUrl || currentTag.value.imageUrl === currentTag.value.spotifyImageUrl
+    const usingTrackImage = ref<boolean>(
+      !currentTag.value.imageUrl || currentTag.value.imageUrl === currentTag.value.trackImageUrl
     );
     const placeholderImagePath = '/image-gallery.svg';
 
@@ -61,7 +61,7 @@ export default defineComponent({
           return true;
         }
       }
-      usingSpotifyImage.value = true;
+      usingTrackImage.value = true;
       return false;
     };
 
@@ -72,17 +72,17 @@ export default defineComponent({
       return placeholderImagePath;
     });
 
-    const changeImage = (useSpotifyImage: boolean): void => {
+    const changeImage = (useTrackImage: boolean): void => {
       //Check if externalImage is clicked and a correct URL is provided
-      if (!useSpotifyImage && correctImageUrl(userInput.value)) {
-        usingSpotifyImage.value = false;
+      if (!useTrackImage && correctImageUrl(userInput.value)) {
+        usingTrackImage.value = false;
       } else {
-        usingSpotifyImage.value = true;
+        usingTrackImage.value = true;
       }
 
       //Depending on chosen Image, save that url as imageUrl
-      if (usingSpotifyImage.value) {
-        currentTag.value.imageUrl = spotifyImageUrl.value;
+      if (usingTrackImage.value) {
+        currentTag.value.imageUrl = trackImageUrl.value;
       } else {
         currentTag.value.imageUrl = userInput.value;
       }
@@ -93,9 +93,9 @@ export default defineComponent({
     return {
       externalImage,
       userInput,
-      usingSpotifyImage,
+      usingTrackImage,
       changeImage,
-      spotifyImageUrl,
+      trackImageUrl,
     };
   },
 });
