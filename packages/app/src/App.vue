@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen bg-green-800 flex">
-    <div class="flex lg:max-w-xl bg-white lg:rounded-2xl lg:my-8 mx-auto flex-grow w-full">
+  <div class="h-screen bg-green-800 flex flex-col items-center justify-center">
+    <div class="flex lg:max-w-1/2 lg:max-h-3/4 bg-white lg:rounded-3xl w-full h-full">
       <router-view />
     </div>
   </div>
