@@ -1,10 +1,9 @@
 <template>
   <div class="add-tag w-full flex flex-col">
     <header class="p-8 flex flex-row">
-      <Button back round icon="fas fa-times" class="h-7 w-7" />
-
-      <div class="headlines ml-2 flex flex-col">
-        <span>Neuen Tag anlegen</span>
+      <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
+      <div class="headlines ml-2 flex flex-col my-auto">
+        <span class="text-3xl">Neuen Tag anlegen</span>
         <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
       </div>
     </header>
@@ -36,7 +35,7 @@
           :text-size="5"
           icon="fas fa-chevron-left"
           class="mr-4 px-4 py-2 text-center"
-          @click="activeStep--"
+          @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
@@ -52,7 +51,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
-          @click="activeStep++"
+          @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
       </div>
@@ -70,7 +69,7 @@ import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
 import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
 import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
 import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 export default defineComponent({
   name: 'AddTag',
@@ -100,12 +99,22 @@ export default defineComponent({
       alert('Neuen Tag erfolgreich erstellt.');
     };
 
+    const previousStep = (): void => {
+      activeStep.value -= 1;
+    };
+
+    const nextStep = (): void => {
+      activeStep.value += 1;
+    };
+
     return {
       activeStep,
       steps,
       nfcTag,
       updateTag,
       saveTag,
+      previousStep,
+      nextStep,
     };
   },
 });

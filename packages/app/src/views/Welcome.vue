@@ -17,14 +17,15 @@
       </div>
     </div>
     <!-- login button -->
-    <div class="z-20 col-start-1 col-end-1 row-start-20 row-end-25 flex justify-center">
+    <div class="z-20 col-start-1 col-end-1 row-start-20 row-end-25 flex justify-center w-full">
       <Button
-        class="h-3/6 items-center ring-2 ring-button ring-opacity-75 px-4"
+        class="h-14 w-2/3 min-w-min center ring-4 ring-white ring-opacity-75 px-4 whitespace-nowrap"
         text="Login with Spotify"
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
         icon="fab fa-spotify"
-        :text-size="3"
-        :icon-size="5"
+        :text-size="6"
+        :icon-size="8"
+        :center-text="true"
       />
     </div>
     <!-- cube -->

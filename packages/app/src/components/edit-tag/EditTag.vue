@@ -40,10 +40,10 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, SpotifyTrack } from '@leek/commons';
+import { NFCTag, Track } from '@leek/commons';
 import { defineComponent, onMounted, PropType, ref } from 'vue';
 
-import feathers from '../../lib/feathers';
+import feathers from '../../compositions/useBackend';
 import Button from '../uiBlocks/Button.vue';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
@@ -72,7 +72,7 @@ export default defineComponent({
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
-    const selectedTrack = ref<SpotifyTrack>();
+    const selectedTrack = ref<Track>();
     const selectedTrackName = ref<string>('');
 
     async function loadTrack(): Promise<void> {

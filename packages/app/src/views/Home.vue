@@ -1,13 +1,15 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex py-5 justify-center text-4xl">
+    <header class="flex p-5 text-4xl">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
         :text-size="5"
-        class="py-2 mx-4 flex-grow"
+        both-center
+        class="mx-1 flex-grow"
       />
+      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 mx-2 px-2" />
     </header>
 
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
@@ -93,7 +95,7 @@ import GroupDropDownItem from '../components/uiBlocks/GroupDropDownItem.vue';
 import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
-import feathers from '../lib/feathers';
+import feathers from '../compositions/useBackend';
 
 type NFCTagGroup = {
   name: string;
