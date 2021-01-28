@@ -1,5 +1,5 @@
 import { AbstractEntity } from './abstract-entity.class';
 
-export default class SpotifySpeaker extends AbstractEntity {
+export default class Speaker extends AbstractEntity {
   name!: string;
 }

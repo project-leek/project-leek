@@ -1,6 +1,6 @@
 import { AdapterService, ServiceOptions } from '@feathersjs/adapter-commons';
 import { Params, ServiceAddons } from '@feathersjs/feathers';
-import { SpotifyTrack } from '@leek/commons';
+import { Track } from '@leek/commons';
 
 import { Application } from '../../declarations';
 import { SpotifyApi } from '../../utils/spotify';
@@ -8,11 +8,11 @@ import { SpotifyApi } from '../../utils/spotify';
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    'spotify-tracks': SpotifyTrackService & ServiceAddons<SpotifyTrack>;
+    'spotify-tracks': SpotifyTrackService & ServiceAddons<Track>;
   }
 }
 
-class SpotifyTrackService extends AdapterService<SpotifyTrack> {
+class SpotifyTrackService extends AdapterService<Track> {
   app: Application;
 
   constructor(app: Application, options: Partial<ServiceOptions> = {}) {
@@ -20,7 +20,7 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
     this.app = app;
   }
 
-  async find(params: Params): Promise<SpotifyTrack[]> {
+  async find(params: Params): Promise<Track[]> {
     const user = await this.app.service('users').get(params?.user?._id);
     const searchQuery = params.query;
     const spotifyApi = new SpotifyApi(this.app, user);
@@ -40,9 +40,9 @@ class SpotifyTrackService extends AdapterService<SpotifyTrack> {
         return {
           uri: track.uri,
           title: track.name,
-          artists: track.artists.map((artist) => artist.name),
+          artist: track.artists.map((artist) => artist.name).join(', '),
           imageUri: track.album.images[0].url,
-        } as SpotifyTrack;
+        } as Track;
       });
     }
 
