@@ -7,9 +7,9 @@
         text="Tag hinzufügen"
         :text-size="5"
         both-center
-        class="mx-4 flex-grow"
+        class="mx-1 flex-grow"
       />
-      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 ml-2 mr-4 px-2" />
+      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 mx-2 px-2" />
     </header>
 
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
