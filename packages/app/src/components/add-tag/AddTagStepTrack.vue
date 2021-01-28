@@ -42,7 +42,7 @@
             >{{ track.title }}</span
           >
           <span class="ml-4 text-base whitespace-nowrap overflow-hidden overflow-ellipsis">{{
-            track.artists.join(', ')
+            track.artist
           }}</span>
         </div>
       </li>
@@ -51,11 +51,11 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, SpotifyTrack } from '@leek/commons';
+import { NFCTag, Track } from '@leek/commons';
 import { debounce } from 'lodash';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
-import feathers from '../../lib/feathers';
+import feathers from '../../compositions/useBackend';
 import Loading from '../uiBlocks/Loading.vue';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
@@ -83,9 +83,9 @@ export default defineComponent({
   setup(props, ctx) {
     const search = ref<string>('');
     const isLoading = ref<boolean>(false);
-    const tracks = ref<SpotifyTrack[]>([]);
+    const tracks = ref<Track[]>([]);
     const tag = ref<NFCTag>(props.nfcTag);
-    const selectedTrack = ref<SpotifyTrack>();
+    const selectedTrack = ref<Track>();
 
     const doSearch = debounce(async () => {
       const params = {
@@ -93,7 +93,7 @@ export default defineComponent({
           name: search.value,
         },
       };
-      tracks.value = (await feathers.service('spotify-tracks').find(params)) as SpotifyTrack[];
+      tracks.value = (await feathers.service('spotify-tracks').find(params)) as Track[];
       isLoading.value = false;
     }, 1000 * 0.5);
 
@@ -104,14 +104,14 @@ export default defineComponent({
       }
     });
 
-    const changeTrack = (track: SpotifyTrack): void => {
+    const changeTrack = (track: Track): void => {
       selectedTrack.value = track;
 
       const tagCopy = tag.value;
       tagCopy.spotifyTrackUri = track.uri;
       tagCopy.imageUrl = track.imageUri;
       tagCopy.trackTitle = track.title;
-      tagCopy.trackArtists = track.artists.join(', ');
+      tagCopy.trackArtists = track.artist;
 
       ctx.emit('update:nfc-tag', tagCopy);
     };

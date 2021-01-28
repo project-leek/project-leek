@@ -1,21 +1,24 @@
 <template>
   <button
     class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    :type="type"
     @click="doClick"
   >
     <span class="text flex h-full w-full">
-      <span v-if="icon" class="my-auto" :class="iconClass" />
-      <p
-        v-if="text"
-        class="my-auto font-heading font-extralight"
-        :class="{
-          'ml-4': icon,
-          'mx-auto': (!rounded && !icon) || textCenter,
-          [`text-${textsize}`]: true,
-        }"
-      >
-        {{ text }}
-      </p>
+      <slot>
+        <span v-if="icon" class="my-auto" :class="iconClass" />
+        <p
+          v-if="text || (!text && !icon)"
+          class="my-auto font-heading font-extralight"
+          :class="{
+            'ml-4': icon,
+            'mx-auto': (!rounded && !icon) || textCenter,
+            [`text-${textsize}`]: true,
+          }"
+        >
+          {{ text || 'Absenden' }}
+        </p>
+      </slot>
     </span>
   </button>
 </template>
@@ -67,6 +70,10 @@ export default defineComponent({
     back: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: null,
     },
   },
 

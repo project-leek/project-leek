@@ -36,7 +36,7 @@ import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
 import { defineComponent, onMounted, PropType, ref, watchEffect } from 'vue';
 
-import feathers from '../../lib/feathers';
+import feathers from '../../compositions/useBackend';
 import TagEntry from './TagEntry.vue';
 
 export default defineComponent({
