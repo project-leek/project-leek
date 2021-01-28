@@ -58,7 +58,7 @@ export default defineComponent({
 .custom-shape-divider-top-1611822391 svg {
   position: relative;
   display: block;
-  width: calc(140% + 1.3px);
+  width: 140%;
   height: 100vh;
 }
 
