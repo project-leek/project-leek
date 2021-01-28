@@ -63,6 +63,6 @@ export default defineComponent({
 }
 
 .custom-shape-divider-top-1611822391 .shape-fill {
-  fill: #ff9900;
+  fill: #f09000;
 }
 </style>
