@@ -11,7 +11,7 @@
   </div>
   <div class="h-screen bg-yellow-600 flex flex-col items-center justify-center">
     <div
-      class="z-50 flex lg:shadow-2xl lg:max-w-1/2 lg:max-h-3/4 bg-white lg:rounded-3xl w-full h-full"
+      class="z-50 flex lg:shadow-2xl lg:max-w-3xl lg:max-h-3/4 bg-white lg:rounded-3xl w-full h-full"
     >
       <router-view />
     </div>
