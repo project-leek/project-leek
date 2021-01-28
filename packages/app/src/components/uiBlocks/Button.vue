@@ -10,7 +10,8 @@
         class="my-auto font-heading font-extralight"
         :class="{
           'ml-4': icon,
-          'mx-auto': (!rounded && !icon) || textCenter,
+          'mx-auto': (!rounded && !icon) ,
+          'w-full text-center': textCenter,
           [`text-${textsize}`]: true,
         }"
       >
@@ -136,7 +137,7 @@ export default defineComponent({
       }
 
       if (props.text) {
-        classes.push('ml-2');
+        classes.push('ml-1');
       }
 
       return classes;
