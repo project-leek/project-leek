@@ -530,6 +530,16 @@
     lodash "^4.17.20"
     radix-router "^3.0.1"
 
+"@fontsource/baloo-2@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/baloo-2/-/baloo-2-4.1.0.tgz#bcaa971936c799de17a163e8f75ee448895987eb"
+  integrity sha512-o7VqkvY3OuZXsZ+Dsb6e+O9OdWn93xUKHaI3xpfgQQeiesmM+H5laLKopxP8gR0Y9YKdYsHy/HR3Efug+/Jdsw==
+
+"@fontsource/roboto@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.1.0.tgz#28e0fb775013959df3a6b6d2c4ba0aad437f8d32"
+  integrity sha512-I4CIw73eJC/Oh83tPoRVKkySCLDwUQ2aK7O9wR5tRYc5APbsd3MrN6JhAvylIIwzn8eHQEMVoSjNGY9/sPLzyA==
+
 "@fortawesome/fontawesome-free@5.15.2":
   version "5.15.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.2.tgz#218cd7276ab4f9ab57cc3d2efa2697e6a579f25d"
@@ -4237,7 +4247,7 @@ es6-promisify@^5.0.0:
   dependencies:
     es6-promise "^4.0.3"
 
-esbuild@^0.8.26:
+esbuild@^0.8.34:
   version "0.8.36"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.36.tgz#f5b7c61473721c7d53ffe7c88708e25f3b6182f3"
   integrity sha512-kcUQB61Tf8rLJ3mOwP2ruWi/iFufaQcEs4No+JA6e7W2kMOtFExOsbyeFpEF6zNacwk2RF5fYUz5jfZwgn/SJg==
@@ -10121,16 +10131,6 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-baloo@1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-baloo/-/typeface-baloo-1.1.13.tgz#943d03b7e13a4dced78a3dbf746e161f7c11b75c"
-  integrity sha512-IqPY5QoNsXgBukLosd3rZi0YGL7yhNE1NWqdFelFzHt1LfWl2FYV8t8iqAXP2OxJc/uQPQjrWequ6FdoXzcbGQ==
-
-typeface-roboto@1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-1.1.13.tgz#9c4517cb91e311706c74823e857b4bac9a764ae5"
-  integrity sha512-YXvbd3a1QTREoD+FJoEkl0VQNJoEjewR2H11IjVv4bp6ahuIcw0yyw/3udC4vJkHw3T3cUh85FTg8eWef3pSaw==
-
 typescript@4.1.3, typescript@^4.0.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
@@ -10369,12 +10369,12 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite@2.0.0-beta.37:
-  version "2.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.0-beta.37.tgz#1e5f835da58a40e7d822c3dab5b6083ce229e48d"
-  integrity sha512-MCEvCv6TOGu64dl/swsUNga1bsXa+sH16gGXXTw2I2v7b5JAFa1KpV4mgYPMsHpFVmWrAhBAQV1PtA3SD9z/mQ==
+vite@2.0.0-beta.55:
+  version "2.0.0-beta.55"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.0-beta.55.tgz#db0da6ec8f0a18cef3348881b95967d71cf3eccb"
+  integrity sha512-IlLTGIWgOiXh9TG6UQo2UttQmymfOzkTviTQJM1Os/XDAkD/xm22vjnbix3OpbmQ0/kjE33dVmSf8aNklVOuVg==
   dependencies:
-    esbuild "^0.8.26"
+    esbuild "^0.8.34"
     postcss "^8.2.1"
     resolve "^1.19.0"
     rollup "^2.35.1"
