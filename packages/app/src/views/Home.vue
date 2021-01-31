@@ -5,9 +5,8 @@
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :text-size="5"
         both-center
-        class="py-2 flex-grow"
+        class="py-2 flex-grow text-3xl"
       />
       <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 ml-3 px-2" />
     </header>
@@ -45,7 +44,7 @@
         @tag-selected="toggleSelectedTag($event)"
       />
     </main>
-    <footer class="flex text-gray-800 h-24 flex flex-row items-center overflow-hidden">
+    <footer class="flex text-gray-800 h-20 flex flex-row items-center overflow-hidden">
       <transition
         name="fade"
         @leave="infoTransitionActive = true"
@@ -64,19 +63,19 @@
           <Button
             round
             icon="fas fa-times"
-            class="ml-4 my-auto h-10 w-10 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="my-auto h-10 w-10 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deselect"
           />
           <Button
             round
             text="Bearbeiten"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 py-1 px-4 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
           <Button
             round
             text="Löschen"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 px-4 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deleteTag"
           />
         </span>
