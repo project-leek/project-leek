@@ -52,7 +52,7 @@
         @after-leave="infoTransitionActive = false"
       >
         <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full">
-          <Textfield v-model="searchInput" class="mx-4" placeholder="Titelsuche" />
+          <Textfield v-model="searchInput" class="mx-4 py-2" placeholder="Titelsuche" />
         </span>
       </transition>
       <transition name="slide" @after-leave="buttonTransitionActive = false">
