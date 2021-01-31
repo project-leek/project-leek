@@ -26,7 +26,7 @@
       />
     </main>
 
-    <footer class="h-24 flex flex-col items-center">
+    <footer class="h-20 flex flex-col items-center">
       <ul
         class="steps flex flex-row justify-center transform -translate-y-3 bg-white rounded-t-md px-2 py-1"
       >
