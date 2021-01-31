@@ -1,13 +1,13 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex p-5 text-4xl">
+    <header class="flex px-5 h-24 flex flex-row items-center text-4xl">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
         :text-size="5"
         both-center
-        class="mx-1 flex-grow"
+        class="mx-1 py-2 flex-grow"
       />
       <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 mx-2 px-2" />
     </header>
@@ -45,7 +45,7 @@
         @tag-selected="toggleSelectedTag($event)"
       />
     </main>
-    <footer class="flex text-gray-800 py-5 overflow-hidden">
+    <footer class="flex text-gray-800 h-24 flex flex-row items-center overflow-hidden">
       <transition
         name="fade"
         @leave="infoTransitionActive = true"

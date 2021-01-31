@@ -1,6 +1,6 @@
 <template>
   <div class="add-tag w-full flex flex-col">
-    <header class="p-8 flex flex-row">
+    <header class="px-8 h-24 flex flex-row items-center">
       <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
       <div class="headlines ml-2 flex flex-col my-auto">
         <span class="text-3xl">Neuen Tag anlegen</span>
@@ -19,7 +19,7 @@
       />
     </main>
 
-    <footer class="flex flex-col items-center">
+    <footer class="h-24 flex flex-col items-center">
       <ul
         class="steps flex flex-row justify-center transform -translate-y-3 bg-white rounded-t-md px-2 py-1"
       >
