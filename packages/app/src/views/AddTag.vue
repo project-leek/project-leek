@@ -4,10 +4,10 @@
       <Button back round icon="fas fa-times" class="h-14 w-14" :icon-size="6" />
       <div class="headlines ml-5 flex flex-col my-auto">
         <span class="text-3xl font-medium">
-          <span v-if="activeStep == 0">Neuer Tag - Tag Scannen</span>
-          <span v-if="activeStep == 1">Neuer Tag - Details</span>
-          <span v-if="activeStep == 2">Neuer Tag - Musik Auswahl</span>
-          <span v-if="activeStep == 4">Neuer Tag - Bild Auswahl</span>
+          <span v-if="activeStep == 0">Tag Scannen</span>
+          <span v-if="activeStep == 1">Details</span>
+          <span v-if="activeStep == 2">Musik Auswahl</span>
+          <span v-if="activeStep == 4">Bild Auswahl</span>
         </span>
         <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
           >Tag-ID: #{{ nfcTag.nfcData }}</span
