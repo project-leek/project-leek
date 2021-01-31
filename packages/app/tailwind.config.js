@@ -143,7 +143,7 @@ module.exports = {
       },
       fontFamily: {
         default: ["Roboto", "sans-serif"],
-        heading: ["Baloo", "sans-serif"]
+        heading: ["Baloo 2", "sans-serif"]
       },
       gridTemplateRows: {
         '30': 'repeat(30, minmax(0, 1fr))',

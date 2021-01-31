@@ -1,7 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../index.css';
-import 'typeface-roboto';
-import 'typeface-baloo';
+// import '@fontsource/roboto'; // TODO disable font to get rid of an error
+// import '@fontsource/baloo-2'; // TODO disable font to get rid of an error
 import './compositions/useBackend';
 
 import { createApp } from 'vue';
