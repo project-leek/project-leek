@@ -1,10 +1,10 @@
 <template>
   <div class="add-tag-step-track flex flex-col relative h-full w-full">
     <!-- Search -->
-    <div class="search px-4">
+    <div class="mt-3 px-4">
       <Textfield
         v-model="search"
-        class="w-full"
+        class="w-full h-14"
         placeholder="Suche einen Titel ..."
         icon="fas fa-search"
       />
