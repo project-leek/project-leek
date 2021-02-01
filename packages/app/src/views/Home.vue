@@ -190,12 +190,12 @@ export default defineComponent({
 <style lang="css" scoped>
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.7s;
+  transition: all 0.25s;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.7s;
+  transition: all 0.25s;
 }
 
 .fade-leave-to,
