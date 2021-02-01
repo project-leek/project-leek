@@ -20,7 +20,7 @@
         @click="changeImage(false)"
       />
     </div>
-    <Textfield v-model="userInput" class="mt-2 w-full" placeholder="enter URL" />
+    <Textfield v-model="userInput" class="mt-2 h-12 w-full" placeholder="enter URL" />
   </div>
 </template>
 

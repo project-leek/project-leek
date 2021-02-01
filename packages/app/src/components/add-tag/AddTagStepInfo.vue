@@ -4,7 +4,7 @@
       <Textfield
         v-model="currentTag.name"
         placeholder="z. B. Mario Figur"
-        class="rounded-full"
+        class="rounded-full h-12"
         @update="$emit('update:nfc-tag', currentTag)"
       />
     </LabeledInput>

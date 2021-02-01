@@ -8,7 +8,7 @@
       }"
       @click="dropdownExtended = !dropdownExtended"
     >
-      <span v-if="modelValue && modelValue.value" class="value text-xl">
+      <span v-if="modelValue && modelValue.value" class="value ml-3 text-xl">
         {{ modelValue.value }}
       </span>
       <span v-else class="ml-3 placeholder text-gray-400">{{ placeholderText }}</span>
