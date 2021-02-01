@@ -1,10 +1,12 @@
 <template>
   <div class="w-full flex flex-col">
-    <header class="p-8 flex flex-row items-center">
-      <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
-      <span class="ml-2 text-3xl">Einstellungen</span>
+    <header class="px-4 h-24 flex flex-row items-center">
+      <Button back round icon="fas fa-times" class="ml-4 h-12 w-12  bg-gradient-to-b from-primary to-secondary " :icon-size="6" />
+      <span class="ml-4 text-4xl">Einstellungen</span>
     </header>
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6">
+    <main
+      class="bg-gradient-to-b from-primary to-secondary max-h-full overflow-y-auto flex-grow p-6"
+    >
       <!-- Useranzeige -->
       <div class="flex flex-col justify-center items-center text-white">
         <span class="flex text-xl font-heading">
@@ -20,13 +22,17 @@
       </LabeledInput>
     </main>
 
-    <footer class="flex text-gray-800 py-5">
+    <footer class="px-4 h-24 flex text-gray-800 py-5">
       <span class="flex w-full text-xl">
-        <Button text="Speichern" center-text class="mx-2 px-3 py-2 text-2xl flex-grow" />
+        <Button
+          text="Speichern"
+          center-text
+          class="mx-2 px-3 py-2 text-2xl flex-grow bg-gradient-to-b from-primary to-secondary"
+        />
         <Button
           text="Abmelden"
           center-text
-          class="mx-2 px-3 text-2xl flex-grow"
+          class="mx-2 px-3 text-2xl flex-grow bg-gradient-to-b from-primary to-secondary"
           @click="logoutUser"
         />
       </span>

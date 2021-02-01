@@ -1,7 +1,13 @@
 <template>
   <div class="add-tag w-full flex flex-col">
     <header class="px-8 h-24 flex flex-row items-center">
-      <Button back round icon="fas fa-times" class="h-14 w-14" :icon-size="6" />
+      <Button
+        back
+        round
+        icon="fas fa-times"
+        class="h-14 w-14 bg-gradient-to-b from-primary to-secondary"
+        :icon-size="6"
+      />
       <div class="headlines ml-5 flex flex-col my-auto">
         <span class="text-3xl font-medium"> Neuen Tag registrieren </span>
         <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
@@ -40,20 +46,20 @@
           round
           :text-size="5"
           icon="fas fa-chevron-left"
-          class="mr-4 px-4 py-2 text-center"
+          class="mr-4 px-4 py-2 text-center bg-gradient-to-b from-primary to-secondary "
           @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
           round
-          class="flex-grow p-2"
+          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary "
           icon="fas fa-download"
           text="Tag erstellen"
           @click="saveTag"
         />
         <Button
           v-else-if="activeStep !== 0"
-          class="flex-grow p-2 text-l"
+          class="flex-grow p-2 text-l bg-gradient-to-b from-primary to-secondary "
           icon="fas fa-chevron-right"
           round
           both-center

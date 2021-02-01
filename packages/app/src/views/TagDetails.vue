@@ -1,12 +1,21 @@
 <template>
   <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
-    <header class="p-8 flex flex-row items-center space-x-5">
-      <Button back round icon="fas fa-times" class="h-10 w-10 flex-shrink-0" text="" />
+    <header class="px-4 h-24 flex flex-row items-center">
+      <Button
+        back
+        round
+        icon="fas fa-times"
+        class="ml-4 h-12 w-12 text-3xl flex-shrink-0 bg-gradient-to-b from-primary to-secondary"
+        text=""
+      />
 
-      <div class="ml-2 flex flex-col">
-        <span class="font-heading font-extralight text-2xl">Tag Editieren</span>
-        <span v-if="currentNfcTag && currentNfcTag.nfcData" class="text-m opacity-40">
-          Registrierte Tag-ID: #{{ currentNfcTag.nfcData }}
+      <div class="ml-4 flex flex-col">
+        <span class="font-heading text-4xl">Tag Einstellungen</span>
+        <span
+          v-if="currentNfcTag && currentNfcTag.nfcData"
+          class="text-m opacity-40 font-extralight"
+        >
+          Tag-ID #{{ currentNfcTag.nfcData }}
         </span>
       </div>
     </header>
@@ -30,15 +39,19 @@
       />
     </main>
 
-    <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
+    <footer class="px-4 h-24 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
       <Button
         v-if="showBackButton"
         icon="fas fa-caret-left"
-        class="w-14 h-14 mx-4"
+        class="w-14 h-14 mx-4 bg-gradient-to-b from-primary to-secondary"
         round
         @click="goBack"
       />
-      <Button :text="'Speichern'" class="p-3 mx-4 flex-1" @click="saveChanges" />
+      <Button
+        :text="'Speichern'"
+        class="p-3 mx-4 flex-1 bg-gradient-to-b from-primary to-secondary"
+        @click="saveChanges"
+      />
     </footer>
   </div>
 </template>

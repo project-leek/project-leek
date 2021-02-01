@@ -4,7 +4,7 @@
       <Textfield
         v-model="currentTag.name"
         :placeholder="'z. B. Mario Figur'"
-        class="rounded-full"
+        class="rounded-full py-3"
         :required="true"
         @update:nfc-tag="$emit('update:nfc-tag', currentTag)"
       />
@@ -26,15 +26,19 @@
       <Textfield
         v-model="selectedTrackName"
         :placeholder="'z. B. Never gonna give you up'"
-        class="rounded-full"
+        class="rounded-full py-3"
         @update:nfc-tag="$emit('update:nfc-tag', currentTag)"
         @click="$emit('open-track-details')"
       />
     </LabeledInput>
 
     <div class="flex flex-row w-full">
-      <TagEntry class="ml-2 w-32 pt-2" :img="currentTag.imageUrl" />
-      <Button class="p-3 px-6 m-auto" :text="'Bild ändern'" @click="$emit('open-image-details')" />
+      <TagEntry class="ml-2 w-44 pt-2" :img="currentTag.imageUrl" />
+      <Button
+        class="p-3 px-6 m-auto bg-gradient-to-b from-primary to-secondary"
+        :text="'Bild ändern'"
+        @click="$emit('open-image-details')"
+      />
     </div>
   </div>
 </template>
