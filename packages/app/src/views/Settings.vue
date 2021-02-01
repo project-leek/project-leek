@@ -1,7 +1,13 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="px-4 h-24 flex flex-row items-center">
-      <Button back round icon="fas fa-times" class="ml-4 h-12 w-12  bg-gradient-to-b from-primary to-secondary " :icon-size="6" />
+      <Button
+        back
+        round
+        icon="fas fa-times"
+        class="ml-4 h-12 w-12 bg-gradient-to-b from-primary to-secondary"
+        :icon-size="6"
+      />
       <span class="ml-4 text-4xl">Einstellungen</span>
     </header>
     <main
