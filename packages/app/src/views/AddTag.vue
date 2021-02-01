@@ -3,15 +3,14 @@
     <header class="px-8 h-24 flex flex-row items-center">
       <Button back round icon="fas fa-times" class="h-14 w-14" :icon-size="6" />
       <div class="headlines ml-5 flex flex-col my-auto">
-        <span class="text-3xl font-medium">
+        <span class="text-3xl font-medium"> Neuen Tag registrieren </span>
+        <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
+          >Tag-ID #{{ nfcTag.nfcData }} -
           <span v-if="activeStep == 0">Tag Scannen</span>
           <span v-if="activeStep == 1">Details</span>
           <span v-if="activeStep == 2">Musik Auswahl</span>
           <span v-if="activeStep == 4">Bild Auswahl</span>
         </span>
-        <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
-          >Tag-ID: #{{ nfcTag.nfcData }}</span
-        >
       </div>
     </header>
 
@@ -26,7 +25,7 @@
       />
     </main>
 
-    <footer class="h-20 flex flex-col items-center">
+    <footer class="h-24 flex flex-col items-center">
       <ul
         class="steps flex flex-row justify-center transform -translate-y-3 bg-white rounded-t-md px-2 py-1"
       >
@@ -54,13 +53,16 @@
         />
         <Button
           v-else-if="activeStep !== 0"
-          class="flex-grow p-2"
+          class="flex-grow p-2 text-l"
           icon="fas fa-chevron-right"
           round
+          both-center
           text="Weiter"
           @click="nextStep"
         />
-        <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
+        <span v-else class="text-center text-xl"
+          >Zum Fortfahren bitte NFC Tag an den Reader halten!</span
+        >
       </div>
     </footer>
   </div>

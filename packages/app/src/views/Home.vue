@@ -1,6 +1,6 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex px-4 h-24 flex flex-row items-center text-4xl">
+    <header class="px-4 h-24 flex flex-row items-center text-4xl">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
@@ -44,7 +44,7 @@
         @tag-selected="toggleSelectedTag($event)"
       />
     </main>
-    <footer class="flex text-gray-800 h-20 flex flex-row items-center overflow-hidden">
+    <footer class="flex text-gray-800 h-24 flex flex-row items-center overflow-hidden">
       <transition
         name="fade"
         @leave="infoTransitionActive = true"
