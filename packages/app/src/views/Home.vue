@@ -74,13 +74,14 @@
             round
             text="Bearbeiten"
             both-center
-            class="ml-4 py-1 px-4 text-2xl ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="ml-4 py-1 px-4 text-2xl flex-grow ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
             :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
           <Button
             round
             text="Löschen"
-            class="ml-4 px-4 text-2xl ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
+            both-center
+            class="ml-4 px-4 text-2xl flex-grow ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deleteTag"
           />
         </span>
