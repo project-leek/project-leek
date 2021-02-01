@@ -11,7 +11,7 @@
       <span v-if="modelValue && modelValue.value" class="value text-xl">
         {{ modelValue.value }}
       </span>
-      <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
+      <span v-else class="ml-3 placeholder text-gray-400">{{ placeholderText }}</span>
       <Button
         v-if="dropdownExtended"
         class="ml-auto mr-3 w-8 h-8"

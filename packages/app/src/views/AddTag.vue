@@ -46,13 +46,13 @@
           round
           :text-size="5"
           icon="fas fa-chevron-left"
-          class="mr-4 h-12 w-12 text-center bg-gradient-to-b from-primary to-secondary"
+          class="mr-4 h-12 w-12 text-2xl text-center bg-gradient-to-b from-primary to-secondary"
           @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
           round
-          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary"
+          class="flex-grow h-12 p-2 bg-gradient-to-b from-primary to-secondary"
           icon="fas fa-download"
           text="Tag erstellen"
           @click="saveTag"
@@ -62,7 +62,7 @@
           round
           text="Weiter"
           both-center
-          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary"
+          class="flex-grow h-12 p-2 text-2xl bg-gradient-to-b from-primary to-secondary"
           icon="fas fa-chevron-right"
           @click="nextStep"
         />
