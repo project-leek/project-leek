@@ -48,7 +48,7 @@
         @tag-selected="toggleSelectedTag($event)"
       />
     </main>
-    <footer class="px-4 h-24 flex flex-row items-center text-4xl text-gray-800 overflow-hidden">
+    <footer class="px-4 h-24 flex flex-row items-center text-4xl overflow-hidden">
       <transition
         name="fade"
         @leave="infoTransitionActive = true"

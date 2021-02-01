@@ -40,30 +40,30 @@
         </li>
       </ul>
 
-      <div class="actions flex flex-row w-full justify-center mb-4 px-4">
+      <div class="actions flex flex-row w-full items-center justify-center px-4">
         <Button
           v-if="activeStep !== 0"
           round
           :text-size="5"
           icon="fas fa-chevron-left"
-          class="mr-4 px-4 py-2 text-center bg-gradient-to-b from-primary to-secondary "
+          class="mr-4 h-12 w-12 text-center bg-gradient-to-b from-primary to-secondary"
           @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
           round
-          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary "
+          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary"
           icon="fas fa-download"
           text="Tag erstellen"
           @click="saveTag"
         />
         <Button
           v-else-if="activeStep !== 0"
-          class="flex-grow p-2 text-l bg-gradient-to-b from-primary to-secondary "
-          icon="fas fa-chevron-right"
           round
-          both-center
           text="Weiter"
+          both-center
+          class="flex-grow p-2 bg-gradient-to-b from-primary to-secondary"
+          icon="fas fa-chevron-right"
           @click="nextStep"
         />
         <span v-else class="text-center text-xl"
