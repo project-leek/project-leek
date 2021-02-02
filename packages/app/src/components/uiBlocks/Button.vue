@@ -1,6 +1,7 @@
 <template>
   <button
     class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    :disabled="!enabled"
     :type="type"
     @click="doClick"
   >
@@ -80,6 +81,11 @@ export default defineComponent({
     type: {
       type: String,
       default: null,
+    },
+    enabled: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
 

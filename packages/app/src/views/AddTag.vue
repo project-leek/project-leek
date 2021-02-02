@@ -51,6 +51,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
+          :enabled="dataValid"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
@@ -60,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { NFCTag } from '@leek/commons';
+import { NFCTag, TagResult } from '@leek/commons';
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -82,10 +83,20 @@ export default defineComponent({
     const nfcTag = ref<NFCTag | null>(null);
     const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
     const activeStep = ref<number>(0);
+    const dataValid = ref<boolean>(false);
     const router = useRouter();
 
-    const updateTag = (_nfcTag: NFCTag): void => {
-      nfcTag.value = _nfcTag;
+    const updateTag = (result: TagResult): void => {
+      if (result.valid) {
+        console.log('GÜLTIG!');
+      } else {
+        console.log('DAS PASST NICHT!');
+      }
+
+      nfcTag.value = result.tag;
+      dataValid.value = result.valid;
+      console.log('Called from step ', activeStep.value);
+      console.log('Result: ', result);
     };
 
     const saveTag = async (): Promise<void> => {
@@ -115,6 +126,7 @@ export default defineComponent({
       saveTag,
       previousStep,
       nextStep,
+      dataValid,
     };
   },
 });

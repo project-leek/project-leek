@@ -1,12 +1,7 @@
 <template>
   <div class="w-full p-4 h-full flex flex-col items-center">
     <LabeledInput label="Tag Name" class="w-full">
-      <Textfield
-        v-model="currentTag.name"
-        placeholder="z. B. Mario Figur"
-        class="rounded-full"
-        @update="$emit('update:nfc-tag', currentTag)"
-      />
+      <Textfield v-model="tagName" placeholder="z. B. Mario Figur" class="rounded-full" />
     </LabeledInput>
 
     <LabeledInput label="Gruppe" class="w-full mt-8">
@@ -23,8 +18,9 @@
 </template>
 
 <script lang="ts">
-import { NFCTag } from '@leek/commons/';
-import { defineComponent, PropType, ref } from 'vue';
+import { NFCTag, TagResult } from '@leek/commons/';
+import { debounce } from 'lodash';
+import { defineComponent, PropType, ref, watch } from 'vue';
 
 import feathers from '../../compositions/useBackend';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
@@ -47,13 +43,14 @@ export default defineComponent({
   },
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    'update:nfc-tag': (_payload: TagResult): boolean => true,
   },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
     const selectedGroup = ref<ListItem>();
+    const tagName = ref<string>('');
 
     async function loadGroupNames(): Promise<void> {
       const allTags = await feathers.service('nfc-tags').find();
@@ -80,9 +77,32 @@ export default defineComponent({
       );
     }
 
+    const setName = debounce(() => {
+      currentTag.value.name = tagName.value;
+      updateTag();
+    }, 1000 * 0.5);
+
+    watch(tagName, () => {
+      console.log('In Watch');
+      setName();
+    });
+
     function selectGroup(): void {
       currentTag.value.group = selectedGroup.value?.value || '';
-      ctx.emit('update:nfc-tag', currentTag.value);
+      updateTag();
+    }
+
+    function updateTag(): void {
+      console.log('updateTag:');
+      console.log('CurrentTag:', currentTag.value);
+      if (currentTag.value != null) {
+        const res = {
+          tag: currentTag.value,
+          valid: !!(currentTag.value.group && currentTag.value.name),
+        };
+        console.log(res);
+        ctx.emit('update:nfc-tag', res);
+      }
     }
 
     loadGroupNames().catch(() => {
@@ -90,7 +110,7 @@ export default defineComponent({
     });
 
     return {
-      currentTag,
+      tagName,
       groupListItems,
       selectedGroup,
       selectGroup,

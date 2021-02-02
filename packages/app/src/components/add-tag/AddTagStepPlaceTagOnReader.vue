@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
-import { NFCReader, NFCTag } from '@leek/commons';
+import { NFCReader, NFCTag, TagResult } from '@leek/commons';
 import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -26,7 +26,7 @@ export default defineComponent({
   emits: {
     proceed: (): boolean => true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    'update:nfc-tag': (_payload: TagResult): boolean => true,
   },
 
   setup(_, ctx) {
@@ -57,14 +57,22 @@ export default defineComponent({
         }
 
         nfcTag.value.nfcData = nfcReader.attachedTagData;
-        ctx.emit('update:nfc-tag', nfcTag.value);
+        const res = {
+          tag: nfcTag.value,
+          valid: true,
+        };
+        ctx.emit('update:nfc-tag', res);
         ctx.emit('proceed');
       })();
     };
 
     onMounted(() => {
       nfcTag.value = new NFCTag();
-      ctx.emit('update:nfc-tag', nfcTag.value);
+      const res = {
+        tag: nfcTag.value,
+        valid: false,
+      } as TagResult;
+      ctx.emit('update:nfc-tag', res);
 
       feathers
         .service('nfc-readers')
