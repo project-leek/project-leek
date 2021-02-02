@@ -109,6 +109,11 @@ export default defineComponent({
         });
       }
 
+      // add group name of currentTag if it isn't in the database yet
+      if (!groupNames.value.includes(currentTag.value.group)) {
+        groupNames.value.push(currentTag.value.group);
+      }
+
       groupNames.value.map((groupName: string) =>
         groupListItems.value.push(new ListItem(groupName, groupName))
       );
