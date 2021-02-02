@@ -47,10 +47,60 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 \section{Projektplanung}
 
 \subsection{Projekt Management}
-\colorbox{red}{TODO:}ticket pool in github, gemeinsame Absprache (im team und mit Kunden) was in den aktuellen Milestone kommen soll, alles zentral, 3x daily standup, gemeinsamer google calendar, gemeinsamer Discord Server (für spontaneres und informelleres gemeinsames Arbeiten), interne team evaluation und regelmäßiges feedback
+\colorbox{red}{TODO:}ticket pool in github, gemeinsame Absprache (im team und mit Kunden) was in den aktuellen Milestone kommen soll, alles zentral, 3x daily standup, gemeinsamer google calendar, gemeinsamer Discord Server (für spontaneres und informelleres gemeinsames Arbeiten), interne team evaluation und regelmäßiges feedback\\
+Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
+Diese Richtung des Projektmanagements zeichnet sich vor allem durch kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
+Dementsprechend wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
+Stattdessen entwickelte das Team eine Methodik um iterativ im Projekt zu arbeiten.
+Orientiert wurde sich hierbei an der Methode Scrum.
+Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
+Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
+
+\subsubsection{Vor den Sprints}
+Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
+Im diesem wählte das Team welche technischen Änderungen während des Sprints am Produkt vorgenommen werden sollten.
+Entschieden wurde anhand dem geschätzten Arbeitsaufwand und der verfügbaren Arbeitszeit der Teammitglieder getroffen.
+Die geplanten Änderungen überschnitten sich allerdings sehr häufig mit den Kundenwünschen, da diese meist sehr realistisch waren.
+
+\subsubsection{Arbeit in den Sprints}
+
+
+\subsubsection{Am Ende der Sprints}
+Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement den Kunden und der Projektbetreuung vorgestellt.
+Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
+Die resultierenden Wünsche und Feedback wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
+Im Anschluss fand immer eine Retrospektive statt.
+In dieser besprach das Team die eigene Zusammenarbeit und den gemeinsamen Umgang.
+Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
+Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork im folgenden Sprint positiv zu halten und weiter zu optimieren.
+Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Planing.
+
+\subsubsection{Open-Source}
+Teil der anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
+Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
+Aufgrunddessen wurde die Entscheidung getroffen, das Projekt öffentlich auf github aufzusetzten.
+Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
+Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
+So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
+Auch im Nachhinein können dann Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden.
+Dies hilft zusätzlich bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
+\\
+Das Produkt-Backlog wurde auch in dieses github repository eingepflegt.
+Dies erhöhte einerseits die Übersichtlichkeit über den Stand des Projekts innerhalb, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
+Andererseits ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen aufsuchen zu müssen.
+Die Möglichkeiten der Automatisierung wurden genutzt, um den Workflow zu vereinfachen und um die Code-Qualität sicherzustellen.
+Dies geschah zum Beispiel die durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
+\\
+Darüber hinaus war die Anforderung an den Open-Source zustand auch hilfreich bei der Produktentwicklung.
+So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden.
+Dies war vor allem für das erstmalige Einrichten und die zugehörige Dokumentation maßgebend.
+Entsprechend konnte sich hier eher technischer Sprache bedient werden.
+Allerdings galt diese Einschränkung der Zielgruppe auch nicht für alle Breiche des Projekts.
+Die Benutzbarkeit der Nutzeroberfläche sollte relativ einfach und ohne Vorkenntnisse möglich sein, da die Musikbox z.B. verschenkt oder in Familien genutzt werden könnte.
+Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 
 \subsection{Projektrisiken}
-\colorbox{red}{TODO:}Welche Riskiken hatten wir + Risikomatrix? lohnt sich dieser Abschnitt?
+\colorbox{red}{TODO:}Welche Risiken hatten wir + Risikomatrix? lohnt sich dieser Abschnitt?
 
 \subsection{Phasenplanung}
 \subsubsection{Projektstartphase}
@@ -66,7 +116,7 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 \colorbox{red}{TODO:}einzelne subsubsections über frontend, backend, hardware, devops, und dann erklären was das beinhaltet?
 
 \subsection{Beispielhafte Arbeitspakete}
-\colorbox{red}{TODO:}1-2-3 Beispielhafte Arbeitspakete ausarbeiten? Am besten auch welche, die von anderen abhängig
+\colorbox{red}{TODO:}1-2-3 Beispielhafte Arbeitspakete ausarbeiten? Am besten auch welche, die von anderen abhängig sind. Screenshots wären cool
 
 \subsection{Netzplan}
 \colorbox{red}{TODO:}wie hängt alles zusammen mit approx Zeit, wobei wir die Zeit vielleicht weglassen?
