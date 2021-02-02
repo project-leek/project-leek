@@ -5,7 +5,7 @@
         back
         round
         icon="fas fa-times"
-        class="ml-4 h-12 w-12 text-3xl flex-shrink-0 bg-gradient-to-b from-primary to-secondary"
+        class="ml-4 h-12 w-12 text-2xl flex-shrink-0 bg-gradient-to-b from-primary to-secondary"
         text=""
       />
 

@@ -1,6 +1,6 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="px-4 h-24 flex flex-row items-center text-4xl">
+    <header class="px-6 h-24 flex flex-row items-center text-4xl">
       <Button
         :to="{ name: 'add-tag' }"
         icon="fas fa-plus-square"
@@ -67,7 +67,7 @@
           <Button
             round
             icon="fas fa-times"
-            class="my-auto h-10 w-10 text-3xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="my-auto h-12 w-12 text-3xl bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
             @click="deselect"
           />
           <Button

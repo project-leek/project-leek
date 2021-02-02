@@ -5,7 +5,7 @@
         back
         round
         icon="fas fa-times"
-        class="ml-4 h-12 w-12 bg-gradient-to-b from-primary to-secondary"
+        class="ml-4 h-12 w-12 text-3xl bg-gradient-to-b from-primary to-secondary"
         :icon-size="6"
       />
       <span class="ml-4 text-4xl">Einstellungen</span>

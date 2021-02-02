@@ -5,7 +5,7 @@
         back
         round
         icon="fas fa-times"
-        class="h-14 w-14 bg-gradient-to-b from-primary to-secondary"
+        class="h-12 w-12 bg-gradient-to-b from-primary to-secondary"
         :icon-size="6"
       />
       <div class="headlines ml-5 flex flex-col my-auto">
