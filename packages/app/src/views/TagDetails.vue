@@ -39,17 +39,17 @@
       />
     </main>
 
-    <footer class="px-4 h-24 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
+    <footer class="px-4 h-24 flex flex-row items-center text-2xl overflow-hidden">
       <Button
         v-if="showBackButton"
         icon="fas fa-caret-left"
-        class="w-14 h-14 mx-4 bg-gradient-to-b from-primary to-secondary"
+        class="w-14 mx-4 bg-gradient-to-b from-primary to-secondary"
         round
         @click="goBack"
       />
       <Button
         :text="'Speichern'"
-        class="p-3 mx-4 flex-1 bg-gradient-to-b from-primary to-secondary"
+        class="mx-4 py-1 flex-1 bg-gradient-to-b from-primary to-secondary"
         @click="saveChanges"
       />
     </footer>

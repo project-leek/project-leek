@@ -28,17 +28,17 @@
       </LabeledInput>
     </main>
 
-    <footer class="px-4 h-24 flex text-gray-800 py-5">
-      <span class="flex w-full text-xl">
+    <footer class="px-4 h-24 flex flex-row items-center text-4xl overflow-hidden">
+      <span class="flex w-full">
         <Button
           text="Speichern"
           center-text
-          class="mx-2 px-3 py-2 text-2xl flex-grow bg-gradient-to-b from-primary to-secondary"
+          class="px-4 py-1 text-2xl flex-grow ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
         />
         <Button
           text="Abmelden"
           center-text
-          class="mx-2 px-3 text-2xl flex-grow bg-gradient-to-b from-primary to-secondary"
+          class="ml-4 px-4 text-2xl flex-grow ring-2 bg-gradient-to-b from-primary to-secondary ring-yellow-300 ring-opacity-30 focus: outline-none"
           @click="logoutUser"
         />
       </span>
