@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-full bg-gradient-to-b from-primary to-secondary p-4 items-center content-center"
+    class="flex w-full lg:rounded-3xl bg-gradient-to-b from-primary to-secondary p-4 items-center content-center"
   >
     <Loading v-if="isTestingConnection" class="m-auto" />
     <form v-else class="flex flex-col form m-auto" @submit.prevent="saveBackend">
