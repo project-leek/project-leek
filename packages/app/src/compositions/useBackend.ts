@@ -73,8 +73,16 @@ export function setBackendUrl(_backendUrl: string | null): void {
 export async function saveBackendUrl(_backendUrl: string): Promise<boolean> {
   let url = _backendUrl;
 
-  if (!url.includes(':')) {
+  const portRegex = /:([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/;
+  if (!portRegex.exec(url)) {
     url = `${url}:3030`;
+  }
+
+  // always use http sockets as the leek boxes do not have ssl certificates :shame:
+  url = url.replace('wss://', 'ws://');
+
+  if (!url.includes('ws://')) {
+    url = `ws://${url}`;
   }
 
   if (!(await isBackendAvailable(url))) {
