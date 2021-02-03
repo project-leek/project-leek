@@ -107,7 +107,7 @@ export default defineComponent({
       selectedTrack.value = track;
       const tagCopy = tag.value;
       tagCopy.trackUri = track.uri;
-      tagCopy.imageUrl = track.imageUri;
+      tagCopy.trackImageUrl = track.imageUri;
 
       const res = {
         tag: tagCopy,
