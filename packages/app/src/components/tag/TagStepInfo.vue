@@ -7,7 +7,7 @@
     <LabeledInput label="Gruppe" class="w-full mt-8">
       <Dropdown
         v-model="selectedGroup"
-        v-model:items="groupListItems"
+        v-model:items="tagGroupListItems"
         :removeable="false"
         placeholder-text="Wähle eine Gruppe"
         enable-add-item
@@ -20,7 +20,7 @@
 import { NFCTag } from '@leek/commons/';
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 
-import { groupListItems, loadTagGroups } from '../../compositions/useNfcTag';
+import { loadTagGroups, tagGroupListItems } from '../../compositions/useNfcTag';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
 import LabeledInput from '../uiBlocks/LabeledInput.vue';
@@ -28,23 +28,27 @@ import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
   name: 'TagStepInfo',
+
   components: {
     Textfield,
     Dropdown,
     LabeledInput,
   },
+
   props: {
     nfcTag: {
       type: Object as PropType<NFCTag>,
       required: true,
     },
   },
+
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:is-valid': (_payload: boolean): boolean => true,
   },
+
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
 
@@ -74,7 +78,7 @@ export default defineComponent({
 
     return {
       tagName,
-      groupListItems,
+      tagGroupListItems,
       selectedGroup,
     };
   },

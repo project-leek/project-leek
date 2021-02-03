@@ -5,142 +5,158 @@
 
       <div class="ml-2 flex flex-col">
         <span class="font-heading font-extralight text-2xl">Tag Editieren</span>
-        <span v-if="currentNfcTag && currentNfcTag.nfcData" class="text-m opacity-40">
-          Registrierte Tag-ID: #{{ currentNfcTag.nfcData }}
-        </span>
+        <span v-if="nfcTag" class="text-m opacity-40">Tag-ID: #{{ nfcTag.nfcData }}</span>
       </div>
     </header>
 
     <main
+      v-if="nfcTag"
       class="overflow-x-hidden overflow-y-auto bg-gradient-to-b from-primary to-secondary flex flex-col items-start justify-start text-2xl text-gray-800 flex-grow"
     >
-      <span
-        v-if="requiredFieldsEmpty && savedWithEmptyRequiredFields"
-        id="requiredFieldsEmpty"
-        class="text-red-600 text-lg px-8 pt-2"
-      >
-        Einige notwendige Felder sind noch nicht ausgefüllt.
-      </span>
-      <component
-        :is="activeDetailsPage"
-        v-if="currentNfcTag && currentNfcTag.nfcData"
-        :nfc-tag="unsavedNFCTag"
-        @open-image-details="openImageDetails"
-        @open-track-details="openTrackDetails"
-      />
+      <div v-if="routeName === 'tag-details'" class="tag-edit flex flex-col w-full p-4">
+        <LabeledInput label="Name">
+          <Textfield v-model="nfcTag.name" placeholder="z. B. Mario Figur" class="rounded-full" />
+        </LabeledInput>
+
+        <LabeledInput label="Gruppe">
+          <Dropdown
+            v-model="nfcTagGroup"
+            v-model:items="tagGroupListItems"
+            :removeable="false"
+            placeholder-text="Wähle eine Gruppe"
+            :enable-add-item="true"
+          />
+        </LabeledInput>
+
+        <LabeledInput label="Musik">
+          <div class="flex flex-row items-center">
+            <span v-if="nfcTagTrack">{{ nfcTagTrack.title }}</span>
+            <Button
+              class="p-3 px-6 ml-auto"
+              text="Musik ändern"
+              @click="router.push({ name: 'tag-edit-track' })"
+            />
+          </div>
+        </LabeledInput>
+
+        <LabeledInput label="Bild">
+          <div class="flex flex-row items-center">
+            <TagEntry class="w-32" :img="nfcTag.imageUrl" />
+            <Button
+              class="p-3 px-6 ml-auto"
+              text="Bild ändern"
+              @click="router.push({ name: 'tag-edit-image' })"
+            />
+          </div>
+        </LabeledInput>
+      </div>
+      <TagStepImage v-else-if="routeName === 'tag-edit-image'" :nfc-tag="nfcTag" />
+      <TagStepTrack v-else-if="routeName === 'tag-edit-track'" :nfc-tag="nfcTag" />
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
       <Button
-        v-if="showBackButton"
+        v-if="routeName !== 'tag-details'"
         icon="fas fa-caret-left"
         class="w-14 h-14 mx-4"
         round
-        @click="goBack"
+        @click="router.go(-1)"
       />
-      <Button :text="'Speichern'" class="p-3 mx-4 flex-1" @click="saveChanges" />
+      <Button
+        text="Speichern"
+        class="p-3 mx-4 flex-1"
+        :enabled="isNfcTagValid"
+        @click="saveNfcTag"
+      />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import { NFCTag } from '@leek/commons';
-import { Component, computed, defineComponent, onMounted, ref, shallowRef } from 'vue';
-import { useRouter } from 'vue-router';
+import { NFCTag, Track } from '@leek/commons';
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
-import EditTag from '../../components/tag/EditTag.vue';
 import TagStepImage from '../../components/tag/TagStepImage.vue';
 import TagStepTrack from '../../components/tag/TagStepTrack.vue';
 import Button from '../../components/uiBlocks/Button.vue';
+import ListItem from '../../components/uiBlocks/Dropdown.ListItem';
+import Dropdown from '../../components/uiBlocks/Dropdown.vue';
+import LabeledInput from '../../components/uiBlocks/LabeledInput.vue';
+import TagEntry from '../../components/uiBlocks/TagEntry.vue';
+import Textfield from '../../components/uiBlocks/Textfield.vue';
 import feathers from '../../compositions/useBackend';
+import { getIsNfcTagValid, loadTagGroups, tagGroupListItems } from '../../compositions/useNfcTag';
+import { getTrackOfTag } from '../../compositions/useTrack';
 
 export default defineComponent({
   name: 'TagDetails',
-  components: { Button },
+
+  components: { Textfield, Dropdown, LabeledInput, Button, TagStepImage, TagStepTrack, TagEntry },
+
   props: {
     tagId: {
       type: String,
       required: true,
     },
   },
+
   setup(props) {
-    const currentNfcTag = ref<NFCTag>();
-    const unsavedNFCTag = ref<NFCTag>();
-
     const router = useRouter();
-    const activeDetailsPage = shallowRef<Component>(EditTag);
-    const showBackButton = ref<boolean>(false);
+    const route = useRoute();
+    const nfcTag = ref<NFCTag>();
+    const nfcTagTrack = ref<Track>();
+    const routeName = computed(() => route.name);
+    const nfcTagGroup = computed({
+      get: () => nfcTag.value && new ListItem(nfcTag.value.group),
+      set: (group?: ListItem) => {
+        if (!nfcTag.value) {
+          return;
+        }
 
-    const savedWithEmptyRequiredFields = ref<boolean>(false);
-    const requiredFieldsEmpty = computed((): boolean => {
-      return !unsavedNFCTag.value?.name || !unsavedNFCTag.value?.group;
+        nfcTag.value.group = group?.value || '';
+      },
     });
+    const isNfcTagValid = getIsNfcTagValid(nfcTag);
+
+    const saveNfcTag = async (): Promise<void> => {
+      if (!nfcTag.value) {
+        return;
+      }
+
+      await feathers.service('nfc-tags').update(nfcTag.value._id, nfcTag.value);
+
+      alert('Tag erfolgreich gespeichert.');
+    };
 
     onMounted(async () => {
       try {
-        currentNfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
-      } finally {
-        if (!currentNfcTag.value || !currentNfcTag.value.nfcData) {
-          void router.push('/tag-not-found');
-        } else {
-          unsavedNFCTag.value = currentNfcTag.value;
+        nfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
+      } catch (e) {
+        void router.push({ name: 'tag-not-found' }); // TODO page does not exist
+      }
+
+      if (nfcTag.value) {
+        try {
+          nfcTagTrack.value = await getTrackOfTag(nfcTag.value);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error('ERROR:', error);
         }
       }
+
+      await loadTagGroups();
     });
 
-    function saveChanges(): void {
-      if (requiredFieldsEmpty.value) {
-        savedWithEmptyRequiredFields.value = true;
-        scrollToTop();
-      } else {
-        currentNfcTag.value = unsavedNFCTag.value;
-        goBack();
-      }
-    }
-
-    function scrollToTop(): void {
-      const main = document.querySelector('main');
-      if (main) {
-        main.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      }
-    }
-
-    function goBack(): void {
-      if (activeDetailsPage.value === EditTag) {
-        if (currentNfcTag.value && currentNfcTag.value.nfcData) {
-          void feathers.service('nfc-tags').update(props.tagId, currentNfcTag.value);
-        }
-        router.go(-1);
-      } else {
-        activeDetailsPage.value = EditTag;
-      }
-      showBackButton.value = false;
-    }
-
-    function openImageDetails(): void {
-      activeDetailsPage.value = TagStepImage;
-      showBackButton.value = true;
-    }
-
-    function openTrackDetails(): void {
-      activeDetailsPage.value = TagStepTrack;
-      showBackButton.value = true;
-    }
-
     return {
-      currentNfcTag,
-      openImageDetails,
-      openTrackDetails,
-      unsavedNFCTag,
-      activeDetailsPage,
-      saveChanges,
-      goBack,
-      showBackButton,
-      requiredFieldsEmpty,
-      savedWithEmptyRequiredFields,
+      nfcTag,
+      nfcTagTrack,
+      nfcTagGroup,
+      isNfcTagValid,
+      saveNfcTag,
+      routeName,
+      router,
+      tagGroupListItems,
     };
   },
 });

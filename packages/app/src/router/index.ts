@@ -49,12 +49,24 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/tag/add',
-    name: 'add-tag',
+    name: 'tag-add',
     component: (): Component => import('../views/tag/AddTag.vue'),
   },
   {
     path: '/tag/:tagId',
     name: 'tag-details',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/image',
+    name: 'tag-edit-image',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/track',
+    name: 'tag-edit-track',
     component: (): Component => import('../views/tag/TagDetails.vue'),
     props: true,
   },
