@@ -15,9 +15,9 @@
     </div>
     <div v-else-if="search.length < 3" class="flex m-auto text-center p-2">
       <span class="text-white font-heading text-3xl tracking-wider">
-        Wähle ein schönes Lied <br />
-        für deinen Tag!</span
-      >
+        <p>Wähle ein schönes Lied</p>
+        <p>für deinen Tag!</p>
+      </span>
     </div>
 
     <div
@@ -26,9 +26,9 @@
     >
       <img class="mb-4" src="/src/assets/not-found.gif" />
       <span class="text-white font-heading text-3xl"
-        >Keine Ergebnisse für <br />
-        "{{ search }}"</span
-      >
+        ><p>Keine Ergebnisse für</p>
+        <p>"{{ search }}"</p>
+      </span>
     </div>
 
     <ul v-else class="flex flex-col mt-4 pb-6 w-full overflow-y-auto max-h-full">
