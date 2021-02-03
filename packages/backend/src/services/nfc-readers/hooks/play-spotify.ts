@@ -32,15 +32,23 @@ export default async (context: HookContext<NFCReader>): Promise<HookContext> => 
     return context;
   }
 
+  const nfcReader = await context.service.get(context.id);
+  let user: User;
+
   try {
-    const nfcReader = await context.service.get(context.id);
+    user = await context.app.service('users').get(nfcReader.owner);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Can't find the user to play music Spotify`, (error as Error).stack);
+    throw error;
+  }
 
-    const user = await context.app.service('users').get(nfcReader.owner);
-
+  try {
     await playSpotify(context.app, user, nfcTag.trackUri);
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(`Can't play music on Spotify`, error);
+    console.error(`Can't play music on Spotify`, (error as Error).stack);
+    throw error;
   }
 
   return context;

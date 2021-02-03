@@ -3,33 +3,39 @@
     <div class="text-lg pb-1 font-semibold text-white">Bild von Spotify</div>
     <div class="flex content-end">
       <TagEntry
-        class="w-44"
-        :img="trackImageUrl"
-        :ring="usingTrackImage"
-        ring-color="ring-green-500"
-        @click="changeImage(true)"
+        class="w-44 cursor-pointer"
+        :img="spotifyImageUrl || '/image-gallery.svg'"
+        :selected="imageSource === 'spotify'"
+        @click="imageSource = 'spotify'"
       />
     </div>
     <div class="pt-8 pb-1 text-lg font-semibold text-white">Bild aus dem Internet</div>
     <div class="flex content-end">
       <TagEntry
-        class="w-44"
-        :img="externalImage"
-        :ring="!usingTrackImage"
-        ring-color="ring-green-500"
-        @click="changeImage(false)"
+        class="w-44 cursor-pointer"
+        :selected="imageSource === 'external'"
+        :img="sanitizedExternalImageUrl || '/image-gallery.svg'"
+        @click="imageSource = 'external'"
       />
     </div>
-    <Textfield v-model="userInput" class="mt-2 h-12 w-full" placeholder="enter URL" />
+    <Textfield
+      v-if="imageSource === 'external'"
+      v-model="externalImageUrl"
+      class="mt-2 w-full"
+      placeholder="Bild URL"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { computed, defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, onBeforeMount, PropType, ref, watch } from 'vue';
 
+import feathers from '../../compositions/useBackend';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
+
+const urlRegex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
 
 export default defineComponent({
   name: 'AddTagStepImage',
@@ -44,63 +50,61 @@ export default defineComponent({
   },
   emits: { 'update:nfc-tag': null },
   setup(props, ctx) {
-    const currentTag = ref<NFCTag>(props.nfcTag);
-    const trackImageUrl = ref<string>(currentTag.value.trackImageUrl);
-    const userInput = ref<string>(
-      currentTag.value.imageUrl !== trackImageUrl.value ? currentTag.value.imageUrl : ''
-    );
-    const usingTrackImage = ref<boolean>(
-      !currentTag.value.imageUrl || currentTag.value.imageUrl === currentTag.value.trackImageUrl
-    );
-    const placeholderImagePath = '/image-gallery.svg';
-
-    const correctImageUrl = (phrase: string): boolean => {
-      let isCorrect = false;
-      const regex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
-      if (phrase != null) {
-        if (regex.exec(phrase)) {
-          isCorrect = true;
-        }
+    const spotifyImageUrl = ref<string>();
+    const externalImageUrl = ref<string>();
+    const sanitizedExternalImageUrl = computed(() => {
+      if (externalImageUrl.value && !urlRegex.test(externalImageUrl.value)) {
+        return null;
       }
-      usingTrackImage.value = !isCorrect;
-      updateTagImage();
-      return isCorrect;
-    };
 
-    const externalImage = computed(() => {
-      if (correctImageUrl(userInput.value)) {
-        return userInput.value;
-      }
-      return placeholderImagePath;
+      return externalImageUrl.value;
+    });
+    const imageSource = ref<'spotify' | 'external' | null>(null);
+
+    const imageUrl = computed({
+      get: () => props.nfcTag.imageUrl,
+      set: (_imageUrl: string) => {
+        const tagCopy = props.nfcTag;
+        tagCopy.imageUrl = _imageUrl;
+        ctx.emit('update:nfc-tag', tagCopy);
+      },
     });
 
-    const updateTagImage = (): void => {
-      //Depending on chosen Image, save that url as imageUrl
-      if (usingTrackImage.value) {
-        currentTag.value.imageUrl = trackImageUrl.value;
-      } else {
-        currentTag.value.imageUrl = userInput.value;
-      }
-    };
+    onBeforeMount(async () => {
+      const track = await feathers.service('spotify-tracks').get(props.nfcTag.trackUri);
+      spotifyImageUrl.value = track.imageUri;
 
-    const changeImage = (useTrackImage: boolean): void => {
-      //Check if externalImage is clicked and a correct URL is provided
-      if (!useTrackImage && correctImageUrl(userInput.value)) {
-        usingTrackImage.value = false;
-      } else {
-        usingTrackImage.value = true;
+      if (imageUrl.value === spotifyImageUrl.value) {
+        imageSource.value = 'spotify';
       }
 
-      updateTagImage();
-      ctx.emit('update:nfc-tag', currentTag.value);
-    };
+      if (urlRegex.test(imageUrl.value)) {
+        externalImageUrl.value = imageUrl.value;
+        imageSource.value = 'external';
+      }
+    });
+
+    watch(imageSource, (_imageSource) => {
+      if (_imageSource === 'spotify' && spotifyImageUrl.value) {
+        imageUrl.value = spotifyImageUrl.value;
+      }
+
+      if (_imageSource === 'external' && externalImageUrl.value) {
+        imageUrl.value = externalImageUrl.value;
+      }
+    });
+
+    watch(externalImageUrl, () => {
+      if (externalImageUrl.value) {
+        imageUrl.value = externalImageUrl.value;
+      }
+    });
 
     return {
-      externalImage,
-      userInput,
-      usingTrackImage,
-      changeImage,
-      trackImageUrl,
+      imageSource,
+      spotifyImageUrl,
+      sanitizedExternalImageUrl,
+      externalImageUrl,
     };
   },
 });
