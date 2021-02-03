@@ -12,10 +12,7 @@
         <span class="text-3xl font-medium"> Neuen Tag registrieren </span>
         <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
           >Tag-ID #{{ nfcTag.nfcData }} -
-          <span v-if="activeStep == 0">Tag Scannen</span>
-          <span v-if="activeStep == 1">Details</span>
-          <span v-if="activeStep == 2">Musik Auswahl</span>
-          <span v-if="activeStep == 4">Bild Auswahl</span>
+          <span>{{ steps[activeStep].title }}</span>
         </span>
       </div>
     </header>
@@ -24,7 +21,7 @@
       class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto"
     >
       <component
-        :is="steps[activeStep]"
+        :is="steps[activeStep].component"
         :nfc-tag="nfcTag"
         @update:nfc-tag="updateTag"
         @proceed="activeStep++"
@@ -95,7 +92,12 @@ export default defineComponent({
 
   setup() {
     const nfcTag = ref<NFCTag | null>(null);
-    const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
+    const steps = [
+      { component: AddTagStepPlaceTagOnReader, title: 'Tag Scannen' },
+      { component: AddTagStepInfo, title: 'Details' },
+      { component: AddTagStepTrack, title: 'Musik Auswahl' },
+      { component: AddTagStepImage, title: 'Bild Auswahl' },
+    ];
     const activeStep = ref<number>(0);
     const router = useRouter();
 
