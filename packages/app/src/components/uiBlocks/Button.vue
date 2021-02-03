@@ -1,6 +1,6 @@
 <template>
   <button
-    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none disabled:opacity-70"
     :disabled="!enabled"
     :type="type"
     @click="doClick"
