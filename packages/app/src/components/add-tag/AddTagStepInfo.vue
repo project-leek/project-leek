@@ -52,6 +52,11 @@ export default defineComponent({
     const selectedGroup = ref<ListItem>();
     const tagName = ref<string>('');
 
+    if (currentTag.value && currentTag.value.name) {
+      tagName.value = currentTag.value.name;
+      updateTag();
+    }
+
     async function loadGroupNames(): Promise<void> {
       const allTags = await feathers.service('nfc-tags').find();
       if (allTags instanceof Array) {
