@@ -1,0 +1,15 @@
+{
+	debug
+	auto_https off
+}
+
+http://localhost:8080 {
+	encode zstd gzip
+	root * /app
+	file_server
+	route {
+		reverse_proxy /api/* backend:3030
+		try_files {path} {path}/ /index.html?{query}
+		file_server
+	}
+}
