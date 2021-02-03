@@ -38,7 +38,7 @@ import Textfield from '../uiBlocks/Textfield.vue';
 const urlRegex = /((https)|(http)):\/\/.*\.((jpg)|(png)|(tiff)|(gif)|(jpeg)|(bmp))/i;
 
 export default defineComponent({
-  name: 'AddTagStepImage',
+  name: 'TagStepImage',
 
   components: { TagEntry, Textfield },
 

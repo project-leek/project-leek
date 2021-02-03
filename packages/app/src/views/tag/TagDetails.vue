@@ -48,11 +48,11 @@ import { NFCTag } from '@leek/commons';
 import { Component, computed, defineComponent, onMounted, ref, shallowRef } from 'vue';
 import { useRouter } from 'vue-router';
 
-import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
-import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
-import EditTag from '../components/edit-tag/EditTag.vue';
-import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../compositions/useBackend';
+import EditTag from '../../components/tag/EditTag.vue';
+import TagStepImage from '../../components/tag/TagStepImage.vue';
+import TagStepTrack from '../../components/tag/TagStepTrack.vue';
+import Button from '../../components/uiBlocks/Button.vue';
+import feathers from '../../compositions/useBackend';
 
 export default defineComponent({
   name: 'TagDetails',
@@ -121,12 +121,12 @@ export default defineComponent({
     }
 
     function openImageDetails(): void {
-      activeDetailsPage.value = AddTagStepImage;
+      activeDetailsPage.value = TagStepImage;
       showBackButton.value = true;
     }
 
     function openTrackDetails(): void {
-      activeDetailsPage.value = AddTagStepTrack;
+      activeDetailsPage.value = TagStepTrack;
       showBackButton.value = true;
     }
 

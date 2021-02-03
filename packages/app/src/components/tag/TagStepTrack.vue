@@ -61,7 +61,7 @@ import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
-  name: 'AddTagStepTrack',
+  name: 'TagStepTrack',
 
   components: {
     Textfield,
