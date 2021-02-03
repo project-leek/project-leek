@@ -10,17 +10,17 @@
         v-model:items="groupListItems"
         :removeable="false"
         placeholder-text="Wähle eine Gruppe"
-        :enable-add-item="true"
-        @update:model-value="selectGroup()"
+        enable-add-item
       />
     </LabeledInput>
   </div>
 </template>
 
 <script lang="ts">
-import { NFCTag, TagResult } from '@leek/commons/';
-import { debounce } from 'lodash';
-import { defineComponent, PropType, ref, watch } from 'vue';
+import { Paginated } from '@feathersjs/feathers';
+import { NFCTag } from '@leek/commons/';
+import { uniq } from 'lodash';
+import { computed, defineComponent, PropType, ref } from 'vue';
 
 import feathers from '../../compositions/useBackend';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
@@ -43,67 +43,39 @@ export default defineComponent({
   },
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:nfc-tag': (_payload: TagResult): boolean => true,
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
-    const selectedGroup = ref<ListItem>();
-    const tagName = ref<string>('');
 
-    if (currentTag.value && currentTag.value.name) {
-      tagName.value = currentTag.value.name;
-      updateTag();
-    }
-
-    async function loadGroupNames(): Promise<void> {
-      const allTags = await feathers.service('nfc-tags').find();
-      if (allTags instanceof Array) {
-        allTags.map((tag: NFCTag) => {
-          if (tag.group && !groupNames.value.includes(tag.group)) {
-            groupNames.value.push(tag.group);
-          }
-        });
-      } else {
-        allTags.data.map((tag: NFCTag) => {
-          if (tag.group && !groupNames.value.includes(tag.group)) {
-            groupNames.value.push(tag.group);
-          }
-        });
-      }
-
-      groupNames.value.map((groupName: string) =>
-        groupListItems.value.push(new ListItem(groupName, groupName))
-      );
-
-      selectedGroup.value = groupListItems.value.find(
-        (element) => element.value === currentTag.value.group
-      );
-    }
-
-    const setName = debounce(() => {
-      currentTag.value.name = tagName.value;
-      updateTag();
-    }, 1000 * 0.5);
-
-    watch(tagName, () => {
-      setName();
+    const selectedGroup = computed({
+      get: () => (currentTag.value.group ? new ListItem(currentTag.value.group) : null),
+      //Update only if itemValue is set (not at deselecting e.g.)
+      set: (item: ListItem | null) => item && updateTag('group', item.value),
     });
 
-    function selectGroup(): void {
-      currentTag.value.group = selectedGroup.value?.value || '';
-      updateTag();
+    const tagName = computed({
+      get: () => currentTag.value.name,
+      set: (name: string) => updateTag('name', name),
+    });
+
+    async function loadGroupNames(): Promise<void> {
+      const allTags = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
+      groupNames.value = uniq(allTags.data.map((tag: NFCTag) => tag.group));
+      groupListItems.value = groupNames.value.map((groupName: string) => new ListItem(groupName));
     }
 
-    function updateTag(): void {
-      if (currentTag.value != null) {
-        const res = {
-          tag: currentTag.value,
-          valid: !!(currentTag.value.group && currentTag.value.name),
-        };
-        ctx.emit('update:nfc-tag', res);
-      }
+    function updateTag(key: keyof Omit<NFCTag, '_id'>, value: string): void {
+      const copy = currentTag.value;
+      copy[key] = value;
+
+      const isValid = !!(currentTag.value.group && currentTag.value.name);
+      ctx.emit('update:nfc-tag', currentTag.value);
+      ctx.emit('update:is-valid', isValid);
     }
 
     loadGroupNames().catch(() => {
@@ -114,7 +86,6 @@ export default defineComponent({
       tagName,
       groupListItems,
       selectedGroup,
-      selectGroup,
     };
   },
 });
