@@ -55,7 +55,7 @@ import { NFCTag, Track } from '@leek/commons';
 import { debounce } from 'lodash';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
-import feathers from '../../compositions/useBackend';
+import { searchTracksByName } from '../../compositions/useTrack';
 import Loading from '../uiBlocks/Loading.vue';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
@@ -89,12 +89,7 @@ export default defineComponent({
     const selectedTrack = ref<Track>();
 
     const doSearch = debounce(async () => {
-      const params = {
-        query: {
-          name: search.value,
-        },
-      };
-      tracks.value = (await feathers.service('spotify-tracks').find(params)) as Track[];
+      tracks.value = await searchTracksByName(search.value);
       isLoading.value = false;
     }, 1000 * 0.5);
 

@@ -31,7 +31,7 @@
 import { NFCTag } from '@leek/commons';
 import { computed, defineComponent, onBeforeMount, PropType, ref, watch } from 'vue';
 
-import feathers from '../../compositions/useBackend';
+import { getTrackOfTag } from '../../compositions/useTrack';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
@@ -77,7 +77,7 @@ export default defineComponent({
     });
 
     onBeforeMount(async () => {
-      const track = await feathers.service('spotify-tracks').get(props.nfcTag.trackUri);
+      const track = await getTrackOfTag(props.nfcTag);
       spotifyImageUrl.value = track.imageUri;
 
       if (imageUrl.value === spotifyImageUrl.value) {

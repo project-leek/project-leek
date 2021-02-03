@@ -17,12 +17,10 @@
 </template>
 
 <script lang="ts">
-import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons/';
-import { uniq } from 'lodash';
-import { computed, defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 
-import feathers from '../../compositions/useBackend';
+import { groupListItems, loadTagGroups } from '../../compositions/useNfcTag';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
 import Dropdown from '../uiBlocks/Dropdown.vue';
 import LabeledInput from '../uiBlocks/LabeledInput.vue';
@@ -49,8 +47,6 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
-    const groupNames = ref<string[]>([]);
-    const groupListItems = ref<ListItem[]>([]);
 
     const selectedGroup = computed({
       get: () => (currentTag.value.group ? new ListItem(currentTag.value.group) : null),
@@ -63,12 +59,6 @@ export default defineComponent({
       set: (name: string) => updateTag('name', name),
     });
 
-    async function loadGroupNames(): Promise<void> {
-      const allTags = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
-      groupNames.value = uniq(allTags.data.map((tag: NFCTag) => tag.group));
-      groupListItems.value = groupNames.value.map((groupName: string) => new ListItem(groupName));
-    }
-
     function updateTag(key: keyof Omit<NFCTag, '_id'>, value: string): void {
       const copy = currentTag.value;
       copy[key] = value;
@@ -78,8 +68,8 @@ export default defineComponent({
       ctx.emit('update:is-valid', isValid);
     }
 
-    loadGroupNames().catch(() => {
-      throw Error('failed to load group names');
+    onMounted(async () => {
+      await loadTagGroups();
     });
 
     return {
