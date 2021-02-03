@@ -6,8 +6,6 @@ export default class NFCTag extends AbstractEntity {
 
   trackUri!: string;
 
-  trackImageUrl!: string;
-
   name!: string;
 
   group!: string;
