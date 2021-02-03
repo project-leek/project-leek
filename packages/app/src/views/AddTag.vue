@@ -13,8 +13,8 @@
     >
       <component
         :is="steps[activeStep]"
-        :nfc-tag="nfcTag"
-        @update:nfc-tag="updateTag"
+        v-model:nfc-tag="nfcTag"
+        @update:is-valid="dataValid = $event"
         @proceed="nextStep"
       />
     </main>
@@ -43,7 +43,7 @@
           class="flex-grow p-2"
           icon="fas fa-download"
           text="Tag erstellen"
-          :enabled="showContinue"
+          :enabled="dataValid"
           @click="saveTag"
         />
         <Button
@@ -52,7 +52,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
-          :enabled="showContinue"
+          :enabled="dataValid"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
@@ -62,8 +62,8 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, TagResult } from '@leek/commons';
-import { computed, defineComponent, ref } from 'vue';
+import { NFCTag } from '@leek/commons';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -87,19 +87,6 @@ export default defineComponent({
     const dataValid = ref<boolean>(false);
     const router = useRouter();
 
-    const updateTag = (result: TagResult): void => {
-      if (result.valid) {
-        console.log('GÜLTIG!');
-      } else {
-        console.log('DAS PASST NICHT!');
-      }
-
-      nfcTag.value = result.tag;
-      dataValid.value = result.valid;
-      // console.log('Called from step ', activeStep.value);
-      // console.log('Result: ', result);
-    };
-
     const saveTag = async (): Promise<void> => {
       if (!nfcTag.value) {
         return;
@@ -112,6 +99,7 @@ export default defineComponent({
     };
 
     const previousStep = (): void => {
+      dataValid.value = true;
       activeStep.value -= 1;
     };
 
@@ -120,17 +108,14 @@ export default defineComponent({
       activeStep.value += 1;
     };
 
-    const showContinue = computed(() => dataValid.value);
-
     return {
       activeStep,
       steps,
       nfcTag,
-      updateTag,
       saveTag,
       previousStep,
       nextStep,
-      showContinue,
+      dataValid,
     };
   },
 });

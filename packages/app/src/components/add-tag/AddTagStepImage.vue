@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, TagResult } from '@leek/commons';
+import { NFCTag } from '@leek/commons';
 import { computed, defineComponent, PropType, ref } from 'vue';
 
 import TagEntry from '../uiBlocks/TagEntry.vue';
@@ -43,7 +43,10 @@ export default defineComponent({
     },
   },
   emits: {
-    'update:nfc-tag': (_payload: TagResult): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const currentTag = ref<NFCTag>(props.nfcTag);
@@ -95,15 +98,11 @@ export default defineComponent({
 
       updateTagImage();
       const valid: boolean = useTrackImage
-        ? currentTag.value.trackImageUrl != ''
-        : currentTag.value.imageUrl != '';
+        ? currentTag.value.trackImageUrl !== ''
+        : currentTag.value.imageUrl !== '';
       //I want a blanc line here!
-      const res = {
-        tag: currentTag.value,
-        valid,
-      };
-
-      ctx.emit('update:nfc-tag', res);
+      ctx.emit('update:nfc-tag', currentTag.value);
+      ctx.emit('update:is-valid', valid);
     };
 
     return {

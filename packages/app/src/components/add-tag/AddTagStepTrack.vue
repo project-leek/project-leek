@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { NFCTag, TagResult, Track } from '@leek/commons';
+import { NFCTag, Track } from '@leek/commons';
 import { debounce } from 'lodash';
 import { defineComponent, PropType, ref, watch } from 'vue';
 
@@ -77,7 +77,8 @@ export default defineComponent({
   },
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:nfc-tag': (_payload: TagResult): boolean => true,
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const search = ref<string>('');
@@ -109,12 +110,9 @@ export default defineComponent({
       tagCopy.trackUri = track.uri;
       tagCopy.trackImageUrl = track.imageUri;
 
-      const res = {
-        tag: tagCopy,
-        valid: track.uri != '',
-      } as TagResult;
-
-      ctx.emit('update:nfc-tag', res);
+      const isValid = !!track.uri;
+      ctx.emit('update:nfc-tag', tagCopy);
+      ctx.emit('update:is-valid', isValid);
     };
 
     return {

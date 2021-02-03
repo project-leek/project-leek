@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Paginated } from '@feathersjs/feathers';
-import { NFCReader, NFCTag, TagResult } from '@leek/commons';
+import { NFCReader, NFCTag } from '@leek/commons';
 import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -26,7 +26,9 @@ export default defineComponent({
   emits: {
     proceed: (): boolean => true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    'update:nfc-tag': (_payload: TagResult): boolean => true,
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
 
   setup(_, ctx) {
@@ -47,8 +49,7 @@ export default defineComponent({
 
         if (nfcTagResult.total > 0) {
           alert('Der Tag wurde bereits angelegt!');
-          void router.push({ name: 'home' }); // TODO redirect to edit
-          // throw new Error('Tag is already assigned');
+          void router.push({ name: 'tag-details', params: { tagId: nfcTagResult.data[0]._id } });
         }
 
         // this should not happen
@@ -57,22 +58,14 @@ export default defineComponent({
         }
 
         nfcTag.value.nfcData = nfcReader.attachedTagData;
-        const res = {
-          tag: nfcTag.value,
-          valid: true,
-        };
-        ctx.emit('update:nfc-tag', res);
+        ctx.emit('update:nfc-tag', nfcTag.value);
         ctx.emit('proceed');
       })();
     };
 
     onMounted(() => {
       nfcTag.value = new NFCTag();
-      const res = {
-        tag: nfcTag.value,
-        valid: false,
-      } as TagResult;
-      ctx.emit('update:nfc-tag', res);
+      ctx.emit('update:nfc-tag', nfcTag.value);
 
       feathers
         .service('nfc-readers')
