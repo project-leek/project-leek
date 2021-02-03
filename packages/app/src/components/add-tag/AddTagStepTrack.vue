@@ -78,6 +78,7 @@ export default defineComponent({
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
