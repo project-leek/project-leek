@@ -83,7 +83,6 @@ export default defineComponent({
     }, 1000 * 0.5);
 
     watch(tagName, () => {
-      console.log('In Watch');
       setName();
     });
 
@@ -93,14 +92,11 @@ export default defineComponent({
     }
 
     function updateTag(): void {
-      console.log('updateTag:');
-      console.log('CurrentTag:', currentTag.value);
       if (currentTag.value != null) {
         const res = {
           tag: currentTag.value,
           valid: !!(currentTag.value.group && currentTag.value.name),
         };
-        console.log(res);
         ctx.emit('update:nfc-tag', res);
       }
     }
