@@ -82,6 +82,7 @@ export default defineComponent({
 
       if (imageUrl.value === spotifyImageUrl.value) {
         imageSource.value = 'spotify';
+        return;
       }
 
       if (urlRegex.test(imageUrl.value)) {
@@ -95,15 +96,13 @@ export default defineComponent({
         imageUrl.value = spotifyImageUrl.value;
       }
 
-      if (_imageSource === 'external' && externalImageUrl.value) {
-        imageUrl.value = externalImageUrl.value;
+      if (_imageSource === 'external') {
+        imageUrl.value = externalImageUrl.value || '';
       }
     });
 
     watch(externalImageUrl, () => {
-      if (externalImageUrl.value) {
-        imageUrl.value = externalImageUrl.value;
-      }
+      imageUrl.value = externalImageUrl.value || '';
     });
 
     return {
