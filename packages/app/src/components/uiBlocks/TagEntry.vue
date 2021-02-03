@@ -2,9 +2,9 @@
   <div class="flex flex-col">
     <div class="relative pb-1/1">
       <img
-        class="absolute w-auto h-full rounded-xl object-cover"
+        class="absolute w-auto h-full rounded-xl object-cover border-2 border-transparent"
         :src="img"
-        :class="{ [` ring ${ringColor}`]: ring }"
+        :class="{ [`shadow-2xl border-white`]: selected }"
       />
     </div>
     <div
@@ -37,15 +37,10 @@ export default defineComponent({
       type: String,
       default: 'base',
     },
-    ring: {
+    selected: {
       type: Boolean,
       required: false,
       default: false,
-    },
-    ringColor: {
-      type: String,
-      required: false,
-      default: 'ring-white',
     },
   },
 });
