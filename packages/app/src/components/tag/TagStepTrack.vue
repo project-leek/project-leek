@@ -109,7 +109,6 @@ export default defineComponent({
       selectedTrack.value = track;
       const tagCopy = tag.value;
       tagCopy.trackUri = track.uri;
-      tagCopy.trackImageUrl = track.imageUri;
 
       const isValid = !!track.uri;
       ctx.emit('update:nfc-tag', tagCopy);
