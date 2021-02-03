@@ -15,7 +15,7 @@
         :is="steps[activeStep]"
         :nfc-tag="nfcTag"
         @update:nfc-tag="updateTag"
-        @proceed="activeStep++"
+        @proceed="nextStep"
       />
     </main>
 
@@ -43,6 +43,7 @@
           class="flex-grow p-2"
           icon="fas fa-download"
           text="Tag erstellen"
+          :enabled="showContinue"
           @click="saveTag"
         />
         <Button
@@ -51,7 +52,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
-          :enabled="dataValid"
+          :enabled="showContinue"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
@@ -62,7 +63,7 @@
 
 <script lang="ts">
 import { NFCTag, TagResult } from '@leek/commons';
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
@@ -95,8 +96,8 @@ export default defineComponent({
 
       nfcTag.value = result.tag;
       dataValid.value = result.valid;
-      console.log('Called from step ', activeStep.value);
-      console.log('Result: ', result);
+      // console.log('Called from step ', activeStep.value);
+      // console.log('Result: ', result);
     };
 
     const saveTag = async (): Promise<void> => {
@@ -115,8 +116,11 @@ export default defineComponent({
     };
 
     const nextStep = (): void => {
+      dataValid.value = false;
       activeStep.value += 1;
     };
+
+    const showContinue = computed(() => dataValid.value);
 
     return {
       activeStep,
@@ -126,7 +130,7 @@ export default defineComponent({
       saveTag,
       previousStep,
       nextStep,
-      dataValid,
+      showContinue,
     };
   },
 });
