@@ -75,10 +75,11 @@ export default defineComponent({
       required: true,
     },
   },
-
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const search = ref<string>('');
@@ -106,12 +107,13 @@ export default defineComponent({
 
     const changeTrack = (track: Track): void => {
       selectedTrack.value = track;
-
       const tagCopy = tag.value;
       tagCopy.trackUri = track.uri;
       tagCopy.trackImageUrl = track.imageUri;
 
+      const isValid = !!track.uri;
       ctx.emit('update:nfc-tag', tagCopy);
+      ctx.emit('update:is-valid', isValid);
     };
 
     return {

@@ -1,12 +1,7 @@
 <template>
   <div class="w-full p-4 h-full flex flex-col items-center">
     <LabeledInput label="Tag Name" class="w-full">
-      <Textfield
-        v-model="currentTag.name"
-        placeholder="z. B. Mario Figur"
-        class="rounded-full"
-        @update="$emit('update:nfc-tag', currentTag)"
-      />
+      <Textfield v-model="tagName" placeholder="z. B. Mario Figur" class="rounded-full" />
     </LabeledInput>
 
     <LabeledInput label="Gruppe" class="w-full mt-8">
@@ -15,16 +10,17 @@
         v-model:items="groupListItems"
         :removeable="false"
         placeholder-text="Wähle eine Gruppe"
-        :enable-add-item="true"
-        @update:model-value="selectGroup()"
+        enable-add-item
       />
     </LabeledInput>
   </div>
 </template>
 
 <script lang="ts">
+import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons/';
-import { defineComponent, PropType, ref } from 'vue';
+import { uniq } from 'lodash';
+import { computed, defineComponent, PropType, ref } from 'vue';
 
 import feathers from '../../compositions/useBackend';
 import ListItem from '../uiBlocks/Dropdown.ListItem';
@@ -48,41 +44,38 @@ export default defineComponent({
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const currentTag = ref(props.nfcTag);
     const groupNames = ref<string[]>([]);
     const groupListItems = ref<ListItem[]>([]);
-    const selectedGroup = ref<ListItem>();
+
+    const selectedGroup = computed({
+      get: () => (currentTag.value.group ? new ListItem(currentTag.value.group) : null),
+      //Update only if itemValue is set (not at deselecting e.g.)
+      set: (item: ListItem | null) => item && updateTag('group', item.value),
+    });
+
+    const tagName = computed({
+      get: () => currentTag.value.name,
+      set: (name: string) => updateTag('name', name),
+    });
 
     async function loadGroupNames(): Promise<void> {
-      const allTags = await feathers.service('nfc-tags').find();
-      if (allTags instanceof Array) {
-        allTags.map((tag: NFCTag) => {
-          if (tag.group && !groupNames.value.includes(tag.group)) {
-            groupNames.value.push(tag.group);
-          }
-        });
-      } else {
-        allTags.data.map((tag: NFCTag) => {
-          if (tag.group && !groupNames.value.includes(tag.group)) {
-            groupNames.value.push(tag.group);
-          }
-        });
-      }
-
-      groupNames.value.map((groupName: string) =>
-        groupListItems.value.push(new ListItem(groupName, groupName))
-      );
-
-      selectedGroup.value = groupListItems.value.find(
-        (element) => element.value === currentTag.value.group
-      );
+      const allTags = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
+      groupNames.value = uniq(allTags.data.map((tag: NFCTag) => tag.group));
+      groupListItems.value = groupNames.value.map((groupName: string) => new ListItem(groupName));
     }
 
-    function selectGroup(): void {
-      currentTag.value.group = selectedGroup.value?.value || '';
+    function updateTag(key: keyof Omit<NFCTag, '_id'>, value: string): void {
+      const copy = currentTag.value;
+      copy[key] = value;
+
+      const isValid = !!(currentTag.value.group && currentTag.value.name);
       ctx.emit('update:nfc-tag', currentTag.value);
+      ctx.emit('update:is-valid', isValid);
     }
 
     loadGroupNames().catch(() => {
@@ -90,10 +83,9 @@ export default defineComponent({
     });
 
     return {
-      currentTag,
+      tagName,
       groupListItems,
       selectedGroup,
-      selectGroup,
     };
   },
 });

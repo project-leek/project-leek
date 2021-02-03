@@ -13,9 +13,9 @@
     >
       <component
         :is="steps[activeStep]"
-        :nfc-tag="nfcTag"
-        @update:nfc-tag="updateTag"
-        @proceed="activeStep++"
+        v-model:nfc-tag="nfcTag"
+        @update:is-valid="dataValid = $event"
+        @proceed="nextStep"
       />
     </main>
 
@@ -43,6 +43,7 @@
           class="flex-grow p-2"
           icon="fas fa-download"
           text="Tag erstellen"
+          :enabled="dataValid"
           @click="saveTag"
         />
         <Button
@@ -51,6 +52,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
+          :enabled="dataValid"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
@@ -82,11 +84,8 @@ export default defineComponent({
     const nfcTag = ref<NFCTag | null>(null);
     const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
     const activeStep = ref<number>(0);
+    const dataValid = ref<boolean>(false);
     const router = useRouter();
-
-    const updateTag = (_nfcTag: NFCTag): void => {
-      nfcTag.value = _nfcTag;
-    };
 
     const saveTag = async (): Promise<void> => {
       if (!nfcTag.value) {
@@ -100,10 +99,12 @@ export default defineComponent({
     };
 
     const previousStep = (): void => {
+      dataValid.value = true;
       activeStep.value -= 1;
     };
 
     const nextStep = (): void => {
+      dataValid.value = false;
       activeStep.value += 1;
     };
 
@@ -111,10 +112,10 @@ export default defineComponent({
       activeStep,
       steps,
       nfcTag,
-      updateTag,
       saveTag,
       previousStep,
       nextStep,
+      dataValid,
     };
   },
 });

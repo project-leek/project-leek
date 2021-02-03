@@ -27,6 +27,8 @@ export default defineComponent({
     proceed: (): boolean => true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
 
   setup(_, ctx) {
@@ -47,8 +49,7 @@ export default defineComponent({
 
         if (nfcTagResult.total > 0) {
           alert('Der Tag wurde bereits angelegt!');
-          void router.push({ name: 'home' }); // TODO redirect to edit
-          // throw new Error('Tag is already assigned');
+          void router.push({ name: 'tag-details', params: { tagId: nfcTagResult.data[0]._id } });
         }
 
         // this should not happen

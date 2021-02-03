@@ -48,7 +48,12 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: { 'update:nfc-tag': null },
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
+  },
   setup(props, ctx) {
     const spotifyImageUrl = ref<string>();
     const externalImageUrl = ref<string>();
@@ -67,6 +72,7 @@ export default defineComponent({
         const tagCopy = props.nfcTag;
         tagCopy.imageUrl = _imageUrl;
         ctx.emit('update:nfc-tag', tagCopy);
+        ctx.emit('update:is-valid', _imageUrl !== '');
       },
     });
 
@@ -76,6 +82,7 @@ export default defineComponent({
 
       if (imageUrl.value === spotifyImageUrl.value) {
         imageSource.value = 'spotify';
+        return;
       }
 
       if (urlRegex.test(imageUrl.value)) {
@@ -89,15 +96,13 @@ export default defineComponent({
         imageUrl.value = spotifyImageUrl.value;
       }
 
-      if (_imageSource === 'external' && externalImageUrl.value) {
-        imageUrl.value = externalImageUrl.value;
+      if (_imageSource === 'external') {
+        imageUrl.value = externalImageUrl.value || '';
       }
     });
 
     watch(externalImageUrl, () => {
-      if (externalImageUrl.value) {
-        imageUrl.value = externalImageUrl.value;
-      }
+      imageUrl.value = externalImageUrl.value || '';
     });
 
     return {
