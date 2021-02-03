@@ -2,7 +2,7 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isBackendUrlConfigured } from '../compositions/useBackend';
+import { isSetupApp } from '../compositions/useBackend';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -79,8 +79,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (!isBackendUrlConfigured.value && to.name !== 'setup') {
+  if (isSetupApp.value && to.name !== 'setup') {
     next({ name: 'setup' });
+    return;
+  }
+
+  if (!isSetupApp.value && to.name === 'setup') {
+    next({ name: 'welcome' });
     return;
   }
 
