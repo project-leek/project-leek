@@ -50,8 +50,16 @@
           </div>
         </LabeledInput>
       </div>
-      <TagStepImage v-else-if="routeName === 'tag-edit-image'" :nfc-tag="nfcTag" />
-      <TagStepTrack v-else-if="routeName === 'tag-edit-track'" :nfc-tag="nfcTag" />
+      <TagStepImage
+        v-else-if="routeName === 'tag-edit-image'"
+        :nfc-tag="nfcTag"
+        @update:nfc-tag="updateNfcTag"
+      />
+      <TagStepTrack
+        v-else-if="routeName === 'tag-edit-track'"
+        :nfc-tag="nfcTag"
+        @update:nfc-tag="updateNfcTag"
+      />
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
@@ -74,7 +82,7 @@
 
 <script lang="ts">
 import { NFCTag, Track } from '@leek/commons';
-import { computed, defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import TagStepImage from '../../components/tag/TagStepImage.vue';
@@ -104,9 +112,11 @@ export default defineComponent({
   setup(props) {
     const router = useRouter();
     const route = useRoute();
+    const routeName = computed(() => route.name);
+
     const nfcTag = ref<NFCTag>();
     const nfcTagTrack = ref<Track>();
-    const routeName = computed(() => route.name);
+    const isNfcTagValid = getIsNfcTagValid(nfcTag);
     const nfcTagGroup = computed({
       get: () => nfcTag.value && new ListItem(nfcTag.value.group),
       set: (group?: ListItem) => {
@@ -117,7 +127,6 @@ export default defineComponent({
         nfcTag.value.group = group?.value || '';
       },
     });
-    const isNfcTagValid = getIsNfcTagValid(nfcTag);
 
     const saveNfcTag = async (): Promise<void> => {
       if (!nfcTag.value) {
@@ -129,14 +138,14 @@ export default defineComponent({
       alert('Tag erfolgreich gespeichert.');
     };
 
-    onMounted(async () => {
-      try {
-        nfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
-      } catch (e) {
-        void router.push({ name: 'tag-not-found' }); // TODO page does not exist
-      }
+    const updateNfcTag = async (_nfcTag: NFCTag): Promise<void> => {
+      nfcTag.value = _nfcTag;
+      await router.replace({ name: 'tag-details' });
+    };
 
-      if (nfcTag.value) {
+    const loadTrack = async (): Promise<void> => {
+      // load track of tag if not already or if it changed
+      if (nfcTag.value && nfcTagTrack.value?.uri !== nfcTag.value.trackUri) {
         try {
           nfcTagTrack.value = await getTrackOfTag(nfcTag.value);
         } catch (error) {
@@ -144,9 +153,23 @@ export default defineComponent({
           console.error('ERROR:', error);
         }
       }
+    };
+
+    onMounted(async () => {
+      // load tag from id
+      try {
+        nfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
+      } catch (e) {
+        void router.push({ name: 'tag-not-found' }); // TODO page does not exist
+      }
+
+      await loadTrack();
 
       await loadTagGroups();
     });
+
+    // update track if we return from 'tag-edit-track' route
+    watch(() => route.name, loadTrack);
 
     return {
       nfcTag,
@@ -154,6 +177,7 @@ export default defineComponent({
       nfcTagGroup,
       isNfcTagValid,
       saveNfcTag,
+      updateNfcTag,
       routeName,
       router,
       tagGroupListItems,
