@@ -50,27 +50,20 @@
           </div>
         </LabeledInput>
       </div>
-      <TagStepImage
-        v-else-if="routeName === 'tag-edit-image'"
-        :nfc-tag="nfcTag"
-        @update:nfc-tag="updateNfcTag"
-      />
-      <TagStepTrack
-        v-else-if="routeName === 'tag-edit-track'"
-        :nfc-tag="nfcTag"
-        @update:nfc-tag="updateNfcTag"
-      />
+      <TagStepImage v-else-if="routeName === 'tag-edit-image'" v-model:nfc-tag="nfcTag" />
+      <TagStepTrack v-else-if="routeName === 'tag-edit-track'" v-model:nfc-tag="nfcTag" />
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
       <Button
         v-if="routeName !== 'tag-details'"
-        icon="fas fa-caret-left"
-        class="w-14 h-14 mx-4"
-        round
+        text="Auswählen"
+        class="p-3 mx-4 flex-1"
+        :enabled="isNfcTagValid"
         @click="router.go(-1)"
       />
       <Button
+        v-else
         text="Speichern"
         class="p-3 mx-4 flex-1"
         :enabled="isNfcTagValid"
@@ -138,11 +131,6 @@ export default defineComponent({
       alert('Tag erfolgreich gespeichert.');
     };
 
-    const updateNfcTag = async (_nfcTag: NFCTag): Promise<void> => {
-      nfcTag.value = _nfcTag;
-      await router.replace({ name: 'tag-details' });
-    };
-
     const loadTrack = async (): Promise<void> => {
       // load track of tag if not already or if it changed
       if (nfcTag.value && nfcTagTrack.value?.uri !== nfcTag.value.trackUri) {
@@ -177,7 +165,6 @@ export default defineComponent({
       nfcTagGroup,
       isNfcTagValid,
       saveNfcTag,
-      updateNfcTag,
       routeName,
       router,
       tagGroupListItems,
