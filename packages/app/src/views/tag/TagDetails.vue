@@ -55,13 +55,10 @@
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
-      <Button
-        v-if="routeName !== 'tag-details'"
-        text="Auswählen"
-        class="p-3 mx-4 flex-1"
-        :enabled="isNfcTagValid"
-        @click="router.go(-1)"
-      />
+      <template v-if="routeName !== 'tag-details'">
+        <Button icon="fas fa-caret-left" class="w-14 h-14 ml-4" round @click="router.go(-1)" />
+        <Button text="Auswählen" class="p-3 mx-4 flex-1" @click="router.go(-1)" />
+      </template>
       <Button
         v-else
         text="Speichern"
