@@ -157,7 +157,6 @@ export default defineComponent({
       isNfcTagValid,
       saveNfcTag,
       routeName,
-      router,
       tagGroupListItems,
     };
   },
