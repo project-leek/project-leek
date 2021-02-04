@@ -3,7 +3,7 @@
     <header class="p-8 flex flex-row">
       <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
       <div class="headlines ml-2 flex flex-col my-auto">
-        <span class="text-3xl">Neuen Tag anlegen</span>
+        <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
         <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
       </div>
     </header>
@@ -12,7 +12,7 @@
       class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto"
     >
       <component
-        :is="steps[activeStep]"
+        :is="steps[activeStep].component"
         v-model:nfc-tag="nfcTag"
         @update:is-valid="dataValid = $event"
         @proceed="nextStep"
@@ -66,12 +66,12 @@ import { NFCTag } from '@leek/commons';
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
-import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
-import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
-import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
-import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../compositions/useBackend';
+import TagStepImage from '../../components/tag/TagStepImage.vue';
+import TagStepInfo from '../../components/tag/TagStepInfo.vue';
+import TagStepPlaceTagOnReader from '../../components/tag/TagStepPlaceTagOnReader.vue';
+import TagStepTrack from '../../components/tag/TagStepTrack.vue';
+import Button from '../../components/uiBlocks/Button.vue';
+import feathers from '../../compositions/useBackend';
 
 export default defineComponent({
   name: 'AddTag',
@@ -82,7 +82,12 @@ export default defineComponent({
 
   setup() {
     const nfcTag = ref<NFCTag | null>(null);
-    const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
+    const steps = [
+      { component: TagStepPlaceTagOnReader, title: 'Tag scannen' },
+      { component: TagStepInfo, title: 'Tag anlegen' },
+      { component: TagStepTrack, title: 'Musik auswählen' },
+      { component: TagStepImage, title: 'Bild auswählen' },
+    ];
     const activeStep = ref<number>(0);
     const dataValid = ref<boolean>(false);
     const router = useRouter();

@@ -29,7 +29,7 @@ import LabeledInput from '../uiBlocks/LabeledInput.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
-  name: 'AddTagStepInfo',
+  name: 'TagStepInfo',
   components: {
     Textfield,
     Dropdown,

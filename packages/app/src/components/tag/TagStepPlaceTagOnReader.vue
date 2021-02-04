@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router';
 import feathers from '../../compositions/useBackend';
 
 export default defineComponent({
-  name: 'AddTagStepPlaceOnReader',
+  name: 'TagStepPlaceOnReader',
 
   props: {
     // eslint-disable-next-line vue/no-unused-properties
