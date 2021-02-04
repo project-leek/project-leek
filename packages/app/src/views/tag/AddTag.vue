@@ -3,7 +3,7 @@
     <header class="p-8 flex flex-row">
       <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
       <div class="headlines ml-2 flex flex-col my-auto">
-        <span class="text-3xl">Neuen Tag anlegen</span>
+        <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
         <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
       </div>
     </header>
@@ -12,10 +12,10 @@
       class="bg-gradient-to-b from-primary to-secondary w-full flex flex-col flex-grow overflow-y-auto"
     >
       <component
-        :is="steps[activeStep]"
-        :nfc-tag="nfcTag"
-        @update:nfc-tag="updateTag"
-        @proceed="activeStep++"
+        :is="steps[activeStep].component"
+        v-model:nfc-tag="nfcTag"
+        @update:is-valid="dataValid = $event"
+        @proceed="nextStep"
       />
     </main>
 
@@ -43,6 +43,7 @@
           class="flex-grow p-2"
           icon="fas fa-download"
           text="Tag erstellen"
+          :enabled="dataValid"
           @click="saveTag"
         />
         <Button
@@ -51,6 +52,7 @@
           icon="fas fa-chevron-right"
           round
           text="Weiter"
+          :enabled="dataValid"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
@@ -64,12 +66,12 @@ import { NFCTag } from '@leek/commons';
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import AddTagStepImage from '../components/add-tag/AddTagStepImage.vue';
-import AddTagStepInfo from '../components/add-tag/AddTagStepInfo.vue';
-import AddTagStepPlaceTagOnReader from '../components/add-tag/AddTagStepPlaceTagOnReader.vue';
-import AddTagStepTrack from '../components/add-tag/AddTagStepTrack.vue';
-import Button from '../components/uiBlocks/Button.vue';
-import feathers from '../compositions/useBackend';
+import TagStepImage from '../../components/tag/TagStepImage.vue';
+import TagStepInfo from '../../components/tag/TagStepInfo.vue';
+import TagStepPlaceTagOnReader from '../../components/tag/TagStepPlaceTagOnReader.vue';
+import TagStepTrack from '../../components/tag/TagStepTrack.vue';
+import Button from '../../components/uiBlocks/Button.vue';
+import feathers from '../../compositions/useBackend';
 
 export default defineComponent({
   name: 'AddTag',
@@ -80,13 +82,15 @@ export default defineComponent({
 
   setup() {
     const nfcTag = ref<NFCTag | null>(null);
-    const steps = [AddTagStepPlaceTagOnReader, AddTagStepInfo, AddTagStepTrack, AddTagStepImage];
+    const steps = [
+      { component: TagStepPlaceTagOnReader, title: 'Tag scannen' },
+      { component: TagStepInfo, title: 'Tag anlegen' },
+      { component: TagStepTrack, title: 'Musik auswählen' },
+      { component: TagStepImage, title: 'Bild auswählen' },
+    ];
     const activeStep = ref<number>(0);
+    const dataValid = ref<boolean>(false);
     const router = useRouter();
-
-    const updateTag = (_nfcTag: NFCTag): void => {
-      nfcTag.value = _nfcTag;
-    };
 
     const saveTag = async (): Promise<void> => {
       if (!nfcTag.value) {
@@ -100,10 +104,12 @@ export default defineComponent({
     };
 
     const previousStep = (): void => {
+      dataValid.value = true;
       activeStep.value -= 1;
     };
 
     const nextStep = (): void => {
+      dataValid.value = false;
       activeStep.value += 1;
     };
 
@@ -111,10 +117,10 @@ export default defineComponent({
       activeStep,
       steps,
       nfcTag,
-      updateTag,
       saveTag,
       previousStep,
       nextStep,
+      dataValid,
     };
   },
 });
