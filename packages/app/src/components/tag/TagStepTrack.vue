@@ -53,9 +53,9 @@
 <script lang="ts">
 import { NFCTag, Track } from '@leek/commons';
 import { debounce } from 'lodash';
-import { defineComponent, PropType, ref, watch } from 'vue';
+import { defineComponent, onMounted, PropType, ref, watch } from 'vue';
 
-import { searchTracksByName } from '../../compositions/useTrack';
+import { getTrackOfTag, searchTracksByName } from '../../compositions/useTrack';
 import Loading from '../uiBlocks/Loading.vue';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
@@ -85,7 +85,6 @@ export default defineComponent({
     const search = ref<string>('');
     const isLoading = ref<boolean>(false);
     const tracks = ref<Track[]>([]);
-    const tag = ref<NFCTag>(props.nfcTag);
     const selectedTrack = ref<Track>();
 
     const doSearch = debounce(async () => {
@@ -102,13 +101,22 @@ export default defineComponent({
 
     const changeTrack = (track: Track): void => {
       selectedTrack.value = track;
-      const tagCopy = tag.value;
+      const tagCopy = props.nfcTag;
       tagCopy.trackUri = track.uri;
 
       const isValid = !!track.uri;
       ctx.emit('update:nfc-tag', tagCopy);
       ctx.emit('update:is-valid', isValid);
     };
+
+    onMounted(async () => {
+      // select track if we already selected one
+      if (props.nfcTag.trackUri) {
+        const track = await getTrackOfTag(props.nfcTag);
+        search.value = track.title;
+        selectedTrack.value = track;
+      }
+    });
 
     return {
       search,
