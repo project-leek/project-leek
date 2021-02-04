@@ -9430,10 +9430,10 @@ split@^1.0.0:
   dependencies:
     through "2"
 
-spotify-web-api-node@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/spotify-web-api-node/-/spotify-web-api-node-5.0.2.tgz#683669b3ccc046a5a357300f151df93a2b3539fe"
-  integrity sha512-r82dRWU9PMimHvHEzL0DwEJrzFk+SMCVfq249SLt3I7EFez7R+jeoKQd+M1//QcnjqlXPs2am4DFsGk8/GCsrA==
+spotify-web-api-node@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/spotify-web-api-node/-/spotify-web-api-node-5.0.0.tgz#e3cc927300e1580ec6ae369ac52cd97ad82b1c0d"
+  integrity sha512-UbGp9LsydVX0EJSZMdJQmWGcBTbAK8Ei3uctAOGMuPtadRhj1zxvEwljtevoOqDTLAlyrm8VUdsswQ4l5j+E8Q==
   dependencies:
     superagent "^6.1.0"
 

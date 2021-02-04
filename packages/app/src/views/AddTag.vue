@@ -37,24 +37,22 @@
           class="mr-4 px-4 py-2 text-center"
           @click="previousStep"
         />
-        <div
+        <Button
           v-if="activeStep === steps.length - 1"
-          class="flex-grow bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+          round
+          class="flex-grow p-2"
+          icon="fas fa-download"
+          text="Tag erstellen"
           @click="saveTag"
-        >
-          <span class="mx-auto text-lg transform translate-x-4 md:translate-x-12">
-            Tag erstellen
-          </span>
-          <span class="fas fa-download text-white text-lg ml-auto mr-4"></span>
-        </div>
-        <div
+        />
+        <Button
           v-else-if="activeStep !== 0"
-          class="flex-grow bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+          class="flex-grow p-2"
+          icon="fas fa-chevron-right"
+          round
+          text="Weiter"
           @click="nextStep"
-        >
-          <span class="mx-auto text-lg transform translate-x-4 md:translate-x-12"> Weiter </span>
-          <span class="fas fa-chevron-right text-white text-lg ml-auto mr-4"></span>
-        </div>
+        />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>
       </div>
     </footer>
@@ -121,11 +119,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="css">
-.rightFromText {
-  position: absolute;
-  top: 28%;
-  left: 60%;
-}
-</style>
