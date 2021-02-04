@@ -5,15 +5,15 @@
 </template>
 
 <script lang="ts">
-import { Paginated } from '@feathersjs/feathers';
 import { NFCReader, NFCTag } from '@leek/commons';
 import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import feathers from '../../compositions/useBackend';
+import { getTrackByNfcData } from '../../compositions/useTrack';
 
 export default defineComponent({
-  name: 'AddTagStepPlaceOnReader',
+  name: 'TagStepPlaceOnReader',
 
   props: {
     // eslint-disable-next-line vue/no-unused-properties
@@ -32,8 +32,7 @@ export default defineComponent({
   },
 
   setup(_, ctx) {
-    const nfcTag = ref<NFCTag>();
-
+    const nfcTag = ref<NFCTag>(new NFCTag());
     const router = useRouter();
 
     const attachedTagListener = (nfcReader: NFCReader): void => {
@@ -43,17 +42,11 @@ export default defineComponent({
           return;
         }
 
-        const nfcTagResult = (await feathers
-          .service('nfc-tags')
-          .find({ query: { nfcData: nfcReader.attachedTagData } })) as Paginated<NFCTag>;
+        const searchedNfcTag = await getTrackByNfcData(nfcReader.attachedTagData);
 
-        if (nfcTagResult.total > 0) {
-          alert('Der Tag wurde bereits angelegt!');
-          void router.push({ name: 'tag-details', params: { tagId: nfcTagResult.data[0]._id } });
-        }
-
-        // this should not happen
-        if (!nfcTag.value) {
+        // tag already exists
+        if (searchedNfcTag) {
+          await router.push({ name: 'tag-details', params: { tagid: searchedNfcTag._id } });
           return;
         }
 
@@ -64,7 +57,6 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      nfcTag.value = new NFCTag();
       ctx.emit('update:nfc-tag', nfcTag.value);
 
       feathers

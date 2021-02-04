@@ -38,12 +38,6 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/tag/:tagId',
-    name: 'tag-details',
-    component: (): Component => import('../views/TagDetails.vue'),
-    props: true,
-  },
-  {
     path: '/sandbox',
     name: 'sandbox',
     component: (): Component => import('../views/Sandbox.vue'),
@@ -55,8 +49,26 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/tag/add',
-    name: 'add-tag',
-    component: (): Component => import('../views/AddTag.vue'),
+    name: 'tag-add',
+    component: (): Component => import('../views/tag/AddTag.vue'),
+  },
+  {
+    path: '/tag/:tagId',
+    name: 'tag-details',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/image',
+    name: 'tag-edit-image',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/track',
+    name: 'tag-edit-track',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
   },
   {
     path: '/sandbox',
