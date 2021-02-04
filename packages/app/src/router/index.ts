@@ -2,26 +2,11 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
+import { isSetupApp } from '../compositions/useBackend';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home,
-  },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    component: (): Component => import('../views/Welcome.vue'),
-    meta: { authentication: 'guests-only' },
-  },
-  {
-    path: '/sandbox',
-    name: 'Sandbox',
-    component: (): Component => import('../views/Sandbox.vue'),
-  },
   {
     path: '/oauth/callback',
     name: 'oauth-callback',
@@ -36,6 +21,51 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   {
+    path: '/',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/setup',
+    name: 'setup',
+    component: (): Component => import('../views/Setup.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: (): Component => import('../views/Welcome.vue'),
+    meta: { authentication: 'guests-only' },
+  },
+  {
+    path: '/tag/:tagId',
+    name: 'tag-details',
+    component: (): Component => import('../views/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/sandbox',
+    name: 'sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: (): Component => import('../views/Settings.vue'),
+  },
+  {
+    path: '/tag/add',
+    name: 'add-tag',
+    component: (): Component => import('../views/AddTag.vue'),
+  },
+  {
+    path: '/sandbox',
+    name: 'sandbox',
+    component: (): Component => import('../views/Sandbox.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  // this should be the last route to catch all unhandled requests
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFound,
@@ -49,6 +79,16 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
+  if (isSetupApp.value && to.name !== 'setup') {
+    next({ name: 'setup' });
+    return;
+  }
+
+  if (!isSetupApp.value && to.name === 'setup') {
+    next({ name: 'welcome' });
+    return;
+  }
+
   await loadAuthentication();
 
   const pageAuthentication = (to.meta.authentication as string) || 'needed';

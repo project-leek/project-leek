@@ -4,6 +4,20 @@ on:
   push:
     tags:
       - 'nfc-reader-*'
+    paths:
+      - '.github/workflows/release-nfc-reader.yml'
+      - 'docker/**'
+      - 'packages/nfc-reader/**'
+      - 'packages/commons/**'
+      - '.eslintrc.js'
+      - '.gitignore'
+      - 'lerna.json'
+      - 'package.json'
+      - 'prettier.config.js'
+      - 'tsconfig.json'
+      - 'yarn.lock'
+    branches:
+      - master
 
 jobs:
   buildx:

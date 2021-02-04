@@ -1,53 +1,66 @@
 <template>
-  <div class="relative h-10 min-w-min">
-    <span v-if="label" class="ml-6 text-base text-white font-heading">{{ label }}</span>
+  <div class="w-full flex flex-col text-lg relative">
     <div
-      class="bg-white p-1 pr-3 rounded-3xl w-full flex flex-col text-lg border-button shadow-lg border-2 outline-none"
-      :class="{ 'z-50': dropdownExtended }"
+      class="bg-white p-2 px-1.5 rounded-3xl flex items-center pl-2 cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
+      :class="{
+        'rounded-b-none': dropdownExtended,
+        'ring-red-600 ring-2 ring-inset': required && !modelValue,
+      }"
+      @click="dropdownExtended = !dropdownExtended"
     >
-      <div class="flex items-center pl-2" @click="dropdownExtended = !dropdownExtended">
-        <span class="">{{ getHeaderText() }}</span>
-        <Button
-          v-if="dropdownExtended"
-          class="ml-auto w-8 h-8"
-          icon="fas fa-chevron-down"
-          :icon-size="3"
-          round
-        />
-        <Button v-else class="ml-auto w-8 h-8" icon="fas fa-chevron-right" :icon-size="3" round />
-      </div>
-      <div v-if="dropdownExtended" class="divide-y divide-yellow-50 static z-50">
-        <div v-for="(item, index) in selectableItemValues" :key="index">
-          <hr class="w-full border-dotted border-secondary border-1 my-2" />
-          <div class="item flex w-full">
-            <span class="px-2 rounded-2xl hover:bg-yellow-200" @click="itemClick(item)">
-              {{ item.value }}
-            </span>
-            <Button
-              class="w-8 h-8 ml-auto"
-              icon="far fa-trash-alt"
-              :icon-size="3"
-              round
-              @click="removeItem(item)"
-            />
-          </div>
+      <span v-if="modelValue && modelValue.value" class="value text-xl">
+        {{ modelValue.value }}
+      </span>
+      <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
+      <Button
+        v-if="dropdownExtended"
+        class="ml-auto mr-3 w-8 h-8"
+        icon="fas fa-chevron-down"
+        :icon-size="3"
+        round
+      />
+      <Button
+        v-else
+        class="ml-auto mr-3 w-8 h-8"
+        icon="fas fa-chevron-right"
+        :icon-size="3"
+        round
+      />
+    </div>
+    <div
+      v-if="dropdownExtended"
+      class="absolute px-0.5 bg-white rounded-b-3xl w-full top-full -mt-0.5 z-50 border-2 border-button"
+    >
+      <div
+        v-for="item in items"
+        :key="item.id"
+        class="py-2 px-1.5 w-full border-dotted border-secondary border-b outline-none"
+      >
+        <div
+          :class="{ 'bg-yellow-400': modelValue && modelValue.id === item.id }"
+          class="item flex w-full cursor-pointer hover:bg-yellow-200 rounded-2xl"
+          @click="selectItem(item)"
+        >
+          <span class="px-2 text-xl">{{ item.value }}</span>
+          <Button
+            v-if="removeable"
+            class="w-8 h-8 ml-auto mr-3"
+            icon="far fa-trash-alt"
+            :icon-size="3"
+            round
+            @click="removeItem(item)"
+          />
         </div>
-        <div v-if="addItemOption" class="">
-          <hr class="w-full border-solid border-secondary border-1 my-2" />
-          <div class="add-item-section flex w-full items-center pt-0.5">
-            <input
-              v-model="newItemValue"
-              class="p-2 rounded-2xl focus:outline-none"
-              :placeholder="addItemText"
-            />
-            <Button
-              class="ml-auto w-8 h-8"
-              icon="fas fa-plus"
-              :icon-size="3"
-              round
-              @click="addItem()"
-            />
-          </div>
+      </div>
+      <div v-if="enableAddItem" class="add-item px-4 py-2 border-solid border-secondary border-t">
+        <div class="add-item-section flex w-full items-center pt-0.5">
+          <input
+            v-model="newItemValue"
+            :placeholder="addItemText"
+            class="flex-grow p-1 rounded-2xl focus:outline-none"
+            @keyup.enter="addItem"
+          />
+          <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
         </div>
       </div>
     </div>
@@ -55,11 +68,8 @@
 </template>
 
 <script lang="ts">
-import { Service } from '@feathersjs/feathers';
-import { AbstractEntity } from '@leek/commons';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
-import feathers from '../../lib/feathers';
 import Button from './Button.vue';
 import ListItem from './Dropdown.ListItem';
 
@@ -69,110 +79,88 @@ export default defineComponent({
   components: { Button },
 
   props: {
-    service: {
-      type: String,
-      required: true,
-    },
     modelValue: {
-      type: Object,
+      type: Object as PropType<ListItem | null>,
       required: false,
       default: null,
     },
     placeholderText: {
       type: String,
       required: false,
-      default: 'Please select an item',
+      default: 'Bitte wähle ein Element...',
     },
-    addItemOption: {
+    enableAddItem: {
       type: Boolean,
       required: false,
       default: false,
     },
-    valueProperty: {
-      type: String,
-      required: false,
-      default: 'value',
+    removeable: {
+      type: Boolean,
+      default: true,
     },
     addItemText: {
       type: String,
       required: false,
-      default: 'Please add an element',
+      default: 'Bitte füge ein Element hinzu...',
     },
-    label: {
-      type: String,
-      required: false,
-      default: '',
+    items: {
+      type: Array as PropType<ListItem[]>,
+      default: (): ListItem[] => [],
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 
-  emits: ['update:modelValue'],
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:model-value': (_payload: ListItem | null): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:items': (_payload: ListItem[]): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'remove-item': (_payload: ListItem): boolean => true,
+  },
 
   setup(props, ctx) {
-    const selectedItem = ref<string>(props.modelValue);
     const dropdownExtended = ref<boolean>(false);
-    const selectableItemValues = ref<ListItem[]>([]);
     const newItemValue = ref<string>('');
 
-    const service = feathers.service(props.service) as Service<AbstractEntity>;
-
-    function getProperty(arr: AbstractEntity[], property: string): ListItem[] {
-      return arr.map((element) => {
-        return {
-          id: element._id,
-          value: element[property] as string,
-        };
-      });
-    }
-
-    async function loadItems(): Promise<void> {
-      const allValues = await service.find();
-      if (allValues && allValues.data) {
-        selectableItemValues.value = getProperty(allValues.data, props.valueProperty);
+    function selectItem(item: ListItem): void {
+      if (props.modelValue && props.modelValue.id === item.id) {
+        ctx.emit('update:model-value', null);
+      } else {
+        ctx.emit('update:model-value', item);
       }
-    }
 
-    onMounted(async () => {
-      await loadItems();
-    });
-
-    function itemClick(item: ListItem): void {
-      selectedItem.value.id = item.id;
-      selectedItem.value.value = item.value;
       dropdownExtended.value = false;
-      ctx.emit('update:modelValue', item);
     }
 
-    function getHeaderText(): string {
-      if (selectedItem.value == null || selectedItem.value === '') {
-        return props.placeholderText;
+    function addItem(): void {
+      // skip empty inputs
+      if (newItemValue.value === '') {
+        return;
       }
-      return selectedItem.value.value as string;
-    }
-
-    async function addItem(): Promise<void> {
-      const newItem = {};
-      newItem[props.valueProperty] = newItemValue.value;
-      await service.create(newItem).data;
+      const newItem = new ListItem(newItemValue.value, newItemValue.value);
+      ctx.emit('update:items', props.items.concat(newItem));
+      ctx.emit('update:model-value', newItem);
       newItemValue.value = '';
-      await loadItems();
+      dropdownExtended.value = false;
     }
 
-    async function removeItem(item: ListItem): Promise<void> {
-      if (item.id === selectedItem.value.id) {
-        selectedItem.value = new ListItem();
-        ctx.emit('update:modelValue', selectedItem.value);
+    function removeItem(item: ListItem): void {
+      if (props.modelValue && item.id === props.modelValue.id) {
+        ctx.emit('update:model-value', null);
       }
-      await service.remove(item.id);
-      await loadItems();
+
+      ctx.emit('remove-item', item);
     }
 
     return {
-      itemClick,
-      getHeaderText,
+      selectItem,
       addItem,
       removeItem,
       dropdownExtended,
-      selectableItemValues,
       newItemValue,
     };
   },

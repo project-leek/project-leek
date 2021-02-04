@@ -1,16 +1,25 @@
 <template>
-  <div class="flex flex-col flex-shrink-0">
+  <div class="flex flex-col">
     <div class="relative pb-1/1">
-      <img class="absolute w-full h-full rounded-xl" :src="image" />
+      <img
+        class="absolute w-auto h-full rounded-xl object-cover border-2 border-transparent"
+        :src="img"
+        :class="{ [`shadow-2xl border-white`]: selected }"
+      />
     </div>
-    <div id="TagName" class="h-2/6 text-white font-semibold" :class="[`text-${textSize}`]">
+    <div
+      v-if="name"
+      id="TagName"
+      class="h-2/6 text-white font-semibold"
+      :class="[`text-${textSize}`]"
+    >
       {{ name }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -21,19 +30,18 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     textSize: {
       type: String,
-      required: false,
       default: 'base',
     },
-  },
-  setup(props) {
-    const image = computed(() => `./${props.img}`);
-    return { image };
+    selected: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 });
 </script>
-
-<style lang="scss" scoped></style>

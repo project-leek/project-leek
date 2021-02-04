@@ -1,33 +1,32 @@
 <template>
   <button
-    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none disabled:opacity-70"
+    :disabled="!enabled"
+    :type="type"
     @click="doClick"
   >
-    <span class="text flex h-full w-full">
-      <span
-        v-if="icon"
-        class="my-auto"
-        :class="[
-          { 'm-auto': rounded },
-          icon,
-          { 'mx-auto': !rounded && !text },
-          { 'ml-2': text },
-          `text-${iconsize}`,
-        ]"
-      />
-      <p
-        v-if="text"
-        class="my-auto font-heading font-extralight"
-        :class="[{ 'ml-4': icon }, { 'mx-auto': !rounded && !icon }, `text-${textsize}`]"
-      >
-        {{ text }}
-      </p>
+    <span class="text flex h-full w-full" :class="{ 'justify-center': bothCenter }">
+      <slot>
+        <span v-if="icon" class="my-auto" :class="iconClass" />
+        <p
+          v-if="text || (!text && !icon)"
+          class="my-auto font-heading font-extralight"
+          :class="{
+            'ml-4': icon,
+            'mx-auto': (!rounded && !icon) || centerText,
+            'w-full text-center': centerText,
+            [`text-${textsize}`]: true,
+          }"
+        >
+          {{ text || 'Absenden' }}
+        </p>
+      </slot>
     </span>
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -40,10 +39,6 @@ export default defineComponent({
     to: {
       type: [Object, String] as PropType<RouteLocationRaw>,
       default: null,
-    },
-    revert: {
-      type: Boolean,
-      default: false,
     },
     disabled: {
       type: Boolean,
@@ -59,6 +54,16 @@ export default defineComponent({
       required: false,
       default: 3,
     },
+    centerText: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    bothCenter: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     iconSize: {
       type: Number,
       required: false,
@@ -69,9 +74,25 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    back: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: null,
+    },
+    enabled: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
 
-  emits: ['click'],
+  emits: {
+    click: (): boolean => true,
+  },
+
   setup(props, ctx) {
     const router = useRouter();
     const rounded = ref(props.round);
@@ -86,14 +107,14 @@ export default defineComponent({
         return;
       }
 
-      if (props.revert) {
+      if (props.back) {
         router.go(-1);
       }
 
       ctx.emit('click');
     };
 
-    const getSize = (size): string => {
+    const getSize = (size: number): string => {
       if (size === 1) {
         return 'xs';
       }
@@ -124,10 +145,25 @@ export default defineComponent({
     const textsize = ref(getSize(props.textSize));
     const iconsize = ref(getSize(props.iconSize));
 
+    const iconClass = computed(() => {
+      const classes = [`text-${iconsize.value}`, ...props.icon.split(' ')];
+      if (rounded.value) {
+        classes.push('m-auto');
+      } else if (!props.text) {
+        classes.push('mx-auto');
+      }
+
+      if (props.text) {
+        classes.push('ml-1');
+      }
+
+      return classes;
+    });
+
     return {
+      iconClass,
       doClick,
       textsize,
-      iconsize,
       rounded,
     };
   },

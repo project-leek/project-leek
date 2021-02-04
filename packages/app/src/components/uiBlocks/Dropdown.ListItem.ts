@@ -1,10 +1,10 @@
 export default class ListItem {
-  id: number | null;
+  id: number | string;
 
-  value: string | null;
+  value: string;
 
-  constructor(id?: number, val?: string) {
-    this.id = id || null;
-    this.value = val || null;
+  constructor(id: number | string, value?: string) {
+    this.id = id;
+    this.value = value || id.toString();
   }
 }
