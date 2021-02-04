@@ -25,15 +25,53 @@ type Application = FeathersApplication<ServiceTypes> & {
   get(key: 'authentication'): Promise<AuthenticationResult | null>;
 };
 
-const LS_BACKEND_URL = 'backend_url';
+const LS_BOX_ID = 'box_id';
 
-export const backendUrl = ref<string | null>(localStorage.getItem(LS_BACKEND_URL) || null);
-
-export const isBackendUrlConfigured = computed(() => !!backendUrl.value);
+// detect if we are the app version deployed to github
+export const isSetupApp = computed(() => /github\.io$/.test(location.hostname));
 
 function debug(...str: string[]): void {
   // eslint-disable-next-line no-console
   console.log(...str);
+}
+
+export function resolveBox(boxId: string): string {
+  let url = boxId;
+
+  // has port attached
+  if (!/:\d{2,5}$/.exec(url)) {
+    url = `${url}:80`;
+  }
+
+  // add protocol if not supplied
+  if (!/^https?:\/\//.exec(url)) {
+    url = `http://${url}`;
+  }
+
+  return url;
+}
+
+export async function loadBox(boxId?: string): Promise<void> {
+  if (!boxId) {
+    const lsBoxId = localStorage.getItem(LS_BOX_ID);
+
+    if (lsBoxId) {
+      window.location.href = resolveBox(lsBoxId);
+    }
+
+    return;
+  }
+
+  // save box id if new one provided
+  localStorage.setItem(LS_BOX_ID, boxId);
+
+  return new Promise((resolve) => {
+    // imitate some slow loading (why? because we can!)
+    setTimeout(() => {
+      window.location.href = resolveBox(boxId);
+      resolve();
+    }, 1000 * 1.5);
+  });
 }
 
 export async function isBackendAvailable(url: string): Promise<boolean> {
@@ -60,32 +98,6 @@ export async function isBackendAvailable(url: string): Promise<boolean> {
   });
 }
 
-export function setBackendUrl(_backendUrl: string | null): void {
-  backendUrl.value = _backendUrl;
-
-  if (_backendUrl) {
-    localStorage.setItem(LS_BACKEND_URL, _backendUrl);
-  } else {
-    localStorage.removeItem(LS_BACKEND_URL);
-  }
-}
-
-export async function saveBackendUrl(_backendUrl: string): Promise<boolean> {
-  let url = _backendUrl;
-
-  if (!url.includes(':')) {
-    url = `${url}:3030`;
-  }
-
-  if (!(await isBackendAvailable(url))) {
-    return false;
-  }
-
-  setBackendUrl(url);
-
-  return true;
-}
-
 const feathersClient = feathers<ServiceTypes>() as Application;
 feathersClient.configure(auth());
 
@@ -106,13 +118,8 @@ feathersClient.hooks({
 
 export const socket = ref<SocketIOClient.Socket>();
 
-export function loadBackend(): void {
-  if (!backendUrl.value) {
-    debug('Url not defined');
-    return;
-  }
-
-  socket.value = io(backendUrl.value, {
+export function loadBackend(backendUrl: string): void {
+  socket.value = io(backendUrl, {
     path: '/api/socket',
     transports: ['websocket'],
     autoConnect: true,
@@ -139,8 +146,6 @@ export function loadBackend(): void {
 }
 
 // auto-load if url is already set
-if (backendUrl.value) {
-  loadBackend();
-}
+loadBackend('');
 
 export default feathersClient;

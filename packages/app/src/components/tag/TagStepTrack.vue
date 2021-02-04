@@ -53,15 +53,15 @@
 <script lang="ts">
 import { NFCTag, Track } from '@leek/commons';
 import { debounce } from 'lodash';
-import { defineComponent, PropType, ref, watch } from 'vue';
+import { defineComponent, onMounted, PropType, ref, watch } from 'vue';
 
-import feathers from '../../compositions/useBackend';
+import { getTrackOfTag, searchTracksByName } from '../../compositions/useTrack';
 import Loading from '../uiBlocks/Loading.vue';
 import TagEntry from '../uiBlocks/TagEntry.vue';
 import Textfield from '../uiBlocks/Textfield.vue';
 
 export default defineComponent({
-  name: 'AddTagStepTrack',
+  name: 'TagStepTrack',
 
   components: {
     Textfield,
@@ -75,25 +75,20 @@ export default defineComponent({
       required: true,
     },
   },
-
   emits: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'update:nfc-tag': (_payload: NFCTag): boolean => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:is-valid': (_payload: boolean): boolean => true,
   },
   setup(props, ctx) {
     const search = ref<string>('');
     const isLoading = ref<boolean>(false);
     const tracks = ref<Track[]>([]);
-    const tag = ref<NFCTag>(props.nfcTag);
     const selectedTrack = ref<Track>();
 
     const doSearch = debounce(async () => {
-      const params = {
-        query: {
-          name: search.value,
-        },
-      };
-      tracks.value = (await feathers.service('spotify-tracks').find(params)) as Track[];
+      tracks.value = await searchTracksByName(search.value);
       isLoading.value = false;
     }, 1000 * 0.5);
 
@@ -106,13 +101,22 @@ export default defineComponent({
 
     const changeTrack = (track: Track): void => {
       selectedTrack.value = track;
-
-      const tagCopy = tag.value;
+      const tagCopy = props.nfcTag;
       tagCopy.trackUri = track.uri;
-      tagCopy.imageUrl = track.imageUri;
 
+      const isValid = !!track.uri;
       ctx.emit('update:nfc-tag', tagCopy);
+      ctx.emit('update:is-valid', isValid);
     };
+
+    onMounted(async () => {
+      // select track if we already selected one
+      if (props.nfcTag.trackUri) {
+        const track = await getTrackOfTag(props.nfcTag);
+        search.value = track.title;
+        selectedTrack.value = track;
+      }
+    });
 
     return {
       search,

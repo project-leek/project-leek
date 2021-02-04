@@ -3,8 +3,8 @@ export default class ListItem {
 
   value: string;
 
-  constructor(id: number | string, value: string) {
+  constructor(id: number | string, value?: string) {
     this.id = id;
-    this.value = value;
+    this.value = value || id.toString();
   }
 }

@@ -2,7 +2,7 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isBackendUrlConfigured } from '../compositions/useBackend';
+import { isSetupApp } from '../compositions/useBackend';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -38,12 +38,6 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/tag/:tagId',
-    name: 'tag-details',
-    component: (): Component => import('../views/TagDetails.vue'),
-    props: true,
-  },
-  {
     path: '/sandbox',
     name: 'sandbox',
     component: (): Component => import('../views/Sandbox.vue'),
@@ -55,8 +49,26 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/tag/add',
-    name: 'add-tag',
-    component: (): Component => import('../views/AddTag.vue'),
+    name: 'tag-add',
+    component: (): Component => import('../views/tag/AddTag.vue'),
+  },
+  {
+    path: '/tag/:tagId',
+    name: 'tag-details',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/image',
+    name: 'tag-edit-image',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/track',
+    name: 'tag-edit-track',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
   },
   {
     path: '/sandbox',
@@ -79,8 +91,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (!isBackendUrlConfigured.value && to.name !== 'setup') {
+  if (isSetupApp.value && to.name !== 'setup') {
     next({ name: 'setup' });
+    return;
+  }
+
+  if (!isSetupApp.value && to.name === 'setup') {
+    next({ name: 'welcome' });
     return;
   }
 
