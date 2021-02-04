@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
-      <Button back round icon="fas fa-times" class="h-10 w-10 flex-shrink-0" text="" />
+      <Button back icon="fas fa-times" size="xs" />
 
       <div class="ml-2 flex flex-col">
         <span class="font-heading font-extralight text-2xl">Tag Editieren</span>
@@ -31,22 +31,14 @@
         <LabeledInput label="Musik">
           <div class="flex flex-row items-center">
             <span v-if="nfcTagTrack">{{ nfcTagTrack.title }}</span>
-            <Button
-              class="p-3 px-6 ml-auto"
-              text="Musik ändern"
-              @click="router.push({ name: 'tag-edit-track' })"
-            />
+            <Button text="Musik ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-track' }" />
           </div>
         </LabeledInput>
 
         <LabeledInput label="Bild">
           <div class="flex flex-row items-center">
             <TagEntry class="w-32" :img="nfcTag.imageUrl" />
-            <Button
-              class="p-3 px-6 ml-auto"
-              text="Bild ändern"
-              @click="router.push({ name: 'tag-edit-image' })"
-            />
+            <Button text="Bild ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-image' }" />
           </div>
         </LabeledInput>
       </div>
@@ -56,13 +48,13 @@
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
       <template v-if="routeName !== 'tag-details'">
-        <Button icon="fas fa-caret-left" class="w-14 h-14 ml-4" round @click="router.go(-1)" />
-        <Button text="Auswählen" class="p-3 mx-4 flex-1" @click="router.go(-1)" />
+        <Button icon="fas fa-caret-left" class="ml-4" back />
+        <Button text="Auswählen" class="mx-4 flex-grow" back />
       </template>
       <Button
         v-else
         text="Speichern"
-        class="p-3 mx-4 flex-1"
+        class="mx-4 flex-grow"
         :enabled="isNfcTagValid"
         @click="saveNfcTag"
       />

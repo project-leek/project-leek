@@ -1,7 +1,7 @@
 <template>
   <div class="add-tag w-full flex flex-col">
-    <header class="p-8 flex flex-row">
-      <Button back round icon="fas fa-times" class="h-10 w-10" :icon-size="6" />
+    <header class="p-8 flex flex-row items-start">
+      <Button back icon="fas fa-times" size="xs" />
       <div class="headlines ml-2 flex flex-col my-auto">
         <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
         <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
@@ -31,28 +31,26 @@
       <div class="actions flex flex-row w-full justify-center mb-4 px-4">
         <Button
           v-if="activeStep !== 0"
-          round
-          :text-size="5"
           icon="fas fa-chevron-left"
-          class="mr-4 px-4 py-2 text-center"
+          class="mr-4"
           @click="previousStep"
         />
         <Button
           v-if="activeStep === steps.length - 1"
           round
-          class="flex-grow p-2"
+          class="flex-grow"
           icon="fas fa-download"
           text="Tag erstellen"
-          :enabled="dataValid"
+          :disabled="!dataValid"
           @click="saveTag"
         />
         <Button
           v-else-if="activeStep !== 0"
-          class="flex-grow p-2"
+          class="flex-grow"
           icon="fas fa-chevron-right"
-          round
+          icon-right
           text="Weiter"
-          :enabled="dataValid"
+          :disabled="!dataValid"
           @click="nextStep"
         />
         <span v-else class="text-center">Zum Fortfahren bitte NFC Tag an den Reader halten!</span>

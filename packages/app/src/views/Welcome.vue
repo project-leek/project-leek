@@ -19,13 +19,11 @@
     <!-- login button -->
     <div class="z-20 col-start-1 col-end-1 row-start-20 row-end-25 flex justify-center w-full">
       <Button
-        class="h-14 w-2/3 min-w-min center ring-4 ring-white ring-opacity-75 px-4 whitespace-nowrap"
         text="Login with Spotify"
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
+        class="w-2/3"
         icon="fab fa-spotify"
-        :text-size="6"
-        :icon-size="8"
-        :center-text="true"
+        size="lg"
       />
     </div>
     <!-- cube -->
