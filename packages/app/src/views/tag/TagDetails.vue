@@ -129,6 +129,8 @@ export default defineComponent({
       await feathers.service('nfc-tags').update(nfcTag.value._id, nfcTag.value);
 
       alert('Tag erfolgreich gespeichert.');
+
+      await router.push({ name: 'home' });
     };
 
     const loadTrack = async (): Promise<void> => {
