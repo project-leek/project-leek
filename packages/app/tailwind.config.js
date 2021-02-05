@@ -142,8 +142,8 @@ module.exports = {
         '1/1': '100%',
       },
       fontFamily: {
-        default: ["Roboto", "sans-serif"],
-        heading: ["Baloo 2", "sans-serif"]
+        sans: ['Roboto', 'sans-serif'],
+        secondary: ['"Baloo 2"'],
       },
       gridTemplateRows: {
         '30': 'repeat(30, minmax(0, 1fr))',

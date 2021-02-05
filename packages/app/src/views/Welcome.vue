@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-hidden bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full"
+    class="overflow-hidden bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full relative"
   >
     <!-- cube -->
     <div class="z-10 col-start-1 col-end-1 row-start-1 row-end-10 md:row-end-6 grid grid-cols-2">
@@ -17,17 +17,13 @@
       </div>
     </div>
     <!-- login button -->
-    <div class="z-20 col-start-1 col-end-1 row-start-20 row-end-25 flex justify-center w-full">
-      <Button
-        class="h-14 w-2/3 min-w-min center ring-4 ring-white ring-opacity-75 px-4 whitespace-nowrap"
-        text="Login with Spotify"
-        :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
-        icon="fab fa-spotify"
-        :text-size="6"
-        :icon-size="8"
-        :center-text="true"
-      />
-    </div>
+    <Button
+      text="Login with Spotify"
+      :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
+      class="row-start-20 mx-auto py-10 w-2/3"
+      icon="fab fa-spotify"
+      size="lg"
+    />
     <!-- cube -->
     <div class="z-10 col-start-1 col-end-1 row-start-25 row-end-31 grid grid-cols-2">
       <img
