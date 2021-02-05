@@ -14,8 +14,9 @@
       <Loading />
     </div>
     <div v-else-if="search.length < 3" class="flex m-auto text-center p-2">
-      <span class="text-white font-heading text-2xl"
-        >Wähle jetzt ein schönes Lied für deinen Tag!</span
+      <span class="text-white font-heading text-3xl"
+        ><p>Wähle ein schönes Lied</p>
+        <p>für deinen Tag!</p></span
       >
     </div>
 
