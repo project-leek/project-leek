@@ -159,6 +159,7 @@ export default defineComponent({
       // load tag from id
       try {
         nfcTag.value = await feathers.service('nfc-tags').get(props.tagId);
+        await presaveOldTrack();
       } catch (e) {
         void router.push({ name: 'tag-not-found' }); // TODO page does not exist
       }
