@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
-      <Button back icon="fas fa-times" size="xs" />
+      <Button back icon="fas fa-times" size="md" />
 
       <div class="ml-2 flex flex-col">
         <span class="font-heading font-extralight text-2xl">Tag Editieren</span>

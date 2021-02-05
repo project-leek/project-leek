@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-8 flex flex-row items-center">
-      <Button back icon="fas fa-times" size="xs" />
+      <Button back icon="fas fa-times" size="md" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
     <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6">
