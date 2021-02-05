@@ -27,7 +27,8 @@
       <img class="mb-4" src="/src/assets/not-found.gif" />
       <span class="text-white font-heading text-2xl">
         <p>Keine Ergebnisse für</p>
-        <p>"{{ search }}"</p></span>
+        <p>"{{ search }}"</p></span
+      >
     </div>
 
     <ul v-else class="flex flex-col mt-4 pb-6 w-full overflow-y-auto max-h-full">
