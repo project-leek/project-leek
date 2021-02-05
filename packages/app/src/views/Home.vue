@@ -1,5 +1,5 @@
 <template>
-  <div class="home w-full flex flex-col ">
+  <div class="home w-full flex flex-col">
     <header class="flex p-4 text-4xl">
       <Button
         :to="{ name: 'tag-add' }"
@@ -10,7 +10,9 @@
       <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="ml-4" />
     </header>
 
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow  bg-gradient-to-b from-primary to-secondary">
+    <main
+      class="bg-secondary max-h-full overflow-y-auto flex-grow bg-gradient-to-b from-primary to-secondary"
+    >
       <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
           v-for="group in tagsOrderedByGroups"
