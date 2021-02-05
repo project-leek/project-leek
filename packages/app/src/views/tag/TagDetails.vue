@@ -37,7 +37,7 @@
 
         <LabeledInput label="Bild">
           <div class="flex flex-row items-center">
-            <TagEntry class="w-32" :img="nfcTag.imageUrl" />
+            <TagEntry class="w-44" :img="nfcTag.imageUrl" />
             <Button text="Bild ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-image' }" />
           </div>
         </LabeledInput>
