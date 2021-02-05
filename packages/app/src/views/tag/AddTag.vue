@@ -4,7 +4,7 @@
       <Button back icon="fas fa-times" size="xs" />
       <div class="headlines ml-2 flex flex-col my-auto">
         <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
-        <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
+        <span class="italic font-thin text-black text-opacity-30" v-if="nfcTag && nfcTag.nfcData">Tag-ID #{{ nfcTag.nfcData }}</span>
       </div>
     </header>
 
