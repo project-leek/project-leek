@@ -8,17 +8,17 @@
       }"
       @click="dropdownExtended = !dropdownExtended"
     >
-      <span v-if="modelValue && modelValue.value" class="value text-xl">
+      <span v-if="modelValue && modelValue.value" class="value ml-3 text-xl">
         {{ modelValue.value }}
       </span>
-      <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
+      <span v-else class="placeholder ml-3 text-gray-400">{{ placeholderText }}</span>
       <Button v-if="dropdownExtended" class="ml-auto mr-3" icon="fas fa-chevron-down" size="xs" />
       <Button v-else class="ml-auto mr-3" icon="fas fa-chevron-right" size="xs" />
     </div>
     <div
       v-if="dropdownExtended"
       class="absolute px-0.5 bg-white rounded-b-3xl w-full top-full -mt-0.5 z-50 border-2 border-button"
-    >
+    >ya
       <div
         v-for="item in items"
         :key="item.id"
