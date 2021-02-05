@@ -31,7 +31,7 @@
         <LabeledInput label="Musik">
           <div class="flex flex-row items-center">
             <span v-if="nfcTagTrack">{{ nfcTagTrack.title }}</span>
-            <Button text="Musik ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-track' }" />
+            <Button text="Musik ändern" class="px-3 ml-auto" @click="presaveOldTrack" />
           </div>
         </LabeledInput>
 
@@ -43,7 +43,11 @@
         </LabeledInput>
       </div>
       <TagStepImage v-else-if="routeName === 'tag-edit-image'" v-model:nfc-tag="nfcTag" />
-      <TagStepTrack v-else-if="routeName === 'tag-edit-track'" v-model:nfc-tag="nfcTag" />
+      <TagStepTrack
+        v-else-if="routeName === 'tag-edit-track'"
+        v-model:nfc-tag="nfcTag"
+        @update:nfc-tag="updateImage"
+      />
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
@@ -134,6 +138,23 @@ export default defineComponent({
       }
     };
 
+    const oldTrack = ref<Track>();
+    const presaveOldTrack = async (): Promise<void> => {
+      if (nfcTag.value) {
+        oldTrack.value = await getTrackOfTag(nfcTag.value);
+        void router.push({ name: 'tag-edit-track' });
+      }
+    };
+
+    const updateImage = async (): Promise<void> => {
+      if (oldTrack.value && nfcTag.value) {
+        if (oldTrack.value.imageUri === nfcTag.value.imageUrl) {
+          const newTrack = await getTrackOfTag(nfcTag.value);
+          nfcTag.value.imageUrl = newTrack.imageUri;
+        }
+      }
+    };
+
     onMounted(async () => {
       // load tag from id
       try {
@@ -158,6 +179,8 @@ export default defineComponent({
       saveNfcTag,
       routeName,
       tagGroupListItems,
+      presaveOldTrack,
+      updateImage,
     };
   },
 });
