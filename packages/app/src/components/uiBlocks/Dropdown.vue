@@ -18,7 +18,7 @@
     <div
       v-if="dropdownExtended"
       class="absolute px-0.5 bg-white rounded-b-3xl w-full top-full -mt-0.5 z-50 border-2 border-button"
-    >ya
+    >
       <div
         v-for="item in items"
         :key="item.id"
