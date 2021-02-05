@@ -184,12 +184,6 @@ Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Su
 \subsection{Probleme während der Durchführung}
 \colorbox{red}{TODO:}
 
-\section{Erkentnisse}
-\subsection{Vorteil von Dev Ops}
-
-\subsection{Doppelter Nutzen von Code Reviews}
-\colorbox{red}{helfen der Code Qualität, aber auch anderen beim Verständnis des Codes}
-
 \section{Projekt Meilensteine}
 \subsection{Meilenstein 1}
 \colorbox{red}{TODO:}Kurze Einleitung, von wann bis wann ging
@@ -376,6 +370,27 @@ Verbessern
 \subsubsection{Retrospektive}
 \colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
+
+
+\section{Was wir gelernt haben}
+\colorbox{red}{TODO: finde besseren Titel}\\
+Insgesamt hat das Team durch das Projekt Informatik vieles gelernt in Bezug auf neue Technologien sowie Vor- und Nachteile von verschiedensten Codinggewohnheiten.
+
+\subsection{Vorteil von Dev Ops}
+Viele Teammitglieder kamen erst durch dieses Projekt das erste mal in den Kontakt mit Dev Ops.
+In unserem Fall zeichnete sich durch verschiedene Merkmale aus.
+\subsubsection{Doppelter Nutzen von Pull Requests und Code Reviews}
+Jede neue Arbeit konnte nur durch ein Pull Request in den Master gemerged werden, welcher von mindestens zwei weiteren Teammitgliedern akzeptiert werden muss.
+Dies hatte mehrere Effekte: Wenn mehrere Teammitglieder über den Code anderer schauen, fallen umso wahrscheinlicher Fehler auf und eine insgesamt bessere Codequalität wird sichergestellt.
+Als auch haben Code Reviews den Effekt, dass neue Funktionen und Änderungen mehr Teammitglieder dadurch kennenlernen und verstehen und gegebenenfalls auch direkt Fragen dazu stellen können.
+\subsubsection{Automatisierte Tests}
+Jeder Pull Request unterlief automatisch auch mehrere automatisierte Tests, welche mit eigenen Testparametern über den neuen Quellcode lief.
+Diese automatisierten Tests testeten mehrere Sachen: Ist der neue Quellcode lauffähig, ist dieser vom Schreibstil uniform zum Rest und ist dieser Typescript konform.
+Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen, als auch wurden Fehler aufgedeckt, die manchmal einem Teammitglied gar nicht erst aufgefallen wären.
+\subsubsection{Automatisiertes Deployen}
+Durch das Continous Deployment wurden bei neuen Änderungen im Master die Seite auf Github.io veröffentlicht, als auch wurden die \textit{LaTeX} Dateien als PDF im eigenen Dokumente Branch gebaut.
+Für Pull Requests wurde auch die jeweilige Version gebaut und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+
 
 \section{Code Walkthrough}
 \colorbox{red}{TODO:}vielleicht interessante Code Snippets?
