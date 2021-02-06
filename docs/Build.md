@@ -13,14 +13,14 @@ This guide should help everybody to build and setup an own version of the leek-b
 ## Setting up the Raspberry PI
 Since the Raspberry is ideally hidden in a fancy box, it is recommended to install the Raspberry Pi OS Lite. This saves resources, as no graphical user interface needs to be rendered if no monitor is connected to it most of the time anyway.
 
-### 1.1 Making the SD card bootable
+### Making the SD card bootable
 * Download the Raspberry Pi Imager https://www.raspberrypi.org/software/
 * choose os -> Raspberry Pi OS (other) -> Raspberry Pi OS **Lite**
 * choose SD Card and start writing
 
 After the Raspberry Pi Imager is ready, the SD card can be plugged into the back of the PI. It now needs to be connected to power, LAN, a monitor and a keyboard.
 
-### 1.2 Connecting the PI
+### Connecting the PI
 When the Raspberry PI is now fully connected, you should be able to log in for the first time. The default login data  is as follows: </br>
   ```json
   user: pi
@@ -69,7 +69,7 @@ However, if it finds a known WLAN, the hotspot will be closed and the Pi will us
 Finally, with a new ifconfig, we find out the new WLAN IP address, which we will use to address the Pi in the future and set up the box.
 
 
-### 1.3 Install docker and docker compose
+### Install docker and docker compose
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
