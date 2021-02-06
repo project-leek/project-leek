@@ -44,7 +44,10 @@ ifconfig
 ```
 and connect with a ssh-client like [vsCode](https://www.hanselman.com/blog/visual-studio-code-remote-development-over-ssh-to-a-raspberry-pi-is-butter)
 
-Now that we can comfortably copy and paste commands onto the raspberry, let's get down to the actual wifi setup. <br>
+### Wifi setup via configuration hotspot
+Now that we can comfortably copy and paste commands onto the raspberry, let's get down to the actual wifi setup.
+
+
 1. Add the comitup repo as instructed [here](https://davesteele.github.io/comitup/ppa.html)
 2. prepare the pi for the service with
 ```
