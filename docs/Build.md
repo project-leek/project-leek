@@ -82,7 +82,7 @@ get-docker can take quite a while on older Pi's. <br>
 After the process is complete run 'docker-compose' to check if the installation was successfull.
 
 
-## Setup the Project-Leek
+## Setup the Leek-Box
 
 Our project is splitted in two docker container. One Container to handle the events of your NFC Reader and one container to handle the backend. For seamless setup of both, please use our docker-compose file as follows:
 
