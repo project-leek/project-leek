@@ -1,18 +1,18 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex p-5 text-4xl">
+    <header class="flex p-4 text-4xl">
       <Button
         :to="{ name: 'tag-add' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :text-size="5"
-        both-center
-        class="mx-1 flex-grow"
+        class="flex-grow"
       />
-      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 mx-2 px-2" />
+      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="ml-4" />
     </header>
 
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
+    <main
+      class="bg-secondary max-h-full overflow-y-auto flex-grow bg-gradient-to-b from-primary to-secondary"
+    >
       <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
           v-for="group in tagsOrderedByGroups"
@@ -25,7 +25,7 @@
             <TagEntry
               v-for="entry in group.tags"
               :key="entry.nfcData"
-              class="m-4 w-2/6 flex-shrink-0 text-4xl"
+              class="m-4 w-44 flex-shrink-0 text-4xl"
               :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"
@@ -57,24 +57,13 @@
           key="edit"
           class="flex justify-center w-full text-xl"
         >
+          <Button icon="fas fa-times" class="ml-4" @click="deselect" />
           <Button
-            round
-            icon="fas fa-times"
-            class="ml-4 my-auto h-10 w-10 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="deselect"
-          />
-          <Button
-            round
             text="Bearbeiten"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="flex-grow ml-4"
             :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
-          <Button
-            round
-            text="Löschen"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="deleteTag"
-          />
+          <Button text="Löschen" class="flex-grow mx-4" @click="deleteTag" />
         </span>
       </transition>
     </footer>

@@ -1,33 +1,50 @@
 <template>
   <button
-    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none disabled:opacity-70"
-    :disabled="!enabled"
+    class="flex relative items-center outline-none focus:outline-none rounded-full border-yellow-400 border-2"
+    :class="containerClasses"
+    :disabled="disabled"
     :type="type"
     @click="doClick"
   >
-    <span class="text flex h-full w-full" :class="{ 'justify-center': bothCenter }">
-      <slot>
-        <span v-if="icon" class="my-auto" :class="iconClass" />
-        <p
-          v-if="text || (!text && !icon)"
-          class="my-auto font-heading font-extralight"
-          :class="{
-            'ml-4': icon,
-            'mx-auto': (!rounded && !icon) || centerText,
-            'w-full text-center': centerText,
-            [`text-${textsize}`]: true,
-          }"
-        >
-          {{ text || 'Absenden' }}
-        </p>
-      </slot>
-    </span>
+    <slot>
+      <span v-if="icon && text" class="absolute text-white" :class="iconClasses" />
+      <span
+        v-if="icon && !text"
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"
+        :class="iconClasses"
+      />
+      <div v-if="!text && icon" :class="`icon-size-${size}`" />
+      <span
+        v-if="text || (!text && !icon)"
+        class="text-white font-secondary mx-auto"
+        :class="textClasses"
+        >{{ text || 'Absenden' }}</span
+      >
+    </slot>
   </button>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
+
+const sizes = {
+  xs: {
+    padding: '',
+    iconSize: 'text-lg',
+    textSize: 'text-lg',
+  },
+  md: {
+    padding: 'p-2',
+    iconSize: 'text-2xl',
+    textSize: 'text-2xl',
+  },
+  lg: {
+    padding: 'p-3',
+    iconSize: 'text-4xl',
+    textSize: 'text-3xl',
+  },
+};
 
 export default defineComponent({
   props: {
@@ -38,10 +55,22 @@ export default defineComponent({
     },
     to: {
       type: [Object, String] as PropType<RouteLocationRaw>,
+      required: false,
+      default: null,
+    },
+    back: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    type: {
+      type: String as PropType<'submit' | 'reset' | null>,
+      required: false,
       default: null,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     icon: {
@@ -49,43 +78,15 @@ export default defineComponent({
       required: false,
       default: '',
     },
-    textSize: {
-      type: Number,
-      required: false,
-      default: 3,
-    },
-    centerText: {
+    iconRight: {
       type: Boolean,
       required: false,
       default: false,
     },
-    bothCenter: {
-      type: Boolean,
+    size: {
+      type: String as PropType<keyof typeof sizes>,
       required: false,
-      default: false,
-    },
-    iconSize: {
-      type: Number,
-      required: false,
-      default: 3,
-    },
-    round: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    back: {
-      type: Boolean,
-      default: false,
-    },
-    type: {
-      type: String,
-      default: null,
-    },
-    enabled: {
-      type: Boolean,
-      required: false,
-      default: true,
+      default: 'md',
     },
   },
 
@@ -95,7 +96,6 @@ export default defineComponent({
 
   setup(props, ctx) {
     const router = useRouter();
-    const rounded = ref(props.round);
 
     const doClick = (): void => {
       if (props.disabled) {
@@ -114,58 +114,58 @@ export default defineComponent({
       ctx.emit('click');
     };
 
-    const getSize = (size: number): string => {
-      if (size === 1) {
-        return 'xs';
-      }
-
-      if (size === 2) {
-        return 'sm';
-      }
-
-      if (size === 3) {
-        return 'md';
-      }
-
-      if (size === 4) {
-        return 'lg';
-      }
-
-      if (size === 5) {
-        return 'xl';
-      }
-
-      if (size > 5 && size <= 13) {
-        return `${size - 4}xl`;
-      }
-
-      throw Error('invalid number for size. Size must be between 1 and 13');
-    };
-
-    const textsize = ref(getSize(props.textSize));
-    const iconsize = ref(getSize(props.iconSize));
-
-    const iconClass = computed(() => {
-      const classes = [`text-${iconsize.value}`, ...props.icon.split(' ')];
-      if (rounded.value) {
-        classes.push('m-auto');
-      } else if (!props.text) {
-        classes.push('mx-auto');
-      }
+    const iconClasses = computed(() => [
+      props.icon,
+      sizes[props.size].iconSize,
+      `${props.iconRight ? 'right' : 'left'}-6`,
+    ]);
+    const textClasses = computed(() => [sizes[props.size].textSize]);
+    const containerClasses = computed(() => {
+      const classes = [];
+      classes.push('bg-gradient-to-b from-primary to-secondary');
+      classes.push('shadow-2xl');
+      classes.push('ring-2 ring-yellow-300 ring-opacity-30');
 
       if (props.text) {
-        classes.push('ml-1');
+        classes.push(sizes[props.size].padding);
+      }
+
+      if (props.disabled) {
+        classes.push('opacity-50');
+        classes.push('cursor-not-allowed');
+      } else {
+        classes.push('hover:opacity-70');
       }
 
       return classes;
     });
 
     return {
-      iconClass,
+      containerClasses,
+      iconClasses,
+      textClasses,
       doClick,
-      textsize,
-      rounded,
     };
   },
 });
 </script>
+
+<style scoped>
+.icon-size-xs {
+  /* text-lg */
+  width: calc(1.75rem);
+  height: calc(1.75rem);
+}
+
+.icon-size-md {
+  /* p-2 + text-2xl */
+  width: calc(2 * 0.5rem + 2rem);
+  height: calc(2 * 0.5rem + 2rem);
+}
+
+.icon-size-lg {
+  /* p-3 + text-4xl */
+  width: calc(2 * 0.75rem + 2.5rem);
+  height: calc(2 * 0.75rem + 2.5rem);
+}
+</style>
