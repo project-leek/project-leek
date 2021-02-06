@@ -86,9 +86,12 @@ After the process is complete run 'docker-compose' to check if the installation 
 
 Our project is splitted in two docker container. One Container to handle the events of your NFC Reader and one container to handle the backend. For seamless setup of both, please use our docker-compose file as follows:
 
-* ``` mkdir project-leek && cd $_ ```
-* ```curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/docker-compose.yml```
-* ```curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/.env```
+```bash
+mkdir leek && cd $_ ```
+
+curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/docker-compose.yml```
+
+curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/.env
 
 In the newly created folder there is now an .env file that must be filled with your personal ClientID, Client Secret. You find those in this [guide](https://developer.spotify.com/documentation/general/guides/app-settings/)
 
