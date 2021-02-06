@@ -92,11 +92,9 @@ mkdir leek && cd $_ ```
 curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/docker-compose.yml```
 
 curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/.env
+```
 
 In the newly created folder there is now an `.env` file that has to be adjusted with your personal Spotify-Client-ID, Spotify-Client-Secret. You can gather those by following this [guide](https://developer.spotify.com/documentation/general/guides/app-settings/)
 
-**AFTER** you set your id in the env file, run now
-```
-sudo docker-compose up
-```
-in the folder .
+**AFTER** you set your id in the env file, your leek your leek-box ist now ready to use.
+For further instructions look here: [User Guide](./Usage.md)
