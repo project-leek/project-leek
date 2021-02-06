@@ -11,7 +11,7 @@ This guide should help everybody to build and setup an own version of the leek-b
 * NFC-Reader
 
 ## 1. Setting up the Raspberry PI
-Since the Raspberry is ideally hidden in a fancy box, it is recommended to install the Raspberry Pi OS Lite. This saves resources, as no graphical user interface needs to be rendered if no monitor is connected most of the time anyway.
+Since the Raspberry is ideally hidden in a fancy box, it is recommended to install the Raspberry Pi OS Lite. This saves resources, as no graphical user interface needs to be rendered if no monitor is connected to it most of the time anyway.
 
 ### 1.1 Making the SD card bootable
 * Download the Raspberry Pi Imager https://www.raspberrypi.org/software/
