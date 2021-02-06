@@ -66,7 +66,7 @@ Now connect to the wifi and follow the prompt to log on to the network or naviga
 In the new screen, you can now connect to your home wifi. Every time the box is powered on and does not find a registered Wi-Fi, it will open its configuration hotspot again.
 However, if it finds a known WIFI, the hotspot will be closed and the Pi will use the available WIFI.
 
-Finally, with a new ifconfig, we find out the new WLAN IP address, which we will use to address the Pi in the future and set up the box.
+Finally, with a new ifconfig, we find out the new WIFI ip-address, which we will use to address the Pi in the future and set up the box.
 
 
 ### Install docker and docker compose
