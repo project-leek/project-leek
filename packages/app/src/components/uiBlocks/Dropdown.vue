@@ -12,20 +12,8 @@
         {{ modelValue.value }}
       </span>
       <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
-      <Button
-        v-if="dropdownExtended"
-        class="ml-auto mr-3 w-8 h-8"
-        icon="fas fa-chevron-down"
-        :icon-size="3"
-        round
-      />
-      <Button
-        v-else
-        class="ml-auto mr-3 w-8 h-8"
-        icon="fas fa-chevron-right"
-        :icon-size="3"
-        round
-      />
+      <Button v-if="dropdownExtended" class="ml-auto mr-3" icon="fas fa-chevron-down" size="xs" />
+      <Button v-else class="ml-auto mr-3" icon="fas fa-chevron-right" size="xs" />
     </div>
     <div
       v-if="dropdownExtended"
@@ -44,10 +32,9 @@
           <span class="px-2 text-xl">{{ item.value }}</span>
           <Button
             v-if="removeable"
-            class="w-8 h-8 ml-auto mr-3"
+            class="ml-auto mr-3"
             icon="far fa-trash-alt"
-            :icon-size="3"
-            round
+            size="xs"
             @click="removeItem(item)"
           />
         </div>
@@ -60,7 +47,7 @@
             class="flex-grow p-1 rounded-2xl focus:outline-none"
             @keyup.enter="addItem"
           />
-          <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
+          <Button icon="fas fa-plus" size="xs" @click="addItem" />
         </div>
       </div>
     </div>

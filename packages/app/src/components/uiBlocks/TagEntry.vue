@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col">
     <div class="relative pb-1/1">
-      <img class="absolute w-auto h-full rounded-xl object-cover" :src="img" />
+      <img
+        class="absolute w-auto h-full rounded-xl object-cover border-2 border-transparent"
+        :src="img"
+        :class="{ [`shadow-2xl border-white`]: selected }"
+      />
     </div>
     <div
       v-if="name"
@@ -32,6 +36,11 @@ export default defineComponent({
     textSize: {
       type: String,
       default: 'base',
+    },
+    selected: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 });
