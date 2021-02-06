@@ -1,7 +1,10 @@
 <template>
   <div
     class="group-item w-full flex flex-col"
-    :class="[isOpen && 'bg-gradient-to-b from-darkBlue to-darkViolet', !isOpen && 'bg-secondary']"
+    :class="[
+      isOpen && 'bg-gradient-to-b from-darkBlue to-darkViolet',
+      !isOpen && 'bg-secondary bg-opacity-50',
+    ]"
   >
     <div
       class="text-white w-full text-xl font-bold flex items-center p-4 cursor-pointer"
