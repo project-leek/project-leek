@@ -84,7 +84,7 @@ After the process is complete run 'docker-compose' to check if the installation 
 
 ## Setup the Leek-Box
 
-Our project is splitted in two docker container. One Container to handle the events of your NFC Reader and one container to handle the backend. For seamless setup of both, please use our docker-compose file as follows:
+Our project is split into multiple docker containers. One Container to handle the events of your NFC-Reader and one container to host the backend. For seamless setup of both, please use our docker-compose file as follows:
 
 ```bash
 mkdir leek && cd $_ ```
