@@ -47,10 +47,15 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 \section{Projektplanung}
 
 \subsection{Projekt Management}
-\colorbox{red}{TODO:}ticket pool in github, gemeinsame Absprache (im team und mit Kunden) was in den aktuellen Milestone kommen soll, alles zentral, 3x daily standup, gemeinsamer google calendar, gemeinsamer Discord Server (für spontaneres und informelleres gemeinsames Arbeiten), interne team evaluation und regelmäßiges feedback\\
 Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
-Diese Richtung des Projektmanagements zeichnet sich vor allem durch kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
-Dementsprechend wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
+Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
+Diese Entscheidung geschah aus mehreren Gründen.
+Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung (Wasserfallmodell, V-Model, etc)\footnote{\colorbox{red}{TODO:} Verweise} der Fall ist.
+Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden, da solche per Definition erweiterbar sind.\footnote{\colorbox{red}{TODO:} Quelle}
+Des weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen.
+Dies ermöglichte dem Team ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines Semesters\footnote{Dieses Semester wahr aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+\\
+Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
 Stattdessen entwickelte das Team eine Methodik um iterativ im Projekt zu arbeiten.
 Orientiert wurde sich hierbei an der Methode Scrum.
 Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
@@ -58,12 +63,28 @@ Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team f�
 
 \subsubsection{Vor den Sprints}
 Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
-Im diesem wählte das Team welche technischen Änderungen während des Sprints am Produkt vorgenommen werden sollten.
-Entschieden wurde anhand dem geschätzten Arbeitsaufwand und der verfügbaren Arbeitszeit der Teammitglieder getroffen.
-Die geplanten Änderungen überschnitten sich allerdings sehr häufig mit den Kundenwünschen, da diese meist sehr realistisch waren.
+Im diesem stellte das Team eine Vision für die Sprintiteration auf.
+Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
+Im Anschluss wurde die Produktvision vom Team in technisch orientierte Arbeitspakete aufgeteilt.
+Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen.
+Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
+
 
 \subsubsection{Arbeit in den Sprints}
-
+Während der Sprints wurde die Produktvision aus den Planings implementiert.
+Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
+Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
+Dies wurde anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete entschieden.
+Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
+In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
+\\
+Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen Code Reviews durch mindestens zwei andere Personen unterzogen.
+Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
+Dieses Verfahren wurde angesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
+Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und aderen beruflichen Tätigkeiten nachgingen.
+So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
+Die freie Verteilung von Paketen ermöglichte auch, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten.
+Dies half die Motivation des Teams am Projekt hochzuhalten.
 
 \subsubsection{Am Ende der Sprints}
 Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement den Kunden und der Projektbetreuung vorgestellt.
@@ -76,9 +97,9 @@ Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt
 Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Planing.
 
 \subsubsection{Open-Source}
-Teil der anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
+Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
 Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
-Aufgrunddessen wurde die Entscheidung getroffen, das Projekt öffentlich auf github aufzusetzten.
+Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf github aufzusetzten.
 Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
 Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
 So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
@@ -102,10 +123,9 @@ Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 \subsection{Projektrisiken}
 \colorbox{red}{TODO:}Welche Risiken hatten wir + Risikomatrix? lohnt sich dieser Abschnitt?
 
-\subsection{Phasenplanung}
-\subsubsection{Projektstartphase}
+\subsection{Projektverlauf}
+\subsubsection{Projektstart}
 \colorbox{red}{TODO:}Github aufsetzen, Tickets befüllen, Anforderungen verstehen, Team einarbeiten in Technologien
-
 \subsubsection{Realisierungsphase}
 \colorbox{red}{TODO:}Iteratives Arbeiten in Meilensteinen/Sprint mit Länge ca. 2 Wochen. Coden etc. Jedes Arbeitspaket wird einzeln getestet und von mindestens zwei anderen Personen reviewt (Technische Funktionalität wird automatisch getestet)
 
