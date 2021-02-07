@@ -1,11 +1,5 @@
 <template>
   <div class="app font-primary h-screen bg-yellow-600 flex flex-col items-center justify-center">
-    <div
-      class="z-10 flex lg:shadow-2xl lg:max-w-xl lg:max-h-3/4 bg-white lg:rounded-3xl w-full h-full"
-    >
-      <router-view />
-    </div>
-
     <svg
       class="background lg:flex hidden"
       data-name="Layer 1"
@@ -15,6 +9,11 @@
     >
       <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
     </svg>
+    <div
+      class="flex md:shadow-2xl md:max-w-xl md:max-h-3/4 bg-white md:rounded-3xl w-full h-full relative"
+    >
+      <router-view />
+    </div>
   </div>
 </template>
 
