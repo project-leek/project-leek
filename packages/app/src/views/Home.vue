@@ -10,7 +10,9 @@
       <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="ml-4" />
     </header>
 
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
+    <main
+      class="bg-secondary max-h-full overflow-y-auto flex-grow bg-gradient-to-b from-primary to-secondary"
+    >
       <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
           v-for="group in tagsOrderedByGroups"
@@ -23,7 +25,7 @@
             <TagEntry
               v-for="entry in group.tags"
               :key="entry.nfcData"
-              class="m-4 w-2/6 flex-shrink-0 text-4xl"
+              class="m-4 w-44 flex-shrink-0 text-4xl"
               :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"

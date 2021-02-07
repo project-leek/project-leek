@@ -1,10 +1,12 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-8 flex flex-row items-center">
-      <Button back icon="fas fa-times" size="xs" />
+      <Button back icon="fas fa-times" size="md" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow p-6">
+    <main
+      class="bg-secondary max-h-full overflow-y-auto flex-grow p-6 bg-gradient-to-b from-primary to-secondary"
+    >
       <!-- User -->
       <div v-if="user" class="flex flex-col justify-center items-center text-white">
         <span class="flex text-xl font-heading">
