@@ -33,13 +33,13 @@ const sizes = {
   },
   md: {
     padding: 'p-2',
-    iconSize: 'text-2xl',
-    textSize: 'text-2xl',
+    iconSize: 'md:text-2xl text-2xl',
+    textSize: 'md:text-2xl text-base',
   },
   lg: {
     padding: 'p-3',
-    iconSize: 'text-4xl',
-    textSize: 'text-3xl',
+    iconSize: 'md:text-4xl text-3xl',
+    textSize: 'md:text-3xl text-2xl',
   },
 };
 
