@@ -16,15 +16,18 @@
     </div>
     <!-- header Text -->
     <div class="z-20 flex flex-col m-auto px-4 relative">
-      <p class="font-heading font-light text-white text-5xl">Smart Music Box</p>
-      <p class="font-default text-xl">Play your favorite tracks with tags.</p>
+      <p class="font-heading font-light text-white text-center text-5xl">Leek-Box</p>
+      <p class="font-default text-2xl text-center max-w-3/4 mx-auto mt-4">
+        Höre deine Lieblingssongs durch das Auflegen von NFC-Tags.
+      </p>
       <!-- login button -->
       <Button
-        text="Login with Spotify"
+        text="Anmelden mit "
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
         class="w-full mt-8"
         icon="fab fa-spotify"
         size="lg"
+        icon-right
       />
     </div>
   </div>
