@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-8 flex flex-row items-center">
-      <Button back icon="fas fa-times" size="md" />
+      <Button :to="{ name: 'home' }" icon="fas fa-times" size="md" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
     <main
@@ -17,60 +17,63 @@
       </div>
 
       <!-- Speaker -->
-      <LabeledInput class="mb-5 h-20 mt-10" label="Lautsprecher">
-        <Dropdown v-model="selectedSpeaker" :items="speakerList" :removeable="false" />
+      <LabeledInput class="mb-5 mt-10" label="Leek Boxen">
+        <div class="flex flex-row flex-wrap">
+          <div
+            v-for="reader in readers"
+            :key="reader._id"
+            class="flex flex-col ml-4 w-32 cursor-pointer border border-white shadow-2xl rounded-xl p-4 pb-0 text-center"
+            @click="selectReader(reader)"
+          >
+            <img class="w-24" src="/src/assets/music-box.svg" />
+            <span class="mt-2 text-white">{{ reader.name || 'Leek Box' }}</span>
+            <span v-if="!reader.owner" class="mt-2 text-white">Nimm ich!</span>
+          </div>
+        </div>
       </LabeledInput>
     </main>
 
     <footer class="flex text-gray-800 py-5">
-      <span class="flex w-full">
-        <Button text="Speichern" class="ml-4 flex-grow" />
-        <Button text="Abmelden" class="mx-4 flex-grow" @click="logout" />
-      </span>
+      <Button text="Abmelden" class="mx-4 flex-grow" @click="logout" />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import { Speaker } from '@leek/commons';
-import { computed, defineComponent, onMounted, ref } from 'vue';
+import { NFCReader } from '@leek/commons';
+import { defineComponent } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
-import ListItem from '../components/uiBlocks/Dropdown.ListItem';
-import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import { logout, user } from '../compositions/useAuthentication';
 import feathers from '../compositions/useBackend';
+import { readers } from '../compositions/useNfcReader';
+import { speakers } from '../compositions/useSpeaker';
 
 export default defineComponent({
   name: 'Settings',
-  components: { Button, Dropdown, LabeledInput },
+
+  components: { Button, LabeledInput },
+
   setup() {
-    const selectedSpeaker = ref<Speaker>();
-    const speakers = ref<Speaker[]>([]);
+    const selectReader = async (reader: NFCReader): Promise<void> => {
+      // claim reader
+      if (!reader.owner) {
+        if (!user.value) {
+          throw new Error("Can't find user.");
+        }
 
-    const speakerList = computed(() => {
-      return speakers.value.map((s) => {
-        return new ListItem(s._id, s.name);
-      });
-    });
-
-    const loadSpeakers = async (): Promise<void> => {
-      const allSpeakers = (await feathers.service('spotify-speakers').find()) as Speaker[];
-      if (allSpeakers) {
-        speakers.value = allSpeakers;
+        await feathers.service('nfc-readers').patch(reader._id, { owner: user.value._id });
+        return;
       }
     };
 
-    onMounted(async () => {
-      await loadSpeakers();
-    });
-
     return {
-      selectedSpeaker,
-      speakerList,
+      readers,
+      speakers,
       user,
       logout,
+      selectReader,
     };
   },
 });

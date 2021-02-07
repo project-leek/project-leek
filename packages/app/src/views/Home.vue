@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
@@ -81,7 +81,7 @@ import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../compositions/useBackend';
-import { loadTags, tagsOrderedByGroups } from '../compositions/useNfcTag';
+import { tagsOrderedByGroups } from '../compositions/useNfcTag';
 
 export default defineComponent({
   name: 'Home',
@@ -119,10 +119,6 @@ export default defineComponent({
       selectedTag.value = null;
       buttonTransitionActive.value = true;
     };
-
-    onMounted(async () => {
-      await loadTags();
-    });
 
     return {
       tagsOrderedByGroups,

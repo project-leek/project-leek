@@ -121,8 +121,7 @@ export default defineComponent({
       allTags.value = allTags.value.filter((tag) => tag.tag._id !== removedTag._id);
     };
 
-    onMounted(async () => {
-      await loadTags();
+    onMounted(() => {
       feathers.service('nfc-tags').on('removed', removeTag);
     });
 
