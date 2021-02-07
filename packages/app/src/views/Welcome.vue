@@ -22,11 +22,12 @@
       </p>
       <!-- login button -->
       <Button
-        text="Anmelden mit Spotify"
+        text="Anmelden mit "
         :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
         class="w-full mt-8"
         icon="fab fa-spotify"
         size="lg"
+        icon-right
       />
     </div>
   </div>
