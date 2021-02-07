@@ -1,5 +1,5 @@
 <template>
-  <div class="app h-screen bg-yellow-600 flex flex-col items-center justify-center">
+  <div class="app font-primary h-screen bg-yellow-600 flex flex-col items-center justify-center">
     <div
       class="z-10 flex lg:shadow-2xl lg:max-w-xl lg:max-h-3/4 bg-white lg:rounded-3xl w-full h-full"
     >
