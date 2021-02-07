@@ -53,3 +53,7 @@ To use LaTeX Workshop, you need to install:
 - [latexmk](https://mg.readthedocs.io/latexmk.html)
 
     latexmk can be installed on Ubuntu via: `sudo apt install latexmk`
+
+
+### Citations
+We are using biblatex for citation, a good guide can be found [here](https://mirror.informatik.hs-fulda.de/tex-archive/info/translations/biblatex/de/biblatex-de-Benutzerhandbuch.pdf#9).
