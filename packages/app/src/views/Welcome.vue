@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-hidden bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full relative"
+    class="overflow-hidden lg:rounded-3xl bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full relative"
   >
     <!-- cube -->
     <div class="z-10 col-start-1 col-end-1 row-start-1 row-end-10 md:row-end-6 grid grid-cols-2">
