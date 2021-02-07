@@ -10,15 +10,15 @@
       />
     </div>
     <!-- header Text -->
-    <div class="z-20 row-start-7 row-end-20 col-start-1 col-end-1 flex flex-col items-center">
+    <div class="z-20 row-start-7 row-end-20 col-start-1 col-end-1 flex flex-col items-center mx-8">
       <div>
-        <p class="font-heading font-light text-white text-5xl">Smart Music Box</p>
-        <p class="font-default text-xl">Play your favorite tracks with tags.</p>
+        <p class="font-heading font-light text-white text-5xl text-center">Leek-Box</p>
+        <p class="font-default text-xl text-center">Höre deine Lieblingssongs durch Auflegen von NFC-Tags.</p>
       </div>
     </div>
     <!-- login button -->
     <Button
-      text="Login with Spotify"
+      text="Login mit Spotify"
       :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
       class="row-start-20 mx-auto py-10 w-2/3"
       icon="fab fa-spotify"
