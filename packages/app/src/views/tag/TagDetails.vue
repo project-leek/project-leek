@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
     <header class="p-8 flex flex-row items-center space-x-5">
-      <Button back icon="fas fa-times" size="xs" />
+      <Button back icon="fas fa-times" size="md" />
 
       <div class="ml-2 flex flex-col">
         <span class="font-heading font-extralight text-2xl">Tag Editieren</span>
@@ -37,7 +37,7 @@
 
         <LabeledInput label="Bild">
           <div class="flex flex-row items-center">
-            <TagEntry class="w-32" :img="nfcTag.imageUrl" />
+            <TagEntry class="w-44" :img="nfcTag.imageUrl" />
             <Button text="Bild ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-image' }" />
           </div>
         </LabeledInput>

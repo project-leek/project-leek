@@ -1,7 +1,7 @@
 <template>
   <div class="add-tag w-full flex flex-col">
     <header class="p-8 flex flex-row items-start">
-      <Button back icon="fas fa-times" size="xs" />
+      <Button back icon="fas fa-times" size="md" />
       <div class="headlines ml-2 flex flex-col my-auto">
         <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
         <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
