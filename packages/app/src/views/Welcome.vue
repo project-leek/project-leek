@@ -1,36 +1,32 @@
 <template>
   <div
-    class="overflow-hidden lg:rounded-3xl bg-gradient-to-b from-primary to-secondary grid grid-cols-1 grid-rows-30 h-full w-full relative"
+    class="overflow-hidden bg-gradient-to-b from-primary to-secondary md:rounded-3xl w-full flex flex-col relative"
   >
     <!-- cube -->
-    <div class="z-10 col-start-1 col-end-1 row-start-1 row-end-10 md:row-end-6 grid grid-cols-2">
+    <div class="z-10">
       <img
-        class="col-start-1 col-end-1 max-h-full transform -translate-x-24 rotate-12"
+        class="absolute -z-10 top-0 left-0 w-38 transform -translate-x-50/100 -translate-y-20/100 rotate-12"
+        src="/src/assets/cube.png"
+      />
+      <!-- cube -->
+      <img
+        class="absolute z-0 right-0 bottom-0 w-38 transform translate-x-50/100 translate-y-20/100 rotate-45"
         src="/src/assets/cube.png"
       />
     </div>
     <!-- header Text -->
-    <div class="z-20 row-start-7 row-end-20 col-start-1 col-end-1 flex flex-col items-center mx-8">
-      <div>
-        <p class="font-heading font-light text-white text-5xl text-center">Leek-Box</p>
-        <p class="font-default text-xl text-center">
-          Höre deine Lieblingssongs durch Auflegen von NFC-Tags.
-        </p>
-      </div>
-    </div>
-    <!-- login button -->
-    <Button
-      text="Login mit Spotify"
-      :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
-      class="row-start-20 mx-auto py-10 w-2/3"
-      icon="fab fa-spotify"
-      size="lg"
-    />
-    <!-- cube -->
-    <div class="z-10 col-start-1 col-end-1 row-start-25 row-end-31 grid grid-cols-2">
-      <img
-        class="justify-self-end col-start-2 col-end-2 max-h-full transform translate-x-24 rotate-45"
-        src="/src/assets/cube.png"
+    <div class="z-20 flex flex-col m-auto px-4 relative">
+      <p class="font-heading font-light text-white text-center text-5xl">Leek-Box</p>
+      <p class="font-default text-2xl text-center max-w-70/100 py-10/100">
+        Höre deine Lieblingssongs durch NFC-Tags.
+      </p>
+      <!-- login button -->
+      <Button
+        text="Login with Spotify"
+        :to="{ name: 'oauth-start', params: { oauthProvider: 'spotify' } }"
+        class="w-full mt-8"
+        icon="fab fa-spotify"
+        size="lg"
       />
     </div>
   </div>
@@ -48,5 +44,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style></style>
