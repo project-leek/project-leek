@@ -49,6 +49,12 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Settings.vue'),
   },
   {
+    path: '/reader/:readerId',
+    name: 'reader',
+    component: (): Component => import('../views/ReaderDetails.vue'),
+    props: true,
+  },
+  {
     path: '/tag/add',
     name: 'tag-add',
     component: (): Component => import('../views/tag/AddTag.vue'),

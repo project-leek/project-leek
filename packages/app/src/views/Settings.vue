@@ -16,18 +16,25 @@
         <span class="text-2xl font-semibold">{{ user.email }}</span>
       </div>
 
-      <!-- Speaker -->
+      <!-- Reader -->
       <LabeledInput class="mb-5 mt-10" label="Leek Boxen">
-        <div class="flex flex-row flex-wrap">
+        <div class="flex flex-row flex-wrap content-between">
+          <span v-if="readers.length === 0" class="text-white mx-auto mt-8 text-xl"
+            >Bitte verbinde eine Box mit deinem System.</span
+          >
           <div
             v-for="reader in readers"
             :key="reader._id"
-            class="flex flex-col ml-4 w-32 cursor-pointer border border-white shadow-2xl rounded-xl p-4 pb-0 text-center"
+            class="relative flex flex-col mr-4 mb-4 w-32 cursor-pointer border border-white shadow-2xl rounded-xl p-4 pb-0 text-center"
             @click="selectReader(reader)"
           >
+            <img
+              v-if="!reader.owner"
+              class="absolute top-0 right-0 w-12"
+              src="/src/assets/new.png"
+            />
             <img class="w-24" src="/src/assets/music-box.svg" />
             <span class="mt-2 text-white">{{ reader.name || 'Leek Box' }}</span>
-            <span v-if="!reader.owner" class="mt-2 text-white">Nimm ich!</span>
           </div>
         </div>
       </LabeledInput>
@@ -42,13 +49,13 @@
 <script lang="ts">
 import { NFCReader } from '@leek/commons';
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 import Button from '../components/uiBlocks/Button.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import { logout, user } from '../compositions/useAuthentication';
 import feathers from '../compositions/useBackend';
 import { readers } from '../compositions/useNfcReader';
-import { speakers } from '../compositions/useSpeaker';
 
 export default defineComponent({
   name: 'Settings',
@@ -56,6 +63,8 @@ export default defineComponent({
   components: { Button, LabeledInput },
 
   setup() {
+    const router = useRouter();
+
     const selectReader = async (reader: NFCReader): Promise<void> => {
       // claim reader
       if (!reader.owner) {
@@ -64,13 +73,13 @@ export default defineComponent({
         }
 
         await feathers.service('nfc-readers').patch(reader._id, { owner: user.value._id });
-        return;
       }
+
+      await router.push({ name: 'reader', params: { readerId: reader._id } });
     };
 
     return {
       readers,
-      speakers,
       user,
       logout,
       selectReader,
