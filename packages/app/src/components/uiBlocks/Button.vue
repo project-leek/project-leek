@@ -14,12 +14,9 @@
         :class="iconClasses"
       />
       <div v-if="!text && icon" :class="`icon-size-${size}`" />
-      <span
-        v-if="text || (!text && !icon)"
-        class="text-white font-secondary mx-auto"
-        :class="textClasses"
-        >{{ text || 'Absenden' }}</span
-      >
+      <span v-if="text || (!text && !icon)" class="text-white mx-auto" :class="textClasses">{{
+        text || 'Absenden'
+      }}</span>
     </slot>
   </button>
 </template>
