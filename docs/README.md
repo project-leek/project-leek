@@ -48,7 +48,7 @@ We suggest using following plugins for [VSCode](https://code.visualstudio.com/):
 To use LaTeX Workshop, you need to install:
 - [TeX-Live](https://tug.org/texlive/) (or equivalent)
 
-    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra texlive-lang-german`
+    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra texlive-lang-german texlive-bibtex-extra biber`
 
 - [latexmk](https://mg.readthedocs.io/latexmk.html)
 
