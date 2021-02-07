@@ -13,7 +13,9 @@
     <div class="z-20 row-start-7 row-end-20 col-start-1 col-end-1 flex flex-col items-center mx-8">
       <div>
         <p class="font-heading font-light text-white text-5xl text-center">Leek-Box</p>
-        <p class="font-default text-xl text-center">Höre deine Lieblingssongs durch Auflegen von NFC-Tags.</p>
+        <p class="font-default text-xl text-center">
+          Höre deine Lieblingssongs durch Auflegen von NFC-Tags.
+        </p>
       </div>
     </div>
     <!-- login button -->
