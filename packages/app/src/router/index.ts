@@ -2,7 +2,7 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isSetupApp, waitForConnection } from '../compositions/useBackend';
+import { isSetupApp, setBoxId, waitForConnection } from '../compositions/useBackend';
 import { doesUserHaveOwnReaders } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
@@ -29,6 +29,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/setup',
     name: 'setup',
+    component: (): Component => import('../views/Setup.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  {
+    path: '/setup/reset',
+    name: 'setup-reset',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
@@ -100,6 +106,12 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   // catch all requests for setup app
   if (isSetupApp.value) {
+    if (to.name === 'setup-reset') {
+      setBoxId(null);
+      next({ name: 'setup' });
+      return;
+    }
+
     if (to.name !== 'setup') {
       next({ name: 'setup' });
       return;
