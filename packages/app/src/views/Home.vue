@@ -46,10 +46,8 @@
         class="font-primary text-xl text-center my-16 mx-6"
       >
         <span class="text-white font-heading text-2xl">
-          <p>
-            Huch, da sind ja keine NFC Tags! <br />
-            Füge fix einen hinzu!
-          </p>
+          <p>Huch, da sind ja keine NFC Tags!</p>
+          <p>Füge fix einen hinzu!</p>
           <img src="/src/assets/not-found.gif" />
         </span>
         <span></span>
