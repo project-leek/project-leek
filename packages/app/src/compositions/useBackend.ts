@@ -145,6 +145,18 @@ export function loadBackend(backendUrl: string): void {
   socket.value.open();
 }
 
+export function waitForConnection(): Promise<void> {
+  if (socket.value?.connected) {
+    return Promise.resolve();
+  }
+
+  return new Promise((resolve) => {
+    socket.value?.on('connect', () => {
+      resolve();
+    });
+  });
+}
+
 // auto-load if url is already set
 loadBackend('');
 

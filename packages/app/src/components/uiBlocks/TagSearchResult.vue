@@ -7,7 +7,7 @@
       :class="{ 'opacity-25 ': selectedTag !== result.tag && selectedTag !== null }"
       @click="$emit('tag-selected', result.tag)"
     >
-      <TagEntry :img="result.track.imageUri" class="w-2/6 flex-shrink-0" />
+      <TagEntry :img="result.tag.imageUrl" class="w-2/6 flex-shrink-0" />
       <div class="pl-5 flex flex-col text-white overflow-hidden flex-grow">
         <span class="text-2xl font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
           {{ result.tag.name }}

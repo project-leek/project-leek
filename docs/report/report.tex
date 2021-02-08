@@ -1,17 +1,22 @@
 \documentclass[10pt, a4paper, draft]{article}
- \usepackage[ngerman]{babel}
- \usepackage[utf8]{inputenc}
- \usepackage[T1]{fontenc}
- \usepackage{color}
- \usepackage{hyperref}
- \usepackage{comment}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage[backend=biber,style=alphabetic,]{biblatex}
+
+\addbibresource{literature.bib}
 
 \title{Projektbreicht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
 \begin{document}
 \maketitle
+\newpage
 \tableofcontents
+\newpage
 
 \section{Einleitung}
 \subsection{Unternehmen}
@@ -452,4 +457,8 @@ Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
 
- \end{document}
+\newpage
+\section{Anhang}
+\colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
+\printbibliography
+\end{document}
