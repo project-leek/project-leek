@@ -2,7 +2,8 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isSetupApp } from '../compositions/useBackend';
+import { isSetupApp, waitForConnection } from '../compositions/useBackend';
+import { doesUserHaveOwnReaders } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -46,6 +47,12 @@ const routes: RouteRecordRaw[] = [
     path: '/settings',
     name: 'settings',
     component: (): Component => import('../views/Settings.vue'),
+  },
+  {
+    path: '/reader/:readerId',
+    name: 'reader',
+    component: (): Component => import('../views/ReaderDetails.vue'),
+    props: true,
   },
   {
     path: '/tag/add',
@@ -107,6 +114,14 @@ router.beforeEach(async (to, _, next) => {
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
     next({ name: 'welcome' });
+    return;
+  }
+
+  await waitForConnection();
+
+  // send authenticated users without readers to settings
+  if (isAuthenticated.value && to.name !== 'settings' && !(await doesUserHaveOwnReaders())) {
+    next({ name: 'settings' });
     return;
   }
 
