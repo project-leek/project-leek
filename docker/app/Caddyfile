@@ -9,6 +9,7 @@ http://:8080 {
 	file_server
 	route {
 		reverse_proxy /api/* backend:3030
+		reverse_proxy /oauth/* backend:3030
 		try_files {path} {path}/ /index.html?{query}
 		file_server
 	}

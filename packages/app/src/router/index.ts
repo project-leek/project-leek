@@ -9,13 +9,13 @@ import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/oauth/callback',
+    path: '/auth/callback',
     name: 'oauth-callback',
     component: (): Component => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/:oauthProvider',
+    path: '/auth/:oauthProvider',
     name: 'oauth-start',
     component: (): Component => import('../views/auth/OAuthStart.vue'),
     meta: { authentication: 'guests-only' },
