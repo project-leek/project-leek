@@ -90,7 +90,7 @@ Our project is splited into multiple docker containers. For a seamless setup, pl
 ```bash
 mkdir leek && cd $_ ```
 
-curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/docker-compose.yml```
+curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/docker-compose.yml```
 
 curl --remote-name https://gist.githubusercontent.com/anbraten/40db2d35b1788714b6899b2e01057597/raw/746935ae596ee0b0331f1c259e4c52909f97ae30/.env
 ```
