@@ -14,10 +14,9 @@
       <Loading />
     </div>
     <div v-else-if="search.length < 3" class="flex m-auto text-center p-2">
-      <span class="text-white font-heading text-3xl"
-        ><p>Wähle ein schönes Lied</p>
-        <p>für deinen Tag!</p></span
-      >
+      <p class="text-white font-heading text-3xl max-w-2/3 p-10/100 mx-auto">
+        Wähle ein schönes Lied für deinen Tag!
+      </p>
     </div>
 
     <div
@@ -36,7 +35,9 @@
         v-for="track in tracks"
         :key="track.uri"
         class="flex flex-row py-2 px-2 rounded-2xl w-5/6 mx-auto cursor-pointer border border-transparent"
-        :class="{ 'shadow-xl border-yellow-400': selectedTrack && track.uri === selectedTrack.uri }"
+        :class="{
+          'shadow-xl border-yellow-400': selectedTrack && track.uri === selectedTrack.uri,
+        }"
         @click="changeTrack(track)"
       >
         <TagEntry :img="track.imageUri" class="w-20 h-20 flex-shrink-0" />
