@@ -98,11 +98,18 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (isSetupApp.value && to.name !== 'setup') {
-    next({ name: 'setup' });
+  // catch all requests for setup app
+  if (isSetupApp.value) {
+    if (to.name !== 'setup') {
+      next({ name: 'setup' });
+      return;
+    }
+
+    next();
     return;
   }
 
+  // don't allow normal installations to setup
   if (!isSetupApp.value && to.name === 'setup') {
     next({ name: 'welcome' });
     return;
