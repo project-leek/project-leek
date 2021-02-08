@@ -49,7 +49,7 @@ Now that we can comfortably copy and paste commands onto the raspberry, let's ge
 
 
 1. Add the comitup repository as instructed by [this](https://davesteele.github.io/comitup/ppa.html) guide.
-2. prepare the pi for the service with
+1. prepare the pi for the service with
 ```
 sudo rm  /etc/wpa_supplicant/wpa_supplicant.conf
 sudo systemctl disable systemd-resolved
