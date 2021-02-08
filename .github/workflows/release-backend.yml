@@ -6,7 +6,8 @@ on:
       - 'backend-*'
     paths:
       - '.github/workflows/release-backend.yml'
-      - 'docker/**'
+      - 'docker/backend.Dockerfile'
+      - 'docker/backend.Dockerfile.dockerignore'
       - 'packages/backend/**'
       - 'packages/commons/**'
       - '.eslintrc.js'
