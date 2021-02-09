@@ -174,9 +174,48 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \section{Durchführung}
 
-\subsection{Technologien und Hilfsmittel}
-\colorbox{red}{TODO:}Vue, vscode, devops krams, etc
+\subsection{Technologien}
+Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die Smart Music Box umgesetzt werden sollte.
+Der Kunde ließ dem Projektteam für die Umsetzung der Smart Music Box sehr viele Freiheiten.
+Es wurde lediglich die Anforderung gestellt, dass die Applikation neben PCs und Laptops auch für mobile Endgeräte optimiert sein soll.
+Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte Alternativen.
+
+\subsubsection{Programmiersprachen}
+\subsubsection*{TypeScript}
+Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
+Aufgrund von nicht vorhandener Typsicherheit wurde dann allerdings die von Microsoft entwickelte Sprache TypeScript für die Projektierung genutzt. Da diese aufgrund des
+Aufbaus auf ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
+Da die Kompilierung von TypeScript-Code zu gültigem JavaScript Code führt konnte außerdem auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden.
+Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparten dem Team so die Nutzung von verschiedenen Programmiersprachen.
+
+\subsubsection{Frameworks}
+\subsubsection*{Vue.js}
+Zur Gestaltung der Verwaltungsoberfläche für die Music-Box, die zum Verwalten der NFC-Tags und steuern der Ausgabegeräte genutzt werden sollte einigte
+sich das Team außerdem auf die Nutzung des clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{https://vuejs.org/}.
+Dies wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
+Außerdem bot das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen konnten,
+während andere an dem Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem sehr \textit{performant}\footnote{https://medium.com/javascript-in-plain-english/javascript-frameworks-performance-comparison-2020-cd881ac21fce}
+
+
+\subsection{Hilfsmittel}
+Im Rahmen des Projekts nutze das Team eine vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
+Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet. Zum Anderen wurden sie als Ergebnis der Retrospektiven erprobt.
+
+\subsection*{Visual Studio Code & WSL}
+
 Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
+
+\subsubsection*{Prototyping}
+Um sich mit dem Kunden auf ein Design für die Verwaltungsoberfläche zu einigen wurden vor der Entwicklung Prototypen der benötigeten Komponenten mittels des webbaiserten
+Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
+
+\subsubsection*{Lucidchart}
+Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \glqq Lucidchart\grqq{} verwendet.
+Hier wurde neben der initial erstellen Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten Userstories entstanden sind.
+
+
+\colorbox{red}{TODO:}Vue, vscode, devops krams, etc
+
 
 \subsection{Deployment Cycle}
 \colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
