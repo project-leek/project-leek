@@ -6,6 +6,9 @@ on:
       - 'app-*'
     paths:
       - '.github/workflows/release-app.yml'
+      - 'docker/app/**'
+      - 'docker/app.Dockerfile'
+      - 'docker/app.Dockerfile.dockerignore'
       - 'packages/app/**'
       - 'packages/commons/**'
       - '.eslintrc.js'

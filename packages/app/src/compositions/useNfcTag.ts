@@ -7,10 +7,10 @@ import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import feathers from './useBackend';
 
 const tagService = feathers.service('nfc-tags');
-let areTagsListenerLoaded = false;
+let areTagsLoaded = false;
 
-export const tagGroupListItems = ref<ListItem[]>([]);
-export const tags = ref<NFCTag[]>([]);
+export const tagGroupListItems = ref<ListItem[]>();
+export const tags = ref<NFCTag[]>();
 
 export async function loadTagGroups(): Promise<void> {
   const allTags = (await tagService.find()) as Paginated<NFCTag>;
@@ -25,7 +25,7 @@ export type NFCTagGroup = {
 
 export const tagsOrderedByGroups = computed(() =>
   Object.values(
-    tags.value.reduce((previous, item) => {
+    (tags.value || []).reduce((previous, item) => {
       if (!previous[item.group]) {
         previous[item.group] = { name: item.group, tags: [] } as NFCTagGroup;
       }
@@ -35,21 +35,33 @@ export const tagsOrderedByGroups = computed(() =>
   )
 );
 
-export async function loadTags(): Promise<void> {
+async function loadTags(): Promise<void> {
+  if (areTagsLoaded) {
+    return;
+  }
+
+  areTagsLoaded = true;
+
   const res = (await tagService.find()) as Paginated<NFCTag>;
   tags.value = res.data;
 
-  if (!areTagsListenerLoaded) {
-    areTagsListenerLoaded = true;
+  tagService.on('removed', (tag: NFCTag): void => {
+    tags.value = (tags.value || []).filter((_tag) => _tag._id !== tag._id);
+  });
 
-    tagService.on('removed', (tag: NFCTag): void => {
-      tags.value = tags.value.filter((_tag) => _tag._id !== tag._id);
-    });
+  tagService.on('created', (tag: NFCTag): void => {
+    tags.value = [...(tags.value || []), tag];
+  });
 
-    tagService.on('created', (tag: NFCTag): void => {
-      tags.value = [...tags.value, tag];
+  tagService.on('patched', (patchedTag: NFCTag): void => {
+    tags.value = (tags.value || []).map((tag) => {
+      if (tag._id === patchedTag._id) {
+        return patchedTag;
+      }
+
+      return tag;
     });
-  }
+  });
 }
 
 export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<boolean> =>
@@ -61,3 +73,7 @@ export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<b
     const tag = nfcTag.value;
     return !!(tag.nfcData && tag.name && tag.group && tag.trackUri && tag.imageUrl);
   });
+
+feathers.on('login', () => {
+  void loadTags();
+});
