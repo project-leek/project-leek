@@ -10,6 +10,9 @@ export default defineConfig({
         target: 'http://localhost:3030',
         ws: true,
       },
+      '/oauth': {
+        target: 'http://localhost:3030',
+      },
     },
   },
 

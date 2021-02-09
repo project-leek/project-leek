@@ -51,7 +51,17 @@ export function resolveBox(boxId: string): string {
   return url;
 }
 
-export async function loadBox(boxId?: string): Promise<void> {
+export function setBoxId(boxId?: string): void {
+  if (!boxId) {
+    localStorage.removeItem(LS_BOX_ID);
+    return;
+  }
+
+  // save box id if new one provided
+  localStorage.setItem(LS_BOX_ID, boxId);
+}
+
+export async function loadBox(boxId: string | null): Promise<void> {
   if (!boxId) {
     const lsBoxId = localStorage.getItem(LS_BOX_ID);
 
@@ -62,8 +72,7 @@ export async function loadBox(boxId?: string): Promise<void> {
     return;
   }
 
-  // save box id if new one provided
-  localStorage.setItem(LS_BOX_ID, boxId);
+  setBoxId(boxId);
 
   return new Promise((resolve) => {
     // imitate some slow loading (why? because we can!)
