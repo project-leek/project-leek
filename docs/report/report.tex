@@ -260,6 +260,7 @@ Auch das auseinandersetzen und erstellen von Sequenzdiagrammen half bei dem Team
 \subsubsection{Product Increment}
 Zusätzlich zu dem Wunsch, dass beim anlegen eines NFC-Tags auch die jeweilig hinterlegte Spotify Musik abgespielt wird, wird auch automatisiert die neueste Version auf Github.io veröffentlicht.
 Das Einloggen über einen bestehenden Spotify Account ist nun auch möglich.
+Auf der Startseite werden auch die NFC-Tags entsprechend der zugeordneten Gruppe gruppiert.
 \subsubsection{Retrospektive}
 Deutlich besser lief in diesem Sprint die Problembewältigung durch Pair Programming, welches weiter die Teamarbeit und gegenseitige Hilfe verbesserte.
 Auch der Workflow mit Github, den Pull Request sowie Code Reviews wurde mehr verinnerlicht.
@@ -276,75 +277,31 @@ Wie auch beim vorherigen Meilenstein war wieder hier der Fokus auf den Kundenwun
 Dass umfasste das Anlegen von Tags, also dem Scannen von Tags, anlegen eines eigenen Namens, auswählen von hinterlegter Musik und einem eigenen Bild, sowie das bearbeiten bereits angelegter Tags.
 Auch sollte für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene Leek Box initial einrichtet.
 \subsubsection{Probleme}
-\colorbox{red}{TODO:}welche prrobleme sind aufgetreten?
-
+Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
+Die Planung und Einschätzung der umsetzbaren Tickets wurde schlecht eingeschätzt, sowie wurde ein schlechter Fokus auf die Tickets gesetzt, die mindestens benötigt wären.
+Das führte dazu, dass am Ende viele Tickets halbfertig und/oder nur schlecht getestet implementiert waren.
+Über die Weihnachtszeit ging auch die Produktivität und Kommunikation im Team runter.
 \subsubsection{Lösungen}
-\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
-
-\subsubsection{Erkenntnisse}
-\colorbox{red}{Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?}
-
+Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt, um über unangesprochene Fehler reden zu können.
+Das half einerseits dabei, dass die Teammotivation sowie die Produktivität wieder stieg, als auch das generelle Teamklima gebessert wurde.
 \subsubsection{Product Increment}
-\colorbox{red}{TODO:}vite und typescript support in PR checks, UI elemente in vue komponenten gebaut, implementation von musik auswählen, bild auswählen, tags anlegen, tags suchen, designer design umsetzen,
-
+Das Produkt wurde um die Grundfunktionen erweitert.
+Es ist nun möglich, Tags anzulegen und entsprechend für diese Namen, Musik und ein Bild einzustellen.
+Genauso ist es dem Nutzer nun möglich, alle angelegten Tags zu filtern.
+Es wurde weiterhin auch das Design Mockup vom Macio gestellten Designer in Vue umgesetzt.
+Gleichzeitig wurden hierbei auch für eine leichtere Weiterarbeit jegliche Komponenten als möglichst allgemeine Vue Komponenten angelegt, um ein einheitliches Design zu bewahren.
+Für die Entwickler wurden auch die Github Pull Request Tests um Typescript Support erweitert.
 \subsubsection{Retrospektive}
-\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
-Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
-\begin{comment}{
-Lief Gut
-- gemeinsames synchrones Arbeiten (gegen Ende)
-- Teamreview
-- ehrliches Miteinander
-- Trotz Komplikationen und Probleme am Ende ein schönes Product Increment abgeliefert.
-- Team Review hat gefühlt auch die Spannung gelöst und war sehr gut ehrlich zueinander zu sein.
-- Pull Requests eindeutiger beschrieben ausgeführt (Mit Beispielen)
-- Reviews schneller gemacht
-- Feedback im Team
-- Wichtige neue Features fertig gestellt (UI-components, Welcome Screen, Home Screen, Add-Tag Screen)
-- Teamtreffen
-
-Neu Gelernt
-- stabiles Wissen mit vue (vor allem reactivity, events und components)
-- Vue Parent/Child Kommunikation.
-- Ein bisschen TailwindCSS.
-- Neuer Vue Krams (inject & provide)
-- Vue inject & provide
-- Vue Prototypes
-- Raspi comitup (hotspot zum WLan einrichten)
-
-
-Nicht so gut
-- scope des milestones: zu viele Sachen
-- seeehr knappes sprintende
-- Umplanung gegen Ende des Sprints
-- Kommunikation und Absprache.
-- Zeitmanagement.
-- Fokus, was wir wirklich erledigen, was ist wichtig, was muss mindestens da sein und haben wir noch genug Zeit.
-- Eingesetzte Zeit und Aufwand
-- Wenig getestete Features
-- Zu wenig Kommunikation zwischen den einzelnen Tickets bei Abhängigkeiten
-- Meine Technik
-- Zeit für Milestone / Sprint über Weihnachten & Neujahr zu lang
-
-Verbessern
-- besser abstimmmen was im Sprint gemacht werden soll
-- nicht nur 'ja machen wir mal das hier alles'
-- rechtzeitiger fragen bei Problemen
-- Einen Tag vorher fertig mindestens
-- reviews rechtzeitiger '^^
-- Bessere Kommunikation und Absprache damit Ziele und Ansprüche klarer sind.
-- Auch (inspiriert durch Julian) mehr "Gemeinsam lösen wir das Problem" Mindset anstelle "Wieso hast du das und das nicht gemacht?" Blameset.
-- Insgesamt positiveres Mindset, denn wir schaffen ja doch schon viel.
-- Zum vorletzten Daily die letzten Fixes ansprechen, dass am letzten Daily eigentlich nichts mehr ansteht.
-- Fertig bis zum Vortag des nächsten Reviews
-- Püntlicher zu Meetings erscheinen (Ich selbst)
-- Kürzere Deadlines
-- Ziele wiederholen in Meetings / klar festlegen: Was wird vom wem bis wann gemacht.
-- Reviews schneller machen
-- Aufgaben in kleinere Aufgaben teilen
-- Zwischenstände zeigen lassen bei längeren Aufgaben
-\end{comment}
-
+Besonders gut gefiel dem Team mal wieder das Teamklima, vor allem des ehrliche Miteinander.
+Trotz Komplikationen und Probleme konnte am Ende dem Kunden ein schönes Product Increment geliefert werden.
+Pull Requests und Tickets wurden besser beschrieben, so die Probleme besser verständlicher waren.
+Vor allem durch das interne Team Review wurden Spannungen gelöst.
+Das Team konnte weiterhin das Wissen mti Vue ausbauen, vor allem zu reactivity, events und Kommunkation zwischen Komponenten.
+Groß zu bemängeln gab es zum Scope des Meilensteins.
+Das Zeitmanagement war an dieser Stelle nicht gut, das Team hatte sich zu viel vorgenommen und am Ende zu wenig Zeit gehabt.
+Für eine bessere Planung sowie Abstimmung, was für die nächsten Meilensteine anfällt, hatte sich das Team geeinigt.
+Auch sollte die interne Deadline früher gesetzt werden, damit nicht kurz vor dem Kundenmeeting noch viele Fehler behoben werden müssen.
+Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden
 
 \subsection{Meilenstein 5}
 Mit Meilenstein fünf sollten innerhalb vom 14.01.2021 bis zum 28.01.2021 die letzten Anwendungszenarien funktionell umgesetzt werden, sodass das Produkt einwandfrei und rund bedienbar ist.
@@ -358,9 +315,6 @@ Auch sollte die Dokumentation zur Bedienung der Leek Box stehen und die Arbeit f
 
 \subsubsection{Lösungen}
 \colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
-
-\subsubsection{Erkenntnisse}
-\colorbox{red}{Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?}
 
 \subsubsection{Product Increment}
 \colorbox{red}{TODO:}setup guide, settings page, insg schöneres design
@@ -384,9 +338,6 @@ Auch sollte noch einmal das User Interface auf einheitliches Design überprüft 
 \subsubsection{Lösungen}
 \colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
 
-\subsubsection{Erkenntnisse}
-\colorbox{red}{Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?}
-
 \subsubsection{Product Increment}
 \colorbox{red}{TODO:}letzte fixes, initaler setup, box claimen, einheitliches design, report
 
@@ -404,9 +355,6 @@ Der finale Meilenstein sieben vom 15.02.2021 bis zum 05.03.2021 sollte nur noch 
 
 \subsubsection{Lösungen}
 \colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
-
-\subsubsection{Erkenntnisse}
-\colorbox{red}{Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?}
 
 \subsubsection{Product Increment}
 \colorbox{red}{TODO:}Was ist am Ende dabei rumgekommen?
