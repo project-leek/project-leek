@@ -198,28 +198,6 @@ Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Su
 \subsection{Deployment Cycle}
 \colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
 
-\subsection{Probleme während der Durchführung}
-\subsubsection{Einarbeitung in Toolchain und Deployment Cycle}
-\colorbox{red}{Zu Beginn wirkte das Projekt sehr groß, da Dateistruktur unbekannt. Wie das Projekt zusammenhängt war nicht direkt ersichtlich}
-
-\subsubsection{Einarbeitung in neue Technologien}
-\colorbox{red}{Einarbeitung in neue Technologien war zu Beginn eine größere Hürde. Genutzte Technologien waren ohne Vorerfahrung der ursprünglichen Methodiken umso komplexer, zb wenn man CSS und Flexbox nicht kennt aber direkt Tailwind nutzt}
-
-\subsubsection{Zu viel Devops?}
-\colorbox{red}{DevOps hat uns viel geholfen, PR Checks sind praktisch, aber vielleicht zu sehr ins Detail gegangen?
- Hat der Mehraufwand am Ende eine Zeitersparnis gebracht? Zb das automatisierte Ticketboard oder "preview deploy" bei PR?
-Am ende könnte man auch das selber schnell auschecken und kontrollieren, und das automatisierte deployen in Github pages war vielleicht auch overkill, da es lokal zu starten und testen auch ausreichen würde?
-Vor allem deswegen, weil uns dabei eine starke Entwicklerkraft verloren ging.
-Renovate bot ist praktisch, aber am ende immer zu kontrollieren ob update okay hat vielleicht auch zuviel Zeit genommen, wo dieser Task am Ende nicht so wichtig war?}
-
-\subsubsection{Kommunikation und Eigeninitiative}
-\colorbox{red}{Man hätte mehr miteinander kommunizieren können, Abhängigkeit zwischen Komponenten nicht für selbstverständlich halten sondern kommunizieren. Aktiver auf Gruppe zugehen und ansprechen, helfe holen, gemeinsam lösen}
-
-\subsubsection{Planung, Zielsetzung und Einschätzung}
-oft schlecht eingeschätzt wieviel machbar ist, am ende zu wenig zeit, Ziel aus dem auge verloren, in kleinigkeiten verloren
-
-\subsubsection{}
-
 \section{Projekt Meilensteine}
 \subsection{Meilenstein 1}
 \colorbox{red}{TODO:}Kurze Einleitung, von wann bis wann ging
@@ -408,13 +386,31 @@ Verbessern
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 
 
-\section{Erkenntnisse}
+\section{Fazit}
+\subsection{Probleme während der Durchführung}
+\subsubsection{Einarbeitung in Toolchain und Deployment Cycle}
+\colorbox{red}{Zu Beginn wirkte das Projekt sehr groß, da Dateistruktur unbekannt. Wie das Projekt zusammenhängt war nicht direkt ersichtlich}
+
+\subsubsection{Einarbeitung in neue Technologien}
+\colorbox{red}{Einarbeitung in neue Technologien war zu Beginn eine größere Hürde. Genutzte Technologien waren ohne Vorerfahrung der ursprünglichen Methodiken umso komplexer, zb wenn man CSS und Flexbox nicht kennt aber direkt Tailwind nutzt}
+
+\subsubsection{Zu viel Devops?}
+\colorbox{red}{DevOps hat uns viel geholfen, PR Checks sind praktisch, aber vielleicht zu sehr ins Detail gegangen?
+ Hat der Mehraufwand am Ende eine Zeitersparnis gebracht? Zb das automatisierte Ticketboard oder "preview deploy" bei PR?
+Am ende könnte man auch das selber schnell auschecken und kontrollieren, und das automatisierte deployen in Github pages war vielleicht auch overkill, da es lokal zu starten und testen auch ausreichen würde?
+Vor allem deswegen, weil uns dabei eine starke Entwicklerkraft verloren ging.
+Renovate bot ist praktisch, aber am ende immer zu kontrollieren ob update okay hat vielleicht auch zuviel Zeit genommen, wo dieser Task am Ende nicht so wichtig war?}
+
+\subsubsection{Kommunikation und Eigeninitiative}
+\colorbox{red}{Man hätte mehr miteinander kommunizieren können, Abhängigkeit zwischen Komponenten nicht für selbstverständlich halten sondern kommunizieren. Aktiver auf Gruppe zugehen und ansprechen, helfe holen, gemeinsam lösen}
+
+\subsubsection{Planung, Zielsetzung und Einschätzung}
+oft schlecht eingeschätzt wieviel machbar ist, am ende zu wenig zeit, Ziel aus dem auge verloren, in kleinigkeiten verloren
+
+\subsection{Erkenntnisse}
 Das Team durch das Projekt Informatik vieles gelernt.
 Es wurden neue Technologien und Methodiken kennenlernt und vertieft, und Codingkonventionen verinnerlicht und verstanden.
 
-\subsection{Vorteil von Dev Ops}
-Viele Teammitglieder kamen erst durch dieses Projekt das erste mal in den Kontakt mit Dev Ops.
-In unserem Fall zeichnete sich durch verschiedene Merkmale aus.
 \subsubsection{Doppelter Nutzen von Pull Requests und Code Reviews}
 Jede neue Arbeit konnte nur durch ein Pull Request in den Master gemerged werden, welcher von mindestens zwei weiteren Teammitgliedern akzeptiert werden muss.
 Dies hatte mehrere Effekte: Wenn mehrere Teammitglieder über den Code anderer schauen, fallen umso wahrscheinlicher Fehler auf und eine insgesamt bessere Codequalität wird sichergestellt.
@@ -427,12 +423,12 @@ Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen, als auch wurde
 Durch das Continous Deployment wurden bei neuen Änderungen im Master die Seite auf Github.io veröffentlicht, als auch wurden die \textit{LaTeX} Dateien als PDF im eigenen Dokumente Branch gebaut.
 Für Pull Requests wurde auch die jeweilige Version gebaut und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
 
-\subsection{Regelmäßige Dailys und Retrospektiven}
+\subsubsection{Regelmäßige Dailys und Retrospektiven}
 Dadurch, dass sich das Team dreimal die Woche für ein Daily getroffen hat, entstand ein kontinuierlicher Austausch über den aktuellen Stand der eigenen Arbeiten und Probleme.
 Durch diese regelmäßigen Updates wurden Probleme schneller gelöst und das Projekt wurde schneller vorangetrieben.
 Die Retrospektiven halfen auch dabei das Team auf der einen Seite durch das positive Feedback zu motivieren, als auch auf der anderen Seite an Problemen zu Arbeiten und diese zu verbessern.
 
-\subsection{Zielsetzung und Planung}
+\subsubsection{Zielsetzung und Planung}
 Die häufigste Problem während des Projektes war es, kurz vor einem Meilenstein Meeting auch alle geplanten Tickets fehlerfrei umzusetzen und in den Master zu mergen.
 Hier wurden oftmals Überstunden geleistet und das Team hat hier besonders gelernt, wie wichtig Planung der Tickets sowie das Einschätzen der eigenen Leistung zur Bewältigung verschiedenster Probleme ist.
 So hat das Team auch sich vorgenommen, mindestens zwei Tage vor einem Meilenstein Meeting alle Tickets soweit fertig zu haben, dass diese nur noch fehlerfrei in den Master gemerged werden müssen.
