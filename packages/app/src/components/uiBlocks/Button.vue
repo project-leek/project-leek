@@ -1,34 +1,54 @@
 <template>
   <button
-    class="bg-button border-2 hover:bg-primary border-button cursor-pointer text-white shadow-xl rounded-full flex focus:outline-none"
+    class="flex relative items-center outline-none focus:outline-none rounded-full border-yellow-400 border-2"
+    :class="containerClasses"
+    :disabled="disabled"
+    :type="type"
     @click="doClick"
   >
-    <span class="text flex h-full w-full">
+    <slot>
       <span
-        v-if="icon"
-        class="my-auto"
-        :class="[
-          { 'm-auto': rounded },
-          icon,
-          { 'mx-auto': !rounded && !text },
-          { 'ml-2': text },
-          `text-${iconsize}`,
-        ]"
+        v-if="icon && text"
+        class="text-white"
+        :class="[...iconClasses, iconRight ? 'mr-4' : 'ml-4']"
       />
-      <p
-        v-if="text"
-        class="my-auto font-heading font-extralight"
-        :class="[{ 'ml-4': icon }, { 'mx-auto': !rounded && !icon }, `text-${textsize}`]"
+      <span
+        v-if="icon && !text"
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"
+        :class="iconClasses"
+      />
+      <div v-if="!text && icon" :class="`icon-size-${size}`" />
+      <span
+        v-if="text || (!text && !icon)"
+        class="text-white mx-auto"
+        :class="[...textClasses, iconRight ? 'pr-4' : 'pl-4']"
+        >{{ text || 'Absenden' }}</span
       >
-        {{ text }}
-      </p>
-    </span>
+    </slot>
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
+
+const sizes = {
+  xs: {
+    padding: '',
+    iconSize: 'text-lg',
+    textSize: 'text-lg',
+  },
+  md: {
+    padding: 'p-2',
+    iconSize: 'text-2xl',
+    textSize: 'text-2xl',
+  },
+  lg: {
+    padding: 'p-3',
+    iconSize: 'text-4xl',
+    textSize: 'text-3xl',
+  },
+};
 
 export default defineComponent({
   props: {
@@ -39,14 +59,22 @@ export default defineComponent({
     },
     to: {
       type: [Object, String] as PropType<RouteLocationRaw>,
+      required: false,
       default: null,
     },
-    revert: {
+    back: {
       type: Boolean,
+      required: false,
       default: false,
+    },
+    type: {
+      type: String as PropType<'submit' | 'reset' | null>,
+      required: false,
+      default: null,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     icon: {
@@ -54,27 +82,24 @@ export default defineComponent({
       required: false,
       default: '',
     },
-    textSize: {
-      type: Number,
-      required: false,
-      default: 3,
-    },
-    iconSize: {
-      type: Number,
-      required: false,
-      default: 3,
-    },
-    round: {
+    iconRight: {
       type: Boolean,
       required: false,
       default: false,
     },
+    size: {
+      type: String as PropType<keyof typeof sizes>,
+      required: false,
+      default: 'md',
+    },
   },
 
-  emits: ['click'],
+  emits: {
+    click: (): boolean => true,
+  },
+
   setup(props, ctx) {
     const router = useRouter();
-    const rounded = ref(props.round);
 
     const doClick = (): void => {
       if (props.disabled) {
@@ -86,50 +111,65 @@ export default defineComponent({
         return;
       }
 
-      if (props.revert) {
+      if (props.back) {
         router.go(-1);
       }
 
       ctx.emit('click');
     };
 
-    const getSize = (size): string => {
-      if (size === 1) {
-        return 'xs';
+    const iconClasses = computed(() => [
+      props.icon,
+      sizes[props.size].iconSize,
+      props.iconRight ? 'order-last' : '',
+    ]);
+    const textClasses = computed(() => [sizes[props.size].textSize]);
+    const containerClasses = computed(() => {
+      const classes = [];
+      classes.push('bg-gradient-to-b from-primary to-secondary');
+      classes.push('shadow-2xl');
+      classes.push('ring-2 ring-yellow-300 ring-opacity-30');
+
+      if (props.text) {
+        classes.push(sizes[props.size].padding);
       }
 
-      if (size === 2) {
-        return 'sm';
+      if (props.disabled) {
+        classes.push('opacity-50');
+        classes.push('cursor-not-allowed');
+      } else {
+        classes.push('hover:opacity-70');
       }
 
-      if (size === 3) {
-        return 'md';
-      }
-
-      if (size === 4) {
-        return 'lg';
-      }
-
-      if (size === 5) {
-        return 'xl';
-      }
-
-      if (size > 5 && size <= 13) {
-        return `${size - 4}xl`;
-      }
-
-      throw Error('invalid number for size. Size must be between 1 and 13');
-    };
-
-    const textsize = ref(getSize(props.textSize));
-    const iconsize = ref(getSize(props.iconSize));
+      return classes;
+    });
 
     return {
+      containerClasses,
+      iconClasses,
+      textClasses,
       doClick,
-      textsize,
-      iconsize,
-      rounded,
     };
   },
 });
 </script>
+
+<style scoped>
+.icon-size-xs {
+  /* text-lg */
+  width: calc(1.75rem);
+  height: calc(1.75rem);
+}
+
+.icon-size-md {
+  /* p-2 + text-2xl */
+  width: calc(2 * 0.5rem + 2rem);
+  height: calc(2 * 0.5rem + 2rem);
+}
+
+.icon-size-lg {
+  /* p-3 + text-4xl */
+  width: calc(2 * 0.75rem + 2.5rem);
+  height: calc(2 * 0.75rem + 2.5rem);
+}
+</style>

@@ -12,5 +12,6 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /app
 COPY --from=build /app/packages/nfc-reader/dist .
 RUN chown -R node:node /app
+RUN ls -la
 USER root
 CMD ["node", "index.js"]

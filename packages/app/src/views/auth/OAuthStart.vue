@@ -17,9 +17,8 @@ export default defineComponent({
 
   setup(props) {
     onBeforeMount(() => {
-      // TODO: make path configuarable
       // eslint-disable-next-line no-restricted-globals
-      location.href = `http://localhost:3030/oauth/${props.oauthProvider}`;
+      location.href = `/oauth/${props.oauthProvider}`;
     });
   },
 });

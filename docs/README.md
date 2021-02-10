@@ -10,6 +10,10 @@ Check the [build guide](Build.md) to learn how to build your own leek-box.
 
 Check the [usage guide](Usage.md) to learn how to use a leek-box.
 
+## Development
+
+Get some information about the [development](Development.md) of this project.
+
 ## PROI - Report
 The PROI report is the final report needed for our module "Projekt Informatik".
 
@@ -30,7 +34,6 @@ The exported mockups can be found [here](mockups/) as well.
 The following mockups are created with [LucidChart](https://app.lucidchart.com/lucidchart/invitations/accept/332f0381-366a-423a-a45f-b93b857126e6).
 The exported activity diagrams can be found [here](diagrams/activity_diagrams) as well.
 
-
 ## Contribute to docs
 
 Create a Pull-Request with the needed files changed in `docs/`.
@@ -45,8 +48,12 @@ We suggest using following plugins for [VSCode](https://code.visualstudio.com/):
 To use LaTeX Workshop, you need to install:
 - [TeX-Live](https://tug.org/texlive/) (or equivalent)
 
-    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra texlive-lang-german`
+    TeX-Live can be installed on Ubuntu via: `sudo apt install texlive texlive-latex-extra texlive-lang-german texlive-bibtex-extra biber`
 
 - [latexmk](https://mg.readthedocs.io/latexmk.html)
 
     latexmk can be installed on Ubuntu via: `sudo apt install latexmk`
+
+
+### Citations
+We are using biblatex for citation, a good guide can be found [here](https://mirror.informatik.hs-fulda.de/tex-archive/info/translations/biblatex/de/biblatex-de-Benutzerhandbuch.pdf#9).

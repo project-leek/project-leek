@@ -1,6 +1,9 @@
 <template>
-  <div class="m-auto">
-    <Button :to="{ name: 'home' }" text="Back to home" />
+  <div
+    class="flex flex-col w-full bg-gradient-to-b from-primary to-secondary justify-center items-center"
+  >
+    <img class="mb-8" src="/src/assets/not-found.gif" />
+    <Button class="w-2/3" :to="{ name: 'home' }" text="Back to home" />
   </div>
 </template>
 

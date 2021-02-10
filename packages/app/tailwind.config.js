@@ -27,6 +27,18 @@ module.exports = {
       'button': '#fcd060',
     }),
     extend: {
+      maxWidth: {
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '75%',
+      },
+      maxHeight: {
+        '0': '0',
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '75%',
+        'full': '100%',
+      },
       spacing: {
         '1/100': '1%',
         '2/100': '2%',
@@ -130,8 +142,8 @@ module.exports = {
         '1/1': '100%',
       },
       fontFamily: {
-        default: ["Roboto", "sans-serif"],
-        heading: ["Baloo", "sans-serif"]
+        primary: ['"Baloo 2"'],
+        secondary: ['Roboto', 'sans-serif'],
       },
       gridTemplateRows: {
         '30': 'repeat(30, minmax(0, 1fr))',
@@ -159,6 +171,10 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    }
+  },
   plugins: [],
 };

@@ -16,11 +16,13 @@
     "@feathersjs/feathers": "4.5.11",
     "@feathersjs/socketio-client": "4.5.11",
     "@leek/commons": "*",
+    "@types/lowdb": "^1.0.9",
     "evdev": "git://github.com/anbraten/node-evdev.git",
+    "lowdb": "^1.0.0",
     "socket.io-client": "2.4.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "0.26.2",
+    "@vercel/ncc": "0.27.0",
     "nodemon": "2.0.7",
     "ts-node": "9.1.1"
   }

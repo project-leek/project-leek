@@ -1,7 +1,16 @@
-import { AbstractEntity } from './abstract-entity.class';
+import { AbstractEntity, Ref } from './abstract-entity.class';
+import User from './user.class';
 
 export default class NFCTag extends AbstractEntity {
-  nfcId!: string;
+  nfcData!: string;
 
-  spotifyTrackUri!: string;
+  trackUri!: string;
+
+  name!: string;
+
+  group!: string;
+
+  imageUrl!: string;
+
+  owner!: Ref<User>;
 }

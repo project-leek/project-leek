@@ -1,15 +1,12 @@
 import '@fortawesome/fontawesome-free/css/all.css';
-import '@fortawesome/fontawesome-free/js/all';
 import '../index.css';
-import 'typeface-roboto';
-import 'typeface-baloo';
+import '@fontsource/roboto/400.css';
+import '@fontsource/baloo-2/700.css';
+import './compositions/useBackend';
 
 import { createApp } from 'vue';
 
 import App from './App.vue';
-import { socket as feathersSocket } from './lib/feathers';
 import router from './router';
 
 createApp(App).use(router).mount('#app');
-
-feathersSocket.open();
