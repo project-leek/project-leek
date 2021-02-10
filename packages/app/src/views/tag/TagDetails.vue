@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto h-full w-full flex flex-col overflow-hidden">
-    <header class="p-8 flex flex-row items-center space-x-5">
+    <header class="p-4 flex flex-row items-center space-x-5">
       <Button back icon="fas fa-times" size="md" />
 
       <div class="ml-2 flex flex-col">
@@ -18,7 +18,7 @@
           <Textfield v-model="nfcTag.name" placeholder="z. B. Mario Figur" class="rounded-full" />
         </LabeledInput>
 
-        <LabeledInput label="Gruppe">
+        <LabeledInput label="Gruppe" class="mt-8">
           <Dropdown
             v-model="nfcTagGroup"
             v-model:items="tagGroupListItems"
@@ -28,17 +28,56 @@
           />
         </LabeledInput>
 
-        <LabeledInput label="Musik">
+        <LabeledInput label="Musik" class="mt-8">
           <div class="flex flex-row items-center">
-            <span v-if="nfcTagTrack">{{ nfcTagTrack.title }}</span>
-            <Button text="Musik ändern" class="px-3 ml-auto" @click="presaveOldTrack" />
+            <div class="flex relative bg-gray-100 rounded-2xl p-2 w-44 h-44 overflow-hidden">
+              <img
+                class="absolute w-80/100 top-10/100 left-10/100 opacity-5"
+                src="/src/assets/spotify.png"
+              />
+              <span
+                v-if="nfcTagTrack"
+                class="my-auto text-center overflow-ellipsis overflow-hidden"
+                >{{ nfcTagTrack.title }}</span
+              >
+            </div>
+            <Button
+              icon="far fa-edit"
+              text="Musik ändern"
+              class="hidden md:flex ml-auto"
+              size="lg"
+              :to="{ name: 'tag-edit-track' }"
+            />
+            <Button
+              icon="far fa-edit"
+              class="md:hidden ml-auto"
+              size="lg"
+              :to="{ name: 'tag-edit-track' }"
+            />
           </div>
         </LabeledInput>
 
-        <LabeledInput label="Bild">
+        <LabeledInput label="Bild" class="mt-8">
           <div class="flex flex-row items-center">
-            <TagEntry class="w-44" :img="nfcTag.imageUrl" />
-            <Button text="Bild ändern" class="px-3 ml-auto" :to="{ name: 'tag-edit-image' }" />
+            <TagEntry
+              v-if="nfcTag.imageUrl === 'spotify' && nfcTagTrack"
+              class="w-44"
+              :img="nfcTagTrack.imageUri"
+            />
+            <TagEntry v-else class="w-44" :img="nfcTag.imageUrl" />
+            <Button
+              icon="far fa-edit"
+              class="md:hidden ml-auto"
+              size="lg"
+              :to="{ name: 'tag-edit-image' }"
+            />
+            <Button
+              icon="far fa-edit"
+              text="Bild ändern"
+              class="hidden md:flex ml-auto"
+              size="lg"
+              :to="{ name: 'tag-edit-image' }"
+            />
           </div>
         </LabeledInput>
       </div>
@@ -47,15 +86,12 @@
     </main>
 
     <footer class="py-5 flex-grow-0 flex items-center justify-evenly text-2xl text-gray-800">
-      <template v-if="routeName !== 'tag-details'">
-        <Button icon="fas fa-caret-left" class="ml-4" @click="goBack" />
-        <Button text="Auswählen" class="mx-4 flex-grow" @click="choose" />
-      </template>
+      <Button v-if="routeName !== 'tag-details'" text="Auswählen" class="mx-4 flex-grow" back />
       <Button
         v-else
         text="Speichern"
         class="mx-4 flex-grow"
-        :enabled="isNfcTagValid"
+        :disabled="!isNfcTagValid"
         @click="saveNfcTag"
       />
     </footer>
@@ -64,7 +100,7 @@
 
 <script lang="ts">
 import { NFCTag, Track } from '@leek/commons';
-import { computed, defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import TagStepImage from '../../components/tag/TagStepImage.vue';
@@ -98,8 +134,6 @@ export default defineComponent({
 
     const nfcTag = ref<NFCTag>();
     const nfcTagTrack = ref<Track>();
-    const oldTrack = ref<Track>();
-    const oldTag = ref<NFCTag>();
     const isNfcTagValid = getIsNfcTagValid(nfcTag);
     const nfcTagGroup = computed({
       get: () => nfcTag.value && new ListItem(nfcTag.value.group),
@@ -124,46 +158,6 @@ export default defineComponent({
       await router.push({ name: 'home' });
     };
 
-    const loadTrack = async (): Promise<void> => {
-      // load track of tag if not already or if it changed
-      if (nfcTag.value && nfcTagTrack.value?.uri !== nfcTag.value.trackUri) {
-        try {
-          nfcTagTrack.value = await getTrackOfTag(nfcTag.value);
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.error('ERROR:', error);
-        }
-      }
-    };
-
-    const presaveOldTrack = async (): Promise<void> => {
-      if (nfcTag.value && oldTag.value) {
-        oldTag.value = nfcTag.value;
-        oldTrack.value = await getTrackOfTag(nfcTag.value);
-        void router.push({ name: 'tag-edit-track' });
-      }
-    };
-
-    const updateImage = async (): Promise<void> => {
-      if (oldTrack.value && nfcTag.value && oldTrack.value.imageUri === nfcTag.value.imageUrl) {
-        const newTrack = await getTrackOfTag(nfcTag.value);
-        nfcTag.value.imageUrl = newTrack.imageUri;
-      }
-    };
-
-    const goBack = (): void => {
-      if (oldTag.value) {
-        nfcTag.value = oldTag.value;
-        router.go(-1);
-      }
-    };
-
-    const choose = async (): Promise<void> => {
-      await loadTrack();
-      await updateImage();
-      router.go(-1);
-    };
-
     onMounted(async () => {
       // load tag from id
       try {
@@ -172,10 +166,26 @@ export default defineComponent({
         void router.push({ name: 'tag-not-found' }); // TODO page does not exist
       }
 
-      await loadTrack();
-
       await loadTagGroups();
     });
+
+    watch(
+      () => nfcTag.value?.trackUri,
+      async (_trackUri) => {
+        // do not load anything if we have no tag
+        if (!nfcTag.value) {
+          return;
+        }
+
+        // load if no track is loaded or the url changed
+        if (!nfcTagTrack.value || _trackUri !== nfcTagTrack.value.uri) {
+          nfcTagTrack.value = await getTrackOfTag(nfcTag.value);
+        }
+
+        if (nfcTag.value.imageUrl) {
+        }
+      }
+    );
 
     return {
       nfcTag,
@@ -185,9 +195,6 @@ export default defineComponent({
       saveNfcTag,
       routeName,
       tagGroupListItems,
-      presaveOldTrack,
-      choose,
-      goBack,
     };
   },
 });
