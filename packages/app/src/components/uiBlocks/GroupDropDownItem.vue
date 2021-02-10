@@ -1,7 +1,10 @@
 <template>
   <div
     class="group-item w-full flex flex-col"
-    :class="[isOpen && 'bg-gradient-to-b from-darkBlue to-darkViolet', !isOpen && 'bg-secondary']"
+    :class="[
+      isOpen && 'bg-gradient-to-b from-darkBlue to-darkViolet',
+      !isOpen && 'bg-secondary bg-opacity-50',
+    ]"
   >
     <div
       class="text-white w-full text-xl font-bold flex items-center p-4 cursor-pointer"
@@ -9,9 +12,9 @@
     >
       <span>{{ groupname }}</span>
       <Button
-        round
+        size="xs"
         :icon="`fas ${isOpen ? 'fa-chevron-down' : 'fa-chevron-right'}`"
-        class="ml-auto h-8 w-8 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 transition-all duration-700 focus: outline-none"
+        class="ml-auto transition-all duration-700"
       />
     </div>
     <div

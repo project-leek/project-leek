@@ -1,21 +1,21 @@
 <template>
   <div class="home w-full flex flex-col">
-    <header class="flex p-5 text-4xl">
+    <header class="flex p-4 text-4xl">
       <Button
-        :to="{ name: 'add-tag' }"
+        :to="{ name: 'tag-add' }"
         icon="fas fa-plus-square"
         text="Tag hinzufügen"
-        :text-size="5"
-        both-center
-        class="mx-1 flex-grow"
+        class="flex-grow"
       />
-      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="py-2 mx-2 px-2" />
+      <Button :to="{ name: 'settings' }" icon="fas fa-cog" class="ml-4" />
     </header>
 
-    <main class="bg-secondary max-h-full overflow-y-auto flex-grow">
+    <main
+      class="bg-secondary max-h-full overflow-y-auto flex-grow bg-gradient-to-b from-primary to-secondary"
+    >
       <GroupDropDown v-if="!searchInput">
         <GroupDropDownItem
-          v-for="group in groups"
+          v-for="group in tagsOrderedByGroups"
           :key="group.name"
           :groupname="group.name"
           class="border-white border-b"
@@ -25,7 +25,7 @@
             <TagEntry
               v-for="entry in group.tags"
               :key="entry.nfcData"
-              class="m-4 w-2/6 flex-shrink-0 text-4xl"
+              class="m-4 w-44 flex-shrink-0 text-4xl cursor-pointer"
               :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
               :img="entry.imageUrl"
               :name="entry.name"
@@ -40,6 +40,17 @@
         :search-input="searchInput"
         @tag-selected="toggleSelectedTag($event)"
       />
+      <div
+        v-if="tagsOrderedByGroups.length === 0"
+        id="noTags"
+        class="font-primary text-xl text-center my-16 mx-6"
+      >
+        <div class="text-white font-heading text-2xl">
+          <p>Huch, da sind ja keine NFC Tags!</p>
+          <p>Füge fix einen hinzu!</p>
+          <img src="/src/assets/not-found.gif" />
+        </div>
+      </div>
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
@@ -57,24 +68,13 @@
           key="edit"
           class="flex justify-center w-full text-xl"
         >
+          <Button icon="fas fa-times" class="ml-4" @click="deselect" />
           <Button
-            round
-            icon="fas fa-times"
-            class="ml-4 my-auto h-10 w-10 bg-gradient-to-b from-primary to-secondary ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="deselect"
-          />
-          <Button
-            round
             text="Bearbeiten"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
+            class="flex-grow ml-4"
             :to="{ name: 'tag-details', params: { tagId: selectedTag._id } }"
           />
-          <Button
-            round
-            text="Löschen"
-            class="ml-4 px-3 text-2xl ring-2 ring-yellow-300 ring-opacity-30 focus: outline-none"
-            @click="deleteTag"
-          />
+          <Button text="Löschen" class="flex-grow mx-4" @click="deleteTag" />
         </span>
       </transition>
     </footer>
@@ -82,9 +82,8 @@
 </template>
 
 <script lang="ts">
-import { Paginated } from '@feathersjs/feathers';
 import { NFCTag } from '@leek/commons';
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import Button from '../components/uiBlocks/Button.vue';
 import GroupDropDown from '../components/uiBlocks/GroupDropDown.vue';
@@ -93,11 +92,7 @@ import TagEntry from '../components/uiBlocks/TagEntry.vue';
 import TagSearchResult from '../components/uiBlocks/TagSearchResult.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
 import feathers from '../compositions/useBackend';
-
-type NFCTagGroup = {
-  name: string;
-  tags: NFCTag[];
-};
+import { tagsOrderedByGroups } from '../compositions/useNfcTag';
 
 export default defineComponent({
   name: 'Home',
@@ -112,9 +107,7 @@ export default defineComponent({
   },
 
   setup() {
-    const groups = ref<NFCTagGroup[]>([]);
     const selectedTag = ref<NFCTag | null>(null);
-    const nfcTags = feathers.service('nfc-tags');
     const searchInput = ref<string>('');
 
     const toggleSelectedTag = (tag: NFCTag): void => {
@@ -127,7 +120,7 @@ export default defineComponent({
 
     const deleteTag = async (): Promise<void> => {
       if (selectedTag.value != null) {
-        await nfcTags.remove(selectedTag.value._id);
+        await feathers.service('nfc-tags').remove(selectedTag.value._id);
         selectedTag.value = null;
         buttonTransitionActive.value = true;
       }
@@ -138,40 +131,8 @@ export default defineComponent({
       buttonTransitionActive.value = true;
     };
 
-    const loadTags = async (): Promise<void> => {
-      const res = (await nfcTags.find()) as Paginated<NFCTag>;
-      groups.value = Object.values(
-        res.data.reduce((previous, item) => {
-          if (!previous[item.group]) {
-            previous[item.group] = { name: item.group, tags: [] } as NFCTagGroup;
-          }
-          previous[item.group].tags.push(item);
-          return previous;
-        }, {} as Record<string, NFCTagGroup>)
-      );
-    };
-
-    const onRemove = (tag: NFCTag): void => {
-      groups.value = groups.value
-        .map((group) => {
-          const filteredGroup = group;
-          filteredGroup.tags = group.tags.filter((t) => t._id !== tag._id);
-          return filteredGroup;
-        })
-        .filter((group) => group.tags.length !== 0);
-    };
-
-    onMounted(async () => {
-      await loadTags();
-      nfcTags.on('removed', onRemove);
-    });
-
-    onBeforeUnmount(() => {
-      nfcTags.off('removed', onRemove);
-    });
-
     return {
-      groups,
+      tagsOrderedByGroups,
       selectedTag,
       toggleSelectedTag,
       deleteTag,
@@ -187,12 +148,12 @@ export default defineComponent({
 <style lang="css" scoped>
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.7s;
+  transition: all 0.25s;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.7s;
+  transition: all 0.25s;
 }
 
 .fade-leave-to,

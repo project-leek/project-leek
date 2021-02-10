@@ -12,7 +12,7 @@
         <Textfield v-model="boxId" placeholder="192.168.0.123" />
       </LabeledInput>
 
-      <Button class="mt-8 p-2 ring-button ring-2" type="submit" text="Verbinden" />
+      <Button class="mt-8" type="submit" text="Verbinden" />
     </form>
   </div>
 </template>

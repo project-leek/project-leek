@@ -2,19 +2,20 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isSetupApp } from '../compositions/useBackend';
+import { isSetupApp, setBoxId, waitForConnection } from '../compositions/useBackend';
+import { doesUserHaveOwnReaders } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/oauth/callback',
+    path: '/auth/callback',
     name: 'oauth-callback',
     component: (): Component => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/:oauthProvider',
+    path: '/auth/:oauthProvider',
     name: 'oauth-start',
     component: (): Component => import('../views/auth/OAuthStart.vue'),
     meta: { authentication: 'guests-only' },
@@ -32,16 +33,16 @@ const routes: RouteRecordRaw[] = [
     meta: { authentication: 'ignored' },
   },
   {
+    path: '/setup/reset',
+    name: 'setup-reset',
+    component: (): Component => import('../views/Setup.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  {
     path: '/welcome',
     name: 'welcome',
     component: (): Component => import('../views/Welcome.vue'),
     meta: { authentication: 'guests-only' },
-  },
-  {
-    path: '/tag/:tagId',
-    name: 'tag-details',
-    component: (): Component => import('../views/TagDetails.vue'),
-    props: true,
   },
   {
     path: '/sandbox',
@@ -54,9 +55,33 @@ const routes: RouteRecordRaw[] = [
     component: (): Component => import('../views/Settings.vue'),
   },
   {
+    path: '/reader/:readerId',
+    name: 'reader',
+    component: (): Component => import('../views/ReaderDetails.vue'),
+    props: true,
+  },
+  {
     path: '/tag/add',
-    name: 'add-tag',
-    component: (): Component => import('../views/AddTag.vue'),
+    name: 'tag-add',
+    component: (): Component => import('../views/tag/AddTag.vue'),
+  },
+  {
+    path: '/tag/:tagId',
+    name: 'tag-details',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/image',
+    name: 'tag-edit-image',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
+  },
+  {
+    path: '/tag/:tagId/track',
+    name: 'tag-edit-track',
+    component: (): Component => import('../views/tag/TagDetails.vue'),
+    props: true,
   },
   {
     path: '/sandbox',
@@ -79,11 +104,24 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (isSetupApp.value && to.name !== 'setup') {
-    next({ name: 'setup' });
+  // catch all requests for setup app
+  if (isSetupApp.value) {
+    if (to.name === 'setup-reset') {
+      setBoxId(null);
+      next({ name: 'setup' });
+      return;
+    }
+
+    if (to.name !== 'setup') {
+      next({ name: 'setup' });
+      return;
+    }
+
+    next();
     return;
   }
 
+  // don't allow normal installations to setup
   if (!isSetupApp.value && to.name === 'setup') {
     next({ name: 'welcome' });
     return;
@@ -95,6 +133,14 @@ router.beforeEach(async (to, _, next) => {
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
     next({ name: 'welcome' });
+    return;
+  }
+
+  await waitForConnection();
+
+  // send authenticated users without readers to settings
+  if (isAuthenticated.value && to.name !== 'settings' && !(await doesUserHaveOwnReaders())) {
+    next({ name: 'settings' });
     return;
   }
 

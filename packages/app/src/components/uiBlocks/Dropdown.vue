@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col text-lg relative">
     <div
-      class="bg-white p-2 px-1.5 rounded-3xl flex items-center pl-2 cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
+      class="bg-white py-1 px-4 rounded-3xl flex items-center cursor-pointer border-button shadow-lg border-2 outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25"
       :class="{
         'rounded-b-none': dropdownExtended,
         'ring-red-600 ring-2 ring-inset': required && !modelValue,
@@ -12,20 +12,8 @@
         {{ modelValue.value }}
       </span>
       <span v-else class="placeholder text-gray-400">{{ placeholderText }}</span>
-      <Button
-        v-if="dropdownExtended"
-        class="ml-auto mr-3 w-8 h-8"
-        icon="fas fa-chevron-down"
-        :icon-size="3"
-        round
-      />
-      <Button
-        v-else
-        class="ml-auto mr-3 w-8 h-8"
-        icon="fas fa-chevron-right"
-        :icon-size="3"
-        round
-      />
+      <Button v-if="dropdownExtended" class="ml-auto" icon="fas fa-chevron-down" size="xs" />
+      <Button v-else class="ml-auto" icon="fas fa-chevron-right" size="xs" />
     </div>
     <div
       v-if="dropdownExtended"
@@ -44,24 +32,24 @@
           <span class="px-2 text-xl">{{ item.value }}</span>
           <Button
             v-if="removeable"
-            class="w-8 h-8 ml-auto mr-3"
+            class="ml-auto mr-3"
             icon="far fa-trash-alt"
-            :icon-size="3"
-            round
+            size="xs"
             @click="removeItem(item)"
           />
         </div>
       </div>
-      <div v-if="enableAddItem" class="add-item px-4 py-2 border-solid border-secondary border-t">
-        <div class="add-item-section flex w-full items-center pt-0.5">
-          <input
-            v-model="newItemValue"
-            :placeholder="addItemText"
-            class="flex-grow p-1 rounded-2xl focus:outline-none"
-            @keyup.enter="addItem"
-          />
-          <Button class="w-8 h-8" icon="fas fa-plus" :icon-size="3" round @click="addItem" />
-        </div>
+      <div
+        v-if="enableAddItem"
+        class="add-item px-4 py-2 border-solid border-secondary border-t flex w-full"
+      >
+        <input
+          v-model="newItemValue"
+          :placeholder="addItemText"
+          class="rounded-2xl focus:outline-none min-w-0 flex-grow"
+          @keyup.enter="addItem"
+        />
+        <Button icon="fas fa-plus" size="xs" @click="addItem" />
       </div>
     </div>
   </div>
@@ -101,7 +89,7 @@ export default defineComponent({
     addItemText: {
       type: String,
       required: false,
-      default: 'Bitte füge ein Element hinzu...',
+      default: 'neues Element',
     },
     items: {
       type: Array as PropType<ListItem[]>,
