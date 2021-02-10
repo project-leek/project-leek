@@ -7,16 +7,23 @@
     @click="doClick"
   >
     <slot>
-      <span v-if="icon && text" class="absolute text-white" :class="iconClasses" />
+      <span
+        v-if="icon && text"
+        class="text-white"
+        :class="[...iconClasses, iconRight ? 'mr-4' : 'ml-4']"
+      />
       <span
         v-if="icon && !text"
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"
         :class="iconClasses"
       />
       <div v-if="!text && icon" :class="`icon-size-${size}`" />
-      <span v-if="text || (!text && !icon)" class="text-white mx-auto" :class="textClasses">{{
-        text || 'Absenden'
-      }}</span>
+      <span
+        v-if="text || (!text && !icon)"
+        class="text-white mx-auto"
+        :class="[...textClasses, iconRight ? 'pr-4' : 'pl-4']"
+        >{{ text || 'Absenden' }}</span
+      >
     </slot>
   </button>
 </template>
@@ -114,7 +121,7 @@ export default defineComponent({
     const iconClasses = computed(() => [
       props.icon,
       sizes[props.size].iconSize,
-      `${props.iconRight ? 'right' : 'left'}-6`,
+      props.iconRight ? 'order-last' : '',
     ]);
     const textClasses = computed(() => [sizes[props.size].textSize]);
     const containerClasses = computed(() => {
