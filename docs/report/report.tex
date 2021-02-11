@@ -190,7 +190,7 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \subsection{Technologien}
 Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die Smart Music Box umgesetzt werden sollte.
-Der Kunde ließ dem Projektteam für die Umsetzung der Smart Music Box sehr viele Freiheiten.
+Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
 Es wurde lediglich die Anforderung gestellt, dass die Applikation neben PCs und Laptops auch für mobile Endgeräte optimiert sein soll.
 Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
 \colorbox{yellow}{Wo Projektstruktur --> Monorepo?}
@@ -200,35 +200,47 @@ Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien un
 
 \subsubsection*{TypeScript}
 Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
-Aufgrund von nicht vorhandener Typisierung wurde dann allerdings die von Microsoft entwickelte Sprache TypeScript für die Projektierung genutzt. Da diese aufgrund des
-Aufbaus auf ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
+Aufgrund von nicht vorhandener Typisierung wurde sich dann auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Da diese aufgrund des
+Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
 Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparten dem Team so die Nutzung von verschiedenen Programmiersprachen.
+Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team so die Nutzung von verschiedenen Programmiersprachen.
 
 \subsubsection{Frameworks}
+Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung der Verwaltungsoberfläche mit weniger Aufwand zu entwickeln.
 
 \subsubsection*{Vue.js}
-Zur Gestaltung der Verwaltungsoberfläche für die Music-Box, die zum Verwalten der NFC-Tags und steuern der Ausgabegeräte genutzt werden sollte einigte sich das Team außerdem auf die Nutzung des
+Zur Gestaltung der Verwaltungsoberfläche für die Music-Box, die zum Verwalten der NFC-Tags und steuern der Ausgabegeräte genutzt wird einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-Dies wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
+Dieses wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
 Außerdem bot das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen konnten,
-während andere am Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks Test Test Test Test Test außerdem sehr performant. \cite{Vue_Performance}
+während andere am Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant. \cite{Vue_Performance}
 
 \subsubsection*{Tailwind CSS}
-Zur Vereinfachung der Gestaltung der Verwaltungsoberfläche einigte sich das Team auf die Nutzung des Utility-First-Frameworks \textit{TailwindCSS}.
-Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr flexibilität, weil statt vorgefertigten Komponenten Utility-Klassen zur Verfügung gestellt werden, über die die das Design selbst definiert werden kann.
-Ein weiterer Vorteil ist außerdem, dass das Aussehen innerhalb des HTML-Codes stattfindet und so nicht extra CSS Dateien angelegt werden müssen. Damit steigt die Übersichtlichkeit, da das Aussehen direkt an dem jeweiligen HTML-Tag vorgenommen wird.
+Zur Vereinfachung der Gestaltung der Verwaltungsoberfläche entschied sich das Team für das Utility-First-Frameworks \textit{TailwindCSS}.
+Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, weil statt vorgefertigten Komponenten Utility-Klassen zur Verfügung gestellt werden,
+über die das Design selbst definiert werden kann. Ein weiterer Vorteil ist außerdem, dass das Aussehen innerhalb des HTML-Codes definiert wird und so nicht externe CSS Dateien angelegt werden müssen.
+Damit steigt die Übersichtlichkeit, da zur Änderung des Aussehens nicht in externen Dateien gesucht werden muss.
 \cite{Tailwind_Vorteile}
 
+\subsubsection*{feathers.js}
+Framework serviceorientiert, Echtzeitzugriff Websockets, einfaches CRUD, OAuth
+
+\subsubsection{Reverse-Tunnel (ngrok)}
+Um verschlüsselt vom Frontend (öffentlich unter \url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\url{https://ngrok.com/}} verwendet.
+Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
+Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
+Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
+\colorbox{red}{Hier Schaubild?}
+
+
 \subsubsection{Containervirtualisierung (Docker)}
-Um dem Nutzer die Installation der Box möglichst einfach zu machen wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
-Ohne diese Möglichkeit wäre die Installation aufgrund der 3 Microservices (Backend, Reverse-Proxy und NFC-Reader) sehr aufwändig.
+Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
+Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
 Der Vorteil von Docker besteht darin, dass das Team lediglich ein sogenanntes \textit{docker-compose} file benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
-Es enthält das jeweilige Image, auf dem der Container aufbaut (z. B. ngroc - für den Reverse-Proxy). Dieses Image enthält schon alle notwendigen Abhängigkeiten und Programme, sodass der Benutzer diese nicht
-selbst installieren muss. Neben dem Image sind noch Informationen über die weitergeleiteten Ports (zur Kommunikation zwischen den einzelnen Containern und nach \colorbox{red}{draußen}), und die verwendeten
-Laufwerke. Neben der einfachen Auslieferung bietet Docker außerdem den Vorteil, dass Fehler, die bei einem Entwickler auftreten bei anderen reproduzierbar sind, da die Software nicht auf unterschiedlichen
-Systemen, sondern immer auf dem gleichen System läuft (dem/der Container)
-\colorbox{red}{Da nochmal rübergucken}
+Es enthält einen Verweis auf die jeweiligen Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme, sodass eine weitere Installation seitens des Benutzers nicht erforderlich ist.
+Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
+So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
+
 
 \subsection{Hilfsmittel}
 
