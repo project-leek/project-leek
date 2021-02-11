@@ -385,62 +385,61 @@ Verbessern
 \colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 
+\section{Code Walkthrough}
+\colorbox{red}{TODO:}vielleicht interessante Code Snippets?
 
-\section{Working Title}
-\colorbox{red}{TODO: Finde TITEL:} Fazit, Erkentnisse,
-Durch das Projekt Informatik musste das Team viele Probleme bewältigen, hat dabei aber auch mindestens genauso viel Neues gelernt und Erkentnisse drauß gezogen.
+\section{Testing}
+\colorbox{red}{TODO:}wie haben wir getestet, haben wir getestet?
 
-\subsubsection{Einarbeitung in Toolchain und Deployment Cycle}
-\colorbox{red}{Zu Beginn wirkte das Projekt sehr groß, da Dateistruktur unbekannt. Wie das Projekt zusammenhängt war nicht direkt ersichtlich}
+\section{Fazit}
+\subsection{Probleme, Lösungengen, Erkenntnisse}
+\colorbox{red}{TODO: Finde TITEL:} Fazit oder nur Erkenntnisse oder oder?
+\colorbox{red}{Besseres Intro zum Kapitel?}
+Das Projekt Informatik gab einen Einblick in die Arbeitswelt, das Team musste sich klassischen Alltagsproblemen stellen, konnte Lösungswege finden und wichtige Erkenntnisse für die Zukunft daraus ziehen.
+Auch Codingschemas und -Konventionen wurden neu erlernt und praktisch angewandt.
 
 \subsubsection{Einarbeitung in neue Technologien}
-\colorbox{red}{Einarbeitung in neue Technologien war zu Beginn eine größere Hürde. Genutzte Technologien waren ohne Vorerfahrung der ursprünglichen Methodiken umso komplexer, zb wenn man CSS und Flexbox nicht kennt aber direkt Tailwind nutzt}
+Zu Beginn des Projektes bestand eine große Differenz, inwieweit die einzelnen Teammitglieder mit den jeweiligen Technologien vertraut sind.
+Sich mit der Projektstruktur vertraut zu machen war eine größere Hürde.
+Durch die vielen automatisch generierten Dateien und Ordner wirkte die Einstiegshürde groß, und Teammitglieder brauchten Ihre Zeit, um effektiv mitarbeiten zu können.
+Über die Entwicklungszeit wurden aber sinnvolle neue Technologien vertieft und verinnerlicht.
+Webentwicklung größerer komplexerer Webseiten ohne Frontend Frameworks wie Vue sind heutzutage oftmals kaum noch sinnvoll\cite{stackoverflow:why_Frameworks}.
 
-\subsubsection{Zu viel Devops?}
-\colorbox{red}{DevOps hat uns viel geholfen, PR Checks sind praktisch, aber vielleicht zu sehr ins Detail gegangen?
- Hat der Mehraufwand am Ende eine Zeitersparnis gebracht? Zb das automatisierte Ticketboard oder "preview deploy" bei PR?
-Am ende könnte man auch das selber schnell auschecken und kontrollieren, und das automatisierte deployen in Github pages war vielleicht auch overkill, da es lokal zu starten und testen auch ausreichen würde?
-Vor allem deswegen, weil uns dabei eine starke Entwicklerkraft verloren ging.
-Renovate bot ist praktisch, aber am ende immer zu kontrollieren ob update okay hat vielleicht auch zuviel Zeit genommen, wo dieser Task am Ende nicht so wichtig war?}
-
-\subsubsection{Kommunikation und Eigeninitiative}
-\colorbox{red}{Man hätte mehr miteinander kommunizieren können, Abhängigkeit zwischen Komponenten nicht für selbstverständlich halten sondern kommunizieren. Aktiver auf Gruppe zugehen und ansprechen, helfe holen, gemeinsam lösen}
-
-\subsubsection{Planung, Zielsetzung und Einschätzung}
-oft schlecht eingeschätzt wieviel machbar ist, am ende zu wenig zeit, Ziel aus dem auge verloren, in kleinigkeiten verloren
-
-\subsection{Erkenntnisse}
-Das Team durch das Projekt Informatik vieles gelernt.
-Es wurden neue Technologien und Methodiken kennenlernt und vertieft, und Codingkonventionen verinnerlicht und verstanden.
-
-\subsubsection{Doppelter Nutzen von Pull Requests und Code Reviews}
+\subsubsection{Versionskontrolle und Deployment Cycle}
+Im Studium wurde den Studierenden immer wieder der Vorteil von Versionskontrolle wie Git erzählt, doch fand sich im Studium selten ein praktisches Anwendungszenario, dass Git über die Hauptfunktion, die Versionierung hinaus sinnvoll genutzt hat.
+Durch dieses Projekt fand sich das erste mal im Studium eine sinnvolle Anwendung, wie in größeren Projekten oder der Industrie auch mit Pull Requests und Code Reviews zu arbeiten.
 Jede neue Arbeit konnte nur durch ein Pull Request in den Master gemerged werden, welcher von mindestens zwei weiteren Teammitgliedern akzeptiert werden muss.
 Dies hatte mehrere Effekte: Wenn mehrere Teammitglieder über den Code anderer schauen, fallen umso wahrscheinlicher Fehler auf und eine insgesamt bessere Codequalität wird sichergestellt.
 Als auch haben Code Reviews den Effekt, dass neue Funktionen und Änderungen mehr Teammitglieder dadurch kennenlernen und verstehen und gegebenenfalls auch direkt Fragen dazu stellen können.
-\subsubsection{Automatisierte Tests}
+Sich an diesen Deployment Cycle zu gewöhnen brauchte seine Zeit, aber fand von Sprint zu Sprint immer mehr wertschätzung im Team.
+
+\subsubsection{Automatisierte Tests und Deployment}
 Jeder Pull Request unterlief automatisch auch mehrere automatisierte Tests, welche mit eigenen Testparametern über den neuen Quellcode lief.
 Diese automatisierten Tests testeten mehrere Sachen: Ist der neue Quellcode lauffähig, ist dieser vom Schreibstil uniform zum Rest und ist dieser Typescript konform.
 Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen, als auch wurden Fehler aufgedeckt, die manchmal einem Teammitglied gar nicht erst aufgefallen wären.
-\subsubsection{Automatisiertes Deployen}
-Durch das Continous Deployment wurden bei neuen Änderungen im Master die Seite auf Github.io veröffentlicht, als auch wurden die \textit{LaTeX} Dateien als PDF im eigenen Dokumente Branch gebaut.
+Durch das Automatisierte Deployment wurden bei neuen Änderungen im Master die Seite auf Github.io veröffentlicht, als auch wurden die \textit{LaTeX} Dateien als PDF im eigenen Dokumente Branch gebaut.
 Für Pull Requests wurde auch die jeweilige Version gebaut und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+
+\subsubsection{Zu viel Automatisierung?}
+\colorbox{red}{Todo:} DevOps hat uns viel geholfen, PR Checks sind praktisch, aber vielleicht zu sehr ins Detail gegangen?
+Hat der Mehraufwand am Ende eine Zeitersparnis gebracht? Zb das automatisierte Ticketboard oder "preview deploy" bei PR?
+Am ende könnte man auch das selber schnell auschecken und kontrollieren, und das automatisierte deployen in Github pages war vielleicht auch overkill, da es lokal zu starten und testen auch ausreichen würde?
+Vor allem deswegen, weil uns dabei eine starke Entwicklerkraft verloren ging.
+Renovate bot ist praktisch, aber am ende immer zu kontrollieren ob update okay hat vielleicht auch zuviel Zeit genommen, wo dieser Task am Ende nicht so wichtig war?
 
 \subsubsection{Regelmäßige Dailys und Retrospektiven}
 Dadurch, dass sich das Team dreimal die Woche für ein Daily getroffen hat, entstand ein kontinuierlicher Austausch über den aktuellen Stand der eigenen Arbeiten und Probleme.
 Durch diese regelmäßigen Updates wurden Probleme schneller gelöst und das Projekt wurde schneller vorangetrieben.
 Die Retrospektiven halfen auch dabei das Team auf der einen Seite durch das positive Feedback zu motivieren, als auch auf der anderen Seite an Problemen zu Arbeiten und diese zu verbessern.
 
-\subsubsection{Zielsetzung und Planung}
-Die häufigste Problem während des Projektes war es, kurz vor einem Meilenstein Meeting auch alle geplanten Tickets fehlerfrei umzusetzen und in den Master zu mergen.
+\subsubsection{Kommunikation und Eigeninitiative}
+\colorbox{red}{Todo:} Man hätte mehr miteinander kommunizieren können, Abhängigkeit zwischen Komponenten nicht für selbstverständlich halten sondern kommunizieren. Aktiver auf Gruppe zugehen und ansprechen, helfe holen, gemeinsam lösen
+
+\subsubsection{Planung, Zielsetzung und Einschätzung}
+Das aber vermutlich allgemein klassischste und größte Problem während des Projektes war, gegen Ende eines Sprintes nicht alle geplanten Tickets umgesetzt zu bekommen oder teilweise sogar kurz vor fertigstellung sind.
+Häufig konnten nicht alle Tickets genügend auf Fehler getestet werden und mussten entweder in den nächsten Sprint gelegt werden oder mit kleineren Bugs in den Master gemerged werden.
 Hier wurden oftmals Überstunden geleistet und das Team hat hier besonders gelernt, wie wichtig Planung der Tickets sowie das Einschätzen der eigenen Leistung zur Bewältigung verschiedenster Probleme ist.
-So hat das Team auch sich vorgenommen, mindestens zwei Tage vor einem Meilenstein Meeting alle Tickets soweit fertig zu haben, dass diese nur noch fehlerfrei in den Master gemerged werden müssen.
-
-
-\section{Code Walkthrough}
-\colorbox{red}{TODO:}vielleicht interessante Code Snippets?
-
-\section{Testing}
-\colorbox{red}{TODO:}wie haben wir getestet, haben wir getestet?
+So hat das Team auch sich vorgenommen, mindestens zwei Tage vor einem Meilenstein Meeting alle Tickets soweit fertig zu haben, sodass genügend Zeit vorhanden ist, um Tickets auf fehlerfreiheit zu testen und konfliktfrei in den Master zu mergen.
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
