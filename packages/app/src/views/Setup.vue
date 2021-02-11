@@ -53,10 +53,9 @@ export default defineComponent({
 
       const url = await resolveBackendUrl(backendUrl.value);
 
-      isTestingConnection.value = false;
-
       // could not resolve backend
       if (!url) {
+        isTestingConnection.value = false;
         isConnectionUrlInvalid.value = true;
         return;
       }
