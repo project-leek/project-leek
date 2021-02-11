@@ -33,7 +33,7 @@
     "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
   },
   "resolutions": {
-    "postcss": "8.2.4"
+    "postcss": "8.2.6"
   },
   "devDependencies": {
     "@types/jest": "26.0.20",
