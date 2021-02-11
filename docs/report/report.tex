@@ -188,48 +188,6 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \section{Durchführung}
 
-\subsection{Technologien}
-Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die Smart Music Box umgesetzt werden sollte.
-Der Kunde ließ dem Projektteam für die Umsetzung der Smart Music Box sehr viele Freiheiten.
-Es wurde lediglich die Anforderung gestellt, dass die Applikation neben PCs und Laptops auch für mobile Endgeräte optimiert sein soll.
-Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
-\colorbox{yellow}{Wo Projektstruktur --> Monorepo?}
-
-
-\subsubsection{Programmiersprachen}
-
-\subsubsection*{TypeScript}
-Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
-Aufgrund von nicht vorhandener Typisierung wurde dann allerdings die von Microsoft entwickelte Sprache TypeScript für die Projektierung genutzt. Da diese aufgrund des
-Aufbaus auf ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
-Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparten dem Team so die Nutzung von verschiedenen Programmiersprachen.
-
-\subsubsection{Frameworks}
-
-\subsubsection*{Vue.js}
-Zur Gestaltung der Verwaltungsoberfläche für die Music-Box, die zum Verwalten der NFC-Tags und steuern der Ausgabegeräte genutzt werden sollte einigte sich das Team außerdem auf die Nutzung des
-clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-Dies wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
-Außerdem bot das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen konnten,
-während andere am Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks Test Test Test Test Test außerdem sehr performant. \cite{Vue_Performance}
-
-\subsubsection*{Tailwind CSS}
-Zur Vereinfachung der Gestaltung der Verwaltungsoberfläche einigte sich das Team auf die Nutzung des Utility-First-Frameworks \textit{TailwindCSS}.
-Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr flexibilität, weil statt vorgefertigten Komponenten Utility-Klassen zur Verfügung gestellt werden, über die die das Design selbst definiert werden kann.
-Ein weiterer Vorteil ist außerdem, dass das Aussehen innerhalb des HTML-Codes stattfindet und so nicht extra CSS Dateien angelegt werden müssen. Damit steigt die Übersichtlichkeit, da das Aussehen direkt an dem jeweiligen HTML-Tag vorgenommen wird.
-\cite{Tailwind_Vorteile}
-
-\subsubsection{Containervirtualisierung (Docker)}
-Um dem Nutzer die Installation der Box möglichst einfach zu machen wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
-Ohne diese Möglichkeit wäre die Installation aufgrund der 3 Microservices (Backend, Reverse-Proxy und NFC-Reader) sehr aufwändig.
-Der Vorteil von Docker besteht darin, dass das Team lediglich ein sogenanntes \textit{docker-compose} file benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
-Es enthält das jeweilige Image, auf dem der Container aufbaut (z. B. ngroc - für den Reverse-Proxy). Dieses Image enthält schon alle notwendigen Abhängigkeiten und Programme, sodass der Benutzer diese nicht
-selbst installieren muss. Neben dem Image sind noch Informationen über die weitergeleiteten Ports (zur Kommunikation zwischen den einzelnen Containern und nach \colorbox{red}{draußen}), und die verwendeten
-Laufwerke. Neben der einfachen Auslieferung bietet Docker außerdem den Vorteil, dass Fehler, die bei einem Entwickler auftreten bei anderen reproduzierbar sind, da die Software nicht auf unterschiedlichen
-Systemen, sondern immer auf dem gleichen System läuft (dem/der Container)
-\colorbox{red}{Da nochmal rübergucken}
-
 \subsection{Hilfsmittel}
 Im Rahmen des Projekts nutze das Team eine vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
 Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet. Zum Anderen wurden sie als Ergebnis der Retrospektiven erprobt.
