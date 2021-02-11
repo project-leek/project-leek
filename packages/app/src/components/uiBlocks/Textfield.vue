@@ -5,7 +5,7 @@
   >
     <span v-if="icon" class="icon mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
     <input
-      class="input font-secondary w-full outline-none bg-transparent placeholder-opacity-50 text-xl"
+      class="input w-full outline-none bg-transparent placeholder-opacity-50 text-xl"
       :placeholder="placeholder"
       type="text"
       :value="modelValue"
