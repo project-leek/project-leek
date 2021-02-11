@@ -5,13 +5,13 @@ RUN /bin/ash -c 'set -ex && \
     ARCH=`uname -m` && \
     if [ "$ARCH" == "x86_64" ]; then \
       echo "amd64" && \
-      curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
-    if [ "$ARCH" == "armv7l" ]; then \
+      curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip; \
+    elif [ "$ARCH" == "armv7l" ]; then \
       echo "arm" && \
-      curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip \
+      curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip; \
     else \
       echo "unknown arch" && \
-      exit -1
+      exit -1; \
     fi && \
     unzip -o /ngrok.zip -d /bin'
 COPY . ./
@@ -23,9 +23,10 @@ FROM node:alpine
 ENV NODE_ENV=production
 RUN apk --no-cache add ca-certificates
 WORKDIR /app
-COPY --from=build ./packages/backend/dist .
+COPY --from=build /app/packages/backend/dist .
 COPY --from=build /bin/ngrok /bin/
 COPY ./docker/backend/entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 RUN chown -R node:node .
 RUN ls -la
 
