@@ -20,7 +20,7 @@ export default defineComponent({
   setup(props) {
     onBeforeMount(() => {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      location.href = `${backendUrl.value}/oauth/${props.oauthProvider}`;
+      location.href = `${backendUrl.value}/oauth/${props.oauthProvider}?redirect=auth/callback`;
     });
   },
 });
