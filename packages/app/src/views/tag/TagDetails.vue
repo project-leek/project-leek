@@ -30,16 +30,14 @@
 
         <LabeledInput label="Musik" class="mt-8">
           <div class="flex flex-row items-center">
-            <div class="flex relative bg-gray-100 rounded-2xl p-2 w-44 h-44 overflow-hidden">
+            <div class="flex relative bg-gray-100 rounded-2xl p-4 w-44 h-44 overflow-hidden">
               <img
                 class="absolute w-80/100 top-10/100 left-10/100 opacity-5"
                 src="/src/assets/spotify.png"
               />
-              <span
-                v-if="nfcTagTrack"
-                class="my-auto text-center overflow-ellipsis overflow-hidden"
-                >{{ nfcTagTrack.title }}</span
-              >
+              <span v-if="nfcTagTrack" class="w-full text-center my-auto overflow-hidden">{{
+                cut(nfcTagTrack.title, 42)
+              }}</span>
             </div>
             <Button
               icon="far fa-edit"
@@ -183,9 +181,13 @@ export default defineComponent({
         }
 
         if (nfcTag.value.imageUrl) {
+          //
         }
       }
     );
+
+    const cut = (str: string, length: number): string =>
+      str.length < length ? str : `${str.substr(0, length)} ...`;
 
     return {
       nfcTag,
@@ -195,6 +197,7 @@ export default defineComponent({
       saveNfcTag,
       routeName,
       tagGroupListItems,
+      cut,
     };
   },
 });
