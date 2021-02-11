@@ -1,6 +1,6 @@
 <template>
   <div v-if="reader" class="w-full flex flex-col">
-    <header class="p-8 flex flex-row items-center">
+    <header class="p-4 flex flex-row items-center">
       <Button :to="{ name: 'settings' }" icon="fas fa-times" size="md" />
       <span class="ml-2 text-3xl">Box: {{ readerName }}</span>
     </header>

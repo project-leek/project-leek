@@ -8,14 +8,15 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 let server: Server;
 
 function start(): void {
-  logger.info('Application (%s v%s) starting ...', NODE_ENV, 'unkown');
+  logger.info('Application (%s) starting ...', NODE_ENV);
 
   const hostname = app.get('host');
   const port = app.get('port');
   server = webserver.listen(port);
 
   server.on('listening', () => {
-    logger.info('Application started on http://%s:%d', hostname, port);
+    const url = process.env.PROXY_URL || `http://${hostname}:${port}`;
+    logger.info('Application started on %s', url);
   });
 
   app.setup(server);
