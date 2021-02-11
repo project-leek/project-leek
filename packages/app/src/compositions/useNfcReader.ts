@@ -5,14 +5,13 @@ import { ref } from 'vue';
 import { user } from './useAuthentication';
 import feathers from './useBackend';
 
-const readerService = feathers.service('nfc-readers');
 let areReadersLoaded = false;
 
 export const readers = ref<NFCReader[]>();
 
 async function loadReaders(): Promise<void> {
   if (!readers.value) {
-    const res = (await readerService.find()) as Paginated<NFCReader>;
+    const res = (await feathers.service('nfc-readers').find()) as Paginated<NFCReader>;
     readers.value = res.data;
   }
 
@@ -22,15 +21,15 @@ async function loadReaders(): Promise<void> {
 
   areReadersLoaded = true;
 
-  readerService.on('removed', (reader: NFCReader): void => {
+  feathers.service('nfc-readers').on('removed', (reader: NFCReader): void => {
     readers.value = (readers.value || []).filter((_reader) => _reader._id !== reader._id);
   });
 
-  readerService.on('created', (reader: NFCReader): void => {
+  feathers.service('nfc-readers').on('created', (reader: NFCReader): void => {
     readers.value = [...(readers.value || []), reader];
   });
 
-  readerService.on('patched', (patchedReader: NFCReader): void => {
+  feathers.service('nfc-readers').on('patched', (patchedReader: NFCReader): void => {
     readers.value = (readers.value || []).map((reader) => {
       if (reader._id === patchedReader._id) {
         return patchedReader;
