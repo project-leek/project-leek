@@ -530,10 +530,10 @@
     lodash "^4.17.20"
     radix-router "^3.0.1"
 
-"@fontsource/baloo-2@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/baloo-2/-/baloo-2-4.1.0.tgz#bcaa971936c799de17a163e8f75ee448895987eb"
-  integrity sha512-o7VqkvY3OuZXsZ+Dsb6e+O9OdWn93xUKHaI3xpfgQQeiesmM+H5laLKopxP8gR0Y9YKdYsHy/HR3Efug+/Jdsw==
+"@fontsource/baloo-2@4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/baloo-2/-/baloo-2-4.2.1.tgz#655aa5e05b973495f4dea522bdf72417ab2d49f8"
+  integrity sha512-RVaLjS8nLssWED8QtImyMF5wIs9BYcJRWS7GpNyycD0EPuQqcmYzcG+pkGNo4p5c+GBZcVde3gfxYhol73uP0w==
 
 "@fontsource/roboto@4.2.0":
   version "4.2.0"
