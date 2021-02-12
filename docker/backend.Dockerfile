@@ -3,12 +3,16 @@ WORKDIR /app
 RUN apk add --no-cache make gcc g++ python git linux-headers curl
 RUN /bin/ash -c 'set -ex && \
     ARCH=`uname -m` && \
+    echo "ARCH=$ARCH" && \
     if [ "$ARCH" == "x86_64" ]; then \
       echo "amd64" && \
       curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip; \
-    elif [ "$ARCH" == "armv7l" ]; then \
+    elif [ "$ARCH" == "armv7l" ] || [ "$ARCH" == "armv6l" ]; then \
       echo "arm" && \
       curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip; \
+    elif [ "$ARCH" == "aarch64" ]; then \
+      echo "arm64" && \
+      curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm64.zip; \
     else \
       echo "unknown arch" && \
       exit -1; \
