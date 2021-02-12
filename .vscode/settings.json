@@ -25,6 +25,7 @@
   "files.trimTrailingWhitespace": true,
   "cSpell.words": [
     "docker",
+    "framework",
     "frameworks",
     "tailwind",
     "vetur",

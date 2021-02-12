@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, draft]{article}
+\documentclass[10pt, a4paper,]{article}
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 \usepackage{comment}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 
 \addbibresource{literature.bib}
 
@@ -225,10 +227,24 @@ Damit steigt die Übersichtlichkeit des Frontend-Codes, da keine separaten CSS-D
 \cite{Tailwind_Vorteile}
 
 \subsubsection*{feathers.js}
-Framework serviceorientiert, Echtzeitzugriff Websockets, einfaches CRUD, OAuth
+Das Framework \textit{feathers.js}\footnote{\raggedright\url{https://feathersjs.com/}} ermöglicht CRUD-Zugriffe auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
+Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
+Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert.
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{MyFeathersService}
+  \caption{Implementierung eines Services}
+  \label{fig:MyService}
+  \protect\cite{}
+\end{figure}
+Dabei können verschiedenste Protokolle, wie HTTP oder WebSockets zur Datenübertragung verwendet werden.
+Das WebSocket-Protokoll bietet hier den großen Vorteil, dass eine persistente Verbindung zwischen Server und Client (Benutzeroberfläche und Backend) besteht.
+So können sowohl Client, wie auch Server jederzeit mit der Datenübertragung beginnen, ohne vorher - wie bei HTTP - jedes Mal eine neue Verbindung aufzubauen zu müssen. \cite{WebSockets}
+Dadurch kann der Server alle verbundenen Clients bei einer CRUD-Zugriff informieren, sodass alle ohne erneutes Anfrage der Daten den Aktuellsten Zustand übermittelt bekommen.
+Wird also beispielsweise ein NFC-Tag von Person A geändert, sieht Person B diese Änderung ohne Aktualisierung der Seite.
+Eine weiteres Feature, welches vom Projektteam genutzt wird sind die integrierten OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten wie in unserem Fall \textit{Spotify} ermöglichen.
 
 \subsubsection{Reverse-Tunnel (ngrok)}
-Um verschlüsselt vom Frontend (öffentlich unter \url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\url{https://ngrok.com/}} verwendet.
+Um verschlüsselt vom Frontend (öffentlich unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
 Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
 Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
 Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
