@@ -189,9 +189,9 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 \section{Durchführung}
 
 \subsection{Technologien}
-Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die Smart Music Box umgesetzt werden sollte.
+Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
 Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
-Es wurde lediglich die Anforderung gestellt, dass die Applikation neben PCs und Laptops auch für mobile Endgeräte optimiert sein soll.
+Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
 Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
 \colorbox{yellow}{Wo Projektstruktur --> Monorepo?}
 
@@ -203,23 +203,23 @@ Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde
 Aufgrund von nicht vorhandener Typisierung wurde sich dann auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Da diese aufgrund des
 Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
 Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team so die Nutzung von verschiedenen Programmiersprachen.
+Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
 
 \subsubsection{Frameworks}
-Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung der Verwaltungsoberfläche mit weniger Aufwand zu entwickeln.
+Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung der Benutzeroberfläche mit weniger Aufwand zu entwickeln.
 
 \subsubsection*{Vue.js}
-Zur Gestaltung der Verwaltungsoberfläche für die Music-Box, die zum Verwalten der NFC-Tags und steuern der Ausgabegeräte genutzt wird einigte sich das Team auf die Nutzung des
+Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
 Dieses wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
 Außerdem bot das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen konnten,
 während andere am Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant. \cite{Vue_Performance}
 
 \subsubsection*{Tailwind CSS}
-Zur Vereinfachung der Gestaltung der Verwaltungsoberfläche entschied sich das Team für das Utility-First-Frameworks \textit{TailwindCSS}.
-Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, weil statt vorgefertigten Komponenten Utility-Klassen zur Verfügung gestellt werden,
-über die das Design selbst definiert werden kann. Ein weiterer Vorteil ist außerdem, dass das Aussehen innerhalb des HTML-Codes definiert wird und so nicht externe CSS Dateien angelegt werden müssen.
-Damit steigt die Übersichtlichkeit, da zur Änderung des Aussehens nicht in externen Dateien gesucht werden muss.
+Zur Vereinfachung der Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Frameworks \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
+Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, da statt vorgefertigten Komponenten vielseitig verwendbare Utility-Klassen zur Verfügung gestellt werden,
+über die das Design selbst definiert werden kann.So kann das Aussehen von Elementen innerhalb des HTML-Codes festgelegt werden.
+Damit steigt die Übersichtlichkeit des Frontend-Codes, da keine separaten CSS-Dateien und -Klassen angelegt werden müssen.
 \cite{Tailwind_Vorteile}
 
 \subsubsection*{feathers.js}
@@ -237,7 +237,8 @@ Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt un
 Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
 Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
 Der Vorteil von Docker besteht darin, dass das Team lediglich ein sogenanntes \textit{docker-compose} file benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
-Es enthält einen Verweis auf die jeweiligen Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme, sodass eine weitere Installation seitens des Benutzers nicht erforderlich ist.
+Es enthält einen Verweis auf die jeweiligen Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
+sodass eine weitere Installation seitens der Benutzer:innen nicht erforderlich sind.
 Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
 So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
 
