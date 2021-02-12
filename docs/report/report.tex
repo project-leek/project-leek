@@ -198,80 +198,81 @@ Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Su
 Der erste Meilenstein begann am 29.10.2020 und ging bis zum 11.11.2020. Für den Anfang des Projektes war hier die Planung, Struktur und das Vorgehen des Projektes der Fokus.
 \subsubsection{Ziel}
 Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertig gestellt sein.
-Das umfasst sowohl das Konzept der Software Architektur und dem Tech-Stack, einer Anforderungsanalyse mit dem Kunden sowie das Füllen des Backlogs mit den ersten Tickets.
-Auch musste sich das Team damit beschäftigen, wie es das Projekt durchführen möchte, also welche Projekt Methodiken angewandt werden sollen.
-Um ein schnellen und sauberen Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet werden.
+Das umfasste sowohl das Konzept der Software-Architektur, die genutzten Technologien (später Technologie-Stack), einer Anforderungsanalyse mit dem Kunden sowie die Befüllung des Backlogs mit den ersten Tickets.Auch musste sich das Team damit beschäftigen, wie es das Projekt durchführen wollte und welche Management- und Teamorganisations-Methodiken dafür angewendet werden sollten.
+Um ein schnellen und reibungslosen  Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet werden.
 \subsubsection{Probleme}
-Die ersten einhergehenden Probleme waren die Auswahl des Tech-Stacks sowie die Auswahl der benötigten Hardware.
-Auch musste sich das Team überlegen, wie über das Projekt hinweg jedes Teammitglied sinnvoll das Projekt vorantreiben kann.
+Die ersten Probleme waren die Auswahl des Technologie-Stacks sowie die Auswahl der benötigten Hardware.
+Auch musste sich das Team das Projekt so entsprechend planen, dass jedes Teammitglied durchgehend sinnvoll arbeiten kann.
 \subsubsection{Lösungen}
-Da bereits einige Teammitglieder Erfahrung mit verschiedenen Tech-Stacks und ähnlichen Problemen hatten, wurde sich sehr schnell auf ein Tech-Stack geeinigt.
-Dieser Bestand aus Vue für das Frontend, TailwindCSS für das Styling und Feathers für eine Echtzeit API Schnittstelle. \colorbox{red}{backend?}
-Um ein sinnvolles kontinuierliches Arbeiten jedes Teammitglieds zu gewährleisten, einigte sich das Team darauf ein ständig gefülltes Ticket-Pool im Repository zu führen, sodass jedes Teammitglied jederzeit selbstständig eine Aufgabe finden und bearbeiten kann.
+Da bereits einige Teammitglieder Erfahrung mit verschiedenen Tech-Stacks und ähnlichen Problemen hatten, wurde sich auf den Tech-Stack geeinigt, bei dem die meiste Erfahrung im Team bestand.
+Dieser Bestand aus den oben beschriebenen Technologien.
+Um ein sinnvolles kontinuierliches Arbeiten jedes Teammitglieds zu gewährleisten, einigte sich das Team darauf ein ständig gefülltes Ticket-Pool im Repository zu führen, sodass jedes Teammitglied jederzeit selbstständig eine Aufgabe finden und bearbeiten konnte.
 \subsubsection{Product Increment}
-Insgesamt kam am Ende nicht im klassischen Sinne ein Product Increment dabei heraus, vielmehr wurden die Grundbausteine für die Entwicklung gelegt.
+Insgesamt kam am Ende des Milestones nicht im klassischen Sinne ein Product Increment zustande, vielmehr wurden die Grundbausteine für die Entwicklung und das Teamwork gelegt.
 Es wurde sich auf das bereits erwähnte Tech-Stack entschieden sowie als Hardware ein Raspberry Pi gewählt.
-Für die Entwicklung wurde ein Mono-Repository aufgesetzt, welches Front- und Backend zusammenfasst.
-Durch die Open Source Natur dieses Projektes wurde auch das Repository mit einer einleitenden Readme, ein "How to Contribute" Guide, und einem gefüllten Backlog versehen.
+Für die Entwicklung wurde ein Mono-Repository mit lerna\footnote{https://lerna.js.org/} aufgesetzt, welches Front- und Backend zusammenfasste.
+Durch die Open Source Natur dieses Projektes wurde eine verständliche und hilfreiche Dokumentation für das Projekt  nötig.
+So wurde auch das Repository mit einer einleitenden Readme, einem \glqqHow to Contribute\grqq Guide und einem gefüllten Backlog versehen.
 \subsubsection{Retrospektive}
-Nach dem ersten Meilenstein fand keine gehaltvolle Retrospektive statt.
+Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 
 \subsection{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum 11.11.2020 bis 25.11.2020 angelegt.
 Das Team sollte sich hier die ersten Grundbausteine für das Projekt legen.
-Das beinhaltet das absolvieren einer Hello World Aufgabe, sich mit der Hardware, dem NFC Reader und Raspberry Pi, auseinanderzusetzen und erste Mockups für das User Interface sowie den begleitenden Bericht anzufertigen.
 \subsubsection{Ziel}
-Damit das Team ein generell Verständnis mit dem Tech-Stack hat, musste jedes Teammitglied eine Hello World Aufgabe absolvieren. Diese beinhaltete im Backend ein Feathers-Service mit einem Tier anzulegen, und diese im Frontend darzustellen.
-Dazu sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden, sodass NFC-Tags ausgelesen werden können.
-Damit die Entwicklung baldig starten konnte, sollten die ersten Mockups für das User Interface erstellt werden sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser begleitend schon gefüllt werden kann.
+Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte, musste jedes Teammitglied eine \glqqHello-World\grqq Übungsaufgabe absolvieren. Diese beinhaltete im Backend einen Feathers-Service für ein virtuelles Haustier anzulegen und diese im Frontend darzustellen.
+Darüber hinaus sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden, sodass NFC-Tags ausgelesen werden können.
+Damit die Entwicklung zeitnah starten konnte, sollten die ersten Mockups für das User Interface erstellt werden sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser begleitend schon gefüllt werden konnte.
 \subsubsection{Probleme}
 Zu Beginn ging der Kundenwunsch, dass bereits NFC-Tags ausgelesen und angezeigt werden können, unter und führte \colorbox{yellow}{zu Problemen mit der Zeit}.
 Abgesehen davon war nur die Einarbeitung in die genutzten Technologien für manche schwieriger.
 \subsubsection{Lösungen}
 Bereits von Anfang an zeigte sich ein sehr guter Zusammehalt im Team und bei Problemen wurde sich schnell untereinander im Team geholfen.
-Um den Kundenwunsch noch sinnvoll umzusetzen wurden gegen Ende Überstunden geleistet.
+Um den Kundenwunsch noch sinnvoll umzusetzen, wurden gegen Ende des Sprints Überstunden geleistet.
 \subsubsection{Product Increment}
 Das Produkt wurde hierbei sinnvoll um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
 Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
-Auch wurde für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code Konventionen überprüft.
+Auch wurde für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
 \subsubsection{Retrospektive}
-Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um das Dev-Ops kümmerte.
+Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
 Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
-Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren, sowie kamen auch viele das erste mal mit Continous Integration, Code- und Pull Request Reviews in Kontakt.
+Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren, sowie kamen auch viele das erste mal Automatisierungsprozessen, Code- und Pull Request Reviews in Kontakt.
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gelegt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung gewünscht.
 
 \subsection{Meilenstein 3}
 Beginenn vom 25.11.2020 bis zum 17.12.2020 wurde Meilenstein drei angelegt.
-Die jeweiligen Anwendungsszenarien und Mockups sollten finalisiert werden.
-Der Kunde hatte als Wunsch hierbei auch den Wunsch gestellt, dass beim lesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird.
+Die jeweiligen Anwendungsszenarien und Mockups sollten in diesem Sprint finalisiert werden.
+Der Kunde hatte zusätzlich auch den Wunsch gestellt, dass beim Einlesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird.
 \subsubsection{Ziel}
 Das Primäre Ziel hier war vor allem den Kundenwunsch umzusetzen. Somit musste im Backend NFC-Tags mit der jeweiligen Musik angelegt werden.
-Auch musste sich damit beschäftigt werden, wie Nutzer am besten mit der Anwendung interagieren könnten, und wie das Team die Anwendung so konzipieren könnte, dass die Usablity für den Kunden am besten ist.
+Auch musste sich damit beschäftigt werden, wie Nutzer mit der Anwendung interagieren könnten, und wie das Team die Anwendung so konzipieren könnte, dass die Usablity am besten ist.
 Daher sollten auch Sequenzdiagramme und weitere Mockups für das User Interface erstellt werden.
-Damit jedes Teammitglied auch ohne Hardware arbeiten kann, sollte es auch möglich sein, NFC-Tags zu seeden.
+Damit jedes Teammitglied auch ohne Hardware arbeiten konnte, sollte es auch möglich sein, das Einlesen von NFC-Tags zu emulieren.
 \subsubsection{Probleme}
 Teilweise mussten Teammitglieder auf die Vollendung anderer Tickets abwarten, um mit neuen Tickets zu beginnen.
 Ansonsten sind nur kleinere Problematiken aufgetreten, vor allem bei den Design Mockups.
 Bedingt dadurch, dass das Team aus reinen Informatikern bestand, gab es nicht viel Erfahrung mit Design und Usability.
 \subsubsection{Lösungen}
-Macio hat in diesem Fall uns ausgeholfen und für uns einen Designer bereitgestellt, der unsere bisherigen Mockups verbessert hat.
-Auch das auseinandersetzen und erstellen von Sequenzdiagrammen half bei dem Team besser das Verhalten von einem Nutzer einzuschätzen und entsprechend das User Interface zu konzipieren.
+Macio unterstützte das Team, indem sie einen ihrer Designer bereitstellten.
+Dieser half, die bestehenden Mockups zu verbessern.
+Das Erstellen von und Auseinandersetzen mit Sequenzdiagrammen half bei dem Team dabei, besser das Verhalten von einem Nutzer einzuschätzen und entsprechend das User Interface zu konzipieren.
 \subsubsection{Product Increment}
-Zusätzlich zu dem Wunsch, dass beim anlegen eines NFC-Tags auch die jeweilig hinterlegte Spotify Musik abgespielt wird, wird auch automatisiert die neueste Version auf Github.io veröffentlicht.
-Das Einloggen über einen bestehenden Spotify Account ist nun auch möglich.
-Auf der Startseite werden auch die NFC-Tags entsprechend der zugeordneten Gruppe gruppiert.
+Zusätzlich zu dem Wunsch, dass beim anlegen eines NFC-Tags auch die jeweilig hinterlegte Spotify Musik abgespielt wurde, war auch das Einloggen über einen bestehenden Spotify Account möglich.
+Auf der Startseite wurden auch die NFC-Tags entsprechend der zugeordneten Gruppe gruppiert.
+Jegliche Neuerung auf dem Master wurden nun auch auf Github.io veröffentlicht.
+
 \subsubsection{Retrospektive}
 Deutlich besser lief in diesem Sprint die Problembewältigung durch Pair Programming, welches weiter die Teamarbeit und gegenseitige Hilfe verbesserte.
 Auch der Workflow mit Github, den Pull Request sowie Code Reviews wurde mehr verinnerlicht.
 Das Team lernte in diesem Sprint vor allem Vue Hooks kennen, und die Stärken von Feathers in Verbindung mit OAuth.
 Weiterhin waren die Tickets stärker voneinander abhängig, weshalb manche Arbeiten nicht direkt möglich machte.
-Um zukünftige Probleme gar nicht erst entstehen zu lassen, hat sich das Team vorgenommen, besser neues Gelerntes zu kommunizieren.
-Genauso sollten entstandene Probleme nicht erst im Daily, sondern früher kommuniziert werden.
+Um zukünftige Probleme gar nicht erst entstehen zu lassen, hatte sich das Team vorgenommen, entstandene Probleme nicht erst im Standup, sondern früher zu kommunizieren.
+Genauso sollte neu Gelerntes besser kommuniziert werden, um die Arbeit effizienter zu gestalten.
 
 \subsection{Meilenstein 4}
 Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
-Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen wie das Auswählen der Musik sowie das Anlegen und Bearbeiten von neuen Tags.
+Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen wie z.B. das Auswählen der Musik sowie das Anlegen und Bearbeiten von neuen Tags.
 \subsubsection{Ziel}
 Wie auch beim vorherigen Meilenstein war wieder hier der Fokus auf den Kundenwunsch, dass die ersten Funktionalitäten umgesetzt sind.
 Dass umfasste das Anlegen von Tags, also dem Scannen von Tags, anlegen eines eigenen Namens, auswählen von hinterlegter Musik und einem eigenen Bild, sowie das bearbeiten bereits angelegter Tags.
