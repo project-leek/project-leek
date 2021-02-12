@@ -393,7 +393,7 @@ Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 \section{Testing}
 \colorbox{red}{TODO:}wie haben wir getestet, haben wir getestet?
 
-Das Team entschied sich zu BEginn der Produkt-Entwicklung dafür, Test zur Verbesserung der Codequalität zu nutzen.
+Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Test zur Verbesserung der Codequalität zu nutzen.
 Code Test lassen sich in zwei Arten unterteilen: statische und dynamische.
 
 \subsection{Statische Tests}
@@ -402,8 +402,19 @@ Dies ermöglicht eine häufige und kontinuierliche Nutzung Tests dieser Art.
 Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
 
 \subsubsection{Linting}
-
-
+Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
+Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
+So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z.B. fehlende Kommata, schnell gefunden und behoben werden.
+Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
+Für diese Werkzeug war zusätzlich auch eine Erweiterung für die Entwicklungsumgebung verfügbar.
+Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
+Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
+Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
+Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
+\\
+Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
+Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
+Dies legte die Grundlage für lesbaren Code und ermöglichten successive effizientes Arbeiten.
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
