@@ -202,8 +202,10 @@ Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien un
 Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
 Aufgrund von nicht vorhandener Typisierung wurde sich dann auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Da diese aufgrund des
 Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript besitzt, fiel das Erlernen den Entwicklern relativ leicht.
+Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compilezeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
 Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
 Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
+
 
 \subsubsection{Frameworks}
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung der Benutzeroberfläche mit weniger Aufwand zu entwickeln.
@@ -211,7 +213,7 @@ Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks 
 \subsubsection*{Vue.js}
 Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-Dieses wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, was es gerade für die Gruppenmitglieder mit weniger Erfahrung im Web-Bereich leichter zu erlernen machte.
+Dieses wurde gewählt, da es sehr gut dokumentiert ist und eine flache Lernkurve besitzt, wodurch der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter war.
 Außerdem bot das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen konnten,
 während andere am Logik-Code arbeiteten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant. \cite{Vue_Performance}
 
@@ -236,7 +238,7 @@ Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt un
 \subsubsection{Containervirtualisierung (Docker)}
 Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
 Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
-Der Vorteil von Docker besteht darin, dass das Team lediglich ein sogenanntes \textit{docker-compose} file benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
+Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
 Es enthält einen Verweis auf die jeweiligen Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
 sodass eine weitere Installation seitens der Benutzer:innen nicht erforderlich sind.
 Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
