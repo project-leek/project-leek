@@ -192,36 +192,78 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \subsection{Hilfsmittel}
 Im Rahmen des Projekts nutze das Team eine vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
-Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet. Zum Anderen wurden sie als Ergebnis der Retrospektiven erprobt.
+Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet oder als Ergebnis der Retrospektiven erprobt.
 
 \subsubsection{Github \& Github IO}
-\subsubsection*{Git Remote}
-\subsubsection*{Roadmap}
-\subsubsection*{Github IO}
-\subsubsection*{}
+Da alle Teammitglieder, wie auch die Kunden bereits einen Account bei dem Dienst \textit{GitHub} besaßen, wurde die Entscheidung getroffen, diesen als \colorbox{red}{???} einzusetzen.
+Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung quelloffene Software stellte er für dieses Projekt die ideale Umgebung zur Quellcodeverwaltung und Kollaboration dar.
+
+\paragraph{Kollaboration} $~$ \\
+Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben (\textit{Issues}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
+zugeordnet. Außerdem konnten verschiedene Informationen, wie der Milestone in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
+Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
+Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
+\\
+\\
+Eine weitere Funktionalität von GitHub, die in diesem Projekt genutzt wurden sind die sogenannten \textit{Actions}\footnote{\raggedright\url{https://github.com/features/actions}}.
+Sie ermöglichen automatisierte Tests, die den Quellcode und die Anwendung als Gesamtkonstrukt auf verschiedenste Fehler prüfen und frei konfigurierbar sind.
+In diesem Projekt wurden die folgenden vier Tests durchgeführt um die Änderungen vor der Übertragung in den Master-Branch zu validieren:
+\begin{enumerate}
+  \item \textbf{build}: Wird die Software fehlerfrei gebaut?
+  \item \textbf{lint}\footnote{Tool zur statischen Codeanalyse}: Ist der Quellcode in gutem Stil geschrieben?
+  \item \textbf{test}: Sind die geschrieben Unit-Tests erfolgreich?
+  \item \textbf{typecheck}: Sind alle Typen kompatibel?
+\end{enumerate}
+Sind alle Tests erfolgreich, ist die Änderung technisch nutzbar.
+\\
+\\
+Außerdem wurde die in GitHub existierende Funktionalität der Pull Requests verwendet. Beim \textit{Pushen}\footnote{Hochladen der Änderung vom Entwickler-PC auf das Repositoty auf GitHub}
+werden die Änderungen automatisch in dem den Branch betreffenden Pull Request angezeigt (wenn vorhanden).
+Jeder Pull Request enthält allgemeine Informationen, welchem Zweck er dient und von wem die Änderung durchgeführt wird. Außerdem wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) angezeigt.
+Das Projekt ist so konfiguriert, dass die Übernahme der Änderung des Pull Requests nur möglich ist, wenn mindestens zwei andere Entwickler diesen Änderungen
+durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich abgeschlossen wurden. Ist dies der Fall, kann die Änderung in den Master-Stand übertragen werden.
+Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
+
+\paragraph{Github Pages} $~$ \\
+Zum Bereitstellen des Frontends der leek-boxen wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
+Die Konigurationsanforderungen für diese Website sind minimal, da der Inhalt der Website an einen Teil des Repositotys gebunden werden kann. In unserem Fall, wird hierfür das \textit{app-package} verwendet.
+So bleibt die Website immer aktuell, da sie auf einem eigenen Branch besteht, und der Stand der Website komfortabel durch einen merge vom Master-Branch in den Website-Branch aktualisiert werden kann.
+\colorbox{red}{@Anton Please check!}
 
 \subsubsection{Visual Studio Code \& WSL}
 Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
-Die IDE ist sehr flexibel und kann mit allen für das Projekt benötigten Dateitypen umgehen. Außerdem ist sie durch eine vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an unsere Bedürfnisse.
-So wurden in diesem Fall  die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts), \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
-Außerdem bietet \textit{Visual Studio Code} eine komfortable anbindung and das \textit{Windows Subsystem für Linux (WSL)}\footnote{https://code.visualstudio.com/docs/remote/wsl}, welches wir einsetzten, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams zu haben
-und nicht nur auf der gleichen IDE sondern auch auf dem einem UNIX-Betriebssystem zu arbeiten. \colorbox{red}{WSL noch erklären?} Dies machte insbesondere die Arbeit mit \textit{Docker} deutlich einfacher.
+Die IDE ist beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
+So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts), \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
+Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote{\raggedright\url{https://code.visualstudio.com/docs/remote/wsl}} an das
+\textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
+und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
 
 \subsubsection{Prototyping (Figma)}
-Um sich mit dem Kunden auf ein Design für die Verwaltungsoberfläche zu einigen wurden vor der Entwicklung Prototypen der benötigeten Komponenten mittels des webbaiserten
+Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigeten Komponenten mittels des webbaiserten
 Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
+\textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
 
 \subsubsection{Lucidchart}
-Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \glqq Lucidchart\grqq{} verwendet.
+Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
 Hier wurde neben der initial erstellen Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten Userstories entstanden sind.
+Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
+Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
 
-\subsubsection{extern genutzte Libraries}
-- Spotify Web API (zum einfachen Zugriff auf Spotify API)
-- nedb: Json DB (keine RL nötig, einfach, kostenlos, inkrementell, Feathers Support)
+\subsubsection{Externe Bibliotheken}
+\paragraph{Spotify Web API} $~$ \\
+Um die abspielbaren Songs und deren Bilder zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
+Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
+Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
+Diese bietet bereits die benötigten Methoden zum Suchen eines Songs anhand eines Suchbegriffs.
+Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern einfach identifiziert werden.
+Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
 
-\colorbox{red}{TODO:}Vue, vscode, devops krams, etc
-
-
+\paragraph{NeDB} $~$ \\
+Als Datenbank für dieses Projekt wurde die kostenlose JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
+Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
+\textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende sehr schnelle JSON Datenbank.
+Sie wurde gewählt, da sie simpel ist und \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
+Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
 
 \subsection{Deployment Cycle}
 \colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
