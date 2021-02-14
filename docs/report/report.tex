@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, draft]{article}
+\documentclass[10pt, a4paper]{article}
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -7,6 +7,7 @@
 \usepackage{comment}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 \usepackage{caption}
 \DeclareCaptionFormat{citation}{%
    \ifx\captioncitation\relax\relax\else
@@ -200,12 +201,21 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 \section{Durchführung}
 
 \subsection{Projektstrukur}
+\begin{wrapfigure}{r}{4cm}
+  \includegraphics[width=3.8cm]{PackageStruktur.png}
+  \caption{Orderstruktur}
+  \label{fig:Orderstruktur}
+\end{wrapfigure}
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten und zum Abspielen der Musik entwickelt werden.
-Die dafür benötigten Anwendungen wurden als Microservices konzipiert, um die \colorbox{red}{unabhänige bearbeitung weil open source blub blub}.
-Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository zusammengefasst. Jeder Service
-wurde in einem Unterdner des Packages Ordner angelegt (vgl. ). Damit waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne jedes Mal das Repository wechseln zu müssen.
-
+Die dafür benötigten Anwendungen wurden als Microservices konzipiert. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
+Jeder Service wurde in einem Unterdner des Packages Ordner angelegt (vgl. \ref{fig:Orderstruktur}). Der Ordner \textit{app} behinhaltet die Benutzeroberfläche,
+\textit{backed} die Datenbankschnittstelle und Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Reader.
+Der Ordner commons beinhaltet die von Backend, Frontend und NFC-Reader gemeinsam genutzten Ressourcen (wie z. B. Modell-Klassen).
+Damit waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
+Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für den \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
+Auf die Auflistung aller weiteren Dateien wird für den Moment verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
 
 
 \subsection{Technologien und Hilfsmittel}
