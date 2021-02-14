@@ -480,7 +480,58 @@ Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 \colorbox{red}{TODO:}vielleicht interessante Code Snippets?
 
 \section{Testing}
-\colorbox{red}{TODO:}wie haben wir getestet, haben wir getestet?
+Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Tests zur Verbesserung der Codequalität durchzuführen.
+Quellcode Tests lassen sich in statische und dynamische Tests unterteilen.
+
+\subsection{Statische Tests}
+Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten im Gegensatz zu dynamischen Tests nicht das Verhalten zur Laufzeit.
+Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
+Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
+
+\subsubsection{Linting}
+Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
+Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
+So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
+Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
+Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
+Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
+Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
+Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
+Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
+\\
+Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
+Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
+Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
+
+\subsubsection{Reviews}
+Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
+Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
+Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
+Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
+In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt.
+So waren alle Teile des neuen Codes auf einen Blick einsehbar.
+Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
+Dies sorgte für einen effizienten Review-Prozess.
+
+\subsection{Dynamische Tests}
+Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
+Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
+Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
+Dabei wird überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
+Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
+So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
+Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
+\\ \\
+Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
+Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
+Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
+Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
+Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
+
+
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
