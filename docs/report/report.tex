@@ -188,6 +188,15 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \section{Durchführung}
 
+\subsection{Projektstrukur}
+Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
+verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten und zum Abspielen der Musik entwickelt werden.
+Die dafür benötigten Anwendungen wurden als Microservices konzipiert, um die \colorbox{red}{unabhänige bearbeitung weil open source blub blub}.
+Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository zusammengefasst. Jeder Service
+wurde in einem Unterdner des Packages Ordner angelegt (vgl. ). Damit waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne jedes Mal das Repository wechseln zu müssen.
+
+
+
 \subsection{Technologien und Hilfsmittel}
 \colorbox{red}{TODO:}Vue, vscode, devops krams, etc
 Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
