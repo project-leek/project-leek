@@ -6,6 +6,17 @@
 \usepackage{hyperref}
 \usepackage{comment}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
+\usepackage{graphicx}
+\usepackage{caption}
+\DeclareCaptionFormat{citation}{%
+   \ifx\captioncitation\relax\relax\else
+     \captioncitation\par
+   \fi
+   #1#2#3\par}
+\newcommand*\setcaptioncitation[1]{\def\captioncitation{\textit{Source:}~#1}}
+\let\captioncitation\relax
+\captionsetup{format=citation,justification=centering}
+\graphicspath{ {./images/} }
 
 \addbibresource{literature.bib}
 
