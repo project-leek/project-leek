@@ -194,14 +194,17 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
 durch die Retrospektiven optimierten Zyklus.
 \\
-Am Anfag des Zyklus steht die Auswahl eines \textit{Issue} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
-Nach Identifikation weist sich der Entwickler selbst dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen Branch
-in dem Schema \textit{[Ticket_Nummer]-[Name_des_Tickets]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
 \\
-Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend gepusht werden.
+Am Anfag des Zyklus steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
+Nach Identifikation weist sich der Entwickler selbst dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
+in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
+\\
+\\
+Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
 GitHub Erkennt automatisch die neuen \textit{Commits} und fragt den Entwickler, ob ein neuer \textit{Pull-Request} angelegt werden soll.
 Der angelegte \textit{Pull-Request} hat initial den Status \textit{Open}.
 Wenn die Aufgaben des \textit{Issues} noch nicht abgeschlossen sind, setzt der Entwickler den Status auf \textit{Draft}.
+\\
 \\
 Sind alle Änderungen abgechlossen wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) geprüft. Treten hierbei Fehler auf,
 muss der Entwickler diese prüfen und beheben. Sind alle Tests erfolgreich,betätigt der Entwickler die Schaltfläche \textit{Ready for Review}.
@@ -212,9 +215,9 @@ von Kommentaren an einzelne oder mehrere Zeilen angefügt werden. Sollte der Ent
 getätigt werden. Ist der komplette Code geprüft muss der Entwickler entscheiden,
 ob er die Änderungen annimmt (\textit{approve}) oder Änderungen anfordern möchte (\textit{Request changes})
 \\
+\\
 Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies wiederholt sich so oft, bis die Änderungen angenommen werden.
 Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, wird die Änderung mit der Schaltfläche \textit{Mege into master} übertragen.
-
 
 \colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
 
