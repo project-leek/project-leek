@@ -397,7 +397,7 @@ Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Test zur Verbe
 Code Test lassen sich in zwei Arten unterteilen: statische und dynamische.
 
 \subsection{Statische Tests}
-Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten nicht das Verhalten zur Laufzeit.
+Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten nicht das Verhalten zur Laufzeit wie dynamische Tests.
 Dies ermöglicht eine häufige und kontinuierliche Nutzung Tests dieser Art.
 Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
 
@@ -415,6 +415,36 @@ Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen C
 Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
 Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
 Dies legte die Grundlage für lesbaren Code und ermöglichten successive effizientes Arbeiten.
+
+\subsubsection{Reviews}
+Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
+Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
+Untersucht wurde vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
+Hierfür gab es keinen formalen Plan, allerdings war dei Review-Oberfläche von GitHub sehr hilfreich.
+In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt.
+So waren alle Teile des neuen Codes auf einen Blick einsehbar.
+Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
+Dies sorgte für einen effizienten Review-Prozess.
+
+\subsection{Dynamische Tests}
+Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
+Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
+Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
+Dabei wird überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
+Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
+So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
+Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
+\\ \\
+Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
+Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
+Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
+Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
+Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
+
+
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
