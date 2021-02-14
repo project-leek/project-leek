@@ -54,13 +54,13 @@ Now that we can comfortably copy and paste commands onto the raspberry, let's ge
 sudo rm  /etc/wpa_supplicant/wpa_supplicant.conf
 sudo systemctl disable systemd-resolved
 ```
-3.  replace the  line '# ap_name: comitup-<nn>' with 'ap_name: leek-<nn>'
+1.  replace the  line '# ap_name: comitup-<nn>' with 'ap_name: leek-<nn>'
 ```
 sudo nano /etc/comitup.conf
 ```
-4. restart the PI
+1. restart the PI
 
-After the restart, a new wifi should be available with the name "leek-"....
+After the restart, a new wifi called `leek-<...>` should be available. 
 Now connect to the wifi and follow the prompt to log on to the network or navigate manually to `http://10.41.0.1/`
 
 In the new screen, you can now connect to your home wifi. Every time the box is powered on and does not find a registered Wi-Fi, it will open its configuration hotspot again.
