@@ -245,25 +245,26 @@ Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So
 
 \subsubsection{Lucidchart}
 Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
-Hier wurde neben der initial erstellen Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten Userstories entstanden sind.
+Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
 Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
 Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
 
 \subsubsection{Externe Bibliotheken}
 \paragraph{Spotify Web API} $~$ \\
-Um die abspielbaren Songs und deren Bilder zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
+Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
 Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
 Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
-Diese bietet bereits die benötigten Methoden zum Suchen eines Songs anhand eines Suchbegriffs.
-Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern einfach identifiziert werden.
+Diese bietet bereits die benötigten Methoden, wie z. B. die zum Suchen eines Songs anhand eines Suchbegriffs.
+Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern ohne Mehraufwand genutzt werden.
 Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
 
 \paragraph{NeDB} $~$ \\
-Als Datenbank für dieses Projekt wurde die kostenlose JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
+Als Datenbank für dieses Projekt wurde die kostenlos verfügbare JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
 Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
-\textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende sehr schnelle JSON Datenbank.
-Sie wurde gewählt, da sie simpel ist und \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
+\textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende, sehr schnelle JSON Datenbank.
+Sie wurde gewählt, da sie eine geringe Komplexität besitzt und weil \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
 Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
+Diese Eigenschaft war hilfreich, um die Datenbank auf einem Raspberry Pi betreiben zu können.
 
 \subsection{Deployment Cycle}
 \colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
