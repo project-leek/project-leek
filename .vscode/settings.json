@@ -24,4 +24,7 @@
   "liveshare.populateGitCoAuthors": "never",
 "files.trimTrailingWhitespace": true,
 "cSpell.language": ",de"
+"cSpell.words": [
+    "vetur"
+]
 }
