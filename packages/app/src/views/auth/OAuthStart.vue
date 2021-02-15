@@ -5,6 +5,8 @@
 <script>
 import { defineComponent, onBeforeMount } from 'vue';
 
+import { backendUrl } from '../../compositions/useBackend';
+
 export default defineComponent({
   name: 'OAuthStart',
 
@@ -17,9 +19,8 @@ export default defineComponent({
 
   setup(props) {
     onBeforeMount(() => {
-      // TODO: make path configuarable
-      // eslint-disable-next-line no-restricted-globals
-      location.href = `http://localhost:3030/oauth/${props.oauthProvider}`;
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      location.href = `${backendUrl.value}/oauth/${props.oauthProvider}?redirect=auth/callback`;
     });
   },
 });

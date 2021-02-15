@@ -1,10 +1,12 @@
 <template>
   <div class="add-tag w-full flex flex-col">
-    <header class="p-8 flex flex-row items-start">
+    <header class="p-4 flex flex-row items-start">
       <Button back icon="fas fa-times" size="md" />
       <div class="headlines ml-2 flex flex-col my-auto">
         <span class="text-3xl">{{ steps[activeStep].title || 'Neuen Tag anlegen' }}</span>
-        <span v-if="nfcTag && nfcTag.nfcData">Tag-ID: #{{ nfcTag.nfcData }}</span>
+        <span v-if="nfcTag && nfcTag.nfcData" class="italic font-thin text-black text-opacity-30"
+          >Tag-ID #{{ nfcTag.nfcData }}</span
+        >
       </div>
     </header>
 

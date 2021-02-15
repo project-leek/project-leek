@@ -6,6 +6,8 @@ import { NFCReader, NFCTag, Speaker, Track, User } from '@leek/commons';
 import io from 'socket.io-client';
 import { computed, ref } from 'vue';
 
+import { debug } from './useDebug';
+
 type Service<T> = AdapterService<T> & ServiceAddons<T>;
 
 // Add this service to the service type index
@@ -25,53 +27,40 @@ type Application = FeathersApplication<ServiceTypes> & {
   get(key: 'authentication'): Promise<AuthenticationResult | null>;
 };
 
-const LS_BOX_ID = 'box_id';
+const LS_BACKEND_URL = 'backend_url';
 
-// detect if we are the app version deployed to github
-export const isSetupApp = computed(() => /github\.io$/.test(location.hostname));
+const feathersClient = feathers<ServiceTypes>() as Application;
+feathersClient.configure(auth());
 
-function debug(...str: string[]): void {
-  // eslint-disable-next-line no-console
-  console.log(...str);
-}
+feathersClient.on('login', () => {
+  debug('Backend: authenticated');
+});
 
-export function resolveBox(boxId: string): string {
-  let url = boxId;
+feathersClient.on('logout', () => {
+  debug('Backend: unauthenticated bye bye');
+});
 
-  // has port attached
-  if (!/:\d{2,5}$/.exec(url)) {
-    url = `${url}:80`;
-  }
+feathersClient.hooks({
+  error({ error }) {
+    // TODO: add pretty error toasting
+    debug('feathers-error:', error);
+  },
+});
 
-  // add protocol if not supplied
-  if (!/^https?:\/\//.exec(url)) {
-    url = `http://${url}`;
-  }
+export const backendUrl = ref<string | null>(localStorage.getItem(LS_BACKEND_URL) || null);
 
-  return url;
-}
+export const isBackendUrlConfigured = computed(() => !!backendUrl.value);
 
-export async function loadBox(boxId?: string): Promise<void> {
-  if (!boxId) {
-    const lsBoxId = localStorage.getItem(LS_BOX_ID);
+export const socket = ref<SocketIOClient.Socket>();
 
-    if (lsBoxId) {
-      window.location.href = resolveBox(lsBoxId);
-    }
-
+export function setBackendUrl(_backendUrl?: string): void {
+  if (!_backendUrl) {
+    localStorage.removeItem(LS_BACKEND_URL);
     return;
   }
 
-  // save box id if new one provided
-  localStorage.setItem(LS_BOX_ID, boxId);
-
-  return new Promise((resolve) => {
-    // imitate some slow loading (why? because we can!)
-    setTimeout(() => {
-      window.location.href = resolveBox(boxId);
-      resolve();
-    }, 1000 * 1.5);
-  });
+  backendUrl.value = _backendUrl;
+  localStorage.setItem(LS_BACKEND_URL, _backendUrl);
 }
 
 export async function isBackendAvailable(url: string): Promise<boolean> {
@@ -98,28 +87,38 @@ export async function isBackendAvailable(url: string): Promise<boolean> {
   });
 }
 
-const feathersClient = feathers<ServiceTypes>() as Application;
-feathersClient.configure(auth());
+export async function resolveBackendUrl(url: string): Promise<string | null> {
+  const DEFAULT_BACKEND = 'http://localhost:3000';
+  const DEFAULT_BACKEND_PORT = '3030';
 
-feathersClient.on('login', () => {
-  debug('Backend: authenticated');
-});
+  if (!url) {
+    if (await isBackendAvailable(DEFAULT_BACKEND)) {
+      return DEFAULT_BACKEND;
+    }
 
-feathersClient.on('logout', () => {
-  debug('Backend: unauthenticated bye bye');
-});
+    return null;
+  }
 
-feathersClient.hooks({
-  error({ error }) {
-    // TODO: add pretty error toasting
-    debug('feathers-error:', error);
-  },
-});
+  // try url as is
+  if (await isBackendAvailable(url)) {
+    return url;
+  }
 
-export const socket = ref<SocketIOClient.Socket>();
+  // try with standard port
+  if (!/:\d{2,5}$/.exec(url) && (await isBackendAvailable(`${url}:${DEFAULT_BACKEND_PORT}`))) {
+    return `${url}:${DEFAULT_BACKEND_PORT}`;
+  }
 
-export function loadBackend(backendUrl: string): void {
-  socket.value = io(backendUrl, {
+  // try with protocol
+  if (!/^https?:\/\//.exec(url) && (await isBackendAvailable(`https://${url}`))) {
+    return `https://${url}`;
+  }
+
+  return null;
+}
+
+export function loadBackend(_backendUrl: string): void {
+  socket.value = io(_backendUrl, {
     path: '/api/socket',
     transports: ['websocket'],
     autoConnect: true,
@@ -145,7 +144,21 @@ export function loadBackend(backendUrl: string): void {
   socket.value.open();
 }
 
+export function waitForConnection(): Promise<void> {
+  if (socket.value?.connected) {
+    return Promise.resolve();
+  }
+
+  return new Promise((resolve) => {
+    socket.value?.on('connect', () => {
+      resolve();
+    });
+  });
+}
+
 // auto-load if url is already set
-loadBackend('');
+if (backendUrl.value) {
+  loadBackend(backendUrl.value);
+}
 
 export default feathersClient;

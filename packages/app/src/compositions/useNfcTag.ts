@@ -6,14 +6,13 @@ import { computed, ComputedRef, Ref, ref } from 'vue';
 import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import feathers from './useBackend';
 
-const tagService = feathers.service('nfc-tags');
-let areTagsListenerLoaded = false;
+let areTagsLoaded = false;
 
-export const tagGroupListItems = ref<ListItem[]>([]);
-export const tags = ref<NFCTag[]>([]);
+export const tagGroupListItems = ref<ListItem[]>();
+export const tags = ref<NFCTag[]>();
 
 export async function loadTagGroups(): Promise<void> {
-  const allTags = (await tagService.find()) as Paginated<NFCTag>;
+  const allTags = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
   const tagGroupNames = uniq(allTags.data.map((tag: NFCTag) => tag.group));
   tagGroupListItems.value = tagGroupNames.map((groupName: string) => new ListItem(groupName));
 }
@@ -25,7 +24,7 @@ export type NFCTagGroup = {
 
 export const tagsOrderedByGroups = computed(() =>
   Object.values(
-    tags.value.reduce((previous, item) => {
+    (tags.value || []).reduce((previous, item) => {
       if (!previous[item.group]) {
         previous[item.group] = { name: item.group, tags: [] } as NFCTagGroup;
       }
@@ -35,21 +34,33 @@ export const tagsOrderedByGroups = computed(() =>
   )
 );
 
-export async function loadTags(): Promise<void> {
-  const res = (await tagService.find()) as Paginated<NFCTag>;
+async function loadTags(): Promise<void> {
+  if (areTagsLoaded) {
+    return;
+  }
+
+  areTagsLoaded = true;
+
+  const res = (await feathers.service('nfc-tags').find()) as Paginated<NFCTag>;
   tags.value = res.data;
 
-  if (!areTagsListenerLoaded) {
-    areTagsListenerLoaded = true;
+  feathers.service('nfc-tags').on('removed', (tag: NFCTag): void => {
+    tags.value = (tags.value || []).filter((_tag) => _tag._id !== tag._id);
+  });
 
-    tagService.on('removed', (tag: NFCTag): void => {
-      tags.value = tags.value.filter((_tag) => _tag._id !== tag._id);
-    });
+  feathers.service('nfc-tags').on('created', (tag: NFCTag): void => {
+    tags.value = [...(tags.value || []), tag];
+  });
 
-    tagService.on('created', (tag: NFCTag): void => {
-      tags.value = [...tags.value, tag];
+  feathers.service('nfc-tags').on('patched', (patchedTag: NFCTag): void => {
+    tags.value = (tags.value || []).map((tag) => {
+      if (tag._id === patchedTag._id) {
+        return patchedTag;
+      }
+
+      return tag;
     });
-  }
+  });
 }
 
 export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<boolean> =>
@@ -61,3 +72,7 @@ export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<b
     const tag = nfcTag.value;
     return !!(tag.nfcData && tag.name && tag.group && tag.trackUri && tag.imageUrl);
   });
+
+feathers.on('login', () => {
+  void loadTags();
+});

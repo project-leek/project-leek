@@ -1,7 +1,10 @@
-import feathers, { socket as feathersSocket } from './lib/feathers';
-import NFCReader from './lib/nfc-reader';
+import { NFCReader } from '@leek/commons';
 
-const nfcReader = new NFCReader();
+import config from './lib/config';
+import feathers, { socket as feathersSocket } from './lib/feathers';
+import NFCReaderDevice from './lib/nfc-reader';
+
+const nfcReader = new NFCReaderDevice();
 
 function log(message?: unknown, ...optionalParams: unknown[]): void {
   // eslint-disable-next-line no-console
@@ -29,24 +32,36 @@ async function updateAttachedTagData(nfcReaderId: string, tagData: string | null
   log('Attached tag to nfc-reader');
 
   // reset the attached-tag after 5 seconds as it is normally only attached for a short period of time
-  setTimeout(() => {
-    void updateAttachedTagData(nfcReaderId, null);
-    log('Detached tag from nfc-reader');
-  }, 1000 * 5);
+  if (tagData) {
+    setTimeout(() => {
+      void updateAttachedTagData(nfcReaderId, null);
+      log('Detached tag from nfc-reader');
+    }, 1000 * 5);
+  }
 }
 
 async function start(): Promise<void> {
-  const nfcReaderId = process.env.NFC_READER_ID || null;
   const apiUrl = process.env.API_URL || null;
-
-  if (!nfcReaderId) {
-    printError('Please specify your nfc-reader id with NFC_READER_ID');
-    process.exit(-1);
-  }
 
   if (!apiUrl) {
     printError('Please specify your api-url with API_URL');
     process.exit(-1);
+  }
+
+  let nfcReaderId = config.get('nfcReaderId').value();
+  if (!nfcReaderId) {
+    const nfcReader = (await feathers.service('nfc-readers').create({
+      name: `Leek ${Math.floor(Math.random() * 999) + 100}`,
+      attachedTagData: null,
+    })) as NFCReader;
+
+    nfcReaderId = nfcReader._id;
+
+    await config.set('nfcReaderId', nfcReaderId).write();
+
+    log('Registered NFC-Reader to backend. ID:', nfcReaderId);
+  } else {
+    log('NFC-Reader ID:', nfcReaderId);
   }
 
   feathersSocket.open();

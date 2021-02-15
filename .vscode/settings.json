@@ -22,5 +22,13 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "liveshare.populateGitCoAuthors": "never",
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "cSpell.words": [
+    "docker",
+    "framework",
+    "frameworks",
+    "tailwind",
+    "vetur",
+    "visual"
+]
 }

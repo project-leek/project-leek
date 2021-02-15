@@ -4,11 +4,13 @@ import { NFCReader, NFCTag, User } from '@leek/commons';
 import { Application, HookContext } from '../../../declarations';
 import { SpotifyApi } from '../../../utils/spotify';
 
-async function playSpotify(app: Application, user: User, spotifyUri: string): Promise<void> {
+async function playSpotify(app: Application, user: User, spotifyUri: string, device?: string): Promise<void> {
   const spotifyApi = new SpotifyApi(app, user);
 
   await spotifyApi.refreshToken();
   await spotifyApi.getApi().play({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    device_id: device,
     uris: [spotifyUri],
   });
 }
@@ -36,19 +38,23 @@ export default async (context: HookContext<NFCReader>): Promise<HookContext> => 
   let user: User;
 
   try {
+    if (!nfcReader.owner) {
+      throw new Error("Can't find user of nfc-reader.");
+    }
+
     user = await context.app.service('users').get(nfcReader.owner);
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(`Can't find the user to play music Spotify`, (error as Error).stack);
-    throw error;
+    console.error(`Can't find the user to play music`, (error as Error).stack);
+    return context;
   }
 
   try {
-    await playSpotify(context.app, user, nfcTag.trackUri);
+    await playSpotify(context.app, user, nfcTag.trackUri, nfcReader.selectedSpeaker);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(`Can't play music on Spotify`, (error as Error).stack);
-    throw error;
+    return context;
   }
 
   return context;
