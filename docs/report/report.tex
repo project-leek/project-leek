@@ -7,18 +7,19 @@
 \usepackage{comment}
 \usepackage{enumitem}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{caption}
 \DeclareCaptionFormat{citation}{%
-   \ifx\captioncitation\relax\relax\else
-     \captioncitation\par
-   \fi
-   #1#2#3\par}
+  \ifx\captioncitation\relax\relax\else
+    \captioncitation\par
+  \fi
+  #1#2#3\par}
 \newcommand*\setcaptioncitation[1]{\def\captioncitation{\textit{Source:}~#1}}
 \let\captioncitation\relax
 \captionsetup{format=citation,justification=centering}
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/} {../mockups/} }
 
 \addbibresource{literature.bib}
 
@@ -264,7 +265,51 @@ Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Mo
 Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 \section{Design Mockups}
-\colorbox{red}{TODO:}setze pdfs ein
+\subsection{Version 1}
+Die erste Version beinhaltete nur die Startseite  (siehe Abbildung \ref{fig:v1-startseite})und sollte die grundsätzlich benötigten Features aufzeigen.
+Als erste Idee kam hier auf, ein Karussell zu nutzen.
+Ein Karussell ermöglicht die Ansicht von mehreren Einträgen durch das seitliche scrollen. \colorbox{yellow}{das klingt voll ieh.}
+Dadurch konnten die einzelnen Einträge größer gestaltet werden und somit auch mehr Informationen enthalten.
+Anfänglich wurden für jeden einzelnen Eintrag auch noch die Tag-ID sowie ein Zahnrad für die Einstellungen angezeigt.
+
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=\textwidth]{../../mockups/v1/Discover Carousel.png}
+  \caption{Mockup v1 - Startseite}
+  \label{fig:v1-startseite}
+\end{center}
+\end{wrapfigure}
+
+\subsection{Version 2}
+Das Mockup wurde als nächstes um das anlegen von Tags (siehe Abbildung \ref{fig:v2-tagerstellen}), das Bearbeiten von Tags (siehe Abbildung \ref{fig:v2-tagedit}) und einer Wilkommensseite (siehe Abbildung \ref{fig:v2-welcome}) erweitert.
+Die Startseite wurde auch erweitert (siehe Abbildung \ref{fig:v2-welcome}).
+Hier wurde schnell gemerkt, dass diese bei mehreren Einträgen schnell unübersichtlich werden kann.
+Daher wurde die Möglichkeit für Gruppierungen hinzugefügt, welche auch noch einzelnd aus- und eingeklappt werden können.
+Im ausgeklappten Zustand werden die Einträge nicht mehr in einem Karussell angezeigt, sondern nacheinander in einem \colorbox{yellow}{Grid}.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.3*\textwidth]{../../mockups/v2/chooseName.png}
+    \includegraphics[width=0.3*\textwidth]{../../mockups/v2/chooseSong.png}
+    \includegraphics[width=0.3*\textwidth]{../../mockups/v2/chooseImage.png}
+  \caption{Mockup v2 - Tag Erstellen}
+  \label{fig:v2-tagerstellen}
+\end{center}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{../../mockups/v2/Tag Edit.png}
+  \caption{Mockup v2 - Tag Bearbeiten}
+  \label{fig:v2-tagedit}
+\end{center}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{../../mockups/v2/Welcome.png}
+  \caption{Mockup v2 - Wilkommensseite}
+  \label{fig:v2-welcome}
+\end{center}
+
+\subsection{Version 3}
+asd
 
 \section{Durchführung}
 
@@ -274,6 +319,7 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   \caption{Orderstruktur}
   \label{fig:Orderstruktur}
 \end{wrapfigure}
+
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
 Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
@@ -534,7 +580,7 @@ Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
 So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
 Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
 Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
-\\ \\
+
 Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
 Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
 Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
