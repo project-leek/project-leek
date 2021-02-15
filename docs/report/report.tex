@@ -23,7 +23,7 @@
 
 \addbibresource{literature.bib}
 
-\title{Projektbreicht Smart Music Player}
+\title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
 \begin{document}
@@ -43,7 +43,13 @@ Welche Teams die jeweiligen Projekte bearbeiten, entscheiden die Firmen selbst.
 Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team für die macio GmbH aus Kiel bearbeitete.
 
 \subsection{Unternehmen}
-\colorbox{red}{TODO:}was macht macio aus
+\begin{quote}
+  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte. Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können. Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
+  \cite{openSource}
+\end{quote}
+
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
 \subsection{Projektidee}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
@@ -270,6 +276,82 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 \section{Durchführung}
 
 \subsection{Technologien}
+
+\subsection{Hilfsmittel}
+Im Rahmen des Projekts nutze das Team eine Vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
+Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet oder als Ergebnis der Retrospektiven erprobt.
+
+\subsubsection{Github \& Github IO}
+Da alle Teammitglieder, wie auch die Kunden bereits einen Account bei dem Dienst \textit{GitHub} besaßen, wurde die Entscheidung getroffen, diesen als Hoster für \textit{Git-Remote-Repositories} einzusetzen.
+Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung auf quelloffene Software, stellte er für dieses Projekt die ideale Umgebung zur Quellcodeverwaltung und Kollaboration dar.
+
+\paragraph{Kollaboration} $~$ \\
+Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben bzw. Arbeitspakete (\textit{Issues}\footnote{Da das Team größtensteils den Begriff \textit{Issue} nutzte, wird dieser auch fortlaufend hauptsächlich verwendet.}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
+zugeordnet. Außerdem konnten verschiedene Informationen, wie z. B. der Sprint bzw. \textit{Milestone\footnote{Auch hier wird im weiteren Verlauf eher der Begriff Milestone oder Meilenstein verwendet.}} in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
+Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
+Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
+\\
+\\
+Eine weitere Funktionalität von GitHub, die in diesem Projekt genutzt wurden sind die sogenannten \textit{Actions}\footnote{\raggedright\url{https://github.com/features/actions}}.
+Sie ermöglichen automatisierte Tests, die den Quellcode und die Anwendung als Gesamtkonstrukt auf verschiedenste Fehler prüfen und frei konfigurierbar sind.
+In diesem Projekt wurden die folgenden vier Tests durchgeführt um die Änderungen vor der Übertragung in den Master-Branch zu validieren:
+\begin{enumerate}
+  \item \textbf{build}: Wird die Software fehlerfrei gebaut?
+  \item \textbf{lint}\footnote{Tool zur statischen Codeanalyse}: Ist der Quellcode in gutem Stil geschrieben?
+  \item \textbf{test}: Sind die geschrieben Unit-Tests erfolgreich?
+  \item \textbf{typecheck}: Sind alle Typen kompatibel?
+\end{enumerate}
+Sind alle Tests erfolgreich, ist die Änderung technisch nutzbar.
+\\
+\\
+Außerdem wurde die in GitHub existierende Funktionalität der Pull Requests verwendet. Beim \textit{Pushen}\footnote{Hochladen der Änderung vom Entwickler-PC auf das Repositoty auf GitHub}
+werden die Änderungen automatisch in dem den Branch betreffenden Pull Request angezeigt (wenn vorhanden).
+Jeder Pull Request enthält allgemeine Informationen, welchem Zweck er dient und von wem die Änderung durchgeführt wird. Außerdem wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) angezeigt.
+Das Projekt ist so konfiguriert, dass die Übernahme der Änderung des Pull Requests nur möglich ist, wenn mindestens zwei andere Entwickler diesen Änderungen
+durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich abgeschlossen wurden. Ist dies der Fall, kann die Änderung in den Master-Stand übertragen werden.
+Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
+
+\paragraph{Github Pages} $~$ \\
+Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
+Die Konigurationsanforderungen für diese Website sind minimal, da der Inhalt der Website an einen Teil des Repositotys gebunden werden kann. In unserem Fall, wird hierfür das \textit{app-package} verwendet.
+So bleibt die Website immer aktuell, da sie auf einem eigenen Branch besteht, und der Stand der Website komfortabel durch einen merge vom Master-Branch in den Website-Branch aktualisiert werden kann.
+\colorbox{red}{@Anton Please check!}
+
+\subsubsection{Visual Studio Code \& WSL}
+Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
+Die IDE beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine Vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
+So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts) und \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
+Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote{\raggedright\url{https://code.visualstudio.com/docs/remote/wsl}} an das
+\textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
+und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
+
+\subsubsection{Prototyping (Figma)}
+Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigeten Komponenten mittels des webbaiserten
+Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
+\textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
+
+\subsubsection{Lucidchart}
+Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
+Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
+Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
+Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
+
+\subsubsection{Externe Bibliotheken}
+\paragraph{Spotify Web API} $~$ \\
+Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
+Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
+Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
+Diese bietet bereits die benötigten Methoden, wie z. B. die zum Suchen eines Songs anhand eines Suchbegriffs.
+Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern ohne Mehraufwand genutzt werden.
+Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
+
+\paragraph{NeDB} $~$ \\
+Als Datenbank für dieses Projekt wurde die kostenlos verfügbare JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
+Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
+\textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende, sehr schnelle JSON Datenbank.
+Sie wurde gewählt, da sie eine geringe Komplexität besitzt und weil \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
+Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
+Diese Eigenschaft war hilfreich, um die Datenbank auf einem Raspberry Pi betreiben zu können.
 Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
 Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
 Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
@@ -365,9 +447,35 @@ Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services f�
 
 
 \subsection{Technologien und Hilfsmittel}
-\colorbox{red}{TODO:}Vue, vscode, devops krams, etc
-Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
 
+\subsection{Entwicklungszyklus}
+Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
+durch die Retrospektiven optimierten Zyklus.
+\\
+\\
+Am Anfag steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
+Nach Identifikation weist sich der Entwickelnde dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
+in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
+\\
+\\
+Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
+GitHub erkennt automatisch die neuen \textit{commits} und erfragt, ob ein neuer \textit{Pull-Request} angelegt werden soll.
+Dieser hat initial den Status \textit{Open}.
+Wenn die Aufgaben des \textit{Issues} noch nicht abgeschlossen sind, wird der Status auf \textit{Draft} gesetzt.
+\\
+\\
+Nach dem \textit{push} aller Änderungen, wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) ermittelt. Treten hierbei Fehler auf,
+werden diese geprüft und behoben. Sind alle Tests erfolgreich, betätigt der Entwickelnde die Schaltfläche \textit{Ready for Review}.
+Wenn ein:e Entwickler:in, diesen \textit{Pull-Request} sieht, wird ein \textit{Code-Review} durchgeführt.
+Hierzu wird der Branch in die IDE geladen und die Funktionalität verifiziert. Anschließend wird die Code-Qualität geprüft.
+Dafür werden die geänderten Dateien im Pull-Request betrachtet. Anmerkungen können in Form
+von Kommentaren an einzelne oder mehrere Zeilen angefügt werden. Bei Änderungsvorschlägen können diese über eine \textit{suggestion}
+getätigt werden. Ist der komplette Code geprüft wird entschieden,
+ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanforderung gestellt wird (\textit{Request changes}).
+\\
+\\
+Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
+Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
 \subsection{Projekt Management}
 \colorbox{red}{ticket pool in github, alles zentral}
 
