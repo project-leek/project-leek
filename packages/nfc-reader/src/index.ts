@@ -32,10 +32,12 @@ async function updateAttachedTagData(nfcReaderId: string, tagData: string | null
   log('Attached tag to nfc-reader');
 
   // reset the attached-tag after 5 seconds as it is normally only attached for a short period of time
-  setTimeout(() => {
-    void updateAttachedTagData(nfcReaderId, null);
-    log('Detached tag from nfc-reader');
-  }, 1000 * 5);
+  if (tagData) {
+    setTimeout(() => {
+      void updateAttachedTagData(nfcReaderId, null);
+      log('Detached tag from nfc-reader');
+    }, 1000 * 5);
+  }
 }
 
 async function start(): Promise<void> {
