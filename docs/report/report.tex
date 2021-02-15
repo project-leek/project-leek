@@ -279,7 +279,7 @@ Da alle Teammitglieder, wie auch die Kunden bereits einen Account bei dem Dienst
 Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung quelloffene Software stellte er für dieses Projekt die ideale Umgebung zur Quellcodeverwaltung und Kollaboration dar.
 
 \paragraph{Kollaboration} $~$ \\
-Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben (\textit{Issues}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
+Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben bzw. Arbeitspakete (\textit{Issues}\footnote{Da das Team größtensteils den Begriff \textit{Issue} nutzte, wird dieser auch fortlaufend hauptsächlich verwendet.} wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
 zugeordnet. Außerdem konnten verschiedene Informationen, wie der Milestone in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
 Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
 Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
@@ -305,15 +305,15 @@ durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich ab
 Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
 
 \paragraph{Github Pages} $~$ \\
-Zum Bereitstellen des Frontends der leek-boxen wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
+Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
 Die Konigurationsanforderungen für diese Website sind minimal, da der Inhalt der Website an einen Teil des Repositotys gebunden werden kann. In unserem Fall, wird hierfür das \textit{app-package} verwendet.
 So bleibt die Website immer aktuell, da sie auf einem eigenen Branch besteht, und der Stand der Website komfortabel durch einen merge vom Master-Branch in den Website-Branch aktualisiert werden kann.
 \colorbox{red}{@Anton Please check!}
 
 \subsubsection{Visual Studio Code \& WSL}
 Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
-Die IDE ist beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
-So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts), \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
+Die IDE beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine Vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
+So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts) und \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
 Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote{\raggedright\url{https://code.visualstudio.com/docs/remote/wsl}} an das
 \textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
 und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
