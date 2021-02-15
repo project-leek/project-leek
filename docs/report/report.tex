@@ -367,11 +367,11 @@ Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services f�
 \colorbox{red}{TODO:}Vue, vscode, devops krams, etc
 Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
 
-\subsection{Deployment Cycle}
-\colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
+\subsection{Projekt Management}
+\colorbox{red}{ticket pool in github, alles zentral}
 
-\subsection{Probleme während der Durchführung}
-\colorbox{red}{TODO:}
+\subsection{Deployment Cycle}
+\colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
 
 \section{Projekt Meilensteine}
 \subsection{Meilenstein 1}
@@ -560,8 +560,6 @@ Verbessern
 \colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 
-\section{Erkenntnisse}
-
 \section{Code Walkthrough}
 \colorbox{red}{TODO:}vielleicht interessante Code Snippets?
 
@@ -618,6 +616,62 @@ Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lern
 Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
 
+
+\section{Fazit}
+\subsection{Probleme, Lösungen, Erkenntnisse}
+\colorbox{red}{TODO: Finde TITEL:} Fazit oder nur Erkenntnisse oder oder?
+\colorbox{red}{Besseres Intro zum Kapitel?}
+Das Projekt Informatik gab einen realistischen Einblick in die Arbeitswelt.
+Das Team musste sich klassischen Alltagsproblemen stellen, Lösungswege finden und konnte wichtige Erkenntnisse für die Zukunft daraus ziehen.
+Auch Coding-Entwurfsmuster und -Konventionen wurden neu erlernt und praktisch angewandt.
+
+\subsubsection{Einarbeitung in neue Technologien}
+Zu Beginn des Projektes bestand eine größere Differenz, inwieweit die einzelnen Teammitglieder mit den jeweiligen Technologien vertraut waren.
+Insbesondere die Projektstruktur bereitete eine größere Einstiegshürde für viele Entwickler.
+Sie wurde durch das automatische generieren von Dateien und Ordnern immer komplexer.
+Mit zunehmender Entwicklungszeit und durch die Arbeit an den Teilkomponenten des Mono-Repositorys gewannen die Entwickler jedoch schnell mehr Überblick über die Struktur.
+Das Team lernte wie Frameworks und Libraries  z. B. Vue, Tailwind und Feathers sinnvoll und hilfreich eingesetzt werden können.
+
+\subsubsection{Versionskontrolle und Deployment Cycle}
+Zwar wurde den Studierenden im Studium der Vorteil von Versionskontrollsystemen wie Git vermittelt, doch fand sich selten ein praktisches Anwendungszenario, dass Git über die Hauptfunktion der Versionierung hinaus sinnvoll genutzt hat.
+Dieses Projekt bot erstmals eine sinnvolle Anwendung von \textit{git}.
+Die Umsetzungen der gängigen Industriestandarts we z.B Pull-Requests und Code Reviews lehrte uns die Vorteile von Git in einer komplexen Umgebung.
+Diese Methoden führten zu folgenden maßgebliche Verbesserungen:
+Mit zwei erfordelichen Code Reviews pro Pull Request, konnten Fehler im Code häufiger entdeckt werden und so eine höhere Codequalität erreicht.
+Als positiver Nebeneffekt konnten die Reviewer außerdem während des Prozesses neue Funktionen und Codemuster erlernen, zu denen sie bei Bedarf (per Kommentar) Fragen stellen konnten.
+Die Gewöhnung an diesen Deployment Cycle brauchte eine gewisse Zeit, fand aber von Sprint zu Sprint immer mehr Wertschätzung im Team.
+
+\subsubsection{Automatisierte Tests und Deployment}
+Jeder Pull Request durchlief mehrere automatisierte Tests - sogenannte \textit{Actions} - die den geänderten Code auf Korrektheit in Syntax und simplen Semantischen fragen getestet haben.
+Inhaltliche Funktionen der Applikation wurden durch die Tests nicht abgedeckt.
+Diese prüften den Quellcode anhand fest eingestellter Testparameter.
+Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen und die Fehlerquelle Mensch minimiert.
+Änderungen im Master werden automatisch verarbeitet. Die neue Version des Codes wird auf Github.io veröffentlicht und geänderte Latex Dateien als PDF im eigenen Branch erstellt.
+Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+Dank dieser Automatisierungen konnte sich das Team mehr auf das Weiterentwickeln des Projektes konzentrieren.
+
+\subsubsection{Regelmäßige Standups und Retrospektiven}
+Durch die regelmäßigen Standups entstand ein Ort für den Austausch von Problemen und Informationen über Fortschritt und neue Funktionen.
+So wurde verhindert, dass Probleme untergingen, neues Wissen wurde schneller verbreitet und die gesamte Teamproduktivität verbessert.
+Das bei den Retrospektiven entstandene Feedback erwies sich als sehr wichtig für das Teamklima.
+Auch die hierbei angesprochenen Probleme und Verbesserungsvorschläge wurden vom Team als sehr wertvoll für die nächsten Sprints erkannt und entsprechend adaptiert.
+
+\subsubsection{Kommunikation und Eigeninitiative}
+Anfänglich hat sich das Team zu sehr auf die Standups, als alleiniges Kommunikationsmittel verlassen, wodurch die Absprache zwischen den Teammitgliedern nur selten statt gefunden hat.
+Der Umfang erster Tickets war deutlich zu groß.
+Die Komplexität eines Tickets hat Teammitglieder davon abgehalten sich mit der Thematik zu beschäftigen.
+Da konkrete Fragen bei einem gänzlich neuen Thema schwierig zu formulieren sind, wurde oft komplett auf Hilfe verzichtet und das Ticket zur Seite gelegt.
+Lösungsansätze wurden gemeinsam in den Retrospektiven erarbeitet.
+Weiterhin konnte offen über Probleme gesprochen werden, indem teaminterne Evaluationen stattgefunden haben.
+
+\subsubsection{Planung, Zielsetzung und Einschätzung}
+Größere Probleme hatte das Team mit dem Zeitmanagment der einzelnen Ticket.
+Während eines Milestones wurden manchmal nicht alle geplanten Tickets fertiggestellt, oder es wurde nachträglich zu viel in den Sprint neu Aufgenommen.
+Beides resultierte in Überstunden und zu wenig Zeit fürs Testen am Ende eines Meilensteins.
+Aus diesen Erfahrungen, hat das Team gelernt wie wichtig es ist die Planung des Meilensteins und dessen Tickets besonders sorgfältig zu gestalten.
+So hat das Team sich auch vorgenommen, mindestens zwei Tage vor einem Sprintende alle für den Sprint benötigten Tickets fertiggestellt zu haben.
+Dadurch sollte genügend Zeit geschaffen werden, um Tickets auf Korrektheit zu testen und konfliktfrei in den Master Branch mergen zu können.
+Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können, war diese Methode angesichts der knappen Projektlaufzeit die effektivste.
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
