@@ -22,8 +22,16 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "liveshare.populateGitCoAuthors": "never",
-"files.trimTrailingWhitespace": true,
-"cSpell.words": [
-    "vetur"
+  "files.trimTrailingWhitespace": true,
+  "cSpell.words": [
+    "docker",
+    "macio",
+    "musikstreaming",
+    "simplifizieren",
+    "framework",
+    "frameworks",
+    "tailwind",
+    "vetur",
+    "visual"
 ]
 }
