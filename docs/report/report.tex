@@ -7,6 +7,7 @@
 \usepackage{comment}
 \usepackage{enumitem}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{caption}
@@ -22,7 +23,7 @@
 
 \addbibresource{literature.bib}
 
-\title{Projektbreicht Smart Music Player}
+\title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
 \begin{document}
@@ -42,7 +43,13 @@ Welche Teams die jeweiligen Projekte bearbeiten, entscheiden die Firmen selbst.
 Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team für die macio GmbH aus Kiel bearbeitete.
 
 \subsection{Unternehmen}
-\colorbox{red}{TODO:}was macht macio aus
+\begin{quote}
+  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte. Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können. Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
+  \cite{openSource}
+\end{quote}
+
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
 \subsection{Projektidee}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
@@ -440,14 +447,40 @@ Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services f�
 
 
 \subsection{Technologien und Hilfsmittel}
-\colorbox{red}{TODO:}Vue, vscode, devops krams, etc
-Entwickelt wird mit Visual Studio Code, da es eine einfache Nutzung des Linux-Subsystems ermöglicht. \footnote{https://code.visualstudio.com/docs/remote/wsl}.
+
+\subsection{Entwicklungszyklus}
+Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
+durch die Retrospektiven optimierten Zyklus.
+\\
+\\
+Am Anfag steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
+Nach Identifikation weist sich der Entwickelnde dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
+in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
+\\
+\\
+Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
+GitHub erkennt automatisch die neuen \textit{commits} und erfragt, ob ein neuer \textit{Pull-Request} angelegt werden soll.
+Dieser hat initial den Status \textit{Open}.
+Wenn die Aufgaben des \textit{Issues} noch nicht abgeschlossen sind, wird der Status auf \textit{Draft} gesetzt.
+\\
+\\
+Nach dem \textit{push} aller Änderungen, wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) ermittelt. Treten hierbei Fehler auf,
+werden diese geprüft und behoben. Sind alle Tests erfolgreich, betätigt der Entwickelnde die Schaltfläche \textit{Ready for Review}.
+Wenn ein:e Entwickler:in, diesen \textit{Pull-Request} sieht, wird ein \textit{Code-Review} durchgeführt.
+Hierzu wird der Branch in die IDE geladen und die Funktionalität verifiziert. Anschließend wird die Code-Qualität geprüft.
+Dafür werden die geänderten Dateien im Pull-Request betrachtet. Anmerkungen können in Form
+von Kommentaren an einzelne oder mehrere Zeilen angefügt werden. Bei Änderungsvorschlägen können diese über eine \textit{suggestion}
+getätigt werden. Ist der komplette Code geprüft wird entschieden,
+ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanforderung gestellt wird (\textit{Request changes}).
+\\
+\\
+Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
+Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
+\subsection{Projekt Management}
+\colorbox{red}{ticket pool in github, alles zentral}
 
 \subsection{Deployment Cycle}
-\colorbox{red}{TODO:} ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte \textit{undraft} > assigne 2 reviewer > merge master
-
-\subsection{Probleme während der Durchführung}
-\colorbox{red}{TODO:}
+\colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
 
 \section{Projekt Meilensteine}
 \subsection{Meilenstein 1}
@@ -636,8 +669,6 @@ Verbessern
 \colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 
-\section{Erkenntnisse}
-
 \section{Code Walkthrough}
 \colorbox{red}{TODO:}vielleicht interessante Code Snippets?
 
@@ -686,7 +717,7 @@ Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
 So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
 Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
 Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
-\\ \\
+\\~\\
 Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
 Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
 Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
@@ -694,6 +725,62 @@ Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lern
 Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
 
+
+\section{Fazit}
+\subsection{Probleme, Lösungen, Erkenntnisse}
+\colorbox{red}{TODO: Finde TITEL:} Fazit oder nur Erkenntnisse oder oder?
+\colorbox{red}{Besseres Intro zum Kapitel?}
+Das Projekt Informatik gab einen realistischen Einblick in die Arbeitswelt.
+Das Team musste sich klassischen Alltagsproblemen stellen, Lösungswege finden und konnte wichtige Erkenntnisse für die Zukunft daraus ziehen.
+Auch Coding-Entwurfsmuster und -Konventionen wurden neu erlernt und praktisch angewandt.
+
+\subsubsection{Einarbeitung in neue Technologien}
+Zu Beginn des Projektes bestand eine größere Differenz, inwieweit die einzelnen Teammitglieder mit den jeweiligen Technologien vertraut waren.
+Insbesondere die Projektstruktur bereitete eine größere Einstiegshürde für viele Entwickler.
+Sie wurde durch das automatische generieren von Dateien und Ordnern immer komplexer.
+Mit zunehmender Entwicklungszeit und durch die Arbeit an den Teilkomponenten des Mono-Repositorys gewannen die Entwickler jedoch schnell mehr Überblick über die Struktur.
+Das Team lernte wie Frameworks und Libraries  z. B. Vue, Tailwind und Feathers sinnvoll und hilfreich eingesetzt werden können.
+
+\subsubsection{Versionskontrolle und Deployment Cycle}
+Zwar wurde den Studierenden im Studium der Vorteil von Versionskontrollsystemen wie Git vermittelt, doch fand sich selten ein praktisches Anwendungszenario, dass Git über die Hauptfunktion der Versionierung hinaus sinnvoll genutzt hat.
+Dieses Projekt bot erstmals eine sinnvolle Anwendung von \textit{git}.
+Die Umsetzungen der gängigen Industriestandarts we z.B Pull-Requests und Code Reviews lehrte uns die Vorteile von Git in einer komplexen Umgebung.
+Diese Methoden führten zu folgenden maßgebliche Verbesserungen:
+Mit zwei erfordelichen Code Reviews pro Pull Request, konnten Fehler im Code häufiger entdeckt werden und so eine höhere Codequalität erreicht.
+Als positiver Nebeneffekt konnten die Reviewer außerdem während des Prozesses neue Funktionen und Codemuster erlernen, zu denen sie bei Bedarf (per Kommentar) Fragen stellen konnten.
+Die Gewöhnung an diesen Deployment Cycle brauchte eine gewisse Zeit, fand aber von Sprint zu Sprint immer mehr Wertschätzung im Team.
+
+\subsubsection{Automatisierte Tests und Deployment}
+Jeder Pull Request durchlief mehrere automatisierte Tests - sogenannte \textit{Actions} - die den geänderten Code auf Korrektheit in Syntax und simplen Semantischen fragen getestet haben.
+Inhaltliche Funktionen der Applikation wurden durch die Tests nicht abgedeckt.
+Diese prüften den Quellcode anhand fest eingestellter Testparameter.
+Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen und die Fehlerquelle Mensch minimiert.
+Änderungen im Master werden automatisch verarbeitet. Die neue Version des Codes wird auf Github.io veröffentlicht und geänderte Latex Dateien als PDF im eigenen Branch erstellt.
+Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+Dank dieser Automatisierungen konnte sich das Team mehr auf das Weiterentwickeln des Projektes konzentrieren.
+
+\subsubsection{Regelmäßige Standups und Retrospektiven}
+Durch die regelmäßigen Standups entstand ein Ort für den Austausch von Problemen und Informationen über Fortschritt und neue Funktionen.
+So wurde verhindert, dass Probleme untergingen, neues Wissen wurde schneller verbreitet und die gesamte Teamproduktivität verbessert.
+Das bei den Retrospektiven entstandene Feedback erwies sich als sehr wichtig für das Teamklima.
+Auch die hierbei angesprochenen Probleme und Verbesserungsvorschläge wurden vom Team als sehr wertvoll für die nächsten Sprints erkannt und entsprechend adaptiert.
+
+\subsubsection{Kommunikation und Eigeninitiative}
+Anfänglich hat sich das Team zu sehr auf die Standups, als alleiniges Kommunikationsmittel verlassen, wodurch die Absprache zwischen den Teammitgliedern nur selten statt gefunden hat.
+Der Umfang erster Tickets war deutlich zu groß.
+Die Komplexität eines Tickets hat Teammitglieder davon abgehalten sich mit der Thematik zu beschäftigen.
+Da konkrete Fragen bei einem gänzlich neuen Thema schwierig zu formulieren sind, wurde oft komplett auf Hilfe verzichtet und das Ticket zur Seite gelegt.
+Lösungsansätze wurden gemeinsam in den Retrospektiven erarbeitet.
+Weiterhin konnte offen über Probleme gesprochen werden, indem teaminterne Evaluationen stattgefunden haben.
+
+\subsubsection{Planung, Zielsetzung und Einschätzung}
+Größere Probleme hatte das Team mit dem Zeitmanagment der einzelnen Ticket.
+Während eines Milestones wurden manchmal nicht alle geplanten Tickets fertiggestellt, oder es wurde nachträglich zu viel in den Sprint neu Aufgenommen.
+Beides resultierte in Überstunden und zu wenig Zeit fürs Testen am Ende eines Meilensteins.
+Aus diesen Erfahrungen, hat das Team gelernt wie wichtig es ist die Planung des Meilensteins und dessen Tickets besonders sorgfältig zu gestalten.
+So hat das Team sich auch vorgenommen, mindestens zwei Tage vor einem Sprintende alle für den Sprint benötigten Tickets fertiggestellt zu haben.
+Dadurch sollte genügend Zeit geschaffen werden, um Tickets auf Korrektheit zu testen und konfliktfrei in den Master Branch mergen zu können.
+Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können, war diese Methode angesichts der knappen Projektlaufzeit die effektivste.
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
