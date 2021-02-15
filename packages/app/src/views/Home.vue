@@ -40,6 +40,17 @@
         :search-input="searchInput"
         @tag-selected="toggleSelectedTag($event)"
       />
+      <div
+        v-if="tagsOrderedByGroups.length === 0"
+        id="noTags"
+        class="font-primary text-xl text-center my-16 mx-6"
+      >
+        <div class="text-white font-heading text-2xl">
+          <p>Huch, da sind ja keine NFC Tags!</p>
+          <p>Füge fix einen hinzu!</p>
+          <img src="/src/assets/not-found.gif" />
+        </div>
+      </div>
     </main>
     <footer class="flex text-gray-800 py-5 overflow-hidden">
       <transition
@@ -48,7 +59,11 @@
         @after-leave="infoTransitionActive = false"
       >
         <span v-if="!selectedTag && !buttonTransitionActive" class="text-xl text-center w-full">
-          <Textfield v-model="searchInput" class="mx-4" placeholder="Titelsuche" />
+          <Textfield
+            v-model="searchInput"
+            class="mx-4"
+            placeholder="Suche einen Tag oder Track ..."
+          />
         </span>
       </transition>
       <transition name="slide" @after-leave="buttonTransitionActive = false">

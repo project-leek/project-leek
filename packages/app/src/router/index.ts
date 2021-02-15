@@ -2,20 +2,20 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isSetupApp, waitForConnection } from '../compositions/useBackend';
+import { isBackendUrlConfigured, waitForConnection } from '../compositions/useBackend';
 import { doesUserHaveOwnReaders } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/oauth/callback',
+    path: '/auth/callback',
     name: 'oauth-callback',
     component: (): Component => import('../views/auth/OAuthCallback.vue'),
     meta: { authentication: 'guests-only' },
   },
   {
-    path: '/oauth/:oauthProvider',
+    path: '/auth/:oauthProvider',
     name: 'oauth-start',
     component: (): Component => import('../views/auth/OAuthStart.vue'),
     meta: { authentication: 'guests-only' },
@@ -29,6 +29,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/setup',
     name: 'setup',
+    component: (): Component => import('../views/Setup.vue'),
+    meta: { authentication: 'ignored' },
+  },
+  {
+    path: '/setup/reset',
+    name: 'setup-reset',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
@@ -98,12 +104,17 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (isSetupApp.value && to.name !== 'setup') {
+  if (!isBackendUrlConfigured.value) {
+    if (to.name === 'setup') {
+      next();
+      return;
+    }
+
     next({ name: 'setup' });
     return;
   }
 
-  if (!isSetupApp.value && to.name === 'setup') {
+  if (to.name === 'setup') {
     next({ name: 'welcome' });
     return;
   }
