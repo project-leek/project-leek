@@ -1,15 +1,29 @@
-\documentclass[10pt, a4paper, draft]{article}
+\documentclass[10pt, a4paper]{article}
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{comment}
+\usepackage{enumitem}
 \usepackage[backend=biber,style=alphabetic,]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\DeclareCaptionFormat{citation}{%
+   \ifx\captioncitation\relax\relax\else
+     \captioncitation\par
+   \fi
+   #1#2#3\par}
+\newcommand*\setcaptioncitation[1]{\def\captioncitation{\textit{Source:}~#1}}
+\let\captioncitation\relax
+\captionsetup{format=citation,justification=centering}
+\graphicspath{ {./images/} }
 
 \addbibresource{literature.bib}
 
-\title{Projektbreicht Smart Music Player}
+\title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
 \begin{document}
@@ -19,7 +33,7 @@
 \newpage
 
 \section{Einleitung}
-Ein zentraler Teil des Studiengangs \glqq Informationstechnologien\grqq{} ist es, Softwareentwicklung in Teams und Kommunikation mit Kund:innen zu erlernen. \cite{Qualifikationsziele_Informationstechnologien}
+Ein zentraler Teil des Studiengangs \glqq Informationstechnologie\grqq{} ist es, Softwareentwicklung in Teams und Kommunikation mit Kund:innen zu erlernen. \cite{Qualifikationsziele_Informationstechnologie}
 Dies passiert vor allem im Modul \glqq Projekt Informatik (PROI)\grqq{}.
 In diesem arbeiten Studierende ein Semester lang in kleinen Gruppen an verschiedenen Projekten.
 Diese bilden häufig reale Sachverhalte der Softwareentwicklung ab und werden meist von Firmenpartner:innen aus der Wirtschaft gestellt.
@@ -29,7 +43,13 @@ Welche Teams die jeweiligen Projekte bearbeiten, entscheiden die Firmen selbst.
 Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team für die macio GmbH aus Kiel bearbeitete.
 
 \subsection{Unternehmen}
-\colorbox{red}{TODO:}was macht macio aus
+\begin{quote}
+  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte. Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können. Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
+  \cite{openSource}
+\end{quote}
+
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
 \subsection{Projektidee}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
@@ -61,29 +81,96 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
 \section{Projektplanung}
 
 \subsection{Projekt Management}
-\colorbox{red}{TODO:}ticket pool in github, gemeinsame Absprache (im team und mit Kunden) was in den aktuellen Milestone kommen soll, alles zentral, 3x daily standup, gemeinsamer google calendar, gemeinsamer Discord Server (für spontaneres und informelleres gemeinsames Arbeiten), interne team evaluation und regelmäßiges feedback
+Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
+Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
+Diese Entscheidung geschah aus mehreren Gründen.
+Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung (Wasserfallmodell, V-Model, etc) der Fall ist.
+Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden, da solche per Definition erweiterbar sind.
+Des weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen.
+Dies ermöglichte dem Team ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines Semesters\footnote{Dieses Semester wahr aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+\\
+Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
+Stattdessen entwickelte das Team eine Methodik um iterativ im Projekt zu arbeiten.
+Orientiert wurde sich hierbei an der Methode Scrum.
+Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
+Diese Sprint waren im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.} lang.
+Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
-\subsection{Projektrisiken}
-\colorbox{red}{TODO:}Welche Riskiken hatten wir + Risikomatrix? lohnt sich dieser Abschnitt?
+\subsubsection{Vor den Sprints}
+Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
+Im diesem stellte das Team eine Vision für die Sprintiteration auf.
+Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
+Im Anschluss wurde die Produktvision vom Team in technisch orientierte Arbeitspakete aufgeteilt.
+Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen.
+Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
 
-\subsection{Phasenplanung}
-\subsubsection{Projektstartphase}
-\colorbox{red}{TODO:}Github aufsetzen, Tickets befüllen, Anforderungen verstehen, Team einarbeiten in Technologien
 
-\subsubsection{Realisierungsphase}
-\colorbox{red}{TODO:}Iteratives Arbeiten in Meilensteinen/Sprint mit Länge ca. 2 Wochen. Coden etc. Jedes Arbeitspaket wird einzeln getestet und von mindestens zwei anderen Personen reviewt (Technische Funktionalität wird automatisch getestet)
+\subsubsection{Arbeit in den Sprints}
+Während der Sprints wurde die Produktvision aus den Sprint-Planings implementiert.
+Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
+Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
+Dies wurde anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete entschieden.
+Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
+In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
+\\
+Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen durch Code Reviews von mindestens zwei anderen Entwicklern geprüft.
+Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
+Dieses Verfahren wurde angesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
+Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und anderen beruflichen Tätigkeiten nachgingen.
+So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
+Die freie Verteilung von Paketen ermöglichte auch, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten.
+Dies half die Motivation des Teams am Projekt hochzuhalten.
+\\
+Um sich während der Sprints abzustimmen und um Arbeitsfortschritte abzugleichen, trafen sich die Teammitglieder drei Mal pro Woche.
+Dies geschah immer montags, mittwochs und freitags.
+Bei Bedarf wurde auch von dieser Taktung abgewichen.
+In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} der Scrum-Methode.
+Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren und was bei der Arbeit gelernt wurde.
+Auch welche Themen jedes Mitglied bis zum nächsten Standup bearbeiten wollte, wurde besprochen.
+Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
+So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
 
-\subsubsection{Vermarktungsphase}
-\colorbox{red}{TODO:}Testsachen aus Code nehmen, Anleitung schreiben, Informationen veröffentlichen
+\subsubsection{Am Ende der Sprints}
+Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt.
+Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
+Die resultierenden Wünsche und Rückmeldungen wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
+Im Anschluss fand immer eine Retrospektive statt.
+In dieser besprach das Team die eigene Zusammenarbeit und den gemeinsamen Umgang.
+Hierfür stellten sich alle Teammitglieder für sich folgende Fragen für die Arbeit am entsprechenden Sprint:
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+  \item Was lief gut?
+  \item Was lief schlecht?
+  \item Was habe ich neu gelernt?
+  \item Was können wir in Zukunft besser machen?
+\end{itemize}
+Die jeweiligen Antworten wurden zusammengetragen und im Team gemeinsam reflektiert.
+Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
+Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
+Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
 
-\subsection{Projektstrukturplan}
-\colorbox{red}{TODO:}einzelne subsubsections über frontend, backend, hardware, devops, und dann erklären was das beinhaltet?
-
-\subsection{Beispielhafte Arbeitspakete}
-\colorbox{red}{TODO:}1-2-3 Beispielhafte Arbeitspakete ausarbeiten? Am besten auch welche, die von anderen abhängig
-
-\subsection{Netzplan}
-\colorbox{red}{TODO:}wie hängt alles zusammen mit approx Zeit, wobei wir die Zeit vielleicht weglassen?
+\subsubsection{Open-Source}
+Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
+Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
+Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
+Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
+Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
+So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
+Auch im Nachhinein können dann Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden.
+Dies hilft zusätzlich bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
+\\
+Das Produkt-Backlog wurde auch in dieses GitHub Repository eingepflegt.
+Dies erhöhte einerseits die Übersichtlichkeit über den Stand des Projekts innerhalb, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
+Andererseits ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen aufsuchen zu müssen.
+Die Möglichkeiten der Automatisierung wurden genutzt, um den Workflow zu vereinfachen und um die Code-Qualität sicherzustellen.
+Dies geschah zum Beispiel die durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
+\\
+Darüber hinaus war die Open-Source Anforderung auch hilfreich bei der Produktentwicklung.
+So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden.
+Dies war vor allem für das erstmalige Einrichten und die zugehörige Dokumentation maßgebend.
+Entsprechend konnte sich hier eher technischer Sprache bedient werden.
+Allerdings galt diese Einschränkung der Zielgruppe auch nicht für alle Breiche des Projekts.
+Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse möglich sein, da die Musikbox z. B. verschenkt oder in Familien genutzt werden könnte.
+Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 
 \section{Machbarkeitsstudie}
 
@@ -188,6 +275,101 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 \section{Durchführung}
 
+\subsection{Technologien}
+Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
+Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
+Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
+Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
+
+\subsubsection{Programmiersprachen}
+
+\subsubsection*{TypeScript}
+Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
+Aufgrund von nicht vorhandener Typisierung wurde sich dann jedoch auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Diese bietet aufgrund des
+Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript. Somit fiel das Erlernen der Sprache den Entwicklern relativ leicht.
+Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
+Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code umgewandelt, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
+Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
+
+
+\subsubsection{Frameworks}
+Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
+
+\subsubsection*{Vue.js}
+Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
+clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
+Dieses wurde aufgrund seiner guten Dokumentation und seiner flachen Lernkurve gewählt, wodurch sich der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter gestaltete.
+Außerdem bietet das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen können,
+während andere am Logik-Code arbeiten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant.\cite{Vue_Performance}
+
+\subsubsection*{Tailwind CSS}
+Zur effizienteren Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Framework \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
+Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, da statt vorgefertigten Komponenten vielseitig verwendbare Utility-Klassen zur Verfügung gestellt werden,
+über die das Design definiert werden kann. So kann das Aussehen von Elementen innerhalb des HTML-Codes festgelegt werden.
+Damit steigt die Übersichtlichkeit des Frontend-Codes, da keine separaten CSS-Dateien und -Klassen angelegt werden müssen.
+\cite{Tailwind_Vorteile}
+
+\subsubsection*{FeathersJS}
+Bei der Erstellung des Backends entschied sich das Team zusätzlich das Framework \textit{FeathersJS}\footnote{\raggedright\url{https://feathersjs.com/}} einzusetzten.
+Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\textbf{R}ead-\textbf{U}pdate-\textbf{D}elete}  auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
+Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
+Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{MyFeathersService}
+  \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
+  \caption{Implementierung eines ServicesTest}
+  \label{fig:MyService}
+\end{figure}
+Dabei können verschiedenste Protokolle, wie HTTP oder WebSockets zur Datenübertragung verwendet werden.
+Das WebSocket-Protokoll bietet hier den großen Vorteil, dass eine persistente Verbindung zwischen Server und Client (Benutzeroberfläche und Backend) besteht.
+So können sowohl Client, wie auch Server jederzeit mit der Datenübertragung beginnen, ohne vorher - wie bei HTTP - jedes Mal eine neue Verbindung aufzubauen zu müssen. \cite{WebSockets}
+Dadurch kann der Server alle verbundenen Clients bei einem CRUD-Zugriff informieren, sodass alle ohne erneutes Anfragen der Daten den aktuellsten Zustand übermittelt bekommen.
+Wird also beispielsweise ein NFC-Tag von Person A geändert, sieht Person B diese Änderung ohne manuelle Aktualisierung der Seite.
+Eine weiteres Feature, welches vom Projektteam genutzt wurde ist die integrierte OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten, wie beispielsweise \textit{Spotify} bei diesem Projekt ermöglicht.
+Dies war z.B. nötig, um die den NFC-Tags zugeordnete Musik abspielen zu können.
+Darüber hinaus können so auch Nutzerprofile angelegt werden, ohne persönliche Daten, wie z.B. Namen, Email-Adressen und Passwörter, speichern zu müssen.
+Nur Authentifizierungstokens des OAuth-Providers werden in der Datenbank hinterlegt.
+So konnte ein besserer Datenschutz für die Nutzenden ermöglicht werden.
+
+\subsubsection{Reverse-Tunnel (ngrok)}
+Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
+Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
+Da das Framwork jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
+Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
+\colorbox{red}{Hier Schaubild?}
+
+
+\subsubsection{Containervirtualisierung (Docker)}
+Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
+Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
+Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
+Es enthält einen Verweis auf die jeweiligen Container-Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
+sodass weitere Installationen seitens der Benutzer:innen nicht erforderlich sind.
+Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
+So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
+
+
+\subsection{Hilfsmittel}
+\subsection{Projektstrukur}
+\begin{wrapfigure}{r}{4cm}
+  \includegraphics[width=3.8cm]{PackageStruktur.png}
+  \caption{Orderstruktur}
+  \label{fig:Orderstruktur}
+\end{wrapfigure}
+Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
+verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
+Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
+Jeder Service wurde in einem Unterdner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+\textit{backed} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+Im Ordner commons befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
+Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
+Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
+Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+
+
+
 \subsection{Technologien und Hilfsmittel}
 
 \subsection{Entwicklungszyklus}
@@ -218,9 +400,11 @@ ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanfo
 \\
 Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
 Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
+\subsection{Projekt Management}
+\colorbox{red}{ticket pool in github, alles zentral}
 
-\subsection{Probleme während der Durchführung}
-\colorbox{red}{TODO:}
+\subsection{Deployment Cycle}
+\colorbox{red}{ziehe ticket > assigne dich selbst > draft PR > wenn fertig, setzte "undraft" > assigne 2 reviewer > merge master}
 
 \section{Projekt Meilensteine}
 \subsection{Meilenstein 1}
@@ -244,7 +428,7 @@ Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 Lief Gut
 - Zusammenarbeit und Team Environment
 - Meetings und Zusammenarbeit
-- Github Workflow
+- GitHub Workflow
 - Anton!!!
 - Richtig viel gelernt.
 - Sau viel Zeit Einsatz von Anton, muss man mal wertschätzen.
@@ -294,7 +478,7 @@ Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?}
 \colorbox{red}{TODO:}
   Gut
 - Pair Programming
-- (github) workflow
+- (GitHub) workflow
 - team arbeit
 - Gegenseitige Hilfe
 - Workflow lief besser
@@ -409,13 +593,118 @@ Verbessern
 \colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
 Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
 
-\section{Erkenntnisse}
-
 \section{Code Walkthrough}
 \colorbox{red}{TODO:}vielleicht interessante Code Snippets?
 
 \section{Testing}
-\colorbox{red}{TODO:}wie haben wir getestet, haben wir getestet?
+Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Tests zur Verbesserung der Codequalität durchzuführen.
+Quellcode Tests lassen sich in statische und dynamische Tests unterteilen.
+
+\subsection{Statische Tests}
+Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten im Gegensatz zu dynamischen Tests nicht das Verhalten zur Laufzeit.
+Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
+Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
+
+\subsubsection{Linting}
+Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
+Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
+So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
+Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
+Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
+Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
+Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
+Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
+Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
+\\
+Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
+Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
+Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
+
+\subsubsection{Reviews}
+Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
+Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
+Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
+Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
+In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt.
+So waren alle Teile des neuen Codes auf einen Blick einsehbar.
+Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
+Dies sorgte für einen effizienten Review-Prozess.
+
+\subsection{Dynamische Tests}
+Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
+Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
+Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
+Dabei wird überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
+Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
+So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
+Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
+\\~\\
+Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
+Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
+Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
+Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
+Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
+
+
+
+\section{Fazit}
+\subsection{Probleme, Lösungen, Erkenntnisse}
+\colorbox{red}{TODO: Finde TITEL:} Fazit oder nur Erkenntnisse oder oder?
+\colorbox{red}{Besseres Intro zum Kapitel?}
+Das Projekt Informatik gab einen realistischen Einblick in die Arbeitswelt.
+Das Team musste sich klassischen Alltagsproblemen stellen, Lösungswege finden und konnte wichtige Erkenntnisse für die Zukunft daraus ziehen.
+Auch Coding-Entwurfsmuster und -Konventionen wurden neu erlernt und praktisch angewandt.
+
+\subsubsection{Einarbeitung in neue Technologien}
+Zu Beginn des Projektes bestand eine größere Differenz, inwieweit die einzelnen Teammitglieder mit den jeweiligen Technologien vertraut waren.
+Insbesondere die Projektstruktur bereitete eine größere Einstiegshürde für viele Entwickler.
+Sie wurde durch das automatische generieren von Dateien und Ordnern immer komplexer.
+Mit zunehmender Entwicklungszeit und durch die Arbeit an den Teilkomponenten des Mono-Repositorys gewannen die Entwickler jedoch schnell mehr Überblick über die Struktur.
+Das Team lernte wie Frameworks und Libraries  z. B. Vue, Tailwind und Feathers sinnvoll und hilfreich eingesetzt werden können.
+
+\subsubsection{Versionskontrolle und Deployment Cycle}
+Zwar wurde den Studierenden im Studium der Vorteil von Versionskontrollsystemen wie Git vermittelt, doch fand sich selten ein praktisches Anwendungszenario, dass Git über die Hauptfunktion der Versionierung hinaus sinnvoll genutzt hat.
+Dieses Projekt bot erstmals eine sinnvolle Anwendung von \textit{git}.
+Die Umsetzungen der gängigen Industriestandarts we z.B Pull-Requests und Code Reviews lehrte uns die Vorteile von Git in einer komplexen Umgebung.
+Diese Methoden führten zu folgenden maßgebliche Verbesserungen:
+Mit zwei erfordelichen Code Reviews pro Pull Request, konnten Fehler im Code häufiger entdeckt werden und so eine höhere Codequalität erreicht.
+Als positiver Nebeneffekt konnten die Reviewer außerdem während des Prozesses neue Funktionen und Codemuster erlernen, zu denen sie bei Bedarf (per Kommentar) Fragen stellen konnten.
+Die Gewöhnung an diesen Deployment Cycle brauchte eine gewisse Zeit, fand aber von Sprint zu Sprint immer mehr Wertschätzung im Team.
+
+\subsubsection{Automatisierte Tests und Deployment}
+Jeder Pull Request durchlief mehrere automatisierte Tests - sogenannte \textit{Actions} - die den geänderten Code auf Korrektheit in Syntax und simplen Semantischen fragen getestet haben.
+Inhaltliche Funktionen der Applikation wurden durch die Tests nicht abgedeckt.
+Diese prüften den Quellcode anhand fest eingestellter Testparameter.
+Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen und die Fehlerquelle Mensch minimiert.
+Änderungen im Master werden automatisch verarbeitet. Die neue Version des Codes wird auf Github.io veröffentlicht und geänderte Latex Dateien als PDF im eigenen Branch erstellt.
+Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+Dank dieser Automatisierungen konnte sich das Team mehr auf das Weiterentwickeln des Projektes konzentrieren.
+
+\subsubsection{Regelmäßige Standups und Retrospektiven}
+Durch die regelmäßigen Standups entstand ein Ort für den Austausch von Problemen und Informationen über Fortschritt und neue Funktionen.
+So wurde verhindert, dass Probleme untergingen, neues Wissen wurde schneller verbreitet und die gesamte Teamproduktivität verbessert.
+Das bei den Retrospektiven entstandene Feedback erwies sich als sehr wichtig für das Teamklima.
+Auch die hierbei angesprochenen Probleme und Verbesserungsvorschläge wurden vom Team als sehr wertvoll für die nächsten Sprints erkannt und entsprechend adaptiert.
+
+\subsubsection{Kommunikation und Eigeninitiative}
+Anfänglich hat sich das Team zu sehr auf die Standups, als alleiniges Kommunikationsmittel verlassen, wodurch die Absprache zwischen den Teammitgliedern nur selten statt gefunden hat.
+Der Umfang erster Tickets war deutlich zu groß.
+Die Komplexität eines Tickets hat Teammitglieder davon abgehalten sich mit der Thematik zu beschäftigen.
+Da konkrete Fragen bei einem gänzlich neuen Thema schwierig zu formulieren sind, wurde oft komplett auf Hilfe verzichtet und das Ticket zur Seite gelegt.
+Lösungsansätze wurden gemeinsam in den Retrospektiven erarbeitet.
+Weiterhin konnte offen über Probleme gesprochen werden, indem teaminterne Evaluationen stattgefunden haben.
+
+\subsubsection{Planung, Zielsetzung und Einschätzung}
+Größere Probleme hatte das Team mit dem Zeitmanagment der einzelnen Ticket.
+Während eines Milestones wurden manchmal nicht alle geplanten Tickets fertiggestellt, oder es wurde nachträglich zu viel in den Sprint neu Aufgenommen.
+Beides resultierte in Überstunden und zu wenig Zeit fürs Testen am Ende eines Meilensteins.
+Aus diesen Erfahrungen, hat das Team gelernt wie wichtig es ist die Planung des Meilensteins und dessen Tickets besonders sorgfältig zu gestalten.
+So hat das Team sich auch vorgenommen, mindestens zwei Tage vor einem Sprintende alle für den Sprint benötigten Tickets fertiggestellt zu haben.
+Dadurch sollte genügend Zeit geschaffen werden, um Tickets auf Korrektheit zu testen und konfliktfrei in den Master Branch mergen zu können.
+Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können, war diese Methode angesichts der knappen Projektlaufzeit die effektivste.
 
 \section{Technische Diagramme}
 \colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
