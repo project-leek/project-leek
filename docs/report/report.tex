@@ -2,7 +2,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{comment}
 \usepackage{enumitem}
@@ -48,12 +48,16 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
   \cite{openSource}
 \end{quote}
 
+\colorbox{orange}{Ja und? warum ist das relevant? was bedeutet das für unser Projekt}
 Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
 Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
+
 \subsection{Produktvision}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
-Hierfür soll eine smarte Spielzeug-Box gebaut werden.
+Hierfür sollte eine smarte Spielzeug-Box gebaut werden.
 Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.\\
+
+\colorbox{orange}{Abschnitt: allgemeiner formulieren. Am Anfang wurde abgesprochen, dass es auch andere Services geben soll.}
 Genauer handelt es sich um eine Musik-Box, die NFC-Chips lesen und Spotify Connect unterstützen soll.
 Auf die Box können dann Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt werden, um spezifische Musik abspielen zu lassen.
 Die Musik wird von Spotify-Connect über eine bereits bestehende Musik-Anlage abgespielt.
@@ -64,6 +68,7 @@ Da es sich um ein Open Source Projekt mit entsprechender Lizenz handelt, muss au
 Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technischen Fragen.
 
 \subsubsection{Minimal Requirements}
+\colorbox{orange}{als Fließtext}
 \begin{enumerate}
   \item NFC-Tags lesen, schreiben und entschlüsseln
   \item Mit Spotify Connect verbinden und arbeiten
@@ -71,6 +76,7 @@ Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technis
   \item Aussagekräftige Dokumentation mit Benutzerhandbuch
 \end{enumerate}
 \subsubsection{Stretch Goals}
+\colorbox{orange}{als Fließtext}
 \begin{enumerate}
   \item Sound Wiedergabe auf der Box selbst
   \item Unterstützung anderer Musikdienste / Plugin-Subsystem
@@ -176,6 +182,8 @@ Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 \section{Machbarkeitsstudie}
 
 \subsection{NFC Tag}
+\colorbox{orange}{lesen und schreiben vlt als ein gemeinsamer Abschnitt}
+\colorbox{orange}{kurzer text der zu NFC-Tags allgemein schreibt}
 \subsubsection*{lesen}
 Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
@@ -190,6 +198,7 @@ Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowi
 
 \subsection{Raspberri Pi}
 \subsubsection{Docker Integration}
+\colorbox{orange}{warum Docker? warum virtualisierung?}
 Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
@@ -198,9 +207,11 @@ Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu könne
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
+\colorbox{orange}{warum die? wofür sind die?}
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
+\colorbox{orange}{warum ist das interassant?}
 Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
@@ -210,6 +221,7 @@ Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen,
 Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
 
 \subsubsection{Login via Spotify, Youtube, etc.}
+\colorbox{orange}{warum so? was ist die Alternative?}
 Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
 \subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
@@ -219,6 +231,7 @@ Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein,
 Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
 \subsubsection{Musik Artwork laden}
+\colorbox{orange}{weniger umgangssprachlich und mehr}
 Sollte bei der Verwendung von Spotify kein Problem sein, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern enthalten ist.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection{Eigene Bilder hochladen}
@@ -226,6 +239,7 @@ Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js un
 Mit einem Axios Post könnte das Bild an das Backend gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
 \subsubsection{Spotify Connect Lautsprecher auswählen}
+\colorbox{orange}{spotify als einen Abschnitt und zu den anderen Services}
 Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
 Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} wird eine Liste von allen verbundenen Geräten geliefert. Über den Endpunkt kann ein entsprechendes Lied zum Abspielen über den jeweiligen \textit{Spotify Connected Speaker} übergeben werden.
 Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt aktive genutzt. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
@@ -309,6 +323,7 @@ Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
 
 \paragraph*{Vue.js} $~$ \\
+\colorbox{orange}{components und reactivity sollten noch beschrieben werden!}
 Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
 Dieses wurde aufgrund seiner guten Dokumentation und seiner flachen Lernkurve gewählt, wodurch sich der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter gestaltete.
