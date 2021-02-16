@@ -50,7 +50,7 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
 
 Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
 Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
-\subsection{Projektidee}
+\subsection{Produktvision}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
 Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.\\
@@ -96,7 +96,7 @@ Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (
 Diese Sprint waren im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.} lang.
 Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
-\subsubsection{Vor den Sprints}
+\subsection{Vor den Sprints}
 Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
 Im diesem stellte das Team eine Vision für die Sprintiteration auf.
 Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
@@ -105,7 +105,7 @@ Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Ä
 Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
 
 
-\subsubsection{Arbeit in den Sprints}
+\subsection{Arbeit in den Sprints}
 Während der Sprints wurde die Produktvision aus den Sprint-Planings implementiert.
 Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
 Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
@@ -130,7 +130,7 @@ Auch welche Themen jedes Mitglied bis zum nächsten Standup bearbeiten wollte, w
 Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
 So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
 
-\subsubsection{Am Ende der Sprints}
+\subsection{Am Ende der Sprints}
 Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt.
 Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
 Die resultierenden Wünsche und Rückmeldungen wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
@@ -148,7 +148,8 @@ Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
 Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
 Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
 
-\subsubsection{Open-Source}
+\subsection{Open-Source}
+\colorbox{red}{Punkt umbenennen}
 Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
 Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
 Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
@@ -175,13 +176,13 @@ Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 \section{Machbarkeitsstudie}
 
 \subsection{NFC Tag}
-\subsubsection{lesen}
+\subsubsection*{lesen}
 Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
 Dieser emuliert dafür Keyboard Eingaben, die die Tag-IDs darstellen.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden. Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden. Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.
 
-\subsubsection{schreiben}
+\subsubsection*{schreiben}
 Ein NFC-Tag hat generell eine feste ID.
 Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag also einen eigenen Speicher.
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
