@@ -270,8 +270,6 @@ Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com
 Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
 Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
-\section{Design Mockups}
-\colorbox{red}{TODO:}setze pdfs ein
 
 \section{Durchführung}
 
@@ -467,202 +465,16 @@ ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanfo
 Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
 Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
 
-
-
-
-\section{Projekt Meilensteine}
-
-\subsection{Meilenstein 1}
-Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
-\subsubsection{Ziel}
-Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertiggestellt sein.
-Hierfür sollte das Konzept der Software-Architektur sowie die genutzten Technologien (später Technologie-Stack genannt) auf Basis einer Anforderungsanalyse mit dem Kunden festgelegt werden.
-Außerdem sollten die ersten Tickets in das Backlog eingetragen werden.
-Auch musste das Projekt dahingehend geplant werden, dass jedem Teammitglied durchgehend zu bearbeitende Arbeitspakete zur Verfügung standen.
-Um ein schnellen und reibungslosen Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet werden.
-\subsubsection{Probleme}
-Das Team musste das Projekt so entsprechend planen, dass jedes Teammitglied durchgehend sinnvoll arbeiten konnte.
-\subsubsection{Lösungen}
-Durch bereits vorhandene Erfahrung mit verschiedenen Technologie-Stacks und ähnlichen Problemen, wurde sich auf den Technologie-Stack geeinigt
-Die verwendeten Technologien sind dem Abschnitt \ref{technologien} zu entnehmen.
-Um für jedes Teammitglieds ein sinnvolles kontinuierliches Arbeiten zu gewährleisten, einigte sich das Team auf einen ständig gefüllten Ticket-Pool im Repository, sodass jederzeit selbstständig eine Aufgabe gefunden und bearbeitet werden konnte.
-\subsubsection{Product Increment}
-Das Ergebnis des ersten Meilensteins bestand, abweichend von den späteren, nicht in einem Produkt Inkrement, sondern legte die Grundbausteine für die Entwicklung und das Teamwork.
-Neben dem bereits erwähnten Technologie-Stack, wurde als Host für die Applikation ein Raspberry Pi gewählt.
-Für die Entwicklung wurde ein Mono-Repository mit \textit{lerna}\footnote{https://lerna.js.org/} aufgesetzt, welches Front- und Backend zusammenfasste.
-Durch die Anforderung der Veröffentlichung als Open Source Projekt wurde eine verständliche und hilfreiche Dokumentation nötig, die einem Benutzer die Installation und Verwendung der \textit{leek-box} aufzeigt.
-So wurde dem Repository eine einleitende Readme und ein \glqq How to Contribute\grqq{} Guide hinzugefügt.
-\subsubsection{Retrospektive}
-Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
-
-\subsection{Meilenstein 2}
-Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
-Ziel war es, die ersten Grundbausteine für das Projekt legen.
-\subsubsection{Ziel}
-Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte, sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren.
-Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles Haustier im Backend und die Darstellung im Frontend.
-Darüber hinaus sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die Möglichkeit NFC-Tags auszulesen implementiert werden.
-Damit die Entwicklung zeitnah starten konnte, sollten die ersten Mockups für das User Interface erstellt werden sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser Projektbegleitend aufgebaut werden konnte.
-\subsubsection{Probleme}
-Zu Beginn ging der im ersten Review geäußerte Kundenwunsch, bereits NFC-Tags auszulesen und anzeigen zu können, unter und stellte so kurzzeitig das rechtzeitige Abschließen der für den Milestone vorgesehenen Tickets in Frage.
-Außerdem bereitete die Einarbeitung in die genutzten Technologien einigen Teammitgliedern einige Schwierigkeiten.
-\subsubsection{Lösungen}
-Bereits von Anfang an zeichnete sich durch die hohe Hilfsbereitschaft den anderen Teammitgliedern gegenüber ein hoher Zusammenhalt im Team ab.
-Um das vom Kunden gewünschte Feature noch umzusetzen, wurden gegen Ende des Sprints Überstunden geleistet.
-\subsubsection{Product Increment}
-Das Produkt wurde in diesem Meilenstein sinnvoll um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
-Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
-Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
-\subsubsection{Retrospektive}
-Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
-Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
-Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren.
-Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Reviews und Pull Request in Kontakt.
-Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
-Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
-
-\subsection{Meilenstein 3}
-Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
-Die benötigten Anwendungsszenarien und Mockups sollten in diesem Sprint finalisiert werden.
-Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird umgesetzt werden.
-\subsubsection{Ziel}
-Dafür musste im Backend ein NFC-Tag mit der jeweiligen Musik angelegt werden.
-Um die hohen Anforderungen an die Usability umsetzten zu können, musste sich damit beschäftigt werden, wie Nutzer mit der Anwendung interagieren könnte,.
-Daher sollten auch Sequenzdiagramme und weitere Mockups für das User Interface erstellt werden.
-Damit jedes Teammitglied auch ohne Hardware arbeiten konnte, sollte es auch möglich sein, das Einlesen von NFC-Tags zu emulieren.
-\subsubsection{Probleme}
-Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
-Ansonsten sind nur kleinere Problematiken, insbesondere bei den Design Mockups, aufgetreten.
-Bedingt dadurch, dass das Team nur aus Informatikern bestand, gab es keine ausführlichen Erfahrungen mit Design und Usability Engineering.
-\subsubsection{Lösungen}
-Macio unterstützte das Team, durch die Vermittlung eines Designers ihrer Firma, der die vom Team angefertigten Mockups überarbeitete.
-Das Erstellen der Sequenzdiagramme half bei dem Team dabei, das Verhalten eines Nutzers besser einzuschätzen und das User Interface entsprechend zu konzipieren.
-\subsubsection{Product Increment}
-Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war auch das Einloggen in einen bestehenden Spotify Account möglich.
-Außerdem wurden auf der Startseite die NFC-Tags entsprechend der zugeordneten Gruppe angezeigt.
-Jegliche Neuerung auf dem Master wurden nun auch auf Github.io veröffentlicht.
-\subsubsection{Retrospektive}
-Deutlich besser lief in diesem Sprint die Problembewältigung durch Pair Programming, welches die Teamarbeit weiter verbesserte.
-Auch der Workflow mit Github, den Pull Request sowie Code Reviews wurde mehr verinnerlicht.
-Das Team lernte in diesem Sprint vor allem Vue Hooks kennen, und die Stärken von Feathers in Verbindung mit OAuth.
-Festgestellt wurde außerdem, dass einige Tickets weiterhin stark voneinander abhängig waren, weshalb das Bearbeiten einiger Tickets nicht direkt möglich war.
-Auf diese Problematik sollte weiterhin geachtete und nach Möglichkeit gegengesteuert werden.
-Um das Risiko der Entstehung zukünftiger Probleme zu senken wurde festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen.
-Genauso sollte neu Gelerntes besser kommuniziert werden, um die Arbeit effizienter zu gestalten.
-
-\subsection{Meilenstein 4}
-Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
-Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen.
-\subsubsection{Ziel}
-Wie auch beim vorherigen Meilenstein fokussierte sich das Team auf die vom Kunden gewünschten Funktionalitäten wie das Anlegen und Bearbeiten von eigenen Tags.
-Dazu gehörte:
-\begin{enumerate}
-  \item Scannen des Tags
-  \item Vergeben eines eigenen Namens
-  \item Auswählen von Musik
-  \item Auswählen eines eigenen Bilds
-\end{enumerate}
-Auch sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
-\subsubsection{Probleme}
-Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
-Die tatsächliche Umsetzung und Planung/Einschätzung divergierte in diesem Meilenstein sehr stark.
-Es wurde sich zu sehr in Details verloren, sodass der Fokus auf die wichtigen Tickets verloren ging.
-Das führte dazu, dass zum Review viele halbfertige Tickets entweder nur schlecht getestet oder gar nicht im Master-Branch implementiert waren.
-\subsubsection{Lösungen}
-Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt.
-Das half einerseits dabei, dass Probleme gelöst und die Teammotivation sowie die Produktivität stieg, als auch das generelle Teamklima weiter gebessert wurde.
-Darüber hinaus wurde auch beschlossen, in den folgenden Sprints die Menge an zu bearbeitenden Issues besser festzulegen. 
-\subsubsection{Product Increment}
-Das Produkt wurde um die Grundfunktionen erweitert.
-Es ist nun möglich, Tags anzulegen und entsprechend für diese Namen, Musik und ein Bild festzulegen.
-Genauso ist es dem Nutzer nun möglich, alle angelegten Tags zu durchsuchen.
-Es wurde weiterhin auch das Design Mockup von dem von macio gestellten Designer in Vue größtenteils umgesetzt.
-Gleichzeitig wurden hierbei die Komponenten zur einfacheren Verwendung als möglichst allgemeine Vue Komponenten angelegt, um ein einheitliches Design zu ermöglichen.
-Für die Entwickler wurden auch die automatisierten Tests um einen Test auf Typsicherheit erweitert.
-\subsubsection{Retrospektive}
-Besonders gut gefiel dem Team das Teamklima, vor allem des ehrliche Miteinander.
-Trotz Komplikationen und Probleme konnte dem Kunden am Ende ein funktionierendes Product Increment geliefert werden.
-Pull Requests und Tickets wurden besser beschrieben, sodass Probleme verständlicher waren.
-Vor allem durch das interne Team Review wurde die Zusammenarbeit weiter verbessert.
-Das Team konnte das Wissen zu Vue, vor allem die Themen Reaktivität, Events und Kommunikation zwischen Komponenten ausbauen.
-Stark bemängelt wurde der Scope des Meilensteins.
-Das Zeitmanagement war an dieser Stelle nicht gut, es wurde sich zu viel vorgenommen und man hatte am Ende zu wenig Zeit.
-Das Team stimmte hier überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
-Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
-Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
-
-\subsection{Meilenstein 5}
-Der Meilenstein fünf vom 14.01.2021 bis zum 28.01.2021 sollte die Entwicklung am Produkt weitgehend zu abschließen, sodass sich das Team auf den Bericht fokussieren konnte.
-\subsubsection{Ziel}
-Geplant war, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine höchstens zum Beheben kleinerer Fehler benötigt werden würden.
-Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box} selbst als auch der einzelnen Tags.
-Die User Interface Elemente sollten, sofern noch nicht geschehen, ein einheitliches Design erhalten.
-Auch sollte die Dokumentation zur Bedienung der \textit{Leek Box} fertiggestellt sein und die Arbeit für den Bericht begonnen werden.
-\subsubsection{Probleme}
-Wie beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
-Gegen Ende fehlte es an Zeit, um neu umgesetzte Tickets auf Fehler zu testen und entsprechend fehlerfrei dem Kunden zu präsentieren.
-\subsubsection{Lösungen}
-Als Lösung für dieses Problem beschloss das Team dem Kunden im Review weniger neue Features vorzustellen als geplant.
-\subsubsection{Product Increment}
-Das Produkt Inkrement enthielt die implementierten Einstellungen der \textit{Leek Box}, die es dem Nutzer ermöglichen, den Wiedergabelautsprecher auswählen, die jeweilige Leek Box zu verwalten und sich von Spoitfy abzumelden.
-Auch wurde ein Setup Guide angefertigt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden alle Unstimmigkeiten beseitigt.
-\subsubsection{Retrospektive}
-Insgesamt hat das Team sich an dieser Stelle vor allem über das sehr positive Feedback des Kunden gefreut.
-Auch wurde die Produktivität des Teams sehr gelobt.
-Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
-Problematisch war es, dass manche Tickets von mehreren gleichzeitig oder nacheinander bearbeitet wurden, sodass Arbeit teilweise doppelt erledigt wurde.
-Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
-Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
-
-\subsection{Meilenstein 6}
-Mit dem Meilenstein sechs vom 28.01.2021 bis zum 15.02.2021 sollte die Entwicklung beendet und der Fokus komplett auf den Bericht gelegt werden, sodass der nächste und letzte Meilenstein für die letzten Korrekturen im Bericht genutzt werden konnte.
-\subsubsection{Ziel}
-Neben der Fokussierung auf den Bericht sollte auch das User Interface auf einheitliches Design überprüft und die Entwicklung und Fehlerbehebung abgeschlossen werden.
-\subsubsection{Probleme}
-\colorbox{red}{TODO:}schlauchiger start in den report
-
-\subsubsection{Lösungen}
-\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
-
-\subsubsection{Product Increment}
-Als letzte Änderungen am Produkt hat nun der Nutzer die Möglichkeit, verschiedene Leek Boxen auszuwählen bzw. neu eingerichtete Leek Boxen mit seinem Konto zu verbinden.
-Die letzten Bugfixes wurden umgesetzt sowie wurden die letzten Details aus dem Design Mockup übernommen.
-\subsubsection{Retrospektive}
-\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
-Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
-
-\subsection{Meilenstein 7}
-Der finale Meilenstein sieben vom 15.02.2021 bis zum 05.03.2021 sollte nur noch die letzten Korrekturen des Berichtes und Vorbereitung der Finalen Abgabe beinhalten.
-\colorbox{red}{TODO:}Kurze Einleitung, von, bis
-\subsubsection{Ziel}
-\colorbox{red}{TODO:}was haben wir uns vorgenommen, was war das ziel, was wollten wir schaffen?
-\subsubsection{Probleme}
-\colorbox{red}{TODO:}welche prrobleme sind aufgetreten?
-
-\subsubsection{Lösungen}
-\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
-
-\subsubsection{Product Increment}
-\colorbox{red}{TODO:}Was ist am Ende dabei rumgekommen?
-
-\subsubsection{Retrospektive}
-\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
-Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
-
-\section{Code Walkthrough}
-\colorbox{red}{TODO:}vielleicht interessante Code Snippets?
-
-\section{Testing}
+\subsection{Testing}
 Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Tests zur Verbesserung der Codequalität durchzuführen.
 Quellcode Tests lassen sich in statische und dynamische Tests unterteilen.
 
-\subsection{Statische Tests}
+\subsubsection*{Statische Tests}
 Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten im Gegensatz zu dynamischen Tests nicht das Verhalten zur Laufzeit.
 Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
 Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
 
-\subsubsection{Linting}
+\paragraph*{Linting}$~$ \\
 Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
 Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
 So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
@@ -677,7 +489,7 @@ Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertrag
 Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
 Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
 
-\subsubsection{Reviews}
+\paragraph*{Reviews}$~$ \\
 Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
 Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
 Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
@@ -688,7 +500,7 @@ Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code 
 So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
 Dies sorgte für einen effizienten Review-Prozess.
 
-\subsection{Dynamische Tests}
+\subsubsection*{Dynamische Tests}
 Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
 Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
 Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
@@ -706,6 +518,186 @@ Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lern
 Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
 
+\subsection{Projekt Meilensteine}
+
+\subsubsection*{Meilenstein 1}
+Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
+%Ziel
+Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertiggestellt sein.
+Hierfür sollte das Konzept der Software-Architektur sowie die genutzten Technologien (später Technologie-Stack genannt) auf Basis einer Anforderungsanalyse mit dem Kunden festgelegt werden.
+Außerdem sollten die ersten Tickets in das Backlog eingetragen werden.
+Auch musste das Projekt dahingehend geplant werden, dass jedem Teammitglied durchgehend zu bearbeitende Arbeitspakete zur Verfügung standen.
+Um ein schnellen und reibungslosen Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet werden.
+%Probleme
+Das Team musste das Projekt so entsprechend planen, dass jedes Teammitglied durchgehend sinnvoll arbeiten konnte.
+%Lösungen
+Durch bereits vorhandene Erfahrung mit verschiedenen Technologie-Stacks und ähnlichen Problemen, wurde sich auf den Technologie-Stack geeinigt
+Die verwendeten Technologien sind dem Abschnitt \ref{technologien} zu entnehmen.
+Um für jedes Teammitglieds ein sinnvolles kontinuierliches Arbeiten zu gewährleisten, einigte sich das Team auf einen ständig gefüllten Ticket-Pool im Repository, sodass jederzeit selbstständig eine Aufgabe gefunden und bearbeitet werden konnte.
+%Product Increment
+Das Ergebnis des ersten Meilensteins bestand, abweichend von den späteren, nicht in einem Produkt Inkrement, sondern legte die Grundbausteine für die Entwicklung und das Teamwork.
+Neben dem bereits erwähnten Technologie-Stack, wurde als Host für die Applikation ein Raspberry Pi gewählt.
+Für die Entwicklung wurde ein Mono-Repository mit \textit{lerna}\footnote{https://lerna.js.org/} aufgesetzt, welches Front- und Backend zusammenfasste.
+Durch die Anforderung der Veröffentlichung als Open Source Projekt wurde eine verständliche und hilfreiche Dokumentation nötig, die einem Benutzer die Installation und Verwendung der \textit{leek-box} aufzeigt.
+So wurde dem Repository eine einleitende Readme und ein \glqq How to Contribute\grqq{} Guide hinzugefügt.
+%Retrospektive
+Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
+
+\subsubsection*{Meilenstein 2}
+Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
+Ziel war es, die ersten Grundbausteine für das Projekt legen.
+%Ziel
+Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte, sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren.
+Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles Haustier im Backend und die Darstellung im Frontend.
+Darüber hinaus sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die Möglichkeit NFC-Tags auszulesen implementiert werden.
+Damit die Entwicklung zeitnah starten konnte, sollten die ersten Mockups für das User Interface erstellt werden sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser Projektbegleitend aufgebaut werden konnte.
+%Probleme
+Zu Beginn ging der im ersten Review geäußerte Kundenwunsch, bereits NFC-Tags auszulesen und anzeigen zu können, unter und stellte so kurzzeitig das rechtzeitige Abschließen der für den Milestone vorgesehenen Tickets in Frage.
+Außerdem bereitete die Einarbeitung in die genutzten Technologien einigen Teammitgliedern einige Schwierigkeiten.
+%Lösungen
+Bereits von Anfang an zeichnete sich durch die hohe Hilfsbereitschaft den anderen Teammitgliedern gegenüber ein hoher Zusammenhalt im Team ab.
+Um das vom Kunden gewünschte Feature noch umzusetzen, wurden gegen Ende des Sprints Überstunden geleistet.
+%Product Increment
+Das Produkt wurde in diesem Meilenstein sinnvoll um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
+Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
+Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
+%Retrospektive
+Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
+Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
+Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren.
+Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Reviews und Pull Request in Kontakt.
+Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
+Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
+
+\paragraph*{Meilenstein 3}$~$ \\
+Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
+Die benötigten Anwendungsszenarien und Mockups sollten in diesem Sprint finalisiert werden.
+Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird umgesetzt werden.
+%Ziel
+Dafür musste im Backend ein NFC-Tag mit der jeweiligen Musik angelegt werden.
+Um die hohen Anforderungen an die Usability umsetzten zu können, musste sich damit beschäftigt werden, wie Nutzer mit der Anwendung interagieren könnte,.
+Daher sollten auch Sequenzdiagramme und weitere Mockups für das User Interface erstellt werden.
+Damit jedes Teammitglied auch ohne Hardware arbeiten konnte, sollte es auch möglich sein, das Einlesen von NFC-Tags zu emulieren.
+%Probleme
+Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
+Ansonsten sind nur kleinere Problematiken, insbesondere bei den Design Mockups, aufgetreten.
+Bedingt dadurch, dass das Team nur aus Informatikern bestand, gab es keine ausführlichen Erfahrungen mit Design und Usability Engineering.
+%Lösungen
+Macio unterstützte das Team, durch die Vermittlung eines Designers ihrer Firma, der die vom Team angefertigten Mockups überarbeitete.
+Das Erstellen der Sequenzdiagramme half bei dem Team dabei, das Verhalten eines Nutzers besser einzuschätzen und das User Interface entsprechend zu konzipieren.
+%Product Increment
+Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war auch das Einloggen in einen bestehenden Spotify Account möglich.
+Außerdem wurden auf der Startseite die NFC-Tags entsprechend der zugeordneten Gruppe angezeigt.
+Jegliche Neuerung auf dem Master wurden nun auch auf Github.io veröffentlicht.
+%Retrospektive
+Deutlich besser lief in diesem Sprint die Problembewältigung durch Pair Programming, welches die Teamarbeit weiter verbesserte.
+Auch der Workflow mit Github, den Pull Request sowie Code Reviews wurde mehr verinnerlicht.
+Das Team lernte in diesem Sprint vor allem Vue Hooks kennen, und die Stärken von Feathers in Verbindung mit OAuth.
+Festgestellt wurde außerdem, dass einige Tickets weiterhin stark voneinander abhängig waren, weshalb das Bearbeiten einiger Tickets nicht direkt möglich war.
+Auf diese Problematik sollte weiterhin geachtete und nach Möglichkeit gegengesteuert werden.
+Um das Risiko der Entstehung zukünftiger Probleme zu senken wurde festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen.
+Genauso sollte neu Gelerntes besser kommuniziert werden, um die Arbeit effizienter zu gestalten.
+
+\subsubsection*{Meilenstein 4} $~$ \\
+Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
+Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen.
+%Ziel
+Wie auch beim vorherigen Meilenstein fokussierte sich das Team auf die vom Kunden gewünschten Funktionalitäten wie das Anlegen und Bearbeiten von eigenen Tags.
+Dazu gehörte:
+\begin{enumerate}
+  \item Scannen des Tags
+  \item Vergeben eines eigenen Namens
+  \item Auswählen von Musik
+  \item Auswählen eines eigenen Bilds
+\end{enumerate}
+Auch sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+%Probleme
+Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
+Die tatsächliche Umsetzung und Planung/Einschätzung divergierte in diesem Meilenstein sehr stark.
+Es wurde sich zu sehr in Details verloren, sodass der Fokus auf die wichtigen Tickets verloren ging.
+Das führte dazu, dass zum Review viele halbfertige Tickets entweder nur schlecht getestet oder gar nicht im Master-Branch implementiert waren.
+%Lösungen
+Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt.
+Das half einerseits dabei, dass Probleme gelöst und die Teammotivation sowie die Produktivität stieg, als auch das generelle Teamklima weiter gebessert wurde.
+Darüber hinaus wurde auch beschlossen, in den folgenden Sprints die Menge an zu bearbeitenden Issues besser festzulegen.
+%Product Increment
+Das Produkt wurde um die Grundfunktionen erweitert.
+Es ist nun möglich, Tags anzulegen und entsprechend für diese Namen, Musik und ein Bild festzulegen.
+Genauso ist es dem Nutzer nun möglich, alle angelegten Tags zu durchsuchen.
+Es wurde weiterhin auch das Design Mockup von dem von macio gestellten Designer in Vue größtenteils umgesetzt.
+Gleichzeitig wurden hierbei die Komponenten zur einfacheren Verwendung als möglichst allgemeine Vue Komponenten angelegt, um ein einheitliches Design zu ermöglichen.
+Für die Entwickler wurden auch die automatisierten Tests um einen Test auf Typsicherheit erweitert.
+%Retrospektive
+Besonders gut gefiel dem Team das Teamklima, vor allem des ehrliche Miteinander.
+Trotz Komplikationen und Probleme konnte dem Kunden am Ende ein funktionierendes Product Increment geliefert werden.
+Pull Requests und Tickets wurden besser beschrieben, sodass Probleme verständlicher waren.
+Vor allem durch das interne Team Review wurde die Zusammenarbeit weiter verbessert.
+Das Team konnte das Wissen zu Vue, vor allem die Themen Reaktivität, Events und Kommunikation zwischen Komponenten ausbauen.
+Stark bemängelt wurde der Scope des Meilensteins.
+Das Zeitmanagement war an dieser Stelle nicht gut, es wurde sich zu viel vorgenommen und man hatte am Ende zu wenig Zeit.
+Das Team stimmte hier überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
+Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
+Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
+
+\subsubsection*{Meilenstein 5} $~$ \\
+Der Meilenstein fünf vom 14.01.2021 bis zum 28.01.2021 sollte die Entwicklung am Produkt weitgehend zu abschließen, sodass sich das Team auf den Bericht fokussieren konnte.
+%Ziel
+Geplant war, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine höchstens zum Beheben kleinerer Fehler benötigt werden würden.
+Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box} selbst als auch der einzelnen Tags.
+Die User Interface Elemente sollten, sofern noch nicht geschehen, ein einheitliches Design erhalten.
+Auch sollte die Dokumentation zur Bedienung der \textit{Leek Box} fertiggestellt sein und die Arbeit für den Bericht begonnen werden.
+%Probleme
+Wie beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
+Gegen Ende fehlte es an Zeit, um neu umgesetzte Tickets auf Fehler zu testen und entsprechend fehlerfrei dem Kunden zu präsentieren.
+%Lösungen
+Als Lösung für dieses Problem beschloss das Team dem Kunden im Review weniger neue Features vorzustellen als geplant.
+%Product Increment
+Das Produkt Inkrement enthielt die implementierten Einstellungen der \textit{Leek Box}, die es dem Nutzer ermöglichen, den Wiedergabelautsprecher auswählen, die jeweilige Leek Box zu verwalten und sich von Spoitfy abzumelden.
+Auch wurde ein Setup Guide angefertigt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
+Bei dem Design wurden alle Unstimmigkeiten beseitigt.
+%Retrospektive
+Insgesamt hat das Team sich an dieser Stelle vor allem über das sehr positive Feedback des Kunden gefreut.
+Auch wurde die Produktivität des Teams sehr gelobt.
+Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
+Problematisch war es, dass manche Tickets von mehreren gleichzeitig oder nacheinander bearbeitet wurden, sodass Arbeit teilweise doppelt erledigt wurde.
+Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
+Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
+
+\subsubsection*{Meilenstein 6} $~$ \\
+Mit dem Meilenstein sechs vom 28.01.2021 bis zum 15.02.2021 sollte die Entwicklung beendet und der Fokus komplett auf den Bericht gelegt werden, sodass der nächste und letzte Meilenstein für die letzten Korrekturen im Bericht genutzt werden konnte.
+%Ziel
+Neben der Fokussierung auf den Bericht sollte auch das User Interface auf einheitliches Design überprüft und die Entwicklung und Fehlerbehebung abgeschlossen werden.
+%Probleme
+\colorbox{red}{TODO:}schlauchiger start in den report
+
+%Lösungen
+\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
+
+%Product Increment
+Als letzte Änderungen am Produkt hat nun der Nutzer die Möglichkeit, verschiedene Leek Boxen auszuwählen bzw. neu eingerichtete Leek Boxen mit seinem Konto zu verbinden.
+Die letzten Bugfixes wurden umgesetzt sowie wurden die letzten Details aus dem Design Mockup übernommen.
+%Retrospektive
+\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
+Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
+
+\subsubsection*{Meilenstein 7} $~$ \\
+Der finale Meilenstein sieben vom 15.02.2021 bis zum 05.03.2021 sollte nur noch die letzten Korrekturen des Berichtes und Vorbereitung der Finalen Abgabe beinhalten.
+\colorbox{red}{TODO:}Kurze Einleitung, von, bis
+%Ziel
+\colorbox{red}{TODO:}was haben wir uns vorgenommen, was war das ziel, was wollten wir schaffen?
+%Probleme
+\colorbox{red}{TODO:}welche prrobleme sind aufgetreten?
+
+%Lösungen
+\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
+
+%Product Increment
+\colorbox{red}{TODO:}Was ist am Ende dabei rumgekommen?
+
+%Retrospektive
+\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
+Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
+
 
 \section{Fazit}
 \subsection{Probleme, Lösungen, Erkenntnisse}
@@ -714,15 +706,15 @@ Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-R
 Das Projekt Informatik gab einen realistischen Einblick in die Arbeitswelt.
 Das Team musste sich klassischen Alltagsproblemen stellen, Lösungswege finden und konnte wichtige Erkenntnisse für die Zukunft daraus ziehen.
 Auch Coding-Entwurfsmuster und -Konventionen wurden neu erlernt und praktisch angewandt.
-
-\subsubsection{Einarbeitung in neue Technologien}
+$~$ \\
+%Einarbeitung in neue Technologien
 Zu Beginn des Projektes bestand eine größere Differenz, inwieweit die einzelnen Teammitglieder mit den jeweiligen Technologien vertraut waren.
 Insbesondere die Projektstruktur bereitete eine größere Einstiegshürde für viele Entwickler.
 Sie wurde durch das automatische generieren von Dateien und Ordnern immer komplexer.
 Mit zunehmender Entwicklungszeit und durch die Arbeit an den Teilkomponenten des Mono-Repositorys gewannen die Entwickler jedoch schnell mehr Überblick über die Struktur.
 Das Team lernte wie Frameworks und Libraries  z. B. Vue, Tailwind und Feathers sinnvoll und hilfreich eingesetzt werden können.
-
-\subsubsection{Versionskontrolle und Deployment Cycle}
+$~$ \\
+%Versionskontrolle und Deployment Cycle
 Zwar wurde den Studierenden im Studium der Vorteil von Versionskontrollsystemen wie Git vermittelt, doch fand sich selten ein praktisches Anwendungszenario, dass Git über die Hauptfunktion der Versionierung hinaus sinnvoll genutzt hat.
 Dieses Projekt bot erstmals eine sinnvolle Anwendung von \textit{git}.
 Die Umsetzungen der gängigen Industriestandarts we z.B Pull-Requests und Code Reviews lehrte uns die Vorteile von Git in einer komplexen Umgebung.
@@ -730,8 +722,8 @@ Diese Methoden führten zu folgenden maßgebliche Verbesserungen:
 Mit zwei erfordelichen Code Reviews pro Pull Request, konnten Fehler im Code häufiger entdeckt werden und so eine höhere Codequalität erreicht.
 Als positiver Nebeneffekt konnten die Reviewer außerdem während des Prozesses neue Funktionen und Codemuster erlernen, zu denen sie bei Bedarf (per Kommentar) Fragen stellen konnten.
 Die Gewöhnung an diesen Deployment Cycle brauchte eine gewisse Zeit, fand aber von Sprint zu Sprint immer mehr Wertschätzung im Team.
-
-\subsubsection{Automatisierte Tests und Deployment}
+$~$ \\
+%Automatisierte Tests und Deployment
 Jeder Pull Request durchlief mehrere automatisierte Tests - sogenannte \textit{Actions} - die den geänderten Code auf Korrektheit in Syntax und simplen Semantischen fragen getestet haben.
 Inhaltliche Funktionen der Applikation wurden durch die Tests nicht abgedeckt.
 Diese prüften den Quellcode anhand fest eingestellter Testparameter.
@@ -740,13 +732,13 @@ Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen und die Fehlerq
 Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
 Dank dieser Automatisierungen konnte sich das Team mehr auf das Weiterentwickeln des Projektes konzentrieren.
 
-\subsubsection{Regelmäßige Standups und Retrospektiven}
+%Regelmäßige Standups und Retrospektiven
 Durch die regelmäßigen Standups entstand ein Ort für den Austausch von Problemen und Informationen über Fortschritt und neue Funktionen.
 So wurde verhindert, dass Probleme untergingen, neues Wissen wurde schneller verbreitet und die gesamte Teamproduktivität verbessert.
 Das bei den Retrospektiven entstandene Feedback erwies sich als sehr wichtig für das Teamklima.
 Auch die hierbei angesprochenen Probleme und Verbesserungsvorschläge wurden vom Team als sehr wertvoll für die nächsten Sprints erkannt und entsprechend adaptiert.
 
-\subsubsection{Kommunikation und Eigeninitiative}
+%Kommunikation und Eigeninitiative
 Anfänglich hat sich das Team zu sehr auf die Standups, als alleiniges Kommunikationsmittel verlassen, wodurch die Absprache zwischen den Teammitgliedern nur selten statt gefunden hat.
 Der Umfang erster Tickets war deutlich zu groß.
 Die Komplexität eines Tickets hat Teammitglieder davon abgehalten sich mit der Thematik zu beschäftigen.
@@ -754,7 +746,7 @@ Da konkrete Fragen bei einem gänzlich neuen Thema schwierig zu formulieren sind
 Lösungsansätze wurden gemeinsam in den Retrospektiven erarbeitet.
 Weiterhin konnte offen über Probleme gesprochen werden, indem teaminterne Evaluationen stattgefunden haben.
 
-\subsubsection{Planung, Zielsetzung und Einschätzung}
+%Planung, Zielsetzung und Einschätzung
 Größere Probleme hatte das Team mit dem Zeitmanagment der einzelnen Ticket.
 Während eines Milestones wurden manchmal nicht alle geplanten Tickets fertiggestellt, oder es wurde nachträglich zu viel in den Sprint neu Aufgenommen.
 Beides resultierte in Überstunden und zu wenig Zeit fürs Testen am Ende eines Meilensteins.
@@ -762,10 +754,7 @@ Aus diesen Erfahrungen, hat das Team gelernt wie wichtig es ist die Planung des 
 So hat das Team sich auch vorgenommen, mindestens zwei Tage vor einem Sprintende alle für den Sprint benötigten Tickets fertiggestellt zu haben.
 Dadurch sollte genügend Zeit geschaffen werden, um Tickets auf Korrektheit zu testen und konfliktfrei in den Master Branch mergen zu können.
 Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können, war diese Methode angesichts der knappen Projektlaufzeit die effektivste.
-
-\section{Technische Diagramme}
-\colorbox{red}{TODO:}ER Diagramme, UML, solcher krams
-
+\subsection{Ausblick}
 \newpage
 \section{Anhang}
 \colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
