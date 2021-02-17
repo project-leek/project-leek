@@ -15,7 +15,7 @@
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 \lstdefinelanguage{JavaScript}{
-  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, string, number, boolean},
   keywordstyle=\color{blue}\bfseries,
   ndkeywords={class, export, boolean, throw, implements, import, this},
   ndkeywordstyle=\color{purple}\bfseries,
@@ -574,7 +574,8 @@ Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
 Ziel war es, die ersten Grundbausteine für das Projekt legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
 sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles
-Haustier im Backend und die Darstellung im Frontend.
+Haustier im Backend und die Darstellung im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Milestone erstellt werden,
+um den Fortschritt, Probleme und Erkentnisse zeitnah dokumentieren zu können.
 \\~\\
 \paragraph*{Hello-World (Pet)} $~$ \\
 \label{HelloWorld}
@@ -584,40 +585,58 @@ wurde. Sie behinhaltete Attribute wie \glqq Name \grqq{} oder \glqq Id \grqq. Au
 Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter war hier
 die zuvor erstellte Modell-Klasse anzugeben. Um Objekte der Klasse \textit{NicksPet} zu verwlaten wurde folgender Service angelegt:
 \begin{lstlisting}
-  class NicksPetService implements MyService<NicksPet>{ [...] }
+  class NicksPetService implements MyService<NicksPet> {
+    id! : number;
+    name! : string;
+
+    constructor(_id: number, _name: string) {
+      this.id = _id;
+      this.name = _name;
+    }
+  }
 \end{lstlisting}
 In dieser Klasse war außerdem ein Verweis auf eine weitere erstellte Klasse (Model) aufgeführt, welche bestimmt, mit welcher Schnittstelle oder API die Daten
 verwaltet werden sollen (in diesem Fall mit der durch \textit{Feathers} bereitgestellten Schnitstelle für die Datenbank \textit{NeDB}).
 Mit dem Erstellen dieser drei Klassen (NicksPet.class.ts, NicksPetService.ts und NicksPet.model.ts) waren die benötigten Komponenten zur Verwaltung vorhanden und
 und die Arbeit im Backend abgeschlossen. Der nächste Schritt behinhaltete die Implemntierung der Steuerelemente zum Verwalten der Daten im Frontend.
+Aufgrund der erhöten Komplexität der Einarbeitung in mehrere teilweise komplett unbekannte Frameworks zur selben Zeit, bestanden bei dieser Aufgabe
+einige Startschwierigkeiten, welche allerdings durch große Hilfsbereitschaft der erfahreren Teammitglieder überwunden werden konnte.
 \\~\\
 Im Frontend wurde pro Haustier je ein \textit{compontet} zur Anzeige eines Haustiers angelegt,
 welches zusmmen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} Platz fand.
 Aufgrund der je nach Entwickler sehr unterschiedlichen Implmentierung des Frontends wird hier auf eine ausführliche Beschreibung der \textit{components} verzichtet.
-\\~\\
+%\\~\\
 \paragraph*{NFC-Tags auslesen} $~$ \\
 \colorbox{red}{Hier bei Bedarf noch weiter ausführen}
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die
-Möglichkeit NFC-Tags auszulesen implementiert werden. Hierzu wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
-analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen angelegt. Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
-angelegt und \colorbox{red}{Hier beschreiben was getan}.
+Möglichkeit NFC-Tags auszulesen implementiert werden. Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
+analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen angelegt.
+Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
+angelegt. Er nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, die Events für die angeschlossenen
+Geräte, wie in unserem Fall den NFC-Reader bereitstellt. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse (im NFC-Reader Package), welche
+von der Klasse \textit{events} erbt. Dies ermöglicht es auf Instanzen dieser Klassen einen EventHandler zu registrieren. Die Klasse
+ethält als Attribut eine Instanz von \textit{Evdev}, welches das \textit{on} Event des physischen NFC-Readers an das \textit{on} Event
+der Klasse bindet. Letzteres kann mittels eines EventListeners das angelegte NFC-Tag als das \textit{currentTag} setzten.
+\colorbox{red}{Irgendwie so......@Anton?}.
+Für den Microservice wurde dann ein Docker-Image kreiert, welches die einfache Auslieferung zur Installation ermöglicht.
+Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
+in Vergessenheit, sodass das Team sich einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden konnte.
+Um das Sprintziel nicht zu gefährden wurden gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen werden.
+\\~\\
+\paragraph*{Prototyping der Beutzeroberfläche} $~$ \\
+Damit die Entwicklung zeitnah starten konnte, wurden die ersten Mockups für die Benutzeroberfläche erstellt.
+Mithilfe des Prototyping-Tools \textit{figma} (vgl. \ref*{figma}) wurden Prototypen für die Start- , die Hauptansicht und die Ansichten
+für das Bearbeiten und Anlegen von NFC-Tags erstellt (Eine Übersicht über das erstellte Design ist im Anhang unter \ref*{FigmaDesigns} zu finden).
+Nach dem Design wurden die Ansichten in \textit{Click-Dummys} umgewandelt, um dem Kunden im folgenden Review einen Überblick über das Verhalten der
+Benutzeroberfläche zu verschaffen.
 
-Damit die Entwicklung zeitnah starten konnte, sollten die ersten Mockups für das User Interface erstellt
-werden. Mithilfe des Prototyping-Tools \textit{figma} (vgl. \ref*{figma}) wurden Prototypen für den Home-Screen, die .
-
-
-sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser Projektbegleitend aufgebaut werden konnte.
-%Probleme
-Zu Beginn ging der im ersten Review geäußerte Kundenwunsch, bereits NFC-Tags auszulesen und anzeigen zu können, unter und stellte so kurzzeitig das rechtzeitige Abschließen der für den Milestone vorgesehenen Tickets in Frage.
-Außerdem bereitete die Einarbeitung in die genutzten Technologien einigen Teammitgliedern einige Schwierigkeiten.
-%Lösungen
-Bereits von Anfang an zeichnete sich durch die hohe Hilfsbereitschaft den anderen Teammitgliedern gegenüber ein hoher Zusammenhalt im Team ab.
-Um das vom Kunden gewünschte Feature noch umzusetzen, wurden gegen Ende des Sprints Überstunden geleistet.
-%Product Increment
-Das Produkt wurde in diesem Meilenstein sinnvoll um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
+\paragraph*{Review} $~$ \\
+Dank des großen Engagements und der Bereitschaft Überstunden zu leisten, konnte dem Kunden zum Review ein neues Produktinkrement übergeben werden.
+Das Produkt wurde um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
 Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
 Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
-%Retrospektive
+
+\paragraph*{Retrospektive} $~$ \\
 Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
 Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
 Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren.
@@ -813,6 +832,7 @@ Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können
 \subsection{Ausblick}
 \newpage
 \section{Anhang}
+\label{FigmaDesigns}
 \colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
 \printbibliography
 \end{document}
