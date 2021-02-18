@@ -609,20 +609,27 @@ Aufgrund der je nach Entwickler sehr unterschiedlichen Implmentierung des Fronte
 \paragraph*{NFC-Tags auslesen} $~$ \\
 \colorbox{red}{Hier bei Bedarf noch weiter ausführen}
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die
-Möglichkeit NFC-Tags auszulesen implementiert werden. Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
+Möglichkeit NFC-Tags auszulesen implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
+in Vergessenheit, sodass das Team sich einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden konnte.
+Um das Sprintziel nicht zu gefährden, mussten gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen konnte.
+\\
+Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
 analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen angelegt.
 Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
-angelegt. Er nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, die Events für die angeschlossenen
-Geräte, wie in unserem Fall den NFC-Reader bereitstellt. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse (im NFC-Reader Package), welche
-von der Klasse \textit{events} erbt. Dies ermöglicht es auf Instanzen dieser Klassen einen EventHandler zu registrieren. Die Klasse
-ethält als Attribut eine Instanz von \textit{Evdev}, welches das \textit{on} Event des physischen NFC-Readers an das \textit{on} Event
-der Klasse bindet. Letzteres kann mittels eines EventListeners das angelegte NFC-Tag als das \textit{currentTag} setzten.
-\colorbox{red}{Irgendwie so......@Anton?}.
-Für den Microservice wurde dann ein Docker-Image kreiert, welches die einfache Auslieferung zur Installation ermöglicht.
-Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
-in Vergessenheit, sodass das Team sich einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden konnte.
-Um das Sprintziel nicht zu gefährden wurden gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen werden.
-\\~\\
+angelegt. Dieser nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, welches ein Interface für die Events der angeschlossenen
+Eingabegeräte vom Linux-Kernel, wie in unserem Fall den NFC-Reader, bereitstellt. Dies ist möglich, da der NFC-Reader sich wie eine Tastatur verhält. Der NFC-Reader
+simmuliert dabei eine Tastatureingabe mit dem Text der NFC-Tag-ID. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse
+(im NFC-Reader Package), welche jeden simmulierten Tastendruck des NFC-Readers abfängt bis ein Zeileumbruch (0A HEX) empfangen
+wird und anschließend ein Event auslöst, welches die eingescante ID beinhaltet. Die Hauptklasse nimmt dieses Event entgegen (Event-Listener) und setzt mittels des
+NFC-Reader Services den aktuell anliegenen Tags (\textit{currentTag}) auf die übergebene ID. Durch die Nutzung von \textit{Web-Sockets} und \textit{Vue.js}
+kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
+folgenden Milestone eingeplant und vorerst die Anzeige der NFC-ID als JSON-String umgesetzt.
+\\
+\colorbox{red}{Hier bei Bedarf noch weiter ausführen (aber wäre sehr ins Detail gegeangen)}
+Für den Microservice wurde anschließend ein Docker-Image kreiert,
+welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen
+System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
+
 \paragraph*{Prototyping der Beutzeroberfläche} $~$ \\
 Damit die Entwicklung zeitnah starten konnte, wurden die ersten Mockups für die Benutzeroberfläche erstellt.
 Mithilfe des Prototyping-Tools \textit{figma} (vgl. \ref*{figma}) wurden Prototypen für die Start- , die Hauptansicht und die Ansichten
