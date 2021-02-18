@@ -44,39 +44,69 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
 
 \subsection{Unternehmen}
 \begin{quote}
-  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte. Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können. Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
+  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte.
+  Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können.
+  Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
   \cite{openSource}
 \end{quote}
 
-Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
-Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
-\subsection{Produktvision}
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
+Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
+Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten.
+So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
+\subsection{Anforderungsanalyse}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
-Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.\\
-Genauer handelt es sich um eine Musik-Box, die NFC-Chips lesen und Spotify Connect unterstützen soll.
+Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.
+\subsubsection{Produktvision}
+Mithilfe der von macio gestellten Projektskizze (siehe \ref{pdf:macioprojektskizze}) haben wir uns folgende Produktvision vorgestellt:
+Das Produkt ist eine Musik-Box, die NFC-Chips lesen und Spotify Connect unterstützen soll.
 Auf die Box können dann Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt werden, um spezifische Musik abspielen zu lassen.
 Die Musik wird von Spotify-Connect über eine bereits bestehende Musik-Anlage abgespielt.
 Falls es im Rahmen des Projektes möglich ist, sollen die Nutzer in der Lage sein, zwischen verschiedenen Musikanbietern zu wechseln.
 NFC-Chips und die zugehörige Musik sollen über ein Web-basierte Benutzeroberfläche konfiguriert werden können.
 Diese Benutzeroberfläche soll von der Box ausgeliefert und primär für Smartphone-Bedienung gestaltet werden.
 Da es sich um ein Open Source Projekt mit entsprechender Lizenz handelt, muss auch eine aussagekräftige, öffentliche Dokumentation verfasst werden.
-Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technischen Fragen.
+Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technischen Fragen.\\
 
-\subsubsection{Minimal Requirements}
-\begin{enumerate}
-  \item NFC-Tags lesen, schreiben und entschlüsseln
-  \item Mit Spotify Connect verbinden und arbeiten
-  \item Responsive UI konzeptionieren und umsetzen
-  \item Aussagekräftige Dokumentation mit Benutzerhandbuch
-\end{enumerate}
-\subsubsection{Stretch Goals}
-\begin{enumerate}
-  \item Sound Wiedergabe auf der Box selbst
-  \item Unterstützung anderer Musikdienste / Plugin-Subsystem
-  \item 3D-Modellierung und Print einer passenden Box
-  \item Cloud-Anbindung der Box, Auslieferung des UI aus der Cloud
-\end{enumerate}
+\subsubsection{Anforderungen}
+Aus der Projektskizze und der Produktvision lassen sich konkreter folgende Mindestanforderungen und entsprechende Klassifikationen an das Produkt ableiten:
+\begin{center}
+  \begin{tabular}[h]{c|c}
+    Anforderung & Klassifikation \\
+    \hline
+    NFC-Tags lesen, schreiben und entschlüsseln & funktional  \\
+    Mit Spotify Connect verbinden und arbeiten & funktional \\
+    Responsive UI konzeptionieren und umsetzen & funktional  \\
+    Aussagekräftige Dokumentation mit Benutzerhandbuch & nicht funkt.  \\
+  \end{tabular}
+\end{center}
+
+Um diese Anforderungen weiter zu definieren hat das Team hierfür User Stories erstellt.
+Durch die User Stories wurde sichergestellt, dass beide Parteien (der Kunde und die Entwickler) die Anforderungen auf gleiche Weise interpretieren und verstehen.
+Dabei entstand auch ein Priorisierung der Anforderungen bemessen an dem Return of Investment und dem Nutzen für den Endnutzer.
+Im weiteren Gespräch mit den Kunden ergeben sich weitere ergänzende Anforderungen an das Produkt:
+\begin{center}
+  \begin{tabular}[h]{c|c}
+    Anforderung & Klassifikation \\
+    \hline
+    Sound Wiedergabe auf der Box selbst & funktional  \\
+    Unterstützung anderer Musikdienste & funktional \\
+    3D-Modellierung und Print einer passenden Box & nicht funkt.  \\
+    Maximaler Kostenpunkt von 30€ & nicht funkt.  \\
+    Cloud-Anbindung der Box & funktional \\
+    Auslieferung des UI aus der Cloud & funktional \\
+    \end{tabular}
+\end{center}
+
+Durch die agile Entwicklung des Projektes sind diese Anforderungen iterativ von Sprint zu Sprint gewachsen.
+Neue implizite Anforderungen sind aus den bestehenden Anforderungen entstanden.
+Beispielsweise um den Kostenpunkt von maximal 30€ zu realisieren entstand die Idee einer kleinen kostengünstigeren Version, welche unter 30€ liegt und nur die Grundfunktionen umsetzt, und einer größerer umfangreicheren, die weitere Funktionen beinhaltet wie das Abspielen der Musik über einen eigenen Lautsprecher.
+Das Team stieß auch während der Entwicklung auf wiedersprechende Anforderungen.
+So wurde sich zum Beispiel gegen bezahlte Services \colorbox{red}{für subdomains (bessere formulierung?)} entschieden auf Kosten der Usability, da dies mehr der Opensource Natur des Projektes entspräche.
+Weiter wurden auch die Anforderungen über die Entwicklung hinweg durch das Kundenfeedback am Ende der Sprints immer spezifischer.
+Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschnitt Machbarkeitsstudie (Abschnitt \ref{machbarkeitsstudie}) behandelt.
 
 \section{Projektplanung}
 
@@ -174,6 +204,7 @@ Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse m�
 Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 
 \section{Machbarkeitsstudie}
+\label{machbarkeitsstudie}
 
 \subsection{NFC Tag}
 \subsubsection*{lesen}
@@ -758,6 +789,7 @@ Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können
 \subsection{Ausblick}
 \newpage
 \section{Anhang}
+\colorbox{red}{macio Projektskizze einfügen} \label{pdf:macioprojektskizze}
 \colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
 \printbibliography
 \end{document}
