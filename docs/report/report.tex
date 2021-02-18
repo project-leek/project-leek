@@ -581,9 +581,9 @@ um den Fortschritt, Probleme und Erkentnisse zeitnah dokumentieren zu können.
 \label{HelloWorld}
 Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von Feathers auseinander um einen
 Überblick über die notwendigen Klassen und Konstrukte zu erhalten. Zuerst musste eine Klasse erstellt werden, in der der Aufbau des Haustierts modeliert
-wurde. Sie behinhaltete Attribute wie \glqq Name \grqq{} oder \glqq Id \grqq. Auf Basis dieser Klasse wurde anschließend ein Feathers-Service in Form einerseits
-Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter war hier
-die zuvor erstellte Modell-Klasse anzugeben. Um Objekte der Klasse \textit{NicksPet} zu verwlaten wurde folgender Service angelegt:
+wurde. Sie behinhaltete Attribute wie \glqq Name \grqq{} oder \glqq Id \grqq. Auf dieser Basis wurde anschließend ein Feathers-Service in Form einer
+Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
+die zuvor erstellte Modell-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwlaten wurde folgender Service angelegt:
 \begin{lstlisting}
   class NicksPetService implements MyService<NicksPet> {
     id! : number;
@@ -600,35 +600,34 @@ verwaltet werden sollen (in diesem Fall mit der durch \textit{Feathers} bereitge
 Mit dem Erstellen dieser drei Klassen (NicksPet.class.ts, NicksPetService.ts und NicksPet.model.ts) waren die benötigten Komponenten zur Verwaltung vorhanden und
 und die Arbeit im Backend abgeschlossen. Der nächste Schritt behinhaltete die Implemntierung der Steuerelemente zum Verwalten der Daten im Frontend.
 Aufgrund der erhöten Komplexität der Einarbeitung in mehrere teilweise komplett unbekannte Frameworks zur selben Zeit, bestanden bei dieser Aufgabe
-einige Startschwierigkeiten, welche allerdings durch große Hilfsbereitschaft der erfahreren Teammitglieder überwunden werden konnte.
+einige Startschwierigkeiten, welche allerdings durch die große Hilfsbereitschaft der erfahreneren Teammitglieder überwunden werden konnte.
 \\~\\
 Im Frontend wurde pro Haustier je ein \textit{compontet} zur Anzeige eines Haustiers angelegt,
-welches zusmmen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} Platz fand.
-Aufgrund der je nach Entwickler sehr unterschiedlichen Implmentierung des Frontends wird hier auf eine ausführliche Beschreibung der \textit{components} verzichtet.
-%\\~\\
+welches zusammen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} platziert wurde.
+Aufgrund der je nach Entwickler sehr unterschiedlichen Implmentierung der \textit{component} wird hier auf eine ausführliche Beschreibung verzichtet.
+
 \paragraph*{NFC-Tags auslesen} $~$ \\
 \colorbox{red}{Hier bei Bedarf noch weiter ausführen}
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die
 Möglichkeit NFC-Tags auszulesen implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
-in Vergessenheit, sodass das Team sich einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden konnte.
+in Vergessenheit, sodass sich das Team einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden könnte.
 Um das Sprintziel nicht zu gefährden, mussten gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen konnte.
 \\
 Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
-analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen angelegt.
+analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen erstellt.
 Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
 angelegt. Dieser nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, welches ein Interface für die Events der angeschlossenen
-Eingabegeräte vom Linux-Kernel, wie in unserem Fall den NFC-Reader, bereitstellt. Dies ist möglich, da der NFC-Reader sich wie eine Tastatur verhält. Der NFC-Reader
+Eingabegeräte vom Linux-Kernel, wie in unserem Fall den NFC-Reader, bereitstellt. Dies ist möglich, da der NFC-Reader sich wie eine Tastatur verhält. Er
 simmuliert dabei eine Tastatureingabe mit dem Text der NFC-Tag-ID. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse
-(im NFC-Reader Package), welche jeden simmulierten Tastendruck des NFC-Readers abfängt bis ein Zeileumbruch (0A HEX) empfangen
+(im NFC-Reader Package), welche jeden simmulierten Tastendruck des NFC-Readers abfängt, bis ein Zeileumbruch (0A HEX) empfangen
 wird und anschließend ein Event auslöst, welches die eingescante ID beinhaltet. Die Hauptklasse nimmt dieses Event entgegen (Event-Listener) und setzt mittels des
 NFC-Reader Services den aktuell anliegenen Tags (\textit{currentTag}) auf die übergebene ID. Durch die Nutzung von \textit{Web-Sockets} und \textit{Vue.js}
 kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
-folgenden Milestone eingeplant und vorerst die Anzeige der NFC-ID als JSON-String umgesetzt.
+folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
 \\
 \colorbox{red}{Hier bei Bedarf noch weiter ausführen (aber wäre sehr ins Detail gegeangen)}
-Für den Microservice wurde anschließend ein Docker-Image kreiert,
-welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen
-System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
+Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
+ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
 
 \paragraph*{Prototyping der Beutzeroberfläche} $~$ \\
 Damit die Entwicklung zeitnah starten konnte, wurden die ersten Mockups für die Benutzeroberfläche erstellt.
@@ -644,9 +643,9 @@ Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares D
 Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
 
 \paragraph*{Retrospektive} $~$ \\
-Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
-Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
-Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren.
+Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierung von Tests und Deployment kümmerte.
+Auch das Gruppenklima wurde sehr gelobt und angemerkt, dass die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings sehr positiv wahrgenommmen wurden.
+Das Team konnte bei der Umsetzung dieses Meilensteins viel über die Funktionsweise der Frameworks \textit{Feathers}, \textit{Vue.js} und \textit{Tailwind} lernen.
 Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Reviews und Pull Request in Kontakt.
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
