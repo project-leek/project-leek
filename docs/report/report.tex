@@ -623,36 +623,45 @@ Funktionen wie das Verbinden der Box mit dem WLAN zuerst logisch auf Sinnhaftigk
 innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability für den Benutzer sicherzustellen.
 
 \paragraph*{Musik abspielen} $~$ \\
-Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird umgesetzt werden.
+Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abgespielt wird, umgesetzt werden.
 Dafür setzte sich ein Teil des Teams intensiv mit der \textit{Spotify-API}\footnote{https://developer.spotify.com/documentation/web-api/} auseinander.
-Dabei entdeckten die Entwickler die Biblothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
-die die Nutzung abstrahierte und so den Zugriff erleichterte. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
-\footnote{https://docs.feathersjs.com/api/hooks.html}. Hooks sind Funktionen, die z. B. vor oder nach einem Feathers Service Aufruf ausgeführt werden können.
-In diesem Fall beinhaltet der angelegte \textit{playSpotify} Hook einen Aufruf der Methode \lstinline{play} der \textit{Spotify Web API node} die den Song
-hinter der url des mitgegebenen NFC-Tags abspielt. Der Aufruf geschiet automatisch nachdem die Methode \textit{patch} des NFC-Reader Services aufgerufen wurde.
+Hierbei entdeckten die Entwickler die Biblothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
+abstrahiert und so den Zugriff auf diese erleichtert. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
+\footnote{https://docs.feathersjs.com/api/hooks.html} verwendet. Hooks sind Funktionen, die z. B. vor oder nach einem Feathers Service Aufruf ausgeführt werden
+können. In diesem Fall beinhaltet der angelegte \textit{playSpotify} Hook einen Aufruf der Methode \textit{play} der \textit{Spotify Web API Node}, die den Song
+hinter der \textit{URL} des mitgegebenen NFC-Tags abspielt. Dieser Hook ist an die \textit{patch} Methode es NFC-Reader Services angehängt, sodass dieser im
+Anschluss an die \textit{patch} Methode, die den Eintrag des \textit{attachedTag} des NFC-Readers aktualisiert, aufgerufen wird.
+
 \colorbox{red}{Hier noch was dazu oder was falsch @Anton?}
 
 \paragraph*{NFC-Tags scannen emulieren} $~$ \\
-Da während des Projekts nicht alle Entwicker kontunierlichen Zugriff auf einen NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
-geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Batch-Script} erstellt, welches einen \textit{HTTP PATCH request} an
-das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann ein NFC-Tag mit der
-ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
+Da während des Projekts nicht alle Entwicker kontunierlichen Zugang zu einem NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
+geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Shell-Script} erstellt, welches einen \textit{HTTP PATCH request} an
+das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann zum Beispiel ein NFC-Tag mit
+der ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
 an seiner Entwicklungsmaschine angeschlossen haben. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
 
 
-\paragraph*{Entwicklung der Authentication-Page}
+\paragraph*{Entwicklung des Welcome Screens mit Authentifizierung}
 \begin{wrapfigure}{r}{4cm}
   \includegraphics[width=3.8cm]{WelcomeScreenV1.png}
   \caption{Orderstruktur}
   \label{fig:Welcome Screen (Version 1)}
 \end{wrapfigure}
-Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit dir Authentifizierung mit Spotify beschäftigt
-werden. Dafür wurde das offene Protokoll oAuth verwendet, welches bereits in \textit{Feathers} abstrahiert ist. Zur Nutzung dieses Protokoll wurde eine
-sogenannte \textit{Stragegie} in Form einer Klasse verwendet (in diesem Fall die Klasse SpotifyStrategie), die von der von Feathers bereitgestellten Klasse
-OAuthStragegie erbt. \colorbox{red}{JWT}
-Zum Anstoß dieses Prozesses wurde auf Basis des Mockups ein View in der Benuterzoberfläche erstellt. Dieser enthält als Steuerelemente nur Infos über den Namen
-des Produkts und einen Kurzen Untertitel, sowie den Button, der den OAuth-Prozess startet. Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert,
-dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token vorhanden ist.
+Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit der Authentifizierung mit Spotify beschäftigt
+werden. Dafür wurde das offene Protokoll \textit{OAuth} verwendet, welches bereits in \textit{Feathers} abstrahiert implementiert ist. Zur Nutzung dieses
+Protokolles wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
+Die dafür nötige Strategie mit dem Namen \textit{SpotifyStrategie} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
+OAuthStragegie erbt. Bei der Anmeldung eines Benutzer wird von Spotify ein JWT-Token an das Backend übergeben. Ein JWT-Token besteht aus eienm Base64
+enkodiertem Text, welcher beliebige Daten beinhalten kann. Diese Daten sind daher unverschlüsselt (nur enkodiert) in dem Token hinterlegt und werden
+durch eine Signatur auf ihre Integrität überprüft. Der von Spotify übermittelte JWT-Token enthält in diesem Fall die ID, E-Mail und den Namen des
+Benutzers. Diese Daten werden extrahiert und sofern der Benutzer nicht bereits in der Datenbank vorhanden ist, wird mit diesen ein neuer Benutzer erstellt.
+Sollte der Benutzer jedoch bereits in der Datenbank existieren, so wird dieser gegebenenfalls aktualisiert. Da sich jeder Benutzer vor der Verwendung der App
+zuerst  mit einem gültigen Token identifizioeren muss, wird bei möglichen Änderungen der Stammdaten in Spotify sofort immer der Datenbankeintrag in Feathers
+aktuell gehalten. Zum Beginn der Umsetzung wurde auf Basis des Mockups ein View in der App erstellt. Dieser enthält als Steuerelemente nur Infos über den Namen
+des Produkts - \textit{leek-box} - und einen Kurzen Untertitel, sowie einen \glqq Anmelden mit Spotify\grqq Button, der den OAuth-Prozess startet.
+Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert, dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token
+vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf des \textit{Welcome Screens} automatisch auf die Hauptseite weitergeleitet.
 $~$ \\
 $~$ \\
 $~$ \\
@@ -662,10 +671,10 @@ Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise au
 
 \paragraph*{Umsetzung des Homescreens}
 Um dem Kunden im nächsten Review möglichst viele neue Featueres präsentieren zu können startete das Team außerdem die Umsetzung der Hauptansicht. In dieser
-sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurde zuerste eine \textit{component} (\textit{TagEntry.vue}) erstellt, welche Bild und Name des NFC-Tags anzeigt
-und in der Anwenung vielseitig widerverwendet werden konnte. Zusätzlich wurde eine \textit{component} mit dem Namen \textit{GroupDropDown.vue} erstellt, welches eine
-Gruppe darstellen soll. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das \textit{GroupDropDown.vue} geladen. Zusätzlich erhielt
-\textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können.
+sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurde zuerste eine \textit{component} (\textit{TagEntry.vue}) erstellt, welche Bild und Name
+des NFC-Tags anzeigt und in der Anwenung vielseitig widerverwendet werden konnte. Zusätzlich wurde eine \textit{component} mit dem Namen \textit{GroupDropDown.vue}
+erstellt, welches eine Gruppe darstellen soll. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das \textit{GroupDropDown.vue}
+geladen. Zusätzlich erhielt \textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können.
 
 \paragraph*{Review & Retrospektive}
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war auch das Einloggen in einen bestehenden Spotify Account möglich.
