@@ -641,16 +641,33 @@ an seiner Entwicklungsmaschine angeschlossen haben. So konnten Funktionen wie da
 
 
 \paragraph*{Entwicklung der Authentication-Page}
-Nach dem erste Designentwürfe erstellt worden waren wurde auch mit der Entwicklung der ersten Vue View begonnen. Um das in diesem Milsteone erstellte
-Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit dir Authentifizierung mit Spotify beschäftigt werden. Dafür wurde das
-offene Protokoll oAuth verwendet, welches bereits in \textit{Feathers} abstrahiert ist.
-
+\begin{wrapfigure}{r}{4cm}
+  \includegraphics[width=3.8cm]{WelcomeScreenV1.png}
+  \caption{Orderstruktur}
+  \label{fig:Welcome Screen (Version 1)}
+\end{wrapfigure}
+Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit dir Authentifizierung mit Spotify beschäftigt
+werden. Dafür wurde das offene Protokoll oAuth verwendet, welches bereits in \textit{Feathers} abstrahiert ist. Zur Nutzung dieses Protokoll wurde eine
+sogenannte \textit{Stragegie} in Form einer Klasse verwendet (in diesem Fall die Klasse SpotifyStrategie), die von der von Feathers bereitgestellten Klasse
+OAuthStragegie erbt. \colorbox{red}{JWT}
+Zum Anstoß dieses Prozesses wurde auf Basis des Mockups ein View in der Benuterzoberfläche erstellt. Dieser enthält als Steuerelemente nur Infos über den Namen
+des Produkts und einen Kurzen Untertitel, sowie den Button, der den OAuth-Prozess startet. Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert,
+dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token vorhanden ist.
+$~$ \\
+$~$ \\
+$~$ \\
 %Probleme
 Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
-%Lösungen
-Macio unterstützte das Team, durch die Vermittlung eines Designers ihrer Firma, der die vom Team angefertigten Mockups überarbeitete.
-Das Erstellen der Sequenzdiagramme half bei dem Team dabei, das Verhalten eines Nutzers besser einzuschätzen und das User Interface entsprechend zu konzipieren.
-%Product Increment
+\colorbox{red}{Weiß noch jemand bei welchem Ticket zum Beispiel?}
+
+\paragraph*{Umsetzung des Homescreens}
+Um dem Kunden im nächsten Review möglichst viele neue Featueres präsentieren zu können startete das Team außerdem die Umsetzung der Hauptansicht. In dieser
+sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurde zuerste eine \textit{component} (\textit{TagEntry.vue}) erstellt, welche Bild und Name des NFC-Tags anzeigt
+und in der Anwenung vielseitig widerverwendet werden konnte. Zusätzlich wurde eine \textit{component} mit dem Namen \textit{GroupDropDown.vue} erstellt, welches eine
+Gruppe darstellen soll. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das \textit{GroupDropDown.vue} geladen. Zusätzlich erhielt
+\textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können.
+
+\paragraph*{Review & Retrospektive}
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war auch das Einloggen in einen bestehenden Spotify Account möglich.
 Außerdem wurden auf der Startseite die NFC-Tags entsprechend der zugeordneten Gruppe angezeigt.
 Jegliche Neuerung auf dem Master wurden nun auch auf Github.io veröffentlicht.
