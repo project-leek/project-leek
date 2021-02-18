@@ -399,6 +399,7 @@ Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt un
 
 \subsubsection{Externe Bibliotheken}
 \paragraph{Spotify Web API} $~$ \\
+\label{SpotifyWebApiNode}
 Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
 Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
 Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
@@ -468,6 +469,7 @@ Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So
 \textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
 
 \subsubsection{Lucidchart}
+\label{Lucidchart}
 Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
 Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
 Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
@@ -601,19 +603,50 @@ Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Review
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
 
-\paragraph*{Meilenstein 3}$~$ \\
+\subsubsection*{Meilenstein 3}
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
-Die benötigten Anwendungsszenarien und Mockups sollten in diesem Sprint finalisiert werden.
+
+\paragraph*{Mockup Überarbeitung} $~$ \\
+Die erstellten Mockups für die Benutzeroberfläche sollten in diesem Sprint basierend auf dem Feedback des Reviews von macio finalisiert werden.
+Das Ergebnis der bereitete den Entwicklern trotz des Feedbacks von macio anfänglich einige Probleme, da das Team nur aus Studierenden des Studiengangs
+Informationstechnologie bestand, welche mit dem Thema Usability, abgesehen von dem Modul
+\textit{Usability Engineering}\footnote{\url{https://moduldatenbank.fh-kiel.de/de-DE/Module/Details/0de99d45-efc9-437a-a190-24d539b2a1d8}} wenig Kontakt
+und haben und darüber hinaus auch keine persönlichen Erfahrungen gesammelt hatten. \colorbox{red}{Klingt noch zu negaitv}. Diese Schwierigkeiten wurden
+durch offene Kommunikation an macio weitergegeben, welche dann einen ihrer Designer baten, bei der Entwicklung des Designs zu unterstützen.
+
+\paragraph*{Flow-Charts} $~$ \\
+Außerdem wurden aus den im letzten Sprint erstellten und von macio abgenommenen \textit{User Stories} als Grundlage genommen, um daraus untergingen
+Nutzung des Online-Tools \textit{Lucidchart} (vgl. \ref*{Lucidchart}) \textit{Flow-Charts}
+zu erstllen, die im Anhang unter \ref*{FlowCharts} zu finden sind. \colorbox{red}{Hier ggf. Flowchart einblenden und erläutern}. Sie erleichterten die
+Umsetzung der Deisgn-Mockups da die notwendigen Abläufe visualisierten. Dank dieses Zwischenschrittes konnten auch nicht durch Mockups visualisierten
+Funktionen wie das Verbinden der Box mit dem WLAN zuerst logisch auf Sinnhaftigkeit überprüft werden, bevor sie programmiert wurden. Dadurch konnte
+innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability für den Benutzer sicherzustellen.
+
+\paragraph*{Musik abspielen} $~$ \\
 Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechend hinterlegte Musik abgespielt wird umgesetzt werden.
-%Ziel
-Dafür musste im Backend ein NFC-Tag mit der jeweiligen Musik angelegt werden.
-Um die hohen Anforderungen an die Usability umsetzten zu können, musste sich damit beschäftigt werden, wie Nutzer mit der Anwendung interagieren könnte,.
-Daher sollten auch Sequenzdiagramme und weitere Mockups für das User Interface erstellt werden.
-Damit jedes Teammitglied auch ohne Hardware arbeiten konnte, sollte es auch möglich sein, das Einlesen von NFC-Tags zu emulieren.
+Dafür setzte sich ein Teil des Teams intensiv mit der \textit{Spotify-API}\footnote{https://developer.spotify.com/documentation/web-api/} auseinander.
+Dabei entdeckten die Entwickler die Biblothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
+die die Nutzung abstrahierte und so den Zugriff erleichterte. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
+\footnote{https://docs.feathersjs.com/api/hooks.html}. Hooks sind Funktionen, die z. B. vor oder nach einem Feathers Service Aufruf ausgeführt werden können.
+In diesem Fall beinhaltet der angelegte \textit{playSpotify} Hook einen Aufruf der Methode \lstinline{play} der \textit{Spotify Web API node} die den Song
+hinter der url des mitgegebenen NFC-Tags abspielt. Der Aufruf geschiet automatisch nachdem die Methode \textit{patch} des NFC-Reader Services aufgerufen wurde.
+\colorbox{red}{Hier noch was dazu oder was falsch @Anton?}
+
+\paragraph*{NFC-Tags scannen emulieren} $~$ \\
+Da während des Projekts nicht alle Entwicker kontunierlichen Zugriff auf einen NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
+geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Batch-Script} erstellt, welches einen \textit{HTTP PATCH request} an
+das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann ein NFC-Tag mit der
+ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
+an seiner Entwicklungsmaschine angeschlossen haben. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
+
+
+\paragraph*{Entwicklung der Authentication-Page}
+Nach dem erste Designentwürfe erstellt worden waren wurde auch mit der Entwicklung der ersten Vue View begonnen. Um das in diesem Milsteone erstellte
+Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit dir Authentifizierung mit Spotify beschäftigt werden. Dafür wurde das
+offene Protokoll oAuth verwendet, welches bereits in \textit{Feathers} abstrahiert ist.
+
 %Probleme
 Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
-Ansonsten sind nur kleinere Problematiken, insbesondere bei den Design Mockups, aufgetreten.
-Bedingt dadurch, dass das Team nur aus Informatikern bestand, gab es keine ausführlichen Erfahrungen mit Design und Usability Engineering.
 %Lösungen
 Macio unterstützte das Team, durch die Vermittlung eines Designers ihrer Firma, der die vom Team angefertigten Mockups überarbeitete.
 Das Erstellen der Sequenzdiagramme half bei dem Team dabei, das Verhalten eines Nutzers besser einzuschätzen und das User Interface entsprechend zu konzipieren.
@@ -789,6 +822,7 @@ Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können
 \subsection{Ausblick}
 \newpage
 \section{Anhang}
+\label{FlowCharts}
 \colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
 \printbibliography
 \end{document}
