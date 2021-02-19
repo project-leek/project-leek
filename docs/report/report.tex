@@ -607,23 +607,33 @@ Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koor
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
 
 \paragraph*{Mockup Überarbeitung} $~$ \\
-Die erstellten Mockups für die Benutzeroberfläche sollten in diesem Sprint basierend auf dem Feedback des Reviews von macio finalisiert werden.
-Das Ergebnis der bereitete den Entwicklern trotz des Feedbacks von macio anfänglich einige Probleme, da das Team nur aus Studierenden des Studiengangs
+Die erstellten Mockups für die Benutzeroberfläche sollten in diesem Sprint basierend auf dem Feedback von macio finalisiert werden.
+Das Ergebnis führte bei den Entwicklern anfänglich zu etwas Unsicherheit, da das Team nur aus Studierenden des Studiengangs
 Informationstechnologie bestand, welche mit dem Thema Usability, abgesehen von dem Modul
-\textit{Usability Engineering}\footnote{\url{https://moduldatenbank.fh-kiel.de/de-DE/Module/Details/0de99d45-efc9-437a-a190-24d539b2a1d8}} wenig Kontakt
-und haben und darüber hinaus auch keine persönlichen Erfahrungen gesammelt hatten. \colorbox{red}{Klingt noch zu negaitv}. Diese Schwierigkeiten wurden
-durch offene Kommunikation an macio weitergegeben, welche dann einen ihrer Designer baten, bei der Entwicklung des Designs zu unterstützen.
+\textit{Usability Engineering}\footnote{\raggedright\url{https://moduldatenbank.fh-kiel.de/de-DE/Module/Details/0de99d45-efc9-437a-a190-24d539b2a1d8}}
+wenig Kontakt und haben und darüber hinaus wenig persönlichen Erfahrungen in dem Themenbereich gesammelt hatten.
+Diese Schwierigkeiten wurden durch offene Kommunikation an macio weitergegeben, die zur Problemlösung einen ihrer Designer baten,
+bei der Entwicklung des Designs zu unterstützen.
 
 \paragraph*{Flow-Charts} $~$ \\
-Außerdem wurden aus den im letzten Sprint erstellten und von macio abgenommenen \textit{User Stories} als Grundlage genommen, um daraus untergingen
-Nutzung des Online-Tools \textit{Lucidchart} (vgl. \ref*{Lucidchart}) \textit{Flow-Charts}
-zu erstllen, die im Anhang unter \ref*{FlowCharts} zu finden sind. \colorbox{red}{Hier ggf. Flowchart einblenden und erläutern}. Sie erleichterten die
-Umsetzung der Deisgn-Mockups da die notwendigen Abläufe visualisierten. Dank dieses Zwischenschrittes konnten auch nicht durch Mockups visualisierten
-Funktionen wie das Verbinden der Box mit dem WLAN zuerst logisch auf Sinnhaftigkeit überprüft werden, bevor sie programmiert wurden. Dadurch konnte
-innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability für den Benutzer sicherzustellen.
+\begin{wrapfigure}{r}{0cm}
+  %\vspace{-30pt}
+  \includegraphics[width=0.45\textwidth]{ConnectToWIFI.png}
+  \caption{Flowchart: Connect to WIFI}
+  \label{fig:ConnectToWifi}
+\end{wrapfigure}
+Außerdem wurden die im letzten Sprint erstellten \textit{User Stories} als Grundlage für die Entwicklung von \textit{Flow-Charts} verwendet.
+Diese wurden mit dem Online-Tool \textit{Lucidchart} (vgl. \ref*{Lucidchart}) erstellt und sind im Anhang unter \ref*{FlowCharts} zu finden.
+Sie erleichterten die Umsetzung der Deisgn-Mockups, indem sie notwendigen Abläufe visualisierten.
+Dank dieses Zwischenschrittes konnten auch die nicht durch Mockups visualisierte Funktionen, wie das Verbinden der Box mit dem WLAN, zuerst logisch skizziert
+werden, bevor sie programmiert wurden. Dadurch konnte innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability
+für den Benutzer sicherzustellen. Außerdem konnten sie auch dem Kunden vorgelegt werden, um etwailige Miskommunikation bei der Anforderungsanalyse zu vermeiden
+und so die Wahrscheinlichkeit auf spätere Änderungen wichtiger Funktion zu senken. Die Erstellung dieser \textit{Flow-Charts} hat mit übereinstimmender
+Meinung aller Teammitlgieder die spätere Programmierung maßgeblich effizienter gestaltet und wurde auch vom Kunden sehr geschätzt.
+
 
 \paragraph*{Musik abspielen} $~$ \\
-Außerdem sollte der vom Kunden geäußerte Wunsch, dass beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abgespielt wird, umgesetzt werden.
+Auch der vom Kunden geäußerte Wunsch, beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abzuspielen, sollte in diesem Milestone umgesetzt werden.
 Dafür setzte sich ein Teil des Teams intensiv mit der \textit{Spotify-API}\footnote{https://developer.spotify.com/documentation/web-api/} auseinander.
 Hierbei entdeckten die Entwickler die Biblothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
 abstrahiert und so den Zugriff auf diese erleichtert. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
@@ -637,44 +647,46 @@ Da während des Projekts nicht alle Entwicker kontunierlichen Zugang zu einem NF
 geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Shell-Script} erstellt, welches einen \textit{HTTP PATCH request} an
 das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann zum Beispiel ein NFC-Tag mit
 der ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
-an seiner Entwicklungsmaschine angeschlossen haben. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
+an seiner Entwicklungsmaschine angeschlossen haben muss. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
 
 
-\paragraph*{Entwicklung des Welcome Screens mit Authentifizierung}
-\begin{wrapfigure}{r}{4cm}
-  \includegraphics[width=3.8cm]{WelcomeScreenV1.png}
+\paragraph*{Entwicklung des Welcome Screens mit Authentifizierung} $~$ \\
+\begin{wrapfigure}{r}{5cm}
+  \includegraphics[width=4.8cm]{WelcomeScreenV1.png}
   \caption{Orderstruktur}
   \label{fig:Welcome Screen (Version 1)}
 \end{wrapfigure}
-Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können musste sich auch mit der Authentifizierung mit Spotify beschäftigt
+Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können, musste sich auch mit der Authentifizierung mit Spotify beschäftigt
 werden. Dafür wurde das offene Protokoll \textit{OAuth} verwendet, welches bereits in \textit{Feathers} abstrahiert implementiert ist. Zur Nutzung dieses
 Protokolles wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
-Die dafür nötige Strategie mit dem Namen \textit{SpotifyStrategie} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
-OAuthStragegie erbt. Bei der Anmeldung eines Benutzer wird von Spotify ein JWT-Token an das Backend übergeben. Ein JWT-Token besteht aus eienm Base64
-enkodiertem Text, welcher beliebige Daten beinhalten kann. Diese Daten sind daher unverschlüsselt (nur enkodiert) in dem Token hinterlegt und werden
+Die dafür nötige \textit{Stragegy} mit dem Namen \textit{SpotifyStrategy} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
+\textit{OAuthStragegie} erbt. Bei der Anmeldung eines Benutzer wird von Spotify ein JWT-Token an das Backend übergeben. Ein JWT-Token besteht aus einem Base64
+enkodiertem Text, welcher beliebige Daten beinhalten kann. Diese Daten sind unverschlüsselt (nur enkodiert) in dem Token hinterlegt und werden
 durch eine Signatur auf ihre Integrität überprüft. Der von Spotify übermittelte JWT-Token enthält in diesem Fall die ID, E-Mail und den Namen des
-Benutzers. Diese Daten werden extrahiert und sofern der Benutzer nicht bereits in der Datenbank vorhanden ist, wird mit diesen ein neuer Benutzer erstellt.
+Benutzers. Diese Daten werden extrahiert und sofern der Benutzer nicht bereits in der Datenbank vorhanden ist, zum Anlegen eines neuen Benutzers verwendet.
 Sollte der Benutzer jedoch bereits in der Datenbank existieren, so wird dieser gegebenenfalls aktualisiert. Da sich jeder Benutzer vor der Verwendung der App
-zuerst  mit einem gültigen Token identifizioeren muss, wird bei möglichen Änderungen der Stammdaten in Spotify sofort immer der Datenbankeintrag in Feathers
-aktuell gehalten. Zum Beginn der Umsetzung wurde auf Basis des Mockups ein View in der App erstellt. Dieser enthält als Steuerelemente nur Infos über den Namen
-des Produkts - \textit{leek-box} - und einen Kurzen Untertitel, sowie einen \glqq Anmelden mit Spotify\grqq Button, der den OAuth-Prozess startet.
+zuerst  mit einem gültigen Token identifizieren muss, wird bei möglichen Änderungen der Stammdaten in Spotify sofort immer der Datenbankeintrag in Feathers
+aktuell gehalten.
+\\~\\
+Zum Beginn der Umsetzung wurde auf Basis des Mockups ein View in der Benutzeroberfläche (\textit{app} package) erstellt. Dieser enthält als Steuerelemente Infos
+über den Namen des Produkts - \textit{leek-box} - und einen kurzen Untertitel, sowie einen \glqq Anmelden mit Spotify\grqq{} Button, der den OAuth-Prozess startet.
 Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert, dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token
-vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf des \textit{Welcome Screens} automatisch auf die Hauptseite weitergeleitet.
+vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf dieser Seite automatisch auf die Hauptseite weitergeleitet.
 
-\paragraph*{Veröffentlichung der App auf GithubIO}
+\paragraph*{Veröffentlichung der App auf GithubIO} $~$ \\
 \colorbox{red}{@Anbraten hier bitte auführen}
 
-\paragraph*{Review \& Retrospektive}
+\paragraph*{Review \& Retrospektive} $~$ \\
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war zum Review auch das Einloggen
-in einen bestehenden Spotify Account möglich. Außerdem wurden auf der Startseite die NFC-Tags entsprechend der zugeordneten Gruppe angezeigt.
-Jegliche Neuerung auf dem Master wurden außerdem auch auf Github.io veröffentlicht, sodass der Kunde jederzeit den Fortschritt ermitteln konnte.
+in einen bestehenden Spotify Account möglich. Jegliche Neuerung auf dem Master wurden außerdem auch auf Github.io veröffentlicht, sodass der Kunde jederzeit
+den Fortschritt ermitteln konnte.
 \\
-Die vom Team durchgeführte Retrospektive ergab, dass die Problembewältigung durch die Anwendung von Pair Programmingin diesem Sprint optimiert werden konnte.
-Auch der Workflow mit Github und den Pull Request wurde verinnerlicht sowie Code Reviews wurden verstärkt durchgeführt. Das Team lernte in diesem Sprint
+Die vom Team durchgeführte Retrospektive ergab, dass die Problembewältigung durch die Anwendung von Pair Programming in diesem Sprint optimiert werden konnte.
+Auch der Workflow mit Github und den Pull Request wurde verinnerlicht sowie Code Reviews verstärkt durchgeführt. Das Team lernte in diesem Sprint
 Vue Hooks und die Stärken von Feathers in Verbindung mit OAuth kennen. Festgestellt wurde außerdem, dass einige Tickets weiterhin stark voneinander abhängig waren,
-weshalb das Bearbeiten einiger Aufgaben nicht direkt möglich war. Da Abhängigkeiten teilweise unvermeidbar sind, wurde sich geeinigt diese Tickets bei hoher
+weshalb das Bearbeiten einiger Aufgaben nicht direkt möglich war. Da Abhängigkeiten teilweise unvermeidbar sind, wurde sich geeinigt, diese Tickets bei hoher
 Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und qualitativ umsetzten zu können. Um das Risiko der Entstehung zukünftiger Probleme
-zu senken wurde festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu Gelerntes besser
+zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
 \subsubsection*{Meilenstein 4} $~$ \\
