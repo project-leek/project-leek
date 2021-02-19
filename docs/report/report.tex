@@ -667,17 +667,22 @@ $~$ \\
 Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
 \colorbox{red}{Weiß noch jemand bei welchem Ticket zum Beispiel?}
 
-\paragraph*{Umsetzung des Homescreens}
+\paragraph*{Umsetzung des Homescreens}$~$ \\
+\begin{wrapfigure}{r}{6cm}
+  \includegraphics[width=5.9cm]{HomeScreenSchema.png}
+  \caption{Schematischer Aufbau Home.vue}
+  \label{fig:HomeVueSchema}
+\end{wrapfigure}
 Um dem Kunden im nächsten Review möglichst viele neue Featueres präsentieren zu können startete das Team außerdem die Umsetzung der Hauptansicht. In dieser
-sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurde zuerste eine \textit{component} (\textit{TagEntry.vue}) erstellt, welche Bild und Name
-des NFC-Tags anzeigt und in der Anwenung vielseitig widerverwendet werden konnte. Zusätzlich wurde eine \textit{component} mit dem Namen \textit{GroupDropDown.vue}
-erstellt, welches eine Gruppe darstellen soll. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das \textit{GroupDropDown.vue}
-geladen. Zusätzlich erhielt \textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können.
+sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue}) enthält Bild und Name
+eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen \textit{GroupDropDown.vue}
+representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das
+\textit{GroupDropDown.vue} geladen. Zusätzlich erhielt \textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können.
 
 \paragraph*{Veröffentlichung der App auf GithubIO}
 \colorbox{red}{@Anbraten hier bitte auführen}
 
-\paragraph*{Review & Retrospektive}
+\paragraph*{Review \& Retrospektive}
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war auch das Einloggen in einen bestehenden Spotify Account möglich.
 Außerdem wurden auf der Startseite die NFC-Tags entsprechend der zugeordneten Gruppe angezeigt.
 Jegliche Neuerung auf dem Master wurden nun auch auf Github.io veröffentlicht.
