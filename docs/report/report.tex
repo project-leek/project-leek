@@ -631,26 +631,50 @@ Um das Risiko der Entstehung zukünftiger Probleme zu senken wurde festgelegt m�
 Genauso sollte neu Gelerntes besser kommuniziert werden, um die Arbeit effizienter zu gestalten.
 
 \subsubsection*{Meilenstein 4} $~$ \\
-Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
-Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen.
 %Ziel
-Wie auch beim vorherigen Meilenstein fokussierte sich das Team auf die vom Kunden gewünschten Funktionalitäten wie das Anlegen und Bearbeiten von eigenen Tags.
-Dazu gehörte:
+Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
+Es sollte so viele Funktionen des designten User Interfaces umgesetzt werden wie möglich, allerdings lag der Fokus auf einem vollständigem "Add-Tag-Flow".
+Dazu gehörten:
 \begin{enumerate}
   \item Scannen des Tags
   \item Vergeben eines eigenen Namens
   \item Auswählen von Musik
   \item Auswählen eines eigenen Bilds
 \end{enumerate}
-Auch sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+Weiterhin sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+
+Um möglichst viel parraleles Arbeiten und Eigentständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in seine einzelnen Komponenten aufgeteilt. Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf allen Ansichten verwendet werden konnte.
+Es wurde daher erst die grundliegenden Komponenten wie, Buttons, Textfields, Dropdowns usw entwickelt um aus diesen Komponenten die eigentlich Seiten zu erstellen.
+
+Die Seiten wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
+Beispielsweise wurde die Darstellung auf dem Homescreen, die Auswahl von Infos, Musik und Bild komplett unabhängig voneinander bearbeitet und mit Platzhalterdaten befüllt.
+Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
+Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
+
+\paragraph*{Umsetzung des Homescreens}$~$ \\
+\begin{wrapfigure}{r}{6cm}
+  \includegraphics[width=5.9cm]{HomeScreenSchema.png}
+  \caption{Schematischer Aufbau Home.vue}
+  \label{fig:HomeVueSchema}
+\end{wrapfigure}
+In dem HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue}) enthält Bild und Name
+eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen \textit{GroupDropDown.vue}
+representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das
+\textit{GroupDropDown.vue} geladen. Zusätzlich erhielt \textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können. Diese \textit{components}
+werden in \textit{Home.vue} angezeigt. Neben der Einbindung von einer \textit{GroupDropDown.vue} pro Gruppe wurde im Kopfbereich noch die vom Team erstelle
+\textit{Button component} verwendet die das Anlegen eines neuen NFC-Tags einleiten soll. Im Fußbereich befindet sich eine Suchleiste, die das Filtern der
+angezeigten NFC-Tags ermöglichen Soll. Die beiden letzgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
+Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
+
 %Probleme
-Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
-Die tatsächliche Umsetzung und Planung/Einschätzung divergierte in diesem Meilenstein sehr stark.
-Es wurde sich zu sehr in Details verloren, sodass der Fokus auf die wichtigen Tickets verloren ging.
-Das führte dazu, dass zum Review viele halbfertige Tickets entweder nur schlecht getestet oder gar nicht im Master-Branch implementiert waren.
+Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
+Dieser Prozess dauerte länger als erwartet und forderte eine hohes Maß an Kommunikation zwischen den Teammitgliedern.
+Teilweise enstanden Wartezeiten und funktionierender Code wurde, über mehrere Merges, unstabil oder defekt.
+Zum Schluss musste kurz vor dem Review noch viel getan werden, um eine reibungslose Präsentation zu garantieren.
+
 %Lösungen
-Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt.
-Das half einerseits dabei, dass Probleme gelöst und die Teammotivation sowie die Produktivität stieg, als auch das generelle Teamklima weiter gebessert wurde.
+Nachdem die ersten großen Merges abgeschlossen wurde, entschied das Team eine interne und anonyme Evaluation der Teammitglieder zu starten.
+Jedes Teammitglied hat somit konstruktive Kritik aber auch Lob und Unterstützung erhalten und konnte an seinen Schwächen arbeiten.
 Darüber hinaus wurde auch beschlossen, in den folgenden Sprints die Menge an zu bearbeitenden Issues besser festzulegen.
 %Product Increment
 Das Produkt wurde um die Grundfunktionen erweitert.
