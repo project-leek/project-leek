@@ -698,15 +698,14 @@ Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yello
 \subsubsection*{Meilenstein 6} $~$ \\
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface auf einheitliches Design, Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden kann.
-So könnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
+So würde der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
 
 %Entwicklung
 \colorbox{red}{TODO:} Database ohne seeds, anwndung auf raspi
 Zu Beginn sollten die letzten Softwaretickets erledigt werden.
 Vor allem im User Interface wurden noch Kleinigkeiten hinzugefügt oder behoben.
-Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} angepasst, das diese immer gleich ist.
+Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} angepasst, sodas diese immer gleich ist.
 Der \textit{Button Component} wurde überarbeitet, dass auch dieser universell für alle Anwendungszwecke benutzt werden kann
-\colorbox{red}{@JULIAN HIER ZUM BUTTON AUSFÜHREN}
 Auf der Startseite wird dem User eine entsprechende Nachricht angezeigt, sollte dieser noch keine NFC-Tags angelegt haben.
 \colorbox{red}{siehe Bild, noch einfügen zum zeigen}
 Auch wurde die Desktop Ansicht optimiert:\\
@@ -715,6 +714,14 @@ Diese streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe im 
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \colorbox{red}{Bild einfügen}
+Das Frontend wurde vom raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
+So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
+Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer Ip Adresse ersetzt durch ngrok. \colorbox{red}{was genau macht ngrok?}
+Ngrok veröffentlicht hierbei automatisch eine öffentliche verschlüsselte IP Adresse, um diese im Frontend eingeben zu können.
+Hierbei ist noch die Problematik aufgetroffen, dass diese IP Adresse nicht überprüft wird und bisher nur Fehler 404 angezeigt wird, falls dieser falsch ist.
+Vor allem problematisch ist es hier noch, dass bei Neustart des Raspberrys auch ngrok neugestartet wird und somit sich die IP Adresse ändert.
+Bisher muss nun der Nutzer seinen lokalen Cache löschen, da sonst der Browser weiterhin versucht, sich mit der alten IP Adresse zu verbinden.
+Das wird im nächsten Meilenstein gelöst.
 
 %Bericht
 Anfänglich wurden die Kapitel und Abschnitte für einen insgesamt runderen roten Faden im Bericht überarbeitet.
