@@ -633,7 +633,7 @@ Genauso sollte neu Gelerntes besser kommuniziert werden, um die Arbeit effizient
 \subsubsection*{Meilenstein 4} $~$ \\
 %Ziel
 Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
-Es sollte so viele Funktionen des designten User Interfaces umgesetzt werden wie möglich, allerdings lag der Fokus auf einem vollständigem "Add-Tag-Flow".
+Es sollten so viele Funktionen des designten User Interfaces umgesetzt werden wie möglich, allerdings lag der Fokus auf einem vollständigem \glqq Add-Tag-Flow\grqq.
 Dazu gehörten:
 \begin{enumerate}
   \item Scannen des Tags
@@ -644,19 +644,23 @@ Dazu gehörten:
 Weiterhin sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
 
 Um möglichst viel parraleles Arbeiten und Eigentständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in seine einzelnen Komponenten aufgeteilt. Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf allen Ansichten verwendet werden konnte.
-Es wurde daher erst die grundliegenden Komponenten wie, Buttons, Textfields, Dropdowns usw entwickelt um aus diesen Komponenten die eigentlich Seiten zu erstellen.
+Es wurde daher erst die grundliegenden Komponenten wie, Buttons, Textfields, Dropdowns entwickelt um aus diesen Komponenten die Views zu erstellen.
 
-Die Seiten wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
+Die Views wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
 Beispielsweise wurde die Darstellung auf dem Homescreen, die Auswahl von Infos, Musik und Bild komplett unabhängig voneinander bearbeitet und mit Platzhalterdaten befüllt.
 Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
 Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
 
+\paragraph*{}
+% Beispiel eines einzelnen Components
+% wie haben wir es ermöglicht das der Button auf allen Views verwenbar ist: style props und text reingeben und slots
 \paragraph*{Umsetzung des Homescreens}$~$ \\
 \begin{wrapfigure}{r}{6cm}
   \includegraphics[width=5.9cm]{HomeScreenSchema.png}
   \caption{Schematischer Aufbau Home.vue}
   \label{fig:HomeVueSchema}
 \end{wrapfigure}
+
 In dem HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue}) enthält Bild und Name
 eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen \textit{GroupDropDown.vue}
 representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das
@@ -666,11 +670,15 @@ werden in \textit{Home.vue} angezeigt. Neben der Einbindung von einer \textit{Gr
 angezeigten NFC-Tags ermöglichen Soll. Die beiden letzgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
 Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
 
+\paragraph*{}
+% Parent Component für Add Tag, es wird ein neuer Tag angelegt und schritt für schritt gefüllt
+% Die Schritte sind wie folgt: 1. 2. 3.
+
 %Probleme
 Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
 Dieser Prozess dauerte länger als erwartet und forderte eine hohes Maß an Kommunikation zwischen den Teammitgliedern.
 Teilweise enstanden Wartezeiten und funktionierender Code wurde, über mehrere Merges, unstabil oder defekt.
-Zum Schluss musste kurz vor dem Review noch viel getan werden, um eine reibungslose Präsentation zu garantieren.
+Kurz vor dem Review noch viel getan werden, um eine reibungslose Präsentation zu garantieren.
 
 %Lösungen
 Nachdem die ersten großen Merges abgeschlossen wurde, entschied das Team eine interne und anonyme Evaluation der Teammitglieder zu starten.
