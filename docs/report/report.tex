@@ -661,26 +661,9 @@ des Produkts - \textit{leek-box} - und einen Kurzen Untertitel, sowie einen \glq
 Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert, dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token
 vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf des \textit{Welcome Screens} automatisch auf die Hauptseite weitergeleitet.
 $~$ \\
-$~$ \\
-$~$ \\
 %Probleme
 Aufgrund von vorherrschenden Abhängigkeiten mussten Teammitglieder teilweise auf die Vollendung anderer Tickets warten, bevor sie mit diesen begannen.
 \colorbox{red}{Weiß noch jemand bei welchem Ticket zum Beispiel?}
-
-\paragraph*{Umsetzung des Homescreens}$~$ \\
-\begin{wrapfigure}{r}{6cm}
-  \includegraphics[width=5.9cm]{HomeScreenSchema.png}
-  \caption{Schematischer Aufbau Home.vue}
-  \label{fig:HomeVueSchema}
-\end{wrapfigure}
-Um dem Kunden im nächsten Review möglichst viele neue Featueres präsentieren zu können startete das Team außerdem die Umsetzung der Hauptansicht. In dieser
-sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue}) enthält Bild und Name
-eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen \textit{GroupDropDown.vue}
-representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der \textit{TagEntry.vue component} in das
-\textit{GroupDropDown.vue} geladen. Zusätzlich erhielt \textit{GroupDropDown.vue} die Funktionalität es auf- und zuklappen zu können. Diese \textit{components}
-werden in \textit{Home.vue} angezeigt. Neben der Einbindung von einer \textit{GroupDropDown.vue} pro Gruppe wurde im Kopfbereich noch die vom Team erstelle
-\textit{Button component} verwendet die das Anlegen eines neuen NFC-Tags einleiten soll. Im Fußbereich befindet sich eine Suchleiste, die das Filtern der
-angezeigten NFC-Tags ermöglichen Soll. Die beiden letzgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
 
 \paragraph*{Veröffentlichung der App auf GithubIO}
 \colorbox{red}{@Anbraten hier bitte auführen}
