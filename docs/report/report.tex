@@ -450,10 +450,13 @@ durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich ab
 Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
 
 \paragraph{Github Pages} $~$ \\
-Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
-Die Konigurationsanforderungen für diese Website sind minimal, da der Inhalt der Website an einen Teil des Repositotys gebunden werden kann. In unserem Fall, wird hierfür das \textit{app-package} verwendet.
-So bleibt die Website immer aktuell, da sie auf einem eigenen Branch besteht, und der Stand der Website komfortabel durch einen merge vom Master-Branch in den Website-Branch aktualisiert werden kann.
-\colorbox{red}{@Anton Please check!}
+Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation oder Repository eine kostenlose Website zur Verfügung.
+Dabei werden einfach statische Dateien, wie zum Beispiel \textit{.html}, \textit{.css} Dateien, aus einem bestimmten Branch oder einem Ordner bereitgestellt.
+Die Konigurationsanforderungen für diese Website sind somit minimal. In unserem Fall, verwenden wird für das Frontend ein separates Repository \textit{project-leek/project-leek.github.io},
+welches von einer Pipeline automatisch nach jedem Merge auf den master Branch aus dem \textit{app-package} gebaut wird. Dabei wird das Build-Tool des \textit{app-package}s aufgerufen und die dabei enstanden
+statischen Dateien werden von dem Pipeline Plugin \textit{github-pages-deploy-action}\footnote{\raggedright\url{https://github.com/JamesIves/github-pages-deploy-action}} aus der Pipeline in das separate
+\textit{project-leek/project-leek.github.io} Repository für den GitHub Pages Dienst verschoben. Somit ist die Website immer aktuell und wird nach dem Continous-Delivery Verfahren veröffentlicht. Dies hat den Vorteil,
+das Änderungen wie zum Beispiel Bugfixes und neue Features dem Endanwender schnellst möglich zur Verfügung gestellt werden.
 
 \subsubsection{Visual Studio Code \& WSL}
 Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
