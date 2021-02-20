@@ -692,24 +692,24 @@ Zur Verbesserung der Usability wurde dem Nutzer besser signalisiert, ob und welc
 Dafür wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
 Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welche bei einem Klick das jeweilige Element als \textit{selectedTag}.
 \begin{lstlisting}
-  const toggleTag = (tag: NFCTag): void => {
-    selectedTag.value = tag === selectedTag.value ? null : tag;
-    buttonTransitionActive.value = true;
-  };
+const toggleTag = (tag: NFCTag): void => {
+  selectedTag.value =
+    tag === selectedTag.value ? null : tag;
+  buttonTransitionActive.value = true;
+};
 \end{lstlisting}
 Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} ein ternärer Operator genutzt.
 Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
 \begin{lstlisting}
-  <TagEntry
-    v-for="entry in group.tags"
-    :key="entry.nfcData"
-    class="m-4 w-2/6 flex-shrink-0 text-4xl"
-    :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
-    :img="entry.imageUrl"
-    :name="entry.name"
-    @click="toggleTag(entry)"
-  />
-  };
+<TagEntry
+  v-for="entry in group.tags"
+  :key="entry.nfcData"
+  class="m-4 w-2/6 flex-shrink-0 text-4xl"
+  :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
+  :img="entry.imageUrl"
+  :name="entry.name"
+  @click="toggleTag(entry)"
+/>
 \end{lstlisting}
 Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
