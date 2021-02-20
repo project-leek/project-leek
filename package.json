@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "setup": "yarn",
-    "start": "yarn build:dependencies && dotenv -- lerna run --scope @leek/app --scope @leek/backend --parallel start",
+    "start": "yarn build:dependencies && dotenv -- lerna run --scope @leek/nfc-reader --scope @leek/app --scope @leek/backend --parallel start",
     "start:app": "yarn build:dependencies && dotenv -- lerna run --scope @leek/app --parallel start",
     "start:backend": "yarn build:dependencies && dotenv -- lerna run --scope @leek/backend --parallel start",
     "start:commons": "yarn build:dependencies && dotenv -- lerna run --scope @leek/commons --parallel start",
