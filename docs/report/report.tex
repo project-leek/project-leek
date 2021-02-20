@@ -731,17 +731,17 @@ Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor 
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
 \subsubsection*{Meilenstein 5} $~$ \\
-Mit dem fünften Meilenstein sollte zwischen dem 14.01.2021 und 28.01.2021 die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus mehr auf den Bericht gerichtet werden konnte.
+Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gerichtet werden konnte.
 
 %Ziel
-Geplant war hierbei, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine höchstens zum Beheben kleinerer Fehler benötigt genutzt werden müsste.
+Geplant war hierbei, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine zum Beheben kleinerer Fehler genutzt werden konnten.
 Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box} selbst als auch der einzelnen Tags.
 Die User Interface Elemente sollten, sofern noch nicht geschehen, ein einheitliches Design erhalten.
 Auch sollte die Dokumentation zur Bedienung der \textit{Leek Box} fertiggestellt sein und die Arbeit für den Bericht begonnen werden.
 
 % Durchführung
-Die Einstellungen der \textit{Leek Box} wurde hinzugefügt und wurde durch ein Zahnrad auf der Startseite erreichbar.
-In diesen Einstellungen konnten die Nutzer nun den zu verwendenden Lautsprecher für die Wiedergabe auswählen und sich ausloggen.
+Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
+In diesen Einstellungen können die Nutzer nun den zu verwendenden Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
 \paragraph*{Flow-Charts} $~$ \\
 \begin{wrapfigure}{r}{0cm}
   \includegraphics[width=0.45\textwidth]{Settings.jpeg}
@@ -759,7 +759,7 @@ An dieser Stelle war es erneut sehr praktisch ein Framework wie \textit{Vue} zu 
 % Visualisierung des ausgewählten Tags
 Zur Verbesserung der Usability wurde dem Nutzer besser signalisiert, ob und welchen Tag dieser angewählt hat.
 Dafür wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
-Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welche bei einem Klick das jeweilige Element als \textit{selectedTag}.
+Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
 \begin{lstlisting}
 const toggleTag = (tag: NFCTag): void => {
   selectedTag.value =
@@ -767,7 +767,7 @@ const toggleTag = (tag: NFCTag): void => {
   buttonTransitionActive.value = true;
 };
 \end{lstlisting}
-Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} ein ternärer Operator genutzt.
+Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
 Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
 \begin{lstlisting}
 <TagEntry
@@ -786,20 +786,19 @@ Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{o
 \colorbox{red}{explain this:} https://github.com/project-leek/project-leek/pull/319/files
 
 Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet, indem das komplette Setup durchgeführt wurde.
-Auch wurde dies dafür genutzt, ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} zu schreiben, sodass andere Nutzer dieses Produkt Zuhause eirichten könnten.
+Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer ihre eigene \textit{leek-box} bei sich einrichten könnten.
 
 %Probleme
 Wie beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
-Das Team hätte in diesem Sprint mehr Tickets umsetzen können und mehr Features dem Kunden präsentieren können, als sie diesem zu Beginn versprochen hatten, aber es fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu Können.
-Somit beschloss das Team dem Kunden im Review weniger neue Features vorzustellen als geplant und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
+Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu können.
+Somit beschloss das Team dem Kunden im Review nur die anfänglich geplanten Featuers vorzustellen und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
 Das Produkt konnte um die Einstellungen der \textit{Leek Box} und der Tags erfolgreich erweitert werden.
-Auch das Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden die meisten Unstimmigkeiten beseitigt.
-Die restlichen Kleinigkeiten sollten im nächsten Sprint umgesetzt werden.
+Auch der Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
+Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, die meisten Unstimmigkeiten beseitigt.
 
 %Retrospektive
-Das Team wurde vom Kunden sehr für das bisher entstandene Produkt sowie deren gesamte Produktivität gelobt.
-Besonders weil das Team soviel Gefallen an dem Projekt gefunden hat und entsprechend viel Energie aufgewendet hat, war dieser Lob sehr wertvoll und motivierend.
+Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
+Da das Team viel Gefallen an dem Projekt gefunden und entsprechend viel Energie aufgewendet hat, war dieser Lob sehr wertvoll und motivierend.
 Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
 Problematisch war es, dass manche Tickets von mehreren gleichzeitig oder nacheinander bearbeitet wurden, sodass Arbeit teilweise doppelt erledigt wurde.
 Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
