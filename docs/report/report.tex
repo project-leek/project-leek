@@ -643,8 +643,10 @@ Dazu gehörten:
 \end{enumerate}
 Weiterhin sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
 
-Um möglichst viel parraleles Arbeiten und Eigentständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in seine einzelnen Komponenten aufgeteilt. Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf allen Ansichten verwendet werden konnte.
-Es wurde daher erst die grundliegenden Komponenten wie, Buttons, Textfields, Dropdowns entwickelt um aus diesen Komponenten die Views zu erstellen.
+Um möglichst viel parraleles Arbeiten und Eigentständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in seine einzelnen Komponenten aufgeteilt.
+Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf
+allen Ansichten verwendet werden konnte. Es wurde daher erst die grundliegenden Komponenten wie, Buttons, Textfields, Dropdowns entwickelt um aus diesen
+Komponenten die Views zu erstellen.
 
 Die Views wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
 Beispielsweise wurde die Darstellung auf dem Homescreen, die Auswahl von Infos, Musik und Bild komplett unabhängig voneinander bearbeitet und mit Platzhalterdaten befüllt.
@@ -684,13 +686,14 @@ Alle der folgenden \textit{components} beinhalten Validierung für die eingegebe
 Daten besitzt. Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die
 \textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhänig vom der Gültigkeit verändert.
 \\~\\
-Das Erste \textit{component} ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF}, welches den Benutzer zum Scannen des
-NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des NFC-Readers der Aufruf der Funktion
-\textit{attachedTagListener} gebunden. Diese prüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und leitet den Benutzer in diesem Fall
-an die \textit{View} zum Bearbeiten des Tags weiter. Ist der NFC-Tag noch nicht angelegt wird die ID an die \textit{ID-Property} des \textit{newTag} gebunden
-und das nächste \textit{component} geladen.
+Das Erste \textit{component}, welches in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
+welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
+NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Diese prüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und
+leitet den Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weiter. Ist der NFC-Tag noch nicht angelegt wird die ID an die
+\textit{ID-Property} des \textit{newTag} gebunden und das nächste \textit{component} geladen. Beim Entladen von \textit{TagStepPlaceTagOnReader} wird die
+Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
 \\
-Dies ist das \textit{TagStepInfo component}. Es beinhaltet ein \textit{Textbox component} für den Namen des NFC-Readers und ein \textit{DropDown component},
+Als nächstes wird das \textit{TagStepInfo component} geladen. Es beinhaltet ein \textit{Textbox component} für den Namen des NFC-Readers und ein \textit{DropDown component},
 welches die Auswahl der Gruppe ermöglicht. Hierbei kann sowohl aus bereits bestehenden Gruppen gewählt, oder direkt in der \textit{component} eine neue erstellt
 werden. Auch diese Informationen werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die
 \textit{View} den Wechsel zur nächsten \textit{compontent} einleitet.
@@ -707,7 +710,7 @@ Textbox die \textit{URL} dieses Bildes ausgewählt werden. Zur Bestätigung muss
 des Tags kann dann mit einem Klick auf \glqq Anlegen \grqq{} im Fußbereich der \textit{View} abgeschlossen werden.
 \\
 Der Fußbereich enthält abhänig von der gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
-\glqq Anlegen\grqq.
+\glqq Anlegen\grqq. Alle diese \textit{components} werden ebenfalls für die Bearbeitung der NFC-Tags widerverwendet.
 
 %Probleme
 Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
