@@ -688,9 +688,9 @@ Auch war nun das Bearbeiten der Tags möglich.
 Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
 \colorbox{red}{auhc hier ein Bild?}
 An dieser Stelle war es erneut sehr praktisch ein Framework wie \textit{Vue} zu nutzen, da somit die bereits vorhandenen \textit{views} wiederverwendet werden konnten.
-Um die Usability zu verbessern, wird dem Nutzer besser signalisiert, ob und welchen Tag dieser angewählt hat.
+Zur Verbesserung der Usability wurde dem Nutzer besser signalisiert, ob und welchen Tag dieser angewählt hat.
 Dafür wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
-Jedes Tag-Element auf der Startseite hatte einen \textit{OnClick Listener}, welche bei einem Klick auf das jeweilige Element diesen Tag als \textit{selectedTag} setzt und auch eine \textit{Transition} auslöst
+Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welche bei einem Klick das jeweilige Element als \textit{selectedTag}.
 \begin{lstlisting}
   const toggleTag = (tag: NFCTag): void => {
     selectedTag.value = tag === selectedTag.value ? null : tag;
@@ -698,7 +698,7 @@ Jedes Tag-Element auf der Startseite hatte einen \textit{OnClick Listener}, welc
   };
 \end{lstlisting}
 Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} ein ternärer Operator genutzt.
-Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} ist, werden diesem andere Klasseneigenschaften gegeben.
+Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
 \begin{lstlisting}
   <TagEntry
     v-for="entry in group.tags"
@@ -711,7 +711,7 @@ Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} ist
   />
   };
 \end{lstlisting}
-Wird nun also ein Tag ausgewählt, bekommen alle anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entspricht.
+Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
 
 Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet.
