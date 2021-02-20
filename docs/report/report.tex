@@ -688,6 +688,32 @@ Auch war nun das Bearbeiten der Tags möglich.
 Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
 \colorbox{red}{auhc hier ein Bild?}
 An dieser Stelle war es erneut sehr praktisch ein Framework wie \textit{Vue} zu nutzen, da somit die bereits vorhandenen \textit{views} wiederverwendet werden konnten.
+Um die Usability zu verbessern, wird dem Nutzer besser signalisiert, ob und welchen Tag dieser angewählt hat.
+Dafür wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
+Jedes Tag-Element auf der Startseite hatte einen \textit{OnClick Listener}, welche bei einem Klick auf das jeweilige Element diesen Tag als \textit{selectedTag} setzt und auch eine \textit{Transition} auslöst
+\begin{lstlisting}
+  const toggleTag = (tag: NFCTag): void => {
+    selectedTag.value = tag === selectedTag.value ? null : tag;
+    buttonTransitionActive.value = true;
+  };
+\end{lstlisting}
+Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} ein ternärer Operator genutzt.
+Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} ist, werden diesem andere Klasseneigenschaften gegeben.
+\begin{lstlisting}
+  <TagEntry
+    v-for="entry in group.tags"
+    :key="entry.nfcData"
+    class="m-4 w-2/6 flex-shrink-0 text-4xl"
+    :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
+    :img="entry.imageUrl"
+    :name="entry.name"
+    @click="toggleTag(entry)"
+  />
+  };
+\end{lstlisting}
+Wird nun also ein Tag ausgewählt, bekommen alle anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entspricht.
+
+
 Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet.
 Da hierbei das Setup komplett erneut durchgeführt wurde, wurde diese Chance auch gleichzeitig dafür genutzt, ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} zu schreiben, sodass andere Nutzer dieses Produkt Zuhause eirichten könnten.
 
