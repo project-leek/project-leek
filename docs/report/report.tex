@@ -676,9 +676,7 @@ Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in
 Für Elemente, die häufig in der Anwendung genutzt werden (Button, Textfield, DropDownList), entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler leicht zugänglich abgelegt wurden. Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen. Besonders am Anfag halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten. Design und Funktion mussten lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden. Es musste lediglich der Inhalt über \textit{properties} übergeben werden. Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren. Dies resultierte darin, dass zum Beispiel das \textit{Button-Component} sehr unübersichtlich wurde und redundanten Code enthielt. Aufgrund der verschienden geforderten Größen und Anordungen des Textes und des Bildes, stieg die Anzahl der zu übergebenen Parameter imens, was zu deutlich niedriger Übersichtlichkeit führte. Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt die ermittelte, welche Anforderungen ein \textit{component} erfüllen muss. Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} widerhergestellt wurde.
 
 \paragraph*{Umsetzung des Homescreens}
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=5.9cm]{HomeScreenSchema.png}
-}{Schematischer Aufbau Home.vue}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue}
 In dem HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue})
 enthält Bild und Name eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen
 \textit{GroupDropDown.vue} representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der
@@ -691,44 +689,39 @@ sich eine Suchleiste, die das Filtern der angezeigten NFC-Tags ermöglichen Soll
 Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
 der \textit{Home} View in Kopf-, Haupt- und Fußbereich eingeilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
 \\~\\
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=4cm]{AddStepScan.jpeg}
-}{AddTag components}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddSteps.png}}{AddTag components}
 Im Hauptbereich der \textit{View} werden die vier \textit{components} die für die Eingabe der NFC-Tag Daten zuständig sind dynamisch geladen.
 Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
+Der Fußbereich enthält abhänig von der im Hautpbereich gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
+\glqq Anlegen\grqq.
 Alle der folgenden \textit{components} beinhalten Validierung für die eingegebenen Daten, sodass sichergestellt wird, dass das \textit{newTag} jederzeit gültige
 Daten besitzt. Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die
 \textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhänig vom der Gültigkeit verändert.
+Alle diese \textit{components} werden ebenfalls für die Bearbeitung der NFC-Tags widerverwendet.
 \\~\\
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=4cm]{AddStepScan.jpeg}
-}{Add Step Scan-Tag}
+%AddStepScan
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepScan.jpeg}}{Step Scan (Add)}
 Das Erste \textit{component}, welches in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
 welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
-NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Diese prüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und
-leitet den Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weiter. Ist der NFC-Tag noch nicht angelegt wird die ID an die
-\textit{ID-Property} des \textit{newTag} gebunden und das nächste \textit{component} geladen. Beim Entladen von \textit{TagStepPlaceTagOnReader} wird die
-Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
+NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Wird nun ein NFC-Tag gescannt, führt der \textit{NFC-Reader Microservice} mittels Feathers ein Update (Aufruf des \textit{Patch}-Events) auf den \textit{NFC-Reader} durch und setzt das Attribut \textit{attachedTag} auf die gescannte NFC-ID.
+Anschließend wird geprüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und der Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weitergeleitet. Ist der NFC-Tag noch nicht angelegt wird die ID an die \textit{ID-Property} des \textit{newTag} gebunden und die Events \textit{update:nfc-tag} und \textit{proceed} ausgelöst. \textit{update:nfc-tag} bewirkt, dass das Attribut \textit{TagId} des \textit{newTag} gesetzt wird. \textit{proceed} weist \textit{AddTag} an, das nächste component in den Hauptbereich der \textit{View zu laden}. Beim Entladen von \textit{TagStepPlaceTagOnReader} wird die Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
 \\~\\
-Als nächstes wird das \textit{TagStepInfo component} geladen. Es beinhaltet ein \textit{Textbox component} für den Namen des NFC-Readers und ein \textit{DropDown component},
+%AddStepInfo
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepInfo.jpeg}}{Add Step Scan-Tag}
+Als nächstes wird das \textit{TagStepInfo component} geladen. Es beinhaltet ein \textit{Textbox component} für den Namen des NFC-Readers. Dises erhält als \textit{v-model} eine \textit{computed property}\footnote{\url{https://v3.vuejs.org/guide/reactivity-computed-watchers.html}}. Diese ruft im \textit{setter} die Methode \textit{updateTag} auf, welche die zwei Parameter \textit{key} und \textit{value} erwartet und die Eigenschaft mit dem Namen \textit{key} (in diesem Fall \glqq name \grqq{}) auf den im Parameter \textit{value} übergebenen Wert setzt. Als zweites \textit{component} kommt ein  \textit{DropDown} zum Einsatz,
 welches die Auswahl der Gruppe ermöglicht. Hierbei kann sowohl aus bereits bestehenden Gruppen gewählt, oder direkt in der \textit{component} eine neue erstellt
-werden. Auch diese Informationen werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die
-\textit{View} den Wechsel zur nächsten \textit{compontent} einleitet.
-\\
-Hier, in der \textit{TagStepTrack} erhält der Benutzer die Möglichkeit, den Song auszuwählen, der beim Scannen des NFC-Tags abgespielt werden soll. Der gewünschte
-Song oder Teile von dessen Titel können in einer \textit{Textbox component} eingeben werden. Daraufhin wird die \textit{Spotify Web Api Node} verwendet, um
-zu dem Suchbegriff passende Songtitel mit ihren Albumcovern aus der Spotify-Datenbank anzuzeigen. Aus dem ausgewähltem Song werden die \textit{URL} des
-\textit{Tracks} und die \textit{Bild-URL} extrahiert und im \textit{newTag} gespeichert. Anschließend wird durch das Auslösen des \textit{update:nfc-tag}
-die letzte \textit{component} in die \textit{AddTagView} geladen.
-\\
-Zuletzt kann im \textit{TagStepImage} das gewünschte Bild für den NFC-Tag ausgewählt werden. Standardmäßig wird hier das Albumcover des Songs ausgewählt.
-Alernativ kann hier auch ein eigenes Bild verwendet werden, welches auf einem Online-Dienst vorliegen muss. Ist dies gewünscht kann in einer entsprechenden
-Textbox die \textit{URL} dieses Bildes ausgewählt werden. Zur Bestätigung muss entweder auf das Albumcover oder auf das eigene Bild geklickt werden. Das Erstellen
+werden. Auch hier wird die Methode \textit{updateTag} verwendet, die in diesem Fall mit dem Wert \glqq group \grqq{} für den Parameter \textit{key} aufgerufen wird. Der eingegebene Name und die Gruppe werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die \textit{View AddTag} den Wechsel zur nächsten \textit{compontent} einleitet.
+\\~\\
+%AddStepTrack
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepTrack.jpeg}}{Add Step Track}
+Hier, in der \textit{TagStepTrack} erhält der Benutzer die Möglichkeit, den Song auszuwählen, der beim Scannen des NFC-Tags abgespielt werden soll. Der gewünschte Song oder Teile von dessen Titel können in einer \textit{Textbox component} eingeben werden. Zum Abrufen der Songs von Spotify wurde der \textit{SpotifyTrackService} erstellt, in dem die Methode \textit{find} überschrieben wurde. Diese beinhaltet den Aufruf der Funktion \textit{searchTracks} der \textit{Spotify Web Api Node}, der als Parameter der in der Suchtextbox eingegebene Text übergeben wird. Für jeden zu dem übergeben Text passenden Titel wird dann eine Instanz der erstellten Klasse \textit{Track} erstellt, die Informationen über die \textit{URL}, den Titel, die \textit{Bild-URL}, und die Künstler erhält. Das Array mit den passenden \textit{Track}-Instanzen wird anschließend an das \textit{TagStepTrack} zurückgegeben und die Infos mit Bild, Titel und Interpreten angezeigt. Die Auswahl erfolg dann per Klick auf den gewünschten Song und dem Klick auf Weiter in der Fußzeile. Dadurch wird \textit{update:nfc-tag} Event ausgelöst und die letzte \textit{component} in die \textit{AddTagView} geladen.
+\\~\\
+%AddStepImage
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepImage.jpeg}}{Add Step Image}
+Zuletzt kann im \textit{TagStepImage} das gewünschte Bild für den NFC-Tag ausgewählt werden. Standardmäßig wird hier das Albumcover des Songs ausgewählt, welches in der \textit{AddStapTrack} bereits gesetzt wurde. Um sicherzustellen, dass die Albumcover jederzeit aktuell sind, wird in der Datenbank nicht das Bild sondern lediglich die URL des Bildes gespeichert. Sollte der Musik-Streaming-Anbieter dieses Ändern wird so automaitsch auch das Albumcover in der Applikation geändert.
+Dies hat außerdem den Vorteil, dass die Anwendung wesentlich Speicherplatzeffizienter ist, da statt teilweise sehr großen Bilddateien jeweils nur die URL gespeichert wird. Um dem Benutzer mehr Freiheiten in der Gestaltung zu geben, kann alternativ auch ein eigenes Bild verwendet werden. Dieses muss in der aktuellen Version auf einem Online-Dienst vorliegen. Ist dies gewünscht kann in einer entsprechenden
+Textbox die \textit{URL} dieses Bildes eingetragen werden, worauf das Bild automatisch zur Vorschau in ein dafür vorgesehenes Vorschaufeld geladen wird. Die stellt sicher, dass der Benutzer nicht versehentlich eine falsche Bild-URL wählt. Zur Sicherheit wird diese Textbox zusätzlich mittels eines \textit{RegEx} geprüft, um sicherzustellen, dass es sich um eine Bilddatei handelt. Zur Bestätigung muss entweder auf das Albumcover oder auf das eigene Bild geklickt werden. Das Erstellen
 des Tags kann dann mit einem Klick auf \glqq Anlegen \grqq{} im Fußbereich der \textit{View} abgeschlossen werden.
-\\
-Der Fußbereich enthält abhänig von der gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
-\glqq Anlegen\grqq. Alle diese \textit{components} werden ebenfalls für die Bearbeitung der NFC-Tags widerverwendet.
-
 %Probleme
 Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
 Dieser Prozess dauerte länger als erwartet und forderte eine hohes Maß an Kommunikation zwischen den Teammitgliedern.
