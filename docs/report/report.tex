@@ -707,16 +707,24 @@ Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} angepas
 Der \textit{Button Component} wurde refactored, dass auch dieser universell für alle Anwendungszwecke genutzt werden konnte.
 Aus der Datenbank wurden die manuell generierten Einträge gelöscht.
 Auf der Startseite wurde nun dem User auch ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat.
-\colorbox{red}{siehe Bild, noch einfügen zum zeigen}
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}
+  \caption{Startseite ohne Tags}
+\end{wrapfigure}
 Auch wurde die Desktop Ansicht optimiert:\\
 Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
 Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
-\colorbox{red}{Bild einfügen}
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}
+  \caption{Desktopansicht}
+\end{wrapfigure}
 Das Frontend wurde vom Raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
-Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer Ip Adresse ersetzt durch ngrok. \colorbox{red}{was genau macht ngrok?}
+Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer Ip Adresse ersetzt durch ngrok.
 Ngrok veröffentlichte hierbei automatisch eine öffentliche verschlüsselte IP Adresse, um diese im Frontend eingeben zu können.
 Hierbei war noch die Problematik aufgetroffen, dass diese IP Adresse nicht überprüft wurde.
 Hat nun der Nutzer eine falsche IP Adresse eingegeben, versuchte das Frontend sich mit einer nicht existenden IP Adresse zu verbinden und der Fehler 404 wurde angezeigt.
