@@ -51,6 +51,25 @@ commentstyle=\color{green},
 \title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
+\newsavebox\curwrapfig
+\makeatletter
+\long\def\wrapfiguresafe#1#2#3#4{%
+  \sbox\curwrapfig{#3}%
+  \par\penalty-100%
+  \begingroup % preserve \dimen@
+    \dimen@\pagegoal \advance\dimen@-\pagetotal % space left
+    \advance\dimen@-\baselineskip % allow an extra line
+    \ifdim \ht\curwrapfig>\dimen@ % not enough space left
+      \break%
+    \fi%
+  \endgroup%
+  \begin{wrapfigure}{#1}{#2}%
+    \usebox\curwrapfig%
+    \caption{#4}
+  \end{wrapfigure}%
+}
+\makeatother
+
 \begin{document}
 \maketitle
 \newpage
@@ -654,21 +673,12 @@ Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollst�
 Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
 
 \paragraph*{Components}$~$ \\
-Für Elemente, die häufig in der Anwendung genutzt werden, entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler
-leicht zugänglich abgelegt wurden. Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen.
-Besonders am Anfag halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten. Design und Funktion mussten
-lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden. Es musste lediglich der Inhalt über \textit{properties} übergeben werden. Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren. Dies resultierte darin, dass zum Beispiel das \textit{Button-Component} sehr unübersichtlich wurde und redundanten Code enthielt. Aufgrund der verschienden geforderten Größen und Anordungen des Textes und des Bildes, stieg die Anzahl der zu übergebenen Parameter imens, was zu deutlich niedriger Übersichtlichkeit führte. Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt die ermittelte, welche Anforderungen ein \textit{component} erfüllen muss. Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} widerhergestellt wurde.
+Für Elemente, die häufig in der Anwendung genutzt werden (Button, Textfield, DropDownList), entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler leicht zugänglich abgelegt wurden. Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen. Besonders am Anfag halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten. Design und Funktion mussten lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden. Es musste lediglich der Inhalt über \textit{properties} übergeben werden. Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren. Dies resultierte darin, dass zum Beispiel das \textit{Button-Component} sehr unübersichtlich wurde und redundanten Code enthielt. Aufgrund der verschienden geforderten Größen und Anordungen des Textes und des Bildes, stieg die Anzahl der zu übergebenen Parameter imens, was zu deutlich niedriger Übersichtlichkeit führte. Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt die ermittelte, welche Anforderungen ein \textit{component} erfüllen muss. Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} widerhergestellt wurde.
 
-% macht man das so? würde gerne noch reinschreiben wo man direkt weiterlesen kann, glaube das passt aber nicht zum bericht
-Für eine technische Erklärung der \textit{Components} kann in dem Kapitel ..bla jans teil... nachgelesen werden.
-
-\paragraph*{Umsetzung des Homescreens}$~$ \\
-\begin{wrapfigure}{r}{0cm}
+\paragraph*{Umsetzung des Homescreens}
+\wrapfiguresafe{r}{0mm}{
   \includegraphics[width=5.9cm]{HomeScreenSchema.png}
-  \caption{Schematischer Aufbau Home.vue}
-  \label{fig:HomeVueSchema}
-\end{wrapfigure}
-
+}{Schematischer Aufbau Home.vue}
 In dem HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Das Erste (\textit{TagEntry.vue})
 enthält Bild und Name eines NFC-Tags und konnte in der Anwendung vielseitig widerverwendet werden. Das Zweite \textit{component} mit dem Namen
 \textit{GroupDropDown.vue} representiert eine Gruppe, zu der ein NFC-Tag gehört. Pro NFC-Tag in dieser Gruppe wird eine Instanz der
@@ -681,22 +691,18 @@ sich eine Suchleiste, die das Filtern der angezeigten NFC-Tags ermöglichen Soll
 Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
 der \textit{Home} View in Kopf-, Haupt- und Fußbereich eingeilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
 \\~\\
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=7cm]{AddSteps.png}
-  \caption{AddTag components}
-  \label{fig:AddStepStrack}
-\end{wrapfigure}
+\wrapfiguresafe{r}{0mm}{
+  \includegraphics[width=4cm]{AddStepScan.jpeg}
+}{AddTag components}
 Im Hauptbereich der \textit{View} werden die vier \textit{components} die für die Eingabe der NFC-Tag Daten zuständig sind dynamisch geladen.
 Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
 Alle der folgenden \textit{components} beinhalten Validierung für die eingegebenen Daten, sodass sichergestellt wird, dass das \textit{newTag} jederzeit gültige
 Daten besitzt. Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die
 \textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhänig vom der Gültigkeit verändert.
 \\~\\
-\begin{wrapfigure}{r}{0cm}
+\wrapfiguresafe{r}{0mm}{
   \includegraphics[width=4cm]{AddStepScan.jpeg}
-  \caption{Scan Tag component}
-  \label{fig:AddStepScan}
-\end{wrapfigure}
+}{Add Step Scan-Tag}
 Das Erste \textit{component}, welches in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
 welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
 NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Diese prüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und
