@@ -699,7 +699,7 @@ Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen wurde eine n
 der \textit{Home} View in Kopf-, Haupt- und Fußbereich eingeilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
 \\~\\
 \begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=6cm]{AddSteps.png}
+  \includegraphics[width=7cm]{AddSteps.png}
   \caption{AddTag components}
   \label{fig:AddStepStrack}
 \end{wrapfigure}
@@ -709,13 +709,18 @@ Alle der folgenden \textit{components} beinhalten Validierung für die eingegebe
 Daten besitzt. Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die
 \textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhänig vom der Gültigkeit verändert.
 \\~\\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=4cm]{AddStepScan.jpeg}
+  \caption{Scan Tag component}
+  \label{fig:AddStepScan}
+\end{wrapfigure}
 Das Erste \textit{component}, welches in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
 welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
 NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Diese prüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und
 leitet den Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weiter. Ist der NFC-Tag noch nicht angelegt wird die ID an die
 \textit{ID-Property} des \textit{newTag} gebunden und das nächste \textit{component} geladen. Beim Entladen von \textit{TagStepPlaceTagOnReader} wird die
 Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
-\\
+\\~\\
 Als nächstes wird das \textit{TagStepInfo component} geladen. Es beinhaltet ein \textit{Textbox component} für den Namen des NFC-Readers und ein \textit{DropDown component},
 welches die Auswahl der Gruppe ermöglicht. Hierbei kann sowohl aus bereits bestehenden Gruppen gewählt, oder direkt in der \textit{component} eine neue erstellt
 werden. Auch diese Informationen werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die
