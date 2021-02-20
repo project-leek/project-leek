@@ -535,10 +535,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/baloo-2/-/baloo-2-4.2.1.tgz#655aa5e05b973495f4dea522bdf72417ab2d49f8"
   integrity sha512-RVaLjS8nLssWED8QtImyMF5wIs9BYcJRWS7GpNyycD0EPuQqcmYzcG+pkGNo4p5c+GBZcVde3gfxYhol73uP0w==
 
-"@fontsource/roboto@4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.2.0.tgz#4f48e2aee60ca7b36c5fbbdaa3d06af89a0867f6"
-  integrity sha512-ToODF2lawS9DFmGEEoaEFXMwgA47c4EKWsfzEiJRHCujEORSaf5SNVTrKhVeZLdzF7v0h+5HgsQO5ZVbf1mA5A==
+"@fontsource/roboto@4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.2.1.tgz#fc75a2c6f5267230f37c40c00bec5bf05d61c5c0"
+  integrity sha512-C236dlY57hG+Gg4C9SS2i5qNBILg31uzSdVhO6wUk27rgOz+rtztcUA17VI+HWdAd4LQaTp/vF6NDi303KRtqg==
 
 "@fortawesome/fontawesome-free@5.15.2":
   version "5.15.2"
