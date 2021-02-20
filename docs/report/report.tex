@@ -651,7 +651,30 @@ Beispielsweise wurde die Darstellung auf dem Homescreen, die Auswahl von Infos, 
 Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
 Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
 
-\paragraph*{}
+\paragraph*{Komponents am Beispiel des Buttons}$~$ \\
+% man könnte eventuell noch über die Probleme und die Entwicklung des Button Komponents sprechen? Wüsste aber nicht wie ich das vernüftig in Worte fasse ohne zu schreiben, dass wir uns doof angestellt haben und zum Schluss das Komponent viel küzer fassen konnten.
+Das Button Komponent war eines der vielseitigsten Kompontenten die im Projekt genutzt wurde. Es gab folgende Variatonen: \\
+\begin{itemize}
+  \item nur Text
+  \item Text mit Icon links vom Text
+  \item Text mit Ion rechts vom Text
+  \item ein Icon ohne Text
+\end{itemize}
+Wetierhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg.
+Mit diesen Anforderung hat sich das Team dafür entschieden eine einzige Vue Klasse zu schreiben, die alle Anforderungen erfüllt.
+Das Vue Component besteht aus einem leeren Rahmen der lediglich das Design vorgibt und Icon und Text annimmt.
+An dieser Stelle soll verdeutlicht werden wie sich das Komponent selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=5.9cm]{Screenshot_Button.png}
+  \caption{Codesnippets vom Button}
+  \label{fig:HomeVueSchema}
+\end{wrapfigure}
+Interessant an dieser Stelle sind die dynamischen Abfrage \glqq v-if\grqq mit denen geprüft wurde ob ein Text, ein Icon oder beides vorhanden ist. Entsprechend dieses Ergebnis wurden unterschiedliche CSS-Klassen dem Objekt zugeschrieben und daher der Button in seiner Form verändert. Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig Rund und das Icon zentriert sein.
+Bei der Benutzung des Komponents musste also nur der Inhalt übregeben werden und der Rest geschah automatisch.
+\\
+
+Um die Größe des Buttons zu steuern wurde sich ebenfalls dafür entschieden ein prop zu nutzen. So konnte an das Komponent das Attribut \glqq size \grqq übergeben werden mit den Werten: \glqq xs\grqq , \glqq md\grqq und \glqq xl\grqq. Mit diesem Attribut konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem wurde sichergestellt dass es nur eine Art von \textit{größerem} Buttom existiert.
+
 % Beispiel eines einzelnen Components
 % wie haben wir es ermöglicht das der Button auf allen Views verwenbar ist: style props und text reingeben und slots
 \paragraph*{Umsetzung des Homescreens}$~$ \\
