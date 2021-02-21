@@ -342,6 +342,32 @@ Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks 
 \paragraph*{Vue.js} $~$ \\
 Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
+Dieses wurde vor allem aufgrund der zwei Hauptmerkmale \textit{components} und \textit{reactivity} entschieden.
+
+\paragraph*{Components} $~$ \\
+In vue werden Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellt.
+Im Vergleich zu Framework-loser Webentwicklung, wird hier allerdings dieser Code aufgeteilt
+ und in einzelne Dateien (im \textit{.vue}-Format) ausgelagert.
+Dies geschieht entlang von inhaltlichen oder logischem Zusammenhängen, aber nicht nach jeweiliger Sprache.
+Die daraus resultierenden Dateien werden unter vue \textit{(single-file-)components} genannt.
+In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten Element der Webseite.
+%Abbbildung mit rudimentärem Beispiel einer vue component
+%Beschreibung: Beispiel einer simplen \textit{vue component}-Datei.
+%In dieser ist der entsprechenden HTML-, TypeScript- und CSS-Code der Komponente hinterlegt.
+%Alternativ kann auch JavaScript genutzt werden.
+%In beiden Fällen handelt es sich bei diesem Teil um Framework-spezifischen Programm-Code,
+% wie z. B. die Registrierung der Komponente.
+Ausmaß, Funktionalität und Größe hiervon sind keine Einschränkungen gesetzt.
+So kann es sich bei diesen Komponenten zum Beispiel um Buttons, Header oder auch ganze Webseiten handeln.
+Für die Nutzung müssen diese allerdings noch beim Framework registriert werden
+(siehe Abbildung %Beispiel).
+Danach können Komponenten wie native HTML-Tags verwendet werden.
+Dies macht die Nutzung vom \textit{components} sehr intuitiv.
+
+
+
+
+
 Dieses wurde aufgrund seiner guten Dokumentation und seiner flachen Lernkurve gewählt, wodurch sich der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter gestaltete.
 Außerdem bietet das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen können,
 während andere am Logik-Code arbeiten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant.\cite{Vue_Performance}
