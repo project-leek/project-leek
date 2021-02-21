@@ -51,6 +51,25 @@ commentstyle=\color{green},
 \title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
+\newsavebox\curwrapfig
+\makeatletter
+\long\def\wrapfiguresafe#1#2#3#4{%
+  \sbox\curwrapfig{#3}%
+  \par\penalty-100%
+  \begingroup % preserve \dimen@
+    \dimen@\pagegoal \advance\dimen@-\pagetotal % space left
+    \advance\dimen@-\baselineskip % allow an extra line
+    \ifdim \ht\curwrapfig>\dimen@ % not enough space left
+      \break%
+    \fi%
+  \endgroup%
+  \begin{wrapfigure}{#1}{#2}%
+    \usebox\curwrapfig%
+    \caption{#4}
+  \end{wrapfigure}%
+}
+\makeatother
+
 \begin{document}
 \maketitle
 \newpage
@@ -89,7 +108,7 @@ So gab beispielsweise ein Designer des Unternehmens hilfreiches Feedback zum Ent
 \subsection{Anforderungsanalyse}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
-Da die aktuell am Markt erhältlichen Konkurenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
+Da die aktuell am Markt erhältlichen Konkurrenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
 \subsubsection{Produktvision}
 Mithilfe der von macio gestellten Projektskizze (siehe \ref{pdf:macioprojektskizze}) erstellte das Team die folgende Produktvision:
 Angestrebt wurde die Konzeption und Entwicklung einer Musik-Box, die NFC Tags lesen kann und Schnittstellen zu Musik-Streaming-Anbietern (wie Spotify) besitzt.
@@ -247,12 +266,12 @@ Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag a
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
 Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowie eine spezielle Library notwendig.
 
-\subsection{Raspberri Pi}
+\subsection{Raspberry Pi}
 \subsubsection{Docker Integration}
-Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
-Auf einem Raspberri Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
+Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
 Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu können, muss innerhalb des Routers ein Port ge-forwarded werden.
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
@@ -260,7 +279,7 @@ Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{http
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
-Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
+Über ein mDNS Service, der auf dem Raspberry Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
 \subsection{User Interface}
@@ -322,13 +341,13 @@ Abgesehen davon sollte es kein besonderes Problem darstellen.
 \subsubsection{Sound Wiedergabe auf der Box selbst}
 Manche Pi Modelle verfügen über einen On-Board Audio Anschluss.
 Die Wiedergabe über diesen ist qualitativ für Musik meist ungeeignet und sollte daher über ein weiteres Audiomodul oder eine externe Soundkarte erfolgen.
-Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
+Innerhalb der Raspberry Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
 Zur Wiedergabe auf der Box selbst müsste dafür auf dem Raspberry eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
 Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com/dtcooper/raspotify}.
 
 \subsubsection{Box unter 30€ Kosten}
-Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
-Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
+Mit einem Raspberry Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
+Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 
 \section{Durchführung}
@@ -342,9 +361,9 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
 Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
-Jeder Service wurde in einem Unterdner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-\textit{backed} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
-Im Ordner commons befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+\textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
 Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
 Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
 Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
@@ -388,7 +407,7 @@ Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\text
 Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
 Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
 \begin{figure}[ht]
-  \includegraphics[width=\linewidth]{MyFeathersService}
+  \includegraphics[width=\linewidth]{MyFeathersService.png}
   \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
   \caption{Implementierung eines ServicesTest}
   \label{fig:MyService}
@@ -420,7 +439,7 @@ So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werd
 \subsubsection{Reverse-Tunnel (ngrok)}
 Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
 Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
-Da das Framwork jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
 Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
 Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
 \colorbox{red}{Hier Schaubild?}
@@ -659,7 +678,7 @@ NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die �
 kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
 folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
 \\
-\colorbox{orange}{Hier bei Bedarf noch weiter ausführen (aber wäre sehr ins Detail gegeangen)}
+\colorbox{red}{Hier bei Bedarf noch weiter ausführen, aber wäre sehr ins Detail gegeangen}
 Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
 ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
 
@@ -776,34 +795,130 @@ Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und
 zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
-\subsubsection*{Meilenstein 4} $~$ \\
-Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
-Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen.
+\subsubsection*{Meilenstein 4}
 %Ziel
-Wie auch beim vorherigen Meilenstein fokussierte sich das Team auf die vom Kunden gewünschten Funktionalitäten wie das Anlegen und Bearbeiten von eigenen Tags.
-Dazu gehörte:
+Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
+Es sollten möglichst viele Teile des designten User Interfaces umgesetzt werden, allerdings lag der Fokus auf einem vollständigem \glqq Add-Tag-Flow\grqq.
+Dazu gehörten:
 \begin{enumerate}
   \item Scannen des Tags
   \item Vergeben eines eigenen Namens
   \item Auswählen von Musik
   \item Auswählen eines eigenen Bilds
 \end{enumerate}
-Auch sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+Weiterhin sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+
+Um paralleles Arbeiten und Eigenständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in ihre einzelnen Komponenten aufgeteilt.
+Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf
+allen Ansichten verwendet werden konnte. Es wurde daher erst die grundliegenden Komponenten wie Buttons, Textfields und Dropdowns entwickelt um aus diesen
+Komponenten Views zu erstellen.
+
+Die Views wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
+Beispielsweise wurde die Darstellung auf dem Homescreen und die Auswahl von Infos, Musik und Bild komplett unabhängig voneinander bearbeitet und mit Platzhalterdaten befüllt.
+Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
+Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
+
+\paragraph*{Components}$~$ \\
+Für Elemente, die häufig in der Anwendung genutzt werden (Button, Textfield, DropDownList), 
+entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler leicht zugänglich abgelegt wurden. 
+Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen. 
+Besonders am Anfang halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten. 
+Diese mussten lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden. 
+Es musste dann nur noch der Inhalt über \textit{properties} übergeben werden. 
+Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden,
+ und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren. 
+ Dies resultierte darin, dass zum Beispiel die \textit{Button-Component} sehr unübersichtlich wurde und redundanten Code enthielt. 
+Aufgrund der verschiedenen geforderten Größen und Anforderungen der enthaltenden Texte und Bilder,
+ stieg die Anzahl der zu übergebenen Parameter immens, was zu deutlich niedriger Übersichtlichkeit führte. 
+Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt, um zu ermitteln, welche Anforderungen einzelne Komponenten erfüllen mussten. 
+Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} wiederhergestellt wurde.
+
+\paragraph*{Umsetzung des Homescreens}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue}
+Im HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Die Erste (\textit{TagEntry})
+enthält das Bild und den Namen eines NFC-Tags und kann in der Anwendung vielseitig wiederverwendet werden. Die Zweite \textit{component} mit dem Namen
+\textit{GroupDropDown} repräsentiert eine Gruppe, zu der ein NFC-Tag gehört. 
+Pro NFC-Tag in der jeweiligen Gruppe wird eine Instanz der \textit{TagEntry component} in die Gruppe geladen. 
+Zusätzlich erhielt die \textit{GroupDropDown component} die Funktionalität auf- und
+zuklappbar zu sein. \\
+Diese \textit{components} werden in \textit{Home} angezeigt. Neben der Einbindung von einer \textit{GroupDropDown component} pro Gruppe
+wurde im Kopfbereich noch die vom Team erstelle \textit{Button component} verwendet, die das Anlegen eines neuen NFC-Tags einleiten sollte. 
+Im Fußbereich befindet sich eine Suchleiste, die das Filtern der angezeigten NFC-Tags ermöglichen soll. 
+Die beiden letztgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
+
+\paragraph*{Entwicklung der \glqq Tag hinzufügen\grqq{} Funktionalität}
+Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen, wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
+die \textit{Home}-View in Kopf-, Haupt- und Fußbereich eingeteilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
+\\~\\
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddSteps.png}}{AddTag components}
+Im Hauptbereich der \textit{View} werden die vier \textit{components}, die für die Eingabe der NFC-Tag Daten zuständig sind, dynamisch geladen.
+Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
+Der Fußbereich enthält abhängig von der im Hauptbereich gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
+\glqq Anlegen\grqq.
+Alle der folgenden \textit{components} beinhalten Validierung für die eingegebenen Daten, sodass sichergestellt wird, dass das \textit{newTag} jederzeit gültige Daten besitzt. 
+Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die\textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhängig vom der Gültigkeit verändert. 
+So kann in jedem Schritt nur fortgefahren werden, wenn alle Eingaben die korrekte Form haben.
+Alle diese \textit{components} werden ebenfalls für die Bearbeitung der NFC-Tags wiederverwendet.
+\\~\\
+%AddStepScan
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepScan.jpeg}}{Step Scan (Add)}
+Die Erste \textit{component}, welche in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
+welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
+NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Wird nun ein NFC-Tag gescannt, führt der \textit{NFC-Reader Microservice} mittels Feathers ein Update (Aufruf des \textit{Patch}-Events) auf den \textit{NFC-Reader} durch und setzt das Attribut \textit{attachedTag} auf die gescannte NFC-ID.
+Anschließend wird geprüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und der Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weitergeleitet. 
+Ist der NFC-Tag noch nicht angelegt, wird die ID an die \textit{ID-Property} des \textit{newTag} gebunden und die Events \textit{update:nfc-tag} und \textit{proceed} ausgelöst. 
+\textit{update:nfc-tag} bewirkt, dass das Attribut \textit{TagId} des \textit{newTag} gesetzt wird. 
+\textit{proceed} weist \textit{AddTag} an, die nächste \textit{component} in den Hauptbereich der \textit{View zu laden}. 
+Dabei wird die Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
+\\~\\
+%AddStepInfo
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepInfo.jpeg}}{Add Step Scan-Tag}
+Als Nächstes wird die \textit{TagStepInfo component} geladen. 
+Sie beinhaltet eine \textit{Textbox component} für den Namen des NFC-Readers. 
+Diese erhält als \textit{v-model} eine \textit{computed property}\footnote{\url{https://v3.vuejs.org/guide/reactivity-computed-watchers.html}}. 
+Diese ruft im \textit{setter} die Methode \textit{updateTag} auf, welche die zwei Parameter \textit{key} und \textit{value} erwartet, um die Eigenschaft \textit{key} (in diesem Fall \glqq name\grqq{}) auf den im Parameter \textit{value} übergebenen Wert zu setzten. 
+Als Zweite \textit{component} kommt ein \textit{DropDown} zum Einsatz,
+welches die Auswahl der Gruppe ermöglicht. Hierbei kann sowohl aus bereits bestehenden Gruppen gewählt, als auch direkt in der \textit{component} eine neue erstellt
+werden. Auch hier wird die Methode \textit{updateTag} verwendet, die in diesem Fall mit dem Wert \glqq group \grqq{} für den Parameter \textit{key} aufgerufen wird. Der eingegebene Name und die Gruppe werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die \textit{View AddTag} den Wechsel zur nächsten \textit{compontent} einleitet.
+\\~\\
+%AddStepTrack
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepTrack.jpeg}}{Add Step Track}
+Hier in der \textit{TagStepTrack} erhält der Benutzer die Möglichkeit, den Song auszuwählen, der beim Scannen des NFC-Tags abgespielt werden soll. 
+Der gewünschte Song-Titel oder Suchwörter können in eine \textit{Textbox component} eingeben werden. Zum Abrufen der Songs von Spotify wurde der \textit{SpotifyTrackService} erstellt, in dem die Methode \textit{find} überschrieben wurde. 
+Diese beinhaltet den Aufruf der Funktion \textit{searchTracks} der \textit{Spotify Web Api}, welcher als Parameter der in der Suchtextbox eingegebene Text übergeben wird. 
+Für jeden zu dem übergeben Text passenden Titel wird dann eine Instanz der erstellten Klasse \textit{Track} erstellt, die Informationen über die \textit{URL}, den Titel, die \textit{Bild-URL}, und die Künstler erhält. Das Array mit den passenden \textit{Track}-Instanzen wird anschließend an \textit{TagStepTrack} zurückgegeben und die Infos mit Bild, Titel und Interpreten angezeigt. Die Auswahl erfolgt dann per Klick auf den gewünschten Song. 
+Bestätigt wird die Auswahl per Klick auf \glqq Weiter\grqq{} in der Fußzeile. 
+Dadurch wird \textit{update:nfc-tag} Event ausgelöst und die letzte \textit{component} in die \textit{AddTagView} geladen.
+\\~\\
+%AddStepImage
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepImage.jpeg}}{Add Step Image}
+Zuletzt kann im \textit{TagStepImage} das gewünschte Bild für den NFC-Tag ausgewählt werden. 
+Standardmäßig wird hier das Albumcover des Songs ausgewählt, welches in \textit{AddStapTrack} bereits gesetzt wurde. 
+Um sicherzustellen, dass die Albumcover jederzeit aktuell sind, wird in der Datenbank nicht das Bild, sondern lediglich die URL des Bildes gespeichert. 
+Sollte der Musik-Streaming-Anbieter dieses ändern, wird so automatisch auch das Albumcover in der Applikation geändert.
+Dies hat außerdem den Vorteil, dass die Anwendung wesentlich speicherplatzeffizienter ist, da statt teilweise sehr großen Bilddateien jeweils nur die URL gespeichert wird. 
+Um dem Benutzer mehr Freiheiten in der Gestaltung zu geben, kann alternativ auch ein eigenes Bild verwendet werden. 
+Dieses muss in der aktuellen Version auf einem Online-Dienst vorliegen. 
+Ist dies gewünscht, kann in einer entsprechenden Textbox die \textit{URL} dieses Bildes eingetragen werden, worauf das Bild automatisch zur Vorschau in ein dafür vorgesehenes Vorschaufeld geladen wird. 
+Dies stellt sicher, dass der Benutzer nicht versehentlich eine falsche Bild-URL wählt. 
+Zusätzlich wird diese Textbox zusätzlich mittels eines \textit{RegEx} geprüft, um sicherzustellen, dass es sich um eine nutzbare Bilddatei handelt. 
+Zur Bestätigung muss entweder auf das Albumcover oder auf das eigene Bild geklickt werden. 
+Das Erstellen des Tags kann dann mit einem Klick auf \glqq Anlegen\grqq{} im Fußbereich der \textit{View} abgeschlossen werden.
 %Probleme
-Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
-Die tatsächliche Umsetzung und Planung/Einschätzung divergierte in diesem Meilenstein sehr stark.
-Es wurde sich zu sehr in Details verloren, sodass der Fokus auf die wichtigen Tickets verloren ging.
-Das führte dazu, dass zum Review viele halbfertige Tickets entweder nur schlecht getestet oder gar nicht im Master-Branch implementiert waren.
+Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
+Dieser Prozess dauerte länger als erwartet und forderte eine hohes Maß an Kommunikation zwischen den Teammitgliedern.
+Teilweise enstanden Wartezeiten und funktionierender Code wurde, über mehrere Merges, unstabil oder defekt.
+Kurz vor dem Review musste noch viel getan werden, um eine reibungslose Präsentation zu garantieren.
+
 %Lösungen
-Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt.
-Das half einerseits dabei, dass Probleme gelöst und die Teammotivation sowie die Produktivität stieg, als auch das generelle Teamklima weiter gebessert wurde.
+Nachdem die ersten großen Merges abgeschlossen wurde, entschied das Team eine interne und anonyme Evaluation der Teammitglieder zu starten.
+Jedes Teammitglied hatte somit konstruktive Kritik aber auch Lob und Unterstützung erhalten und konnte an den eigenen Schwächen arbeiten und Stärken weiter ausbauen.
 Darüber hinaus wurde auch beschlossen, in den folgenden Sprints die Menge an zu bearbeitenden Issues besser festzulegen.
 %Product Increment
 Das Produkt wurde um die Grundfunktionen erweitert.
-Es ist nun möglich, Tags anzulegen und entsprechend für diese Namen, Musik und ein Bild festzulegen.
+Es ist nun möglich, Tags anzulegen und entsprechend den Namen, Musik und ein Bild festzulegen.
 Genauso ist es dem Nutzer nun möglich, alle angelegten Tags zu durchsuchen.
 Es wurde weiterhin auch das Design Mockup von dem von macio gestellten Designer in Vue größtenteils umgesetzt.
-Gleichzeitig wurden hierbei die Komponenten zur einfacheren Verwendung als möglichst allgemeine Vue Komponenten angelegt, um ein einheitliches Design zu ermöglichen.
 Für die Entwickler wurden auch die automatisierten Tests um einen Test auf Typsicherheit erweitert.
 %Retrospektive
 Besonders gut gefiel dem Team das Teamklima, vor allem des ehrliche Miteinander.
@@ -811,9 +926,8 @@ Trotz Komplikationen und Probleme konnte dem Kunden am Ende ein funktionierendes
 Pull Requests und Tickets wurden besser beschrieben, sodass Probleme verständlicher waren.
 Vor allem durch das interne Team Review wurde die Zusammenarbeit weiter verbessert.
 Das Team konnte das Wissen zu Vue, vor allem die Themen Reaktivität, Events und Kommunikation zwischen Komponenten ausbauen.
-Stark bemängelt wurde der Scope des Meilensteins.
-Das Zeitmanagement war an dieser Stelle nicht gut, es wurde sich zu viel vorgenommen und man hatte am Ende zu wenig Zeit.
-Das Team stimmte hier überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
+Insgesamt war das Zeitmanagement verbesserungswürdig, da sich für einzelne Tickets zu viel Zeit genommen wurde.
+Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
