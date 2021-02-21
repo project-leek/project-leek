@@ -850,11 +850,12 @@ So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht
 Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem im User Interface wurden noch letzte Änderungen durchgeführt.
 Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst.
 \\
+% Button Refactoring
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
   \item nur Text
   \item Text mit Icon links vom Text
-  \item Text mit Ion rechts vom Text
+  \item Text mit Icon rechts vom Text
   \item ein Icon ohne Text
 \end{itemize}
 Um diese Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
@@ -884,18 +885,18 @@ Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch k
 \end{wrapfigure}
 
 \\~\\
+Auch wurde die Desktop Ansicht optimiert:\\
 \begin{wrapfigure}{r}{0cm}
   \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}
   \caption{Desktopansicht}
 \end{wrapfigure}
-Auch wurde die Desktop Ansicht optimiert:\\
 Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
 Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 
 \\~\\
-
+% Frontend in Githup.io Pages
 Das Frontend wurde vom Raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
 Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer IP-Adresse ersetzt durch ngrok.
