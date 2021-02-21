@@ -932,27 +932,139 @@ Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor 
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
 \subsubsection*{Meilenstein 5} $~$ \\
-Der Meilenstein fünf vom 14.01.2021 bis zum 28.01.2021 sollte die Entwicklung am Produkt weitgehend zu abschließen, sodass sich das Team auf den Bericht fokussieren konnte.
+Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
+
 %Ziel
-Geplant war, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine höchstens zum Beheben kleinerer Fehler benötigt werden würden.
-Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box} selbst als auch der einzelnen Tags.
-Die User Interface Elemente sollten, sofern noch nicht geschehen, ein einheitliches Design erhalten.
-Auch sollte die Dokumentation zur Bedienung der \textit{Leek Box} fertiggestellt sein und die Arbeit für den Bericht begonnen werden.
+Geplant war die letzten Anwendungszenarien final umzusetzen, sodass die folgenden beiden Meilensteine zum Beheben kleinerer Fehler genutzt werden konnten.
+Somit war das Ziel die Umsetzung einer \textit{View} für die Einstellungen der \textit{Leek Box}, als auch der Tags.
+Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein einheitliches Design erhalten.
+Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
+
+% Durchführung
+Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
+In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{Settings.jpeg}
+  \caption{Leek Box Einstellungen}
+\end{wrapfigure}
+Auch war nun das Bearbeiten der Tags möglich.
+Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{TagDetails.jpeg}
+  \caption{Tag Einstellungen und Details}
+\end{wrapfigure}
+In gekürzter Form sah der Quellcode für den Hauptinhalt des \textit{Views} wie folgt aus:
+\begin{lstlisting}
+<LabeledInput label="Name">
+  <Textfield v-model="nfcTag.name" placeholder="z. B. Mario Figur"/>
+</LabeledInput>
+
+<LabeledInput label="Gruppe">
+  <Dropdown
+    v-model="nfcTagGroup"
+    v-model:items="tagGroupListItems"
+    :removeable="false"
+    placeholder-text="Wähle eine Gruppe"
+    :enable-add-item="true"
+  />
+</LabeledInput>
+
+<LabeledInput label="Musik">
+  <div>
+    <div>
+      <img
+        src="/src/assets/spotify.png"
+      />
+      <span v-if="nfcTagTrack">{{
+        cut(nfcTagTrack.title, 42)
+      }}</span>
+    </div>
+    <Button
+      icon="far fa-edit"
+      text="Musik ändern"
+      :to="{ name: 'tag-edit-track' }"
+    />
+    <Button
+      icon="far fa-edit"
+      :to="{ name: 'tag-edit-track' }"
+    />
+</LabeledInput>
+
+<LabeledInput label="Bild">
+  <div>
+    <TagEntry
+      v-if="nfcTag.imageUrl === 'spotify' && nfcTagTrack"
+      :img="nfcTagTrack.imageUri"
+    />
+    <TagEntry v-else :img="nfcTag.imageUrl" />
+    <Button
+      icon="far fa-edit"
+      :to="{ name: 'tag-edit-image' }"
+    />
+    <Button
+      icon="far fa-edit"
+      text="Bild ändern"
+      :to="{ name: 'tag-edit-image' }"
+    />
+  </div>
+</LabeledInput>
+\end{lstlisting}
+An dieser Stelle zeigte sich erneut die Vorzüge von Frameworks wie  \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
+Um ein gleiches Design der Überschriften der einzelnen Inputs zu haben, wurden hier insgesamt vier \textit{LabeledInput} genutzt, für den Namen, die Gruppe, die Musik und das Bild.
+Für das ändern des Namens wurde \textit{TextInput} genutzt, dem \textit{nfcTag.name} übergeben wird.
+Die Auswahl einer anderen Gruppe erfolgt über das eigene \textit{Dropdown} gelöst, der \textit{nfcTagGroup} und \textit{tagGroupListItems} übergeben bekommt.
+Für die Musik wurde ein Feld mit dem derzeitigen Titel angezeigt, und daneben ein \textit{Button}, der bei einem Klick in einen anderen \textit{View} weiterleitet.
+Selbiges Verfahren wurde auch für das Bild verwndet, welches angezeigt wird und daneben ein \textit{Button} auf ein anderes \textit{View} weiterleitet.
+
+% Visualisierung des ausgewählten Tags
+Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
+Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
+\begin{lstlisting}
+const toggleTag = (tag: NFCTag): void => {
+  selectedTag.value =
+    tag === selectedTag.value ? null : tag;
+  buttonTransitionActive.value = true;
+};
+\end{lstlisting}
+Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
+Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
+\begin{lstlisting}
+<TagEntry
+  v-for="entry in group.tags"
+  :key="entry.nfcData"
+  class="m-4 w-2/6 flex-shrink-0 text-4xl"
+  :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
+  :img="entry.imageUrl"
+  :name="entry.name"
+  @click="toggleTag(entry)"
+/>
+\end{lstlisting}
+Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
+
+% Initial Setup
+\colorbox{red}{explain this:} https://github.com/project-leek/project-leek/pull/319/files
+
+Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet, indem das komplette Setup durchgeführt wurde.
+Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer ihre eigene \textit{leek-box} bei sich einrichten könnten.
+
 %Probleme
-Wie beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
-Gegen Ende fehlte es an Zeit, um neu umgesetzte Tickets auf Fehler zu testen und entsprechend fehlerfrei dem Kunden zu präsentieren.
-%Lösungen
-Als Lösung für dieses Problem beschloss das Team dem Kunden im Review weniger neue Features vorzustellen als geplant.
-%Product Increment
-Das Produkt Inkrement enthielt die implementierten Einstellungen der \textit{Leek Box}, die es dem Nutzer ermöglichen, den Wiedergabelautsprecher auswählen, die jeweilige Leek Box zu verwalten und sich von Spoitfy abzumelden.
-Auch wurde ein Setup Guide angefertigt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden alle Unstimmigkeiten beseitigt.
+Wie bereits beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
+Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu können.
+Somit beschloss das Team dem Kunden im Review nur die anfänglich geplanten Featuers vorzustellen und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
+Das Produkt konnte um die Einstellungen der \textit{Leek Box} und die \textit{TagDetails}  erweitert werden.
+Auch der Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
+Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, alle Unstimmigkeiten beseitigt.
+
 %Retrospektive
-Insgesamt hat das Team sich an dieser Stelle vor allem über das sehr positive Feedback des Kunden gefreut.
-Auch wurde die Produktivität des Teams sehr gelobt.
+Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
+Da das Team viel Gefallen an dem Projekt gefunden und entsprechend viel Energie aufgewendet hat, war dieses Lob sehr wertvoll und motivierend.
 Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
-Problematisch war es, dass manche Tickets von mehreren gleichzeitig oder nacheinander bearbeitet wurden, sodass Arbeit teilweise doppelt erledigt wurde.
+\colorbox{red}{inject provide}
+Problematisch war es, dass manche Tickets von mehreren Entwicklern zeitgleich oder nacheinander bearbeitet wurden, sodass einige der getätigten Änderungen redundant waren.
 Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
+Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
 Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
 
 \subsubsection*{Meilenstein 6} $~$ \\
