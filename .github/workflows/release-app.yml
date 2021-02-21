@@ -52,19 +52,15 @@ jobs:
           yarn --frozen-lockfile
           yarn build:app
 
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.4.1
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          SSH: true
-          REPOSITORY_NAME: project-leek/project-leek.github.io
-          BRANCH: master
-          FOLDER: packages/app/dist
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          branch: master
+          repository-name: project-leek/project-leek.github.io
+          folder: packages/app/dist
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          clean: true # Automatically remove deleted files from the deploy branch
+
   buildx:
     runs-on: ubuntu-latest
     steps:
