@@ -368,9 +368,11 @@ Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
 
 \paragraph*{Vue.js} $~$ \\
-Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
+Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box},
+ die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird,
+ einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-Dieses wurde vor allem aufgrund der zwei Hauptmerkmale \textit{components} und \textit{reactivity} entschieden.
+Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
 
 \paragraph*{Components} $~$ \\
 In vue werden Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellt.
@@ -385,20 +387,38 @@ In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten E
 %Alternativ kann auch JavaScript genutzt werden.
 %In beiden Fällen handelt es sich bei diesem Teil um Framework-spezifischen Programm-Code,
 % wie z. B. die Registrierung der Komponente.
-Ausmaß, Funktionalität und Größe hiervon sind keine Einschränkungen gesetzt.
-So kann es sich bei diesen Komponenten zum Beispiel um Buttons, Header oder auch ganze Webseiten handeln.
+Durch diese Zusammenfassung wird der gesamte Code lesbarer,
+ da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
+So konnte viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
+Dies führte zu effizienterem und zufriedenstellenderer Arbeit am Projekt.
+Bessere Lesbarkeit führt auch zu besserer langfristiger Wartbarkeit.
+Dies ist in diesem Projekt besonders wichtig,
+ da es unter Open-Source-Lizenz und dementsprechend der Allgemeinheit weiter entwickelt werden soll.
+Mit adäquater Wartbarkeit ist eine Grundlage für langjähriges Überleben der \textit{leek-box} geschaffen.
+\\~\\
+Ausmaß, Funktionalität und Größe von Komponenten sind allgemein keine Einschränkungen gesetzt.
+So kann es sich bei diesen zum Beispiel um Buttons, Header oder auch ganze Webseiten handeln.
 Für die Nutzung müssen diese allerdings noch beim Framework registriert werden
 (siehe Abbildung %Beispiel).
 Danach können Komponenten wie native HTML-Tags verwendet werden.
 Dies macht die Nutzung vom \textit{components} sehr intuitiv.
+So ist die Lernkurve für das Framework sehr einfach zu bewältigen.
+Die Verwendung von weitreichend klassischem HTML, CSS und JS bzw. TS unterstützt dies zusätzlich.
+Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
+ da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
+\\~\\
+\textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
+So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
 
 
 
 
 
-Dieses wurde aufgrund seiner guten Dokumentation und seiner flachen Lernkurve gewählt, wodurch sich der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter gestaltete.
-Außerdem bietet das in Vue.js verwendete Entwurfsmuster MVVM (Model View ViewModel) den Vorteil, dass die designaffineren Entwickler sich eher mit dem Frontend beschäftigen können,
-während andere am Logik-Code arbeiten. Im Vergleich zu anderen Webframeworks gilt es, laut Benchmarks außerdem als sehr performant.\cite{Vue_Performance}
+
+Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
+Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
+Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
+ und dementsprechend nur begrenzte Leistung zur Verfügung hatte.
 
 \paragraph*{Tailwind CSS} $~$ \\
 Zur effizienteren Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Framework \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
