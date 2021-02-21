@@ -89,7 +89,7 @@ So gab beispielsweise ein Designer des Unternehmens hilfreiches Feedback zum Ent
 \subsection{Anforderungsanalyse}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
-Da die aktuell am Markt erhältlichen Konkurenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
+Da die aktuell am Markt erhältlichen Konkurrenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
 \subsubsection{Produktvision}
 Mithilfe der von macio gestellten Projektskizze (siehe \ref{pdf:macioprojektskizze}) erstellte das Team die folgende Produktvision:
 Angestrebt wurde die Konzeption und Entwicklung einer Musik-Box, die NFC Tags lesen kann und Schnittstellen zu Musik-Streaming-Anbietern (wie Spotify) besitzt.
@@ -247,12 +247,12 @@ Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag a
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
 Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowie eine spezielle Library notwendig.
 
-\subsection{Raspberri Pi}
+\subsection{Raspberry Pi}
 \subsubsection{Docker Integration}
-Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
-Auf einem Raspberri Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
+Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
 Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu können, muss innerhalb des Routers ein Port ge-forwarded werden.
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
@@ -260,7 +260,7 @@ Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{http
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
-Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
+Über ein mDNS Service, der auf dem Raspberry Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
 \subsection{User Interface}
@@ -322,13 +322,13 @@ Abgesehen davon sollte es kein besonderes Problem darstellen.
 \subsubsection{Sound Wiedergabe auf der Box selbst}
 Manche Pi Modelle verfügen über einen On-Board Audio Anschluss.
 Die Wiedergabe über diesen ist qualitativ für Musik meist ungeeignet und sollte daher über ein weiteres Audiomodul oder eine externe Soundkarte erfolgen.
-Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
+Innerhalb der Raspberry Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
 Zur Wiedergabe auf der Box selbst müsste dafür auf dem Raspberry eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
 Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com/dtcooper/raspotify}.
 
 \subsubsection{Box unter 30€ Kosten}
-Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
-Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
+Mit einem Raspberry Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
+Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 
 \section{Durchführung}
@@ -342,9 +342,9 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
 Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
-Jeder Service wurde in einem Unterdner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-\textit{backed} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
-Im Ordner commons befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+\textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
 Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
 Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
 Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
@@ -388,7 +388,7 @@ Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\text
 Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
 Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
 \begin{figure}[ht]
-  \includegraphics[width=\linewidth]{MyFeathersService}
+  \includegraphics[width=\linewidth]{MyFeathersService.png}
   \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
   \caption{Implementierung eines ServicesTest}
   \label{fig:MyService}
@@ -420,7 +420,7 @@ So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werd
 \subsubsection{Reverse-Tunnel (ngrok)}
 Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
 Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
-Da das Framwork jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
 Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
 Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
 \colorbox{red}{Hier Schaubild?}
@@ -659,7 +659,7 @@ NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die �
 kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
 folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
 \\
-\colorbox{orange}{Hier bei Bedarf noch weiter ausführen (aber wäre sehr ins Detail gegeangen)}
+\colorbox{red}{Hier bei Bedarf noch weiter ausführen, aber wäre sehr ins Detail gegeangen}
 Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
 ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
 
