@@ -26,7 +26,6 @@ jobs:
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: docs
-          FOLDER: docs/
-          CLEAN: true
+          branch: docs
+          folder: docs/
+          clean: true
