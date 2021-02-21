@@ -845,12 +845,26 @@ Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yello
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
+
 \\~\\
-%Entwicklung
+
+\paragraph*{Entwicklung}
 Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem im User Interface wurden noch letzte Änderungen durchgeführt.
-Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst.
+Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
+Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{noTagsFound.png}
+  \caption{no tags found div}
+\end{wrapfigure}
 \\
-% Button Refactoring
+Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}
+  \caption{Startseite ohne Tags}
+\end{wrapfigure}
+\\
+
+\paragraph*{Button Refactor}
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
   \item nur Text
@@ -872,17 +886,6 @@ Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wir
 Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das Icon zentriert sein.
 Um die Größe des Buttons zu steuern wurde sich dafür entschieden eine \textit{Property} zu nutzen. So konnte an das \textit{Component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} und \glqq xl\grqq{} übergeben werden.
 Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass es nur eine Art von größeren Buttons existiert.
-\\~\\
-Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=0.45\textwidth]{noTagsFound.png}
-  \caption{no tags found div}
-\end{wrapfigure}
-Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}
-  \caption{Startseite ohne Tags}
-\end{wrapfigure}
 
 \\~\\
 Auch wurde die Desktop Ansicht optimiert:\\
@@ -896,7 +899,7 @@ Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 
 \\~\\
-% Frontend in Githup.io Pages
+\paragraph*{Frontend in Githup.io Pages}
 Das Frontend wurde vom Raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
 Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer IP-Adresse ersetzt durch ngrok.
@@ -907,7 +910,7 @@ Vor allem problematisch war es hier auch, dass bei Neustart des Raspberrys auch 
 Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten IP Adresse zu verbinden.
 Dieses Problem wurde in den nächsten Meilenstein geschoben.
 
-%Bericht
+\paragraph*{Bericht}
 Anfänglich wurden die Kapitel und Abschnitte für einen insgesamt runderen roten Faden im Bericht überarbeitet.
 Aus diesen wurden entsprechend die Tickets im Ticket Pool erstellt, die sich die einzelnen Teammitglieder zuweisen können.
 Dies hatte den Vorteil, wie bei der Softwareentwicklung auch bei der Dokumentationsarbeit eine Übersicht zu haben, welche Teile des Berichtes bereits bearbeitet werden, welche noch offen sind, wieviel noch zu tun ist.
@@ -915,7 +918,7 @@ Dadurch, dass das Team sehr viel Freude und Spaß am Entwickeln für das Projekt
 Das hatte zur Folge, dass zum Ende des Sprints für den Prüfenden nicht die erste Version des Berichtes vorlag und das Team somit verspätet erstes Feedback bekommen konnte.
 Nur etwas mehr als die Hälfte das Berichtes konnte umgesetzt werden.
 
-%Retrospektive
+\paragraph*{Retrospektive}
 Dass der Bericht mit latex geschrieben wurde hatte den Vorteil, dass hier auch Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder auch schnell ersichtlich waren.
 So konnte auch weiterhin der Workflow genutzt werden, dass mit Pull Requests und mindestens zwei Reviewern gearbeitet werden muss.
 
