@@ -822,7 +822,7 @@ Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfa
 
 %Ziel
 Geplant war die letzten Anwendungszenarien final umzusetzen, sodass die folgenden beiden Meilensteine zum Beheben kleinerer Fehler genutzt werden konnten.
-Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box}, als auch der Tags.
+Somit war das Ziel die Umsetzung einer \textit{View} für die Einstellungen der \textit{Leek Box}, als auch der Tags.
 Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein einheitliches Design erhalten.
 Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
 
@@ -844,8 +844,7 @@ Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen
 An dieser Stelle war es erneut sehr praktisch ein Framework wie \textit{Vue} zu nutzen, da somit die bereits vorhandenen \textit{views} wiederverwendet werden konnten.
 
 % Visualisierung des ausgewählten Tags
-Zur Verbesserung der Usability wurde dem Nutzer besser signalisiert, ob ein Tag ausgewählt wurde.
-Dafür wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
+Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
 Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
 \begin{lstlisting}
 const toggleTag = (tag: NFCTag): void => {
@@ -879,9 +878,9 @@ Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-lee
 Wie bereits beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
 Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu können.
 Somit beschloss das Team dem Kunden im Review nur die anfänglich geplanten Featuers vorzustellen und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
-Das Produkt konnte um die Einstellungen der \textit{Leek Box} und der Tags erfolgreich erweitert werden.
+Das Produkt konnte um die Einstellungen der \textit{Leek Box} und die \textit{TagDetails}  erweitert werden.
 Auch der Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, die meisten Unstimmigkeiten beseitigt.
+Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, alle Unstimmigkeiten beseitigt.
 
 %Retrospektive
 Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
