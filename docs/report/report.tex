@@ -699,12 +699,32 @@ Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yello
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface auf die letzten Unstimmigkeiten im User Interface beseitigt, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden kann.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
-
+\\~\\
 %Entwicklung
-Zu Beginn wurden die letzten Softwaretickets erledigt.
-Vor allem im User Interface wurden noch Kleinigkeiten hinzugefügt oder behoben.
+Zu Beginn wurden die letzten Softwaretickets erledigt. Vor allem im User Interface wurden noch Kleinigkeiten hinzugefügt oder behoben.
 Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} angepasst, sodass diese immer die gleiche Größe besitzen.
-Der \textit{Button Component} wurde refactored, dass auch dieser universell für alle Anwendungszwecke genutzt werden konnte.
+\\
+Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
+\begin{itemize}
+  \item nur Text
+  \item Text mit Icon links vom Text
+  \item Text mit Ion rechts vom Text
+  \item ein Icon ohne Text
+\end{itemize}
+Um diese Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
+Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg sein. Das \textit{Component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher sieben Parametern, konnten alle Anforderung auch mit drei Parametern erreicht werden.
+An dieser Stelle soll verdeutlicht werden wie sich das Komponent selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=5.9cm]{Screenshot_Button.png}
+  \caption{Codesnippets vom Button}
+  \label{fig:HomeVueSchema}
+\end{wrapfigure}
+Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wird, ob ein Text und oder ein Icon vorhanden ist.
+Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen wodurch der Button seine Form verändert.
+Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das Icon zentriert sein.
+Um die Größe des Buttons zu steuern wurde sich dafür entschieden eine \textit{Property} zu nutzen. So konnte an das \textit{Component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} und \glqq xl\grqq{} übergeben werden.
+Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass es nur eine Art von größeren Buttons existiert.
+
 Aus der Datenbank wurden die manuell generierten Einträge gelöscht.
 Auf der Startseite wurde nun dem User auch ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat.
 \paragraph*{Flow-Charts} $~$ \\
