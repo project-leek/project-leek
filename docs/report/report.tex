@@ -94,39 +94,66 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
 
 \subsection{Unternehmen}
 \begin{quote}
-  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte. Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können. Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
+  \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte.
+  Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können.
+  Wenn Informationen allgemein nützlich sind, wird die Menschheit durch ihre Verbreitung reicher, ganz egal, wer sie weiter gibt und wer sie erhält.}
   \cite{openSource}
 \end{quote}
 
-Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen. Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
-Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces. Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten. So gab beispielsweise ein Designer des Unternehmens Feedback zum Entwurf der Benutzeroberfläche
-\subsection{Produktvision}
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
+Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
+Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten.
+So gab beispielsweise ein Designer des Unternehmens hilfreiches Feedback zum Entwurf der Benutzeroberfläche.
+\subsection{Anforderungsanalyse}
 Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
-Smarte Spielzeuge gibt es im kommerziellen Bereich viele, daher soll dieses Projekt eine Open-Source-Alternative schaffen.\\
-Genauer handelt es sich um eine Musik-Box, die NFC-Chips lesen und Spotify Connect unterstützen soll.
-Auf die Box können dann Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt werden, um spezifische Musik abspielen zu lassen.
-Die Musik wird von Spotify-Connect über eine bereits bestehende Musik-Anlage abgespielt.
+Da die aktuell am Markt erhältlichen Konkurrenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
+\subsubsection{Produktvision}
+Mithilfe der von macio gestellten Projektskizze (siehe \ref{pdf:macioprojektskizze}) erstellte das Team die folgende Produktvision:
+Angestrebt wurde die Konzeption und Entwicklung einer Musik-Box, die NFC Tags lesen kann und Schnittstellen zu Musik-Streaming-Anbietern (wie Spotify) besitzt.
+Wird auf die Box beispielsweise ein Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt, soll ein frei konfigurierbares Musikstück über eine bereits bestehende Musik-Anlage abgespielt abgespielt werden.
 Falls es im Rahmen des Projektes möglich ist, sollen die Nutzer in der Lage sein, zwischen verschiedenen Musikanbietern zu wechseln.
 NFC-Chips und die zugehörige Musik sollen über ein Web-basierte Benutzeroberfläche konfiguriert werden können.
 Diese Benutzeroberfläche soll von der Box ausgeliefert und primär für Smartphone-Bedienung gestaltet werden.
 Da es sich um ein Open Source Projekt mit entsprechender Lizenz handelt, muss auch eine aussagekräftige, öffentliche Dokumentation verfasst werden.
-Macio stellt die benötigte Hardware zur Verfügung und unterstützt bei technischen Fragen.
+Macio stellte die benötigte Hardware zur Verfügung und unterstützte bei technischen Fragen.\\
 
-\subsubsection{Minimal Requirements}
-\begin{enumerate}
-  \item NFC-Tags lesen, schreiben und entschlüsseln
-  \item Mit Spotify Connect verbinden und arbeiten
-  \item Responsive UI konzeptionieren und umsetzen
-  \item Aussagekräftige Dokumentation mit Benutzerhandbuch
-\end{enumerate}
-\subsubsection{Stretch Goals}
-\begin{enumerate}
-  \item Sound Wiedergabe auf der Box selbst
-  \item Unterstützung anderer Musikdienste / Plugin-Subsystem
-  \item 3D-Modellierung und Print einer passenden Box
-  \item Cloud-Anbindung der Box, Auslieferung des UI aus der Cloud
-\end{enumerate}
+\subsubsection{Anforderungen}
+Aus der Projektskizze und der Produktvision wurden folgende konkrete Mindestanforderungen und entsprechende Klassifikationen an das Produkt abgeleitet:
+\begin{center}
+  \begin{tabular}[h]{c|c}
+    Anforderung & Klassifikation \\
+    \hline
+    NFC-Tags lesen, schreiben und entschlüsseln & funktional  \\
+    Mit Spotify Connect verbinden und arbeiten & funktional \\
+    Responsive UI konzeptionieren und umsetzen & funktional  \\
+    Aussagekräftige Dokumentation mit Benutzerhandbuch & nicht funkt.  \\
+  \end{tabular}
+\end{center}
+
+Um diese Anforderungen weiter zu definieren erstellte das Team User Stories,
+durch die sichergestellt wurde, dass beide Parteien (der Kunde und die Entwickler) die Anforderungen  gleich interpretierten und verstanden.
+Dabei entstand auch eine Priorisierung der Anforderungen, bemessen an dem \textit{Return of Investment} und dem Nutzen für den Endnutzer.
+Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an das Produkt:
+\begin{center}
+  \begin{tabular}[h]{c|c}
+    Anforderung & Klassifikation \\
+    \hline
+    Sound Wiedergabe auf der Box selbst & funktional  \\
+    Unterstützung anderer Musikdienste & funktional \\
+    3D-Modellierung und Print einer passenden Box & nicht funkt.  \\
+    Maximaler Kostenpunkt von 30€ & nicht funkt.  \\
+    Cloud-Anbindung der Box & funktional \\
+    Auslieferung des UI aus der Cloud & funktional \\
+    \end{tabular}
+\end{center}
+
+Durch die agile Projektorganisation wuchsen diese Anforderungen iterativ von Sprint zu Sprint und neue implizite Anforderungen entstanden.
+Um die Kosten von maximal 30€ zu realisieren, entstand die Idee zur Konzeption von zwei Versionen der \textit{Leek-Box}. Während die kostengünstige Variante nur die Grundfunktionen umsetzt, bietet die teurere einen größeren Funktionsumfang, wie das Abspielen der Musik über einen eigenen Lautsprecher.
+Einige der Anforderungen haben sich während der Entwicklungsphase als widersprüchlich herausgestellt.
+So wurde sich zum Beispiel gegen bezahlte Services entschieden. Dies schränkte die Usability ein, entsprach jedoch mehr dem Open-Source-Gedanken des Projekts.
+Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschnitt Machbarkeitsstudie (Abschnitt \ref{machbarkeitsstudie}) behandelt.
 
 \section{Projektplanung}
 
@@ -224,6 +251,7 @@ Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse m�
 Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 
 \section{Machbarkeitsstudie}
+\label{machbarkeitsstudie}
 
 \subsection{NFC Tag}
 \subsubsection*{lesen}
@@ -238,12 +266,12 @@ Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag a
 Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
 Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowie eine spezielle Library notwendig.
 
-\subsection{Raspberri Pi}
+\subsection{Raspberry Pi}
 \subsubsection{Docker Integration}
-Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
-Auf einem Raspberri Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
+Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
 Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu können, muss innerhalb des Routers ein Port ge-forwarded werden.
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
@@ -251,7 +279,7 @@ Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{http
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
-Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
+Über ein mDNS Service, der auf dem Raspberry Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
 \subsection{User Interface}
@@ -313,13 +341,13 @@ Abgesehen davon sollte es kein besonderes Problem darstellen.
 \subsubsection{Sound Wiedergabe auf der Box selbst}
 Manche Pi Modelle verfügen über einen On-Board Audio Anschluss.
 Die Wiedergabe über diesen ist qualitativ für Musik meist ungeeignet und sollte daher über ein weiteres Audiomodul oder eine externe Soundkarte erfolgen.
-Innerhalb der Raspberri Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
+Innerhalb der Raspberry Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
 Zur Wiedergabe auf der Box selbst müsste dafür auf dem Raspberry eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
 Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com/dtcooper/raspotify}.
 
 \subsubsection{Box unter 30€ Kosten}
-Mit einem Raspberri Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
-Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
+Mit einem Raspberry Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
+Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
 
 \section{Durchführung}
@@ -333,9 +361,9 @@ Mit dem Raspberri Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
 Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
-Jeder Service wurde in einem Unterdner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-\textit{backed} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
-Im Ordner commons befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+\textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
 Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
 Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
 Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
@@ -378,8 +406,8 @@ Bei der Erstellung des Backends entschied sich das Team zusätzlich das Framewor
 Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\textbf{R}ead-\textbf{U}pdate-\textbf{D}elete}  auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
 Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
 Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
-\begin{figure}[h]
-  \includegraphics[width=\linewidth]{MyFeathersService}
+\begin{figure}[ht]
+  \includegraphics[width=\linewidth]{MyFeathersService.png}
   \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
   \caption{Implementierung eines ServicesTest}
   \label{fig:MyService}
@@ -411,7 +439,7 @@ So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werd
 \subsubsection{Reverse-Tunnel (ngrok)}
 Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
 Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
-Da das Framwork jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
 Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
 Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
 \colorbox{red}{Hier Schaubild?}
@@ -469,10 +497,9 @@ durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich ab
 Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
 
 \paragraph{Github Pages} $~$ \\
-Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation/Account eine kostenlose Website zur Verfügung.
-Die Konigurationsanforderungen für diese Website sind minimal, da der Inhalt der Website an einen Teil des Repositotys gebunden werden kann. In unserem Fall, wird hierfür das \textit{app-package} verwendet.
-So bleibt die Website immer aktuell, da sie auf einem eigenen Branch besteht, und der Stand der Website komfortabel durch einen merge vom Master-Branch in den Website-Branch aktualisiert werden kann.
-\colorbox{red}{@Anton Please check!}
+Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation und Repository eine kostenlose URL xyz.github.io zur Verfügung.
+Dabei werden unter dieser statische Dateien, wie zum Beispiel die einer Website: \textit{.html}, \textit{.css}, \textit{.js}, aus einem bestimmten Branch oder einem Ordner bereitgestellt.
+Die Konigurationsanforderungen für ein einfaches Website-Hosting sind somit minimal.
 
 \subsubsection{Visual Studio Code \& WSL}
 Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
@@ -483,7 +510,8 @@ Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote
 und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
 
 \subsubsection{Prototyping (Figma)}
-Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigeten Komponenten mittels des webbaiserten
+\label{figma}
+Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigten Komponenten mittels des webbasierten
 Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
 \textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
 
@@ -598,31 +626,84 @@ Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 
 \subsubsection*{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
-Ziel war es, die ersten Grundbausteine für das Projekt legen.
-%Ziel
-Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte, sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren.
-Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles Haustier im Backend und die Darstellung im Frontend.
-Darüber hinaus sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt werden und die Möglichkeit NFC-Tags auszulesen implementiert werden.
-Damit die Entwicklung zeitnah starten konnte, sollten die ersten Mockups für das User Interface erstellt werden sowie die Grundstruktur für den Bericht zu dem Projekt angefertigt werden, damit dieser Projektbegleitend aufgebaut werden konnte.
-%Probleme
-Zu Beginn ging der im ersten Review geäußerte Kundenwunsch, bereits NFC-Tags auszulesen und anzeigen zu können, unter und stellte so kurzzeitig das rechtzeitige Abschließen der für den Milestone vorgesehenen Tickets in Frage.
-Außerdem bereitete die Einarbeitung in die genutzten Technologien einigen Teammitgliedern einige Schwierigkeiten.
-%Lösungen
-Bereits von Anfang an zeichnete sich durch die hohe Hilfsbereitschaft den anderen Teammitgliedern gegenüber ein hoher Zusammenhalt im Team ab.
-Um das vom Kunden gewünschte Feature noch umzusetzen, wurden gegen Ende des Sprints Überstunden geleistet.
-%Product Increment
-Das Produkt wurde in diesem Meilenstein sinnvoll um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
+Ziel war es, die ersten Grundbausteine für das Projekt legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
+sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles
+Haustier im Backend und die Darstellung im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Milestone erstellt werden,
+um den Fortschritt, Probleme und Erkentnisse zeitnah dokumentieren zu können.
+\\~\\
+\paragraph*{Hello-World (Pet)} $~$ \\
+\label{HelloWorld}
+Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von Feathers auseinander um einen
+Überblick über die notwendigen Klassen und Konstrukte zu erhalten. Zuerst musste eine Klasse erstellt werden, in der der Aufbau des Haustierts modeliert
+wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein Feathers-Service in Form einer
+Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
+die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
+\begin{lstlisting}
+  class NicksPetService implements MyService<NicksPet> {
+    id! : number;
+    name! : string;
+
+    constructor(_id: number, _name: string) {
+      this.id = _id;
+      this.name = _name;
+    }
+  }
+\end{lstlisting}
+In dieser Klasse war außerdem ein Verweis auf eine weitere erstellte Klasse (Model) aufgeführt, welche bestimmt, mit welcher Schnittstelle oder API die Daten
+verwaltet werden sollen (in diesem Fall mit der durch \textit{Feathers} bereitgestellten Schnittstelle für die Datenbank \textit{NeDB}).
+Mit dem Erstellen dieser drei Klassen (NicksPet.class.ts, NicksPetService.ts und NicksPet.model.ts) waren die benötigten Komponenten zur Verwaltung vorhanden und
+und die Arbeit im Backend abgeschlossen. Der nächste Schritt beinhaltete die Implementierung der Steuerelemente zum Verwalten der Daten im Frontend.
+Aufgrund der erhöhten Komplexität der Einarbeitung in mehrere teilweise komplett unbekannte Frameworks zur selben Zeit, bestanden bei dieser Aufgabe
+einige Startschwierigkeiten, welche allerdings durch die große Hilfsbereitschaft der erfahreneren Teammitglieder überwunden werden konnte.
+\\~\\
+Im Frontend wurde pro Haustier je ein \textit{component} zur Anzeige eines Haustiers angelegt,
+welches zusammen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} platziert wurde.
+Aufgrund der je nach Entwickler sehr unterschiedlichen Implementierung der \textit{component} wird hier auf eine ausführliche Beschreibung verzichtet.
+
+\paragraph*{NFC-Tags auslesen} $~$ \\
+\colorbox{red}{Hier bei Bedarf noch weiter ausführen}
+Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt und das Auslesen der NFC-Tags implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
+in Vergessenheit, sodass sich das Team einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden könnte.
+Um das Sprintziel nicht zu gefährden, mussten gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen konnte.
+\\
+Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
+analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen erstellt.
+Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
+angelegt. Dieser nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, welches ein Interface für die Events der angeschlossenen
+Eingabegeräte vom Linux-Kernel, wie in unserem Fall den NFC-Reader, bereitstellt. Dies ist möglich, da der NFC-Reader sich wie eine Tastatur verhält. Er
+simuliert dabei eine Tastatureingabe mit dem Text der NFC-Tag-ID. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse
+(im NFC-Reader Package), welche jeden simulierten Tastendruck des NFC-Readers abfängt, bis ein Zeilenumbruch (0A HEX) empfangen
+wird und anschließend ein Event auslöst, welches die eingescannte ID beinhaltet. Die Hauptklasse nimmt dieses Event entgegen (Event-Listener) und setzt mittels des
+NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die übergebene ID. Durch die Nutzung von \textit{Web-Sockets} und \textit{Vue.js}
+kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
+folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
+\\
+\colorbox{red}{Hier bei Bedarf noch weiter ausführen, aber wäre sehr ins Detail gegeangen}
+Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
+ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
+
+\paragraph*{Prototyping der Beutzeroberfläche} $~$ \\
+Damit die Entwicklung zeitnah starten konnte, wurden die ersten Mockups für die Benutzeroberfläche erstellt.
+Mithilfe des Prototyping-Tools \textit{figma} (vgl. \ref*{figma}) wurden Prototypen für die Start- , die Hauptansicht und die Ansichten
+für das Bearbeiten und Anlegen von NFC-Tags erstellt (Eine Übersicht über das erstellte Design ist im Anhang unter \ref*{FigmaDesigns} zu finden).
+Nach dem Design wurden die Ansichten in \textit{Click-Dummys} umgewandelt, um dem Kunden im folgenden Review einen Überblick über das Verhalten der
+Benutzeroberfläche zu verschaffen.
+
+\paragraph*{Review} $~$ \\
+Dank des großen Engagements und der Bereitschaft Überstunden zu leisten, konnte dem Kunden zum Review ein neues Produktinkrement übergeben werden.
+Das Produkt wurde um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
 Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
 Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
-%Retrospektive
-Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierungen von Tests und Deployment kümmerte.
-Auch das Gruppenklima wurde vom Team sehr gelobt, die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings waren liefen sehr gut.
-Neu gelernt hat das Team bei diesem Meilenstein vor allem wie Vue, Feathers und Tailwind funktionieren.
+
+\paragraph*{Retrospektive} $~$ \\
+Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierung von Tests und Deployment kümmerte.
+Auch das Gruppenklima wurde sehr gelobt und angemerkt, dass die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings sehr positiv wahrgenommmen wurden.
+Das Team konnte bei der Umsetzung dieses Meilensteins viel über die Funktionsweise der Frameworks \textit{Feathers}, \textit{Vue.js} und \textit{Tailwind} lernen.
 Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Reviews und Pull Request in Kontakt.
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
 
-\subsubsection*{Meilenstein 3}
+\subsubsection*{Meilenstein 3} $~$ \\
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
 
 \paragraph*{Mockup Überarbeitung} $~$ \\
@@ -692,8 +773,14 @@ Zum Beginn der Umsetzung wurde auf Basis des Mockups ein View in der Benutzerobe
 Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert, dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token
 vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf dieser Seite automatisch auf die Hauptseite weitergeleitet.
 
-\paragraph*{Veröffentlichung der App auf GithubIO} $~$ \\
-\colorbox{red}{@Anbraten hier bitte auführen}
+\paragraph*{Veröffentlichung der App auf Github Pages} $~$ \\
+Zur Veröffentlichung unseres Frontends der \textit{leek-box} verwenden wir den Dienst Github Pages welcher ein Webhosting von statischen Dateien unter einer xyz.github.io URL anbietet.
+Das Team verwendete für das Frontend ein separates Repository \textit{project-leek/project-leek.github.io} mit der URL project-leek.github.io.
+Nach dem Continous-Delivery Verfahren, baut die Pipeline des eigentlichen project-leek Repositories automatisch nach jedem Merge auf den master Branch das \textit{app-package}.
+Dafür wird das Build-Tool des \textit{app-package}s aufgerufen und die dabei enstanden statischen Dateien werden von dem Pipeline Plugin
+\textit{github-pages-deploy-action}\footnote{\raggedright\url{https://github.com/JamesIves/github-pages-deploy-action}} aus der Pipeline in das separate
+\textit{project-leek/project-leek.github.io} Repository für den GitHub Pages Dienst kopiert. Somit befindet sich unter project-leek.github.io immer die aktuellste Version der App.
+Dies hat den Vorteil, dass Änderungen wie zum Beispiel Bugfixes und neue Features dem Endanwender schnellst möglich zur Verfügung gestellt werden können ohne das auf einen Release-Plan Rücksicht genommen werden muss.
 
 \paragraph*{Review \& Retrospektive} $~$ \\
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war zum Review auch das Einloggen
@@ -962,6 +1049,8 @@ Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können
 \subsection{Ausblick}
 \newpage
 \section{Anhang}
+\colorbox{red}{macio Projektskizze einfügen} \label{pdf:macioprojektskizze}
+\label{FigmaDesigns}
 \label{FlowCharts}
 \colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
 \printbibliography
