@@ -843,12 +843,12 @@ Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yello
 
 \subsubsection*{Meilenstein 6} $~$ \\
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
-Mit diesem Sprint sollte das User Interface auf die letzten Unstimmigkeiten im User Interface beseitigt, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden kann.
+Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
 \\~\\
 %Entwicklung
-Zu Beginn wurden die letzten Softwaretickets erledigt. Vor allem im User Interface wurden noch Kleinigkeiten hinzugefügt oder behoben.
-Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} angepasst, sodass diese immer die gleiche Größe besitzen.
+Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem im User Interface wurden noch letzte Änderungen durchgeführt.
+Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst.
 \\
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
@@ -859,38 +859,46 @@ Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Butt
 \end{itemize}
 Um diese Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
 Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg sein. Das \textit{Component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher sieben Parametern, konnten alle Anforderung auch mit drei Parametern erreicht werden.
+% Vorher - Nachher Bild einzeigen.
+\colorbox{red}{Hier vorher - nacher Bild anzeigen}
 An dieser Stelle soll verdeutlicht werden wie sich das Komponent selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
 \begin{wrapfigure}{r}{0cm}
   \includegraphics[width=5.9cm]{Screenshot_Button.png}
   \caption{Codesnippets vom Button}
   \label{fig:HomeVueSchema}
 \end{wrapfigure}
-Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wird, ob ein Text und oder ein Icon vorhanden ist.
-Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen wodurch der Button seine Form verändert.
+Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wird, ob ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen wodurch der Button seine Form verändert.
 Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das Icon zentriert sein.
 Um die Größe des Buttons zu steuern wurde sich dafür entschieden eine \textit{Property} zu nutzen. So konnte an das \textit{Component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} und \glqq xl\grqq{} übergeben werden.
 Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass es nur eine Art von größeren Buttons existiert.
-
-Aus der Datenbank wurden die manuell generierten Einträge gelöscht.
-Auf der Startseite wurde nun dem User auch ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat.
-\paragraph*{Flow-Charts} $~$ \\
+\\~\\
+Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{noTagsFound.png}
+  \caption{no tags found div}
+\end{wrapfigure}
+Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
 \begin{wrapfigure}{r}{0cm}
   \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}
   \caption{Startseite ohne Tags}
+\end{wrapfigure}
+
+\\~\\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}
+  \caption{Desktopansicht}
 \end{wrapfigure}
 Auch wurde die Desktop Ansicht optimiert:\\
 Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
 Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
-\paragraph*{Flow-Charts} $~$ \\
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}
-  \caption{Desktopansicht}
-\end{wrapfigure}
+
+\\~\\
+
 Das Frontend wurde vom Raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
-Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer Ip Adresse ersetzt durch ngrok.
+Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer IP-Adresse ersetzt durch ngrok.
 Ngrok veröffentlichte hierbei automatisch eine öffentliche verschlüsselte IP Adresse, um diese im Frontend eingeben zu können.
 Hierbei war noch die Problematik aufgetroffen, dass diese IP Adresse nicht überprüft wurde.
 Hat nun der Nutzer eine falsche IP Adresse eingegeben, versuchte das Frontend sich mit einer nicht existenden IP Adresse zu verbinden und der Fehler 404 wurde angezeigt.
