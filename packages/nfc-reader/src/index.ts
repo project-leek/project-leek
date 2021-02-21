@@ -50,22 +50,20 @@ async function start(): Promise<void> {
 
   let nfcReaderId = config.get('nfcReaderId').value();
   if (!nfcReaderId) {
-    const nfcReader = (await feathers.service('nfc-readers').create({
-      name: `Leek ${Math.floor(Math.random() * 999) + 100}`,
-      attachedTagData: null,
-    })) as NFCReader;
-
-    nfcReaderId = nfcReader._id;
-
-    await config.set('nfcReaderId', nfcReaderId).write();
-
-    log('Registered NFC-Reader to backend. ID:', nfcReaderId);
+    feathersSocket.on('connect', async () => {
+      const nfcReader = (await feathers.service('nfc-readers').create({
+        name: `Leek ${Math.floor(Math.random() * 999) + 100}`,
+        attachedTagData: null,
+      })) as NFCReader;
+      nfcReaderId = nfcReader._id;
+      await config.set('nfcReaderId', nfcReaderId).write();
+      log('Registered NFC-Reader to backend. ID:', nfcReaderId);
+    });
   } else {
     log('NFC-Reader ID:', nfcReaderId);
   }
 
   feathersSocket.open();
-
   nfcReader.on('error', (error) => {
     printError(`NFC reader error: ${error.message}`);
   });

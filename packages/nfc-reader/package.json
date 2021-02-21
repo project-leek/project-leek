@@ -4,7 +4,7 @@
   "main": "dist/",
   "types": "dist/",
   "scripts": {
-    "start": "nodemon",
+    "start": "API_URL=http://localhost:3030 nodemon",
     "build": "yarn clean && ncc build src/index.ts -o dist",
     "lint": "eslint --report-unused-disable-directives --cache --ext .js,.ts .",
     "typecheck": "tsc --noEmit",
