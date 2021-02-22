@@ -431,13 +431,8 @@ clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\ur
 Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
 
 \paragraph*{Components} $~$ \\
-In vue werden Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellt.
-Im Vergleich zu Webentwicklung ohne Frameworks, wird hier allerdings der Code aufgeteilt
- und in einzelne Dateien (im \textit{.vue}-Format) ausgelagert.
-Dies geschieht entlang von inhaltlichen oder logischem Zusammenhängen, aber nicht nach jeweiliger Sprache.
-Die daraus resultierenden Dateien werden in vue \textit{(single-file-)components} genannt.
-In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten Element der Webseite.
-\begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b]
+Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
+\begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
   <template>
     <span class="beispiel">Beispiel Komponente</span>
   </template>
@@ -458,20 +453,20 @@ In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten E
 
 Durch diese Zusammenfassung wird der gesamte Code lesbarer,
  da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
-So konnte viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
+So wird Entwickleren viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
 Dies führte zu effizienterem und zufriedenstellenderer Arbeit am Projekt.
-Bessere Lesbarkeit führt auch zu besserer langfristiger Wartbarkeit.
+Bessere Lesbarkeit führt auch zu langfristigerer Wartbarkeit.
 Dies ist in diesem Projekt besonders wichtig,
- da es unter Open-Source-Lizenz und dementsprechend der Allgemeinheit weiter entwickelt werden soll.
+ da es unter Open-Source-Lizenz steht und gegebenenfalls von der Allgemeinheit weiter entwickelt werden soll.
 Mit adäquater Wartbarkeit ist eine Grundlage für langjähriges Überleben der \textit{leek-box} geschaffen.
 \\~\\
 Ausmaß, Funktionalität und Größe von Komponenten sind allgemein keine Einschränkungen gesetzt.
-So kann es sich bei diesen zum Beispiel um Buttons, Header oder auch ganze Webseiten handeln.
-Für die Nutzung müssen diese allerdings noch beim Framework registriert werden
-(siehe Abbildung %Beispiel).
-Danach können Komponenten wie native HTML-Tags verwendet werden.
-Dies macht die Nutzung vom \textit{components} sehr intuitiv.
-So ist die Lernkurve für das Framework sehr einfach zu bewältigen.
+So kann es sich bei diesen zum Beispiel um Buttons, Header oder ganze Ansichten handeln.
+Für die Nutzung müssen diese allerdings noch mit \textit{defineComponent} beim Framework registriert werden
+(siehe Listing \ref{lst:EinfacheComponent}).
+Danach können die Komponenten wie native HTML-Tags eingebunden werden.
+Dies macht die Nutzung von \textit{components} sehr intuitiv.
+So hat das Framework eine sehr flache Lernkurve.
 Die Verwendung von weitreichend klassischem HTML, CSS und JS bzw. TS unterstützt dies zusätzlich.
 Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
  da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
@@ -479,13 +474,11 @@ Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für d
 \textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
 So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
 Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden.
-Anhand dieser können Inhalte, Aussehen, Verhalten, etc. dem Kontext entsprechend angepasst werden.
-Die Daten Übergabe geschieht über sogenannte \textit{properties} (kurz \textit{props}).
-Auch der Informationsfluss in die andere Richtung ist möglich.
-Dies geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
-Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen.
-Die einbindende Komponente kann diese Daten dann auslesen und weiterverwenden.
-Dies wird in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
+Anhand dieser können Inhalte, Aussehen und Verhalten dem Kontext entsprechend angepasst werden.
+Die Datenübergabe wird über sogenannte \textit{properties} (kurz \textit{props}) realisiert.
+Auch der Informationsfluss in die andere Richtung ist möglich und geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
+Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen, damit die einbindende Komponente diese dann auslesen und weiterverwenden kann.
+Dies wird folgend in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
 
 \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
   <template>
@@ -539,13 +532,11 @@ Dies wird in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
   </script>
 \end{lstlisting}
 
-Hier gibt die Listen-Komponente die entsprechenden Namen an die Eintrags-Komponenten
+Hierbei gibt die Listen-Komponente die entsprechenden Namen an die \textit{Eintrag}-Komponenten
  mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
-Diese nutzen die \textit{property} zur Anzeige und zur Erstellung des Rückgabewerts.
-Mit einem Event per \textit{\$emit} wird dieser an die Listen-Komponente weitergereicht.
-Der mitgelieferte Wert des Events wird mit \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
+Die verwendete \textit{property} \glqq name\grqq{} wird in dem Eintragselement angezeigt und beim Klicken auf dieses mit einem Event per \textit{\$emit} an die Eltern-Komponente \textit{Liste} zurückgesendet. Der mitgelieferte Wert des Events wird mit \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
 \\~\\
-Alles in allem ermöglichten \textit{components} dem Team schlanken und übersichtlichen Frontend-Code zu produzieren.
+Alles in allem ermöglichte die Verwendung von \textit{components} dem Team die Produktion von schlankem und übersichtlichen Frontend-Code.
 
 \paragraph*{Reactivity}
 Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
@@ -555,13 +546,13 @@ Als Paradebeispiel hierfür wird meist
  \textit{Excel}\footnote{\raggedright\url{https://www.microsoft.com/de-de/microsoft-365/excel}} angeführt.
 In diesem Tabellenkalkulationswerkzeug sind Rechenergebnisse von den momentanen Werten der genutzten Zellen abhängig.
 Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
-Auch vue ermöglicht es, diese Art von Funktionalität einzusetzten.
+Auch \textit{Vue} ermöglicht es, diese Art von Funktionalität einzusetzten.
 So können reaktive generische Datentypen z. B. in components verwendet werden.
 In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
   \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
-Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden.
+Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
 
-\begin{lstlisting}[caption={Demonstration reaktivier vue-Referenzen}, captionpos=b, label=lst:reactivity]
+\begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
   <template>
   <div>
     <span>{{ count }}</span>
@@ -579,12 +570,12 @@ Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Daten�
   });
 </script>
 \end{lstlisting}
-Hier wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive vue-Referenz (\textit{ref}) angelegt.
+In diesem Beispiel wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive Vue-Referenz (\textit{ref}) angelegt.
 Dieser wird bei jedem Klick auf den Button inkrementiert.
 Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
-Würde dies im TS-Code passieren, müsste der Wert vorher noch \glqq ausgepackt\grqq{} (\textit{count.value++}) werden.
+Dagegen muss im TypeScript-Code der Wert vorher noch mit \textit{count.value++} \glqq ausgepackt\grqq{} werden.
 Der geänderte Wert wird direkt auf der Webseite angezeigt,
- ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss.
+ ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss. Stattdessen werden jeweils nur die grundlegenden Daten einer Komponente verändert und Vue bildet diese Daten mit Hilfe des Templates im DOM ab.
 \\
 Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
 So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
@@ -594,7 +585,7 @@ Dies ermöglichte dem Team in kurzer Zeit interaktive Benutzeroberflächen zu er
 Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
 Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
 Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
- und dementsprechend nur begrenzte Leistung zur Verfügung hatte.
+ und dementsprechend nur begrenzte Leistung zur Verfügung steht.
 
 \paragraph*{Tailwind CSS} $~$ \\
 Zur effizienteren Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Framework \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
