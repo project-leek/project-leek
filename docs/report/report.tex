@@ -14,7 +14,7 @@
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-\lstdefinelanguage{JavaScript}{
+\lstdefinelanguage{TypeScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, string, number, boolean},
   keywordstyle=\color{blue}\bfseries,
   ndkeywords={class, export, boolean, throw, implements, import, this},
@@ -31,7 +31,9 @@
 
 \lstset{
   frame=single,
-  language=JavaScript,
+  language=TypeScript,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green},
   numbers=left,
   numberstyle=\tiny,
   basicstyle=\footnotesize\ttfamily,
@@ -69,6 +71,7 @@
 \captionsetup{format=citation,justification=centering}
 \graphicspath{ {./images/} }
 
+
 \addbibresource{literature.bib}
 
 \title{Projektbericht Smart Music Player}
@@ -99,11 +102,9 @@
 \tableofcontents
 \newpage
 
-%\begin{lstlisting}
-  %Put your code here.
+%\begin{lstlisting}[caption={CAPTION_GOES_HERE}, captionpos=b]
+  %Code code code
 %\end{lstlisting}
-
-%\lstinline{This is inline code}
 
 %\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{IMAGENAME.EXT}}{IMAGE_DESCRIPTION}
 
@@ -388,15 +389,12 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 \section{Durchführung}
 
 \subsection{Projektstrukur}
-\begin{wrapfigure}{r}{4cm}
-  \includegraphics[width=3.8cm]{PackageStruktur.png}
-  \caption{Orderstruktur}
-  \label{fig:Orderstruktur}
-\end{wrapfigure}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
+\label{Ordnerstruktur}
 Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
 verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
 Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
-Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref{fig:Orderstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref*{Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
 \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
 Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
 Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
@@ -834,7 +832,7 @@ Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von Feathers aus
 wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein Feathers-Service in Form einer
 Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
 die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
-\begin{lstlisting}
+\begin{lstlisting}[caption={NicksPetService (Hello World)}, captionpos=b]
   class NicksPetService implements MyService<NicksPet> {
     id! : number;
     name! : string;
@@ -912,12 +910,7 @@ Diese Schwierigkeiten wurden durch offene Kommunikation an macio weitergegeben, 
 bei der Entwicklung des Designs zu unterstützen.
 
 \paragraph*{Flow-Charts} $~$ \\
-\begin{wrapfigure}{r}{0cm}
-  %\vspace{-30pt}
-  \includegraphics[width=0.45\textwidth]{ConnectToWIFI.png}
-  \caption{Flowchart: Connect to WIFI}
-  \label{fig:ConnectToWifi}
-\end{wrapfigure}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{ConnectToWIFI.png}}{Flowchart: Connect to WIFI}
 Außerdem wurden die im letzten Sprint erstellten \textit{User Stories} als Grundlage für die Entwicklung von \textit{Flow-Charts} verwendet.
 Diese wurden mit dem Online-Tool \textit{Lucidchart} (vgl. \ref*{Lucidchart}) erstellt und sind im Anhang unter \ref*{FlowCharts} zu finden.
 Sie erleichterten die Umsetzung der Deisgn-Mockups, indem sie notwendigen Abläufe visualisierten.
@@ -947,11 +940,7 @@ an seiner Entwicklungsmaschine angeschlossen haben muss. So konnten Funktionen w
 
 
 \paragraph*{Entwicklung des Welcome Screens mit Authentifizierung} $~$ \\
-\begin{wrapfigure}{r}{5cm}
-  \includegraphics[width=4.8cm]{WelcomeScreenV1.png}
-  \caption{Orderstruktur}
-  \label{fig:Welcome Screen (Version 1)}
-\end{wrapfigure}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{WelcomeScreenV1.png}}{Welcome Screen Version 1}
 Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können, musste sich auch mit der Authentifizierung mit Spotify beschäftigt
 werden. Dafür wurde das offene Protokoll \textit{OAuth} verwendet, welches bereits in \textit{Feathers} abstrahiert implementiert ist. Zur Nutzung dieses
 Protokolles wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
@@ -1046,7 +1035,16 @@ Die beiden letztgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetz
 Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen, wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
 die \textit{Home}-View in Kopf-, Haupt- und Fußbereich eingeteilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
 \\~\\
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddSteps.png}}{AddTag components}
+
+\begin{lstlisting}[caption={Dynamisches Laden der components von AddTag}, captionpos=b]
+  <component
+    :is="steps[activeStep].component"
+    v-model:nfc-tag="nfcTag"
+    @update:is-valid="dataValid = $event"
+    @proceed="nextStep"
+  />
+\end{lstlisting}
+
 Im Hauptbereich der \textit{View} werden die vier \textit{components}, die für die Eingabe der NFC-Tag Daten zuständig sind, dynamisch geladen.
 Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
 Der Fußbereich enthält abhängig von der im Hauptbereich gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
@@ -1135,78 +1133,17 @@ Geplant war die letzten Anwendungszenarien final umzusetzen, sodass die folgende
 Somit war das Ziel die Umsetzung einer \textit{View} für die Einstellungen der \textit{Leek Box}, als auch der Tags.
 Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein einheitliches Design erhalten.
 Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
-
-% Durchführung
+\\~\\
+% Settings
+%\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Leek Box Einstellungen}
 Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
 In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
-\paragraph*{Flow-Charts} $~$ \\
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=0.45\textwidth]{Settings.jpeg}
-  \caption{Leek Box Einstellungen}
-\end{wrapfigure}
+\colorbox{red}{Hier noch viel viel mehr Text,sodass das Bild umschlossen wird --> Dann Bild oben einkommentieren }
+\\~\\
+% TagDetails
 Auch war nun das Bearbeiten der Tags möglich.
 Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
-\paragraph*{Flow-Charts} $~$ \\
-\begin{wrapfigure}{r}{0cm}
-  \includegraphics[width=0.45\textwidth]{TagDetails.jpeg}
-  \caption{Tag Einstellungen und Details}
-\end{wrapfigure}
-In gekürzter Form sah der Quellcode für den Hauptinhalt des \textit{Views} wie folgt aus:
-\begin{lstlisting}
-<LabeledInput label="Name">
-  <Textfield v-model="nfcTag.name" placeholder="z. B. Mario Figur"/>
-</LabeledInput>
-
-<LabeledInput label="Gruppe">
-  <Dropdown
-    v-model="nfcTagGroup"
-    v-model:items="tagGroupListItems"
-    :removeable="false"
-    placeholder-text="Waehle eine Gruppe"
-    :enable-add-item="true"
-  />
-</LabeledInput>
-
-<LabeledInput label="Musik">
-  <div>
-    <div>
-      <img
-        src="/src/assets/spotify.png"
-      />
-      <span v-if="nfcTagTrack">{{
-        cut(nfcTagTrack.title, 42)
-      }}</span>
-    </div>
-    <Button
-      icon="far fa-edit"
-      text="Musik aendern"
-      :to="{ name: 'tag-edit-track' }"
-    />
-    <Button
-      icon="far fa-edit"
-      :to="{ name: 'tag-edit-track' }"
-    />
-</LabeledInput>
-
-<LabeledInput label="Bild">
-  <div>
-    <TagEntry
-      v-if="nfcTag.imageUrl === 'spotify' && nfcTagTrack"
-      :img="nfcTagTrack.imageUri"
-    />
-    <TagEntry v-else :img="nfcTag.imageUrl" />
-    <Button
-      icon="far fa-edit"
-      :to="{ name: 'tag-edit-image' }"
-    />
-    <Button
-      icon="far fa-edit"
-      text="Bild aendern"
-      :to="{ name: 'tag-edit-image' }"
-    />
-  </div>
-</LabeledInput>
-\end{lstlisting}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{TagDetails.jpeg}}{Tag Details}
 An dieser Stelle zeigte sich erneut die Vorzüge von Frameworks wie  \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
 Um ein gleiches Design der Überschriften der einzelnen Inputs zu haben, wurden hier insgesamt vier \textit{LabeledInput} genutzt, für den Namen, die Gruppe, die Musik und das Bild.
 Für das ändern des Namens wurde \textit{TextInput} genutzt, dem \textit{nfcTag.name} übergeben wird.
@@ -1217,25 +1154,27 @@ Selbiges Verfahren wurde auch für das Bild verwndet, welches angezeigt wird und
 % Visualisierung des ausgewählten Tags
 Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
 Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
-\begin{lstlisting}
-const toggleTag = (tag: NFCTag): void => {
-  selectedTag.value =
-    tag === selectedTag.value ? null : tag;
-  buttonTransitionActive.value = true;
-};
+\begin{lstlisting}[caption={Hervorgeben aus ausgewähltem NFC-Tag}, captionpos=b]
+  const toggleTag = (tag: NFCTag): void => {
+    selectedTag.value =
+      tag === selectedTag.value ? null : tag;
+    buttonTransitionActive.value = true;
+  };
 \end{lstlisting}
 Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
 Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
-\begin{lstlisting}
-<TagEntry
-  v-for="entry in group.tags"
-  :key="entry.nfcData"
-  class="m-4 w-2/6 flex-shrink-0 text-4xl"
-  :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
-  :img="entry.imageUrl"
-  :name="entry.name"
-  @click="toggleTag(entry)"
-/>
+\begin{lstlisting}[caption={Caption}, captionpos=b]
+  <TagEntry
+    v-for="entry in group.tags"
+    :key="entry.nfcData"
+    class="m-4 w-2/6 flex-shrink-0 text-4xl"
+    :class="{ 'opacity-25': selectedTag !== entry &&
+                            selectedTag !== null
+            }"
+    :img="entry.imageUrl"
+    :name="entry.name"
+    @click="toggleTag(entry)"
+  />
 \end{lstlisting}
 Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
