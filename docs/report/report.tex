@@ -426,10 +426,10 @@ Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} un
 
 \paragraph*{Components} $~$ \\
 In vue werden Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellt.
-Im Vergleich zu Framework-loser Webentwicklung, wird hier allerdings dieser Code aufgeteilt
+Im Vergleich zu Webentwicklung ohne Frameworks, wird hier allerdings der Code aufgeteilt
  und in einzelne Dateien (im \textit{.vue}-Format) ausgelagert.
 Dies geschieht entlang von inhaltlichen oder logischem Zusammenhängen, aber nicht nach jeweiliger Sprache.
-Die daraus resultierenden Dateien werden unter vue \textit{(single-file-)components} genannt.
+Die daraus resultierenden Dateien werden in vue \textit{(single-file-)components} genannt.
 In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten Element der Webseite.
 \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b]
   <template>
@@ -537,7 +537,7 @@ Hier gibt die Listen-Komponente die entsprechenden Namen an die Eintrags-Kompone
  mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
 Diese nutzen die \textit{property} zur Anzeige und zur Erstellung des Rückgabewerts.
 Mit einem Event per \textit{\$emit} wird dieser an die Listen-Komponente weitergereicht.
-Der mitgelieferte Wert des Events wird mot \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
+Der mitgelieferte Wert des Events wird mit \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
 \\~\\
 Alles in allem ermöglichten \textit{components} dem Team schlanken und übersichtlichen Frontend-Code zu produzieren.
 
