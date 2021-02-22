@@ -1032,12 +1032,9 @@ Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die
 Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
 \wrapfiguresafe{r}{0mm}{
   \includegraphics[width=0.45\textwidth]{noTagsFound.png}}{no tags found div}
-\\
 Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
 \wrapfiguresafe{r}{0mm}{
   \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
-\\
-
 \paragraph*{Button Refactor}
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
@@ -1073,7 +1070,7 @@ Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfa
 So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
 und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
 Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \colorbox{red}{Hier verweis auf ngrok einfügen} implementiert.
-Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \texit{URL}, die im Frontend eingeben werden kann.
+Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \textit{URL}, die im Frontend eingeben werden kann.
 Anfäglich wurde diese \textit{URL} jedoch nicht validiert
 Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
 Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue \textit{URL} generierte, die dann wieder manuell im Projekt im \textit{Spotify Developer Dashboard} eingetragen werden musste.
