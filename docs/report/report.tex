@@ -1021,7 +1021,7 @@ Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abg
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
 \\~\\
 \paragraph*{Entwicklung}
-Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem im User Interface wurden noch letzte Änderungen durchgeführt.
+Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem am User Interface wurden noch letzte Änderungen durchgeführt.
 Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
 Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
 \begin{wrapfigure}{r}{0cm}
@@ -1070,30 +1070,30 @@ Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \\~\\
 \paragraph*{Frontend in Githup.io Pages}
-Das Frontend wurde vom Raspberry zu Github.io Pages umgelagert, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
-So hat der Endnutzer immer eine einzige URL, die er sich merken muss, und muss sich auch nicht um weitere Einstellungen des Heimnetzwerkes kümmern, um auf seine \textit{Leek Box} von außerhalb zugreifen zu können.
-Die Verbindung zwischen Frontend und Backend wurde auch anstelle einer IP-Adresse ersetzt durch ngrok.
-Ngrok veröffentlichte hierbei automatisch eine öffentliche verschlüsselte IP Adresse, um diese im Frontend eingeben zu können.
-Hierbei war noch die Problematik aufgetroffen, dass diese IP Adresse nicht überprüft wurde.
-Hat nun der Nutzer eine falsche IP Adresse eingegeben, versuchte das Frontend sich mit einer nicht existenden IP Adresse zu verbinden und der Fehler 404 wurde angezeigt.
-Vor allem problematisch war es hier auch, dass bei Neustart des Raspberrys auch ngrok neugestartet wurde und somit sich die IP Adresse änderte.
-Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten IP Adresse zu verbinden.
-Dieses Problem wurde in den nächsten Meilenstein geschoben.
+Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
+So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
+und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
+Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \colorbox{red}{Hier verweis auf ngrok einfügen} implementiert.
+Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \texit{URL}, die im Frontend eingeben werden kann.
+Anfäglich wurde diese \textit{URL} jedoch nicht validiert
+Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
+Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue \textit{URL} generierte, die dann wieder manuell im Projekt im \textit{Spotify Developer Dashboard} eingetragen werden musste.
+Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten \textit{URL} zu verbinden.
+Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
 \\~\\
 \paragraph*{Leek Box zum Account hinzufügen}
 \colorbox{red}{@anton hier}
 
 \paragraph*{Bericht}
-Anfänglich wurden die Kapitel und Abschnitte für einen insgesamt runderen roten Faden im Bericht überarbeitet.
-Aus diesen wurden entsprechend die Tickets im Ticket Pool erstellt, die sich die einzelnen Teammitglieder zuweisen können.
-Dies hatte den Vorteil, wie bei der Softwareentwicklung auch bei der Dokumentationsarbeit eine Übersicht zu haben, welche Teile des Berichtes bereits bearbeitet werden, welche noch offen sind, wieviel noch zu tun ist.
+Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
+Die daraus resultierenden Änderungen wurden in Tickets überführt, die sich die einzelnen Teammitglieder zuweisen konnten.
+Dies hatte den Vorteil dass, wie schon bei der Softwareentwicklung eine kontinuierliche Übersicht über den Fortschritt der Berichtsarbeit herrschte. 
 Dadurch, dass das Team sehr viel Freude und Spaß am Entwickeln für das Projekt gefunden hatte, begann die dokumentarische Arbeit schleppend.
-Das hatte zur Folge, dass zum Ende des Sprints für den Prüfenden nicht die erste Version des Berichtes vorlag und das Team somit verspätet erstes Feedback bekommen konnte.
-Nur etwas mehr als die Hälfte das Berichtes konnte umgesetzt werden.
+Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte des Berichts abgeschlossen war. Somit konnte dem Prüfenden nicht die erste Version des Berichtes vorgelegt werden und das Team bekam somit verspätet erstes Feedback.
 
 \paragraph*{Retrospektive}
-Dass der Bericht mit latex geschrieben wurde hatte den Vorteil, dass hier auch Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder auch schnell ersichtlich waren.
-So konnte auch weiterhin der Workflow genutzt werden, dass mit Pull Requests und mindestens zwei Reviewern gearbeitet werden muss.
+Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
+So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
 \subsubsection*{Meilenstein 7} $~$ \\
 Der finale Meilenstein sieben vom 15.02.2021 bis zum 05.03.2021 sollte nur noch die letzten Korrekturen des Berichtes und Vorbereitung der Finalen Abgabe beinhalten.
