@@ -24,7 +24,7 @@
     "socket.io-client": "2.4.0",
     "tailwindcss": "2.0.3",
     "vue": "3.0.5",
-    "vue-router": "4.0.3"
+    "vue-router": "4.0.4"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.15.1",
