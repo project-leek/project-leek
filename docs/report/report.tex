@@ -152,9 +152,9 @@ Macio stellte die benötigte Hardware zur Verfügung und unterstützte bei techn
 \subsubsection{Anforderungen}
 Aus der Projektskizze und der Produktvision wurden folgende konkrete Mindestanforderungen und entsprechende Klassifikationen an das Produkt abgeleitet:
 \begin{center}
-  \begin{table}
-    \begin{tabular}[h]{c|c}
-      Anforderung & Klassifikation \\
+  \begin{table}[h!]
+    \begin{tabular}{c|c}
+      Anforderung & Klassifikation\\
       \hline
       NFC-Tags lesen, schreiben und entschlüsseln & funktional  \\
       Mit Spotify Connect verbinden und arbeiten & funktional \\
@@ -170,8 +170,8 @@ durch die sichergestellt wurde, dass beide Parteien (der Kunde und die Entwickle
 Dabei entstand auch eine Priorisierung der Anforderungen, bemessen an dem \textit{Return of Investment} und dem Nutzen für den Endnutzer.
 Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an das Produkt:
 \begin{center}
-  \begin{table}
-    \begin{tabular}[h]{c|c}
+  \begin{table}[h!]
+    \begin{tabular}{c|c}
     Anforderung & Klassifikation \\
     \hline
     Sound Wiedergabe auf der Box selbst & funktional  \\
@@ -434,24 +434,26 @@ Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} un
 
 \paragraph*{Components} $~$ \\
 Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
-\begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
-  <template>
-    <span class="beispiel">Beispiel Komponente</span>
-  </template>
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
+    <template>
+      <span class="beispiel">Beispiel Komponente</span>
+    </template>
 
-  <script lang="ts">
-  import { defineComponent } from 'vue';
+    <script lang="ts">
+    import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    name: 'Beispiel',
-  });
-  </script>
-  <style>
-    .beispiel {
-      background-color: lightgreen;
-    }
-  </style>
-\end{lstlisting}
+    export default defineComponent({
+      name: 'Beispiel',
+    });
+    </script>
+    <style>
+      .beispiel {
+        background-color: lightgreen;
+      }
+    </style>
+  \end{lstlisting}
+\end{minipage}
 
 Durch diese Zusammenfassung wird der gesamte Code lesbarer,
  da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
@@ -481,58 +483,62 @@ Die Datenübergabe wird über sogenannte \textit{properties} (kurz \textit{props
 Auch der Informationsfluss in die andere Richtung ist möglich und geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
 Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen, damit die einbindende Komponente diese dann auslesen und weiterverwenden kann.
 Dies wird folgend in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
+    <template>
+      <eintrag v-bind:name="'eins'" @eintrag-geklickt="geklickt($event)" />
+      <eintrag v-bind:name="'zwei'" @eintrag-geklickt="geklickt($event)" />
+      <eintrag v-bind:name="'drei'" @eintrag-geklickt="geklickt($event)" />
+    </template>
 
-\begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
-  <template>
-    <eintrag v-bind:name="'eins'" @eintrag-geklickt="geklickt($event)" />
-    <eintrag v-bind:name="'zwei'" @eintrag-geklickt="geklickt($event)" />
-    <eintrag v-bind:name="'drei'" @eintrag-geklickt="geklickt($event)" />
-  </template>
+    <script lang="ts">
+    import { defineComponent } from 'vue';
 
-  <script lang="ts">
-  import { defineComponent } from 'vue';
+    import Eintrag from './Eintrag.vue';
 
-  import Eintrag from './Eintrag.vue';
-
-  export default defineComponent({
-    name: 'Liste',
-    components: {
-      Eintrag,
-    },
-    setup() {
-      function geklickt(wert: string): void {
-        console.log(wert);
-      }
-      return { geklickt };
-    },
-  });
-  </script>
-\end{lstlisting}
-
-\begin{lstlisting}[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b, label=lst:Eintrag]
-  <template>
-    <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
-  </template>
-
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-
-  export default defineComponent({
-    name: 'Eintrag',
-    props: {
-      name: {
-        type: String,
-        default: 'Name',
+    export default defineComponent({
+      name: 'Liste',
+      components: {
+        Eintrag,
       },
-    },
-    emits: ['eintrag-geklickt'],
-    setup(props) {
-      const rückgabe: string = 'Eintrag ' + props.name + ' ausgewählt';
-      return { rückgabe };
-    },
-  });
-  </script>
-\end{lstlisting}
+      setup() {
+        function geklickt(wert: string): void {
+          console.log(wert);
+        }
+        return { geklickt };
+      },
+    });
+    </script>
+  \end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b, label=lst:Eintrag]
+    <template>
+      <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
+    </template>
+
+    <script lang="ts">
+    import { defineComponent } from 'vue';
+
+    export default defineComponent({
+      name: 'Eintrag',
+      props: {
+        name: {
+          type: String,
+          default: 'Name',
+        },
+      },
+      emits: ['eintrag-geklickt'],
+      setup(props) {
+        const rückgabe: string = 'Eintrag ' + props.name + ' ausgewählt';
+        return { rückgabe };
+      },
+    });
+    </script>
+  \end{lstlisting}
+\end{minipage}
 
 Hierbei gibt die Listen-Komponente die entsprechenden Namen an die \textit{Eintrag}-Komponenten
  mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
@@ -540,38 +546,39 @@ Die verwendete \textit{property} \glqq name\grqq{} wird in dem Eintragselement a
 \\~\\
 Alles in allem ermöglichte die Verwendung von \textit{components} dem Team die Produktion von schlankem und übersichtlichen Frontend-Code.
 
-\paragraph*{Reactivity}
+\paragraph*{Reactivity}$~$ \\
 Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
  um Werte, die sich nachträglich ändern können, zu nutzen
  und Abhängigkeiten zwischen diesen Werten abzubilden. \cite{ReactiveProgramming}
-Als Paradebeispiel hierfür wird meist
- \textit{Excel}\footnote{\raggedright\url{https://www.microsoft.com/de-de/microsoft-365/excel}} angeführt.
-In diesem Tabellenkalkulationswerkzeug sind Rechenergebnisse von den momentanen Werten der genutzten Zellen abhängig.
+Als Paradebeispiel hierfür werden meist Tabellenkalkulationswerkzeuge wie zum Beispiel \textit{Excel} angeführt.
+ In diesen lassen sich Rechenergebnisse von den momentanen Werten anderer genutzter Zellen abhängig machen.
 Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
 Auch \textit{Vue} ermöglicht es, diese Art von Funktionalität einzusetzten.
 So können reaktive generische Datentypen z. B. in components verwendet werden.
 In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
   \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
 Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
+    <template>
+    <div>
+      <span>{{ count }}</span>
+      <button @click="count ++">Increment count</button>
+    </div>
+  </template>
 
-\begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
-  <template>
-  <div>
-    <span>{{ count }}</span>
-    <button @click="count ++">Increment count</button>
-  </div>
-</template>
-
-<script lang="ts">
-  import { ref } from 'vue';
-  export default defineComponent({
-    setup() {
-      const count = ref(0);
-      return { count };
-    },
-  });
-</script>
-\end{lstlisting}
+  <script lang="ts">
+    import { ref } from 'vue';
+    export default defineComponent({
+      setup() {
+        const count = ref(0);
+        return { count };
+      },
+    });
+  </script>
+  \end{lstlisting}
+\end{minipage}
 In diesem Beispiel wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive Vue-Referenz (\textit{ref}) angelegt.
 Dieser wird bei jedem Klick auf den Button inkrementiert.
 Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
@@ -831,17 +838,20 @@ Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von Feathers aus
 wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein Feathers-Service in Form einer
 Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
 die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
-\begin{lstlisting}[caption={NicksPetService (Hello World)}, captionpos=b]
-  class NicksPetService implements MyService<NicksPet> {
-    id! : number;
-    name! : string;
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={NicksPetService (Hello World)}, captionpos=b]
+    class NicksPetService implements MyService<NicksPet> {
+      id! : number;
+      name! : string;
 
-    constructor(_id: number, _name: string) {
-      this.id = _id;
-      this.name = _name;
+      constructor(_id: number, _name: string) {
+        this.id = _id;
+        this.name = _name;
+      }
     }
-  }
-\end{lstlisting}
+  \end{lstlisting}
+\end{minipage}
 In dieser Klasse war außerdem ein Verweis auf eine weitere erstellte Klasse (Model) aufgeführt, welche bestimmt, mit welcher Schnittstelle oder API die Daten
 verwaltet werden sollen (in diesem Fall mit der durch \textit{Feathers} bereitgestellten Schnittstelle für die Datenbank \textit{NeDB}).
 Mit dem Erstellen dieser drei Klassen (NicksPet.class.ts, NicksPetService.ts und NicksPet.model.ts) waren die benötigten Komponenten zur Verwaltung vorhanden und
@@ -896,7 +906,7 @@ Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Review
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
 
-\subsubsection{Meilenstein 3} $~$ \\
+\subsubsection{Meilenstein 3}
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
 
 \paragraph*{Mockup Überarbeitung} $~$ \\
@@ -1017,7 +1027,7 @@ Aufgrund der verschiedenen geforderten Größen und Anforderungen der enthaltend
 Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt, um zu ermitteln, welche Anforderungen einzelne Komponenten erfüllen mussten.
 Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} wiederhergestellt wurde.
 
-\paragraph*{Umsetzung des Homescreens}
+\paragraph*{Umsetzung des Homescreens}$~$ \\
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue}
 Im HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Die Erste (\textit{TagEntry})
 enthält das Bild und den Namen eines NFC-Tags und kann in der Anwendung vielseitig wiederverwendet werden. Die Zweite \textit{component} mit dem Namen
@@ -1030,19 +1040,21 @@ wurde im Kopfbereich noch die vom Team erstelle \textit{Button component} verwen
 Im Fußbereich befindet sich eine Suchleiste, die das Filtern der angezeigten NFC-Tags ermöglichen soll.
 Die beiden letztgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
 
-\paragraph*{Entwicklung der \glqq Tag hinzufügen\grqq{} Funktionalität}
+\paragraph*{Entwicklung der \glqq Tag hinzufügen\grqq{} Funktionalität}$~$ \\
 Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen, wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
 die \textit{Home}-View in Kopf-, Haupt- und Fußbereich eingeteilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
 \\~\\
 
-\begin{lstlisting}[caption={Dynamisches Laden der components von AddTag}, captionpos=b]
-  <component
-    :is="steps[activeStep].component"
-    v-model:nfc-tag="nfcTag"
-    @update:is-valid="dataValid = $event"
-    @proceed="nextStep"
-  />
-\end{lstlisting}
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Dynamisches Laden der components von AddTag}, captionpos=b]
+    <component
+      :is="steps[activeStep].component"
+      v-model:nfc-tag="nfcTag"
+      @update:is-valid="dataValid = $event"
+      @proceed="nextStep"
+    />
+  \end{lstlisting}
+\end{minipage}
 
 Im Hauptbereich der \textit{View} werden die vier \textit{components}, die für die Eingabe der NFC-Tag Daten zuständig sind, dynamisch geladen.
 Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
@@ -1124,7 +1136,7 @@ Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die n
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
-\subsubsection{Meilenstein 5} $~$ \\
+\subsubsection{Meilenstein 5}
 Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
 
 %Ziel
@@ -1153,28 +1165,34 @@ Selbiges Verfahren wurde auch für das Bild verwndet, welches angezeigt wird und
 % Visualisierung des ausgewählten Tags
 Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
 Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
-\begin{lstlisting}[caption={Hervorgeben aus ausgewähltem NFC-Tag}, captionpos=b]
-  const toggleTag = (tag: NFCTag): void => {
-    selectedTag.value =
-      tag === selectedTag.value ? null : tag;
-    buttonTransitionActive.value = true;
-  };
-\end{lstlisting}
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Hervorgeben aus ausgewähltem NFC-Tag}, captionpos=b]
+    const toggleTag = (tag: NFCTag): void => {
+      selectedTag.value =
+        tag === selectedTag.value ? null : tag;
+      buttonTransitionActive.value = true;
+    };
+  \end{lstlisting}
+\end{minipage}
 Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
 Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
-\begin{lstlisting}[caption={Caption}, captionpos=b]
-  <TagEntry
-    v-for="entry in group.tags"
-    :key="entry.nfcData"
-    class="m-4 w-2/6 flex-shrink-0 text-4xl"
-    :class="{ 'opacity-25': selectedTag !== entry &&
-                            selectedTag !== null
-            }"
-    :img="entry.imageUrl"
-    :name="entry.name"
-    @click="toggleTag(entry)"
-  />
-\end{lstlisting}
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Caption}, captionpos=b]
+    <TagEntry
+      v-for="entry in group.tags"
+      :key="entry.nfcData"
+      class="m-4 w-2/6 flex-shrink-0 text-4xl"
+      :class="{ 'opacity-25': selectedTag !== entry &&
+                              selectedTag !== null
+              }"
+      :img="entry.imageUrl"
+      :name="entry.name"
+      @click="toggleTag(entry)"
+    />
+  \end{lstlisting}
+\end{minipage}
 Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
 % Initial Setup
@@ -1201,12 +1219,12 @@ Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitgl
 Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
 Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
 
-\subsubsection{Meilenstein 6} $~$ \\
+\subsubsection{Meilenstein 6}
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
 \\~\\
-\paragraph*{Entwicklung}
+\paragraph*{Entwicklung} $~$ \\
 Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem am User Interface wurden noch letzte Änderungen durchgeführt.
 Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
 Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
@@ -1215,7 +1233,7 @@ Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum 
 Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
 \wrapfiguresafe{r}{0mm}{
   \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
-\paragraph*{Button Refactor}
+\paragraph*{Button Refactor} $~$ \\
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
   \item nur Text
@@ -1238,14 +1256,17 @@ Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein S
 \\~\\
 Auch wurde die Desktop Ansicht optimiert:\\
 
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}}{Desktopansicht}
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{HomescreenDesktop.jpeg}
+    \caption{Desktopansicht}
+    \label{fig1}
+\end{figure}
 Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
 Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \\~\\
-\paragraph*{Frontend in Githup.io Pages}
+\paragraph*{Frontend in Githup.io Pages} $~$ \\
 Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
 und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
@@ -1257,27 +1278,27 @@ Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ng
 Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten \textit{URL} zu verbinden.
 Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
 \\~\\
-\paragraph*{Leek Box zum Account hinzufügen}
+\paragraph*{Leek Box zum Account hinzufügen} $~$ \\
 \colorbox{red}{@anton hier}
 
-\paragraph*{Bericht}
+\paragraph*{Bericht} $~$ \\
 Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
 Die daraus resultierenden Änderungen wurden in Tickets überführt, die sich die einzelnen Teammitglieder zuweisen konnten.
 Dies hatte den Vorteil dass, wie schon bei der Softwareentwicklung eine kontinuierliche Übersicht über den Fortschritt der Berichtsarbeit herrschte.
 Dadurch, dass das Team sehr viel Freude und Spaß am Entwickeln für das Projekt gefunden hatte, begann die dokumentarische Arbeit schleppend.
 Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte des Berichts abgeschlossen war. Somit konnte dem Prüfenden nicht die erste Version des Berichtes vorgelegt werden und das Team bekam somit verspätet erstes Feedback.
 
-\paragraph*{Retrospektive}
+\paragraph*{Retrospektive} $~$ \\
 Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
 So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
-\subsubsection{Meilenstein 7} $~$ \\
+\subsubsection{Meilenstein 7}
 Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 
-\paragraph*{Letzte Bugfixes}
+\paragraph*{Letzte Bugfixes} $~$ \\
 \colorbox{red}{TODO: @anton / julian?}
 
-\paragraph*{Bericht}
+\paragraph*{Bericht} $~$ \\
 Da die erste Version des Berichtes zu Beginn des Sprints noch nicht abgeschlossen war, musste das Team dies zeitig erledigen, um noch erste Anmerkungen vom Prüfenden erhalten und anschließend korrigieren zu können
 Nach erneuter Rücksprache mit diesem ergab sich ein geforderter Umfang von 50-60 Seiten für den Bericht (exklusive Anhang).
 Mit der zu diesem Zeitpunkt angedachten Struktur wäre die Erfüllung dieser Anforderung erschwert worden.
