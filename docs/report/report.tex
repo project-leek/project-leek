@@ -485,9 +485,9 @@ Dies wird in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
 
 \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
   <template>
-    <eintrag :name="'eins'" @eintrag-geklickt="geklickt($event)" />
-    <eintrag :name="'zwei'" @eintrag-geklickt="geklickt($event)" />
-    <eintrag :name="'drei'" @eintrag-geklickt="geklickt($event)" />
+    <eintrag v-bind:name="'eins'" @eintrag-geklickt="geklickt($event)" />
+    <eintrag v-bind:name="'zwei'" @eintrag-geklickt="geklickt($event)" />
+    <eintrag v-bind:name="'drei'" @eintrag-geklickt="geklickt($event)" />
   </template>
 
   <script lang="ts">
