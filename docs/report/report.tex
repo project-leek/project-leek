@@ -126,14 +126,17 @@ Macio stellte die benötigte Hardware zur Verfügung und unterstützte bei techn
 \subsubsection{Anforderungen}
 Aus der Projektskizze und der Produktvision wurden folgende konkrete Mindestanforderungen und entsprechende Klassifikationen an das Produkt abgeleitet:
 \begin{center}
-  \begin{tabular}[h]{c|c}
-    Anforderung & Klassifikation \\
-    \hline
-    NFC-Tags lesen, schreiben und entschlüsseln & funktional  \\
-    Mit Spotify Connect verbinden und arbeiten & funktional \\
-    Responsive UI konzeptionieren und umsetzen & funktional  \\
-    Aussagekräftige Dokumentation mit Benutzerhandbuch & nicht funkt.  \\
-  \end{tabular}
+  \begin{table}
+    \begin{tabular}[h]{c|c}
+      Anforderung & Klassifikation \\
+      \hline
+      NFC-Tags lesen, schreiben und entschlüsseln & funktional  \\
+      Mit Spotify Connect verbinden und arbeiten & funktional \\
+      Responsive UI konzeptionieren und umsetzen & funktional  \\
+      Aussagekräftige Dokumentation mit Benutzerhandbuch & nicht funkt.  \\
+    \end{tabular}
+    \caption{\label{mind-anforderungen}Mindestanforderungen}
+\end{table}
 \end{center}
 
 Um diese Anforderungen weiter zu definieren erstellte das Team User Stories,
@@ -141,7 +144,8 @@ durch die sichergestellt wurde, dass beide Parteien (der Kunde und die Entwickle
 Dabei entstand auch eine Priorisierung der Anforderungen, bemessen an dem \textit{Return of Investment} und dem Nutzen für den Endnutzer.
 Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an das Produkt:
 \begin{center}
-  \begin{tabular}[h]{c|c}
+  \begin{table}
+    \begin{tabular}[h]{c|c}
     Anforderung & Klassifikation \\
     \hline
     Sound Wiedergabe auf der Box selbst & funktional  \\
@@ -151,6 +155,8 @@ Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an d
     Cloud-Anbindung der Box & funktional \\
     Auslieferung des UI aus der Cloud & funktional \\
     \end{tabular}
+    \caption{\label{erg-anforderungen}ergänzende Anforderungen}
+  \end{table}
 \end{center}
 
 Durch die agile Projektorganisation wuchsen diese Anforderungen iterativ von Sprint zu Sprint und neue implizite Anforderungen entstanden.
@@ -608,7 +614,7 @@ Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-R
 
 \subsection{Projekt Meilensteine}
 
-\subsubsection*{Meilenstein 1}
+\subsubsection{Meilenstein 1}
 Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
 %Ziel
 Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertiggestellt sein.
@@ -631,7 +637,7 @@ So wurde dem Repository eine einleitende Readme und ein \glqq How to Contribute\
 %Retrospektive
 Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 
-\subsubsection*{Meilenstein 2}
+\subsubsection{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
 Ziel war es, die ersten Grundbausteine für das Projekt legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
 sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles
@@ -710,7 +716,7 @@ Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Review
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
 
-\subsubsection*{Meilenstein 3} $~$ \\
+\subsubsection{Meilenstein 3} $~$ \\
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
 
 \paragraph*{Mockup Überarbeitung} $~$ \\
@@ -793,7 +799,7 @@ Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und
 zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
-\subsubsection*{Meilenstein 4}
+\subsubsection{Meilenstein 4}
 %Ziel
 Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
 Es sollten möglichst viele Teile des designten User Interfaces umgesetzt werden, allerdings lag der Fokus auf einem vollständigem \glqq Add-Tag-Flow\grqq.
@@ -938,7 +944,7 @@ Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die n
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
-\subsubsection*{Meilenstein 5} $~$ \\
+\subsubsection{Meilenstein 5} $~$ \\
 Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
 
 %Ziel
@@ -1088,7 +1094,7 @@ Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte d
 Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
 So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
-\subsubsection*{Meilenstein 7} $~$ \\
+\subsubsection{Meilenstein 7} $~$ \\
 Der finale Meilenstein sieben vom 15.02.2021 bis zum 05.03.2021 sollte nur noch die letzten Korrekturen des Berichtes und Vorbereitung der Finalen Abgabe beinhalten.
 \colorbox{red}{TODO:}Kurze Einleitung, von, bis
 %Ziel
