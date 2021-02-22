@@ -409,12 +409,96 @@ Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für d
 \\~\\
 \textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
 So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
+Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden.
+Anhand dieser können Inhalte, Aussehen, Verhalten, etc. dem Kontext entsprechend angepasst werden.
+Die Daten Übergabe geschieht über sogenannte \textit{properties} (kurz \textit{props}).
+Auch der Informationsfluss in die andere Richtung ist möglich.
+Dies geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
+Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen.
+Die einbindende Komponente kann diese Daten dann auslesen und weiterverwenden.
+Dies wird in Abbildung \colorbox{red}{TODO} dargestellt.
+Hier gibt die Listen-Komponente die entsprechenden Namen an die Eintrags-Komponenten
+ mit dem prop \glqq name\grqq per \textit{v-bind:} an die Einträge weiter.
+Diese nutzen die \textit{property} zur Anzeige und zur Erstellung des Rückgabewerts.
+Mit einem Event per \textit{\$emit} wird dieser an die Listen-Komponente weitergereicht.
+Der mitgelieferte Wert des Events wird mot \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
+\\~\\
+Alles in allem ermöglichten \textit{components} dem Team schlanken und übersichtlichen Frontend-Code zu produzieren.
+\begin{lstlisting}
+[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b]
+  <template>
+    <eintrag :name="'eins'" @eintrag-geklickt="geklickt($event)" />
+    <eintrag :name="'zwei'" @eintrag-geklickt="geklickt($event)" />
+    <eintrag :name="'drei'" @eintrag-geklickt="geklickt($event)" />
+  </template>
 
+  <script lang="ts">
+  import { defineComponent } from 'vue';
 
+  import Eintrag from './Eintrag.vue';
 
+  export default defineComponent({
+    name: 'Liste',
+    components: {
+      Eintrag,
+    },
+    setup() {
+      function geklickt(wert: string): void {
+        console.log(wert);
+      }
+      return { geklickt };
+    },
+  });
+  </script>
+\end{lstlisting}
 
+\begin{lstlisting}
+[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b]
+  <template>
+    <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
+  </template>
 
+  <script lang="ts">
+  import { defineComponent } from 'vue';
 
+  export default defineComponent({
+    name: 'Eintrag',
+    props: {
+      name: {
+        type: String,
+        default: 'Name',
+      },
+    },
+    emits: ['eintrag-geklickt'],
+    setup(props) {
+      const rückgabe: string = 'Eintrag ' + props.name + ' ausgewählt';
+      return { rückgabe };
+    },
+  });
+  </script>
+\end{lstlisting}
+
+\paragraph*{Reactivity}
+Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
+ um Werte, die sich nachträglich ändern können, zu nutzen
+ und Abhängigkeiten zwischen diesen Werten abzubilden. \cite{ReactiveProgramming}
+Als Paradebeispiel hierfür wird meist
+ \textit{Excel}\footnote{\raggedright\url{https://www.microsoft.com/de-de/microsoft-365/excel}} angeführt.
+In diesem Tabellenkalkulationswerkzeug sind Rechenergebnisse von den momentanen Werten der genutzten Zellen abhängig.
+Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
+Auch vue ermöglicht es, diese Art von Funktionalität einzusetzten.
+So können reaktive generische Datentypen z. B. in components verwendet werden.
+In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
+  \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html} für primitive Datentypen verwendet.
+Wie das Beispiel in Abbildung \colorbox{red}{TODO} demonstriert, können so Datenänderungen sehr einfach angezeigt werden.
+Hier wird bei Instanziierung der Komponente (\textit{setup})
+%Beispiel
+\\
+Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
+So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
+Dies ermöglichte dem Team in kurzer Zeit interaktive Benutzeroberflächen zu erstellen.
+
+\paragraph*{}
 Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
 Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
 Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
