@@ -2,7 +2,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{comment}
 \usepackage{enumitem}
@@ -103,6 +103,7 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
   \cite{openSource}
 \end{quote}
 
+\colorbox{orange}{Ja und? warum ist das relevant? was bedeutet das für unser Projekt}
 Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
 Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
 Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
@@ -162,18 +163,18 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
 
 \subsection{Projekt Management}
 Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
-Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
-Diese Entscheidung geschah aus mehreren Gründen.
-Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung (Wasserfallmodell, V-Model, etc) der Fall ist.
-Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden, da solche per Definition erweiterbar sind.
-Des weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen.
-Dies ermöglichte dem Team ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines Semesters\footnote{Dieses Semester wahr aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
+Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
+Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
+(Wasserfallmodell, V-Model, etc) der Fall ist. Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
+da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen,
+was dem Team ermöglichte, ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines
+Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
 \\
 Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
-Stattdessen entwickelte das Team eine Methodik um iterativ im Projekt zu arbeiten.
-Orientiert wurde sich hierbei an der Methode Scrum.
+Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
 Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
-Diese Sprint waren im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.} lang.
+Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
 Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
 \subsection{Vor den Sprints}
@@ -257,6 +258,8 @@ Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 \label{machbarkeitsstudie}
 
 \subsection{NFC Tag}
+\colorbox{orange}{lesen und schreiben vlt als ein gemeinsamer Abschnitt}
+\colorbox{orange}{kurzer text der zu NFC-Tags allgemein schreibt}
 \subsubsection*{lesen}
 Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
@@ -271,7 +274,8 @@ Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowi
 
 \subsection{Raspberry Pi}
 \subsubsection{Docker Integration}
-Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+\colorbox{orange}{warum Docker? warum virtualisierung?}
+Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
 Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
@@ -279,10 +283,12 @@ Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu könne
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
+\colorbox{orange}{warum die? wofür sind die?}
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
-Über ein mDNS Service, der auf dem Raspberry Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
+\colorbox{orange}{warum ist das interassant?}
+Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
 \subsection{User Interface}
@@ -291,6 +297,7 @@ Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen,
 Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
 
 \subsubsection{Login via Spotify, Youtube, etc.}
+\colorbox{orange}{warum so? was ist die Alternative?}
 Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
 \subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
@@ -300,6 +307,7 @@ Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein,
 Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
 \subsubsection{Musik Artwork laden}
+\colorbox{orange}{weniger umgangssprachlich und mehr}
 Sollte bei der Verwendung von Spotify kein Problem sein, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern enthalten ist.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection{Eigene Bilder hochladen}
@@ -307,6 +315,7 @@ Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js un
 Mit einem Axios Post könnte das Bild an das Backend gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
 \subsubsection{Spotify Connect Lautsprecher auswählen}
+\colorbox{orange}{spotify als einen Abschnitt und zu den anderen Services}
 Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
 Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} wird eine Liste von allen verbundenen Geräten geliefert. Über den Endpunkt kann ein entsprechendes Lied zum Abspielen über den jeweiligen \textit{Spotify Connected Speaker} übergeben werden.
 Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt aktive genutzt. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
@@ -390,6 +399,7 @@ Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
 
 \paragraph*{Vue.js} $~$ \\
+\colorbox{orange}{components und reactivity sollten noch beschrieben werden!}
 Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
 Dieses wurde aufgrund seiner guten Dokumentation und seiner flachen Lernkurve gewählt, wodurch sich der Einstieg für Teammitglieder mit weniger Erfahrung in der Web-Entwicklung leichter gestaltete.
@@ -559,9 +569,9 @@ Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
 Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
 
 \paragraph*{Linting}$~$ \\
-Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
-Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
-So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
+Beim Linting wird der Code auf syntaktische Korrektheit geprüft.
+Auch manche semantische (laufzeitunabhängige) Aspekte werden untersucht.
+So können kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
 Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
 Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
 Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
@@ -569,26 +579,23 @@ Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
 Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
 Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
 \\
-Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
-Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
-Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
+Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen, durch deren Nutzung ein konsistenter Code-Stil
+innerhalb des Teams ermöglicht wurde. Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
 
 \paragraph*{Reviews}$~$ \\
-Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
+Teil des Deployment Cycles waren auch Reviews der aktiven Änderungen.
 Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
 Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
 Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
-In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt.
-So waren alle Teile des neuen Codes auf einen Blick einsehbar.
-Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
-So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
-Dies sorgte für einen effizienten Review-Prozess.
+In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt, auf der alle Teile des neuen Codes auf einen Blick einsehbar waren.
+Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit, direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden, war für einen effizienten Review-Prozess sorgte.
 
 \subsubsection*{Dynamische Tests}
+\colorbox{orange}{Hier ggf. nochmal die Satzstrukturanpassen ist alles sehr parataktisch}
 Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
 Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
-Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
-Dabei wird überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
 Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
 Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
 So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
