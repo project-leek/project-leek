@@ -28,12 +28,35 @@
   morestring=[b]',
   morestring=[b]"
 }
+
 \lstset{
-frame=single,
-language=JavaScript,
-keywordstyle=\color{blue},
-commentstyle=\color{green},
+  frame=single,
+  language=JavaScript,
+  numbers=left,
+  numberstyle=\tiny,
+  basicstyle=\footnotesize\ttfamily,
+  showstringspaces=false,
+  breaklines=true,
+  xleftmargin=.04\textwidth,
+  commentstyle=\color{blue},
 }
+
+\lstset{literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+    {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}%\'
 
 \usepackage{caption}
 \DeclareCaptionFormat{citation}{%
@@ -399,7 +422,6 @@ Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
 
 \paragraph*{Vue.js} $~$ \\
-\colorbox{orange}{components und reactivity sollten noch beschrieben werden!}
 Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
 Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
@@ -411,12 +433,25 @@ Im Vergleich zu Framework-loser Webentwicklung, wird hier allerdings dieser Code
 Dies geschieht entlang von inhaltlichen oder logischem Zusammenhängen, aber nicht nach jeweiliger Sprache.
 Die daraus resultierenden Dateien werden unter vue \textit{(single-file-)components} genannt.
 In einer solchen Komponente befindet sich sämtlicher Code zu einem bestimmten Element der Webseite.
-%Abbbildung mit rudimentärem Beispiel einer vue component
-%Beschreibung: Beispiel einer simplen \textit{vue component}-Datei.
-%In dieser ist der entsprechenden HTML-, TypeScript- und CSS-Code der Komponente hinterlegt.
-%Alternativ kann auch JavaScript genutzt werden.
-%In beiden Fällen handelt es sich bei diesem Teil um Framework-spezifischen Programm-Code,
-% wie z. B. die Registrierung der Komponente.
+\begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b]
+  <template>
+    <span class="beispiel">Beispiel Komponente</span>
+  </template>
+
+  <script lang="ts">
+  import { defineComponent } from 'vue';
+
+  export default defineComponent({
+    name: 'Beispiel',
+  });
+  </script>
+  <style>
+    .beispiel {
+      background-color: lightgreen;
+    }
+  </style>
+\end{lstlisting}
+
 Durch diese Zusammenfassung wird der gesamte Code lesbarer,
  da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
 So konnte viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
@@ -446,16 +481,9 @@ Auch der Informationsfluss in die andere Richtung ist möglich.
 Dies geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
 Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen.
 Die einbindende Komponente kann diese Daten dann auslesen und weiterverwenden.
-Dies wird in Abbildung \colorbox{red}{TODO} dargestellt.
-Hier gibt die Listen-Komponente die entsprechenden Namen an die Eintrags-Komponenten
- mit dem prop \glqq name\grqq per \textit{v-bind:} an die Einträge weiter.
-Diese nutzen die \textit{property} zur Anzeige und zur Erstellung des Rückgabewerts.
-Mit einem Event per \textit{\$emit} wird dieser an die Listen-Komponente weitergereicht.
-Der mitgelieferte Wert des Events wird mot \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
-\\~\\
-Alles in allem ermöglichten \textit{components} dem Team schlanken und übersichtlichen Frontend-Code zu produzieren.
-\begin{lstlisting}
-[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b]
+Dies wird in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
+
+\begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
   <template>
     <eintrag :name="'eins'" @eintrag-geklickt="geklickt($event)" />
     <eintrag :name="'zwei'" @eintrag-geklickt="geklickt($event)" />
@@ -482,8 +510,7 @@ Alles in allem ermöglichten \textit{components} dem Team schlanken und übersic
   </script>
 \end{lstlisting}
 
-\begin{lstlisting}
-[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b]
+\begin{lstlisting}[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b, label=lst:Eintrag]
   <template>
     <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
   </template>
@@ -508,6 +535,14 @@ Alles in allem ermöglichten \textit{components} dem Team schlanken und übersic
   </script>
 \end{lstlisting}
 
+Hier gibt die Listen-Komponente die entsprechenden Namen an die Eintrags-Komponenten
+ mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
+Diese nutzen die \textit{property} zur Anzeige und zur Erstellung des Rückgabewerts.
+Mit einem Event per \textit{\$emit} wird dieser an die Listen-Komponente weitergereicht.
+Der mitgelieferte Wert des Events wird mot \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
+\\~\\
+Alles in allem ermöglichten \textit{components} dem Team schlanken und übersichtlichen Frontend-Code zu produzieren.
+
 \paragraph*{Reactivity}
 Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
  um Werte, die sich nachträglich ändern können, zu nutzen
@@ -519,10 +554,33 @@ Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geän
 Auch vue ermöglicht es, diese Art von Funktionalität einzusetzten.
 So können reaktive generische Datentypen z. B. in components verwendet werden.
 In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
-  \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html} für primitive Datentypen verwendet.
-Wie das Beispiel in Abbildung \colorbox{red}{TODO} demonstriert, können so Datenänderungen sehr einfach angezeigt werden.
-Hier wird bei Instanziierung der Komponente (\textit{setup})
-%Beispiel
+  \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
+Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden.
+
+\begin{lstlisting}[caption={Demonstration reaktivier vue-Referenzen}, captionpos=b, label=lst:reactivity]
+  <template>
+  <div>
+    <span>{{ count }}</span>
+    <button @click="count ++">Increment count</button>
+  </div>
+</template>
+
+<script lang="ts">
+  import { ref } from 'vue';
+  export default defineComponent({
+    setup() {
+      const count = ref(0);
+      return { count };
+    },
+  });
+</script>
+\end{lstlisting}
+Hier wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive vue-Referenz (\textit{ref}) angelegt.
+Dieser wird bei jedem Klick auf den Button inkrementiert.
+Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
+Würde dies im TS-Code passieren, müsste der Wert vorher noch \glqq ausgepackt\grqq{} (\textit{count.value++}) werden.
+Der geänderte Wert wird direkt auf der Webseite angezeigt,
+ ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss.
 \\
 Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
 So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
@@ -615,7 +673,7 @@ Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung
 
 \paragraph{Kollaboration} $~$ \\
 Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben bzw. Arbeitspakete (\textit{Issues}\footnote{Da das Team größtensteils den Begriff \textit{Issue} nutzte, wird dieser auch fortlaufend hauptsächlich verwendet.}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
-zugeordnet. Außerdem konnten verschiedene Informationen, wie z. B. der Sprint bzw. \textit{Milestone\footnote{Auch hier wird im weiteren Verlauf eher der Begriff Milestone oder Meilenstein verwendet.}} in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
+zugeordnet. Außerdem konnten verschiedene Informationen, wie z. B. der Sprint bzw. \textit{Milestone} \footnote{Auch hier wird im weiteren Verlauf eher der Begriff Milestone oder Meilenstein verwendet.} in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
 Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
 Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
 \\~\\
