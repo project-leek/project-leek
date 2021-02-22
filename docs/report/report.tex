@@ -2,7 +2,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{comment}
 \usepackage{enumitem}
@@ -51,6 +51,25 @@ commentstyle=\color{green},
 \title{Projektbericht Smart Music Player}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
+\newsavebox\curwrapfig
+\makeatletter
+\long\def\wrapfiguresafe#1#2#3#4{%
+  \sbox\curwrapfig{#3}%
+  \par\penalty-100%
+  \begingroup % preserve \dimen@
+    \dimen@\pagegoal \advance\dimen@-\pagetotal % space left
+    \advance\dimen@-\baselineskip % allow an extra line
+    \ifdim \ht\curwrapfig>\dimen@ % not enough space left
+      \break%
+    \fi%
+  \endgroup%
+  \begin{wrapfigure}{#1}{#2}%
+    \usebox\curwrapfig%
+    \caption{#4}
+  \end{wrapfigure}%
+}
+\makeatother
+
 \begin{document}
 \maketitle
 \newpage
@@ -62,6 +81,9 @@ commentstyle=\color{green},
 %\end{lstlisting}
 
 %\lstinline{This is inline code}
+
+%\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{IMAGENAME.EXT}}{IMAGE_DESCRIPTION}
+
 
 \section{Einleitung}
 Ein zentraler Teil des Studiengangs \glqq Informationstechnologie\grqq{} ist es, Softwareentwicklung in Teams und Kommunikation mit Kund:innen zu erlernen. \cite{Qualifikationsziele_Informationstechnologie}
@@ -81,6 +103,7 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
   \cite{openSource}
 \end{quote}
 
+\colorbox{orange}{Ja und? warum ist das relevant? was bedeutet das für unser Projekt}
 Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
 Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
 Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
@@ -140,18 +163,18 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
 
 \subsection{Projekt Management}
 Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
-Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und Reaktionsfähigkeit bei Anforderungsänderungen aus.
-Diese Entscheidung geschah aus mehreren Gründen.
-Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung (Wasserfallmodell, V-Model, etc) der Fall ist.
-Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden, da solche per Definition erweiterbar sind.
-Des weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen.
-Dies ermöglichte dem Team ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines Semesters\footnote{Dieses Semester wahr aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
+Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
+Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
+(Wasserfallmodell, V-Model, etc) der Fall ist. Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
+da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen,
+was dem Team ermöglichte, ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines
+Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
 \\
 Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
-Stattdessen entwickelte das Team eine Methodik um iterativ im Projekt zu arbeiten.
-Orientiert wurde sich hierbei an der Methode Scrum.
+Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
 Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
-Diese Sprint waren im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.} lang.
+Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
 Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
 \subsection{Vor den Sprints}
@@ -235,6 +258,8 @@ Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
 \label{machbarkeitsstudie}
 
 \subsection{NFC Tag}
+\colorbox{orange}{lesen und schreiben vlt als ein gemeinsamer Abschnitt}
+\colorbox{orange}{kurzer text der zu NFC-Tags allgemein schreibt}
 \subsubsection*{lesen}
 Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
@@ -249,7 +274,8 @@ Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowi
 
 \subsection{Raspberry Pi}
 \subsubsection{Docker Integration}
-Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+\colorbox{orange}{warum Docker? warum virtualisierung?}
+Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection{Öffentlich zugängliches Web Interface}
 Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
@@ -257,10 +283,12 @@ Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu könne
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötig, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{https://vatsalyagoel.com/setting-up-a-public-web-server-using-a-raspberry-pi-3/}.
+\colorbox{orange}{warum die? wofür sind die?}
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
 \subsubsection{URL für UI festlegen}
-Über ein mDNS Service, der auf dem Raspberry Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
+\colorbox{orange}{warum ist das interassant?}
+Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
 Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
 
 \subsection{User Interface}
@@ -269,6 +297,7 @@ Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen,
 Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
 
 \subsubsection{Login via Spotify, Youtube, etc.}
+\colorbox{orange}{warum so? was ist die Alternative?}
 Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
 \subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
@@ -278,6 +307,7 @@ Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein,
 Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
 \subsubsection{Musik Artwork laden}
+\colorbox{orange}{weniger umgangssprachlich und mehr}
 Sollte bei der Verwendung von Spotify kein Problem sein, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern enthalten ist.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection{Eigene Bilder hochladen}
@@ -285,6 +315,7 @@ Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js un
 Mit einem Axios Post könnte das Bild an das Backend gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
 
 \subsubsection{Spotify Connect Lautsprecher auswählen}
+\colorbox{orange}{spotify als einen Abschnitt und zu den anderen Services}
 Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
 Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} wird eine Liste von allen verbundenen Geräten geliefert. Über den Endpunkt kann ein entsprechendes Lied zum Abspielen über den jeweiligen \textit{Spotify Connected Speaker} übergeben werden.
 Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt aktive genutzt. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
@@ -368,9 +399,8 @@ Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch
 Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um bei der Entwicklung auf bereits existierenden Lösungen mit weniger Aufwand zu entwickeln.
 
 \paragraph*{Vue.js} $~$ \\
-Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box},
- die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird,
- einigte sich das Team auf die Nutzung des
+\colorbox{orange}{components und reactivity sollten noch beschrieben werden!}
+Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
 clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
 Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
 
@@ -667,9 +697,9 @@ Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
 Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
 
 \paragraph*{Linting}$~$ \\
-Beim Linting wurde der Code auf syntaktische Korrektheit geprüft.
-Auch manche semantische (laufzeitunabhängige) Aspekte wurden untersucht.
-So konnten kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
+Beim Linting wird der Code auf syntaktische Korrektheit geprüft.
+Auch manche semantische (laufzeitunabhängige) Aspekte werden untersucht.
+So können kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
 Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
 Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
 Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
@@ -677,26 +707,23 @@ Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
 Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
 Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
 \\
-Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen.
-Durch deren Nutzung konnte ein konsistenter Code-Stil innerhalb des Teams ermöglicht werden.
-Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
+Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen, durch deren Nutzung ein konsistenter Code-Stil
+innerhalb des Teams ermöglicht wurde. Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
 
 \paragraph*{Reviews}$~$ \\
-Teil des Deployment Cycles waren auch Reviews der aktive Änderungen.
+Teil des Deployment Cycles waren auch Reviews der aktiven Änderungen.
 Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
 Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
 Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
-In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt.
-So waren alle Teile des neuen Codes auf einen Blick einsehbar.
-Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
-So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden.
-Dies sorgte für einen effizienten Review-Prozess.
+In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt, auf der alle Teile des neuen Codes auf einen Blick einsehbar waren.
+Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit, direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden, war für einen effizienten Review-Prozess sorgte.
 
 \subsubsection*{Dynamische Tests}
+\colorbox{orange}{Hier ggf. nochmal die Satzstrukturanpassen ist alles sehr parataktisch}
 Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
 Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
-Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq.
-Dabei wird überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
 Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
 Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
 So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
@@ -906,34 +933,130 @@ Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und
 zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
-\subsubsection*{Meilenstein 4} $~$ \\
-Meilenstein vier lag innerhalb der Weihnachtszeit und wurde deswegen mit einem größeren Zeitraum vom 17.12.2020 bis 14.01.2021 geplant.
-Mit diesem Meilenstein begann die funktionale und visuelle Umsetzung der Hauptfunktionen.
+\subsubsection*{Meilenstein 4}
 %Ziel
-Wie auch beim vorherigen Meilenstein fokussierte sich das Team auf die vom Kunden gewünschten Funktionalitäten wie das Anlegen und Bearbeiten von eigenen Tags.
-Dazu gehörte:
+Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
+Es sollten möglichst viele Teile des designten User Interfaces umgesetzt werden, allerdings lag der Fokus auf einem vollständigem \glqq Add-Tag-Flow\grqq.
+Dazu gehörten:
 \begin{enumerate}
   \item Scannen des Tags
   \item Vergeben eines eigenen Namens
   \item Auswählen von Musik
   \item Auswählen eines eigenen Bilds
 \end{enumerate}
-Auch sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+Weiterhin sollten für den nächsten Schritt die Mockups erstellt werden, wie ein Nutzer den Lautsprecher zur Wiedergabe auswählt sowie seine eigene \textit{Leek Box} initial einrichtet.
+
+Um paralleles Arbeiten und Eigenständigkeit der Tickets zu ermöglichen, wurde jede Ansicht in ihre einzelnen Komponenten aufgeteilt.
+Diese Komponenten sollten für sich alleine stehend funktionieren und so anpassbar sein, dass z.B nur ein Button Komponent entwickelt werden musste, dass auf
+allen Ansichten verwendet werden konnte. Es wurde daher erst die grundliegenden Komponenten wie Buttons, Textfields und Dropdowns entwickelt um aus diesen
+Komponenten Views zu erstellen.
+
+Die Views wurden ebenfalls so in Tickets aufgeteilt, dass möglichst parallel gearbeitet werden konnte.
+Beispielsweise wurde die Darstellung auf dem Homescreen und die Auswahl von Infos, Musik und Bild komplett unabhängig voneinander bearbeitet und mit Platzhalterdaten befüllt.
+Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
+Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
+
+\paragraph*{Components}$~$ \\
+Für Elemente, die häufig in der Anwendung genutzt werden (Button, Textfield, DropDownList),
+entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler leicht zugänglich abgelegt wurden.
+Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen.
+Besonders am Anfang halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten.
+Diese mussten lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden.
+Es musste dann nur noch der Inhalt über \textit{properties} übergeben werden.
+Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden,
+ und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren.
+ Dies resultierte darin, dass zum Beispiel die \textit{Button-Component} sehr unübersichtlich wurde und redundanten Code enthielt.
+Aufgrund der verschiedenen geforderten Größen und Anforderungen der enthaltenden Texte und Bilder,
+ stieg die Anzahl der zu übergebenen Parameter immens, was zu deutlich niedriger Übersichtlichkeit führte.
+Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt, um zu ermitteln, welche Anforderungen einzelne Komponenten erfüllen mussten.
+Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} wiederhergestellt wurde.
+
+\paragraph*{Umsetzung des Homescreens}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue}
+Im HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Die Erste (\textit{TagEntry})
+enthält das Bild und den Namen eines NFC-Tags und kann in der Anwendung vielseitig wiederverwendet werden. Die Zweite \textit{component} mit dem Namen
+\textit{GroupDropDown} repräsentiert eine Gruppe, zu der ein NFC-Tag gehört.
+Pro NFC-Tag in der jeweiligen Gruppe wird eine Instanz der \textit{TagEntry component} in die Gruppe geladen.
+Zusätzlich erhielt die \textit{GroupDropDown component} die Funktionalität auf- und
+zuklappbar zu sein. \\
+Diese \textit{components} werden in \textit{Home} angezeigt. Neben der Einbindung von einer \textit{GroupDropDown component} pro Gruppe
+wurde im Kopfbereich noch die vom Team erstelle \textit{Button component} verwendet, die das Anlegen eines neuen NFC-Tags einleiten sollte.
+Im Fußbereich befindet sich eine Suchleiste, die das Filtern der angezeigten NFC-Tags ermöglichen soll.
+Die beiden letztgenannten Features waren zu diesem Zeitpunkt noch nicht umgesetzt.
+
+\paragraph*{Entwicklung der \glqq Tag hinzufügen\grqq{} Funktionalität}
+Um dem Benutzer das Hinzufügen von neuen NFC-Tags zur ermöglichen, wurde eine neue \textit{View} mit dem Namen \textit{AddTag} erstellt, welche wie auch
+die \textit{Home}-View in Kopf-, Haupt- und Fußbereich eingeteilt ist. Beim Laden der View wird eine neue Instanz der Klasse \textit{NFC-Tag} erstellt.
+\\~\\
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddSteps.png}}{AddTag components}
+Im Hauptbereich der \textit{View} werden die vier \textit{components}, die für die Eingabe der NFC-Tag Daten zuständig sind, dynamisch geladen.
+Hierfür wird der beim Laden erstellte NFC-Tag (\textit{newTag}) an alle \textit{components} nacheinander weitergegeben und in ihnen mit Informationen gefüllt.
+Der Fußbereich enthält abhängig von der im Hauptbereich gerade aktiven \textit{component}, \textit{Button components} für \glqq Zurück\grqq{}, \glqq Weiter\grqq{} und
+\glqq Anlegen\grqq.
+Alle der folgenden \textit{components} beinhalten Validierung für die eingegebenen Daten, sodass sichergestellt wird, dass das \textit{newTag} jederzeit gültige Daten besitzt.
+Bei Änderung der Werte in den \textit{components} wird das Event \textit{update:is-valid} ausgelöst und in \textit{AddTag} die\textit{Disabled}-Eigenschaft des sich in der Fußzeile befindliche Button abhängig vom der Gültigkeit verändert.
+So kann in jedem Schritt nur fortgefahren werden, wenn alle Eingaben die korrekte Form haben.
+Alle diese \textit{components} werden ebenfalls für die Bearbeitung der NFC-Tags wiederverwendet.
+\\~\\
+%AddStepScan
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepScan.jpeg}}{Step Scan (Add)}
+Die Erste \textit{component}, welche in den Hauptbereich geladen wird, ist \textit{TagStepPlaceTagOnReader}. Dieser beinhaltet einen Text und ein \textit{GIF},
+welches den Benutzer zum Scannen des NFC-Tags auffordert. Im \textit{TypeScript}-Code wird im \textit{Lifecycle Hook onMounted} an das \textit{patch}-Event des
+NFC-Readers der Aufruf der Funktion \textit{attachedTagListener} gebunden. Wird nun ein NFC-Tag gescannt, führt der \textit{NFC-Reader Microservice} mittels Feathers ein Update (Aufruf des \textit{Patch}-Events) auf den \textit{NFC-Reader} durch und setzt das Attribut \textit{attachedTag} auf die gescannte NFC-ID.
+Anschließend wird geprüft, ob ein NFC-Tag mit dieser ID bereits in der Datenbank vorhanden ist und der Benutzer in diesem Fall an die \textit{View} zum Bearbeiten des Tags weitergeleitet.
+Ist der NFC-Tag noch nicht angelegt, wird die ID an die \textit{ID-Property} des \textit{newTag} gebunden und die Events \textit{update:nfc-tag} und \textit{proceed} ausgelöst.
+\textit{update:nfc-tag} bewirkt, dass das Attribut \textit{TagId} des \textit{newTag} gesetzt wird.
+\textit{proceed} weist \textit{AddTag} an, die nächste \textit{component} in den Hauptbereich der \textit{View zu laden}.
+Dabei wird die Funktion \textit{attachedTagListener} vom \textit{patch}-Event abgemeldet.
+\\~\\
+%AddStepInfo
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepInfo.jpeg}}{Add Step Scan-Tag}
+Als Nächstes wird die \textit{TagStepInfo component} geladen.
+Sie beinhaltet eine \textit{Textbox component} für den Namen des NFC-Readers.
+Diese erhält als \textit{v-model} eine \textit{computed property}\footnote{\url{https://v3.vuejs.org/guide/reactivity-computed-watchers.html}}.
+Diese ruft im \textit{setter} die Methode \textit{updateTag} auf, welche die zwei Parameter \textit{key} und \textit{value} erwartet, um die Eigenschaft \textit{key} (in diesem Fall \glqq name\grqq{}) auf den im Parameter \textit{value} übergebenen Wert zu setzten.
+Als Zweite \textit{component} kommt ein \textit{DropDown} zum Einsatz,
+welches die Auswahl der Gruppe ermöglicht. Hierbei kann sowohl aus bereits bestehenden Gruppen gewählt, als auch direkt in der \textit{component} eine neue erstellt
+werden. Auch hier wird die Methode \textit{updateTag} verwendet, die in diesem Fall mit dem Wert \glqq group \grqq{} für den Parameter \textit{key} aufgerufen wird. Der eingegebene Name und die Gruppe werden an die jeweiligen Eigenschaften von \textit{newTag} gebunden und das Event \textit{update:nfc-tag} aufgerufen, wodurch die \textit{View AddTag} den Wechsel zur nächsten \textit{compontent} einleitet.
+\\~\\
+%AddStepTrack
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepTrack.jpeg}}{Add Step Track}
+Hier in der \textit{TagStepTrack} erhält der Benutzer die Möglichkeit, den Song auszuwählen, der beim Scannen des NFC-Tags abgespielt werden soll.
+Der gewünschte Song-Titel oder Suchwörter können in eine \textit{Textbox component} eingeben werden. Zum Abrufen der Songs von Spotify wurde der \textit{SpotifyTrackService} erstellt, in dem die Methode \textit{find} überschrieben wurde.
+Diese beinhaltet den Aufruf der Funktion \textit{searchTracks} der \textit{Spotify Web Api}, welcher als Parameter der in der Suchtextbox eingegebene Text übergeben wird.
+Für jeden zu dem übergeben Text passenden Titel wird dann eine Instanz der erstellten Klasse \textit{Track} erstellt, die Informationen über die \textit{URL}, den Titel, die \textit{Bild-URL}, und die Künstler erhält. Das Array mit den passenden \textit{Track}-Instanzen wird anschließend an \textit{TagStepTrack} zurückgegeben und die Infos mit Bild, Titel und Interpreten angezeigt. Die Auswahl erfolgt dann per Klick auf den gewünschten Song.
+Bestätigt wird die Auswahl per Klick auf \glqq Weiter\grqq{} in der Fußzeile.
+Dadurch wird \textit{update:nfc-tag} Event ausgelöst und die letzte \textit{component} in die \textit{AddTagView} geladen.
+\\~\\
+%AddStepImage
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{AddStepImage.jpeg}}{Add Step Image}
+Zuletzt kann im \textit{TagStepImage} das gewünschte Bild für den NFC-Tag ausgewählt werden.
+Standardmäßig wird hier das Albumcover des Songs ausgewählt, welches in \textit{AddStapTrack} bereits gesetzt wurde.
+Um sicherzustellen, dass die Albumcover jederzeit aktuell sind, wird in der Datenbank nicht das Bild, sondern lediglich die URL des Bildes gespeichert.
+Sollte der Musik-Streaming-Anbieter dieses ändern, wird so automatisch auch das Albumcover in der Applikation geändert.
+Dies hat außerdem den Vorteil, dass die Anwendung wesentlich speicherplatzeffizienter ist, da statt teilweise sehr großen Bilddateien jeweils nur die URL gespeichert wird.
+Um dem Benutzer mehr Freiheiten in der Gestaltung zu geben, kann alternativ auch ein eigenes Bild verwendet werden.
+Dieses muss in der aktuellen Version auf einem Online-Dienst vorliegen.
+Ist dies gewünscht, kann in einer entsprechenden Textbox die \textit{URL} dieses Bildes eingetragen werden, worauf das Bild automatisch zur Vorschau in ein dafür vorgesehenes Vorschaufeld geladen wird.
+Dies stellt sicher, dass der Benutzer nicht versehentlich eine falsche Bild-URL wählt.
+Zusätzlich wird diese Textbox zusätzlich mittels eines \textit{RegEx} geprüft, um sicherzustellen, dass es sich um eine nutzbare Bilddatei handelt.
+Zur Bestätigung muss entweder auf das Albumcover oder auf das eigene Bild geklickt werden.
+Das Erstellen des Tags kann dann mit einem Klick auf \glqq Anlegen\grqq{} im Fußbereich der \textit{View} abgeschlossen werden.
 %Probleme
-Zu diesem Meilenstein sind vermehrt größere Probleme aufgetreten.
-Die tatsächliche Umsetzung und Planung/Einschätzung divergierte in diesem Meilenstein sehr stark.
-Es wurde sich zu sehr in Details verloren, sodass der Fokus auf die wichtigen Tickets verloren ging.
-Das führte dazu, dass zum Review viele halbfertige Tickets entweder nur schlecht getestet oder gar nicht im Master-Branch implementiert waren.
+Durch die angestrebte Unabhängigkeit musste besonders viel Arbeit investiert werden, um die Features miteinander zu verbinden.
+Dieser Prozess dauerte länger als erwartet und forderte eine hohes Maß an Kommunikation zwischen den Teammitgliedern.
+Teilweise enstanden Wartezeiten und funktionierender Code wurde, über mehrere Merges, unstabil oder defekt.
+Kurz vor dem Review musste noch viel getan werden, um eine reibungslose Präsentation zu garantieren.
+
 %Lösungen
-Kurzfristig wurde eine Team interne Evaluation der einzelnen Mitglieder durchgeführt.
-Das half einerseits dabei, dass Probleme gelöst und die Teammotivation sowie die Produktivität stieg, als auch das generelle Teamklima weiter gebessert wurde.
+Nachdem die ersten großen Merges abgeschlossen wurde, entschied das Team eine interne und anonyme Evaluation der Teammitglieder zu starten.
+Jedes Teammitglied hatte somit konstruktive Kritik aber auch Lob und Unterstützung erhalten und konnte an den eigenen Schwächen arbeiten und Stärken weiter ausbauen.
 Darüber hinaus wurde auch beschlossen, in den folgenden Sprints die Menge an zu bearbeitenden Issues besser festzulegen.
 %Product Increment
 Das Produkt wurde um die Grundfunktionen erweitert.
-Es ist nun möglich, Tags anzulegen und entsprechend für diese Namen, Musik und ein Bild festzulegen.
+Es ist nun möglich, Tags anzulegen und entsprechend den Namen, Musik und ein Bild festzulegen.
 Genauso ist es dem Nutzer nun möglich, alle angelegten Tags zu durchsuchen.
 Es wurde weiterhin auch das Design Mockup von dem von macio gestellten Designer in Vue größtenteils umgesetzt.
-Gleichzeitig wurden hierbei die Komponenten zur einfacheren Verwendung als möglichst allgemeine Vue Komponenten angelegt, um ein einheitliches Design zu ermöglichen.
 Für die Entwickler wurden auch die automatisierten Tests um einen Test auf Typsicherheit erweitert.
 %Retrospektive
 Besonders gut gefiel dem Team das Teamklima, vor allem des ehrliche Miteinander.
@@ -941,34 +1064,145 @@ Trotz Komplikationen und Probleme konnte dem Kunden am Ende ein funktionierendes
 Pull Requests und Tickets wurden besser beschrieben, sodass Probleme verständlicher waren.
 Vor allem durch das interne Team Review wurde die Zusammenarbeit weiter verbessert.
 Das Team konnte das Wissen zu Vue, vor allem die Themen Reaktivität, Events und Kommunikation zwischen Komponenten ausbauen.
-Stark bemängelt wurde der Scope des Meilensteins.
-Das Zeitmanagement war an dieser Stelle nicht gut, es wurde sich zu viel vorgenommen und man hatte am Ende zu wenig Zeit.
-Das Team stimmte hier überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
+Insgesamt war das Zeitmanagement verbesserungswürdig, da sich für einzelne Tickets zu viel Zeit genommen wurde.
+Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die nächsten Meilensteine notwendig wäre.
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
 \subsubsection*{Meilenstein 5} $~$ \\
-Der Meilenstein fünf vom 14.01.2021 bis zum 28.01.2021 sollte die Entwicklung am Produkt weitgehend zu abschließen, sodass sich das Team auf den Bericht fokussieren konnte.
+Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
+
 %Ziel
-Geplant war, die letzten Anwendungszenarien final umzusetzen, sodass die letzten beiden Meilensteine höchstens zum Beheben kleinerer Fehler benötigt werden würden.
-Somit war das Ziel die Umsetzung einer Oberfläche für die Einstellungen der \textit{Leek Box} selbst als auch der einzelnen Tags.
-Die User Interface Elemente sollten, sofern noch nicht geschehen, ein einheitliches Design erhalten.
-Auch sollte die Dokumentation zur Bedienung der \textit{Leek Box} fertiggestellt sein und die Arbeit für den Bericht begonnen werden.
+Geplant war die letzten Anwendungszenarien final umzusetzen, sodass die folgenden beiden Meilensteine zum Beheben kleinerer Fehler genutzt werden konnten.
+Somit war das Ziel die Umsetzung einer \textit{View} für die Einstellungen der \textit{Leek Box}, als auch der Tags.
+Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein einheitliches Design erhalten.
+Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
+
+% Durchführung
+Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
+In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{Settings.jpeg}
+  \caption{Leek Box Einstellungen}
+\end{wrapfigure}
+Auch war nun das Bearbeiten der Tags möglich.
+Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
+\paragraph*{Flow-Charts} $~$ \\
+\begin{wrapfigure}{r}{0cm}
+  \includegraphics[width=0.45\textwidth]{TagDetails.jpeg}
+  \caption{Tag Einstellungen und Details}
+\end{wrapfigure}
+In gekürzter Form sah der Quellcode für den Hauptinhalt des \textit{Views} wie folgt aus:
+\begin{lstlisting}
+<LabeledInput label="Name">
+  <Textfield v-model="nfcTag.name" placeholder="z. B. Mario Figur"/>
+</LabeledInput>
+
+<LabeledInput label="Gruppe">
+  <Dropdown
+    v-model="nfcTagGroup"
+    v-model:items="tagGroupListItems"
+    :removeable="false"
+    placeholder-text="Waehle eine Gruppe"
+    :enable-add-item="true"
+  />
+</LabeledInput>
+
+<LabeledInput label="Musik">
+  <div>
+    <div>
+      <img
+        src="/src/assets/spotify.png"
+      />
+      <span v-if="nfcTagTrack">{{
+        cut(nfcTagTrack.title, 42)
+      }}</span>
+    </div>
+    <Button
+      icon="far fa-edit"
+      text="Musik aendern"
+      :to="{ name: 'tag-edit-track' }"
+    />
+    <Button
+      icon="far fa-edit"
+      :to="{ name: 'tag-edit-track' }"
+    />
+</LabeledInput>
+
+<LabeledInput label="Bild">
+  <div>
+    <TagEntry
+      v-if="nfcTag.imageUrl === 'spotify' && nfcTagTrack"
+      :img="nfcTagTrack.imageUri"
+    />
+    <TagEntry v-else :img="nfcTag.imageUrl" />
+    <Button
+      icon="far fa-edit"
+      :to="{ name: 'tag-edit-image' }"
+    />
+    <Button
+      icon="far fa-edit"
+      text="Bild aendern"
+      :to="{ name: 'tag-edit-image' }"
+    />
+  </div>
+</LabeledInput>
+\end{lstlisting}
+An dieser Stelle zeigte sich erneut die Vorzüge von Frameworks wie  \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
+Um ein gleiches Design der Überschriften der einzelnen Inputs zu haben, wurden hier insgesamt vier \textit{LabeledInput} genutzt, für den Namen, die Gruppe, die Musik und das Bild.
+Für das ändern des Namens wurde \textit{TextInput} genutzt, dem \textit{nfcTag.name} übergeben wird.
+Die Auswahl einer anderen Gruppe erfolgt über das eigene \textit{Dropdown} gelöst, der \textit{nfcTagGroup} und \textit{tagGroupListItems} übergeben bekommt.
+Für die Musik wurde ein Feld mit dem derzeitigen Titel angezeigt, und daneben ein \textit{Button}, der bei einem Klick in einen anderen \textit{View} weiterleitet.
+Selbiges Verfahren wurde auch für das Bild verwndet, welches angezeigt wird und daneben ein \textit{Button} auf ein anderes \textit{View} weiterleitet.
+
+% Visualisierung des ausgewählten Tags
+Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
+Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
+\begin{lstlisting}
+const toggleTag = (tag: NFCTag): void => {
+  selectedTag.value =
+    tag === selectedTag.value ? null : tag;
+  buttonTransitionActive.value = true;
+};
+\end{lstlisting}
+Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
+Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
+\begin{lstlisting}
+<TagEntry
+  v-for="entry in group.tags"
+  :key="entry.nfcData"
+  class="m-4 w-2/6 flex-shrink-0 text-4xl"
+  :class="{ 'opacity-25': selectedTag !== entry && selectedTag !== null }"
+  :img="entry.imageUrl"
+  :name="entry.name"
+  @click="toggleTag(entry)"
+/>
+\end{lstlisting}
+Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
+
+% Initial Setup
+\colorbox{red}{explain this:} https://github.com/project-leek/project-leek/pull/319/files
+
+Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet, indem das komplette Setup durchgeführt wurde.
+Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer ihre eigene \textit{leek-box} bei sich einrichten könnten.
+
 %Probleme
-Wie beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
-Gegen Ende fehlte es an Zeit, um neu umgesetzte Tickets auf Fehler zu testen und entsprechend fehlerfrei dem Kunden zu präsentieren.
-%Lösungen
-Als Lösung für dieses Problem beschloss das Team dem Kunden im Review weniger neue Features vorzustellen als geplant.
-%Product Increment
-Das Produkt Inkrement enthielt die implementierten Einstellungen der \textit{Leek Box}, die es dem Nutzer ermöglichen, den Wiedergabelautsprecher auswählen, die jeweilige Leek Box zu verwalten und sich von Spoitfy abzumelden.
-Auch wurde ein Setup Guide angefertigt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden alle Unstimmigkeiten beseitigt.
+Wie bereits beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
+Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu können.
+Somit beschloss das Team dem Kunden im Review nur die anfänglich geplanten Featuers vorzustellen und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
+Das Produkt konnte um die Einstellungen der \textit{Leek Box} und die \textit{TagDetails}  erweitert werden.
+Auch der Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
+Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, alle Unstimmigkeiten beseitigt.
+
 %Retrospektive
-Insgesamt hat das Team sich an dieser Stelle vor allem über das sehr positive Feedback des Kunden gefreut.
-Auch wurde die Produktivität des Teams sehr gelobt.
+Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
+Da das Team viel Gefallen an dem Projekt gefunden und entsprechend viel Energie aufgewendet hat, war dieses Lob sehr wertvoll und motivierend.
 Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
-Problematisch war es, dass manche Tickets von mehreren gleichzeitig oder nacheinander bearbeitet wurden, sodass Arbeit teilweise doppelt erledigt wurde.
+\colorbox{red}{inject provide}
+Problematisch war es, dass manche Tickets von mehreren Entwicklern zeitgleich oder nacheinander bearbeitet wurden, sodass einige der getätigten Änderungen redundant waren.
 Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
+Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
 Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
 
 \subsubsection*{Meilenstein 6} $~$ \\
