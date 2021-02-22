@@ -1022,21 +1022,77 @@ Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine b
 Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
 
 \subsubsection{Meilenstein 6} $~$ \\
-Mit dem Meilenstein sechs vom 28.01.2021 bis zum 15.02.2021 sollte die Entwicklung beendet und der Fokus komplett auf den Bericht gelegt werden, sodass der nächste und letzte Meilenstein für die letzten Korrekturen im Bericht genutzt werden konnte.
-%Ziel
-Neben der Fokussierung auf den Bericht sollte auch das User Interface auf einheitliches Design überprüft und die Entwicklung und Fehlerbehebung abgeschlossen werden.
-%Probleme
-\colorbox{red}{TODO:}schlauchiger start in den report
+Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
+Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
+So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
+\\~\\
+\paragraph*{Entwicklung}
+Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem am User Interface wurden noch letzte Änderungen durchgeführt.
+Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
+Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
+\wrapfiguresafe{r}{0mm}{
+  \includegraphics[width=0.45\textwidth]{noTagsFound.png}}{no tags found div}
+\\
+Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
+\wrapfiguresafe{r}{0mm}{
+  \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
+\\
 
-%Lösungen
-\colorbox{red}{TODO:}Welche Lösungen haben wir gefunden?
+\paragraph*{Button Refactor}
+Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
+\begin{itemize}
+  \item nur Text
+  \item Text mit Icon links vom Text
+  \item Text mit Icon rechts vom Text
+  \item ein Icon ohne Text
+\end{itemize}
+Um diese Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
+Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg sein. Das \textit{Component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher sieben Parametern, konnten alle Anforderung auch mit drei Parametern erreicht werden.
+% Vorher - Nachher Bild einzeigen.
+\colorbox{red}{Hier vorher - nacher Bild anzeigen}
+An dieser Stelle soll verdeutlicht werden wie sich das Komponent selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
+\wrapfiguresafe{r}{0mm}{
+  \includegraphics[width=5.9cm]{Screenshot_Button.png}}{Codesnippets vom Button}
+  \label{fig:HomeVueSchema}
+Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wird, ob ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen wodurch der Button seine Form verändert.
+Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das Icon zentriert sein.
+Um die Größe des Buttons zu steuern wurde sich dafür entschieden eine \textit{Property} zu nutzen. So konnte an das \textit{Component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} und \glqq xl\grqq{} übergeben werden.
+Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass es nur eine Art von größeren Buttons existiert.
+\\~\\
+Auch wurde die Desktop Ansicht optimiert:\\
 
-%Product Increment
-Als letzte Änderungen am Produkt hat nun der Nutzer die Möglichkeit, verschiedene Leek Boxen auszuwählen bzw. neu eingerichtete Leek Boxen mit seinem Konto zu verbinden.
-Die letzten Bugfixes wurden umgesetzt sowie wurden die letzten Details aus dem Design Mockup übernommen.
-%Retrospektive
-\colorbox{red}{TODO:}Was haben wir dabei gelernt? Neue Erkentnisse? Neue Sichtweisen?
-Was lief gut, neu gelernt, was lief nicht so gut, was verbessern?
+\wrapfiguresafe{r}{0mm}{
+  \includegraphics[width=1\textwidth]{HomescreenDesktop.jpeg}}{Desktopansicht}
+Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
+Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
+Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
+Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
+\\~\\
+\paragraph*{Frontend in Githup.io Pages}
+Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
+So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
+und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
+Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \colorbox{red}{Hier verweis auf ngrok einfügen} implementiert.
+Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \texit{URL}, die im Frontend eingeben werden kann.
+Anfäglich wurde diese \textit{URL} jedoch nicht validiert
+Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
+Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue \textit{URL} generierte, die dann wieder manuell im Projekt im \textit{Spotify Developer Dashboard} eingetragen werden musste.
+Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten \textit{URL} zu verbinden.
+Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
+\\~\\
+\paragraph*{Leek Box zum Account hinzufügen}
+\colorbox{red}{@anton hier}
+
+\paragraph*{Bericht}
+Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
+Die daraus resultierenden Änderungen wurden in Tickets überführt, die sich die einzelnen Teammitglieder zuweisen konnten.
+Dies hatte den Vorteil dass, wie schon bei der Softwareentwicklung eine kontinuierliche Übersicht über den Fortschritt der Berichtsarbeit herrschte.
+Dadurch, dass das Team sehr viel Freude und Spaß am Entwickeln für das Projekt gefunden hatte, begann die dokumentarische Arbeit schleppend.
+Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte des Berichts abgeschlossen war. Somit konnte dem Prüfenden nicht die erste Version des Berichtes vorgelegt werden und das Team bekam somit verspätet erstes Feedback.
+
+\paragraph*{Retrospektive}
+Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
+So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
 \subsubsection{Meilenstein 7} $~$ \\
 Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
