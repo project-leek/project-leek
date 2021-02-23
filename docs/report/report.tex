@@ -192,99 +192,99 @@ So wurde sich zum Beispiel gegen bezahlte Services entschieden. Dies schränkte 
 Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschnitt Machbarkeitsstudie (Abschnitt \ref{machbarkeitsstudie}) behandelt.
 
 \section{Projektplanung}
+  \subsection{Projekt Management}
+  Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
+  Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
+  Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
+  Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
+  (Wasserfallmodell, V-Model, etc) der Fall ist. Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
+  da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen,
+  was dem Team ermöglichte, ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines
+  Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+  \\
+  Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
+  Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
+  Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
+  Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
+  Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
-\subsection{Projekt Management}
-Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
-Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
-Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
-Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
-(Wasserfallmodell, V-Model, etc) der Fall ist. Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
-da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen,
-was dem Team ermöglichte, ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines
-Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
-\\
-Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
-Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
-Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
-Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
-Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
-
-\subsection{Vor den Sprints}
-Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
-Im diesem stellte das Team eine Vision für die Sprintiteration auf.
-Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
-Im Anschluss wurde die Produktvision vom Team in technisch orientierte Arbeitspakete aufgeteilt.
-Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen.
-Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
+  \subsection{Vor den Sprints}
+  Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
+  Im diesem stellte das Team eine Vision für die Sprintiteration auf.
+  Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
+  Im Anschluss wurde die Produktvision vom Team in technisch orientierte Arbeitspakete aufgeteilt.
+  Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen.
+  Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
 
 
-\subsection{Arbeit in den Sprints}
-Während der Sprints wurde die Produktvision aus den Sprint-Planings implementiert.
-Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
-Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
-Dies wurde anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete entschieden.
-Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
-In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
-\\
-Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen durch Code Reviews von mindestens zwei anderen Entwicklern geprüft.
-Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
-Dieses Verfahren wurde angesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
-Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und anderen beruflichen Tätigkeiten nachgingen.
-So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
-Die freie Verteilung von Paketen ermöglichte auch, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten.
-Dies half die Motivation des Teams am Projekt hochzuhalten.
-\\
-Um sich während der Sprints abzustimmen und um Arbeitsfortschritte abzugleichen, trafen sich die Teammitglieder drei Mal pro Woche.
-Dies geschah immer montags, mittwochs und freitags.
-Bei Bedarf wurde auch von dieser Taktung abgewichen.
-In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} der Scrum-Methode.
-Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren und was bei der Arbeit gelernt wurde.
-Auch welche Themen jedes Mitglied bis zum nächsten Standup bearbeiten wollte, wurde besprochen.
-Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
-So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
+  \subsection{Arbeit in den Sprints}
+  Während der Sprints wurde die Produktvision aus den Sprint-Planings implementiert.
+  Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
+  Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
+  Dies wurde anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete entschieden.
+  Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
+  In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
+  \\
+  Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen durch Code Reviews von mindestens zwei anderen Entwicklern geprüft.
+  Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
+  Dieses Verfahren wurde angesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
+  Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und anderen beruflichen Tätigkeiten nachgingen.
+  So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
+  Die freie Verteilung von Paketen ermöglichte auch, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten.
+  Dies half die Motivation des Teams am Projekt hochzuhalten.
+  \\
+  Um sich während der Sprints abzustimmen und um Arbeitsfortschritte abzugleichen, trafen sich die Teammitglieder drei Mal pro Woche.
+  Dies geschah immer montags, mittwochs und freitags.
+  Bei Bedarf wurde auch von dieser Taktung abgewichen.
+  In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} der Scrum-Methode.
+  Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren und was bei der Arbeit gelernt wurde.
+  Auch welche Themen jedes Mitglied bis zum nächsten Standup bearbeiten wollte, wurde besprochen.
+  Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
+  So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
 
-\subsection{Am Ende der Sprints}
-Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt.
-Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
-Die resultierenden Wünsche und Rückmeldungen wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
-Im Anschluss fand immer eine Retrospektive statt.
-In dieser besprach das Team die eigene Zusammenarbeit und den gemeinsamen Umgang.
-Hierfür stellten sich alle Teammitglieder für sich folgende Fragen für die Arbeit am entsprechenden Sprint:
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-  \item Was lief gut?
-  \item Was lief schlecht?
-  \item Was habe ich neu gelernt?
-  \item Was können wir in Zukunft besser machen?
-\end{itemize}
-Die jeweiligen Antworten wurden zusammengetragen und im Team gemeinsam reflektiert.
-Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
-Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
-Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
+  \subsection{Am Ende der Sprints}
+  Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt.
+  Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
+  Die resultierenden Wünsche und Rückmeldungen wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
+  Im Anschluss fand immer eine Retrospektive statt.
+  In dieser besprach das Team die eigene Zusammenarbeit und den gemeinsamen Umgang.
+  Hierfür stellten sich alle Teammitglieder für sich folgende Fragen für die Arbeit am entsprechenden Sprint:
+  \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Was lief gut?
+    \item Was lief schlecht?
+    \item Was habe ich neu gelernt?
+    \item Was können wir in Zukunft besser machen?
+  \end{itemize}
+  Die jeweiligen Antworten wurden zusammengetragen und im Team gemeinsam reflektiert.
+  Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
+  Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
+  Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
 
-\subsection{Open-Source}
-\colorbox{red}{Punkt umbenennen}
-Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
-Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
-Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
-Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
-Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
-So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
-Auch im Nachhinein können dann Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden.
-Dies hilft zusätzlich bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
-\\
-Das Produkt-Backlog wurde auch in dieses GitHub Repository eingepflegt.
-Dies erhöhte einerseits die Übersichtlichkeit über den Stand des Projekts innerhalb, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
-Andererseits ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen aufsuchen zu müssen.
-Die Möglichkeiten der Automatisierung wurden genutzt, um den Workflow zu vereinfachen und um die Code-Qualität sicherzustellen.
-Dies geschah zum Beispiel die durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
-\\
-Darüber hinaus war die Open-Source Anforderung auch hilfreich bei der Produktentwicklung.
-So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden.
-Dies war vor allem für das erstmalige Einrichten und die zugehörige Dokumentation maßgebend.
-Entsprechend konnte sich hier eher technischer Sprache bedient werden.
-Allerdings galt diese Einschränkung der Zielgruppe auch nicht für alle Breiche des Projekts.
-Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse möglich sein, da die Musikbox z. B. verschenkt oder in Familien genutzt werden könnte.
-Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
+  \subsection{Open-Source}
+  \colorbox{red}{Punkt umbenennen}
+  Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
+  Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
+  Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
+  Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
+  Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
+  So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
+  Auch im Nachhinein können dann Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden.
+  Dies hilft zusätzlich bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
+  \\
+  Das Produkt-Backlog wurde auch in dieses GitHub Repository eingepflegt.
+  Dies erhöhte einerseits die Übersichtlichkeit über den Stand des Projekts innerhalb, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
+  Andererseits ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen aufsuchen zu müssen.
+  Die Möglichkeiten der Automatisierung wurden genutzt, um den Workflow zu vereinfachen und um die Code-Qualität sicherzustellen.
+  Dies geschah zum Beispiel die durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
+  \\
+  Darüber hinaus war die Open-Source Anforderung auch hilfreich bei der Produktentwicklung.
+  So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden.
+  Dies war vor allem für das erstmalige Einrichten und die zugehörige Dokumentation maßgebend.
+  Entsprechend konnte sich hier eher technischer Sprache bedient werden.
+  Allerdings galt diese Einschränkung der Zielgruppe auch nicht für alle Breiche des Projekts.
+  Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse möglich sein, da die Musikbox z. B. verschenkt oder in Familien genutzt werden könnte.
+  Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
+
 
 \section{Machbarkeitsstudie}
 \label{machbarkeitsstudie}
@@ -393,415 +393,415 @@ Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com
 Mit einem Raspberry Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
 Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
+\section{Tools und Vorgehen}
+  \subsection{Hilfsmittel}
+      Im Rahmen des Projekts nutze das Team eine Vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
+      Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet oder als Ergebnis der Retrospektiven erprobt.
+
+      \subsubsection{Github \& Github IO}
+      Da alle Teammitglieder, wie auch die Kunden bereits einen Account bei dem Dienst \textit{GitHub} besaßen, wurde die Entscheidung getroffen, diesen als Hoster für \textit{Git-Remote-Repositories} einzusetzen.
+      Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung auf quelloffene Software, stellte er für dieses Projekt die ideale Umgebung zur Quellcodeverwaltung und Kollaboration dar.
+
+      \paragraph{Kollaboration} $~$ \\
+      Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben bzw. Arbeitspakete (\textit{Issues}\footnote{Da das Team größtensteils den Begriff \textit{Issue} nutzte, wird dieser auch fortlaufend hauptsächlich verwendet.}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
+      zugeordnet. Außerdem konnten verschiedene Informationen, wie z. B. der Sprint bzw. \textit{Milestone} \footnote{Auch hier wird im weiteren Verlauf eher der Begriff Milestone oder Meilenstein verwendet.} in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
+      Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
+      Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
+      \\~\\
+      Eine weitere Funktionalität von GitHub, die in diesem Projekt genutzt wurden sind die sogenannten \textit{Actions}\footnote{\raggedright\url{https://github.com/features/actions}}.
+      Sie ermöglichen automatisierte Tests, die den Quellcode und die Anwendung als Gesamtkonstrukt auf verschiedenste Fehler prüfen und frei konfigurierbar sind.
+      In diesem Projekt wurden die folgenden vier Tests durchgeführt um die Änderungen vor der Übertragung in den Master-Branch zu validieren:
+      \begin{enumerate}
+        \item \textbf{build}: Wird die Software fehlerfrei gebaut?
+        \item \textbf{lint}\footnote{Tool zur statischen Codeanalyse}: Ist der Quellcode in gutem Stil geschrieben?
+        \item \textbf{test}: Sind die geschrieben Unit-Tests erfolgreich?
+        \item \textbf{typecheck}: Sind alle Typen kompatibel?
+      \end{enumerate}
+      Sind alle Tests erfolgreich, ist die Änderung technisch nutzbar.
+      \\~\\
+      Außerdem wurde die in GitHub existierende Funktionalität der Pull Requests verwendet. Beim \textit{Pushen}\footnote{Hochladen der Änderung vom Entwickler-PC auf das Repositoty auf GitHub}
+      werden die Änderungen automatisch in dem den Branch betreffenden Pull Request angezeigt (wenn vorhanden).
+      Jeder Pull Request enthält allgemeine Informationen, welchem Zweck er dient und von wem die Änderung durchgeführt wird. Außerdem wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) angezeigt.
+      Das Projekt ist so konfiguriert, dass die Übernahme der Änderung des Pull Requests nur möglich ist, wenn mindestens zwei andere Entwickler diesen Änderungen
+      durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich abgeschlossen wurden. Ist dies der Fall, kann die Änderung in den Master-Stand übertragen werden.
+      Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
+
+      \paragraph{Github Pages} $~$ \\
+      Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation und Repository eine kostenlose URL xyz.github.io zur Verfügung.
+      Dabei werden unter dieser statische Dateien, wie zum Beispiel die einer Website: \textit{.html}, \textit{.css}, \textit{.js}, aus einem bestimmten Branch oder einem Ordner bereitgestellt.
+      Die Konigurationsanforderungen für ein einfaches Website-Hosting sind somit minimal.
+
+      \subsubsection{Visual Studio Code \& WSL}
+      Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
+      Die IDE beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine Vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
+      So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts) und \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
+      Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote{\raggedright\url{https://code.visualstudio.com/docs/remote/wsl}} an das
+      \textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
+      und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
+
+      \subsubsection{Prototyping (Figma)}
+      \label{figma}
+      Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigten Komponenten mittels des webbasierten
+      Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
+      \textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
+
+      \subsubsection{Lucidchart}
+      \label{Lucidchart}
+      Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
+      Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
+      Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
+      Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
+  \subsection{Entwicklungszyklus}
+    Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
+    durch die Retrospektiven optimierten Zyklus.
+    \\~
+    Am Anfag steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
+    Nach Identifikation weist sich der Entwickelnde dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
+    in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
+    \\~
+    Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
+    GitHub erkennt automatisch die neuen \textit{commits} und erfragt, ob ein neuer \textit{Pull-Request} angelegt werden soll.
+    Dieser hat initial den Status \textit{Open}.
+    Wenn die Aufgaben des \textit{Issues} noch nicht abgeschlossen sind, wird der Status auf \textit{Draft} gesetzt.
+    \\~
+    Nach dem \textit{push} aller Änderungen, wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) ermittelt. Treten hierbei Fehler auf,
+    werden diese geprüft und behoben. Sind alle Tests erfolgreich, betätigt der Entwickelnde die Schaltfläche \textit{Ready for Review}.
+    Wenn ein:e Entwickler:in, diesen \textit{Pull-Request} sieht, wird ein \textit{Code-Review} durchgeführt.
+    Hierzu wird der Branch in die IDE geladen und die Funktionalität verifiziert. Anschließend wird die Code-Qualität geprüft.
+    Dafür werden die geänderten Dateien im Pull-Request betrachtet. Anmerkungen können in Form
+    von Kommentaren an einzelne oder mehrere Zeilen angefügt werden. Bei Änderungsvorschlägen können diese über eine \textit{suggestion}
+    getätigt werden. Ist der komplette Code geprüft wird entschieden,
+    ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanforderung gestellt wird (\textit{Request changes}).
+    \\~
+    Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
+    Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
+
+  \subsection{Testing}
+  Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Tests zur Verbesserung der Codequalität durchzuführen.
+  Quellcode Tests lassen sich in statische und dynamische Tests unterteilen.
+
+  \subsubsection*{Statische Tests}
+    Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten im Gegensatz zu dynamischen Tests nicht das Verhalten zur Laufzeit.
+    Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
+    Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
+
+    \paragraph*{Linting}$~$ \\
+    Beim Linting wird der Code auf syntaktische Korrektheit geprüft.
+    Auch manche semantische (laufzeitunabhängige) Aspekte werden untersucht.
+    So können kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
+    Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
+    Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
+    Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
+    Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
+    Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
+    Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
+    \\
+    Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen, durch deren Nutzung ein konsistenter Code-Stil
+    innerhalb des Teams ermöglicht wurde. Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
+
+    \paragraph*{Reviews}$~$ \\
+    Teil des Deployment Cycles waren auch Reviews der aktiven Änderungen.
+    Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
+    Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
+    Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
+    In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt, auf der alle Teile des neuen Codes auf einen Blick einsehbar waren.
+    Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit, direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
+    So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden, war für einen effizienten Review-Prozess sorgte.
+
+  \subsubsection*{Dynamische Tests}
+    \colorbox{orange}{Hier ggf. nochmal die Satzstrukturanpassen ist alles sehr parataktisch}
+    Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
+    Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
+    Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
+    Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
+    Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
+    So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
+    Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+    Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
+    \\~\\
+    Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
+    Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
+    Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
+    Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
+    Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
+
+\section{Technische Umsetzung}
+  \subsection{Projektstrukur}
+  \wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
+  \label{Ordnerstruktur}
+  Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
+  verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
+  Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
+  Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref*{Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+  \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+  Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+  Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
+  Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
+  Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
+  Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+
+  \subsection{Technologien}
+  \label{technologien}
+
+  \subsubsection{Programmiersprachen}
+
+  \paragraph*{TypeScript} $~$ \\
+  Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
+  Aufgrund von nicht vorhandener Typisierung wurde sich dann jedoch auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Diese bietet aufgrund des
+  Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript. Somit fiel das Erlernen der Sprache den Entwicklern relativ leicht.
+  Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
+  Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code umgewandelt, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
+  Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
+
+
+  \subsubsection{Frameworks}
+  Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um mit weniger Aufwand entwickeln zu können.
+
+  \paragraph*{Vue.js} $~$ \\
+  Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
+  clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
+  Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
+
+  \paragraph*{Components} $~$ \\
+  Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
+  \begin{minipage}{\textwidth}
+    \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
+      <template>
+        <span class="beispiel">Beispiel Komponente</span>
+      </template>
+
+      <script lang="ts">
+      import { defineComponent } from 'vue';
+
+      export default defineComponent({
+        name: 'Beispiel',
+      });
+      </script>
+      <style>
+        .beispiel {
+          background-color: lightgreen;
+        }
+      </style>
+    \end{lstlisting}
+  \end{minipage}
+
+  Durch diese Zusammenfassung wird der gesamte Code lesbarer,
+  da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
+  So wird Entwickleren viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
+  Dies führte zu effizienterem und zufriedenstellenderer Arbeit am Projekt.
+  Bessere Lesbarkeit führt auch zu langfristigerer Wartbarkeit.
+  Dies ist in diesem Projekt besonders wichtig,
+  da es unter Open-Source-Lizenz steht und gegebenenfalls von der Allgemeinheit weiter entwickelt werden soll.
+  Mit adäquater Wartbarkeit ist eine Grundlage für langjähriges Überleben der \textit{leek-box} geschaffen.
+  \\~\\
+  Ausmaß, Funktionalität und Größe von Komponenten sind allgemein keine Einschränkungen gesetzt.
+  So kann es sich bei diesen zum Beispiel um Buttons, Header oder ganze Ansichten handeln.
+  Für die Nutzung müssen diese allerdings noch mit \textit{defineComponent} beim Framework registriert werden
+  (siehe Listing \ref{lst:EinfacheComponent}).
+  Danach können die Komponenten wie native HTML-Tags eingebunden werden.
+  Dies macht die Nutzung von \textit{components} sehr intuitiv.
+  So hat das Framework eine sehr flache Lernkurve.
+  Die Verwendung von weitreichend klassischem HTML, CSS und JS bzw. TS unterstützt dies zusätzlich.
+  Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
+  da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
+  \\~\\
+  \textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
+  So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
+  Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden.
+  Anhand dieser können Inhalte, Aussehen und Verhalten dem Kontext entsprechend angepasst werden.
+  Die Datenübergabe wird über sogenannte \textit{properties} (kurz \textit{props}) realisiert.
+  Auch der Informationsfluss in die andere Richtung ist möglich und geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
+  Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen, damit die einbindende Komponente diese dann auslesen und weiterverwenden kann.
+  Dies wird folgend in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
+  \\~\\
+  \begin{minipage}{\textwidth}
+    \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
+      <template>
+        <eintrag v-bind:name="'eins'" @eintrag-geklickt="geklickt($event)" />
+        <eintrag v-bind:name="'zwei'" @eintrag-geklickt="geklickt($event)" />
+        <eintrag v-bind:name="'drei'" @eintrag-geklickt="geklickt($event)" />
+      </template>
+
+      <script lang="ts">
+      import { defineComponent } from 'vue';
+
+      import Eintrag from './Eintrag.vue';
+
+      export default defineComponent({
+        name: 'Liste',
+        components: {
+          Eintrag,
+        },
+        setup() {
+          function geklickt(wert: string): void {
+            console.log(wert);
+          }
+          return { geklickt };
+        },
+      });
+      </script>
+    \end{lstlisting}
+  \end{minipage}
+
+  \begin{minipage}{\textwidth}
+    \begin{lstlisting}[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b, label=lst:Eintrag]
+      <template>
+        <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
+      </template>
+
+      <script lang="ts">
+      import { defineComponent } from 'vue';
+
+      export default defineComponent({
+        name: 'Eintrag',
+        props: {
+          name: {
+            type: String,
+            default: 'Name',
+          },
+        },
+        emits: ['eintrag-geklickt'],
+        setup(props) {
+          const rückgabe: string = 'Eintrag ' + props.name + ' ausgewählt';
+          return { rückgabe };
+        },
+      });
+      </script>
+    \end{lstlisting}
+  \end{minipage}
+
+  Hierbei gibt die Listen-Komponente die entsprechenden Namen an die \textit{Eintrag}-Komponenten
+  mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
+  Die verwendete \textit{property} \glqq name\grqq{} wird in dem Eintragselement angezeigt und beim Klicken auf dieses mit einem Event per \textit{\$emit} an die Eltern-Komponente \textit{Liste} zurückgesendet. Der mitgelieferte Wert des Events wird mit \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
+  \\~\\
+  Alles in allem ermöglichte die Verwendung von \textit{components} dem Team die Produktion von schlankem und übersichtlichen Frontend-Code.
+
+  \paragraph*{Reactivity}$~$ \\
+  Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
+  um Werte, die sich nachträglich ändern können, zu nutzen
+  und Abhängigkeiten zwischen diesen Werten abzubilden. \cite{ReactiveProgramming}
+  Als Paradebeispiel hierfür werden meist Tabellenkalkulationswerkzeuge wie zum Beispiel \textit{Excel} angeführt.
+  In diesen lassen sich Rechenergebnisse von den momentanen Werten anderer genutzter Zellen abhängig machen.
+  Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
+  Auch \textit{Vue} ermöglicht es, diese Art von Funktionalität einzusetzten.
+  So können reaktive generische Datentypen z. B. in components verwendet werden.
+  In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
+    \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
+  Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
+  \\~\\
+  \begin{minipage}{\textwidth}
+    \begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
+      <template>
+      <div>
+        <span>{{ count }}</span>
+        <button @click="count ++">Increment count</button>
+      </div>
+    </template>
+
+    <script lang="ts">
+      import { ref } from 'vue';
+      export default defineComponent({
+        setup() {
+          const count = ref(0);
+          return { count };
+        },
+      });
+    </script>
+    \end{lstlisting}
+  \end{minipage}
+  In diesem Beispiel wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive Vue-Referenz (\textit{ref}) angelegt.
+  Dieser wird bei jedem Klick auf den Button inkrementiert.
+  Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
+  Dagegen muss im TypeScript-Code der Wert vorher noch mit \textit{count.value++} \glqq ausgepackt\grqq{} werden.
+  Der geänderte Wert wird direkt auf der Webseite angezeigt,
+  ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss. Stattdessen werden jeweils nur die grundlegenden Daten einer Komponente verändert und Vue bildet diese Daten mit Hilfe des Templates im DOM ab.
+  \\
+  Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
+  So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
+  Dies ermöglichte dem Team in kurzer Zeit interaktive Benutzeroberflächen zu erstellen.
+
+  \paragraph*{}
+  Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
+  Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
+  Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
+  und dementsprechend nur begrenzte Leistung zur Verfügung steht.
+
+  \paragraph*{Tailwind CSS} $~$ \\
+  Zur effizienteren Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Framework \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
+  Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, da statt vorgefertigten Komponenten vielseitig verwendbare Utility-Klassen zur Verfügung gestellt werden,
+  über die das Design definiert werden kann. So kann das Aussehen von Elementen innerhalb des HTML-Codes festgelegt werden.
+  Damit steigt die Übersichtlichkeit des Frontend-Codes, da keine separaten CSS-Dateien und -Klassen angelegt werden müssen.
+  \cite{Tailwind_Vorteile}
+
+
+  \paragraph*{FeathersJS} $~$ \\
+  Bei der Erstellung des Backends entschied sich das Team zusätzlich das Framework \textit{FeathersJS}\footnote{\raggedright\url{https://feathersjs.com/}} einzusetzten.
+  Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\textbf{R}ead-\textbf{U}pdate-\textbf{D}elete}  auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
+  Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
+  Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
+  \begin{figure}[ht]
+    \includegraphics[width=\linewidth]{MyFeathersService.png}
+    \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
+    \caption{Implementierung eines ServicesTest}
+    \label{fig:MyService}
+  \end{figure}
+  Dabei können verschiedenste Protokolle, wie HTTP oder WebSockets zur Datenübertragung verwendet werden.
+  Das WebSocket-Protokoll bietet hier den großen Vorteil, dass eine persistente Verbindung zwischen Server und Client (Benutzeroberfläche und Backend) besteht.
+  So können sowohl Client, wie auch Server jederzeit mit der Datenübertragung beginnen, ohne vorher - wie bei HTTP - jedes Mal eine neue Verbindung aufzubauen zu müssen. \cite{WebSockets}
+  Dadurch kann der Server alle verbundenen Clients bei einem CRUD-Zugriff informieren, sodass alle ohne erneutes Anfragen der Daten den aktuellsten Zustand übermittelt bekommen.
+  Wird also beispielsweise ein NFC-Tag von Person A geändert, sieht Person B diese Änderung ohne manuelle Aktualisierung der Seite.
+  Eine weiteres Feature, welches vom Projektteam genutzt wurde ist die integrierte OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten, wie beispielsweise \textit{Spotify} bei diesem Projekt ermöglicht.
+  Dies war z.B. nötig, um die den NFC-Tags zugeordnete Musik abspielen zu können.
+  Darüber hinaus können so auch Nutzerprofile angelegt werden, ohne persönliche Daten, wie z.B. Namen, Email-Adressen und Passwörter, speichern zu müssen.
+  Nur Authentifizierungstokens des OAuth-Providers werden in der Datenbank hinterlegt.
+  So konnte ein besserer Datenschutz für die Nutzenden ermöglicht werden.
+
+
+  \subsubsection{Containervirtualisierung (Docker)}
+  Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
+  Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
+  Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
+  Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
+  Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
+  Es enthält einen Verweis auf die jeweiligen Container-Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
+  sodass weitere Installationen seitens der Benutzer:innen nicht erforderlich sind.
+  Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
+  So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
+
+
+  \subsubsection{Reverse-Tunnel (ngrok)}
+  Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
+  Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
+  Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+  Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
+  Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
+  \colorbox{red}{Hier Schaubild?}
+
+  \subsubsection{Externe Bibliotheken}
+  \paragraph{Spotify Web API} $~$ \\
+  \label{SpotifyWebApiNode}
+  Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
+  Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
+  Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
+  Diese bietet bereits die benötigten Methoden, wie z. B. die zum Suchen eines Songs anhand eines Suchbegriffs.
+  Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern ohne Mehraufwand genutzt werden.
+  Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
+
+  \paragraph{NeDB} $~$ \\
+  Als Datenbank für dieses Projekt wurde die kostenlos verfügbare JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
+  Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
+  \textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende, sehr schnelle JSON Datenbank.
+  Sie wurde gewählt, da sie eine geringe Komplexität besitzt und weil \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
+  Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
+  Diese Eigenschaft war hilfreich, um die Datenbank auf einem Raspberry Pi betreiben zu können.
+  Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
+  Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
+
+
+
 
 \section{Durchführung}
-
-\subsection{Projektstrukur}
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
-\label{Ordnerstruktur}
-Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
-verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
-Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
-Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref*{Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-\textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
-Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
-Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
-Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
-Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
-Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
-
-\subsection{Technologien}
-\label{technologien}
-
-\subsubsection{Programmiersprachen}
-
-\paragraph*{TypeScript} $~$ \\
-Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
-Aufgrund von nicht vorhandener Typisierung wurde sich dann jedoch auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Diese bietet aufgrund des
-Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript. Somit fiel das Erlernen der Sprache den Entwicklern relativ leicht.
-Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
-Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code umgewandelt, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
-
-
-\subsubsection{Frameworks}
-Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um mit weniger Aufwand entwickeln zu können.
-
-\paragraph*{Vue.js} $~$ \\
-Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
-clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
-
-\paragraph*{Components} $~$ \\
-Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
-\begin{minipage}{\textwidth}
-  \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
-    <template>
-      <span class="beispiel">Beispiel Komponente</span>
-    </template>
-
-    <script lang="ts">
-    import { defineComponent } from 'vue';
-
-    export default defineComponent({
-      name: 'Beispiel',
-    });
-    </script>
-    <style>
-      .beispiel {
-        background-color: lightgreen;
-      }
-    </style>
-  \end{lstlisting}
-\end{minipage}
-
-Durch diese Zusammenfassung wird der gesamte Code lesbarer,
- da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
-So wird Entwickleren viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
-Dies führte zu effizienterem und zufriedenstellenderer Arbeit am Projekt.
-Bessere Lesbarkeit führt auch zu langfristigerer Wartbarkeit.
-Dies ist in diesem Projekt besonders wichtig,
- da es unter Open-Source-Lizenz steht und gegebenenfalls von der Allgemeinheit weiter entwickelt werden soll.
-Mit adäquater Wartbarkeit ist eine Grundlage für langjähriges Überleben der \textit{leek-box} geschaffen.
-\\~\\
-Ausmaß, Funktionalität und Größe von Komponenten sind allgemein keine Einschränkungen gesetzt.
-So kann es sich bei diesen zum Beispiel um Buttons, Header oder ganze Ansichten handeln.
-Für die Nutzung müssen diese allerdings noch mit \textit{defineComponent} beim Framework registriert werden
-(siehe Listing \ref{lst:EinfacheComponent}).
-Danach können die Komponenten wie native HTML-Tags eingebunden werden.
-Dies macht die Nutzung von \textit{components} sehr intuitiv.
-So hat das Framework eine sehr flache Lernkurve.
-Die Verwendung von weitreichend klassischem HTML, CSS und JS bzw. TS unterstützt dies zusätzlich.
-Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
- da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
-\\~\\
-\textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
-So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
-Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden.
-Anhand dieser können Inhalte, Aussehen und Verhalten dem Kontext entsprechend angepasst werden.
-Die Datenübergabe wird über sogenannte \textit{properties} (kurz \textit{props}) realisiert.
-Auch der Informationsfluss in die andere Richtung ist möglich und geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
-Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen, damit die einbindende Komponente diese dann auslesen und weiterverwenden kann.
-Dies wird folgend in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
-\\~\\
-\begin{minipage}{\textwidth}
-  \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
-    <template>
-      <eintrag v-bind:name="'eins'" @eintrag-geklickt="geklickt($event)" />
-      <eintrag v-bind:name="'zwei'" @eintrag-geklickt="geklickt($event)" />
-      <eintrag v-bind:name="'drei'" @eintrag-geklickt="geklickt($event)" />
-    </template>
-
-    <script lang="ts">
-    import { defineComponent } from 'vue';
-
-    import Eintrag from './Eintrag.vue';
-
-    export default defineComponent({
-      name: 'Liste',
-      components: {
-        Eintrag,
-      },
-      setup() {
-        function geklickt(wert: string): void {
-          console.log(wert);
-        }
-        return { geklickt };
-      },
-    });
-    </script>
-  \end{lstlisting}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-  \begin{lstlisting}[caption={beispielhafte Eintrag-Komponente (Eintrag.vue)}, captionpos=b, label=lst:Eintrag]
-    <template>
-      <button @click="$emit('eintrag-geklickt', rückgabe)">{{ name }}</button>
-    </template>
-
-    <script lang="ts">
-    import { defineComponent } from 'vue';
-
-    export default defineComponent({
-      name: 'Eintrag',
-      props: {
-        name: {
-          type: String,
-          default: 'Name',
-        },
-      },
-      emits: ['eintrag-geklickt'],
-      setup(props) {
-        const rückgabe: string = 'Eintrag ' + props.name + ' ausgewählt';
-        return { rückgabe };
-      },
-    });
-    </script>
-  \end{lstlisting}
-\end{minipage}
-
-Hierbei gibt die Listen-Komponente die entsprechenden Namen an die \textit{Eintrag}-Komponenten
- mit dem prop \glqq name\grqq{} per \textit{v-bind:} an die Einträge weiter.
-Die verwendete \textit{property} \glqq name\grqq{} wird in dem Eintragselement angezeigt und beim Klicken auf dieses mit einem Event per \textit{\$emit} an die Eltern-Komponente \textit{Liste} zurückgesendet. Der mitgelieferte Wert des Events wird mit \textit{\$event} ausgelesen und zur Veranschaulichung in der Konsole ausgegeben.
-\\~\\
-Alles in allem ermöglichte die Verwendung von \textit{components} dem Team die Produktion von schlankem und übersichtlichen Frontend-Code.
-
-\paragraph*{Reactivity}$~$ \\
-Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
- um Werte, die sich nachträglich ändern können, zu nutzen
- und Abhängigkeiten zwischen diesen Werten abzubilden. \cite{ReactiveProgramming}
-Als Paradebeispiel hierfür werden meist Tabellenkalkulationswerkzeuge wie zum Beispiel \textit{Excel} angeführt.
- In diesen lassen sich Rechenergebnisse von den momentanen Werten anderer genutzter Zellen abhängig machen.
-Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
-Auch \textit{Vue} ermöglicht es, diese Art von Funktionalität einzusetzten.
-So können reaktive generische Datentypen z. B. in components verwendet werden.
-In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
-  \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
-Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
-\\~\\
-\begin{minipage}{\textwidth}
-  \begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
-    <template>
-    <div>
-      <span>{{ count }}</span>
-      <button @click="count ++">Increment count</button>
-    </div>
-  </template>
-
-  <script lang="ts">
-    import { ref } from 'vue';
-    export default defineComponent({
-      setup() {
-        const count = ref(0);
-        return { count };
-      },
-    });
-  </script>
-  \end{lstlisting}
-\end{minipage}
-In diesem Beispiel wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive Vue-Referenz (\textit{ref}) angelegt.
-Dieser wird bei jedem Klick auf den Button inkrementiert.
-Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
-Dagegen muss im TypeScript-Code der Wert vorher noch mit \textit{count.value++} \glqq ausgepackt\grqq{} werden.
-Der geänderte Wert wird direkt auf der Webseite angezeigt,
- ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss. Stattdessen werden jeweils nur die grundlegenden Daten einer Komponente verändert und Vue bildet diese Daten mit Hilfe des Templates im DOM ab.
-\\
-Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
-So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
-Dies ermöglichte dem Team in kurzer Zeit interaktive Benutzeroberflächen zu erstellen.
-
-\paragraph*{}
-Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
-Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
-Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
- und dementsprechend nur begrenzte Leistung zur Verfügung steht.
-
-\paragraph*{Tailwind CSS} $~$ \\
-Zur effizienteren Gestaltung der Benutzeroberfläche entschied sich das Team für das Utility-First-Framework \textit{TailwindCSS}\footnote{\raggedright\url{https://tailwindcss.com}}.
-Dieses bietet im Vergleich zu anderen CSS-Frameworks wie \textit{Bootstrap} mehr Flexibilität, da statt vorgefertigten Komponenten vielseitig verwendbare Utility-Klassen zur Verfügung gestellt werden,
-über die das Design definiert werden kann. So kann das Aussehen von Elementen innerhalb des HTML-Codes festgelegt werden.
-Damit steigt die Übersichtlichkeit des Frontend-Codes, da keine separaten CSS-Dateien und -Klassen angelegt werden müssen.
-\cite{Tailwind_Vorteile}
-
-
-\paragraph*{FeathersJS} $~$ \\
-Bei der Erstellung des Backends entschied sich das Team zusätzlich das Framework \textit{FeathersJS}\footnote{\raggedright\url{https://feathersjs.com/}} einzusetzten.
-Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\textbf{R}ead-\textbf{U}pdate-\textbf{D}elete}  auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
-Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
-Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
-\begin{figure}[ht]
-  \includegraphics[width=\linewidth]{MyFeathersService.png}
-  \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
-  \caption{Implementierung eines ServicesTest}
-  \label{fig:MyService}
-\end{figure}
-Dabei können verschiedenste Protokolle, wie HTTP oder WebSockets zur Datenübertragung verwendet werden.
-Das WebSocket-Protokoll bietet hier den großen Vorteil, dass eine persistente Verbindung zwischen Server und Client (Benutzeroberfläche und Backend) besteht.
-So können sowohl Client, wie auch Server jederzeit mit der Datenübertragung beginnen, ohne vorher - wie bei HTTP - jedes Mal eine neue Verbindung aufzubauen zu müssen. \cite{WebSockets}
-Dadurch kann der Server alle verbundenen Clients bei einem CRUD-Zugriff informieren, sodass alle ohne erneutes Anfragen der Daten den aktuellsten Zustand übermittelt bekommen.
-Wird also beispielsweise ein NFC-Tag von Person A geändert, sieht Person B diese Änderung ohne manuelle Aktualisierung der Seite.
-Eine weiteres Feature, welches vom Projektteam genutzt wurde ist die integrierte OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten, wie beispielsweise \textit{Spotify} bei diesem Projekt ermöglicht.
-Dies war z.B. nötig, um die den NFC-Tags zugeordnete Musik abspielen zu können.
-Darüber hinaus können so auch Nutzerprofile angelegt werden, ohne persönliche Daten, wie z.B. Namen, Email-Adressen und Passwörter, speichern zu müssen.
-Nur Authentifizierungstokens des OAuth-Providers werden in der Datenbank hinterlegt.
-So konnte ein besserer Datenschutz für die Nutzenden ermöglicht werden.
-
-
-\subsubsection{Containervirtualisierung (Docker)}
-Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
-Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
-Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
-Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
-Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
-Es enthält einen Verweis auf die jeweiligen Container-Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
-sodass weitere Installationen seitens der Benutzer:innen nicht erforderlich sind.
-Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
-So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
-
-
-\subsubsection{Reverse-Tunnel (ngrok)}
-Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
-Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
-Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
-Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
-Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
-\colorbox{red}{Hier Schaubild?}
-
-\subsubsection{Externe Bibliotheken}
-\paragraph{Spotify Web API} $~$ \\
-\label{SpotifyWebApiNode}
-Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
-Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
-Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
-Diese bietet bereits die benötigten Methoden, wie z. B. die zum Suchen eines Songs anhand eines Suchbegriffs.
-Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern ohne Mehraufwand genutzt werden.
-Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
-
-\paragraph{NeDB} $~$ \\
-Als Datenbank für dieses Projekt wurde die kostenlos verfügbare JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
-Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
-\textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende, sehr schnelle JSON Datenbank.
-Sie wurde gewählt, da sie eine geringe Komplexität besitzt und weil \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
-Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
-Diese Eigenschaft war hilfreich, um die Datenbank auf einem Raspberry Pi betreiben zu können.
-Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
-Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
-
-\subsection{Hilfsmittel}
-Im Rahmen des Projekts nutze das Team eine Vielzahl von Hilfsmitteln, die die Zusammenarbeit und Produktivität des Teams steigern sollte.
-Diese wurden zum einen zu Beginn des Projektes in einer Gruppendiskussion herausgearbeitet oder als Ergebnis der Retrospektiven erprobt.
-
-\subsubsection{Github \& Github IO}
-Da alle Teammitglieder, wie auch die Kunden bereits einen Account bei dem Dienst \textit{GitHub} besaßen, wurde die Entscheidung getroffen, diesen als Hoster für \textit{Git-Remote-Repositories} einzusetzen.
-Aufgrund der bereits gewonnenen Erfahrung mit diesem Dienst und der Fokussierung auf quelloffene Software, stellte er für dieses Projekt die ideale Umgebung zur Quellcodeverwaltung und Kollaboration dar.
-
-\paragraph{Kollaboration} $~$ \\
-Mit dem Anspruch das Produkt auch nach Projektende fortzuführen, wurden auch die Projektmanagement Funktionen von GitHub verwendet. Die einzelnen Aufgaben bzw. Arbeitspakete (\textit{Issues}\footnote{Da das Team größtensteils den Begriff \textit{Issue} nutzte, wird dieser auch fortlaufend hauptsächlich verwendet.}) wurden in einem \textit{Issue Board} den verschiedenen Arbeitsstatus\footnote{Status = Backlog, Todo, In Progess, Review und Done}
-zugeordnet. Außerdem konnten verschiedene Informationen, wie z. B. der Sprint bzw. \textit{Milestone} \footnote{Auch hier wird im weiteren Verlauf eher der Begriff Milestone oder Meilenstein verwendet.} in dem das Ticket abgeschlossen sein soll oder der bearbeitende Entwickler dokumentiert werden.
-Da diese Ansicht ebenfalls nach diversen Eigenschaften gefiltert werden kann, konnte sich jeder Entwickler schnell einen Überblick über den aktuellen Projektstand verschaffen.
-Das Team setzte zur Unterstützung außerdem den \textit{Renovate-Bot}\footnote{\raggedright\url{https://github.com/renovatebot/renovate}} ein, welcher die Tickets automatisch anhand von verschiedenseten Events verschob und einen Branch anlegt, wenn sich ein Entwickler einem Ticket zuordnet.
-\\~\\
-Eine weitere Funktionalität von GitHub, die in diesem Projekt genutzt wurden sind die sogenannten \textit{Actions}\footnote{\raggedright\url{https://github.com/features/actions}}.
-Sie ermöglichen automatisierte Tests, die den Quellcode und die Anwendung als Gesamtkonstrukt auf verschiedenste Fehler prüfen und frei konfigurierbar sind.
-In diesem Projekt wurden die folgenden vier Tests durchgeführt um die Änderungen vor der Übertragung in den Master-Branch zu validieren:
-\begin{enumerate}
-  \item \textbf{build}: Wird die Software fehlerfrei gebaut?
-  \item \textbf{lint}\footnote{Tool zur statischen Codeanalyse}: Ist der Quellcode in gutem Stil geschrieben?
-  \item \textbf{test}: Sind die geschrieben Unit-Tests erfolgreich?
-  \item \textbf{typecheck}: Sind alle Typen kompatibel?
-\end{enumerate}
-Sind alle Tests erfolgreich, ist die Änderung technisch nutzbar.
-\\~\\
-Außerdem wurde die in GitHub existierende Funktionalität der Pull Requests verwendet. Beim \textit{Pushen}\footnote{Hochladen der Änderung vom Entwickler-PC auf das Repositoty auf GitHub}
-werden die Änderungen automatisch in dem den Branch betreffenden Pull Request angezeigt (wenn vorhanden).
-Jeder Pull Request enthält allgemeine Informationen, welchem Zweck er dient und von wem die Änderung durchgeführt wird. Außerdem wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) angezeigt.
-Das Projekt ist so konfiguriert, dass die Übernahme der Änderung des Pull Requests nur möglich ist, wenn mindestens zwei andere Entwickler diesen Änderungen
-durch Code Reviews zugestimmt haben und alle automatisierten Test erfolgreich abgeschlossen wurden. Ist dies der Fall, kann die Änderung in den Master-Stand übertragen werden.
-Für die Code-Reviews wurde ebenfalls die GitHub interne Funktionalität genutzt, die bequeme Änderungsvorschläge ermöglicht.
-
-\paragraph{Github Pages} $~$ \\
-Zum Bereitstellen des Frontends der \textit{leek-boxen} wird der Dienst GitHub Pages verwendet. Dieser stellt pro Organisation und Repository eine kostenlose URL xyz.github.io zur Verfügung.
-Dabei werden unter dieser statische Dateien, wie zum Beispiel die einer Website: \textit{.html}, \textit{.css}, \textit{.js}, aus einem bestimmten Branch oder einem Ordner bereitgestellt.
-Die Konigurationsanforderungen für ein einfaches Website-Hosting sind somit minimal.
-
-\subsubsection{Visual Studio Code \& WSL}
-Als Entwicklungsumgebung in diesem Projekt wurde \textit{Visual Studio Code} verwendet. VSCode war allen Gruppenmitgliedern bereits bekannt und wurde von vielen auch regelmäßig verwendet.
-Die IDE beherrscht den Umgang mit allen für das Projekt benötigten Dateitypen und ist durch eine Vielzahl an kostenlos angebotenen Erweiterungen (Extentions) sehr anpassbar an die Projektbedürfnisse.
-So wurden in diesem Fall unter anderem die Erweiterungen \textit{Vetur} (für Vue.js), \textit{LaTeX Workshop}  (für die Erstellung dieses Berichts) und \textit{Tailwind CSS IntelliSense} (Für Auto-Vervollständigung der CSS Klassen von Tailwind) verwendet.
-Außerdem bietet \textit{Visual Studio Code} eine komfortable Anbindung\footnote{\raggedright\url{https://code.visualstudio.com/docs/remote/wsl}} an das
-\textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
-und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
-
-\subsubsection{Prototyping (Figma)}
-\label{figma}
-Zur Abstimmung auf ein Design für die Benutzeroberfläche wurden vor der Entwicklung Prototypen der benötigten Komponenten mittels des webbasierten
-Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
-\textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand
-
-\subsubsection{Lucidchart}
-\label{Lucidchart}
-Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
-Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
-Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
-Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
-\subsection{Entwicklungszyklus}
-Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
-durch die Retrospektiven optimierten Zyklus.
-\\~
-Am Anfag steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
-Nach Identifikation weist sich der Entwickelnde dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
-in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
-\\~
-Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
-GitHub erkennt automatisch die neuen \textit{commits} und erfragt, ob ein neuer \textit{Pull-Request} angelegt werden soll.
-Dieser hat initial den Status \textit{Open}.
-Wenn die Aufgaben des \textit{Issues} noch nicht abgeschlossen sind, wird der Status auf \textit{Draft} gesetzt.
-\\~
-Nach dem \textit{push} aller Änderungen, wird das Ergebnis der automatisierten Tests (\textit{GitHub Actions}) ermittelt. Treten hierbei Fehler auf,
-werden diese geprüft und behoben. Sind alle Tests erfolgreich, betätigt der Entwickelnde die Schaltfläche \textit{Ready for Review}.
-Wenn ein:e Entwickler:in, diesen \textit{Pull-Request} sieht, wird ein \textit{Code-Review} durchgeführt.
-Hierzu wird der Branch in die IDE geladen und die Funktionalität verifiziert. Anschließend wird die Code-Qualität geprüft.
-Dafür werden die geänderten Dateien im Pull-Request betrachtet. Anmerkungen können in Form
-von Kommentaren an einzelne oder mehrere Zeilen angefügt werden. Bei Änderungsvorschlägen können diese über eine \textit{suggestion}
-getätigt werden. Ist der komplette Code geprüft wird entschieden,
-ob die Änderungen angenommen (\textit{approve}) werden oder eine Änderungsanforderung gestellt wird (\textit{Request changes}).
-\\~
-Im Falle von Änderungsanforderungen werden diese umgesetzt und ein erneutes Review angefordert. Dies geschiet zyklisch, bis die Änderungen angenommen werden.
-Sind die Änderungen durch zwei \textit{Code-Reivews} bestätigt worden, werden sie mit der Schaltfläche \textit{Mege into master} übertragen.
-
-\subsection{Testing}
-Das Team entschied sich zu Beginn der Produkt-Entwicklung dafür, Tests zur Verbesserung der Codequalität durchzuführen.
-Quellcode Tests lassen sich in statische und dynamische Tests unterteilen.
-
-\subsubsection*{Statische Tests}
-Im Allgemeinen untersuchen statische Tests nur Textdokumente und betrachten im Gegensatz zu dynamischen Tests nicht das Verhalten zur Laufzeit.
-Dies ermöglicht eine häufige und kontinuierliche Nutzung von Tests dieser Art.
-Zwei der prominenten Varianten statischer Tests, Linting und Reviews, wurden in diesem Projekt genutzt.
-
-\paragraph*{Linting}$~$ \\
-Beim Linting wird der Code auf syntaktische Korrektheit geprüft.
-Auch manche semantische (laufzeitunabhängige) Aspekte werden untersucht.
-So können kleinere Denkfehler und Flüchtigkeitsfehler, wie z. B. fehlende Kommata, schnell gefunden und behoben werden.
-Hierfür wurde das Analyse-Werkzeug \textit{ESLint}\footnote{\raggedright\url{https://eslint.org/}} genutzt.
-Für diese Werkzeug war zusätzlich auch eine Erweiterung\footnote{\raggedright\url{https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint}} für die Entwicklungsumgebung verfügbar.
-Mit dieser konnten die Ergebnisse des Linting direkt im Code angezeigt werden.
-Dies machte den Arbeitsprozess wesentlich zeiteffizienter.
-Zusätzlich wurde auch die Erweiterung \textit{Vetur}\footnote{\raggedright\url{https://vuejs.github.io/vetur/}} genutzt.
-Diese stellte die selben Funktionalitäten für den Vue-Framework spezifischen Code zur Verfügung.
-\\
-Darüber hinaus boten diese Erweiterungen auch Formatierungshilfen mit übertragbaren Konfigurationen, durch deren Nutzung ein konsistenter Code-Stil
-innerhalb des Teams ermöglicht wurde. Dies legte den Grundstein für lesbaren Code und ermöglichte successive effizientes Arbeiten.
-
-\paragraph*{Reviews}$~$ \\
-Teil des Deployment Cycles waren auch Reviews der aktiven Änderungen.
-Bei diesen wurde der neue bzw. geänderte Quellcode von mindestens zwei anderen Teammitgliedern überprüft.
-Untersucht wurden vor allem semantische Fehler, Lesbarkeit, Wartbarkeit und Vollständigkeit.
-Hierfür gab es keinen formalen Plan, allerdings war die Review-Oberfläche von GitHub sehr hilfreich.
-In dieser wurde eine Änderungsansicht (\textit{diff}) des zu überprüfenden Codes angezeigt, auf der alle Teile des neuen Codes auf einen Blick einsehbar waren.
-Darüber hinaus bot die Review-Oberfläche auch die Möglichkeit, direkt im Code einzelne oder mehrere Zeilen zu kommentieren.
-So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden, war für einen effizienten Review-Prozess sorgte.
-
-\subsubsection*{Dynamische Tests}
-\colorbox{orange}{Hier ggf. nochmal die Satzstrukturanpassen ist alles sehr parataktisch}
-Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
-Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
-Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
-Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
-Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
-So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
-Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
-Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
-\\~\\
-Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
-Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
-Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
-Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
-Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
-
-
-\subsection{Projekt Meilensteine}
-
-\subsubsection{Meilenstein 1}
+\subsection{Meilenstein 1}
 Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
 %Ziel
 Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertiggestellt sein.
@@ -824,7 +824,7 @@ So wurde dem Repository eine einleitende Readme und ein \glqq How to Contribute\
 %Retrospektive
 Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 
-\subsubsection{Meilenstein 2}
+\subsection{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
 Ziel war es, die ersten Grundbausteine für das Projekt legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
 sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles
@@ -906,7 +906,7 @@ Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Review
 Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
 Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
 
-\subsubsection{Meilenstein 3}
+\subsection{Meilenstein 3}
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
 
 \paragraph*{Mockup Überarbeitung} $~$ \\
@@ -989,7 +989,7 @@ Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und
 zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
-\subsubsection{Meilenstein 4}
+\subsection{Meilenstein 4}
 %Ziel
 Zu beginn dieses Meilensteins waren alle Grundlagen gelegt um mit der Umsetzung der Hauptfunktionen zu beginnen.
 Es sollten möglichst viele Teile des designten User Interfaces umgesetzt werden, allerdings lag der Fokus auf einem vollständigem \glqq Add-Tag-Flow\grqq.
@@ -1136,7 +1136,7 @@ Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die n
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
-\subsubsection{Meilenstein 5}
+\subsection{Meilenstein 5}
 Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
 
 %Ziel
@@ -1219,7 +1219,7 @@ Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitgl
 Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
 Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
 
-\subsubsection{Meilenstein 6}
+\subsection{Meilenstein 6}
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
@@ -1292,7 +1292,7 @@ Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte d
 Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
 So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
-\subsubsection{Meilenstein 7}
+\subsection{Meilenstein 7}
 Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 
 \paragraph*{Letzte Bugfixes} $~$ \\
