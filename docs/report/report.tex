@@ -332,7 +332,7 @@ Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call
 \colorbox{orange}{warum so? was ist die Alternative?}
 Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
-\subsubsection{Gleichen Nutzer bei verschiedenen Loginvarianten wiedererkennen}
+\subsubsection{Nutzer verschiedener Streaminganbieter wiedererkennen}
 Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
 Die E-Mail wäre hierbei ein geeignetes Merkmal, da dies einzigartig ist. Über gesetzte Scopes in der OAuth Anfrage kann diese vom jeweiligen Provider mitgeliefert werden.
 Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen. Dies ist aber nicht immer der Fall.
@@ -355,7 +355,7 @@ Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt akt
 \subsubsection{Spotify Connect Lautsprecher speichern}
 Die Liste von verbundenen Geräten, die über einen Call an die Spotify API erhalten wird, enthält auch ein eindeutiges Feld \textit{id}, welches sich zusammen mit einem Namen speichern lässt.
 
-\subsubsection{In der Cloud Anwendung die eigene Box auswählen / verbinden}
+\subsubsection{Leek-Box mit Cloud-Anwendung verbinden}
 Bei der Ersteinrichtung könnte der Nutzer über die Eingabe der MAC Adresse oder über eine andere festgelegte ID die eigene Box finden und zu seinem Account hinzufügen. Die jeweilige Box wäre dem System anschließend bekannt und könnte zum Beispiel über den vom Nutzer gewählten Namen wiedergefunden und ausgewählt werden.
 
 \subsubsection{Boxdaten über Cloud Anwendung ändern}
@@ -372,9 +372,6 @@ Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.c
 
 \subsubsection{Unterstützung von Deezer}
 Deezer lässt sich vergleichbar zu Spotify über eine API steuern.\footnote{http://developers.deezer.com/login?redirect=/api}
-
-\subsubsection{Unterstützung von eigener Musik (USB Stick, MicroSD Karte, Cloud)}
-Da hier extrem viele Möglichkeiten mit verschiedensten Problemen existieren, wird dieser Punkt vorest vernachlässigt.
 
 \subsection{Sonstiges}
 \subsubsection{3D Print version}
