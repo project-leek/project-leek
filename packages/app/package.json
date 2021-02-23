@@ -20,7 +20,7 @@
     "@fortawesome/fontawesome-free": "5.15.2",
     "@leek/commons": "*",
     "@types/lodash": "4.14.168",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "socket.io-client": "2.4.0",
     "tailwindcss": "2.0.3",
     "vue": "3.0.5",
