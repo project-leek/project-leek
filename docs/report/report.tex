@@ -1152,15 +1152,17 @@ In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiederg
 \colorbox{red}{Hier noch viel viel mehr Text,sodass das Bild umschlossen wird --> Dann Bild oben einkommentieren }
 \\~\\
 % TagDetails
-Auch war nun das Bearbeiten der Tags möglich.
-Dabei handelte es sich lediglich um die beim Anlegen eingestellten Informationen: Name, Lied und Bild des Tags.
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{TagDetails.jpeg}}{Tag Details}
-An dieser Stelle zeigte sich erneut die Vorzüge von Frameworks wie  \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
-Um ein gleiches Design der Überschriften der einzelnen Inputs zu haben, wurden hier insgesamt vier \textit{LabeledInput} genutzt, für den Namen, die Gruppe, die Musik und das Bild.
-Für das ändern des Namens wurde \textit{TextInput} genutzt, dem \textit{nfcTag.name} übergeben wird.
-Die Auswahl einer anderen Gruppe erfolgt über das eigene \textit{Dropdown} gelöst, der \textit{nfcTagGroup} und \textit{tagGroupListItems} übergeben bekommt.
-Für die Musik wurde ein Feld mit dem derzeitigen Titel angezeigt, und daneben ein \textit{Button}, der bei einem Klick in einen anderen \textit{View} weiterleitet.
-Selbiges Verfahren wurde auch für das Bild verwndet, welches angezeigt wird und daneben ein \textit{Button} auf ein anderes \textit{View} weiterleitet.
+Auch die Funktionalität zum Bearbeiten der NFC-Tags wurde in diesem Meilenstein umgesetzt.
+An dieser Stelle zeigten sich erneut die Vorzüge von Frameworks wie \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
+Um ein gleiches Design der Überschriften der einzelnen Inputs zu garantieren, wurden die erstellten \textit{components} \textit{LabeledInput} für die Anzeige von Namen, Gruppe, Musik und Bild verwendet.
+Zur Änderung des Namens wird das erstellte \textit{component} \textit{TextInput} genutzt, dem beim Aufruf der \textit{View} eine Referenz auf \textit{nfcTag.name} übergeben wird, sodass dieses den Namen anzeigt.
+Ähnlich erfolgt die Auswahl und Anzeige der Gruppe. Hier wird anstatt der \textit{TextInput component} die \textit{Dropdown component} verwendet, die eine Referenz auf \textit{nfcTag.Group} empfängt und als Elemente die bereits existierenden Gruppen enthält.
+Der Benutzer hat ebenfalls die Möglichkeit neue Gruppen anzulegen.
+Für die Anzeige des dem Tag zugewiesenen Musikstücks wird ein dem \textit{TagEntry compontent} visuell ähnliches Element verwendet, welches als Hintergrund das angedeutete Logo des Musikstreaming-Anbieters enthält.
+Zur Änderung des Musikstücks ist die Bearbeiten-Schaltfläche (\textit{Button component}) vorgesehen, die den Benutzer auf die bereits beim Anlegen verwendete \textit{component AddStepTrack} weiterleitet, die die benötite Funktionalität liefert.
+Das gleiche Verfahren wird auch für die Anzeige und Änderung des Bildes verwendet.
+
 
 % Visualisierung des ausgewählten Tags
 Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
