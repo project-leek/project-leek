@@ -12,6 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{listings}
 \usepackage[onehalfspacing]{setspace}
+
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
@@ -436,28 +437,29 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
       \textit{Windows Subsystem für Linux (WSL)}\footnote{\raggedright\url{https://docs.microsoft.com/de-de/windows/wsl/about}}, welches eingesetzt wurde, um eine möglichst homogene Arbeitsumgebung innerhalb des Teams sicherzustellen
       und neben der gleichen IDE auch auf Betriebssystemen der gleichen Kernel-Infrastrukur (UNIX) zu arbeiten. Dies erleichterte insbesondere die Arbeit mit \textit{Docker} deutlich.
 
+      \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Figma.png}}{Proto\-typisierung mit \textit{figma}}
       \subsubsection{Prototyping (Figma)}
       \label{figma}
-      \wrapfiguresafe{l}{0mm}{\includegraphics[width=8cm]{Figma.png}}{Proto\-typisierung mit \textit{figma}}
       Zur Abstimmung auf ein Design für die Benutzer\-oberfläche wurden vor der Entwicklung Proto\-typen der benötigten Komponenten mittels des webbasierten
       Prototyping-Tools \textit{figma}\footnote{https://www.figma.com/} konzipiert. So konnten neben dem Design auch Abläufe in Form von \glqq Click-Dummys\grqq{} erstellt werden und mit dem Kunden abgestimmt werden.
       \textit{Figma} wurde verwendet, da es einen kollaborativen Zugriff ermöglicht, kostenlos ist und bereits Erfahrung mit der Plattform bestand.
 
+      \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Lucidchart.png}}{Zeichnen von Diagrammen mit \textit{Lucidchart}}
       \subsubsection{Lucidchart}
       \label{Lucidchart}
-      \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Lucidchart.png}}{Zeichnen von Diagrammen mit \textit{Lucidchart}}
       Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
       Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
       Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
       Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
+
+  \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.62\textwidth]{Entwicklungszyklus.png}}{Entwicklungszyklus}
   \subsection{Entwicklungszyklus}
-   \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Entwicklungszyklus.png}}{Entwicklungszyklus}
     Während der Umsetzung der \textit{leek-box} durchlief jedes Teammitglied für jedes \textit{Issue} den am Anfang des Projekts festgelegten und
     durch die Retrospektiven optimierten Zyklus.
     \\~
     Am Anfag steht die Auswahl eines \textit{Issues} aus der Spalte \textit{ToDo} des \textit{Issue Boards}.
     Nach Identifikation weist sich der Entwickelnde dem Ticket zu. Daraufhin erstellt der verwendete Bot automatisch einen \textit{Branch}
-    in dem Schema \textit{[Ticketnummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
+    in dem Schema \textit{[Ticket\-nummer]-[Ticketname]}. Nun kann mit der Arbeit in \textit{Visual Studio Code} begonnen werden.
     \\~
     Die Änderungen sollten möglichst kleinschrittig aber sinnvoll \textit{comittet} und anschließend \textit{gepusht} werden.
     GitHub erkennt automatisch die neuen \textit{commits} und erfragt, ob ein neuer \textit{Pull-Request} angelegt werden soll.
@@ -564,6 +566,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   \paragraph*{Components} $~$ \\
   Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
+  \\~\\
   \begin{minipage}{\textwidth}
     \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
       <template>
@@ -863,6 +866,12 @@ Im Frontend wurde pro Haustier je ein \textit{component} zur Anzeige eines Haust
 welches zusammen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} platziert wurde.
 Aufgrund der je nach Entwickler sehr unterschiedlichen Implementierung der \textit{component} wird hier auf eine ausführliche Beschreibung verzichtet.
 
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{Haustiere.png}
+    \caption{Zwei der Haustiere und die Anzeige des NFC-Readers}
+    \label{Haustiere}
+\end{figure}
+
 \paragraph*{NFC-Tags auslesen} $~$ \\
 \colorbox{red}{Hier bei Bedarf noch weiter ausführen}
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt und das Auslesen der NFC-Tags implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
@@ -918,11 +927,11 @@ wenig Kontakt haben und darüber hinaus wenig persönliche Erfahrungen in dem Th
 Diese Schwierigkeiten wurden durch offene Kommunikation an macio weitergegeben,
  die daraufhin einen ihrer Designer zur Unterstützung bei der Entwicklung bereitstellten.
 
-\paragraph*{Flow-Charts} $~$ \\
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{ConnectToWIFI.png}}{Flowchart: Connect to WIFI}
+\paragraph*{Flow-Charts} $~$ \\
 Außerdem wurden die im letzten Sprint erstellten \textit{User Stories} als Grundlage für die Entwicklung von \textit{Flow-Charts} verwendet.
 Diese wurden mit dem Online-Tool \textit{Lucidchart} (vgl. \ref*{Lucidchart}) erstellt und sind im Anhang unter \ref*{FlowCharts} zu finden.
-Sie erleichterten die Umsetzung der Deisgn-Mockups, indem sie notwendigen Abläufe visualisierten.
+Sie erleichterten die Umsetzung der Design-Mockups, indem sie notwendigen Abläufe visualisierten.
 Dank dieses Zwischenschrittes konnten auch die nicht durch Mockups visualisierte Funktionen, wie das Verbinden der Box mit dem WLAN, zuerst logisch skizziert
 werden, bevor sie programmiert wurden. Dadurch konnte innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability
 für den Benutzer sicherzustellen. Außerdem konnten sie auch dem Kunden vorgelegt werden, um etwailige Miskommunikation bei der Anforderungsanalyse zu vermeiden
@@ -933,7 +942,7 @@ Meinung aller Teammitlgieder die spätere Programmierung maßgeblich effizienter
 \paragraph*{Musik abspielen} $~$ \\
 Auch der vom Kunden geäußerte Wunsch, beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abzuspielen, sollte in diesem Milestone umgesetzt werden.
 Dafür setzte sich ein Teil des Teams intensiv mit der \textit{Spotify-API}\footnote{https://developer.spotify.com/documentation/web-api/} auseinander.
-Hierbei entdeckten die Entwickler die Biblothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
+Hierbei entdeckten die Entwickler die Bibliothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
 abstrahiert und so den Zugriff auf diese erleichtert. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
 \footnote{https://docs.feathersjs.com/api/hooks.html} verwendet. Hooks sind Funktionen, die z. B. vor oder nach einem Feathers Service Aufruf ausgeführt werden
 können. In diesem Fall beinhaltet der angelegte \textit{playSpotify} Hook einen Aufruf der Methode \textit{play} der \textit{Spotify Web API Node}, die den Song
@@ -941,7 +950,7 @@ hinter der \textit{URL} des mitgegebenen NFC-Tags abspielt. Dieser Hook ist an d
 Anschluss an die \textit{patch} Methode, die den Eintrag des \textit{attachedTag} des NFC-Readers aktualisiert, aufgerufen wird.
 
 \paragraph*{NFC-Tags scannen emulieren} $~$ \\
-Da während des Projekts nicht alle Entwicker kontunierlichen Zugang zu einem NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
+Da während des Projekts nicht alle Entwickler kontinuierlichen Zugang zu einem NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
 geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Shell-Script} erstellt, welches einen \textit{HTTP PATCH request} an
 das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann zum Beispiel ein NFC-Tag mit
 der ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
@@ -950,9 +959,9 @@ an seiner Entwicklungsmaschine angeschlossen haben muss. So konnten Funktionen w
 
 \paragraph*{Entwicklung des Welcome Screens mit Authentifizierung} $~$ \\
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{WelcomeScreenV1.png}}{Welcome Screen Version 1}
-Um das in diesem Milsteone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können, musste sich auch mit der Authentifizierung mit Spotify beschäftigt
+Um das in diesem Milestone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können, musste sich auch mit der Authentifizierung mit Spotify beschäftigt
 werden. Dafür wurde das offene Protokoll \textit{OAuth} verwendet, welches bereits in \textit{Feathers} abstrahiert implementiert ist. Zur Nutzung dieses
-Protokolles wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
+Protokolls wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
 Die dafür nötige \textit{Stragegy} mit dem Namen \textit{SpotifyStrategy} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
 \textit{OAuthStragegie} erbt. Bei der Anmeldung eines Benutzer wird von Spotify ein JWT-Token an das Backend übergeben. Ein JWT-Token besteht aus einem Base64
 enkodiertem Text, welcher beliebige Daten beinhalten kann. Diese Daten sind unverschlüsselt (nur enkodiert) in dem Token hinterlegt und werden
@@ -1012,12 +1021,13 @@ Beispielsweise wurde die Darstellung auf dem Homescreen und die Auswahl von Info
 Schließlich wurden alle Komponenten und Seiten zusammengefügt um einen vollständigen Flow zu ermöglichen.
 Es konnte nun erfolgreich per UI ein neuer Tag der Datenbank hinzugefügt und in dem HomeScreen angezeigt werden.
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue aus \textit{components}}
 \paragraph*{Components}$~$ \\
 Für Elemente, die häufig in der Anwendung genutzt werden (Button, Textfield, DropDownList),
 entwicklete das Team \textit{Vue Components}, die in dem Ordner \textit{uiBlocks} für alle Entwickler leicht zugänglich abgelegt wurden.
 Diese \textit{components} garantieren, dass die Elemente anpassbar sind und dennoch einem einheitlichen Design folgen.
 Besonders am Anfang halfen sie dem Entwickler, da sie die Komplexität der Implementierung von Design und Funktionalität senkten.
-Diese mussten lediglich einmalig in der \textit{compontent} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden.
+Diese mussten lediglich einmalig in der \textit{component} definiert werden und konnten dann bei Bedarf in den \textit{Views} eingebunden werden.
 Es musste dann nur noch der Inhalt über \textit{properties} übergeben werden.
 Während der fortschreitenden Entwicklung trat allerdings das Problem auf, dass immer mehr Anforderungen an die \textit{components} gestellt wurden,
  und damit immer mehr \textit{Properties} für deren Anpassung notwendig waren.
@@ -1027,8 +1037,8 @@ Aufgrund der verschiedenen geforderten Größen und Anforderungen der enthaltend
 Als Lösung wurde in späteren Meilensteinen eine erneute Analyse durchgeführt, um zu ermitteln, welche Anforderungen einzelne Komponenten erfüllen mussten.
 Die Ergebnisse dieser Analyse wurden anschließend genutzt, um den Code zu überarbeiten, wodurch die Übersichtlichkeit der \textit{components} wiederhergestellt wurde.
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{Home.png}}{Home View}
 \paragraph*{Umsetzung des Homescreens}$~$ \\
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=5.9cm]{HomeScreenSchema.png}}{Schematischer Aufbau Home.vue}
 Im HomeScreen sollten alle angelegten Tags gruppiert angezeigt werden. Hierfür wurden zwei \textit{components} angelegt. Die Erste (\textit{TagEntry})
 enthält das Bild und den Namen eines NFC-Tags und kann in der Anwendung vielseitig wiederverwendet werden. Die Zweite \textit{component} mit dem Namen
 \textit{GroupDropDown} repräsentiert eine Gruppe, zu der ein NFC-Tag gehört.
@@ -1136,6 +1146,8 @@ Das Team stimmte überein, dass eine bessere Planung sowie Abstimmung für die n
 Auch sollte eine frühere interne Deadline gesetzt werden, damit nicht kurz vor dem Sprintende noch viele Fehler auftreten und behoben werden müssen.
 Um insgesamt auch die Arbeit kontinuierlicher zu gestalten, sollten Aufgaben in kleinere Probleme aufgeteilt werden.
 
+
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Leek Box Einstellungen}
 \subsection{Meilenstein 5}
 Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
 
@@ -1146,10 +1158,8 @@ Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein 
 Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
 \\~\\
 % Settings
-%\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Leek Box Einstellungen}
 Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
 In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
-\colorbox{red}{Hier noch viel viel mehr Text,sodass das Bild umschlossen wird --> Dann Bild oben einkommentieren }
 \\~\\
 % TagDetails
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{TagDetails.jpeg}}{Tag Details}
@@ -1233,8 +1243,8 @@ Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum 
 \wrapfiguresafe{r}{0mm}{
   \includegraphics[width=0.45\textwidth]{noTagsFound.png}}{no tags found div}
 Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
+
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
 \paragraph*{Button Refactor} $~$ \\
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
@@ -1283,6 +1293,7 @@ Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
 \paragraph*{Leek Box zum Account hinzufügen} $~$ \\
 \colorbox{red}{@anton hier}
 
+
 \paragraph*{Bericht} $~$ \\
 Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
 Die daraus resultierenden Änderungen wurden in Tickets überführt, die sich die einzelnen Teammitglieder zuweisen konnten.
@@ -1300,6 +1311,7 @@ Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 \paragraph*{Letzte Bugfixes} $~$ \\
 \colorbox{red}{TODO: @anton / julian?}
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.65\textwidth]{Latex.png}}{Bericht während der Erstellung}
 \paragraph*{Bericht} $~$ \\
 Da die erste Version des Berichtes zu Beginn des Sprints noch nicht abgeschlossen war, musste das Team dies zeitig erledigen, um noch erste Anmerkungen vom Prüfenden erhalten und anschließend korrigieren zu können
 Nach erneuter Rücksprache mit diesem ergab sich ein geforderter Umfang von 50-60 Seiten für den Bericht (exklusive Anhang).
