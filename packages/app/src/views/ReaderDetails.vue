@@ -7,8 +7,8 @@
     <main
       class="bg-secondary max-h-full overflow-y-auto flex-grow p-6 bg-gradient-to-b from-primary to-secondary"
     >
-      <LabeledInput label="Tag Name" class="w-full">
-        <Textfield v-model="readerName" placeholder="z. B. Mario Figur" class="rounded-full" />
+      <LabeledInput label="Name des Readers" class="w-full">
+        <Textfield v-model="readerName" placeholder="z. B. Porree-Box" class="rounded-full" />
       </LabeledInput>
 
       <LabeledInput class="mb-5 mt-10" label="Box Lautsprecher">
