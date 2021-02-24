@@ -122,6 +122,10 @@ Welche Teams die jeweiligen Projekte bearbeiten, entscheiden die Firmen selbst.
 Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team für die macio GmbH aus Kiel bearbeitete.
 
 \subsection{Unternehmen}
+Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
+Das Team schätzte die Bereitschaft, die geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
+Damit wurde die folgende Definition für Open-Source erfüllt:
+
 \begin{quote}
   \textit{Ich denke, dass jede allgemein nützliche Information frei sein sollte.
   Mit 'frei' beziehe ich mich nicht auf den Preis, sondern auf die Freiheit, Informationen zu kopieren und für die eigenen Zwecke anpassen zu können.
@@ -129,10 +133,7 @@ Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team 
   \cite{openSource}
 \end{quote}
 
-\colorbox{orange}{Ja und? warum ist das relevant? was bedeutet das für unser Projekt}
-Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
-Damit zeigten sie die Bereitschaft, die vom Team geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
-Ihr Hauptgeschäft ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
+Das Hauptgeschäft von macio ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
 Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten.
 So gab beispielsweise ein Designer des Unternehmens hilfreiches Feedback zum Entwurf der Benutzeroberfläche.
 \subsection{Anforderungsanalyse}
@@ -260,8 +261,7 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
   Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
   Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
 
-  \subsection{Open-Source}
-  \colorbox{red}{Punkt umbenennen}
+  \subsection{Quelloffenes Arbeiten}
   Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
   Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
   Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
@@ -448,7 +448,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
       \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Lucidchart.png}}{Zeichnen von Diagrammen mit \textit{Lucidchart}}
       Um Abläufe schon vor dem Prototyping skizziert darstellen zu können wurde außerdem die webbasierte Plattform \textit{Lucidchart}\footnote{\raggedright\url{https://www.lucidchart.com/}} verwendet.
       Hier wurde neben der initial erstellten Produktübersicht auch mehrere Aktivitätsdiagramme erstellt, die aus vom Projektteam entwickelten und mit dem Kunden abgestimmten User-Stories entstanden sind.
-      Diese sind im Anhang unter \colorbox{yellow}{Verweis einfügen!} zu finden.
+      Diese sind im Anhang unter \ref{anhang:lucidchart} zu finden.
       Auch diese Plattform ermöglicht den gleichzeitigen Zugriff und war den Entwicklern bereits bekannt, was die Notwendigkeit der Einarbeitung eliminierte.
   \subsection{Entwicklungszyklus}
    \wrapfiguresafe{r}{0mm}{\includegraphics[width=8cm]{Entwicklungszyklus.png}}{Entwicklungszyklus}
@@ -509,20 +509,15 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     So konnten auch Änderungsvorschläge gemacht und direkt übernommen werden, war für einen effizienten Review-Prozess sorgte.
 
   \subsubsection*{Dynamische Tests}
-    \colorbox{orange}{Hier ggf. nochmal die Satzstrukturanpassen ist alles sehr parataktisch}
     Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
-    Bei dieser Art von Test werden auf User-Stories aufbauende Testfälle herangezogen.
     Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
-    Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt.
-    Bei diesen wurde die Änderungen im Kontext der bestehenden Software getestet.
+    Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
     So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
     Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
     Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
     \\~\\
-    Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt.
-    Diese Unit-Tests wurden zur einfacheren Wiederholbarkeit automatisiert.
-    Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt.
-    Dieses wurde gewählt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
+    Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt, welche zur einfacheren Wiederholbarkeit automatisiert wurden.
+    Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
     Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
 \section{Technische Umsetzung}
@@ -770,6 +765,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 
   \subsubsection{Reverse-Tunnel (ngrok)}
+  \label{kapitel:ngrok}
   Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
   Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
   Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
@@ -864,7 +860,6 @@ welches zusammen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in
 Aufgrund der je nach Entwickler sehr unterschiedlichen Implementierung der \textit{component} wird hier auf eine ausführliche Beschreibung verzichtet.
 
 \paragraph*{NFC-Tags auslesen} $~$ \\
-\colorbox{red}{Hier bei Bedarf noch weiter ausführen}
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt und das Auslesen der NFC-Tags implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
 in Vergessenheit, sodass sich das Team einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden könnte.
 Um das Sprintziel nicht zu gefährden, mussten gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen konnte.
@@ -881,7 +876,6 @@ NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die �
 kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
 folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
 \\
-\colorbox{red}{Hier bei Bedarf noch weiter ausführen, aber wäre sehr ins Detail gegeangen}
 Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
 ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
 
@@ -1149,7 +1143,6 @@ Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und 
 %\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Leek Box Einstellungen}
 Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
 In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
-\colorbox{red}{Hier noch viel viel mehr Text,sodass das Bild umschlossen wird --> Dann Bild oben einkommentieren }
 \\~\\
 % TagDetails
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{TagDetails.jpeg}}{Tag Details}
@@ -1215,11 +1208,11 @@ Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone 
 Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
 Da das Team viel Gefallen an dem Projekt gefunden und entsprechend viel Energie aufgewendet hat, war dieses Lob sehr wertvoll und motivierend.
 Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
-\colorbox{red}{inject provide}
 Problematisch war es, dass manche Tickets von mehreren Entwicklern zeitgleich oder nacheinander bearbeitet wurden, sodass einige der getätigten Änderungen redundant waren.
 Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
 Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
-Lösungsvorschläge waren Verbesserung des Zeitmanagements durch \colorbox{yellow}{???} und eine bessere Kommunikation durch Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder.
+Lösungsvorschläge waren Verbesserung des Zeitmanagements durch Steigerung der Arbeitsstunden zu Beginn eines Sprints, sodass gegen Sprintende weniger offene Tickets vorhanden waren und das Team mehr Zeit zur Behebung möglicher Fehler vorhanden wäre.
+Eine bessere Kommunikation konnte durch das Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder erreicht werden.
 
 \subsection{Meilenstein 6}
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
@@ -1272,7 +1265,7 @@ Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt,
 Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
 So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
 und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
-Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \colorbox{red}{Hier verweis auf ngrok einfügen} implementiert.
+Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \ref{kapitel:ngrok})implementiert.
 Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \textit{URL}, die im Frontend eingeben werden kann.
 Anfäglich wurde diese \textit{URL} jedoch nicht validiert
 Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
@@ -1316,9 +1309,25 @@ Am Ende dieser Präsentation sollte der Prüfende die Arbeitsleistung des Teams 
 Da dies der letzte Meilenstein des Projektes war, fand an dieser Stelle keine Retrospektive statt.
 
 \section{Fazit}
-\subsection{Probleme, Lösungen, Erkenntnisse}
-\colorbox{red}{TODO: Finde TITEL:} Fazit oder nur Erkenntnisse oder oder?
-\colorbox{red}{Besseres Intro zum Kapitel?}
+\subsection{Ausblick}
+Am Ende der Bearbeitungszeit hat das Team ein Produkt geschaffen, welches die vom Kunden gestellten Mindestanforderungen erfüllt.
+Darüber hinaus gibt es noch einige weitere Aspekte der Produktvision, die noch umgesetzt werden könnten.
+Darunter befanden sich unter anderem eine Preisbeschränkung der \textit{leek-box}-Hardware auf 30€ und die Möglichkeit eigene Lautsprecher zu nutzen.
+Auch die Benutzeroberfläche für die NFC-Tag-Konfiguration könnte noch weiter optimiert werden.
+Aber vor allem sollten andere Musikstreaming-Services neben Spotify eingebunden werden,
+welche dann in gleicher Weise zur Anmeldung und zum Hinzufügen und Abspielen von Musik genutzt werden.
+Nutzer könnten auch ihre Konten bei diesen Services verknüpfen und so NFC-Tags plattformübergreifend gemeinsam verwalten.
+Allerdings waren diese Vorstellungen von Anfang an optional, sie bildeten aber die allgemeine Produktvision und legten die Grundlage für mögliche Weiterentwicklung.
+Das Team hofft, dass Teile der Open-Source-Community genug Interesse an diesem Projekt haben werden, um daran weiter zu entwickeln.
+Vielleicht haben diese auch weitere Ideen für die Zukunft der \textit{leek-box}.
+Des weiteren besteht auch die Hoffnung, dass macio einiges von der Organisation dieses Projekts gelernt hat und auch fortlaufend weiter daraus lernen wird.
+So könnten dort in Zukunft auch weitere Projekte als Open-Source aufgestellt werden.
+Auch hofft das Team, dass auch in den nächsten Jahren des \glqq Projekt Informatik \grqq{} mehr Open-Source Projektvorschläge gestellt werden.
+Dies würde Studierende damit konfrontieren Software zu erstellen, die nicht zwingend abgeschlossen wird.
+Sie würden auch lernen, Code für unbekannte Kollaborierende zu schreiben.
+Vor allem würde es aber zeigen, wie viel Spaß lebendige und langlebig angelegte Projekte machen können.
+
+\subsection{Projektreflexion}
 Das Projekt Informatik gab einen realistischen Einblick in die Arbeitswelt.
 Das Team musste sich klassischen Alltagsproblemen stellen, Lösungswege finden und konnte wichtige Erkenntnisse für die Zukunft daraus ziehen.
 Auch Coding-Entwurfsmuster und -Konventionen wurden neu erlernt und praktisch angewandt.
@@ -1345,7 +1354,7 @@ Inhaltliche Funktionen der Applikation wurden durch die Tests nicht abgedeckt.
 Diese prüften den Quellcode anhand fest eingestellter Testparameter.
 Durch diese Tests wurde dem Team viel manuelle Arbeit abgenommen und die Fehlerquelle Mensch minimiert.
 Änderungen im Master werden automatisch verarbeitet. Die neue Version des Codes wird auf Github.io veröffentlicht und geänderte Latex Dateien als PDF im eigenen Branch erstellt.
-Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer \colorbox{yellow}{temporären} Webseite veröffentlicht.
+Für Pull Requests wurde ebenfalls eine Vorschau erstellt und auf einer separaten Webseite veröffentlicht.
 Dank dieser Automatisierungen konnte sich das Team mehr auf das Weiterentwickeln des Projektes konzentrieren.
 
 %Regelmäßige Standups und Retrospektiven
@@ -1372,31 +1381,13 @@ Dadurch sollte genügend Zeit geschaffen werden, um Tickets auf Korrektheit zu t
 Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können, war diese Methode angesichts der knappen Projektlaufzeit die effektivste.
 
 
-\subsection{Ausblick}
-Am Ende der Bearbeitungszeit hat das Team ein Produkt geschaffen, welches die vom Kunden gestellten Mindestanforderungen erfüllt.
-Darüber hinaus gibt es noch einige weitere Aspekte der Produktvision, die noch umgesetzt werden könnten.
-Darunter befanden sich unter anderem eine Preisbeschränkung der \textit{leek-box}-Hardware auf 30€ und die Möglichkeit eigene Lautsprecher zu nutzen.
-Auch die Benutzeroberfläche für die NFC-Tag-Konfiguration könnte noch weiter optimiert werden.
-Aber vor allem sollten andere Musikstreaming-Services neben Spotify eingebunden werden,
-welche dann in gleicher Weise zur Anmeldung und zum Hinzufügen und Abspielen von Musik genutzt werden.
-Nutzer könnten auch ihre Konten bei diesen Services verknüpfen und so NFC-Tags plattformübergreifend gemeinsam verwalten.
-Allerdings waren diese Vorstellungen von Anfang an optional, sie bildeten aber die allgemeine Produktvision und legten die Grundlage für mögliche Weiterentwicklung.
-Das Team hofft, dass Teile der Open-Source-Community genug Interesse an diesem Projekt haben werden, um daran weiter zu entwickeln.
-Vielleicht haben diese auch weitere Ideen für die Zukunft der \textit{leek-box}.
-Des weiteren besteht auch die Hoffnung, dass macio einiges von der Organisation dieses Projekts gelernt hat und auch fortlaufend weiter daraus lernen wird.
-So könnten dort in Zukunft auch weitere Projekte als Open-Source aufgestellt werden.
-Auch hofft das Team, dass auch in den nächsten Jahren des \glqq Projekt Informatik \grqq{} mehr Open-Source Projektvorschläge gestellt werden.
-Dies würde Studierende damit konfrontieren Software zu erstellen, die nicht zwingend abgeschlossen wird.
-Sie würden auch lernen, Code für unbekannte Kollaborierende zu schreiben.
-Vor allem würde es aber zeigen, wie viel Spaß lebendige und langlebig angelegte Projekte machen können.
-
 \end{onehalfspace}
 
 \newpage
 \section{Anhang}
-\colorbox{red}{macio Projektskizze einfügen} \label{pdf:macioprojektskizze}
+\label{pdf:macioprojektskizze}
 \label{FigmaDesigns}
 \label{FlowCharts}
-\colorbox{red}{BEISPIEL, DELETE THIS} Buchreferenz \cite{Literaturbeispiel:tom} oder Seitenref \cite{google}
+\label{anhang:lucidchart}
 \printbibliography
 \end{document}
