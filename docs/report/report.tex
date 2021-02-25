@@ -538,6 +538,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
 
   \subsection{Technologien}
+
   \label{technologien}
 
   \subsubsection{Programmiersprachen}
@@ -796,10 +797,20 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
   Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
 
+  \subsection{Hardware}
+  \subsubsection*{Raspberry Pi}
 
+  \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{NfcReaderAndTag.jpeg}}{NFC Reader und NFC Tag}
+  \subsubsection{NFC Tags \& NFC Reader}
+    Ähnlich wie bei Konkurrenzprodukten, wird als Peripheriegerät für den Raspberry Pi ein NFC Reader genutzt.
+    Die Steuerung der Box kann so mittels NFC-Tags durchgeführt werden.
+    NFC steht für \glqq Near Field Communication\grqq{} (Nahfeld-Kommunikation), ein Standard, der
+    Datenübertragung auf sehr kurzer Distanz ermöglicht.
+    NFC-Tags sind kleine Chips, die von einem NFC Reader ausgelesen werden können. Die Daten können je nach
+    NFC Chip, von nur einer simplen \textit{Id} bis hin zu beschreibbaren NFC Tags mit unterschiedlichsten Daten
+    variieren. In diesem Projekt wurden die primitiveren NFC-Tags, welche nur eine ID speichern, verwendet.
 
-
-\section{Durchführung}
+  \section{Durchführung}
 \subsection{Meilenstein 1}
 Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
 %Ziel
