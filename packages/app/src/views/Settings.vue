@@ -39,7 +39,6 @@
         </div>
       </LabeledInput>
 
-
       <div class="text-white pt-10">
         <span>Acknowledgement:</span>
         Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
