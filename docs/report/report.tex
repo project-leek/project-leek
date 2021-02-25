@@ -290,26 +290,23 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
 \label{machbarkeitsstudie}
 
 \subsection{NFC Tag}
-\colorbox{orange}{lesen und schreiben vlt als ein gemeinsamer Abschnitt}
-\colorbox{orange}{kurzer text der zu NFC-Tags allgemein schreibt}
-\subsubsection*{lesen}
-Um mit NFC Tags arbeiten zu können, müssen diese auch entschlüsselt bzw. gelesen werden können.
-Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an die Box kommuniziert.
+\subsubsection*{lesen und schreiben}
+Um mit NFC Tags arbeiten zu können, müssen diese gelesen und diese Daten an das Backend übertragen werden.
+Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an den Raspberry Pi kommuniziert.
 Dieser emuliert dafür Keyboard Eingaben, die die Tag-IDs darstellen.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden. Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden. Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.
-
-\subsubsection*{schreiben}
-Ein NFC-Tag hat generell eine feste ID.
+Ein NFC-Tag hat generell nur eine feste ID.
 Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag also einen eigenen Speicher.
-Ist dieser vorhanden, können dort z.b. Kontaktdaten hinterlegt werden. Werden diese dann von einem Smartphone gelesen, öffnet sich die Kontakte-App und der auf dem NFC-Tag gespeicherte Kontakt kann abgespeichert werden.
-Dafür wäre einerseits ein spezieller NFC-Reader, der auch schreiben kann, sowie eine spezielle Library notwendig.
+Ist dieser vorhanden, können dort z.b. User Daten hinterlegt werden.
+Dafür wäre ein spezieller NFC-Reader, der auch schreiben kann, notwendig.
 
 \subsection{Raspberry Pi}
-\subsubsection{Docker Integration}
-\colorbox{orange}{warum Docker? warum virtualisierung?}
+\subsubsection*{Docker Integration}
+Docker Integration hat, wie schon in Abschnitt \ref{abschnitt:docker} beschrieben, sehr viele Vorteile.
 Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+Dies sollte generell sowohl für das Entwicklerteam als das Nutzen von Docker für den Endkunden kein Problem darstellen.
 
-\subsubsection{Öffentlich zugängliches Web Interface}
+\subsubsection*{Öffentlich zugängliches Web Interface}
 Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
 Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu können, muss innerhalb des Routers ein Port ge-forwarded werden.
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
@@ -318,75 +315,76 @@ Alternativ ginge es auch ohne Port-Forwarding mit nginx und ngrok \footnote{http
 \colorbox{orange}{warum die? wofür sind die?}
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
 
-\subsubsection{URL für UI festlegen}
-\colorbox{orange}{warum ist das interassant?}
-Über ein mDNS Service, der auf dem Raspberri Pi läuft, wäre es möglich für die statische Public-IP eine eigene URL anzulegen.
-Dafür sind verschiedene mDNS Services möglich, potentiell ist auch eine Domain notwendig.
-
 \subsection{User Interface}
-\subsubsection{Zugriff auf NFC Reader von Cloud Anwendung}
+\subsubsection*{Zugriff auf NFC Reader von Cloud Anwendung}
 Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen, wäre ein zentrales Backend mit einer API sinnvoll.
 Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
 
-\subsubsection{Login via Spotify, Youtube, etc.}
-\colorbox{orange}{warum so? was ist die Alternative?}
+\subsubsection*{Login via Spotify, Youtube, etc.}
+Um direkt zu Authentifizieren, ob der Nutzer ein Account bei einem jeweiligen Musikservice hat, und welches Abomodell er bei diesem besitzt, bietet es sich an, diesen direkt mit dem jeweiligen Service direkt einloggen zu lassen.
 Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
 
-\subsubsection{Nutzer verschiedener Streaminganbieter wiedererkennen}
+\subsubsection*{Nutzer verschiedener Streaminganbieter wiedererkennen}
 Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
 Die E-Mail wäre hierbei ein geeignetes Merkmal, da dies einzigartig ist. Über gesetzte Scopes in der OAuth Anfrage kann diese vom jeweiligen Provider mitgeliefert werden.
 Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen. Dies ist aber nicht immer der Fall.
 Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
-\subsubsection{Musik Artwork laden}
-\colorbox{orange}{weniger umgangssprachlich und mehr}
-Sollte bei der Verwendung von Spotify kein Problem sein, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern enthalten ist.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
+\subsubsection*{Musik Artwork laden}
+Um ein Wiedererkennungsmerkmal von der jeweilig genutzten Musik zu haben, könnte das dazu gehörige Musik Artwork geladen und gespeichert werden.
+Beim primär verwendeten Musikservice Spotify sollte dies kein Problem darstellen, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern mitgeliefert wird.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
-\subsubsection{Eigene Bilder hochladen}
-Eigene Bilder hochzuladen sollte möglich sein. In unserem Kontext mit Vue.js und Node.js würde das Plugin \textit{vue-picture-input} helfen.
-Mit einem Axios Post könnte das Bild an das Backend gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}
+\subsubsection*{Eigene Bilder nutzen}
+Um den Nutzer mehr Personalisierung seiner angelegten Tags zu ermöglichen, könnte dieser eigene Bilder verwenden.
+Eigene Bilder hochzuladen sollte generell möglich sein.
+Der einfachere Weg hierbei ist es, den Nutzer ein externes Bild verlinken.
+Das ist ohne größerer Aufwand möglich.
+Sollte der Nutzer eigene Bilder hochladen wollen, wird das ganze etwas komplizierter, da die Daten zum Backend gesendet werden müssten.
+In unserem Kontext mit Vue.js und Node.js würde das Plugin \textit{vue-picture-input} helfen.
+Mit einem \textit{Axios Post} könnte so das Bild an das Backend gesendet werden. \footnote{https://www.digitalocean.com/community/tutorials/vuejs-uploading-vue-picture-input}.
 
-\subsubsection{Spotify Connect Lautsprecher auswählen}
-\colorbox{orange}{spotify als einen Abschnitt und zu den anderen Services}
+\subsection{Spotify}
+\subsubsection*{Spotify Connect Lautsprecher auswählen und speichern}
 Das Auswählen von einem spezifischen Spotify Connect Lautsprecher ist möglich.
 Über einen API Call an die Spotify API mit dem Endpunkt \textit{/v1""/me""/player""/device} wird eine Liste von allen verbundenen Geräten geliefert. Über den Endpunkt kann ein entsprechendes Lied zum Abspielen über den jeweiligen \textit{Spotify Connected Speaker} übergeben werden.
 Sollte nicht explizit ein Lautsprecher angegeben werden, so wird der zuletzt aktive genutzt. Dieser hat bei \textit{is\_active} den Wert \textit{true}. \footnote{https://developer.spotify.com/documentation/web-api/guides/using-connect-web-api/}
-
-\subsubsection{Spotify Connect Lautsprecher speichern}
 Die Liste von verbundenen Geräten, die über einen Call an die Spotify API erhalten wird, enthält auch ein eindeutiges Feld \textit{id}, welches sich zusammen mit einem Namen speichern lässt.
 
-\subsubsection{Leek-Box mit Cloud-Anwendung verbinden}
+\subsection{Leek Box / Backend}
+\subsubsection*{Leek-Box mit Cloud-Anwendung verbinden}
 Bei der Ersteinrichtung könnte der Nutzer über die Eingabe der MAC Adresse oder über eine andere festgelegte ID die eigene Box finden und zu seinem Account hinzufügen. Die jeweilige Box wäre dem System anschließend bekannt und könnte zum Beispiel über den vom Nutzer gewählten Namen wiedergefunden und ausgewählt werden.
 
-\subsubsection{Boxdaten über Cloud Anwendung ändern}
+\subsubsection*{Boxdaten über Cloud Anwendung ändern}
 Um die auf der Box gespeicherten Daten aus der Cloud Anwendung heraus zu ändern, könnte ein direkter Aufruf einer API, welche auf der eigenen Box läuft, genutzt werden. Um die Verbindung zu der Box aufbauen zu können, könnte diese auf dem Cloud Backend die entsprechenden Verbindungsdaten hinterlegen.
-\subsubsection{Unterstützung von Youtube Music}
+
+\subsection{Andere Musikservices}
+\subsubsection*{Unterstützung von Youtube Music}
 Eine Umsetzung könnte sich als umständlich erweisen, da es bisher noch keine dedizierte Youtube Music API gibt.
 
-\subsubsection{Unterstützung von Youtube}
+\subsubsection*{Unterstützung von Youtube}
 Youtube bietet die Möglichkeit, nach Videos zu suchen \footnote{https://developers.google.com/youtube/v3/}. Um diese Videos auf dem Raspberry als Musik abzuspielen würde sich \textit{youtube-dl} zum downloaden der Videos als \textit{.mp3} Dateien und \textit{omxplayer} zum Abspielen anbieten.
 Hierfür wäre allerdings ein entsprechender Lautsprecher am Raspberry erforderlich. Ein vergleichbares System zu Spotify Connect existiert derzeit noch nicht.
 
-\subsubsection{Unterstützung von Apple Music}
+\subsubsection*{Unterstützung von Apple Music}
 Apple Music bietet hier mit deren MusicKit JS\footnote{https://developer.apple.com/documentation/musickitjs/} eine Möglichkeit, um Musik abzuspielen.
 
-\subsubsection{Unterstützung von Deezer}
+\subsubsection*{Unterstützung von Deezer}
 Deezer lässt sich vergleichbar zu Spotify über eine API steuern.\footnote{http://developers.deezer.com/login?redirect=/api}
 
 \subsection{Sonstiges}
-\subsubsection{3D Print version}
+\subsubsection*{3D Print version}
 Da unsere Box nicht übermäßig groß sein soll, müssten handelsübliche 3D-Drucker von der Größe ausreichend sein.
 Das Modellieren einer 3D-Print Version ist am Ende von der Expertise der Gruppe abhängig.
 Abgesehen davon sollte es kein besonderes Problem darstellen.
 
-\subsubsection{Sound Wiedergabe auf der Box selbst}
+\subsubsection*{Sound Wiedergabe auf internem Lautsprecher}
 Manche Pi Modelle verfügen über einen On-Board Audio Anschluss.
 Die Wiedergabe über diesen ist qualitativ für Musik meist ungeeignet und sollte daher über ein weiteres Audiomodul oder eine externe Soundkarte erfolgen.
 Innerhalb der Raspberry Pi Reihe gibt es dafür Accessoires, die circa 20-30€ kosten.\footnote{https://www.raspberrypi.org/products/}.
 Zur Wiedergabe auf der Box selbst müsste dafür auf dem Raspberry eine Spotify Instanz laufen, damit auch diese als Connected Speaker erkannt wird.
 Hierfür existieren Libraries wie \textit{raspotify}\footnote{https://github.com/dtcooper/raspotify}.
 
-\subsubsection{Box unter 30€ Kosten}
+\subsubsection*{Kostenpunkt unter 30€}
 Mit einem Raspberry Pi wäre dieses Ziel möglich, es könnte aber kein Pi ab Model 3 verwendet werden, da diese über dem Ziel liegen.
 Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NFC-Reader gäbe es ein kostengünstiges Model, welches für ca. 10\$ erhältlich ist \footnote{https://www.raspberrypi.org/products/raspberry-pi-zero-w/}.
 
@@ -754,6 +752,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
 
   \subsubsection{Containervirtualisierung (Docker)}
+  \label{abschnitt:docker}
   Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
   Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
   Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
