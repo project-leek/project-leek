@@ -38,6 +38,12 @@
           </div>
         </div>
       </LabeledInput>
+
+      <div class="text-white pt-10">
+        <span>Acknowledgement:</span>
+        Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+      </div>
     </main>
 
     <footer class="flex text-gray-800 py-5">
