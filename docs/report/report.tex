@@ -1230,15 +1230,13 @@ Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
 Mit diesem Sprint sollte das User Interface finalisiert, alle Fehlerbehebung abgeschlossen und somit die Entwicklung beendet werden, sodass der Fokus komplett auf den Bericht gelegt werden konnte.
 So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht und das Vorbereiten der Projektpräsentation genutzt werden.
 \\~\\
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
 \paragraph*{Entwicklung} $~$ \\
 Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem am User Interface wurden noch letzte Änderungen durchgeführt.
 Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
 Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=0.45\textwidth]{noTagsFound.png}}{no tags found div}
-Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über \textit{v-if} angezeigt oder ausgeblendet.
+Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über konditionales Rendering per \textit{v-if} angezeigt oder ausgeblendet.
 
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
 \paragraph*{Button Refactor} $~$ \\
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
 \begin{itemize}
