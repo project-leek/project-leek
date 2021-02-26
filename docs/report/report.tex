@@ -512,10 +512,17 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   \subsubsection*{Dynamische Tests}
     Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
-    Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
-    Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
+    Bei diesen Testfällen werden User-Stories Schritt für Schritt \glqq durchgespielt\grqq{} und dabei überprüft, ob das Resultat  dem erwarteten Verhalten entspricht.
+    Die meisten Test dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
     So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
     Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+    Die testenden Entwickler durchliefen bei der Überprüfung folgende Schritte:
+    \begin{enumerate}
+      \item Zu überprüfenden \textit{feature-branch} auschecken
+      \item Projekt bauen und ausführen
+      \item Neue oder geänderte Funktionen mit beispielhaften Eingaben nutzen (z.B. neue NFC-Tags anlegen)
+      \item Gegebenenfalls Probleme und Fehler aufzeichnen und beheben
+    \end{enumerate}
     Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
     \\~\\
     Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt, welche zur einfacheren Wiederholbarkeit automatisiert wurden.
@@ -1259,18 +1266,17 @@ Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Butt
   \item Text mit Icon rechts vom Text
   \item ein Icon ohne Text
 \end{itemize}
-Um diese Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
-Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg sein. Das \textit{Component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher sieben Parametern, konnten alle Anforderung auch mit drei Parametern erreicht werden.
-% Vorher - Nachher Bild einzeigen.
-\colorbox{red}{Hier vorher - nacher Bild anzeigen}
-An dieser Stelle soll verdeutlicht werden wie sich das Komponent selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
+Um diese und andere Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
+Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg, sein. Die \textit{component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher zwölf Parametern, konnten alle Anforderung auch mit acht Parametern erreicht werden.
+\\
+An dieser Stelle soll verdeutlicht werden, wie sich die Komponente selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
 \wrapfiguresafe{r}{0mm}{
   \includegraphics[width=5.9cm]{Screenshot_Button.png}}{Codesnippets vom Button}
   \label{fig:HomeVueSchema}
-Interessant sind die dynamischen Abfragen \glqq v-if\grqq mit denen geprüft wird, ob ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen wodurch der Button seine Form verändert.
-Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das Icon zentriert sein.
-Um die Größe des Buttons zu steuern wurde sich dafür entschieden eine \textit{Property} zu nutzen. So konnte an das \textit{Component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} und \glqq xl\grqq{} übergeben werden.
-Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass es nur eine Art von größeren Buttons existiert.
+Interessant sind die dynamischen Abfragen \textit{v-if} mit denen geprüft wird, ob zum Beispiel ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen, wodurch der Button seine Form verändert.
+Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das darin Icon zentriert sein.
+Um die Größe des Buttons zu steuern, wurde sich dafür entschieden eine \textit{property} zu nutzen. So konnte an die \textit{component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} oder \glqq xl\grqq{} übergeben werden.
+Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass nur eine Art von Buttons existiert.
 \\~\\
 Auch wurde die Desktop Ansicht optimiert:\\
 
