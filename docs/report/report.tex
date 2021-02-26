@@ -522,15 +522,10 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
     Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
-    \begin{figure}[ht]
-      \includegraphics[width=\linewidth]{LeekSoftware_Overview.png}
-      \caption{Überblick zum Aufbau der Leek-Software}
-      \label{fig:LeekSoftwareOverview}
-    \end{figure}
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
 \section{Technische Umsetzung}
   \subsection{Projektstrukur}
-  \wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
   \label{Ordnerstruktur}
   Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
   verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
@@ -549,6 +544,11 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
   Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
 
+  \begin{figure}[h]
+    \includegraphics[width=\linewidth]{LeekSoftware_Overview.png}
+    \caption{Überblick zum Aufbau der Leek-Software}
+    \label{fig:LeekSoftwareOverview}
+  \end{figure}
 
   \subsection{Technologien}
 
