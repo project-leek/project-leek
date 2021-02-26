@@ -291,21 +291,21 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
 
 \subsection{NFC Tag}
 \subsubsection*{lesen und schreiben}
-Um mit NFC Tags arbeiten zu können, müssen diese gelesen und diese Daten an das Backend übertragen werden.
+Zur Nutzung von NFC Tags, müssen diese gelesen und diese Daten an das Backend übertragen werden können.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an den Raspberry Pi kommuniziert.
-Dieser emuliert dafür Keyboard Eingaben, die die Tag-IDs darstellen.
-\textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden.
+Dafür werden Tastatureingaben, die die Tag-IDs darstellen emuliert.
+\textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Eingaben genutzt werden.
 Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden.
-Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.\\
-Ein NFC-Tag hat generell nur eine feste ID.
-Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag also einen eigenen Speicher.
-Ist dieser vorhanden, können dort z.b. User Daten hinterlegt werden.
-Dafür wäre ein spezieller NFC-Reader, der auch schreiben kann, notwendig.
+Um dieses Modul auch für den Raspberry Pi und mit Typscript nutzbar zu machen, wurde ein \textit{Fork}\footnote{https://github.com/anbraten/node-evdev} durchgeführt. Beim \texit{fork} wird das bestehende Repository in ein neues kopiert, damit Änderungen an den Dateien durchgeführt werden können, die jedoch das ursprüngliche Repository nicht verändern. 
+\\
+Um neben der initial gespeicherten ID weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag einen eigenen Speicher.
+Ist dieser vorhanden, können dort z. B. User Daten hinterlegt werden.
+Dafür wäre ein spezieller NFC-Reader, mit Schreibfunktionalität notwendig.
 
 \subsection{Raspberry Pi}
 \subsubsection*{Docker Integration}
-Docker Integration hat, wie schon in Abschnitt \ref{abschnitt:docker} beschrieben, sehr viele Vorteile.
-Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
+Docker Integration sollte aufgrund von einfacher Auslieferbarkeit angeboten werden (vgl. \ref{abschnitt:docker}).
+Die Installation von Docker auf einem Raspberry Pi wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}, weshalb die Umsetzbarkeit dieses Punktes als sehr wahrscheinlich eingeschätzt wird.  
 
 \subsubsection*{Öffentlich zugängliches Web Interface}
 Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
@@ -321,8 +321,8 @@ Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen,
 Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
 
 \subsubsection*{Login via Spotify, Youtube, etc.}
-Um direkt zu Authentifizieren, ob der Nutzer ein Account bei einem jeweiligen Musikservice hat, und welches Abomodell er bei diesem besitzt, bietet es sich an, diesen direkt mit dem jeweiligen Service direkt einloggen zu lassen.
-Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu nutzen, um sich über andere Services wie Spotify anzumelden.
+Zur Feststellung, ob ein Benutzer bei einem Musik-Service angemeldet ist, muss sich dieser authentifizieren. Dabei muss in den meisten Fällen auch das Abomodell ermittelt werden, um die Möglichkeit zur Nutzung von bestimmten Funktionen, wie der freien Wahl eines Songs ,festzustellen. Dafür soll das offene Protokoll \textit{OAuth} verwendet werden, welches von den häufig genutzten Musik-Streaming-Anbietern (Spotify, Deezer, Amazon-Music) unterstützt wird. 
+Es existieren mehrere Bibliotheken, welche die Nutzung von  OAuth Provider abstrahieren, was zu einer verminderten Komplexität führt und somit die Umsetzung erleichtert. 
 
 \subsubsection*{Nutzer verschiedener Streaminganbieter wiedererkennen}
 Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
