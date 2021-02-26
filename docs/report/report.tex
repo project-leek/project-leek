@@ -1291,19 +1291,18 @@ Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \\~\\
-\paragraph*{Frontend in Githup.io Pages} $~$ \\
-Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
-So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
-und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
-Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \ref{kapitel:ngrok})implementiert.
-Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \textit{URL}, die im Frontend eingeben werden kann.
-Anfäglich wurde diese \textit{URL} jedoch nicht validiert
-Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
-Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue \textit{URL} generierte, die dann wieder manuell im Projekt im \textit{Spotify Developer Dashboard} eingetragen werden musste.
-Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten \textit{URL} zu verbinden.
-Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
+\paragraph*{Frontend auf Github.io Pages} $~$ \\
+Das Frontend ist vom Raspberry zu Github.io Pages umgezogen.
+Somit kann der Endnutzer auch ohne Kenntnis der IP-Adresse des Raspberrys auf die Benutzeroberfläche zugreifen
+und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um von außerhalb des Heimnetzwerkes auf seine \textit{Leek Box} zugreifen zu können.
+Die statischen Dateien von GitHub.io werden auf dem Endgerät geladen, sodass die Benutzeroberfläche angezeigt wird.
+In dieser kann der Nutzer die von \textit{Ngrok} bereitgestellte Adresse seiner Leek-Box eingeben, woraufhin sich das Endgerät über einen verschlüsselten Tunnel mit dem Backend der Leek-Box verbindet.
+Anfäglich wurde diese Adresse jedoch nicht validiert, sodass die Eingabe einer fehlerhaften Adresse, in einem Fehler 404 resultierte.
+Bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue Adresse erhält, die anschließend manuell im \textit{Spotify Developer Dashboard} eingetragen werden muss.
+Folglich musste der Nutzer nach jedem Neustart den Browsercache des Endgerätes löschen, um die Adresse der \enquote{neuen} Leek-Box eingeben zu können.
 \\~\\
-\paragraph*{Leek Box zum Account hinzufügen} $~$ \\
+\paragraph*{Einrichten einer Leek} $~$ \\
+*
 \colorbox{red}{@anton hier}
 
 
