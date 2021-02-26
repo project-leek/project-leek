@@ -522,6 +522,12 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
     Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
+    \begin{figure}[ht]
+      \includegraphics[width=\linewidth]{LeekSoftware_Overview.png}
+      \caption{Überblick zum Aufbau der Leek-Software}
+      \label{fig:LeekSoftwareOverview}
+    \end{figure}
+
 \section{Technische Umsetzung}
   \subsection{Projektstrukur}
   \wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
@@ -542,6 +548,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
   Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
   Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+
 
   \subsection{Technologien}
 
