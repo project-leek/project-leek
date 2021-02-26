@@ -294,7 +294,9 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
 Um mit NFC Tags arbeiten zu können, müssen diese gelesen und diese Daten an das Backend übertragen werden.
 Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an den Raspberry Pi kommuniziert.
 Dieser emuliert dafür Keyboard Eingaben, die die Tag-IDs darstellen.
-\textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden. Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden. Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.
+\textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Keyboard-Eingaben genutzt werden.
+Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden.
+Mit dem Fork\footnote{https://github.com/anbraten/node-evdev} von Anbraten wird zusätzlich der Raspberry Pi und die Typescript Unterstützung zur Verfügung gestellt.\\
 Ein NFC-Tag hat generell nur eine feste ID.
 Um weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag also einen eigenen Speicher.
 Ist dieser vorhanden, können dort z.b. User Daten hinterlegt werden.
@@ -303,8 +305,7 @@ Dafür wäre ein spezieller NFC-Reader, der auch schreiben kann, notwendig.
 \subsection{Raspberry Pi}
 \subsubsection*{Docker Integration}
 Docker Integration hat, wie schon in Abschnitt \ref{abschnitt:docker} beschrieben, sehr viele Vorteile.
-Auf einem Raspberri Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
-Dies sollte generell sowohl für das Entwicklerteam als das Nutzen von Docker für den Endkunden kein Problem darstellen.
+Auf einem Raspberry Pi Docker zu installieren und zum Laufen zu bringen wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}.
 
 \subsubsection*{Öffentlich zugängliches Web Interface}
 Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
@@ -312,6 +313,7 @@ Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu könne
 Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
 Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötigt, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
 Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
+Alternativ könnte für das Projekt auch \textit{Github.io Pages} genutzt werden.
 
 \subsection{User Interface}
 \subsubsection*{Zugriff auf NFC Reader von Cloud Anwendung}
@@ -324,8 +326,10 @@ Es gibt ein Feathers Plugin, welches die Möglichkeit bietet OAuth Provider zu n
 
 \subsubsection*{Nutzer verschiedener Streaminganbieter wiedererkennen}
 Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
-Die E-Mail wäre hierbei ein geeignetes Merkmal, da dies einzigartig ist. Über gesetzte Scopes in der OAuth Anfrage kann diese vom jeweiligen Provider mitgeliefert werden.
-Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen. Dies ist aber nicht immer der Fall.
+Die E-Mail wäre hierbei ein geeignetes Merkmal, da diese einzigartig ist.
+Über gesetzte Scopes in der OAuth Anfrage kann diese vom jeweiligen Provider mitgeliefert werden.
+Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen.
+Dies ist aber nicht immer der Fall.
 Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
 \subsubsection*{Musik Artwork laden}
@@ -350,10 +354,12 @@ Die Liste von verbundenen Geräten, die über einen Call an die Spotify API erha
 
 \subsection{Leek Box / Backend}
 \subsubsection*{Leek-Box mit Cloud-Anwendung verbinden}
-Bei der Ersteinrichtung könnte der Nutzer über die Eingabe der MAC Adresse oder über eine andere festgelegte ID die eigene Box finden und zu seinem Account hinzufügen. Die jeweilige Box wäre dem System anschließend bekannt und könnte zum Beispiel über den vom Nutzer gewählten Namen wiedergefunden und ausgewählt werden.
+Bei der Ersteinrichtung könnte der Nutzer über die Eingabe der MAC Adresse oder über eine andere festgelegte ID die eigene Box finden und zu seinem Account hinzufügen.
+Die jeweilige Box wäre dem System anschließend bekannt und könnte zum Beispiel über den vom Nutzer gewählten Namen wiedergefunden und ausgewählt werden.
 
 \subsubsection*{Boxdaten über Cloud Anwendung ändern}
-Um die auf der Box gespeicherten Daten aus der Cloud Anwendung heraus zu ändern, könnte ein direkter Aufruf einer API, welche auf der eigenen Box läuft, genutzt werden. Um die Verbindung zu der Box aufbauen zu können, könnte diese auf dem Cloud Backend die entsprechenden Verbindungsdaten hinterlegen.
+Um die auf der Box gespeicherten Daten aus der Cloud Anwendung heraus zu ändern, könnte ein direkter Aufruf einer API, welche auf der eigenen Box läuft, genutzt werden.
+Um die Verbindung zu der Box aufbauen zu können, könnte diese auf dem Cloud Backend die entsprechenden Verbindungsdaten hinterlegen.
 
 \subsection{Andere Musikservices}
 \subsubsection*{Unterstützung von Youtube Music}
