@@ -1292,6 +1292,7 @@ Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \\~\\
 \paragraph*{Frontend auf Github.io Pages} $~$ \\
+\label{FrontendAufGithubIOPages}
 Das Frontend ist vom Raspberry zu Github.io Pages umgezogen.
 Somit kann der Endnutzer auch ohne Kenntnis der IP-Adresse des Raspberrys auf die Benutzeroberfläche zugreifen
 und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um von außerhalb des Heimnetzwerkes auf seine \textit{Leek Box} zugreifen zu können.
@@ -1301,10 +1302,16 @@ Anfäglich wurde diese Adresse jedoch nicht validiert, sodass die Eingabe einer 
 Bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue Adresse erhält, die anschließend manuell im \textit{Spotify Developer Dashboard} eingetragen werden muss.
 Folglich musste der Nutzer nach jedem Neustart den Browsercache des Endgerätes löschen, um die Adresse der \enquote{neuen} Leek-Box eingeben zu können.
 \\~\\
-\paragraph*{Einrichten einer Leek} $~$ \\
-*
-\colorbox{red}{@anton hier}
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Einstellungen}
+\paragraph*{Einrichten einer Leek-Box} $~$ \\
+Die Einrichtung einer Leek-Box wurde in diesem Milestone beispielhaft durchgeführt und in einem Setup-Guide dokumentiert. Hierfür wurde auf einem neu aufgesetzten Raspberry Pi Docker installiert
+und das auf \textit{DockerHub} verfügbare Backend-Image geladen. Zusätzlich wurde ein \textit{Container} für den angeschlossenen USB-NFC-Reader aus der gleichen Quelle bezogen und gestartet. Dabei
+generiert der NFC-Reader eine ID, die im Backend registriert wird. Nach dem Start des Backend-Containers, gibt dieser auf der Konsole eine neue Adresse aus, die von \textit{Ngrok}(vgl. \ref{FrontendAufGithubIOPages})
+bereitgestellt wird. Daraufhin kann sich der Benutzer über \textit{project-leek.github.io} durch die Eingabe dieser Adresse mit der neuen \textit{Leek-Box} verbinden. Da in der App zu diesem Zeitpunkt noch kein
+Lautsprecher hinterlegt wurde, wird der Benutzer automatisch in die Einstellungen umgeleitet. Hier wird die neu angelegte \textit{Leek-Box} zusammen mit der ID angezeigt und bietet dem Nutzer die Möglichkeit den Namen
+der Box festzulegen sowie einen vorhandenen Lautsprecher auszuwählen. Der zusätzliche Schritt der Auswahl einer Box wird benötigt, da die Lösung so konzipiert ist, dass ein Nutzer potentiell merhere \textit{Leek-Boxen}
+besitzen und die Verwaltung dennoch über ein zentrales Backend erfolgen kann. Somit entfällt die Einrichtung des Backends auf den einzelnen \textit{Leek-Boxen} und muss lediglich einmalig durchgeführt werden.
 
 \paragraph*{Bericht} $~$ \\
 Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
