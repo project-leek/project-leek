@@ -512,10 +512,17 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   \subsubsection*{Dynamische Tests}
     Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
-    Diese Testfälle werden Schritt für Schritt \glqq durchgespielt\grqq{} und überprüft, ob das tatsächliche Ergebnis dem erwartetem entspricht.
-    Die meisten Test  dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
+    Bei diesen Testfällen werden User-Stories Schritt für Schritt \glqq durchgespielt\grqq{} und dabei überprüft, ob das Resultat  dem erwarteten Verhalten entspricht.
+    Die meisten Test dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
     So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
     Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
+    Die testenden Entwickler durchliefen bei der Überprüfung folgende Schritte:
+    \begin{enumerate}
+      \item Zu überprüfenden \textit{feature-branch} auschecken
+      \item Projekt bauen und ausführen
+      \item Neue oder geänderte Funktionen mit beispielhaften Eingaben nutzen (z.B. neue NFC-Tags anlegen)
+      \item Gegebenenfalls Probleme und Fehler aufzeichnen und beheben
+    \end{enumerate}
     Diese Tests waren Teil des Deployment Cycles und wurden so in den meisten Fällen parallel zu den Reviews durchgeführt.
     \\~\\
     Ein gewisser Teil der anwendungsfallbasierten Test fand auf der Ebene von Code-Funktionen (\textit{Units}) statt, welche zur einfacheren Wiederholbarkeit automatisiert wurden.
