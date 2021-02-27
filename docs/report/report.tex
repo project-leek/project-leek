@@ -296,7 +296,7 @@ Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an de
 Dafür werden Tastatureingaben, die die Tag-IDs darstellen, emuliert.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Eingaben genutzt werden.
 Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden.
-Um dieses Modul auch für den Raspberry Pi und mit Typscript nutzbar zu machen, wurde ein \textit{Fork}\footnote{https://github.com/anbraten/node-evdev} durchgeführt. Beim \texit{fork} wird das bestehende Repository in ein neues kopiert, damit Änderungen an den Dateien durchgeführt werden können, die jedoch das ursprüngliche Repository nicht verändern. 
+Um dieses Modul auch für den Raspberry Pi und mit Typscript nutzbar zu machen, wurde ein \textit{fork}\footnote{https://github.com/anbraten/node-evdev} durchgeführt. Beim \texit{fork} wird das bestehende Repository in ein neues kopiert, damit Änderungen an den Dateien durchgeführt werden können, die jedoch das ursprüngliche Repository nicht verändern. 
 \\
 Um neben der initial gespeicherten ID weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag einen eigenen Speicher.
 Ist dieser vorhanden, können dort z. B. User Daten hinterlegt werden.
