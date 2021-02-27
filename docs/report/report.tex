@@ -15,6 +15,7 @@
 
 \hyphenation{Macio}
 \hyphenation{macio}
+\hyphenation{Type-Script}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
@@ -497,7 +498,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     Als dynamische Tests wurden in diesem Projekt Anwendungsfall-basierte Tests genutzt.
     Bei diesen Testfällen werden User-Stories Schritt für Schritt \glqq durchgespielt\grqq{} und dabei überprüft, ob das Resultat  dem erwarteten Verhalten entspricht.
     Die meisten Test dieser Art wurden als Integrations-Tests durchgeführt, bei denen die Änderungen im Kontext der bestehenden Software getestet wurden.
-    So konnte vor allem das Zusammenspiel von Frontend und NFC-reader mit dem Backend gut überprüft werden.
+    So konnte vor allem das Zusammenspiel von Frontend und NFC-Reader mit dem Backend gut überprüft werden.
     Aufgrund der Komplexität dieser Kontrollen wurden diese manuell durchgeführt und nicht automatisiert.
     Die testenden Entwickler durchliefen bei der Überprüfung folgende Schritte:
     \begin{enumerate}
@@ -513,24 +514,24 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     Auch diese Tests waren Teil des Entwicklungszyklus und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
 
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Ordnerstruktur\label{fig:Ordnerstruktur}}
 \section{Technische Umsetzung}
+  Auf Basis der Anforderung und der Machbarkeitsstudie evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen für die Umsetzung der \textit{Leek-Box}.
   \subsection{Projektstrukur}
-  \label{Ordnerstruktur}
   Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
   verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
   Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt.
   Microservices sind kleine, separat ausführbare und eigenständige Dienste mit geringem Umfang.
   Diese kommunizieren untereinander mit allgemein verwendeten Protokollen, wie zum Beispiel HTTP, via APIs.
-  Größere Projekte werden bei einer Mikroservice-Architektur dementsprechend in kleine Teile \glqq zerlegt\grqq ,
+  Größere Projekte werden bei einer Microservice-Architektur dementsprechend in kleine Teile zerlegt,
    die eigenständig entwickelt und betrieben werden können. \cite{Microservices}\\
-  Zur Verringerung des Aufwands der Konfiguration, des Abhängigkeiten-Managements und der Wartung entschied sich das Team, die einzelnen Microservices auf GitHub in einem Repository zusammenzufassen. \cite{Monorepo}
-  Repositories dieser Art werden \textit{mono-repositories} oder \textit{monorepos} genannt, da sich alle Komponenten an einem einzigen Ort befinden.
-  Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref*{Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-  \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+  Zur Verringerung des Aufwands der Konfiguration, des Abhängigkeiten-Managements und der Wartung entschied sich das Team, die einzelnen Microservices in einem Repository zusammenzufassen. \cite{Monorepo}
+  Repositories dieser Art werden \textit{Mono-Repositories} oder \textit{Monorepos} genannt, da sich alle Komponenten an einem einzigen Ort befinden.
+  Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. \autoref{fig:Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+  \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und NFC-Reader die Applikation zum Steuern und Auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
   Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
-  Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo im Ordner \textit{docs} abgelegt.
-  Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
+  Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo (im Ordner \textit{docs}) abgelegt.
+  Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in einem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
   Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
   Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
 
@@ -547,24 +548,23 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   \subsubsection{Programmiersprachen}
 
   \paragraph*{TypeScript} $~$ \\
-  Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten wurde diese zuerst als Programmiersprache vorgeschlagen.
+  Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten, wurde diese zuerst als Programmiersprache vorgeschlagen.
   Aufgrund von nicht vorhandener Typisierung wurde sich dann jedoch auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Diese bietet aufgrund des
-  Aufbaus auf den ECMAScript-6-Standards eine große syntaktische Ähnlichkeit zu JavaScript. Somit fiel das Erlernen der Sprache den Entwicklern relativ leicht.
+  Aufbaus auf den ECMAScript-6-Standard eine große syntaktische Ähnlichkeit zu JavaScript, wodurch das Erlernen der Sprache weniger Zeit in Anspruch nahm.
   Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
   Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code umgewandelt, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-  Außerdem lässt sich Typescript durch Nutzung der Laufzeitumgebung Node.js auch als Backendsprache verwenden und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
-
+  Außerdem lässt sich TypeScript durch Nutzung der Laufzeitumgebung \textit{Node.js}\footnote{\url{https://nodejs.org/en/}} auch serverseitig als Backendsprache verwenden ausführen und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
 
   \subsubsection{Frameworks}
-  Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um mit weniger Aufwand entwickeln zu können.
+  Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um den Entwicklungsaufwand zu reduzieren.
 
   \paragraph*{Vue.js} $~$ \\
-  Zur Gestaltung der Benutzeroberfläche für die \textit{leek-box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
+  Zur Gestaltung der Benutzeroberfläche für die \textit{Leek-Box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
   clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-  Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} entschieden.
+  Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} ausgewählt.
 
   \paragraph*{Components} $~$ \\
-  Durch Vue lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
+  Durch \textit{Vue.js} lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
   \\~\\
   \begin{minipage}{\textwidth}
     \begin{lstlisting}[caption={Beispiel einer simplen \textit{vue component}-Datei}, captionpos=b, label=lst:EinfacheComponent]
@@ -589,32 +589,29 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   Durch diese Zusammenfassung wird der gesamte Code lesbarer,
   da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
-  So wird Entwickleren viel Suchzeit und Arbeitsaufwand gespart werden, die anderweitig angefallen wären.
-  Dies führte zu effizienterem und zufriedenstellenderer Arbeit am Projekt.
-  Bessere Lesbarkeit führt auch zu langfristigerer Wartbarkeit.
-  Dies ist in diesem Projekt besonders wichtig,
+  So wird Entwickleren viel Suchzeit und Arbeitsaufwand erspart, die anderweitig angefallen wären, was zu effizienter und zufriedenstellender Arbeit am Projekt führte.
+  Die gute Lesbarkeit führt langfristig auch zu besserer Wartbarkeit, was in diesem Projekt besonders wichtig ist,
   da es unter Open-Source-Lizenz steht und gegebenenfalls von der Allgemeinheit weiter entwickelt werden soll.
-  Mit adäquater Wartbarkeit ist eine Grundlage für langjähriges Überleben der \textit{leek-box} geschaffen.
+  Mit adäquater Wartbarkeit wurde so eine Grundlage für langjähriges Überleben der \textit{Leek-Box} geschaffen.
   \\~\\
   Ausmaß, Funktionalität und Größe von Komponenten sind allgemein keine Einschränkungen gesetzt.
   So kann es sich bei diesen zum Beispiel um Buttons, Header oder ganze Ansichten handeln.
   Für die Nutzung müssen diese allerdings noch mit \textit{defineComponent} beim Framework registriert werden
-  (siehe Listing \ref{lst:EinfacheComponent}).
+  (siehe \autoref{lst:EinfacheComponent}).
   Danach können die Komponenten wie native HTML-Tags eingebunden werden.
-  Dies macht die Nutzung von \textit{components} sehr intuitiv.
-  So hat das Framework eine sehr flache Lernkurve.
-  Die Verwendung von weitreichend klassischem HTML, CSS und JS bzw. TS unterstützt dies zusätzlich.
+  Dies macht die Nutzung von \textit{components} sehr intuitiv, wodurch das Framework eine sehr flache Lernkurve hat.
+  Die Verwendung von weitreichend klassischem HTML, CSS und JavaScript bzw. TypeScript unterstützt dies zusätzlich.
   Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
   da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
   \\~\\
   \textit{Components} können auch innerhalb von anderen \textit{components} genutzt werden.
   So lassen sich komplexere Elemente des Frontends aus kleineren, übersichtlicheren Komponenten zusammensetzten.
-  Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden.
-  Anhand dieser können Inhalte, Aussehen und Verhalten dem Kontext entsprechend angepasst werden.
+  Um dies zu ermöglichen, können von der aufrufenden Instanz Daten an die Komponenten übergeben werden,
+    anhand welcher Inhalte, Aussehen und Verhalten dem Kontext entsprechend angepasst werden können.
   Die Datenübergabe wird über sogenannte \textit{properties} (kurz \textit{props}) realisiert.
   Auch der Informationsfluss in die andere Richtung ist möglich und geschieht über \textit{events}, welche von eingebundenen Komponenten erzeugt und ausgelöst werden können.
   Dabei ist es möglich Daten als Argumente an die \textit{events} anzuhängen, damit die einbindende Komponente diese dann auslesen und weiterverwenden kann.
-  Dies wird folgend in Listing \ref{lst:Liste} und \ref{lst:Eintrag} dargestellt.
+  Dies wird folgend in \autoref{lst:Liste} und \autoref{lst:Eintrag} dargestellt.
   \\~\\
   \begin{minipage}{\textwidth}
     \begin{lstlisting}[caption={beispielhafte Listen-Komponente (Liste.vue)}, captionpos=b, label=lst:Liste]
@@ -681,7 +678,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   \paragraph*{Reactivity}$~$ \\
   Reaktive Programmierung ist ein Programmierparadigma, welches Abstraktionen bereitstellt,
   um Werte, die sich nachträglich ändern können, zu nutzen
-  und Abhängigkeiten zwischen diesen Werten abzubilden. \cite{ReactiveProgramming}
+  und Abhängigkeiten zwischen diesen Werten abzubilden.\cite{ReactiveProgramming}
   Als Paradebeispiel hierfür werden meist Tabellenkalkulationswerkzeuge wie zum Beispiel \textit{Excel} angeführt.
   In diesen lassen sich Rechenergebnisse von den momentanen Werten anderer genutzter Zellen abhängig machen.
   Entsprechend ändert sich auch das Ergebnis automatisch, wenn Eingabewerte geändert werden. \\
@@ -689,14 +686,14 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   So können reaktive generische Datentypen z. B. in components verwendet werden.
   In diesem Projekt wurden dafür vor allem \textit{reactive} für Objekte und \textit{ref}
     \footnote{\raggedright\url{https://v3.vuejs.org/guide/reactivity-fundamentals.html}} für primitive Datentypen verwendet.
-  Wie das Beispiel in Listing \ref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
+  Wie das Beispiel in \autoref{lst:reactivity} demonstriert, können so Datenänderungen sehr einfach angezeigt werden, da eine Referenz an Stelle einer eigentlichen Instanz übergeben wird, welche sich somit automatisch aktualisiert.
   \\~\\
   \begin{minipage}{\textwidth}
     \begin{lstlisting}[caption={Demonstration reaktivier Vue-Referenzen}, captionpos=b, label=lst:reactivity]
       <template>
       <div>
         <span>{{ count }}</span>
-        <button @click="count ++">Increment count</button>
+        <button @click="count++">Increment count</button>
       </div>
     </template>
 
@@ -714,16 +711,16 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   In diesem Beispiel wird bei Instanziierung der Komponente (in \textit{setup}) ein Zähler als reaktive Vue-Referenz (\textit{ref}) angelegt.
   Dieser wird bei jedem Klick auf den Button inkrementiert.
   Da dies im HTML-Code passiert, wird der Wert hinter der Referenz direkt manipuliert.
-  Dagegen muss im TypeScript-Code der Wert vorher noch mit \textit{count.value++} \glqq ausgepackt\grqq{} werden.
+  Dagegen müsste im TypeScript-Code der Wert vorher noch mit \textit{count.value++} \glqq ausgepackt\grqq{} werden.
   Der geänderte Wert wird direkt auf der Webseite angezeigt,
-  ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss. Stattdessen werden jeweils nur die grundlegenden Daten einer Komponente verändert und Vue bildet diese Daten mit Hilfe des Templates im DOM ab.
+  ohne das diese neu geladen oder das DOM durch den Entwickler manipuliert werden muss. Stattdessen werden jeweils nur die grundlegenden Daten einer Komponente verändert und \textit{Vue.js} bildet diese Daten mit Hilfe des Templates im DOM ab.
   \\
   Dieses Paradigma findet auch in der Kommunikation zwischen verschachtelten \textit{components} Anwendung.
   So sind alle \textit{properties} von Komponenten reaktiv. Auch die an Events angehängten Daten können reaktiv sein.
   Dies ermöglichte dem Team in kurzer Zeit interaktive Benutzeroberflächen zu erstellen.
 
   \paragraph*{}
-  Ein weiterer, weniger zentraler Faktor für die Wahl des Frameworks \textit{vue} war die Performanz.
+  Ein zusätzlicher Faktor für die Wahl des Frameworks \textit{Vue.js} war die Performanz.
   Dies zeigt sich im Vergleich zu anderen Web-Frameworks in Benchmark-Tests.\cite{Vue_Performance}
   Für das Projekt war dies vor allem wichtig, da das System auf einem Raspberry Pi betrieben werden sollte
   und dementsprechend nur begrenzte Leistung zur Verfügung steht.
@@ -739,8 +736,8 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   \paragraph*{FeathersJS} $~$ \\
   Bei der Erstellung des Backends entschied sich das Team zusätzlich das Framework \textit{FeathersJS}\footnote{\raggedright\url{https://feathersjs.com/}} einzusetzten.
   Dies ermöglicht komfortable CRUD-Zugriffe\footnote{CRUD = \textbf{C}reate-\textbf{R}ead-\textbf{U}pdate-\textbf{D}elete}  auf verschiedene Services, welche zum Beispiel Datenbanken oder externe APIs sein können.
-  Durch eine vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
-  Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. Abb. \ref{fig:MyService})
+  Durch eine Vielzahl von Adapatern können so zum Beispiel Daten in einer Datenbank ohne eigene Implementierung der Schnittstelle verwaltet werden.
+  Es muss lediglich ein Service erstellt werden, der das generische Interface Service mit Typeparameter der zu verwaltenden Klasse implementiert. (vgl. \autoref{fig:MyService})
   \begin{figure}[ht]
     \includegraphics[width=\linewidth]{MyFeathersService.png}
     \setcaptioncitation{https://docs.feathersjs.com/guides/basics/services.html}
@@ -752,107 +749,99 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   So können sowohl Client, wie auch Server jederzeit mit der Datenübertragung beginnen, ohne vorher - wie bei HTTP - jedes Mal eine neue Verbindung aufzubauen zu müssen. \cite{WebSockets}
   Dadurch kann der Server alle verbundenen Clients bei einem CRUD-Zugriff informieren, sodass alle ohne erneutes Anfragen der Daten den aktuellsten Zustand übermittelt bekommen.
   Wird also beispielsweise ein NFC-Tag von Person A geändert, sieht Person B diese Änderung ohne manuelle Aktualisierung der Seite.
-  Eine weiteres Feature, welches vom Projektteam genutzt wurde ist die integrierte OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten, wie beispielsweise \textit{Spotify} bei diesem Projekt ermöglicht.
-  Dies war z.B. nötig, um die den NFC-Tags zugeordnete Musik abspielen zu können.
-  Darüber hinaus können so auch Nutzerprofile angelegt werden, ohne persönliche Daten, wie z.B. Namen, Email-Adressen und Passwörter, speichern zu müssen.
+  Eine weiteres Feature, welches vom Projektteam genutzt wurde, ist die integrierte OAuth-Provider-Abstraktionen, die ein einfaches Authentifizieren mit Diensten, wie beispielsweise \textit{Spotify} bei diesem Projekt ermöglicht.
+  Dies war z. B. nötig, um die dem NFC-Tags zugeordnete Musik abspielen zu können.
+  Darüber hinaus können so auch Nutzerprofile angelegt werden, ohne persönliche Daten, wie z. B. Namen, Email-Adressen und Passwörter speichern zu müssen.
   Nur Authentifizierungstokens des OAuth-Providers werden in der Datenbank hinterlegt.
-  So konnte ein besserer Datenschutz für die Nutzenden ermöglicht werden.
-
-
-  \subsubsection{Containervirtualisierung (Docker)}
-  \label{abschnitt:docker}
-  Es wurde lediglich die Anforderung gestellt, dass die Applikation vor allem für mobile Endgeräte optimiert sein soll.
-  Auf Basis dieser Anforderung evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen.
-  Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
-  Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
-  Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
-  Es enthält einen Verweis auf die jeweiligen Container-Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
-  sodass weitere Installationen seitens der Benutzer:innen nicht erforderlich sind.
-  Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
-  So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der leek-box abstrahiert.
+  So konnte besserer Datenschutz für die Nutzenden gewährleistet werden.
 
 
   \subsubsection{Reverse-Tunnel (ngrok)}
   \label{kapitel:ngrok}
-  Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet (siehe Abbildung \ref{fig:LeekSoftwareOverview}).
+  Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{Leek-Box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet (siehe \autoref{fig:LeekSoftwareOverview}).
   Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
-  Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
+  Da \textit{feathers} jedoch nativ kein HTTPS unterstützt und das Erstellen eines selbstsignierten Zertifikats sehr aufwändig ist, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der verschlüsselten Verbindung erfüllt.
   Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
-  Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
+  Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse können die Benutzer:innen nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit der eigenen \textit{Leek-Box} zu verbinden.
+
+
+  \subsubsection{Containervirtualisierung (Docker)}
+  \label{abschnitt:docker}
+  Um die Installation der Box möglichst komfortabel zu gestalten, wird auf die freie Containervirtualisierungssoftware \textit{Docker}\footnote{https://www.docker.com/} gesetzt.
+  Ohne diese Möglichkeit wäre die Installation aufgrund der drei Microservices (Backend, Reverse-Tunnel und NFC-Reader) sehr aufwändig.
+  Der Vorteil von Docker besteht darin, dass das Team lediglich eine sogenannte \textit{docker-compose} Datei benötigt, in dem die Konfiguration der Docker-Container beschrieben ist.
+  Sie enthält einen Verweis auf die jeweiligen Container-Images, auf denen die Container aufbauen (z. B. leek-backend). Diese Images enthalten bereits alle notwendigen Abhängigkeiten und Programme,
+  sodass weitere Installationen seitens der Benutzer:innen nicht erforderlich sind.
+  Außerdem lässt sich das Verhalten der Images durch Umgebungsvariablen weiter konfigurieren. Durch die einfache Auslieferung bietet Docker außerdem den Vorteil der Reproduzierbarkeit.
+  So können aufgetretene Fehler problemlos von einem Entwickler nachgestellt werden, da Docker das Betriebssystem des Anwenders von der benötigen Umgebung der \textit{Leek-Box} abstrahiert.
+
 
   \subsubsection{Externe Bibliotheken}
   \paragraph{Spotify Web API} $~$ \\
   \label{SpotifyWebApiNode}
-  Um die abspielbaren Songs inklusive Cover-Bildern zu ermitteln und diese abzuspielen ist ein Zugriff auf die API eines Musikstreaming-Dienstes notwendig.
-  Der vom Kunden vorgeschlagene Anbieter war \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
-  Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet.
-  Diese bietet bereits die benötigten Methoden, wie z. B. die zum Suchen eines Songs anhand eines Suchbegriffs.
+  Um verfügbare Songs eines Musikstreaming-Dienstes zu ermitteln und abzuspielen ist ein Zugriff auf dessen API notwendig.
+  Der vom Kunden vorgeschlagene Anbieter war aufgrund hoher Nutzerzahlen \textit{Spotify}\footnote{\url{https://www.spotify.com}}.
+  Um den Zugriff auf die Spotify API zu simplifizieren wurde die Bibliothek \textit{Spotify Web API Node}\footnote{\url{https://github.com/thelinmichael/spotify-web-api-node}} verwendet, da diese die benötigten Methoden (z. B. die zum Suchen eines Songs anhand eines Suchbegriffs) zur Verfügung stellt.
   Neben dem Songtitel und der Spotify-Url werden auch die Künstler und die Adresse des Albumcovers mitgeliefert und konnten von den Entwicklern ohne Mehraufwand genutzt werden.
-  Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik stellt die Bibliothek bereit.
+  Auch eine Methode zur Ermittlung der verfügbaren Geräte zum Abspielen der Musik per \textit{Spotify-Connect} stellt die Bibliothek bereit.
 
   \paragraph{NeDB} $~$ \\
   Als Datenbank für dieses Projekt wurde die kostenlos verfügbare JavaScript-Datenbank \textit{NeDB}\footnote{\raggedright\url{https://github.com/louischatriot/nedb}} gewählt.
   Sie wird verwendet, um die NFC-Tags, Benutzer und den angeschlossenen NFC-Reader zu verwalten.
   \textit{NeDB} ist eine auf \textit{MongoDB}\footnote{\raggedright\url{https://www.mongodb.com/}} aufbauende, sehr schnelle JSON Datenbank.
   Sie wurde gewählt, da sie eine geringe Komplexität besitzt und weil \textit{FeathersJS} einen Datenbankadapter für diese Datenbank bereitstellt, was den Zugriff auf die Datenbank sowie die Verwaltung der Daten erleichterte.
-  Außerdem arbeitet die Datenbank inkrementell, was das Risiko auf sehr große Datenbankdateien minimiert.
-  Diese Eigenschaft war hilfreich, um die Datenbank auf einem Raspberry Pi betreiben zu können.
-  Zu Beginn des Projekts diskutierte das Team die Technologien, mit denen die \textit{leek-box} umgesetzt werden sollte.
-  Der Kunde ließ dem Projektteam hierbei sehr viele Freiheiten.
+
 
   \subsection{Hardware}
   \subsubsection*{Raspberry Pi}
   \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{RaspPi.jpeg}}{Raspberry Pi}
     Der Raspberry Pi ist ein Einplatinencomputer, welcher ein Ein-Chip-Systen (SoC) mit einer ARM-CPU enthält.
-    Durch das gute Preis-Leistungsverhältnis, die einfache Programmierbarkeit und der sehr guten Verfügbarkeit sind Raspberry Pis sehr beliebt und haben sich für dieses Projekt als Hardwarewahl durchgesetzt.
-    Hierbei fungierte der Pi für das Hosting des Backends sowie der Anbindung an einen NFC-Reader.
+    Durch das gute Preis-Leistungsverhältnis, die einfache Programmierbarkeit und der sehr guten Verfügbarkeit sind Raspberry Pis sehr beliebt und haben sich für dieses Projekt bei der Wahl der Hardware durchgesetzt.
+    Hierbei fungierte der Pi als Hoster des Backends und diente zur Anbindung an einen NFC-Reader.
 
-  \subsubsection*{NFC Tags \& NFC Reader}
-  \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.25\textwidth]{NfcReaderAndTag.jpeg}}{NFC Reader und NFC Tag}
+  \subsubsection*{NFC-Tags \& NFC-Reader}
+  \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.25\textwidth]{NfcReaderAndTag.jpeg}}{NFC-Reader und NFC-Tag}
     Ähnlich wie bei Konkurrenzprodukten, wird als Peripheriegerät für den Raspberry Pi ein NFC Reader genutzt.
     Die Steuerung der Box kann so mittels NFC-Tags durchgeführt werden.
     NFC steht für \glqq Near Field Communication\grqq{} (Nahfeld-Kommunikation), ein Standard, der
     Datenübertragung auf sehr kurzer Distanz ermöglicht.
-    NFC-Tags sind kleine Chips, die von einem NFC Reader ausgelesen werden können. Die Daten können je nach
-    NFC Chip, von nur einer simplen \textit{Id} bis hin zu beschreibbaren NFC Tags mit unterschiedlichsten Daten
+    NFC-Tags sind kleine, ohne Spannungsquelle nutzbar Chips, die von einem NFC-Reader ausgelesen werden können. Die Daten können je nach
+    NFC-Chip von nur einer \textit{Id} bis hin zu beschreibbaren NFC-Tags mit unterschiedlichsten Daten
     variieren. In diesem Projekt wurden die primitiveren NFC-Tags, welche nur eine ID speichern, verwendet.
 
-  \section{Durchführung}
+\section{Durchführung}
 \subsection{Meilenstein 1}
-Die Laufzeit des ersten Meilensteins erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung, Struktur und das Vorgehen des Projektes fokusiert.
+Der erste Meilenstein erstreckte sich vom 29.10.2020 bis zum 11.11.2020 und war auf die Planung und Struktur des Projektes und Vorgehens fokusiert.
 %Ziel
 Zum Ende des Meilensteins sollte die Struktur und das Grundgerüst für das Projekt fertiggestellt sein.
-Hierfür sollte das Konzept der Software-Architektur sowie die genutzten Technologien (später Technologie-Stack genannt) auf Basis einer Anforderungsanalyse mit dem Kunden festgelegt werden.
-Außerdem sollten die ersten Tickets in das Backlog eingetragen werden.
-Auch musste das Projekt dahingehend geplant werden, dass jedem Teammitglied durchgehend zu bearbeitende Arbeitspakete zur Verfügung standen.
-Um ein schnellen und reibungslosen Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet werden.
+Hierfür sollte ein Konzept der Software-Architektur sowie die genutzten Technologien (später Technologie-Stack genannt) auf Basis einer Anforderungsanalyse mit dem Kunden entwickelt werden.
+Um ein schnellen und reibungslosen Start für die Entwicklung zu gewährleisten, sollte das Repository entsprechend vorbereitet und erste Tickets in das Backlog eingetragen werden.
 %Probleme
-Das Team musste das Projekt so entsprechend planen, dass jedes Teammitglied durchgehend sinnvoll arbeiten konnte.
+Das Team musste den eigenen Arbeitsablauf so konzipieren, dass jedes Teammitglied durchgehend sinnvoll arbeiten konnte.
 %Lösungen
-Durch bereits vorhandene Erfahrung mit verschiedenen Technologie-Stacks und ähnlichen Problemen, wurde sich auf den Technologie-Stack geeinigt
-Die verwendeten Technologien sind dem Abschnitt \ref{technologien} zu entnehmen.
-Um für jedes Teammitglieds ein sinnvolles kontinuierliches Arbeiten zu gewährleisten, einigte sich das Team auf einen ständig gefüllten Ticket-Pool im Repository, sodass jederzeit selbstständig eine Aufgabe gefunden und bearbeitet werden konnte.
+Durch bereits vorhandene Erfahrung mit verschiedenen Technologie-Stacks und ähnlichen Problemstellungen, wurde sich auf den unter \autoref{technologien} beschriebenen Technologie-Stack geeinigt.
+Um für jedes Teammitglied sinnvolles kontinuierliches Arbeiten zu gewährleisten, einigte sich das Team auf einen ständig gefüllten Ticket-Pool im Repository, sodass jederzeit selbstständig eine Aufgabe gefunden und bearbeitet werden konnte.
 %Product Increment
-Das Ergebnis des ersten Meilensteins bestand, abweichend von den späteren, nicht in einem Produkt Inkrement, sondern legte die Grundbausteine für die Entwicklung und das Teamwork.
+Das Ergebnis des ersten Meilensteins bestand, abweichend von den späteren, nicht aus einem Produkt Inkrement, sondern legte die Grundbausteine für die Entwicklung und das Teamwork.
 Neben dem bereits erwähnten Technologie-Stack, wurde als Host für die Applikation ein Raspberry Pi gewählt.
-Für die Entwicklung wurde ein Mono-Repository mit \textit{lerna}\footnote{https://lerna.js.org/} aufgesetzt, welches Front- und Backend zusammenfasste.
-Durch die Anforderung der Veröffentlichung als Open Source Projekt wurde eine verständliche und hilfreiche Dokumentation nötig, die einem Benutzer die Installation und Verwendung der \textit{leek-box} aufzeigt.
-So wurde dem Repository eine einleitende Readme und ein \glqq How to Contribute\grqq{} Guide hinzugefügt.
+Für die Entwicklung wurde ein Mono-Repository aufgesetzt, welches Front- und Backend zusammenfasst.
+Durch die Anforderung der Veröffentlichung als Open-Source Projekt wurde eine verständliche und hilfreiche Dokumentation nötig, die Benutzer:innen die Installation und Verwendung der \textit{Leek-Box} aufzeigt.
+So wurde dem Repository eine einleitende \textit{Readme} und ein \glqq How to Contribute\grqq{} Guide hinzugefügt.
 %Retrospektive
 Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 
 \subsection{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
-Ziel war es, die ersten Grundbausteine für das Projekt legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
-sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines Feathers-Services für ein virtuelles
-Haustier im Backend und die Darstellung im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Milestone erstellt werden,
+Ziel war es, die ersten Grundbausteine für das Projekt zu legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
+sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines \textit{Feathers-Services} für ein virtuelles
+Haustier im Backend und die Darstellung dessen im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Milestone erstellt werden,
 um den Fortschritt, Probleme und Erkentnisse zeitnah dokumentieren zu können.
 \\~\\
 \paragraph*{Hello-World (Pet)} $~$ \\
 \label{HelloWorld}
-Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von Feathers auseinander um einen
+Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von \textit{Feathers} auseinander um einen
 Überblick über die notwendigen Klassen und Konstrukte zu erhalten. Zuerst musste eine Klasse erstellt werden, in der der Aufbau des Haustierts modeliert
-wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein Feathers-Service in Form einer
+wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein \textit{Feathers-Service} in Form einer
 Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
 die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
 \\~\\
