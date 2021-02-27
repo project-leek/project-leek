@@ -1269,10 +1269,39 @@ Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Butt
 Um diese und andere Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
 Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg, sein. Die \textit{component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher zwölf Parametern, konnten alle Anforderung auch mit acht Parametern erreicht werden.
 \\
-An dieser Stelle soll verdeutlicht werden, wie sich die Komponente selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde: \\
-\wrapfiguresafe{r}{0mm}{
-  \includegraphics[width=5.9cm]{Screenshot_Button.png}}{Codesnippets vom Button}
-  \label{fig:HomeVueSchema}
+An dieser Stelle soll verdeutlicht werden, wie sich die Komponente selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde:
+\\~\\
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={Codesnippets vom Button}, captionpos=b]
+    <button
+    class="flex relative items-center outline-none focus:outline-none rounded-full border-yellow-400 border-2"
+    :class="containerClasses"
+    :disabled="disabled"
+    :type="type"
+    @click="doClick"
+  >
+    <slot>
+      <span
+        v-if="icon && text"
+        class="text-white"
+        :class="[...iconClasses, iconRight ? 'mr-4' : 'ml-4']"
+      />
+      <span
+        v-if="icon && !text"
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"
+        :class="iconClasses"
+      />
+      <div v-if="!text && icon" :class="`icon-size-${size}`" />
+      <span
+        v-if="text || (!text && !icon)"
+        class="text-white mx-auto"
+        :class="[...textClasses, iconRight ? 'pr-4' : 'pl-4']"
+        >{{ text || 'Absenden' }}</span
+      >
+    </slot>
+  </button>
+  \end{lstlisting}
+\end{minipage}
 Interessant sind die dynamischen Abfragen \textit{v-if} mit denen geprüft wird, ob zum Beispiel ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen, wodurch der Button seine Form verändert.
 Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das darin Icon zentriert sein.
 Um die Größe des Buttons zu steuern, wurde sich dafür entschieden eine \textit{property} zu nutzen. So konnte an die \textit{component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} oder \glqq xl\grqq{} übergeben werden.
