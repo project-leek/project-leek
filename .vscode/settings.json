@@ -24,6 +24,7 @@
   "liveshare.populateGitCoAuthors": "never",
   "files.trimTrailingWhitespace": true,
   "cSpell.words": [
+    "Raspberry",
     "Microservices",
     "docker",
     "framework",
