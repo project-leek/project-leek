@@ -60,7 +60,7 @@ sudo nano /etc/comitup.conf
 ```
 1. restart the PI
 
-After the restart, a new wifi called `leek-<...>` should be available. 
+After the restart, a new wifi called `leek-<...>` should be available.
 Now connect to the wifi and follow the prompt to log on to the network or navigate manually to `http://10.41.0.1/`
 
 In the new screen, you can now connect to your home wifi. Every time the box is powered on and does not find a registered Wi-Fi, it will open its configuration hotspot again.
@@ -80,12 +80,12 @@ sudo pip3 -v install docker-compose
 get-docker can take quite a while on older Pi's.
 
 
-After the process is complete run 'docker-compose' to check if the installation was successfull.
+After the process is complete run 'docker-compose' to check if the installation was successful.
 
 
 ## Setup the Leek-Box
 
-Our project is splited into multiple docker containers. For a seamless setup, please use our docker-compose file as follows:
+Our project is split into multiple docker containers. For a seamless setup, please use our docker-compose file as follows:
 
 ```bash
 mkdir leek && cd $_ ```

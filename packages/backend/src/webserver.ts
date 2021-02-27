@@ -21,7 +21,7 @@ webserver.use(cors());
 webserver.use(compress());
 webserver.use(express.json());
 webserver.use(express.urlencoded({ extended: true }));
-webserver.use(favicon(path.join(app.get('public'), 'favicon.ico')));
+webserver.use(favicon(path.join(app.get('public'), 'leek.png')));
 
 // Host the public folder
 webserver.use(express.static(app.get('public')));
