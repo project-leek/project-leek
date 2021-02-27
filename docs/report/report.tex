@@ -297,7 +297,7 @@ Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an de
 Dafür werden Tastatureingaben, die die Tag-IDs darstellen, emuliert.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Eingaben genutzt werden.
 Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden.
-Um dieses Modul auch für den Raspberry Pi und mit Typscript nutzbar zu machen, wurde ein \textit{fork}\footnote{https://github.com/anbraten/node-evdev} durchgeführt. Beim \texit{fork} wird das bestehende Repository in ein neues kopiert, damit Änderungen an den Dateien durchgeführt werden können, die jedoch das ursprüngliche Repository nicht verändern. 
+Um dieses Modul auch für den Raspberry Pi und mit Typescript nutzbar zu machen, müssten noch Änderungen an diesem Modul durchgeführt werden. 
 \\
 Um neben der initial gespeicherten ID weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag einen eigenen Speicher.
 Ist dieser vorhanden, können dort z. B. User Daten hinterlegt werden.
@@ -309,36 +309,34 @@ Docker Integration sollte für einfachere Auslieferbarkeit angeboten werden (vgl
 Die Installation von Docker auf einem Raspberry Pi wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}, weshalb die Umsetzbarkeit dieses Punktes als sehr wahrscheinlich eingeschätzt wird.  
 
 \subsubsection*{Öffentlich zugängliches Web Interface}
-Auf einem Raspberry Pi könnte eine Web Anwendung gehosted werden, welche die allgemeine Web Anwendung für alle Boxen darstellen soll.
-Um diese Web Anwendung von außerhalb des eigenen Netzwerkes erreichen zu können, muss innerhalb des Routers ein Port ge-forwarded werden.
-Dann kann der Pi und dessen Webinterface unter der öffentlichen IP xxx.xxx.xxx.xxx des Routers erreicht werden.
-Da sich die öffentliche IP-Adresse eines privaten Internet-Anschlusses in der Regel täglich ändert, wird zum einfachen finden der IP ein DynDns Service benötigt, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
-Für Unerfahrene wären diese notwendingen Schritte zu Beginn etwas komplexere Thematiken. Der effektive Arbeitsaufwand hängt daher auch sehr stark von der Erfahrung der einzelnen Teammitglieder ab.
-Alternativ könnte für das Projekt auch \textit{Github.io Pages} genutzt werden.
+Zur Bereitstellung der Benutzeroberfläche für eine Box soll der Raspberry Pi verwendet werden. 
+Um die Erreichbarkeit dieser Web Anwendung auch von außerhalb des eigenen Netzwerkes zu ermöglichen, könnte eine Portweiterleitung im Router eingerichtet werden.
+Dies ermöglicht den Zugriff auf die Benutzeroberfläche durch die öffentliche IP-Adresse des Routers.
+Da die öffentliche IP-Adresse eines privaten Internet-Anschlusses häufig nicht konstant ist, könnte zum Zugiff ein DynDNS Dienst verwende werden, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
+Zur Umsetzung dieses Punktes mittels DynDNS könnten die in diesem Feld unerfahreneren Entwickler etwas Einarbeitungszeit benötigen, was die Abschätzung des Arbeitsaufwandes sehr abhängig von den Erfahrungen macht.
+Alternativ könnte für das Projekt auch \textit{Github.io Pages} genutzt werden, was impliziert, dass jede \textit{Leek-Box} kein eigenes Frontent hostet, sondern dieses auf einem von GitHub bereitgestellten Web-Server öffentlich erreichbar wäre. In diesem Fall müsste die Kommunikation zwischen dem öffentlichen Web-Server und dem Backend auf dem Raspberry Pi implementiert werden.
 
 \subsection{User Interface}
 \subsubsection*{Zugriff auf NFC Reader von Cloud Anwendung}
-Um von der App auf die Daten vom NFC-Reader der verschiedenen Boxen zuzugreifen, wäre ein zentrales Backend mit einer API sinnvoll.
-Der Computer der Box könnte beim Lesen eines NFC-Tag Daten über einen API Call an die Cloud Anwendung schicken, sodass die zusätzlich zu dem Backend verbundene App das gewünschte Event triggern kann.
+Zum Zugriff von Frontend zu Backend könnte eine REST-API verwendet werden, sodass Daten durch API-Calls ausgetauscht werden könnten.
 
 \subsubsection*{Login via Spotify, Youtube, etc.}
 Zur Feststellung, ob ein Benutzer bei einem Musik-Service angemeldet ist, muss sich dieser authentifizieren. Dabei muss in den meisten Fällen auch das Abomodell ermittelt werden, um die Möglichkeit zur Nutzung von bestimmten Funktionen, wie der freien Wahl eines Songs, festzustellen. Dafür soll das offene Protokoll \textit{OAuth} verwendet werden, welches von den häufig genutzten Musik-Streaming-Anbietern (Spotify, Deezer, Amazon-Music) unterstützt wird. 
 Es existieren mehrere Bibliotheken, welche die Nutzung von  OAuth Provider abstrahieren, was zu einer verminderten Komplexität führt und somit die Umsetzung erleichtert. 
 
 \subsubsection*{Nutzer verschiedener Streaminganbieter wiedererkennen}
-Um gleiche Nutzer zu erkennen, müssten Merkmale angelegt werden, über die diese Nutzer wiedererkennbar wären.
-Die E-Mail wäre hierbei ein geeignetes Merkmal, da diese einzigartig ist.
+Sollte ein Nutzer sich bei mehreren Musikstreaminganbieter verwenden wollen, muss eine eindeutige Identifikation anhand eines Merkmals sichergestellt werden.
+Die E-Mail wäre hierbei ein geeignetes Merkmal zur Wiedererkennung des Benutzers, da diese einzigartig ist.
 Über gesetzte Scopes in der OAuth Anfrage kann diese vom jeweiligen Provider mitgeliefert werden.
-Um die E-Mail als Wiedererkennungsmerkmal zu verwenden, muss vorausgesetzt sein, dass Nutzer immer die gleiche E-Mail bei den unterschiedlichen Providern nutzen.
-Dies ist aber nicht immer der Fall.
-Daher könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
+Dafür müsste zum Beispiel vorrausgesetzt werden, dass ein Nutzer die gleiche E-Mail bei den Musikstreamingdiensten nutzt.
+Da dies jedoch nicht der Realität entspricht, könnte dem (bereits eingeloggten) Nutzer die Möglichkeit gegeben werden, weitere Accounts zu dem bestehenden hinzuzufügen und entsprechend in der Datenbank zu hinterlegen.
 
 \subsubsection*{Musik Artwork laden}
-Um ein Wiedererkennungsmerkmal von der jeweilig genutzten Musik zu haben, könnte das dazu gehörige Musik Artwork geladen und gespeichert werden.
-Beim primär verwendeten Musikservice Spotify sollte dies kein Problem darstellen, da zu jeder Anfrage von Titeln oder Liedern auch eine Liste von Bildern mitgeliefert wird.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
+Zur Wiedererkennung eines Musikstücks könnte das zugehörige Artwork geladen und gespeichert werden.
+Beim primär verwendeten Musikservice Spotify sollte dies kein Problem darstellen, da zu jeder Anfrage von Titeln oder Liedern auch das Albumcover mitgeliefert wird.\footnote{https://stackoverflow.com/questions/10123804/retrieve-cover-artwork-using-spotify-api}
 
 \subsubsection*{Eigene Bilder nutzen}
-Um den Nutzer mehr Personalisierung seiner angelegten Tags zu ermöglichen, könnte dieser eigene Bilder verwenden.
+Um den Nutzer weitere Personalisierung seiner angelegten Tags zu ermöglichen, könnten auch eigene Bilder für NFC-Tags verwendet werden.
 Eigene Bilder hochzuladen sollte generell möglich sein.
 Der einfachere Weg hierbei wäre es, dass Nutzer ein externes Bild verlinken, dies würde ohne größerer Aufwand möglich sein.
 Sollte der Nutzer eigene Bilder hochladen wollen, würde dies mehr Aufwand beanspruchen, da die Daten zum Backend gesendet un dort gespeichert werden müssten.
