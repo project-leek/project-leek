@@ -833,21 +833,19 @@ Nach dem ersten Meilenstein fand noch keine nennenswerte Retrospektive statt.
 \subsection{Meilenstein 2}
 Der zweite Meilenstein wurde für den Zeitraum vom 11.11.2020 bis zum 25.11.2020 angesetzt.
 Ziel war es, die ersten Grundbausteine für das Projekt zu legen. Damit das Team ein generelles Verständnis des Technologie-Stacks entwickeln konnte,
-sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines \textit{Feathers-Services} für ein virtuelles
-Haustier im Backend und die Darstellung dessen im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Milestone erstellt werden,
-um den Fortschritt, Probleme und Erkentnisse zeitnah dokumentieren zu können.
+sollte jedes Teammitglied eine \glqq Hello-World\grqq{} Übungsaufgabe absolvieren. Diese beinhaltete das Anlegen eines \textit{Feathers-Services} für virtuelle
+Haustiere im Backend und die Darstellung derer im Frontend. Auch die Grundstruktur für den Bericht zu dem Projekt sollte in diesem Meilenstein erstellt werden,
+um Fortschritte, Probleme und Erkentnisse zeitnah dokumentieren zu können.
 \\~\\
 \paragraph*{Hello-World (Pet)} $~$ \\
 \label{HelloWorld}
-Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von \textit{Feathers} auseinander um einen
-Überblick über die notwendigen Klassen und Konstrukte zu erhalten. Zuerst musste eine Klasse erstellt werden, in der der Aufbau des Haustierts modeliert
-wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq. Auf dieser Basis wurde anschließend ein \textit{Feathers-Service} in Form einer
-Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
-die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
+Zur Umsetzung setzten sich die Entwickler mit der Dokumentation von \textit{Feathers} auseinander, um einen
+Überblick über die notwendigen Klassen und Konstrukte zu erhalten. Zuerst musste eine Modell-Klasse erstellt werden, in der der Aufbau des Haustiers modeliert
+wurde. Sie beinhaltete Attribute wie \glqq Name\grqq{} oder \glqq Id\grqq.
 \\~\\
 \begin{minipage}{\textwidth}
-  \begin{lstlisting}[caption={NicksPetService (Hello World)}, captionpos=b]
-    class NicksPetService implements MyService<NicksPet> {
+  \begin{lstlisting}[caption={NicksPet (Teil von Hello World)}, captionpos=b]
+    class NicksPet {
       id! : number;
       name! : string;
 
@@ -858,15 +856,26 @@ die zuvor erstellte Model-Klasse angegeben. Um z. B. Objekte der Klasse \textit{
     }
   \end{lstlisting}
 \end{minipage}
-In dieser Klasse war außerdem ein Verweis auf eine weitere erstellte Klasse (Model) aufgeführt, welche bestimmt, mit welcher Schnittstelle oder API die Daten
-verwaltet werden sollen (in diesem Fall mit der durch \textit{Feathers} bereitgestellten Schnittstelle für die Datenbank \textit{NeDB}).
-Mit dem Erstellen dieser drei Klassen (NicksPet.class.ts, NicksPetService.ts und NicksPet.model.ts) waren die benötigten Komponenten zur Verwaltung vorhanden und
-und die Arbeit im Backend abgeschlossen. Der nächste Schritt beinhaltete die Implementierung der Steuerelemente zum Verwalten der Daten im Frontend.
-Aufgrund der erhöhten Komplexität der Einarbeitung in mehrere teilweise komplett unbekannte Frameworks zur selben Zeit, bestanden bei dieser Aufgabe
-einige Startschwierigkeiten, welche allerdings durch die große Hilfsbereitschaft der erfahreneren Teammitglieder überwunden werden konnte.
+Auf dieser Basis wurde anschließend ein \textit{Feathers-Service} in Form einer
+Klasse erstellt. Diese implementierte das von \textit{Feathers} bereitgestellte generische Interface \textit{Service<T>}. Als Typparameter wurde hier
+die zuvor erstellte Modell-Klasse angegeben. Um z. B. Objekte der Klasse \textit{NicksPet} zu verwalten wurde folgender Service angelegt:
 \\~\\
-Im Frontend wurde pro Haustier je ein \textit{component} zur Anzeige eines Haustiers angelegt,
-welches zusammen mit den Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} platziert wurde.
+\begin{minipage}{\textwidth}
+  \begin{lstlisting}[caption={NicksPetService (Teil von Hello World)}, captionpos=b]
+    class NicksPetService implements Service<NicksPet> {
+      [...]
+    }
+  \end{lstlisting}
+\end{minipage}
+In dieser Klasse war außerdem ein Verweis aufgeführt, über welchen bestimmt wurde, mit welcher Schnittstelle oder API die Daten
+verwaltet werden sollten (in diesem Fall mit der durch \textit{Feathers} bereitgestellten Schnittstelle für die Datenbank \textit{NeDB}).
+Mit dem Erstellen dieser Klassen waren die benötigten Komponenten zur Verwaltung vorhanden und
+ die Arbeit im Backend abgeschlossen. Der nächste Schritt befasste sich mit der Implementierung der Steuerelemente zum Verwalten der Daten im Frontend.
+Aufgrund der erhöhten Komplexität der Einarbeitung in mehrere, teilweise komplett unbekannte Frameworks zur selben Zeit, bestanden bei dieser Aufgabe
+einige Startschwierigkeiten, welche allerdings durch die große Hilfsbereitschaft der erfahreneren Teammitglieder überwunden werden konnten.
+\\~\\
+Im Frontend wurde pro Haustier-Service eine \textit{component} zur Anzeige der Haustiere angelegt,
+welches zusammen mit Steuerelementen zum Anlegen, Löschen und Bearbeiten in einer \textit{View} platziert wurde.
 Aufgrund der je nach Entwickler sehr unterschiedlichen Implementierung der \textit{component} wird hier auf eine ausführliche Beschreibung verzichtet.
 
 \begin{figure}[ht]
