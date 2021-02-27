@@ -24,12 +24,13 @@
   "liveshare.populateGitCoAuthors": "never",
   "files.trimTrailingWhitespace": true,
   "cSpell.words": [
+    "Microservices",
     "docker",
+    "framework",
+    "frameworks",
     "macio",
     "musikstreaming",
     "simplifizieren",
-    "framework",
-    "frameworks",
     "tailwind",
     "vetur",
     "visual"

@@ -529,13 +529,20 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
     Dazu wurde das JavaScript-Test-Framework \textit{Jest}\footnote{\raggedright\url{https://jestjs.io/}} genutzt, da sich Tests hiermit sehr intuitiv und ohne großen Lernaufwand schreiben ließen.
     Auch diese Tests waren Teil des Deployment Cycles und wurden so bei jedem Pull-Request automatisch ausgeführt.
 
+
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
 \section{Technische Umsetzung}
   \subsection{Projektstrukur}
-  \wrapfiguresafe{r}{0mm}{\includegraphics[width=4cm]{PackageStruktur.png}}{Orderstruktur}
   \label{Ordnerstruktur}
   Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
   verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
-  Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt. Zur Verringerung des Aufwands der Konfiguration und Wartung wurden die einzelnen Microservices in einem Mono-Repository auf GitHub zusammengefasst.
+  Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt.
+  Microservices sind kleine, separat ausführbare und eigenständige Dienste mit geringem Umfang.
+  Diese kommunizieren untereinander mit allgemein verwendeten Protokollen, wie zum Beispiel HTTP, via APIs.
+  Größere Projekte werden bei einer Mikroservice-Architektur dementsprechend in kleine Teile \glqq zerlegt\grqq ,
+   die eigenständig entwickelt und betrieben werden können. \cite{Microservices}\\
+  Zur Verringerung des Aufwands der Konfiguration, des Abhängigkeiten-Managements und der Wartung entschied sich das Team, die einzelnen Microservices auf GitHub in einem Repository zusammenzufassen. \cite{Monorepo}
+  Repositories dieser Art werden \textit{mono-repositories} oder \textit{monorepos} genannt, da sich alle Komponenten an einem einzigen Ort befinden.
   Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. Abbildung \ref*{Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
   \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \textit{nfc-reader} die Applikation zum Steuern und auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
   Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
@@ -543,6 +550,12 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in dem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
   Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
   Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+
+  \begin{figure}[h]
+    \includegraphics[width=\linewidth]{LeekSoftware_Overview.png}
+    \caption{Überblick zum Aufbau der Leek-Software}
+    \label{fig:LeekSoftwareOverview}
+  \end{figure}
 
   \subsection{Technologien}
 
