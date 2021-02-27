@@ -13,6 +13,8 @@
 \usepackage{listings}
 \usepackage[onehalfspacing]{setspace}
 
+\hyphenation{Macio}
+\hyphenation{macio}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
@@ -116,14 +118,14 @@
 Ein zentraler Teil des Studiengangs \glqq Informationstechnologie\grqq{} ist es, Softwareentwicklung in Teams und Kommunikation mit Kund:innen zu erlernen. \cite{Qualifikationsziele_Informationstechnologie}
 Dies passiert vor allem im Modul \glqq Projekt Informatik (PROI)\grqq{}.
 In diesem arbeiten Studierende ein Semester lang in kleinen Gruppen an verschiedenen Projekten.
-Diese bilden häufig reale Sachverhalte der Softwareentwicklung ab und werden meist von Firmenpartner:innen aus der Wirtschaft gestellt.
+Diese bilden häufig reale Sachverhalte der Softwareentwicklung ab und werden meist von Partnerfirmen aus der Wirtschaft gestellt.
 Die Teams wählen ein oder mehrere Projekte, die sie gerne bearbeiten würden, und stellen sich mit einer Kurzbewerbung bei den entsprechenden Firmen vor.
 Welche Teams die jeweiligen Projekte bearbeiten, entscheiden die Firmen selbst.
 \\
 Dieser Bericht beschreibt das Projekt und dessen Verlauf, dass das Autoren-Team für die macio GmbH aus Kiel bearbeitete.
 
 \subsection{Unternehmen}
-Das Unternehmen macio stellte in ihrer Ausschreibung als einzige Firma die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
+Macio stellte in ihrer Ausschreibung als einziges Unternehmen die Anforderung, dass Projekt quelloffen (\textit{Open Source}) umzusetzen.
 Das Team schätzte die Bereitschaft, die geleistete Arbeitszeit nicht für den Eigenbedarf zu nutzen, sondern einen Beitrag für die Open-Source-Community zu leisten.
 Damit wurde die folgende Definition für Open-Source erfüllt:
 
@@ -134,18 +136,18 @@ Damit wurde die folgende Definition für Open-Source erfüllt:
   \cite{openSource}
 \end{quote}
 
-Das Hauptgeschäft von macio ist das Design und Entwickeln von Mensch-Maschine-Interfaces.
+Das Hauptgeschäft von macio ist das Design und Entwickeln von Mensch-Maschine-Schnittstellen.
 Als etabliertes Unternehmen konnten Sie neben der Rolle des Kunden auch ihre jahrelange Erfahrung bei Bedarf einbringen und Hilfestellung leisten.
 So gab beispielsweise ein Designer des Unternehmens hilfreiches Feedback zum Entwurf der Benutzeroberfläche.
 \subsection{Anforderungsanalyse}
-Im Rahmen des Projekt Informatik möchte Macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
+Im Rahmen des Projekt Informatik möchte macio ihr Portfolio im IoT-Bereich erweitern, sowie ihren Empfangsraum im Standort Kiel verschönern.
 Hierfür soll eine smarte Spielzeug-Box gebaut werden.
-Da die aktuell am Markt erhältlichen Konkurrenzprodukte wenig konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
+Da die aktuell am Markt erhältlichen Konkurrenzprodukte wenig Konfigurierbarkeit bieten, zum Beispiel kein anderer Lautsprecher ausgewählt werden kann, sollte hier eine Open-Source Alternative geschaffen werden, die dem Nutzer volle Freiheiten zur Anpassung bietet.
 \subsubsection{Produktvision}
-Mithilfe der von macio gestellten Projektskizze (siehe \ref{pdf:macioprojektskizze}) erstellte das Team die folgende Produktvision:
+Mithilfe der von macio gestellten Projektskizze (siehe \autoref{pdf:macioprojektskizze}) erstellte das Team die folgende Produktvision:
 Angestrebt wurde die Konzeption und Entwicklung einer Musik-Box, die NFC Tags lesen kann und Schnittstellen zu Musik-Streaming-Anbietern (wie Spotify) besitzt.
-Wird auf die Box beispielsweise ein Spielzeuge (z.B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt, soll ein frei konfigurierbares Musikstück über eine bereits bestehende Musik-Anlage abgespielt abgespielt werden.
-Falls es im Rahmen des Projektes möglich ist, sollen die Nutzer in der Lage sein, zwischen verschiedenen Musikanbietern zu wechseln.
+Wird auf die Box beispielsweise ein Spielzeuge (z. B. in Form von kleinen Figuren) mit integrierten NFC-Chips gestellt, soll ein frei konfigurierbares Musikstück über eine bereits bestehende Musik-Anlage abgespielt werden.
+Falls es im Rahmen des Projektes möglich ist, sollen die Nutzer:innen in der Lage sein, zwischen verschiedenen Musik\-anbietern zu wechseln.
 NFC-Chips und die zugehörige Musik sollen über ein Web-basierte Benutzeroberfläche konfiguriert werden können.
 Diese Benutzeroberfläche soll von der Box ausgeliefert und primär für Smartphone-Bedienung gestaltet werden.
 Da es sich um ein Open Source Projekt mit entsprechender Lizenz handelt, muss auch eine aussagekräftige, öffentliche Dokumentation verfasst werden.
@@ -167,10 +169,10 @@ Aus der Projektskizze und der Produktvision wurden folgende konkrete Mindestanfo
 \end{table}
 \end{center}
 
-Um diese Anforderungen weiter zu definieren erstellte das Team User Stories,
+Um diese Anforderungen weiter zu definieren, erstellte das Team User Stories,
 durch die sichergestellt wurde, dass beide Parteien (der Kunde und die Entwickler) die Anforderungen  gleich interpretierten und verstanden.
-Dabei entstand auch eine Priorisierung der Anforderungen, bemessen an dem \textit{Return of Investment} und dem Nutzen für den Endnutzer.
-Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an das Produkt:
+Dabei entstand auch eine Priorisierung der Anforderungen, bemessen an dem \textit{Return of Investment} und dem Nutzen für die Endnutzer:innen.
+Im weiteren Gespräch mit dem Kunden ergaben sich ergänzende Anforderungen an das Produkt:
 \begin{center}
   \begin{table}[h!]
     \begin{tabular}{c|c}
@@ -178,78 +180,69 @@ Im weiteren Gespräch mit den Kunden ergaben sich ergänzende Anforderungen an d
     \hline
     Sound Wiedergabe auf der Box selbst & funktional  \\
     Unterstützung anderer Musikdienste & funktional \\
-    3D-Modellierung und Print einer passenden Box & nicht funkt.  \\
-    Maximaler Kostenpunkt von 30€ & nicht funkt.  \\
+    3D-Modellierung und Druck einer passenden Box & nicht funkt.  \\
+    Maximale Kosten von 30€ & nicht funkt.  \\
     Cloud-Anbindung der Box & funktional \\
-    Auslieferung des UI aus der Cloud & funktional \\
+    Auslieferung der Benutzeroberfläche aus der Cloud & funktional \\
     \end{tabular}
     \caption{\label{erg-anforderungen}ergänzende Anforderungen}
   \end{table}
 \end{center}
 
 Durch die agile Projektorganisation wuchsen diese Anforderungen iterativ von Sprint zu Sprint und neue implizite Anforderungen entstanden.
-Um die Kosten von maximal 30€ zu realisieren, entstand die Idee zur Konzeption von zwei Versionen der \textit{Leek-Box}. Während die kostengünstige Variante nur die Grundfunktionen umsetzt, bietet die teurere einen größeren Funktionsumfang, wie das Abspielen der Musik über einen eigenen Lautsprecher.
+Um die Kosten von maximal 30€ zu realisieren, entstand die Idee zur Konzeption von zwei Versionen der \textit{Leek-Box}. Während die kostengünstige Variante nur die Grundfunktionen umsetzt, bietet die teurere einen größeren Funktionsumfang, wie das Abspielen der Musik über einen eingebauten Lautsprecher.
 Einige der Anforderungen haben sich während der Entwicklungsphase als widersprüchlich herausgestellt.
-So wurde sich zum Beispiel gegen bezahlte Services entschieden. Dies schränkte die Usability ein, entsprach jedoch mehr dem Open-Source-Gedanken des Projekts.
-Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschnitt Machbarkeitsstudie (Abschnitt \ref{machbarkeitsstudie}) behandelt.
+So entschied sich das Team zum Beispiel gegen bezahlte Services, was die Usability einschränkte, jedoch mehr dem Open-Source-Gedanken des Projekts entsprach.
+Ob und wie diese Anforderungen umgesetzt werden können, wird im späteren Abschnitt Machbarkeitsstudie (Abschnitt \ref{machbarkeitsstudie}) behandelt.
 
 \section{Projektplanung}
   \subsection{Projekt Management}
-  Am Anfang des Projekt entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
-  Diese Richtung des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
+  Am Anfang des Projekts entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
+  Diese Art des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
   Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
   Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
-  (Wasserfallmodell, V-Model, etc) der Fall ist. Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
-  da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse vergleichsweise kürzere Veröffentlichungszyklen,
-  was dem Team ermöglichte, ein funktionierendes Produkt innerhalb des recht knappen Zeitrahmens eines
-  Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als ein typisches.} zu erstellen.
+  (Wasserfallmodell, V-Model, etc.) der Fall ist; Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
+  da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse kürzere Veröffentlichungszyklen,
+  die dem Team ermöglichten, ein funktionierendes Produkt innerhalb eines
+  Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als üblich.} zu erstellen.
   \\
-  Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn des Projekt keine feste Planung des Projektverlaufs aufgestellt.
+  Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn keine feste Planung des Projektverlaufs aufgestellt.
   Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
   Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
   Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
   Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
   \subsection{Vor den Sprints}
-  Den Anfang eines jeden Sprints stellte das Sprint-Planing dar.
-  Im diesem stellte das Team eine Vision für die Sprintiteration auf.
-  Diese wurde gemeinsam mit dem Kunden abgesprochen und gegebenenfalls abgeändert.
-  Im Anschluss wurde die Produktvision vom Team in technisch orientierte Arbeitspakete aufgeteilt.
-  Dies geschah anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen.
-  Falls sich hierbei gegebenenfalls herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde die Produktvision entsprechend angepasst.
-
+  Am Anfang eines Sprints wurde ein Sprint-Planing durchgeführt,
+  in dem das Team die Ziele für das Produktinkrement formulierte.
+  Diese wurden gemeinsam mit dem Kunden abgesprochen und gegebenenfalls angepasst.
+  Im Anschluss wurde das Produktinkrement vom Team anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen in technisch orientierte Arbeitspakete aufgeteilt.
+  Falls sich hierbei herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde das Produktinkrement entsprechend angepasst.
 
   \subsection{Arbeit in den Sprints}
-  Während der Sprints wurde die Produktvision aus den Sprint-Planings implementiert.
-  Alle Mitglieder des Team waren an dieser Arbeit beteiligt.
-  Die einzelnen Arbeitspakete wurden entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
-  Dies wurde anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete entschieden.
+  Während jedes Sprints wurde das geplante Produktinkrement aus dem Sprint-Planing implementiert.
+  Die einzelnen Arbeitspakete wurden, anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete, entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
   Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
   In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
   \\
   Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen durch Code Reviews von mindestens zwei anderen Entwicklern geprüft.
   Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
-  Dieses Verfahren wurde angesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
-  Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und anderen beruflichen Tätigkeiten nachgingen.
+  Dieses Verfahren wurde eingesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
+  Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und beruflichen Tätigkeiten nachgingen.
   So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
-  Die freie Verteilung von Paketen ermöglichte auch, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten.
-  Dies half die Motivation des Teams am Projekt hochzuhalten.
+  Die freie Verteilung von Paketen ermöglichte, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten, wodurch die Motivation des Teams am Projekt erhalten werden konnte.
   \\
-  Um sich während der Sprints abzustimmen und um Arbeitsfortschritte abzugleichen, trafen sich die Teammitglieder drei Mal pro Woche.
-  Dies geschah immer montags, mittwochs und freitags.
-  Bei Bedarf wurde auch von dieser Taktung abgewichen.
-  In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} der Scrum-Methode.
-  Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren und was bei der Arbeit gelernt wurde.
-  Auch welche Themen jedes Mitglied bis zum nächsten Standup bearbeiten wollte, wurde besprochen.
+  Zur Abstimmung des Fortschritts während des Sprints, trafen sich die Teammitglieder drei Mal pro Woche (in der Regel montags, mittwochs und freitags).
+  In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} von Scrum.
+  Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren, was bei der Arbeit gelernt wurde und welche Themen es bis zum nächsten Standup bearbeiten wollte.
   Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
   So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
 
   \subsection{Am Ende der Sprints}
-  Nach jedem Sprint wurde das Ergebnis bzw. das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt.
-  Hier wurde meist auch zusammen mit macio das Ausmaß des nächsten Produktinkrements besprochen.
-  Die resultierenden Wünsche und Rückmeldungen wurden mit ins Backlog und die folgenden Besprechungen mitgenommen.
-  Im Anschluss fand immer eine Retrospektive statt.
-  In dieser besprach das Team die eigene Zusammenarbeit und den gemeinsamen Umgang.
+  Nach jedem Sprint wurde das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt, sowie Ausmaß und Inhalt des nächsten Produktinkrements besprochen.
+  Die resultierenden Wünsche und Rückmeldungen wurden ins Backlog übertragen.
+  Im Anschluss fand eine Retrospektive statt,
+  in der das Team die eigene Zusammenarbeit und den gemeinsamen Umgang evaluiert.
   Hierfür stellten sich alle Teammitglieder für sich folgende Fragen für die Arbeit am entsprechenden Sprint:
   \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
     \item Was lief gut?
@@ -258,34 +251,30 @@ Ob und wie diese Anforderungen umgesetzt werden können wird im späteren Abschn
     \item Was können wir in Zukunft besser machen?
   \end{itemize}
   Die jeweiligen Antworten wurden zusammengetragen und im Team gemeinsam reflektiert.
-  Das Feedback in diesem Kontext war konstruktiv und fair aber auch ehrlich.
-  Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
+  Das Feedback in diesem Kontext war konstruktiv, fair und ehrlich.
+  Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt, um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
   Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
 
   \subsection{Quelloffenes Arbeiten}
   Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
-  Dementsprechend entwickelte das Team den Anspruch, das dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
-  Aufgrunddessen wurde die Entscheidung getroffen, das Projekt von Entwicklungsbeginn öffentlich auf GitHub aufzusetzten.
-  Diese Platform bot sich an, da sie für den Umfang des Projekts viele hilfreiche Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, allerdings trotzdem kostenlos ist
-  Diese Werkzeuge halfen dabei den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
-  So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen.
-  Auch im Nachhinein können dann Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden.
-  Dies hilft zusätzlich bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
+  Dementsprechend entwickelte das Team den Anspruch, dass dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
+  Aufgrunddessen wurde die Entscheidung getroffen, den kompletten Entwicklungsprozess auf \textit{GitHub}\footnote{\url{https://github.com/}} zu veröffentlichen.
+  Diese Platform bot sich an, da sie für den Umfang des Projekts viele kostenlose Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, welche halfen den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
+  So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen geführt, wodurch Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden konnten.
+  Dies hilft bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
   \\
-  Das Produkt-Backlog wurde auch in dieses GitHub Repository eingepflegt.
-  Dies erhöhte einerseits die Übersichtlichkeit über den Stand des Projekts innerhalb, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
-  Andererseits ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen aufsuchen zu müssen.
+  Das Produkt-Backlog wurde in diesem GitHub Repository gepflegt,
+   was die Übersichtlichkeit des Projektsstands erhöhte, da Arbeitspakete und zugehöriger Code sehr einfach verknüpft werden konnten.
+  Außerdem ermöglicht diese Zusammenlegung auch, dass andere Entwickler:innen einfach ins Projekt einsteigen und ihre Arbeit dokumentieren können, ohne andere Plattformen nutzen zu müssen.
   Die Möglichkeiten der Automatisierung wurden genutzt, um den Workflow zu vereinfachen und um die Code-Qualität sicherzustellen.
-  Dies geschah zum Beispiel die durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
+  Dies geschah zum Beispiel durch die automatische Erstellung von Branches für einzelne Arbeitspakete bei Beginn der Bearbeitung und automatische statische und dynamische Tests des Codes.
   \\
-  Darüber hinaus war die Open-Source Anforderung auch hilfreich bei der Produktentwicklung.
-  So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden.
-  Dies war vor allem für das erstmalige Einrichten und die zugehörige Dokumentation maßgebend.
+  Darüber hinaus war die Open-Source Anforderung hilfreich bei der Produktentwicklung.
+  So konnte die Zielgruppe für dieses Projekt auf Menschen mit fortgeschrittenen Technikkenntnissen und Interesse an Bastelprojekten eingeschränkt werden,
+   was vor allem für das erstmalige Einrichten der \textit{Leek-Box} und der zugehörigen Dokumentation maßgebend war.
   Entsprechend konnte sich hier eher technischer Sprache bedient werden.
-  Allerdings galt diese Einschränkung der Zielgruppe auch nicht für alle Breiche des Projekts.
+  Allerdings galt diese Einschränkung der Zielgruppe auf technikaffine Benutzer:innen nicht für alle Breiche des Projekts.
   Die Benutzbarkeit der Nutzeroberfläche sollte einfach und ohne Vorkenntnisse möglich sein, da die Musikbox z. B. verschenkt oder in Familien genutzt werden könnte.
-  Dieser Anwendungsfall schließt andere Nutzende ein, als bei der Einrichtung.
-
 
 \section{Machbarkeitsstudie}
 \label{machbarkeitsstudie}
@@ -297,7 +286,7 @@ Hierfür ist ein Hardware NFC-Reader notwendig, der die Daten ausliest und an de
 Dafür werden Tastatureingaben, die die Tag-IDs darstellen, emuliert.
 \textit{Evdev}, ein Kernel Modul von Linux, könnte dann zum Abgreifen dieser Eingaben genutzt werden.
 Mit \textit{node-evdev}\footnote{https://github.com/sdumetz/node-evdev} kann \textit{evdev} auch mit Node genutzt werden.
-Um dieses Modul auch für den Raspberry Pi und mit Typescript nutzbar zu machen, müssten noch Änderungen an diesem Modul durchgeführt werden. 
+Um dieses Modul auch für den Raspberry Pi und mit Typescript nutzbar zu machen, müssten noch Änderungen an diesem Modul durchgeführt werden.
 \\
 Um neben der initial gespeicherten ID weitere Daten auf einen NFC-Tag schreiben zu können, benötigt der NFC-Tag einen eigenen Speicher.
 Ist dieser vorhanden, können dort z. B. User Daten hinterlegt werden.
@@ -306,10 +295,10 @@ Dafür wäre ein spezieller NFC-Reader, mit Schreibfunktionalität notwendig.
 \subsection{Raspberry Pi}
 \subsubsection*{Docker Integration}
 Docker Integration sollte für einfachere Auslieferbarkeit angeboten werden (vgl. \ref{abschnitt:docker}).
-Die Installation von Docker auf einem Raspberry Pi wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}, weshalb die Umsetzbarkeit dieses Punktes als sehr wahrscheinlich eingeschätzt wird.  
+Die Installation von Docker auf einem Raspberry Pi wird in vielen Anleitungen online beschrieben\footnote{https://phoenixnap.com/kb/docker-on-raspberry-pi}, weshalb die Umsetzbarkeit dieses Punktes als sehr wahrscheinlich eingeschätzt wird.
 
 \subsubsection*{Öffentlich zugängliches Web Interface}
-Zur Bereitstellung der Benutzeroberfläche für eine Box soll der Raspberry Pi verwendet werden. 
+Zur Bereitstellung der Benutzeroberfläche für eine Box soll der Raspberry Pi verwendet werden.
 Um die Erreichbarkeit dieser Web Anwendung auch von außerhalb des eigenen Netzwerkes zu ermöglichen, könnte eine Portweiterleitung im Router eingerichtet werden.
 Dies ermöglicht den Zugriff auf die Benutzeroberfläche durch die öffentliche IP-Adresse des Routers.
 Da die öffentliche IP-Adresse eines privaten Internet-Anschlusses häufig nicht konstant ist, könnte zum Zugiff ein DynDNS Dienst verwende werden, welcher eine feste Domain in die wechselnde IP Adresse des Routers übersetzt.
@@ -321,8 +310,8 @@ Alternativ könnte für das Projekt auch \textit{Github.io Pages} genutzt werden
 Zum Zugriff von Frontend zu Backend könnte eine REST-API verwendet werden, sodass Daten durch API-Calls ausgetauscht werden könnten.
 
 \subsubsection*{Login via Spotify, Youtube, etc.}
-Zur Feststellung, ob ein Benutzer bei einem Musik-Service angemeldet ist, muss sich dieser authentifizieren. Dabei muss in den meisten Fällen auch das Abomodell ermittelt werden, um die Möglichkeit zur Nutzung von bestimmten Funktionen, wie der freien Wahl eines Songs, festzustellen. Dafür soll das offene Protokoll \textit{OAuth} verwendet werden, welches von den häufig genutzten Musik-Streaming-Anbietern (Spotify, Deezer, Amazon-Music) unterstützt wird. 
-Es existieren mehrere Bibliotheken, welche die Nutzung von  OAuth Provider abstrahieren, was zu einer verminderten Komplexität führt und somit die Umsetzung erleichtert. 
+Zur Feststellung, ob ein Benutzer bei einem Musik-Service angemeldet ist, muss sich dieser authentifizieren. Dabei muss in den meisten Fällen auch das Abomodell ermittelt werden, um die Möglichkeit zur Nutzung von bestimmten Funktionen, wie der freien Wahl eines Songs, festzustellen. Dafür soll das offene Protokoll \textit{OAuth} verwendet werden, welches von den häufig genutzten Musik-Streaming-Anbietern (Spotify, Deezer, Amazon-Music) unterstützt wird.
+Es existieren mehrere Bibliotheken, welche die Nutzung von  OAuth Provider abstrahieren, was zu einer verminderten Komplexität führt und somit die Umsetzung erleichtert.
 
 \subsubsection*{Nutzer verschiedener Streaminganbieter wiedererkennen}
 Sollte ein Nutzer mehrere Musikstreaminganbieter verwenden wollen, muss eine eindeutige Identifikation anhand eines Merkmals sichergestellt werden.
