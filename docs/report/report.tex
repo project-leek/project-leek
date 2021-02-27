@@ -790,12 +790,11 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   \subsubsection{Reverse-Tunnel (ngrok)}
   \label{kapitel:ngrok}
-  Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet.
+  Um verschlüsselt vom Frontend (unter \raggedright\url{https://project-leek.github.io} erreichbar) auf das jeweilige Backend einer \textit{leek-box} zuzugreifen, wird der Reverse-Tunnel Dienst \textit{ngrok}\footnote{\raggedright\url{https://ngrok.com/}} verwendet (siehe Abbildung \ref{fig:LeekSoftwareOverview}).
   Dies ist notwendig, da moderne Browser eine verschlüsselte Verbindung (mit SSL-Zertifikat) zu allen Komponenten auf der Website verlangen, sobald die Website selbst per SSL geladen wird.
   Da das Framework jedoch nativ kein HTTPS unterstützt, wird \textit{ngrok} verwendet, um die unverschlüsselten Daten durch einen verschlüsselten Tunnel zum Frontend zu schicken. Damit wird die Anforderung der Verschlüsselten Verbindung erfüllt.
   Außerdem soll das Backend unabhängig vom lokalen Netzwerk erreichbar sein, ohne dass eine umständliche Portweiterleitung eingerichtet werden muss. Um dies zu leisten, baut das Backend einen Tunnel zu dem Server mit der bekannten Adresse \url{ngrok.io} auf.
   Dabei wird eine zufällige Subdomain im Schema \textit{xyz.ngrok.io} angelegt und dem Benutzer in der Konsole des Backends angezeigt. Diese Adresse kann der Benutzer nun im Frontend (\url{https://project-leek.github.io}) eingeben, um sich mit seiner Box zu verbinden.
-  \colorbox{red}{Hier Schaubild?}
 
   \subsubsection{Externe Bibliotheken}
   \paragraph{Spotify Web API} $~$ \\
@@ -1370,7 +1369,7 @@ Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 \paragraph*{Letzte Bugfixes} $~$ \\
 Neben kleineren Bugfixes, wurde der Fehler behoben, der im letzten Review eine erfolgreiche Präsentation des initialen Verbindens mit der Box verhindert hatte.
 Dieser bestand darin, dass der Container des NFC-Readers versuchte, seine \textit{Id} in diesem zu setzen, bevor er eine Verbindung zu dem Backend aufgebaut hatte.
-Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \texit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
+Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \textit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
 Ein weiteren Fehler trat auf, wenn keine Verbindung zur bereits gespeicherten Adresse der \textit{Leek-Box} möglich ist.
 Dies trat zum Beispiel auf, wenn die \textit{Leek-Box} nach einem Neustarte eine neue \textit{Ngrok}-Adresse erhielt und resultierte in der Anzeige einer weißen Seite, ohne jegliche Fehlermeldung.
 Zur Behebung dieses Problems wurde eine Offline-Seite konzipiert, die Informationen über den Fehler bereitstellt und die Eingabe einer neuen Adresse ermöglicht.
