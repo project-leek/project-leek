@@ -1237,8 +1237,6 @@ Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war
 Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
 % Initial Setup
-\colorbox{red}{explain this:} https://github.com/project-leek/project-leek/pull/319/files
-
 Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet, indem das komplette Setup durchgeführt wurde.
 Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer ihre eigene \textit{leek-box} bei sich einrichten könnten.
 
@@ -1333,21 +1331,27 @@ Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
 \\~\\
-\paragraph*{Frontend in Githup.io Pages} $~$ \\
-Das Frontend ist vom Raspberry zu Github.io Pages umgezogen, um somit eine einfachere allgemeine Webseite den Endkunden zu stellen.
-So kann der Endnutzer auch ohne Kenntnis der IP des Raspberrys auf die Benutzeroberfläche zugreifen
-und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um auf seine \textit{Leek Box} auch außerhalb des Heimnetzwerkes zugreifen zu können.
-Für die Verbindung zwischen Front- und Backend wurde der Tunneldienst \textit{ngrok} (vgl \ref{kapitel:ngrok})implementiert.
-Ngrok veröffentlicht automatisch eine über SSL verschlüsselte \textit{URL}, die im Frontend eingeben werden kann.
-Anfäglich wurde diese \textit{URL} jedoch nicht validiert
-Hat nun der Nutzer eine falsche \textit{URL} eingegeben, versuchte das Frontend sich mit einer nicht existenden \textit{URL} zu verbinden, was in einem Fehler 404 resultierte.
-Eine weitere Problematik war, dass bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue \textit{URL} generierte, die dann wieder manuell im Projekt im \textit{Spotify Developer Dashboard} eingetragen werden musste.
-Bisher musste der Nutzer auch seinen lokalen Cache löschen, da sonst der Browser weiterhin versuchte, sich mit der alten \textit{URL} zu verbinden.
-Die Lösung dieser Problemstellung wurde auf den nächsten Milestone verschoben.
+\paragraph*{Frontend auf Github.io Pages} $~$ \\
+\label{FrontendAufGithubIOPages}
+Das Frontend ist vom Raspberry Pi zu Github.io Pages umgezogen.
+Somit kann der Endnutzer auch ohne Kenntnis der IP-Adresse des Raspberrys auf die Benutzeroberfläche zugreifen
+und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um von außerhalb des Heimnetzwerkes auf seine \textit{Leek Box} zugreifen zu können.
+Die statischen Dateien von GitHub.io werden auf dem Endgerät geladen, sodass die Benutzeroberfläche angezeigt wird.
+In dieser kann der Nutzer die von \textit{Ngrok} bereitgestellte Adresse seiner Leek-Box eingeben, woraufhin sich das Endgerät über einen verschlüsselten Tunnel mit dem Backend der Leek-Box verbindet.
+Anfäglich wurde diese Adresse jedoch nicht validiert, sodass die Eingabe einer fehlerhaften Adresse, in einem Fehler 404 resultierte.
+Bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue Adresse erhält, die anschließend manuell im \textit{Spotify Developer Dashboard} eingetragen werden muss.
+Folglich musste der Nutzer nach jedem Neustart den Browsercache des Endgerätes löschen, um die Adresse der \enquote{neuen} Leek-Box eingeben zu können.
 \\~\\
-\paragraph*{Leek Box zum Account hinzufügen} $~$ \\
-\colorbox{red}{@anton hier}
 
+\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Einstellungen}
+\paragraph*{Einrichten einer Leek-Box} $~$ \\
+Die Einrichtung einer Leek-Box wurde in diesem Milestone beispielhaft durchgeführt und in einem Setup-Guide dokumentiert. Hierfür wurde auf einem neu aufgesetzten Raspberry Pi Docker installiert
+und das auf \textit{DockerHub} verfügbare Backend-Image geladen. Zusätzlich wurde ein \textit{Container} für den angeschlossenen USB-NFC-Reader aus der gleichen Quelle bezogen und gestartet. Dabei
+generiert der NFC-Reader eine ID, die im Backend registriert wird. Nach dem Start des Backend-Containers, gibt dieser auf der Konsole eine neue Adresse aus, die von \textit{Ngrok}(vgl. \ref{FrontendAufGithubIOPages})
+bereitgestellt wird. Daraufhin kann sich der Benutzer über \url{project-leek.github.io} durch die Eingabe dieser Adresse mit der neuen \textit{Leek-Box} verbinden. Da in der App zu diesem Zeitpunkt noch kein
+Lautsprecher hinterlegt wurde, wird der Benutzer automatisch in die Einstellungen umgeleitet. Hier wird die neu angelegte \textit{Leek-Box} zusammen mit der ID angezeigt und bietet dem Nutzer die Möglichkeit den Namen
+der Box festzulegen sowie einen vorhandenen Lautsprecher auszuwählen. Der zusätzliche Schritt der Auswahl einer Box wird benötigt, da die Lösung so konzipiert ist, dass ein Nutzer potentiell merhere \textit{Leek-Boxen}
+besitzen und die Verwaltung dennoch über ein zentrales Backend erfolgen kann. Somit entfällt die Einrichtung des Backends auf den einzelnen \textit{Leek-Boxen} und muss lediglich einmalig durchgeführt werden.
 
 \paragraph*{Bericht} $~$ \\
 Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
@@ -1364,7 +1368,13 @@ So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \texti
 Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 
 \paragraph*{Letzte Bugfixes} $~$ \\
-\colorbox{red}{TODO: @anton / julian?}
+Neben kleineren Bugfixes, wurde der Fehler behoben, der im letzten Review eine erfolgreiche Präsentation des initialen Verbindens mit der Box verhindert hatte.
+Dieser bestand darin, dass der Container des NFC-Readers versuchte, seine \textit{Id} in diesem zu setzen, bevor er eine Verbindung zu dem Backend aufgebaut hatte.
+Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \texit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
+Ein weiteren Fehler trat auf, wenn keine Verbindung zur bereits gespeicherten Adresse der \textit{Leek-Box} möglich ist.
+Dies trat zum Beispiel auf, wenn die \textit{Leek-Box} nach einem Neustarte eine neue \textit{Ngrok}-Adresse erhielt und resultierte in der Anzeige einer weißen Seite, ohne jegliche Fehlermeldung.
+Zur Behebung dieses Problems wurde eine Offline-Seite konzipiert, die Informationen über den Fehler bereitstellt und die Eingabe einer neuen Adresse ermöglicht.
+
 
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.65\textwidth]{Latex.png}}{Bericht während der Erstellung}
 \paragraph*{Bericht} $~$ \\
