@@ -12,6 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{listings}
 \usepackage[onehalfspacing]{setspace}
+\usepackage{pdfpages}
 
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
@@ -1468,9 +1469,10 @@ Auch wenn die Lösung dieses Problem hätte effizienter behandelt werden können
 
 \newpage
 \section{Anhang}
-\label{pdf:macioprojektskizze}
-\label{FigmaDesigns}
-\label{FlowCharts}
-\label{anhang:lucidchart}
-\printbibliography
+  \printbibliography
+  \includepdf[scale=0.75, pages=-, pagecommand=\subsection*{Ursprüngliche Projektskizze\label{pdf:macioprojektskizze}}]
+    {anhang/macio-Projektskizze-ProjektInformatik_20_21.pdf}
+  \label{FigmaDesigns}
+  \label{FlowCharts}
+  \label{anhang:lucidchart}
 \end{document}
