@@ -1369,7 +1369,7 @@ Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 \paragraph*{Letzte Bugfixes} $~$ \\
 Neben kleineren Bugfixes, wurde der Fehler behoben, der im letzten Review eine erfolgreiche Präsentation des initialen Verbindens mit der Box verhindert hatte.
 Dieser bestand darin, dass der Container des NFC-Readers versuchte, seine \textit{Id} in diesem zu setzen, bevor er eine Verbindung zu dem Backend aufgebaut hatte.
-Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \texit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
+Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \textit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
 Ein weiteren Fehler trat auf, wenn keine Verbindung zur bereits gespeicherten Adresse der \textit{Leek-Box} möglich ist.
 Dies trat zum Beispiel auf, wenn die \textit{Leek-Box} nach einem Neustarte eine neue \textit{Ngrok}-Adresse erhielt und resultierte in der Anzeige einer weißen Seite, ohne jegliche Fehlermeldung.
 Zur Behebung dieses Problems wurde eine Offline-Seite konzipiert, die Informationen über den Fehler bereitstellt und die Eingabe einer neuen Adresse ermöglicht.
