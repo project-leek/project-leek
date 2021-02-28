@@ -887,43 +887,43 @@ Aufgrund der je nach Entwickler sehr unterschiedlichen Implementierung der \text
 \paragraph*{NFC-Tags auslesen} $~$ \\
 Neben der Umsetzung des Hello-Worlds sollte sich mit dem Raspberry Pi und dem NFC-Reader auseinandergesetzt und das Auslesen der NFC-Tags implementiert werden. Diese Anforderung geriet mangels ausreichender Notizen beim ersten Review vorerst
 in Vergessenheit, sodass sich das Team einige Tage vor Sprintende nicht sicher war, ob diese Anforderung bis zum Review umgesetzt werden könnte.
-Um das Sprintziel nicht zu gefährden, mussten gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen konnte.
+Um das Sprintziel nicht zu gefährden, wurden gegen Ende des Sprints Überstunden geleistet und das Feature konnte ins Produktinkrement aufgenommen werden.
 \\
 Zur Umsetzung wurde im Backend die Klassen und der Service zur Verwaltung eines NFC-Readers und NFC-Tags
-analog zu dem in \ref{HelloWorld} beschriebenen Vorgehen erstellt.
+analog zu dem in \autoref{HelloWorld} beschriebenen Vorgehen erstellt.
 Außerdem wurde der Microservice \textit{nfc-reader} in der Projektstruktur unter \textit{packages}
-angelegt. Dieser nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, welches ein Interface für die Events der angeschlossenen
+angelegt. Dieser nutzt die Bibliothek \textit{Evdev}\footnote{https://github.com/PixnBits/node-evdev}, welche ein Interface für die Events der angeschlossenen
 Eingabegeräte vom Linux-Kernel, wie in unserem Fall den NFC-Reader, bereitstellt. Dies ist möglich, da der NFC-Reader sich wie eine Tastatur verhält. Er
-simuliert dabei eine Tastatureingabe mit dem Text der NFC-Tag-ID. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse
-(im NFC-Reader Package), welche jeden simulierten Tastendruck des NFC-Readers abfängt, bis ein Zeilenumbruch (0A HEX) empfangen
-wird und anschließend ein Event auslöst, welches die eingescannte ID beinhaltet. Die Hauptklasse nimmt dieses Event entgegen (Event-Listener) und setzt mittels des
-NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die übergebene ID. Durch die Nutzung von \textit{Web-Sockets} und \textit{Vue.js}
+simuliert dabei eine Tastatureingabe mit dem Text der \textit{NFC-Tag-ID}. Zur Nutzung wurden zwei Klassen erstellt. Zum einen die NFC-Reader Klasse
+(im NFC-Reader Package), welche jeden simulierten Tastendruck des NFC-Readers abfängt, bis ein Zeilenumbruch (\textit{0A HEX}) empfangen
+wird und anschließend ein Event auslöst, welches die eingescannte \textit{ID} beinhaltet. Die Hauptklasse nimmt dieses Event entgegen (\textit{Event-Listener}) und setzt mittels des
+NFC-Reader Services den aktuell anliegenden Tags (\textit{currentTag}) auf die übergebene \textit{ID}. Durch die Nutzung von \textit{Web-Sockets} und \textit{Vue.js}
 kann diese Änderung sofort im Frontend angezeigt werden. Aufgrund der potentiell hohen Komplexität des Abspielens von Musik wurde diese Funktionalität für den
-folgenden Milestone eingeplant und vorerst lediglich die Anzeige der NFC-ID als JSON-String umgesetzt.
+folgenden Milestone eingeplant und vorerst lediglich die Anzeige der \textit{NFC-ID} als \textit{JSON-String} umgesetzt.
 \\
 Für den Microservice wurde anschließend ein Docker-Image kreiert, welches eine einfache und gleichzeitig optionale Auslieferung zur restlichen Installation
-ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem esp32) integrierte NFC-Reader, statt des aktuellen genutzt werden können.
+ermöglicht. Dies bringt den Vorteil, dass auch auf einem anderen System (wie z. B. einem ESP32) integrierte NFC-Reader, statt des aktuellen, genutzt werden können.
 
-\paragraph*{Prototyping der Beutzeroberfläche} $~$ \\
+\paragraph*{Prototyping der Benutzeroberfläche} $~$ \\
 Damit die Entwicklung zeitnah starten konnte, wurden die ersten Mockups für die Benutzeroberfläche erstellt.
-Mithilfe des Prototyping-Tools \textit{figma} (vgl. \ref*{figma}) wurden Prototypen für die Start- , die Hauptansicht und die Ansichten
-für das Bearbeiten und Anlegen von NFC-Tags erstellt (Eine Übersicht über das erstellte Design ist im Anhang unter \ref*{FigmaDesigns} zu finden).
+Mithilfe des Prototyping-Tools \textit{figma} (vgl. \autoref*{figma}) wurden Prototypen für die Start- und die Hauptansicht und die Ansichten
+für das Bearbeiten und Anlegen von NFC-Tags erstellt (Eine Übersicht über das erstellte Design ist im Anhang unter \autoref*{FigmaDesigns} zu finden).
 Nach dem Design wurden die Ansichten in \textit{Click-Dummys} umgewandelt, um dem Kunden im folgenden Review einen Überblick über das Verhalten der
 Benutzeroberfläche zu verschaffen.
 
 \paragraph*{Review} $~$ \\
 Dank des großen Engagements und der Bereitschaft Überstunden zu leisten, konnte dem Kunden zum Review ein neues Produktinkrement übergeben werden.
-Das Produkt wurde um ein erstes User Interface erweitert, welches die Tag-ID vom angelegten NFC-Tags anzeigen konnte.
+Das Produkt wurde um ein erstes User Interface erweitert, welches die \textit{Tag-ID} vom angelegten NFC-Tags anzeigen konnte.
 Der NFC-Reader wurde mit dem Raspberri Pi verbunden und als ein auslieferbares Docker Image bereitgestellt.
 Auch wurden für die Entwicklung automatisierte Tests erstellt, welche neuen Code auf etablierte Code-Konventionen und Lauffähigkeit überprüften.
 
 \paragraph*{Retrospektive} $~$ \\
-Vor allem der Einsatz und das Know-How vom Teammitglied Anton wurde hier wertgeschätzt, welcher sich um die Automatisierung von Tests und Deployment kümmerte.
-Auch das Gruppenklima wurde sehr gelobt und angemerkt, dass die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings sehr positiv wahrgenommmen wurden.
+Vor allem der Einsatz und das Know-How des Teammitglieds Anton wurde hier wertgeschätzt, welcher sich um die Automatisierung von Tests und Deployment kümmerte.
+Das Gruppenklima sowie die Zusammenarbeit, Kommunikation und die regelmäßigen Meetings wurden sehr gelobt.
 Das Team konnte bei der Umsetzung dieses Meilensteins viel über die Funktionsweise der Frameworks \textit{Feathers}, \textit{Vue.js} und \textit{Tailwind} lernen.
-Darüber hinaus kamen viele das erste mal Automatisierungsprozessen, Code-Reviews und Pull Request in Kontakt.
-Das Team bemängelte bei dem Meilenstein aber auch, dass der Kundenwunsch zu spät behandelt wurde und die Prioritäten falsch gesetzt wurden.
-Somit wurde als Verbesserungen für die nächsten Meilensteine eine bessere Koordination und Aufgabenverteilung vorgeschlagen.
+Darüber hinaus kamen viele das erste mal mit automatisierten Development Pipelines, Code-Reviews und Pull Request in Kontakt.
+Das Team bemängelte bei dem Meilenstein jedoch auch, dass der Kundenwunsch zu spät behandelt und die Prioritäten falsch gesetzt wurden.
+Zur Lösung dessen wurde beschlossen die Sprintzielerreichung in den Standups häufiger zu kontrollieren.
 
 \subsection{Meilenstein 3}
 Vom 25.11.2020 bis zum 17.12.2020 fand die Umsetzung von Meilenstein drei statt.
@@ -935,77 +935,73 @@ Informationstechnologie bestand, welche mit dem Thema Usability, abgesehen von d
 \textit{Usability Engineering}\footnote{\raggedright\url{https://moduldatenbank.fh-kiel.de/de-DE/Module/Details/0de99d45-efc9-437a-a190-24d539b2a1d8}},
 wenig Kontakt haben und darüber hinaus wenig persönliche Erfahrungen in dem Themenbereich gesammelt hatten.
 Diese Schwierigkeiten wurden durch offene Kommunikation an macio weitergegeben,
- die daraufhin einen ihrer Designer zur Unterstützung bei der Entwicklung bereitstellten.
+die daraufhin einen ihrer Designer zur Unterstützung bei der Entwicklung bereitstellten.
 
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{ConnectToWIFI.png}}{Flowchart: Connect to WIFI}
 \paragraph*{Flow-Charts} $~$ \\
 Außerdem wurden die im letzten Sprint erstellten \textit{User Stories} als Grundlage für die Entwicklung von \textit{Flow-Charts} verwendet.
-Diese wurden mit dem Online-Tool \textit{Lucidchart} (vgl. \ref*{Lucidchart}) erstellt und sind im Anhang unter \ref*{FlowCharts} zu finden.
+Diese wurden mit dem Online-Tool \textit{Lucidchart} (vgl. \autoref*{Lucidchart}) erstellt und sind im Anhang unter \autoref*{FlowCharts} zu finden.
 Sie erleichterten die Umsetzung der Design-Mockups, indem sie notwendigen Abläufe visualisierten.
 Dank dieses Zwischenschrittes konnten auch die nicht durch Mockups visualisierte Funktionen, wie das Verbinden der Box mit dem WLAN, zuerst logisch skizziert
-werden, bevor sie programmiert wurden. Dadurch konnte innerhalb des Teams auführlich die beste Methode diskutiert werden, um die bestmögliche Usability
-für den Benutzer sicherzustellen. Außerdem konnten sie auch dem Kunden vorgelegt werden, um etwailige Miskommunikation bei der Anforderungsanalyse zu vermeiden
-und so die Wahrscheinlichkeit auf spätere Änderungen wichtiger Funktion zu senken. Die Erstellung dieser \textit{Flow-Charts} hat mit übereinstimmender
-Meinung aller Teammitlgieder die spätere Programmierung maßgeblich effizienter gestaltet und wurde auch vom Kunden sehr geschätzt.
+werden, bevor sie programmiert wurden. Dadurch konnte eine gute Usability
+für die Benutzer:innen sichergestellt werden. Außerdem konnten die \textit{Flow-Charts} dem Kunden vorgelegt werden, um etwailige Miskommunikation bei der Anforderungsanalyse zu vermeiden
+und so die Wahrscheinlichkeit von späteren Änderungen wichtiger Funktion zu senken. Die Erstellung dieser \textit{Flow-Charts} hat mit übereinstimmender
+Meinung aller Teammitglieder die spätere Programmierung maßgeblich effizienter gestaltet und wurde auch vom Kunden sehr geschätzt.
 
 
 \paragraph*{Musik abspielen} $~$ \\
-Auch der vom Kunden geäußerte Wunsch, beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abzuspielen, sollte in diesem Milestone umgesetzt werden.
+Auch der Kundenwunsch, beim Einlesen eines NFC-Tags die entsprechende hinterlegte Musik abzuspielen, sollte in diesem Milestone umgesetzt werden.
 Dafür setzte sich ein Teil des Teams intensiv mit der \textit{Spotify-API}\footnote{https://developer.spotify.com/documentation/web-api/} auseinander.
-Hierbei entdeckten die Entwickler die Bibliothek \textit{Spotify Web API node} (vgl. \ref*{SpotifyWebApiNode}), welche den Zugriff auf die \textit{Spotify-API},
+Nach weiterführender Recherche entschieden die Entwickler die Bibliothek \textit{Spotify Web API Node} (vgl. \autoref*{SpotifyWebApiNode}) zu verwenden, welche den Zugriff auf die \textit{Spotify-API},
 abstrahiert und so den Zugriff auf diese erleichtert. Die Bibliothek wurde in Kombination mit \textit{Feathers-Hooks}
 \footnote{https://docs.feathersjs.com/api/hooks.html} verwendet. Hooks sind Funktionen, die z. B. vor oder nach einem Feathers Service Aufruf ausgeführt werden
 können. In diesem Fall beinhaltet der angelegte \textit{playSpotify} Hook einen Aufruf der Methode \textit{play} der \textit{Spotify Web API Node}, die den Song
-hinter der \textit{URL} des mitgegebenen NFC-Tags abspielt. Dieser Hook ist an die \textit{patch} Methode es NFC-Reader Services angehängt, sodass dieser im
+hinter der \textit{URL} des NFC-Tags abspielt. Dieser Hook ist an die \textit{patch} Methode des NFC-Reader Services angehängt, sodass dieser im
 Anschluss an die \textit{patch} Methode, die den Eintrag des \textit{attachedTag} des NFC-Readers aktualisiert, aufgerufen wird.
 
 \paragraph*{NFC-Tags scannen emulieren} $~$ \\
-Da während des Projekts nicht alle Entwickler kontinuierlichen Zugang zu einem NFC-Reader hatten wurde im Zuge dieses Milestones außerdem die Möglichkeit
+Da während des Projekts nicht alle Entwickler kontinuierlichen Zugang zu einem NFC-Reader hatten, wurde im Zuge dieses Milestones außerdem die Möglichkeit
 geschaffen, das Scannen eines NFC-Tags zu emulieren. Hierfür wurde ein \textit{Shell-Script} erstellt, welches einen \textit{HTTP PATCH request} an
 das Backend schickt. Dadurch wird der \textit{attachedTag} des NFC-Readers auf Basis eines übergebenen Parameters gesetzt. So kann zum Beispiel ein NFC-Tag mit
-der ID 12345 emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader
-an seiner Entwicklungsmaschine angeschlossen haben muss. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
+der \textit{ID 12345} emuliert werden, indem im Terminal der Aufruf \textit{./simulate-read.sh 12345} durchgeführt wird, ohne dass der Entwickler einen physischen NFC-Reader besitzen muss. So konnten Funktionen wie das Anlegen eines neuen NFC-Tags von jedem Entwickler durchgeführt werden.
 
-
-\paragraph*{Entwicklung des Welcome Screens mit Authentifizierung} $~$ \\
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{WelcomeScreenV1.png}}{Welcome Screen Version 1}
+\paragraph*{Entwicklung des Welcome Screens mit Authentifizierung} $~$ \\
+
 Um das in diesem Milestone erstellte Feature des Abspielens von Musik sinnvoll nutzen zu können, musste sich auch mit der Authentifizierung mit Spotify beschäftigt
 werden. Dafür wurde das offene Protokoll \textit{OAuth} verwendet, welches bereits in \textit{Feathers} abstrahiert implementiert ist. Zur Nutzung dieses
-Protokolls wurde eine sogenannte \textit{Stragegy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
-Die dafür nötige \textit{Stragegy} mit dem Namen \textit{SpotifyStrategy} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
-\textit{OAuthStragegie} erbt. Bei der Anmeldung eines Benutzer wird von Spotify ein JWT-Token an das Backend übergeben. Ein JWT-Token besteht aus einem Base64
+Protokolls wurde eine sogenannte \textit{Strategy} angelegt, welche den für die Anmeldung notwenigen Datenaustausch mit Spotify ermöglicht.
+Die dafür nötige \textit{Strategy} mit dem Namen \textit{SpotifyStrategy} wird durch eine Klasse realisiert, welche von der Feathers bereitgestellten Klasse
+\textit{OAuthStrategy} erbt. Bei der Anmeldung wird von Spotify ein \textit{JWT-Token} an das Backend übergeben. Ein \textit{JWT-Token} besteht aus einem \textit{Base64}
 enkodiertem Text, welcher beliebige Daten beinhalten kann. Diese Daten sind unverschlüsselt (nur enkodiert) in dem Token hinterlegt und werden
-durch eine Signatur auf ihre Integrität überprüft. Der von Spotify übermittelte JWT-Token enthält in diesem Fall die ID, E-Mail und den Namen des
-Benutzers. Diese Daten werden extrahiert und sofern der Benutzer nicht bereits in der Datenbank vorhanden ist, zum Anlegen eines neuen Benutzers verwendet.
-Sollte der Benutzer jedoch bereits in der Datenbank existieren, so wird dieser gegebenenfalls aktualisiert. Da sich jeder Benutzer vor der Verwendung der App
-zuerst  mit einem gültigen Token identifizieren muss, wird bei möglichen Änderungen der Stammdaten in Spotify sofort immer der Datenbankeintrag in Feathers
-aktuell gehalten.
+durch eine Signatur auf ihre Integrität überprüft. Der von Spotify übermittelte \textit{JWT-Token} enthält in diesem Fall die \textit{ID}, \textit{E-Mail} und den \textit{Namen} des Accounts. Diese Daten werden extrahiert und sofern dieser nicht bereits in der Datenbank vorhanden ist, zum Anlegen eines neuen verwendet.
+Sollte dieser Account jedoch bereits in der Datenbank existieren, so wird dieser gegebenenfalls aktualisiert. Da sich jeder vor der Verwendung der App
+zuerst mit einem gültigen Token identifizieren muss, wird bei möglichen Änderungen der Stammdaten in Spotify sofort immer der Datenbankeintrag in Feathers aktuell gehalten.
 \\~\\
-Zum Beginn der Umsetzung wurde auf Basis des Mockups ein View in der Benutzeroberfläche (\textit{app} package) erstellt. Dieser enthält als Steuerelemente Infos
-über den Namen des Produkts - \textit{leek-box} - und einen kurzen Untertitel, sowie einen \glqq Anmelden mit Spotify\grqq{} Button, der den OAuth-Prozess startet.
-Diese Seite wurde mittels des \textit{Vue Routers} so konfiguriert, dass sie nur aufgerufen wird, wenn der Benutzer nicht angemeldet, also kein JWT-Token
-vorhanden ist. Ist ein JWT-Token vorhanden, wird der Nutzer bei dem versuchten Aufruf dieser Seite automatisch auf die Hauptseite weitergeleitet.
+Zum Beginn der Umsetzung wurde auf Basis des Mockups ein \textit{View} in der Benutzeroberfläche (\textit{app} package) erstellt. Dieser enthält als Steuerelemente Infos
+über den Namen des Produkts - \textit{Leek-Box} - und einen kurzen Untertitel, sowie einen \glqq Anmelden mit Spotify\grqq{} Button, der den OAuth-Prozess startet.
+Diese Seite wurde mittels des \textit{Vue Routers}\footnote{erlaubt das Wechseln von \textit{Views} abhängig von der URL} so konfiguriert, dass sie nur aufgerufen wird, wenn die Benutzer:innen nicht angemeldet, also kein JWT-Token
+vorhanden ist. Ist ein JWT-Token vorhanden, wird dem User bei dem versuchten Aufruf dieser Seite automatisch auf die Hauptseite weitergeleitet.
 
 \paragraph*{Veröffentlichung der App auf Github Pages} $~$ \\
-Zur Veröffentlichung unseres Frontends der \textit{leek-box} verwenden wir den Dienst Github Pages welcher ein Webhosting von statischen Dateien unter einer xyz.github.io URL anbietet.
-Das Team verwendete für das Frontend ein separates Repository \textit{project-leek/project-leek.github.io} mit der URL project-leek.github.io.
-Nach dem Continous-Delivery Verfahren, baut die Pipeline des eigentlichen project-leek Repositories automatisch nach jedem Merge auf den master Branch das \textit{app-package}.
-Dafür wird das Build-Tool des \textit{app-package}s aufgerufen und die dabei enstanden statischen Dateien werden von dem Pipeline Plugin
-\textit{github-pages-deploy-action}\footnote{\raggedright\url{https://github.com/JamesIves/github-pages-deploy-action}} aus der Pipeline in das separate
-\textit{project-leek/project-leek.github.io} Repository für den GitHub Pages Dienst kopiert. Somit befindet sich unter project-leek.github.io immer die aktuellste Version der App.
-Dies hat den Vorteil, dass Änderungen wie zum Beispiel Bugfixes und neue Features dem Endanwender schnellst möglich zur Verfügung gestellt werden können ohne das auf einen Release-Plan Rücksicht genommen werden muss.
+Zur Veröffentlichung unseres Frontends der \textit{Leek-Box} wird der Dienst Github Pages verwendet, welcher ein Webhosting von statischen Dateien unter einer \textit{xyz.github.io} URL anbietet.
+Das Team verwendete für das Frontend ein separates Repository \textit{project-leek/project-leek.github.io} mit der URL \textit{project-leek.github.io}.
+Nach dem Continous-Delivery Verfahren, baut die Pipeline des eigentlichen project-leek Repositories automatisch nach jedem Merge auf den Master Branch das \textit{app-package}.
+Dafür wird das Build-Tool des \textit{app-package}s aufgerufen und die dabei enstanden statischen Dateien von dem Pipeline Plugin
+\textit{github-pages-deploy-action}\footnote{\raggedright\url{https://github.com/JamesIves/github-pages-deploy-action}} in das separate
+\textit{project-leek/project-leek.github.io} Repository für den GitHub Pages Dienst kopiert. Somit befindet sich unter \textit{project-leek.github.io} immer die aktuellste Version der App.
+Dies hat den Vorteil, dass Änderungen, Bugfixes und neue Features dem Endanwender schnellst möglich zur Verfügung gestellt werden können, ohne das auf einen Release-Plan Rücksicht genommen werden muss.
 
 \paragraph*{Review \& Retrospektive} $~$ \\
 Zusätzlich zu dem Wunsch, beim Anlegen eines NFC-Tags die jeweilig hinterlegte Musik abzuspielen, war zum Review auch das Einloggen
-in einen bestehenden Spotify Account möglich. Jegliche Neuerung auf dem Master wurden außerdem auch auf Github.io veröffentlicht, sodass der Kunde jederzeit
-den Fortschritt ermitteln konnte.
+in einen bestehenden Spotify Account möglich. Jegliche Neuerung auf dem Master wurden außerdem auch auf Github.io veröffentlicht, sodass der Kunde jederzeit den Fortschritt ermitteln konnte.
 \\
 Die vom Team durchgeführte Retrospektive ergab, dass die Problembewältigung durch die Anwendung von Pair Programming in diesem Sprint optimiert werden konnte.
-Auch der Workflow mit Github und den Pull Request wurde verinnerlicht sowie Code Reviews verstärkt durchgeführt. Das Team lernte in diesem Sprint
-Vue Hooks und die Stärken von Feathers in Verbindung mit OAuth kennen. Festgestellt wurde außerdem, dass einige Tickets weiterhin stark voneinander abhängig waren,
-weshalb das Bearbeiten einiger Aufgaben nicht direkt möglich war. Da Abhängigkeiten teilweise unvermeidbar sind, wurde sich geeinigt, diese Tickets bei hoher
-Komplexität mittels Pair-Programming umzusetzten, um sie möglichst schnell und qualitativ umsetzten zu können. Um das Risiko der Entstehung zukünftiger Probleme
-zu senken wurde außerdem festgelegt mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu gelerntes besser
+Auch der Workflow mit Github, Pull Requests und Code Reviews wurde verinnerlicht.
+Das Team lernte in diesem Sprint Vue Hooks und die Stärken von Feathers in Verbindung mit OAuth kennen. Festgestellt wurde, dass einige Tickets weiterhin stark voneinander abhängig waren,
+weshalb das Bearbeiten einiger Aufgaben nicht direkt möglich war. Da Abhängigkeiten teilweise unvermeidbar sind, wurde beschlossen, diese Tickets bei hoher
+Komplexität vermehrt mittels Pair-Programming zu bearbeiten, um sie möglichst schnell und qualitativ umsetzten zu können. Um das Risiko der Entstehung zukünftiger Probleme
+zu senken, wurde außerdem festgelegt, mögliche Problemstellungen nicht erst im Standup, sondern so früh wie möglich mitzuteilen. Genauso sollte neu Gelerntes besser
 kommuniziert werden, um die Arbeit effizienter zu gestalten. Hierfür wurden die \textit{Standups} als Rahmen gewählt.
 
 \subsection{Meilenstein 4}
