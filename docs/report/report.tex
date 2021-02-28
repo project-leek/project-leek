@@ -1140,36 +1140,34 @@ Insgesamt war das Zeitmanagement noch nicht optimal, da teilweise für einzelne 
 Das Team stimmte überein, dass eine bessere Planung und Abstimmung für die nächsten Meilensteine notwendig wäre.
 Dementsprechend sollten granularere Tickets mit weniger Abhängigkeiten formuliert werden.
 
-\wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Leek Box Einstellungen}
+
 \subsection{Meilenstein 5}
 Mit dem fünften Meilenstein, der zwischen dem 14.01.2021 und 28.01.2021 stattfand, sollte die Entwicklung am Produkt weitgehend abgeschlossen werden, sodass der Fokus auf den Bericht gelegt werden konnte.
-
 %Ziel
 Geplant war die letzten Anwendungszenarien final umzusetzen, sodass die folgenden beiden Meilensteine zum Beheben kleinerer Fehler genutzt werden konnten.
-Somit war das Ziel die Umsetzung einer \textit{View} für die Einstellungen der \textit{Leek Box}, als auch der Tags.
+Somit war das Ziel je eine \textit{View} für die Einstellungen der \textit{Leek-Box} und die Bearbeitung von Tags umzusetzten.
 Außerdem sollten die User Interface Elemente, sofern noch nicht geschehen, ein einheitliches Design erhalten.
-Die Dokumentation zur Bedienung der \textit{Leek Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
-\\~\\
-% Settings
-Die \textit{View} für die Einstellungen der \textit{Leek Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
-In diesen Einstellungen können die Nutzer nun den Lautsprecher für die Wiedergabe auswählen und sehen, mit welcher Email-Adresse sie angemeldet sind. Außerdem enthält die Ansicht einen Button um sich auszuloggen.
-\\~\\
-% TagDetails
+Die Dokumentation zur Bedienung der \textit{Leek-Box} sollte fertiggestellt und mit der Arbeit am Bericht begonnen werden.
+
+\paragraph*{Implementierung der Einstellungs-Ansicht} $~$ \\
+Die \textit{View} für die Einstellungen der \textit{Leek-Box} wurde hinzugefügt, die durch ein Zahnrad auf der Startseite aufgerufen werden kann.
+In diesen Einstellungen können die Nutzer:innen den Lautsprecher für die Wiedergabe auswählen. Außerdem enthält die Ansicht die Email-Adresse des aktiven Spotify-Accounts und einen Button zur Abmeldung.
+
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{TagDetails.jpeg}}{Tag Details}
+\paragraph*{Bearbeiten von NFC-Tags} $~$ \\
 Auch die Funktionalität zum Bearbeiten der NFC-Tags wurde in diesem Meilenstein umgesetzt.
-An dieser Stelle zeigten sich erneut die Vorzüge von Frameworks wie \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
-Um ein gleiches Design der Überschriften der einzelnen Inputs zu garantieren, wurden die erstellten \textit{components} \textit{LabeledInput} für die Anzeige von Namen, Gruppe, Musik und Bild verwendet.
-Zur Änderung des Namens wird das erstellte \textit{component} \textit{TextInput} genutzt, dem beim Aufruf der \textit{View} eine Referenz auf \textit{nfcTag.name} übergeben wird, sodass dieses den Namen anzeigt.
+An dieser Stelle zeigten sich erneut die Vorzüge von \textit{Vue}, da somit die bereits vorhandenen \textit{components} wiederverwendet werden konnten.
+Um ein gleiches Design der Überschriften der einzelnen Steuerelemente zu garantieren, wurde die erstellte \textit{component} \textit{LabeledInput} für die Anzeige von Namen, Gruppe, Musik und Bild verwendet.
+Zur Änderung des Namens des Tags wird die erstellte \textit{component} \textit{TextInput} genutzt, dem beim Aufruf der \textit{View} eine Referenz auf \textit{nfcTag.name} übergeben wird, sodass dieses den Namen anzeigt.
 Ähnlich erfolgt die Auswahl und Anzeige der Gruppe. Hier wird anstatt der \textit{TextInput component} die \textit{Dropdown component} verwendet, die eine Referenz auf \textit{nfcTag.Group} empfängt und als Elemente die bereits existierenden Gruppen enthält.
 Der Benutzer hat ebenfalls die Möglichkeit neue Gruppen anzulegen.
 Für die Anzeige des dem Tag zugewiesenen Musikstücks wird ein dem \textit{TagEntry compontent} visuell ähnliches Element verwendet, welches als Hintergrund das angedeutete Logo des Musikstreaming-Anbieters enthält.
 Zur Änderung des Musikstücks ist die Bearbeiten-Schaltfläche (\textit{Button component}) vorgesehen, die den Benutzer auf die bereits beim Anlegen verwendete \textit{component AddStepTrack} weiterleitet, die die benötite Funktionalität liefert.
 Das gleiche Verfahren wird auch für die Anzeige und Änderung des Bildes verwendet.
 
-
-% Visualisierung des ausgewählten Tags
-Um dem Nutzer zu signalisieren, ob ein Tag ausgewählt wurde, wurde in \textit{Home.vue} ein weiteres Attribut \textit{selectedTag} angelegt.
-Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt hinzugefügt.
+\paragraph*{Überarbeitung der \textit{Home-View}} $~$ \\
+Um den Nutzer:innen zu signalisieren, ob und welches NFC-Tag ausgewählt ist, wurde die \textit{Home.vue} um ein weiteres Attribut (\textit{selectedTag}) erweitert.
+Jedem Tag-Element auf der Startseite wurde ein \textit{onClick Listener}, welcher bei einem Klick das jeweilige Element als \textit{selectedTag} setzt, hinzugefügt.
 \\~\\
 \begin{minipage}{\textwidth}
   \begin{lstlisting}[caption={Hervorgeben aus ausgewähltem NFC-Tag}, captionpos=b]
@@ -1180,8 +1178,8 @@ Jedem Tag-Element auf der Startseite wurde ein \textit{OnClick Listener}, welche
     };
   \end{lstlisting}
 \end{minipage}
-Um dynamisch die CSS-Klasse der ausgewählten Tags zu ändern, wurde an dieser Stelle bei den \textit{TagEntrys} der ternärer Operator genutzt.
-Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war, wurden diesem andere Klasseneigenschaften gegeben.
+Ist ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
+Um die CSS-Klasse der ausgewählten Tags dynamisch zu ändern, wird überprüft, ob der \textit{TagEntry} dem \textit{selectedTag} entspricht.
 \\~\\
 \begin{minipage}{\textwidth}
   \begin{lstlisting}[caption={Caption}, captionpos=b]
@@ -1198,29 +1196,26 @@ Je nachdem ob der \textit{TagEntry} der gleiche wie der \textit{selectedTag} war
     />
   \end{lstlisting}
 \end{minipage}
-Wurde nun also ein Tag ausgewählt, wurden allen anderen die Klasse \lstinline{opacity-25} zugewiesen, was einer Tranzparenz von 25\% entsprach.
 
-% Initial Setup
-Im Sprint wurde auch das Produkt auf Auslieferbarkeit getestet, indem das komplette Setup durchgeführt wurde.
-Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer ihre eigene \textit{leek-box} bei sich einrichten könnten.
+\paragraph*{Initiales Einrichten} $~$ \\
+Um das Produkt auf Auslieferbarkeit zu testetn, wurde der Installationsprozess auf einem zurückgesetztem Raspberry Pi durchgeführt.
+Dabei wurde ein Setup-Guide\footnote{https://github.com/project-leek/project-leek/blob/docs/Build.md} entwickelt, sodass andere Nutzer:innen ihre eigene \textit{Leek-Box} einrichten können.
 
+\paragraph*{Review \& Retrospektive} $~$ \\
 %Probleme
 Wie bereits beim vorherigen Meilenstein gestaltete sich auch hier das Zeitmanagement schwierig.
-Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit um die Features genügend zu testen und entsprechend fehlerfrei dem Kunden präsentieren zu können.
+Das Team hätte in diesem Sprint mehr Tickets umsetzen und dem Kunden präsentieren können, als zu Beginn versprochen. Jedoch fehlte die Zeit, um die Features ausreichend zu testen und dem Kunden fehlerfrei präsentieren zu können.
 Somit beschloss das Team dem Kunden im Review nur die anfänglich geplanten Featuers vorzustellen und die zusätzlichen Tickets im nächsten Sprint zu vollenden.
-Das Produkt konnte um die Einstellungen der \textit{Leek Box} und die \textit{TagDetails}  erweitert werden.
-Auch der Setup Guide wurde fertiggestellt, sodass ein Nutzer selbstständig eine eigene \textit{Leek Box} einrichten könnte.
-Bei dem Design wurden, bis auf ein paar Kleinigkeiten die im folgenden Milstone behoben wurden, alle Unstimmigkeiten beseitigt.
-
+Das Produkt konnte um die Einstellungen der \textit{Leek-Box} und die \textit{TagDetails}  erweitert werden.
+Auch der Setup Guide wurde fertiggestellt, sodass Nutzer:innen selbstständig eine eigene \textit{Leek-Box} einrichten können.
+\\
 %Retrospektive
-Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob.
-Da das Team viel Gefallen an dem Projekt gefunden und entsprechend viel Energie aufgewendet hat, war dieses Lob sehr wertvoll und motivierend.
-Das Team konnte außerdem weitere Vue Funktionen kennenlernen.
-Problematisch war es, dass manche Tickets von mehreren Entwicklern zeitgleich oder nacheinander bearbeitet wurden, sodass einige der getätigten Änderungen redundant waren.
+Das Team erhielt vom Kunden für das bisher entstandene Produkt viel Lob, was für die Entwickler sehr wertvoll und motivierend war.
+Negativ angemerkt wurde, dass manche Tickets von mehreren Entwicklern zeitgleich oder nacheinander bearbeitet wurden, sodass einige der getätigten Änderungen redundant waren.
 Außerdem erfolgte die Kommunikation von größeren Änderung an jedes Teammitglied teilweise nur lückenhaft.
-Nach der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
-Lösungsvorschläge waren Verbesserung des Zeitmanagements durch Steigerung der Arbeitsstunden zu Beginn eines Sprints, sodass gegen Sprintende weniger offene Tickets vorhanden waren und das Team mehr Zeit zur Behebung möglicher Fehler vorhanden wäre.
-Eine bessere Kommunikation konnte durch das Festhalten von größeren Änderungen in den Pull Requests und Markierung aller Gruppenmitglieder erreicht werden.
+In der Retrospektive wurde dies dem Team deutlich und es wurde sich auf eine bessere Kommunikation geeinigt.
+Lösungsvorschläge waren Verbesserung des Zeitmanagements durch Steigerung der Arbeitsstunden zu Beginn eines Sprints, sodass gegen Sprintende weniger offene Tickets vorhanden sein sollten und mehr Zeit zur Behebung möglicher Fehler verfügbar wäre.
+Eine bessere Kommunikation konnte durch das Dokumentieren und Präsentieren von größeren Änderungen und Markierung aller Gruppenmitglieder in den Pull Requests erreicht werden.
 
 \subsection{Meilenstein 6}
 Der sechste Meilenstein fand vom 28.01.2021 bis zum 15.02.2021 statt.
@@ -1229,10 +1224,10 @@ So konnte der folgende und letzte Meilenstein für letzte Korrekturen am Bericht
 \\~\\
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{HomescreenNoTags.jpeg}}{Startseite ohne Tags}
 \paragraph*{Entwicklung} $~$ \\
-Zu Beginn wurden die letzten Softwaretickets abgeschlossen. Vor allem am User Interface wurden noch letzte Änderungen durchgeführt.
-Auf allen Seiten wurde die Höhe des \textit{Header} und \textit{Footer} auf die gleiche Größe angepasst. \\
+Zu Beginn wurden die letzten Softwaretickets, die sich vor allem mit Änderungen am User-Interface befassten, abgeschlossen.
+Auf allen Seiten wurde die Höhe des \textit{Headers} und \textit{Footers} angeglichen. \\
 Aus der Datenbank wurden die manuell generierten Einträge und die Methoden zum automatischen \textit{Seeding} der NFC-Tags gelöscht.
-Auf der Startseite wurde dem User nun ein Hinweis angezeigt, falls dieser noch keine NFC-Tags angelegt hat. Hierfür wird beim Laden der NFC-Tags die Anzahl geprüft und im Falle von keinem vorhandenen Tags ein \textit{div} mit einem \textit{GIF} und eines Hinweistextes über konditionales Rendering per \textit{v-if} angezeigt oder ausgeblendet.
+Auf der Startseite wurde den Nutzer:innen nun ein Hinweis angezeigt, falls diese noch keine NFC-Tags angelegt haben.
 
 \paragraph*{Button Refactor} $~$ \\
 Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Button sehr anpassbar sein und in folgenden Versionen exisitieren:
@@ -1242,10 +1237,10 @@ Wie im Meilenstein vier bereits festgestellt, musste der häufig verwendete Butt
   \item Text mit Icon rechts vom Text
   \item ein Icon ohne Text
 \end{itemize}
-Um diese und andere Anforderungen zu erfüllen, stieg die Komplexität des Buttons, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
+Um diese und andere Anforderungen zu erfüllen, stieg die Komplexität der Komponente, bedingt durch eine Vielzahl von übergebenen Parametern, stark.
 Weiterhin musste die Größe des Buttons anpassbar, aber trotzdem möglichst einheitlich über die einzelnen Views hinweg, sein. Die \textit{component} wurde vom Team gründlich überarbeitet um redunanten Code zu vermeiden. Statt den bisher zwölf Parametern, konnten alle Anforderung auch mit acht Parametern erreicht werden.
 \\
-An dieser Stelle soll verdeutlicht werden, wie sich die Komponente selbst um die Darstellung kümmert, nachdem der Inhalt übergeben wurde:
+Folgend wird gezeigt, wie das Aussehen der Komponente über die \textit{properties} gesteuert wird:
 \\~\\
 \begin{minipage}{\textwidth}
   \begin{lstlisting}[caption={Codesnippets vom Button}, captionpos=b]
@@ -1278,54 +1273,52 @@ An dieser Stelle soll verdeutlicht werden, wie sich die Komponente selbst um die
   </button>
   \end{lstlisting}
 \end{minipage}
-Interessant sind die dynamischen Abfragen \textit{v-if} mit denen geprüft wird, ob zum Beispiel ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises wurden dem Objekt unterschiedliche CSS-Klassen zugewiesen, wodurch der Button seine Form verändert.
-Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das darin Icon zentriert sein.
-Um die Größe des Buttons zu steuern, wurde sich dafür entschieden eine \textit{property} zu nutzen. So konnte an die \textit{component} das Attribut \glqq size\grqq{} mit den Werten \glqq xs\grqq , \glqq md\grqq{} oder \glqq xl\grqq{} übergeben werden.
-Dadurch konnte ein Button für die Welcome-Page deutlich größer sein als ein Speichern Button in der App selbst, und trotzdem sichergestellt werden, dass nur eine Art von Buttons existiert.
-\\~\\
-Auch wurde die Desktop Ansicht optimiert:\\
+Interessant sind die dynamischen Abfragen \textit{v-if} mit denen geprüft wird, ob zum Beispiel ein Text und oder ein Icon vorhanden ist. Entsprechend dieses Ergebnises werden dem Objekt verschiedene CSS-Klassen zugewiesen, wodurch der Button seine Form verändert.
+Ein Button der nur ein Icon enthielt, sollte zum Beispiel vollständig rund und das enthaltene Icon zentriert sein.
+Um die Größe des Buttons zu steuern, wurde sich dafür entschieden eine \textit{property} \glqq size\grqq{} mit den möglichen Werten \glqq xs\grqq , \glqq md\grqq{} oder \glqq xl\grqq{} zu nutzen.
+Dadurch konnte ein Button für die \textit{Welcome-View} deutlich größer dargestellt werden als ein \enquote{Speichern} Button in der App selbst.
 
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{HomescreenDesktop.jpeg}
-    \caption{Desktopansicht}
-    \label{fig1}
-\end{figure}
-Da unsere Anwendung für die mobile Ansicht optimiert wurde, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Handy Format angezeigt.
+\paragraph*{Optimierung der Desktop-Ansicht} $~$ \\
+Da die Anwendung für mobile Geräte optimiert sein soll, wurde in der Desktop Ansicht die Anwendung als kleineres Fenster im Portrait-Format angezeigt.
 Dieses streckte sich auf höher aufgelösten Bilschirmen zu sehr in die Höhe in Relation zur Breite.
 Das wurde angepasst, dass die Relation Breite zu Höhe besser passt.
 Auch wurde ein schönerer Hintergrund hinter der eigentlichen Anwendung gesetzt, die auch farblich zur Farbpalette passt.
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{HomescreenDesktop.jpeg}
+    \caption{Desktopansicht}
+\end{figure}
 \\~\\
 \paragraph*{Frontend auf Github.io Pages} $~$ \\
-\label{FrontendAufGithubIOPages}
 Das Frontend ist vom Raspberry Pi zu Github.io Pages umgezogen.
-Somit kann der Endnutzer auch ohne Kenntnis der IP-Adresse des Raspberrys auf die Benutzeroberfläche zugreifen
-und muss keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um von außerhalb des Heimnetzwerkes auf seine \textit{Leek Box} zugreifen zu können.
+Somit können Nutzer:innen auch ohne Kenntnis der IP-Adresse des Raspberry Pis auf die Benutzeroberfläche zugreifen
+und müssen keine weiteren Änderungen an der Netzwerkkonfiguration vornehmen, um von außerhalb des Heimnetzwerkes auf die \textit{Leek-Box} zugreifen zu können.
 Die statischen Dateien von GitHub.io werden auf dem Endgerät geladen, sodass die Benutzeroberfläche angezeigt wird.
-In dieser kann der Nutzer die von \textit{Ngrok} bereitgestellte Adresse seiner Leek-Box eingeben, woraufhin sich das Endgerät über einen verschlüsselten Tunnel mit dem Backend der Leek-Box verbindet.
+In dieser kann der Nutzer die von \textit{Ngrok}(vgl. \autoref{kapitel:ngrok}) bereitgestellte Adresse seiner Leek-Box eingeben, woraufhin sich das Endgerät über einen verschlüsselten Tunnel mit dem Backend der Leek-Box verbindet.
 Anfäglich wurde diese Adresse jedoch nicht validiert, sodass die Eingabe einer fehlerhaften Adresse, in einem Fehler 404 resultierte.
-Bei einem Neustart des Raspberrys auch die ngrok-Instanz eine neue Adresse erhält, die anschließend manuell im \textit{Spotify Developer Dashboard} eingetragen werden muss.
-Folglich musste der Nutzer nach jedem Neustart den Browsercache des Endgerätes löschen, um die Adresse der \enquote{neuen} Leek-Box eingeben zu können.
+Bei einem Neustart des Raspberrys erhält die ngrok-Instanz eine neue Adresse, die anschließend manuell im \textit{Spotify Developer Dashboard} eingetragen werden muss.
+Folglich müssten die Nutzer:innen nach jedem Neustart den Browsercache des Endgerätes löschen, um die Adresse der \enquote{neuen} \textit{Leek-Box} eingeben zu können.
 \\~\\
 
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.45\textwidth]{Settings.jpeg}}{Einstellungen}
-\paragraph*{Einrichten einer Leek-Box} $~$ \\
-Die Einrichtung einer Leek-Box wurde in diesem Milestone beispielhaft durchgeführt und in einem Setup-Guide dokumentiert. Hierfür wurde auf einem neu aufgesetzten Raspberry Pi Docker installiert
-und das auf \textit{DockerHub} verfügbare Backend-Image geladen. Zusätzlich wurde ein \textit{Container} für den angeschlossenen USB-NFC-Reader aus der gleichen Quelle bezogen und gestartet. Dabei
-generiert der NFC-Reader eine ID, die im Backend registriert wird. Nach dem Start des Backend-Containers, gibt dieser auf der Konsole eine neue Adresse aus, die von \textit{Ngrok}(vgl. \ref{FrontendAufGithubIOPages})
-bereitgestellt wird. Daraufhin kann sich der Benutzer über \url{project-leek.github.io} durch die Eingabe dieser Adresse mit der neuen \textit{Leek-Box} verbinden. Da in der App zu diesem Zeitpunkt noch kein
-Lautsprecher hinterlegt wurde, wird der Benutzer automatisch in die Einstellungen umgeleitet. Hier wird die neu angelegte \textit{Leek-Box} zusammen mit der ID angezeigt und bietet dem Nutzer die Möglichkeit den Namen
-der Box festzulegen sowie einen vorhandenen Lautsprecher auszuwählen. Der zusätzliche Schritt der Auswahl einer Box wird benötigt, da die Lösung so konzipiert ist, dass ein Nutzer potentiell merhere \textit{Leek-Boxen}
-besitzen und die Verwaltung dennoch über ein zentrales Backend erfolgen kann. Somit entfällt die Einrichtung des Backends auf den einzelnen \textit{Leek-Boxen} und muss lediglich einmalig durchgeführt werden.
+\paragraph*{Einrichten einer \textit{Leek-Box}} $~$ \\
+Die Einrichtung einer \textit{Leek-Box} wurde in diesem Milestone erneut beispielhaft durchgeführt, indem auf einem neu aufgesetzten Raspberry Pi Docker installiert
+und das auf \textit{DockerHub} verfügbare Backend-Image geladen wurde. Zusätzlich wurde ein \textit{Container} für den angeschlossenen USB-NFC-Reader aus der gleichen Quelle bezogen und gestartet. Dabei
+generiert der NFC-Reader eine ID, die im Backend registriert wird. Nach dem Start des Backend-Containers, gibt dieser auf der Konsole eine neue Adresse aus, die von \textit{Ngrok}
+bereitgestellt wird. Daraufhin können sich die Benutzer:innen über \url{project-leek.github.io} durch die Eingabe dieser Adresse mit der neuen \textit{Leek-Box} verbinden. Da in der App zu diesem Zeitpunkt noch kein
+Lautsprecher hinterlegt wurde, werden die Benutzer:innen automatisch in die Einstellungen umgeleitet. Hier wird die neu angelegte \textit{Leek-Box} zusammen mit der ID angezeigt und bietet den Nutzer:innen die Möglichkeit, den Namen
+der Box festzulegen sowie einen vorhandenen Lautsprecher auszuwählen. Der zusätzliche Schritt der Auswahl einer Box wird benötigt, da das Produkt so konzipiert ist, dass Nutzer:innen potentiell merhere \textit{Leek-Boxen}
+besitzen können und die Verwaltung dennoch über ein zentrales Backend erfolgen kann. Somit entfällt die Einrichtung des Backends auf den einzelnen \textit{Leek-Boxen} und muss lediglich einmalig durchgeführt werden.
 
 \paragraph*{Bericht} $~$ \\
-Anfänglich wurden die Kapitel und Abschnitte zur Optimierung der Berichtsstruktur überarbeitet.
-Die daraus resultierenden Änderungen wurden in Tickets überführt, die sich die einzelnen Teammitglieder zuweisen konnten.
-Dies hatte den Vorteil dass, wie schon bei der Softwareentwicklung eine kontinuierliche Übersicht über den Fortschritt der Berichtsarbeit herrschte.
-Dadurch, dass das Team sehr viel Freude und Spaß am Entwickeln für das Projekt gefunden hatte, begann die dokumentarische Arbeit schleppend.
-Dies hatte zur Folge, dass zum Ende des Sprints nur etwas mehr als die Hälfte des Berichts abgeschlossen war. Somit konnte dem Prüfenden nicht die erste Version des Berichtes vorgelegt werden und das Team bekam somit verspätet erstes Feedback.
+Die Kapitel und Abschnitte des Projektberichts zur Optimierung der Struktur überarbeitet und
+die daraus resultierenden Änderungen wurden in Tickets überführt.
+Dies hatte den Vorteil dass, wie schon bei der Softwareentwicklung, eine kontinuierliche Übersicht über den Fortschritt der Berichtsarbeit herrschte.
+Aufgrund der starken Begeisterung an der Produktentwicklung, begann die Arbeit am Bericht schleppend.
+Infolgedessen war der Bericht zum Sprintende nicht wie geplant größtenteils abgeschlossen, sodass dem Prüfenden die erste Version des Berichtes nicht vorgelegt werden konnte und das Team somit verspätet erstes Feedback erhielt.
 
 \paragraph*{Retrospektive} $~$ \\
-Dass der Bericht mit \textit{LaTeX} geschrieben wurde hatte den Vorteil, dass Git sinnvoll genutzt werden konnte und die Änderungen der jeweiligen Mitglieder schnell ersichtlich waren.
+Die Wahl von \textit{LaTeX} für den Bericht hatte den Vorteil, dass Git genutzt werden konnte, um kollaboratives Arbeiten zu ermöglichen und die Änderungen der jeweiligen Mitglieder schnell ersichtlich zu machen.
+Dies wäre in herkömmlichen Textbearbeitungs-Werkzeugen nicht möglich, da dort die Datei-Formate nicht textbasiert sind.
 So konnte auch weiterhin der Workflow mit \textit{Pull Requests} und zwei \textit{Code Reviews} genutzt werden.
 
 \subsection{Meilenstein 7}
@@ -1333,28 +1326,27 @@ Der finale Meilenstein wurde vom 15.02.2021 bis zum 05.03.2021 angesetzt.
 
 \paragraph*{Letzte Bugfixes} $~$ \\
 Neben kleineren Bugfixes, wurde der Fehler behoben, der im letzten Review eine erfolgreiche Präsentation des initialen Verbindens mit der Box verhindert hatte.
-Dieser bestand darin, dass der Container des NFC-Readers versuchte, seine \textit{Id} in diesem zu setzen, bevor er eine Verbindung zu dem Backend aufgebaut hatte.
-Dies konnte gelöst werden, indem ein \textit{Event-Listener}, der die \textit{Id} in der Datenbank des Backend setzt, auf das \textit{connect}-Event registriert wurde.
-Ein weiteren Fehler trat auf, wenn keine Verbindung zur bereits gespeicherten Adresse der \textit{Leek-Box} möglich ist.
-Dies trat zum Beispiel auf, wenn die \textit{Leek-Box} nach einem Neustarte eine neue \textit{Ngrok}-Adresse erhielt und resultierte in der Anzeige einer weißen Seite, ohne jegliche Fehlermeldung.
+Dieser bestand darin, dass der Container des NFC-Readers versuchte, seine \textit{Id} in der Datenbank zu setzen, bevor er eine Verbindung zu dem Backend aufgebaut hatte.
+Der Fehler konnte gelöst werden, indem ein \textit{Event-Listener} implementiert wurde, der die \textit{Id} erst setzt nachdem das \textit{connect}-Event ausgelöst wurde.
+Ein weiteren Fehler trat auf, wenn keine Verbindung zur bereits gespeicherten Adresse der \textit{Leek-Box} möglich war.
+Dies war zum Beispiel der Fall, wenn die \textit{Leek-Box} nach einem Neustart eine neue \textit{Ngrok}-Adresse erhielt, was in der Anzeige einer weißen Seite ohne jegliche Fehlermeldung resultierte.
 Zur Behebung dieses Problems wurde eine Offline-Seite konzipiert, die Informationen über den Fehler bereitstellt und die Eingabe einer neuen Adresse ermöglicht.
 
 
 \wrapfiguresafe{r}{0mm}{\includegraphics[width=0.65\textwidth]{Latex.png}}{Bericht während der Erstellung}
 \paragraph*{Bericht} $~$ \\
-Da die erste Version des Berichtes zu Beginn des Sprints noch nicht abgeschlossen war, musste das Team dies zeitig erledigen, um noch erste Anmerkungen vom Prüfenden erhalten und anschließend korrigieren zu können
+Da die erste Version des Berichtes zu Beginn des Sprints noch nicht abgeschlossen war, musste das Team dies zeitnah erledigen, um erste Anmerkungen vom Prüfenden erhalten und anschließend korrigieren zu können.
 Nach erneuter Rücksprache mit diesem ergab sich ein geforderter Umfang von 50-60 Seiten für den Bericht (exklusive Anhang).
-Mit der zu diesem Zeitpunkt angedachten Struktur wäre die Erfüllung dieser Anforderung erschwert worden.
-Um diese Anforderung dennoch umzusetzen, prüfte das Team den Bericht und verständigte sich auf  folgende Änderungen:\\
-Die Meilensteine sollten ausführlicher behandelt, indem mehr auf die jeweilige Durchführung und Herangehensweisen eingegangen werden sollte;
+Mit der zu diesem Zeitpunkt angedachten Struktur wäre die Erfüllung dieser Anforderung schwer umsetztbar gewesen.
+Um den gefordeten Umfang dennoch zu erreichen, prüfte das Team den Bericht und verständigte sich auf folgende Änderungen:\\
+Die Meilensteine sollten ausführlicher behandelt werden, indem mehr auf die jeweilige Durchführung und Herangehensweisen eingegangen werden sollte;
 Wichtiger und zentraler Quellcode sollte hier hinzugefügt, behandelt und erklärt werden.
-Zusätzlich sollten die Ausführungen um Bilder und Beispiele, die das jeweilige Problem besser veranschaulichen ergänzt werden.
+Außerdem sollten die Ausführungen um Bilder und Beispiele, die das jeweilige Problem besser veranschaulichen, ergänzt werden.
+
+\paragraph*{Abschlusspräsentation} $~$ \\
 Zusätzlich zu dem Bericht befasste sich das Team mit der finalen Projektpräsentation.
 In dieser sollte dem Prüfenden sowie dem Projektbegleitenden Unternehmen macio die Iterationen des Projektes und das Produkt präsentiert werden.
 Am Ende dieser Präsentation sollte der Prüfende die Arbeitsleistung des Teams anhand des Berichts und der Zufriedenheit des Kunden evaluieren können. Außerdem sollte der Kunde das Produkt selbstständig nutzen und weiterentwickeln können.
-
-\paragraph*{Retrospektive} $~$ \\
-Da dies der letzte Meilenstein des Projektes war, fand an dieser Stelle keine Retrospektive statt.
 
 \section{Fazit}
 \subsection{Ausblick}
