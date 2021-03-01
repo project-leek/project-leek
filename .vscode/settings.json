@@ -25,6 +25,9 @@
   "files.trimTrailingWhitespace": true,
   "cSpell.words": [
     "Microservices",
+    "PROI",
+    "Projektbericht",
+    "Raspberry",
     "docker",
     "framework",
     "frameworks",
@@ -34,5 +37,6 @@
     "tailwind",
     "vetur",
     "visual"
-]
+],
+"cSpell.language": ",de"
 }
