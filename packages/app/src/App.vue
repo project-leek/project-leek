@@ -51,8 +51,6 @@ export default defineComponent({
         return;
       }
 
-      console.log('u', doesUserHaveOwnReaders.value);
-
       // send authenticated users without readers to settings
       if (!doesUserHaveOwnReaders.value) {
         await router.push({ name: 'settings' });
