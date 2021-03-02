@@ -1,6 +1,6 @@
 import { Paginated } from '@feathersjs/feathers';
 import { NFCReader } from '@leek/commons';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { user } from './useAuthentication';
 import feathers from './useBackend';
@@ -40,12 +40,10 @@ async function loadReaders(): Promise<void> {
   });
 }
 
-export async function doesUserHaveOwnReaders(): Promise<boolean> {
-  await loadReaders();
-
+export const doesUserHaveOwnReaders = computed(() => {
   const ownedReaders = readers.value?.filter((reader) => reader.owner === user.value?._id);
   return !!ownedReaders && ownedReaders.length > 0;
-}
+});
 
 feathers.on('login', () => {
   void loadReaders();

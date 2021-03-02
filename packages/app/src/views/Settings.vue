@@ -1,12 +1,7 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-4 flex flex-row items-center">
-      <Button
-        v-if="readers && readers.length !== 0"
-        :to="{ name: 'home' }"
-        icon="fas fa-times"
-        size="md"
-      />
+      <Button v-if="doesUserHaveOwnReaders" :to="{ name: 'home' }" icon="fas fa-times" size="md" />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
     <main
@@ -43,6 +38,10 @@
               <span class="mt-2 text-white">{{ reader.name || 'Leek Box' }}</span>
             </div>
           </div>
+
+          <p v-if="!doesUserHaveOwnReaders" class="text-center text-white text-2xl">
+            Bitte richte zuerst mindestens eine Box ein, um die App verwenden zu können.
+          </p>
         </div>
       </LabeledInput>
 
@@ -68,7 +67,7 @@ import Button from '../components/uiBlocks/Button.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import { logout, user } from '../compositions/useAuthentication';
 import feathers from '../compositions/useBackend';
-import { readers } from '../compositions/useNfcReader';
+import { doesUserHaveOwnReaders, readers } from '../compositions/useNfcReader';
 
 export default defineComponent({
   name: 'Settings',
@@ -101,6 +100,7 @@ export default defineComponent({
       user,
       doLogout,
       selectReader,
+      doesUserHaveOwnReaders,
     };
   },
 });

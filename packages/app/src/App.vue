@@ -27,7 +27,7 @@ import { computed, defineComponent, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import Button from './components/uiBlocks/Button.vue';
-import { isAuthenticated, user } from './compositions/useAuthentication';
+import { isAuthenticated } from './compositions/useAuthentication';
 import {
   closeBackendConnection,
   isBackendConnected,
@@ -47,8 +47,14 @@ export default defineComponent({
     const router = useRouter();
 
     watch(readers, async () => {
+      if (!isAuthenticated.value || route.name === 'settings') {
+        return;
+      }
+
+      console.log('u', doesUserHaveOwnReaders.value);
+
       // send authenticated users without readers to settings
-      if (isAuthenticated.value && !(await doesUserHaveOwnReaders()) && route.name !== 'settings') {
+      if (!doesUserHaveOwnReaders.value) {
         await router.push({ name: 'settings' });
         return;
       }
