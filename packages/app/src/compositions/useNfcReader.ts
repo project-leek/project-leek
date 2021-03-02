@@ -50,3 +50,7 @@ export async function doesUserHaveOwnReaders(): Promise<boolean> {
 feathers.on('login', () => {
   void loadReaders();
 });
+
+feathers.on('logout', () => {
+  readers.value = undefined;
+});

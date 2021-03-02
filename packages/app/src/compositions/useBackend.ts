@@ -29,8 +29,8 @@ type Application = FeathersApplication<ServiceTypes> & {
 
 const LS_BACKEND_URL = 'backend_url';
 
+const socket = ref<SocketIOClient.Socket>();
 const feathersClient = feathers<ServiceTypes>() as Application;
-feathersClient.configure(auth());
 
 feathersClient.on('login', () => {
   debug('Backend: authenticated');
@@ -38,6 +38,19 @@ feathersClient.on('login', () => {
 
 feathersClient.on('logout', () => {
   debug('Backend: unauthenticated bye bye');
+});
+
+feathersClient.on('connect', () => {
+  isBackendConnected.value = true;
+  debug('Backend: connected ;-)');
+});
+
+feathersClient.on('disconnect', () => {
+  isBackendConnected.value = false;
+  debug('Backend: disconnected');
+
+  // disconnect logs the user out as well
+  feathersClient.emit('logout');
 });
 
 feathersClient.hooks({
@@ -51,15 +64,16 @@ export const backendUrl = ref<string | null>(localStorage.getItem(LS_BACKEND_URL
 
 export const isBackendUrlConfigured = computed(() => !!backendUrl.value);
 
-export const socket = ref<SocketIOClient.Socket>();
+export const isBackendConnected = ref(false);
 
-export function setBackendUrl(_backendUrl?: string): void {
+export function setBackendUrl(_backendUrl?: string | null): void {
+  backendUrl.value = _backendUrl || null;
+
   if (!_backendUrl) {
     localStorage.removeItem(LS_BACKEND_URL);
     return;
   }
 
-  backendUrl.value = _backendUrl;
   localStorage.setItem(LS_BACKEND_URL, _backendUrl);
 }
 
@@ -117,7 +131,19 @@ export async function resolveBackendUrl(url: string): Promise<string | null> {
   return null;
 }
 
+export function closeBackendConnection(): void {
+  if (socket.value) {
+    socket.value.disconnect();
+    delete socket.value;
+    // delete feathersClient.io;
+    delete (feathersClient as Application & { defaultService?: unknown }).defaultService;
+  }
+}
+
 export function loadBackend(_backendUrl: string): void {
+  // unload old socket if one exists
+  closeBackendConnection();
+
   socket.value = io(_backendUrl, {
     path: '/api/socket',
     transports: ['websocket'],
@@ -126,20 +152,15 @@ export function loadBackend(_backendUrl: string): void {
   });
 
   socket.value.on('connect', () => {
-    debug('Backend: connected ;-)');
+    feathersClient.emit('connect');
   });
 
   socket.value.on('disconnect', () => {
-    debug('Backend: disconnected');
+    feathersClient.emit('disconnect');
   });
 
   feathersClient.configure(socketio(socket.value));
-
-  feathersClient.on('disconnect', () => {
-    if (socket.value) {
-      socket.value.disconnect();
-    }
-  });
+  feathersClient.configure(auth());
 
   socket.value.open();
 }

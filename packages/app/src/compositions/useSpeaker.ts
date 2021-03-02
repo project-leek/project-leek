@@ -27,3 +27,7 @@ export async function loadSpeakers(): Promise<void> {
 feathers.on('login', () => {
   void loadSpeakers();
 });
+
+feathers.on('logout', () => {
+  speakers.value = undefined;
+});

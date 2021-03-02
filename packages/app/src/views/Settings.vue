@@ -1,11 +1,16 @@
 <template>
   <div class="w-full flex flex-col">
     <header class="p-4 flex flex-row items-center">
-      <Button :to="{ name: 'home' }" icon="fas fa-times" size="md" />
+      <Button
+        v-if="readers && readers.length !== 0"
+        :to="{ name: 'home' }"
+        icon="fas fa-times"
+        size="md"
+      />
       <span class="ml-2 text-3xl">Einstellungen</span>
     </header>
     <main
-      class="bg-secondary max-h-full overflow-y-auto flex-grow p-6 bg-gradient-to-b from-primary to-secondary"
+      class="flex flex-col bg-secondary max-h-full overflow-y-auto flex-grow p-6 bg-gradient-to-b from-primary to-secondary"
     >
       <!-- User -->
       <div v-if="user" class="flex flex-col justify-center items-center text-white">
@@ -19,27 +24,29 @@
       <!-- Reader -->
       <LabeledInput class="mb-5 mt-10" label="Leek Boxen">
         <div class="flex flex-row flex-wrap content-between">
-          <span v-if="readers.length === 0" class="text-white mx-auto mt-8 text-xl"
+          <span v-if="!readers || readers.length === 0" class="text-white mx-auto mt-8 text-xl"
             >Bitte verbinde eine Box mit deinem System.</span
           >
-          <div
-            v-for="reader in readers"
-            :key="reader._id"
-            class="relative flex flex-col mr-4 mb-4 w-32 cursor-pointer border border-white shadow-2xl rounded-xl p-4 pb-0 text-center"
-            @click="selectReader(reader)"
-          >
-            <img
-              v-if="!reader.owner"
-              class="absolute top-0 right-0 w-12"
-              src="/src/assets/new.png"
-            />
-            <img class="w-24" src="/src/assets/music-box.svg" />
-            <span class="mt-2 text-white">{{ reader.name || 'Leek Box' }}</span>
+          <div v-else>
+            <div
+              v-for="reader in readers"
+              :key="reader._id"
+              class="relative flex flex-col mr-4 mb-4 w-32 cursor-pointer border border-white shadow-2xl rounded-xl p-4 pb-0 text-center"
+              @click="selectReader(reader)"
+            >
+              <img
+                v-if="!reader.owner"
+                class="absolute top-0 right-0 w-12"
+                src="/src/assets/new.png"
+              />
+              <img class="w-24" src="/src/assets/music-box.svg" />
+              <span class="mt-2 text-white">{{ reader.name || 'Leek Box' }}</span>
+            </div>
           </div>
         </div>
       </LabeledInput>
 
-      <div class="text-white pt-10">
+      <div class="text-white mt-auto">
         <span>Acknowledgement:</span>
         Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
         <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
@@ -47,7 +54,7 @@
     </main>
 
     <footer class="flex text-gray-800 py-5">
-      <Button text="Abmelden" class="mx-4 flex-grow" @click="logout" />
+      <Button text="Abmelden" class="mx-4 flex-grow" @click="doLogout" />
     </footer>
   </div>
 </template>
@@ -84,10 +91,15 @@ export default defineComponent({
       await router.push({ name: 'reader', params: { readerId: reader._id } });
     };
 
+    const doLogout = async (): Promise<void> => {
+      await logout();
+      await router.replace({ name: 'welcome' });
+    };
+
     return {
       readers,
       user,
-      logout,
+      doLogout,
       selectReader,
     };
   },

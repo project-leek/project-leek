@@ -76,3 +76,8 @@ export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<b
 feathers.on('login', () => {
   void loadTags();
 });
+
+feathers.on('logout', () => {
+  tagGroupListItems.value = undefined;
+  tags.value = undefined;
+});
