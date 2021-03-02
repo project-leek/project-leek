@@ -12,6 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{listings}
 \usepackage[onehalfspacing]{setspace}
+\usepackage{pdfpages}
 
 \hyphenation{Macio}
 \hyphenation{macio}
@@ -74,7 +75,7 @@
 \newcommand*\setcaptioncitation[1]{\def\captioncitation{\textit{Source:}~#1}}
 \let\captioncitation\relax
 \captionsetup{format=citation,justification=centering}
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/}{../diagrams/activity_diagrams/}{../mockups/} }
 
 
 \addbibresource{literature.bib}
@@ -1385,10 +1386,71 @@ Trotz einiger Schwierigkeiten während der Entwicklung, konnte durch kontinuierl
 
 \end{onehalfspace}
 \newpage
+\appendix
 \section{Anhang}
-\label{pdf:macioprojektskizze}
-\label{FigmaDesigns}
-\label{FlowCharts}
-\label{anhang:lucidchart}
-\printbibliography
+\subsection{Literatur}
+  \printbibliography[title={~}]
+
+\includepdf[scale=0.75, pages=-, pagecommand=\subsection{Projektskizze}\label{pdf:macioprojektskizze}]
+    {anhang/macio-Projektskizze-ProjektInformatik_20_21.pdf}
+
+\subsection{User-Stories und Use-Flows}
+  \label{FlowCharts}
+  \label{anhang:lucidchart}
+  \subsubsection*{User-Stories}
+  \includegraphics[width=\textwidth]{user stories.png}
+  \newpage
+  \subsubsection*{Use-Flows, die aus den User-Stories entwickelt wurden}
+  \includegraphics[width=0.5\textwidth]{alle nfc tags sehen.png}
+  \includegraphics[width=0.5\textwidth]{box mit wlan verbinden.png}
+  \newpage
+  \includegraphics[width=0.45\textwidth]{box website aufrufen.png}
+  \includegraphics[width=0.55\textwidth]{einloggen.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{gruppe editieren.png}
+  \includegraphics[width=0.5\textwidth]{gruppe erstellen.png}
+  \newpage
+  \includegraphics[width=\textwidth]{gruppe löschen.png}
+  \newpage
+  \includegraphics[width=0.45\textwidth]{nfc tag suchen.png}
+  \includegraphics[width=0.55\textwidth]{registrieren.png}
+  \newpage
+  \includegraphics[height=\textheight]{tag editieren.png}
+  \newpage
+  \includegraphics[height=\textheight]{tag erstellen.png}
+  \newpage
+  \includegraphics[height=\textheight]{tag löschen.png}
+
+
+\newpage
+\subsection{Mockups}
+  \label{FigmaDesigns}
+  \subsubsection*{Erstes Mockup}
+  \includegraphics[width=0.5\textwidth]{v1/Home.png}
+  \includegraphics[width=0.5\textwidth]{v1/Carousel.png}
+  \newpage
+  \subsubsection*{Zweite und dritte Version des Mockups}
+  \includegraphics[width=0.5\textwidth]{v2/Welcome.png}
+  \includegraphics[width=0.5\textwidth]{v3/Welcome.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{v2/Login with Spotify.png}
+  \includegraphics[width=0.5\textwidth]{v3/Login with Spotify.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{v2/Tag Overview.png}
+  \includegraphics[width=0.5\textwidth]{v3/Tag Overview.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{v2/chooseName.png}
+  \includegraphics[width=0.5\textwidth]{v3/Choose Name.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{v2/chooseSong.png}
+  \includegraphics[width=0.5\textwidth]{v3/Choose Song.png}
+  \newpage
+  \includegraphics[width=0.5\textwidth]{v2/chooseImage.png}
+  \includegraphics[width=0.5\textwidth]{v3/Choose Image.png}
+
+
+
+
+
+
 \end{document}
