@@ -61,46 +61,46 @@ jobs:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
           clean: true # Automatically remove deleted files from the deploy branch
 
-  buildx:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # buildx:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Fetch origin/master
-        run: git fetch --no-tags --prune --depth=1 origin master
+  #     - name: Fetch origin/master
+  #       run: git fetch --no-tags --prune --depth=1 origin master
 
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+  #     - name: Cache Docker layers
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: /tmp/.buildx-cache
+  #         key: ${{ runner.os }}-buildx-${{ github.sha }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-buildx-
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v1
+  #     - name: Setup QEMU
+  #       uses: docker/setup-qemu-action@v1
 
-      - name: Setup Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+  #     - name: Setup Docker Buildx
+  #       id: buildx
+  #       uses: docker/setup-buildx-action@v1
 
-      - name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
+  #     - name: Available platforms
+  #       run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+  #     - name: Login to DockerHub
+  #       uses: docker/login-action@v1
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: docker/app.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-          push: true
-          tags: anbraten/leek-app:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+  #     - name: Build docker image
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: .
+  #         file: docker/app.Dockerfile # loads a specific dockerignore as well: https://stackoverflow.com/a/57774684/8461267
+  #         platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+  #         push: true
+  #         tags: anbraten/leek-app:latest
+  #         cache-from: type=local,src=/tmp/.buildx-cache
+  #         cache-to: type=local,dest=/tmp/.buildx-cache,mode=max

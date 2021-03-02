@@ -41,7 +41,7 @@ async function loadReaders(): Promise<void> {
 }
 
 export const doesUserHaveOwnReaders = computed(() => {
-  const ownedReaders = readers.value?.filter((reader) => reader.owner === user.value?._id);
+  const ownedReaders = readers.value?.filter((reader) => reader.owner);
   return !!ownedReaders && ownedReaders.length > 0;
 });
 
