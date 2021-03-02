@@ -20,7 +20,6 @@
       <router-view v-else />
     </div>
   </div>
-  <pre>{{ user }}</pre>
 </template>
 
 <script lang="ts">
@@ -66,7 +65,6 @@ export default defineComponent({
     return {
       showNotConnected,
       resetBackend,
-      user,
     };
   },
 });
