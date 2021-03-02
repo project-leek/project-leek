@@ -1,8 +1,9 @@
+import './compositions/useBackend';
 import '@fortawesome/fontawesome-free/css/all.css';
-import '../index.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/baloo-2/700.css';
-import './compositions/useBackend';
+// eslint-disable-next-line import/no-unresolved
+import 'windi.css';
 
 import { createApp } from 'vue';
 
