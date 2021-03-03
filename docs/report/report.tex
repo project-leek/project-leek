@@ -80,7 +80,7 @@
 
 \addbibresource{literature.bib}
 
-\title{Projektbericht Leek-Box \\\large Smart Music Player \\ Projekt Informatik}
+\title{Projektbericht Leek-Box \\\large Eine smarte Musik-Box \\ Projekt Informatik}
 \author{Anton Bracke\\Jan Eberlein\\Tom Calvin Haak\\Julian Hahn\\Nick Loewecke}
 
 \newsavebox\curwrapfig
@@ -513,22 +513,22 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 \section{Technische Umsetzung}
   Auf Basis der Anforderung und der Machbarkeitsstudie evaluierte das Projektteam bekannte Technologien und recherchierte mögliche Alternativen für die Umsetzung der \textit{Leek-Box}.
   \subsection{Projektstrukur}
-  Die an das Projekt gesetzten Anforderungen machten die Erstellung mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
+  Die an das Projekt gesetzten Anforderungen machten die Konzeption mehrerer Applikationen notwendig. Neben einer Benutzeroberfläche, auf der die NFC-Tags
   verwaltet werden können, musste die Steuerung des NFC-Readers und ein System zur Speicherung der Daten sowie zum Abspielen der Musik entwickelt werden.
   Die dafür benötigten Anwendungen wurden als Microservices konzipiert und umgesetzt.
   Microservices sind kleine, separat ausführbare und eigenständige Dienste mit geringem Umfang.
-  Diese kommunizieren untereinander mit allgemein verwendeten Protokollen, wie zum Beispiel HTTP, via APIs.
+  Diese kommunizieren untereinander mit allgemein verwendeten Protokollen, wie zum Beispiel HTTP, via \textit{APIs}.
   Größere Projekte werden bei einer Microservice-Architektur dementsprechend in kleine Teile zerlegt,
    die eigenständig entwickelt und betrieben werden können. \cite{Microservices}\\
   Zur Verringerung des Aufwands der Konfiguration, des Abhängigkeiten-Managements und der Wartung entschied sich das Team, die einzelnen Microservices in einem Repository zusammenzufassen. \cite{Monorepo}
-  Repositories dieser Art werden \textit{Mono-Repositories} oder \textit{Monorepos} genannt, da sich alle Komponenten an einem einzigen Ort befinden.
-  Jeder Service wurde in einem Unterordner in \textit{packages} angelegt (vgl. \autoref{fig:Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
-  \textit{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und NFC-Reader die Applikation zum Steuern und Auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
-  Im Ordner \textit{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
-  Neben den einzelnen Microservices wurden ebenfalls die Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo (im Ordner \textit{docs}) abgelegt.
-  Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in einem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \textit{config} zu finden.
+  Repositorys dieser Art werden \textit{Mono-Repositorys} oder \textit{Monorepos} genannt, da sich alle Komponenten an einem einzigen Ort befinden.
+  Jeder Service wurde in einem Unterordner in \enquote{packages} angelegt (vgl. \autoref{fig:Ordnerstruktur}). Der Ordner \textit{app} enthält die Benutzeroberfläche,
+  \enquote{backend} die Datenbankschnittstelle sowie Logik zur Kommunikation mit dem Musik-Streaming-Anbieter und \enquote{nfc-Reader} die Applikation zum Steuern und Auslesen des am Raspberry Pi angeschlossenen NFC-Readers.
+  Im Ordner \enquote{commons} befinden sich von allen Services gemeinsam genutzte Ressourcen (wie z. B. Modell-Klassen).
+  Neben den einzelnen Microservices wurden ebenfalls Dokumentationsdateien wie Setup-Guide, Benutzerdokumentation und Projektbericht im Mono-Repo (im Ordner \enquote{docs}) abgelegt.
+  Auch die für den Dienst \textit{Docker} benötigten Dateien fanden in einem gleichnamigen Ordner Platz. Die Konfigurationsdateien für \textit{ESLint} und den \textit{Typescript}-Compiler sind im Ordner \enquote{config} zu finden.
   Auf die Auflistung aller weiteren Dateien wird in diesem Bericht verzichtet. Eine genaue Aufstellung ist dem \textit{GitHub-Repository}\footnote{\url{https://github.com/project-leek/project-leek}} zu entnehmen.
-  Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit einfach erreichbar, ohne die Notwendigkeit das Repository zu wechseln.
+  Durch die Zusammenfassung in ein Mono-Repository waren die einzelnen Services für jeden Entwickler jederzeit leicht erreichbar, ohne das Repository wechseln zu müssen.
 
   \begin{figure}[h]
     \includegraphics[width=\linewidth]{LeekSoftware_Overview.png}
@@ -544,11 +544,11 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   \paragraph*{TypeScript} $~$ \\
   Da alle Teammitglieder bereits Erfahrungen mit JavaScript gesammelt hatten, wurde diese zuerst als Programmiersprache vorgeschlagen.
-  Aufgrund von nicht vorhandener Typisierung wurde sich dann jedoch auf die von Microsoft entwickelte Sprache TypeScript geeinigt. Diese bietet aufgrund des
+  Aufgrund von nicht vorhandener Typisierung einigten sich die Entwickler jedoch auf die von Microsoft entwickelte Sprache TypeScript. Diese bietet aufgrund des
   Aufbaus auf den ECMAScript-6-Standard eine große syntaktische Ähnlichkeit zu JavaScript, wodurch das Erlernen der Sprache weniger Zeit in Anspruch nahm.
-  Durch die starke Typisierung entstehen außerdem weniger Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
+  Durch die starke Typisierung entstehen außerdem wenige Laufzeitfehler, da die entwickelnde Person bereits zur Compile-Zeit auf Typfehler aufmerksam gemacht wird.\cite{Typescript_Typisierung}
   Bei der Kompilierung von TypeScript-Code wird dieser zu gültigem JavaScript Code umgewandelt, wodurch auf eine Vielzahl von bereits existierenden JavaScript-Paketen zugegriffen werden konnte.
-  Außerdem lässt sich TypeScript durch Nutzung der Laufzeitumgebung \textit{Node.js}\footnote{\url{https://nodejs.org/en/}} auch serverseitig als Backendsprache verwenden ausführen und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
+  Außerdem lässt sich TypeScript durch Nutzung der Laufzeitumgebung \textit{Node.js}\footnote{\url{https://nodejs.org/en/}} auch serverseitig als Backendsprache verwenden und ausführen und ersparte dem Team damit die Nutzung von verschiedenen Programmiersprachen.
 
   \subsubsection{Frameworks}
   Neben der Programmiersprache Typescript setzte das Team verschiedene Frameworks ein, um den Entwicklungsaufwand zu reduzieren.
@@ -556,7 +556,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   \paragraph*{Vue.js} $~$ \\
   Zur Gestaltung der Benutzeroberfläche für die \textit{Leek-Box}, die zum Verwalten der NFC-Tags und Steuern der Ausgabegeräte genutzt wird, einigte sich das Team auf die Nutzung des
   clientseitigen JavaScript-Webframeworks \textit{Vue.js}\footnote{\raggedright\url{https://vuejs.org/}}
-  Dieses wurde vor allem aufgrund dessen Haupteigenschaften \textit{components} und \textit{reactivity} ausgewählt.
+  Dieses wurde vor allem aufgrund der Haupteigenschaften \textit{components} und \textit{reactivity} ausgewählt.
 
   \paragraph*{Components} $~$ \\
   Durch \textit{Vue.js} lassen sich Webseiten mit HTML, CSS und JavaScript bzw. TypeScript erstellen. Dabei bietet das Framework, im Vergleich zur Webentwicklung ohne Framework, die Möglichkeit sogenannte Single-File-Components (\textit{.vue} Dateien) zu nutzen. In diesen können sich ein Template für das HTML-Grundgerüst, ein Bereich für CSS Styles und die Logik der Komponente, welche aus JavaScript oder TypeScript Code besteht, befinden. Dies ermöglicht eine inhaltiche Zusammenfassung aller Teilaspekte eines Elementes der Webseite in einer einzigen Datei.
@@ -584,8 +584,8 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
 
   Durch diese Zusammenfassung wird der gesamte Code lesbarer,
   da meist nur eine Datei je gerade behandeltem Element des Frontends konsultiert werden muss.
-  So wird Entwickleren viel Suchzeit und Arbeitsaufwand erspart, die anderweitig angefallen wären, was zu effizienter und zufriedenstellender Arbeit am Projekt führte.
-  Die gute Lesbarkeit führt langfristig auch zu besserer Wartbarkeit, was in diesem Projekt besonders wichtig ist,
+  So wurde den Entwickleren viel Suchzeit und Arbeitsaufwand erspart, die anderweitig angefallen wären, was zu effizienter und zufriedenstellender Arbeit am Projekt führte.
+  Die gute Lesbarkeit führt langfristig zusätzlich zu besserer Wartbarkeit. Dies ist für das in diesem Projekt besonders wichtig,
   da es unter Open-Source-Lizenz steht und gegebenenfalls von der Allgemeinheit weiter entwickelt werden soll.
   Mit adäquater Wartbarkeit wurde so eine Grundlage für langjähriges Überleben der \textit{Leek-Box} geschaffen.
   \\~\\
@@ -594,7 +594,7 @@ Mit dem Raspberry Pi Zero W mit eingebautem W-Lan und einem USB Port für den NF
   Für die Nutzung müssen diese allerdings noch mit \textit{defineComponent} beim Framework registriert werden
   (siehe \autoref{lst:EinfacheComponent}).
   Danach können die Komponenten wie native HTML-Tags eingebunden werden.
-  Dies macht die Nutzung von \textit{components} sehr intuitiv, wodurch das Framework eine sehr flache Lernkurve hat.
+  Dies macht die Nutzung von \textit{components} intuitiv, wodurch das Framework eine flache Lernkurve hat.
   Die Verwendung von weitreichend klassischem HTML, CSS und JavaScript bzw. TypeScript unterstützt dies zusätzlich.
   Für das Team war dies immens wertvoll und ein wichtiges Auswahlkriterium für die Wahl der Technologien,
   da für das Projekt nur wenige Monate Zeit zur Verfügung standen.
