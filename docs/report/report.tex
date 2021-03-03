@@ -197,53 +197,53 @@ Ob und wie die Anforderungen umgesetzt werden konnten, wird im späteren Abschni
 
 \section{Projektplanung}
   \subsection{Projekt Management}
-  Am Anfang des Projekts entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
+  Zu Beginn des Projekts entschied sich das Team in Abstimmung mit macio für eine agile Projektorganisation.
   Diese Art des Projektmanagements zeichnet sich vor allem durch fortlaufende Produktentwicklung, kontinuierliches Feedback, kooperatives Arbeiten und
-  Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung geschah aus mehreren Gründen.
+  Reaktionsfähigkeit bei Anforderungsänderungen aus. Diese Entscheidung wurde aus mehreren Gründen getroffen.
   Zum einen haben agile Methoden kein festes Endprodukt als Ziel, wie es beispielsweise bei klassischer Softwareentwicklung
-  (Wasserfallmodell, V-Model, etc.) der Fall ist; Solch ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
+  (Wasserfallmodell, V-Model, etc.) der Fall ist - ein festes Ende würde der geforderten Veröffentlichung als Open-Source-Projekt nicht gerecht werden,
   da solche per Definition erweiterbar sind. Des Weiteren haben agile Entwicklungsprozesse kürzere Veröffentlichungszyklen,
-  die dem Team ermöglichten, ein funktionierendes Produkt innerhalb eines
+  die es dem Team ermöglichten, ein funktionierendes Produkt innerhalb eines
   Semesters\footnote{Dieses Semester war aufgrund besonderer CoViD19-bedingten Auflagen einige Wochen kürzer als üblich.} zu erstellen.
   \\
-  Entsprechend der Entscheidung zu agiler Entwicklung wurde zu Beginn keine feste Planung des Projektverlaufs aufgestellt.
-  Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum orientiert wurde.
-  Aus dieser wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
-  Diese Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
-  Die Rollen der Teammitglieder in Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
+  Entsprechend dieser agilen Organisation wurde zu Beginn keine feste Planung des Projektverlaufs aufgestellt.
+  Stattdessen entwickelte das Team eine Methodik um iterativ am Projekt zu arbeiten, wobei sich an der Methode Scrum\cite{Scrum} orientiert wurde.
+  Von der Methode wurden vor allem die Einteilung in Projektiterationen fester Länge (Sprints) und die zugehörigen wiederkehrenden Meetings übernommen.
+  Die Sprintlänge betrug im allgemeinen zwei Wochen\footnote{Abgewichen wurde von dieser Länge nur zum Jahresende, um die Feiertage unterzubringen.}.
+  Die Rollen der Teammitglieder von Scrum wurde nicht adaptiert, da sich im Team für eine Gleichverteilung der Aufgaben entschieden wurde.
 
   \subsection{Vor den Sprints}
-  Am Anfang eines Sprints wurde ein Sprint-Planing durchgeführt,
+  Am Anfang eines Sprints wurde ein Sprint-Planning durchgeführt,
   in dem das Team die Ziele für das Produktinkrement formulierte.
   Diese wurden gemeinsam mit dem Kunden abgesprochen und gegebenenfalls angepasst.
-  Im Anschluss wurde das Produktinkrement vom Team anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen in technisch orientierte Arbeitspakete aufgeteilt.
+  Im Anschluss wurde das Produktinkrement des Teams anhand des geschätzten zeitlichen Arbeitsaufwands der einzelnen Änderungen in technisch orientierte Arbeitspakete aufgeteilt.
   Falls sich hierbei herausstellte, dass einzelne Arbeitspakete nicht umsetzbar oder zu aufwändig waren, wurde das Produktinkrement entsprechend angepasst.
 
   \subsection{Arbeit in den Sprints}
-  Während jedes Sprints wurde das geplante Produktinkrement aus dem Sprint-Planing implementiert.
+  Während jeden Sprints wurde das geplante Produktinkrement aus dem Sprint-Planing implementiert.
   Die einzelnen Arbeitspakete wurden, anhand der Anforderung und des Aufwands der jeweiligen Arbeitspakete, entweder alleine, in Paaren oder selten auch in Gruppen bearbeitet.
-  Auch das spezifische Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
+  Auch das individuelle Fachwissen der beteiligten Personen hatte einen Einfluss auf die Aufteilung.
   In jedem Fall wurden die Pakete erst bei Arbeitsbeginn und nur von den bearbeitenden Mitgliedern selbst zugewiesen.
   \\
   Nach Bearbeitung eines Paketes wurden die vollzogenen Änderungen durch Code Reviews von mindestens zwei anderen Entwicklern geprüft.
   Nur wenn diese erfolgreich waren, wurde der entsprechende Code ins Produktinkrement übernommen.
-  Dieses Verfahren wurde eingesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sichherzustellen.
-  Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Veranstaltungen besuchten und beruflichen Tätigkeiten nachgingen.
+  Dieses Verfahren wurde eingesetzt, um sowohl Flexibilität von Arbeitszeiten zu ermöglichen, als auch um die gewünschte Produktqualität sicherzustellen.
+  Verschiedene Arbeitszeiten waren notwendig, da alle Teammitglieder verschiedene parallele Hochschulveranstaltungen besuchten und beruflichen Tätigkeiten nachgingen.
   So waren keine langfristigen synchronen Arbeitszeiten aller Mitglieder möglich.
-  Die freie Verteilung von Paketen ermöglichte, dass Mitglieder in persönlich bevorzugten Themengebieten arbeiten konnten, wodurch die Motivation des Teams am Projekt erhalten werden konnte.
+  Die freie Verteilung von Paketen gestattete den Mitgliedern in persönlich bevorzugten Themengebieten arbeiten konnten, wodurch die Motivation des Teams am Projekt erhalten werden konnte.
   \\
   Zur Abstimmung des Fortschritts während des Sprints, trafen sich die Teammitglieder drei Mal pro Woche (in der Regel montags, mittwochs und freitags).
   In Aufbau und Zweck orientierten sich diese regelmäßigen Meetings an den \glqq Daily Standups\grqq{} von Scrum.
-  Während den Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren, was bei der Arbeit gelernt wurde und welche Themen es bis zum nächsten Standup bearbeiten wollte.
+  Während der Meetings stellte jedes Teammitglied kurz vor was es seit dem letzten Standup am Projekt bearbeitet hatte, welche Probleme dabei aufgetreten waren, was bei der Arbeit gelernt wurde und welche Themen es bis zum nächsten Standup bearbeiten wollte.
   Nach diesen Kurzvorstellungen wurden einzelne besonders interessante und wichtige Punkte der Arbeit oder gelöste Probleme im Detail besprochen.
-  So konnte das Team auf den gleichen Wissensstand kommen und gemeinsam Entscheidungen treffen.
+  So kam das Team auf den gleichen Wissensstand und konnte gemeinsam Entscheidungen treffen.
 
   \subsection{Am Ende der Sprints}
   Nach jedem Sprint wurde das Produktinkrement dem Kunden und der Projektbetreuung vorgestellt, sowie Ausmaß und Inhalt des nächsten Produktinkrements besprochen.
   Die resultierenden Wünsche und Rückmeldungen wurden ins Backlog übertragen.
   Im Anschluss fand eine Retrospektive statt,
-  in der das Team die eigene Zusammenarbeit und den gemeinsamen Umgang evaluiert.
-  Hierfür stellten sich alle Teammitglieder für sich folgende Fragen für die Arbeit am entsprechenden Sprint:
+  in der das Team die eigene Zusammenarbeit und den gemeinsamen Umgang evaluierte.
+  Hierfür stellten sich alle Teammitglieder folgende Fragen für die Arbeit am entsprechenden Sprint:
   \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
     \item Was lief gut?
     \item Was lief schlecht?
@@ -252,15 +252,15 @@ Ob und wie die Anforderungen umgesetzt werden konnten, wird im späteren Abschni
   \end{itemize}
   Die jeweiligen Antworten wurden zusammengetragen und im Team gemeinsam reflektiert.
   Das Feedback in diesem Kontext war konstruktiv, fair und ehrlich.
-  Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt, um das Teamwork und die Arbeit im folgenden Sprint weiter zu optimieren.
-  Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planing.
+  Die daraus entstandenen Erkenntnisse und Verbesserungsvorschläge wurden genutzt, um das Teamwork und die Arbeit im darauffolgenden Sprint weiter zu optimieren.
+  Direkt nach jeder Retrospektive startete der nächste Sprint beginnend mit dem entsprechenden Sprint-Planning.
 
   \subsection{Quelloffenes Arbeiten}
-  Teil der Anforderung war, dass die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung stehen soll.
-  Dementsprechend entwickelte das Team den Anspruch, dass dieses Projekt nicht nur Open-Source sondern auch erweiterbar und verständlich sein soll.
-  Aufgrunddessen wurde die Entscheidung getroffen, den kompletten Entwicklungsprozess auf \textit{GitHub}\footnote{\url{https://github.com/}} zu veröffentlichen.
-  Diese Platform bot sich an, da sie für den Umfang des Projekts viele kostenlose Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, welche halfen den Entwicklungsprozess sehr intuitiv und zentral zu gestalten.
-  So wurden zum Beispiel die meisten Diskussionen zu fachlichen Themen direkt in den Arbeitspaketen geführt, wodurch Entscheidungen und Denkprozesse von anderen Kollaborierenden nachvollzogen werden konnten.
+  Teil der Anforderung war es, die Software als Open-Source-Projekt der Öffentlichkeit zur Verfügung zu stellen.
+  Dementsprechend strebte das Team danach, das Projekt für andere Entwickler:innen erweiterbar und verständlich zu gestalten.
+  Aufgrunddessen wurde der komplette Entwicklungsprozess auf \textit{GitHub}\footnote{\url{https://github.com/}} zu veröffentlicht.
+  Die Plattform bot sich an, da sie für den Umfang des Projekts viele kostenlose Funktionalitäten in den Bereichen Automatisierung und Kollaboration bietet, welche halfen den Entwicklungsprozess intuitiv und zentral zu gestalten.
+  Beispielsweise wurden die meisten fachlichen Diskussionen direkt in den Arbeitspaketen geführt, wodurch Entscheidungen und Denkprozesse von den Teammitgliedern und anderen Kollaborierenden nachvollzogen werden konnten.
   Dies hilft bei der zukünftigen Instandhaltung und Weiterentwicklung des Projekts.
   \\
   Das Produkt-Backlog wurde in diesem GitHub Repository gepflegt,
