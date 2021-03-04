@@ -1,13 +1,18 @@
 <template>
   <div
     class="textfield flex flex-row border-2 bg-white border-yellow-400 px-4 py-1 rounded-full focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-25 shadow-lg"
-    :class="{ 'ring-red-600 ring-2 ring-inset': required && modelValue === '' }"
+    :class="{
+      'ring-red-600 ring-2 ring-inset': required && modelValue === '',
+      'bg-gray-200 cursor-not-allowed shadow-none': disabled,
+    }"
   >
     <span v-if="icon" class="icon mr-4 text-xl my-auto" :class="['fas', `fa-${icon}`]" />
     <input
       class="input w-full outline-none bg-transparent placeholder-opacity-50 text-xl"
+      :class="{ 'text-gray-400 cursor-not-allowed': disabled }"
       :placeholder="placeholder"
       type="text"
+      :disabled="disabled"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
@@ -34,6 +39,10 @@ export default defineComponent({
       default: '',
     },
     required: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
