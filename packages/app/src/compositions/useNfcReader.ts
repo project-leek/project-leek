@@ -2,7 +2,6 @@ import { Paginated } from '@feathersjs/feathers';
 import { NFCReader } from '@leek/commons';
 import { computed, ref } from 'vue';
 
-import { user } from './useAuthentication';
 import feathers from './useBackend';
 
 let areReadersLoaded = false;

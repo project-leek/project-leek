@@ -20,13 +20,13 @@ export default {
       ...theme('colors'),
       primary: '#FF9900',
       secondary: '#FFC700',
-      button: '#FFB800 ',
+      button: '#FFB800',
       darkViolet: '#1A0139',
       darkBlue: '#000115',
     }),
     borderColor: (theme) => ({
       ...theme('colors'),
-      button: '#FFA800 ',
+      button: '#FFA800',
       secondary: '#FFC700',
     }),
     ringColor: (theme) => ({
