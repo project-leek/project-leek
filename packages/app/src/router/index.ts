@@ -2,7 +2,7 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isBackendUrlConfigured } from '../compositions/useBackend';
+import { isBackendUrlConfigured, setBackendUrl } from '../compositions/useBackend';
 import { readers } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
@@ -27,14 +27,14 @@ const routes: RouteRecordRaw[] = [
     component: Home,
   },
   {
-    path: '/setup',
+    path: '/setup/',
     name: 'setup',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
   {
-    path: '/setup/reset',
-    name: 'setup-reset',
+    path: '/setup/:url',
+    name: 'setup-direct',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
@@ -104,6 +104,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
+  if (to.name === 'setup-direct' && to.params.url) {
+    const url = atob(to.params.url as string);
+    setBackendUrl(url);
+    location.replace('/');
+    return;
+  }
+
   if (!isBackendUrlConfigured.value) {
     if (to.name === 'setup') {
       next();
