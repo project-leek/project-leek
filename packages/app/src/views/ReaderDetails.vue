@@ -28,7 +28,12 @@
     </main>
 
     <footer class="flex text-gray-800 py-5">
-      <Button v-if="user._id === reader.owner" text="Speichern" class="mx-4 flex-grow" @click="saveReader" />
+      <Button
+        v-if="user._id === reader.owner"
+        text="Speichern"
+        class="mx-4 flex-grow"
+        @click="saveReader"
+      />
       <Button v-else text="Zurück" class="mx-4 flex-grow" back />
     </footer>
   </div>
