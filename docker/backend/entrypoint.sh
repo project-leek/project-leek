@@ -22,7 +22,7 @@ export NGROK_HOSTNAME=$(echo -e 'GET /api/tunnels HTTP/1.1\nHost: 127.0.0.1\n' |
 export PROXY_URL="https://$NGROK_HOSTNAME"
 export HOSTNAME=$NGROK_HOSTNAME
 
-echo "Please check your providers settings for the correct oauth callback address:"
+echo "Please check your spotify oauth settings for the correct callback address:"
 echo "$PROXY_URL/oauth/spotify/callback"
 
 node index.js
