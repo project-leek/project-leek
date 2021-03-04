@@ -24,7 +24,9 @@
         <Dropdown v-model="readerSpeaker" :items="speakerListItems" :removeable="false" />
       </LabeledInput>
 
-      <p class="text-white mt-12 text-2xl text-center">Diese Leek-Box gehört dir einfach nicht!</p>
+      <span v-if="user._id !== reader.owner" class="text-white mt-12 text-2xl text-center"
+        >Diese Leek-Box gehört dir einfach nicht!</span
+      >
     </main>
 
     <footer class="flex text-gray-800 py-5">
