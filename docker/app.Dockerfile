@@ -5,7 +5,7 @@ RUN ls -la
 RUN yarn
 RUN yarn build:app
 
-FROM caddy:2.2.1-alpine
+FROM caddy:2.3.0-alpine
 WORKDIR /app
 COPY --from=build /app/packages/app/dist .
 COPY /docker/app/Caddyfile /etc/caddy/Caddyfile
