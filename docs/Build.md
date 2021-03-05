@@ -1,4 +1,4 @@
-# How to build your own leek-box?
+# How to build your own Leek-Box?
 
 This guide should help everybody to build and setup an own version of the leek-box.
 
