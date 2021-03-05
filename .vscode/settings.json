@@ -24,8 +24,10 @@
   "liveshare.populateGitCoAuthors": "never",
   "files.trimTrailingWhitespace": true,
   "cSpell.words": [
-    "Raspberry",
     "Microservices",
+    "PROI",
+    "Projektbericht",
+    "Raspberry",
     "docker",
     "framework",
     "frameworks",
@@ -35,5 +37,6 @@
     "tailwind",
     "vetur",
     "visual"
-]
+],
+"cSpell.language": ",de"
 }

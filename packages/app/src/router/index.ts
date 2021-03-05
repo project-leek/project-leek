@@ -2,8 +2,8 @@ import { Component } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { isAuthenticated, load as loadAuthentication } from '../compositions/useAuthentication';
-import { isBackendUrlConfigured, waitForConnection } from '../compositions/useBackend';
-import { doesUserHaveOwnReaders } from '../compositions/useNfcReader';
+import { isBackendUrlConfigured, setBackendUrl } from '../compositions/useBackend';
+import { readers } from '../compositions/useNfcReader';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -27,14 +27,14 @@ const routes: RouteRecordRaw[] = [
     component: Home,
   },
   {
-    path: '/setup',
+    path: '/setup/',
     name: 'setup',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
   {
-    path: '/setup/reset',
-    name: 'setup-reset',
+    path: '/setup/:url',
+    name: 'setup-direct',
     component: (): Component => import('../views/Setup.vue'),
     meta: { authentication: 'ignored' },
   },
@@ -87,14 +87,14 @@ const routes: RouteRecordRaw[] = [
     path: '/sandbox',
     name: 'sandbox',
     component: (): Component => import('../views/Sandbox.vue'),
-    meta: { authentication: 'ignored' },
+    meta: { authentication: 'ignored', noBackendConnectionNeeded: true },
   },
   // this should be the last route to catch all unhandled requests
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFound,
-    meta: { authentication: 'ignored' },
+    meta: { authentication: 'ignored', noBackendConnectionNeeded: true },
   },
 ];
 
@@ -104,6 +104,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
+  if (to.name === 'setup-direct' && to.params.url) {
+    const url = atob(to.params.url as string);
+    setBackendUrl(url);
+    location.replace('/');
+    return;
+  }
+
   if (!isBackendUrlConfigured.value) {
     if (to.name === 'setup') {
       next();
@@ -119,25 +126,28 @@ router.beforeEach(async (to, _, next) => {
     return;
   }
 
-  await loadAuthentication();
-
   const pageAuthentication = (to.meta.authentication as string) || 'needed';
+
+  if (pageAuthentication === 'ignored') {
+    next();
+    return;
+  }
+
+  await loadAuthentication();
 
   if (pageAuthentication === 'needed' && !isAuthenticated.value) {
     next({ name: 'welcome' });
     return;
   }
 
-  await waitForConnection();
-
-  // send authenticated users without readers to settings
-  if (isAuthenticated.value && to.name !== 'settings' && !(await doesUserHaveOwnReaders())) {
-    next({ name: 'settings' });
+  if (pageAuthentication === 'guests-only' && isAuthenticated.value) {
+    next({ name: 'home' });
     return;
   }
 
-  if (pageAuthentication === 'guests-only' && isAuthenticated.value) {
-    next({ name: 'home' });
+  // authenticated but without configured readers
+  if (readers.value && readers.value.length === 0 && to.name !== 'settings') {
+    next({ name: 'settings' });
     return;
   }
 

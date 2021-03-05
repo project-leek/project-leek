@@ -26,13 +26,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 import Button from '../components/uiBlocks/Button.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import Loading from '../components/uiBlocks/Loading.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
-import { loadBackend, resolveBackendUrl, setBackendUrl } from '../compositions/useBackend';
+import { resolveBackendUrl, setBackendUrl } from '../compositions/useBackend';
 
 export default defineComponent({
   name: 'Setup',
@@ -43,7 +42,6 @@ export default defineComponent({
     Loading,
   },
   setup() {
-    const router = useRouter();
     const backendUrl = ref('');
     const isTestingConnection = ref(false);
     const isConnectionUrlInvalid = ref(false);
@@ -61,8 +59,9 @@ export default defineComponent({
       }
 
       setBackendUrl(url);
-      loadBackend(url);
-      await router.replace({ name: 'welcome' });
+
+      // simply reload app ,-)
+      location.reload();
     };
 
     return {

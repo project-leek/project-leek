@@ -7,17 +7,36 @@
     <main
       class="bg-secondary max-h-full overflow-y-auto flex-grow p-6 bg-gradient-to-b from-primary to-secondary"
     >
-      <LabeledInput label="Name des Readers" class="w-full">
-        <Textfield v-model="readerName" placeholder="z. B. Porree-Box" class="rounded-full" />
+      <LabeledInput label="Name der Box" class="w-full">
+        <Textfield
+          v-model="readerName"
+          :disabled="user._id !== reader.owner"
+          placeholder="z. B. Porree-Box"
+          class="rounded-full"
+        />
       </LabeledInput>
 
-      <LabeledInput class="mb-5 mt-10" label="Box Lautsprecher">
+      <LabeledInput
+        v-if="user && user._id === reader.owner"
+        class="mb-5 mt-10"
+        label="Box Lautsprecher"
+      >
         <Dropdown v-model="readerSpeaker" :items="speakerListItems" :removeable="false" />
       </LabeledInput>
+
+      <span v-if="user._id !== reader.owner" class="text-white mt-12 text-2xl text-center"
+        >Diese Leek-Box gehört dir einfach nicht!</span
+      >
     </main>
 
     <footer class="flex text-gray-800 py-5">
-      <Button text="Speichern" class="mx-4 flex-grow" @click="saveReader" />
+      <Button
+        v-if="user._id === reader.owner"
+        text="Speichern"
+        class="mx-4 flex-grow"
+        @click="saveReader"
+      />
+      <Button v-else text="Zurück" class="mx-4 flex-grow" back />
     </footer>
   </div>
 </template>
@@ -31,6 +50,7 @@ import ListItem from '../components/uiBlocks/Dropdown.ListItem';
 import Dropdown from '../components/uiBlocks/Dropdown.vue';
 import LabeledInput from '../components/uiBlocks/LabeledInput.vue';
 import Textfield from '../components/uiBlocks/Textfield.vue';
+import { user } from '../compositions/useAuthentication';
 import feathers from '../compositions/useBackend';
 import { readers } from '../compositions/useNfcReader';
 import { loadSpeakers, speakers } from '../compositions/useSpeaker';
@@ -83,6 +103,7 @@ export default defineComponent({
       readerSpeaker,
       speakerListItems,
       saveReader,
+      user,
     };
   },
 });

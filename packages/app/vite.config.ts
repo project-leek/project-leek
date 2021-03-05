@@ -1,8 +1,9 @@
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
+import WindiCSS from 'vite-plugin-windicss';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), WindiCSS()],
 
   server: {
     proxy: {
@@ -14,9 +15,5 @@ export default defineConfig({
         target: 'http://localhost:3030',
       },
     },
-  },
-
-  optimizeDeps: {
-    exclude: ['@fortawesome/fontawesome-free'],
   },
 });

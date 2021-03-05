@@ -12,39 +12,78 @@
     <div
       class="flex md:shadow-2xl md:max-w-xl md:max-h-3/4 bg-white md:rounded-3xl w-full h-full relative"
     >
-      <router-view />
+      <div v-if="showNotConnected" class="m-auto flex flex-col">
+        <p class="font-default text-2xl text-center">Wer hat die Box geklaut?</p>
+        <img class="mt-8" src="/src/assets/search.gif" />
+        <Button class="pr-8 mt-8" text="Neue Box einrichten" @click="resetBackend" />
+      </div>
+      <router-view v-else />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue';
+import { computed, defineComponent, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import Button from './components/uiBlocks/Button.vue';
 import { isAuthenticated } from './compositions/useAuthentication';
+import {
+  closeBackendConnection,
+  isBackendConnected,
+  setBackendUrl,
+} from './compositions/useBackend';
+import { doesUserHaveOwnReaders, readers } from './compositions/useNfcReader';
 
 export default defineComponent({
   name: 'App',
+
+  components: {
+    Button,
+  },
 
   setup() {
     const route = useRoute();
     const router = useRouter();
 
-    watch(
-      () => isAuthenticated.value,
-      (_isAuthenticated) => {
-        // if not authenticated and on page that requests authentication
-        const pageAuthentication = (route.meta.authentication as string) || 'needed';
-        if (pageAuthentication === 'needed' && !_isAuthenticated) {
-          void router.replace({ name: 'welcome' });
-        }
+    watch(readers, async () => {
+      if (!isAuthenticated.value || route.name === 'settings') {
+        return;
       }
-    );
+
+      // send authenticated users without readers to settings
+      if (!doesUserHaveOwnReaders.value) {
+        await router.push({ name: 'settings' });
+        return;
+      }
+    });
+
+    const resetBackend = async (): Promise<void> => {
+      setBackendUrl(null);
+      closeBackendConnection();
+      await router.push({ name: 'setup' });
+    };
+
+    const showNotConnected = computed(() => route.name !== 'setup' && !isBackendConnected.value);
+
+    return {
+      showNotConnected,
+      resetBackend,
+    };
   },
 });
 </script>
 
 <style lang="css">
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0%;
+  margin: 0;
+  border: none;
+}
+
 .app {
   position: relative;
 }

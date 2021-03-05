@@ -11,9 +11,10 @@
   "scripts": {
     "setup": "yarn",
     "start": "yarn build:dependencies && dotenv -- lerna run --scope @leek/nfc-reader --scope @leek/app --scope @leek/backend --parallel start",
-    "start:app": "yarn build:dependencies && dotenv -- lerna run --scope @leek/app --parallel start",
-    "start:backend": "yarn build:dependencies && dotenv -- lerna run --scope @leek/backend --parallel start",
+    "start:app": "dotenv -- lerna run --scope @leek/app --parallel start",
+    "start:backend": "dotenv -- lerna run --scope @leek/backend --parallel start",
     "start:commons": "yarn build:dependencies && dotenv -- lerna run --scope @leek/commons --parallel start",
+    "start:nfc-reader": "dotenv -- lerna run --scope @leek/nfc-reader --parallel start",
     "build": "lerna run build",
     "build:dependencies": "lerna run --scope @leek/commons build",
     "build:dep": "yarn build:dependencies",
@@ -30,10 +31,8 @@
     "typecheck": "lerna run typecheck",
     "typecheck:changed": "lerna run --since origin/master --include-dependents typecheck",
     "clean": "lerna run clean",
+    "clean:db": " shx rm -rf packages/backend/data/*.db packages/nfc-reader/db.json",
     "reset": "lerna run reset && lerna clean --yes && shx rm -rf node_modules/ && yarn setup"
-  },
-  "resolutions": {
-    "postcss": "8.2.6"
   },
   "devDependencies": {
     "@types/jest": "26.0.20",

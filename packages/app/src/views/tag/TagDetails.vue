@@ -149,7 +149,7 @@ export default defineComponent({
         return;
       }
 
-      await feathers.service('nfc-tags').update(nfcTag.value._id, nfcTag.value);
+      await feathers.service('nfc-tags').patch(nfcTag.value._id, nfcTag.value);
 
       alert('Tag erfolgreich gespeichert.');
 

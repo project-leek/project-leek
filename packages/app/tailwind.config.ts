@@ -1,30 +1,37 @@
-module.exports = {
-  future: {},
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+// const colors = require('windicss/colors');
+// const typography = require('windicss/plugin/typography');
+
+export default {
+  darkMode: 'class',
+  // plugins: [typography],
   theme: {
-    gradientColorStops: theme => ({
+    gradientColorStops: (theme) => ({
       ...theme('colors'),
-      'primary': '#FF9900',
-      'secondary': '#FFC700',
-      'darkViolet': '#1A0139',
-      'darkBlue': '#000115',
+      primary: '#FF9900',
+      secondary: '#FFC700',
+      darkViolet: '#1A0139',
+      darkBlue: '#000115',
     }),
-    backgroundColor: theme => ({
+    backgroundColor: (theme) => ({
       ...theme('colors'),
-      'primary': '#FF9900',
-      'secondary': '#FFC700',
-      'button': '#FFB800 ',
-      'darkViolet': '#1A0139',
-      'darkBlue': '#000115',
+      primary: '#FF9900',
+      secondary: '#FFC700',
+      button: '#FFB800',
+      darkViolet: '#1A0139',
+      darkBlue: '#000115',
     }),
-    borderColor: theme => ({
+    borderColor: (theme) => ({
       ...theme('colors'),
-      'button': '#FFA800 ',
-      'secondary': '#FFC700',
+      button: '#FFA800',
+      secondary: '#FFC700',
     }),
-    ringColor: theme => ({
+    ringColor: (theme) => ({
       ...theme('colors'),
-      'button': '#fcd060',
+      button: '#fcd060',
     }),
     extend: {
       maxWidth: {
@@ -37,7 +44,7 @@ module.exports = {
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%',
-        'full': '100%',
+        full: '100%',
       },
       spacing: {
         '1/100': '1%',
@@ -168,13 +175,12 @@ module.exports = {
         '20': '20',
         '25': '25',
         '31': '31',
-      }
-    }
+      },
+    },
   },
   variants: {
     extend: {
       opacity: ['disabled'],
-    }
+    },
   },
-  plugins: [],
 };

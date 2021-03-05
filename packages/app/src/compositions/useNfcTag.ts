@@ -63,6 +63,18 @@ async function loadTags(): Promise<void> {
   });
 }
 
+export async function getTagByNfcData(nfcData: string): Promise<NFCTag | null> {
+  const nfcTagResult = (await feathers
+    .service('nfc-tags')
+    .find({ query: { nfcData } })) as Paginated<NFCTag>;
+
+  if (nfcTagResult.total === 0) {
+    return null;
+  }
+
+  return nfcTagResult.data[0];
+}
+
 export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<boolean> =>
   computed(() => {
     if (!nfcTag.value) {
@@ -75,4 +87,9 @@ export const getIsNfcTagValid = (nfcTag: Ref<NFCTag | undefined>): ComputedRef<b
 
 feathers.on('login', () => {
   void loadTags();
+});
+
+feathers.on('logout', () => {
+  tagGroupListItems.value = undefined;
+  tags.value = undefined;
 });

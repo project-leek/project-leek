@@ -21,29 +21,29 @@
     "@leek/commons": "*",
     "@types/lodash": "4.14.168",
     "lodash": "4.17.21",
+    "qrcode": "1.4.4",
     "socket.io-client": "2.4.0",
-    "tailwindcss": "2.0.3",
     "vue": "3.0.5",
     "vue-router": "4.0.4"
   },
   "devDependencies": {
+    "@types/qrcode": "1.4.0",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "4.15.1",
-    "@vitejs/plugin-vue": "1.1.4",
+    "@vitejs/plugin-vue": "1.1.5",
     "@vue/compiler-sfc": "3.0.5",
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "7.0.0",
     "@vuedx/typecheck": "0.6.3",
     "@vuedx/typescript-plugin-vue": "0.6.3",
-    "autoprefixer": "10.2.4",
     "eslint": "7.20.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-vue": "7.6.0",
-    "postcss": "8.2.6",
     "prettier": "2.2.1",
     "typescript": "4.2.2",
-    "vite": "2.0.1"
+    "vite": "2.0.3",
+    "vite-plugin-windicss": "0.6.2"
   }
 }
