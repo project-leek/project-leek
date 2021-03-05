@@ -23,5 +23,5 @@ You can find some extra project documentation [here](../../tree/docs).
 See the current progress of this project in the [Roadmap](https://github.com/project-leek/project-leek/projects/1)
 
 ## Merch
-![Screenshots](https://github.com/project-leek/project-leek/blob/master/docs/images/Shirt_Front.png)
+![alt text](https://github.com/project-leek/project-leek/blob/master/docs/images/Shirt_Front.png "Leek-Shirt")
 Das Leek-Box Shirt: [Zum T-Shirt](https://sprd.co/X6To7hb)
