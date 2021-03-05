@@ -1,3 +1,4 @@
+import { FeathersError } from '@feathersjs/errors';
 import { User } from '@leek/commons';
 import { computed, ref } from 'vue';
 
@@ -20,8 +21,14 @@ export async function load(): Promise<void> {
     await feathers.reAuthenticate();
     const authentication = await feathers.get('authentication');
     user.value = authentication ? authentication.user : undefined;
-  } catch (ignore) {
-    // this error can be ignored
+  } catch (e) {
+    const error = e as FeathersError;
+
+    // remove token if it seems to be invalid
+    if (error.name === 'NotFound') {
+      feathers.authentication.removeAccessToken();
+      return;
+    }
   }
 }
 

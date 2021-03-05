@@ -10,7 +10,7 @@ import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue'
 import { useRouter } from 'vue-router';
 
 import feathers from '../../compositions/useBackend';
-import { getTrackByNfcData } from '../../compositions/useTrack';
+import { getTagByNfcData } from '../../compositions/useNfcTag';
 
 export default defineComponent({
   name: 'TagStepPlaceOnReader',
@@ -42,11 +42,11 @@ export default defineComponent({
           return;
         }
 
-        const searchedNfcTag = await getTrackByNfcData(nfcReader.attachedTagData);
+        const searchedNfcTag = await getTagByNfcData(nfcReader.attachedTagData);
 
         // tag already exists
         if (searchedNfcTag) {
-          await router.push({ name: 'tag-details', params: { tagid: searchedNfcTag._id } });
+          await router.replace({ name: 'tag-details', params: { tagId: searchedNfcTag._id } });
           return;
         }
 

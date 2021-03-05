@@ -6,7 +6,7 @@ on:
       - 'backend-*'
     paths:
       - '.github/workflows/release-backend.yml'
-      - 'docker/backend/'
+      - 'docker/backend/**'
       - 'docker/backend.Dockerfile'
       - 'docker/backend.Dockerfile.dockerignore'
       - 'packages/backend/**'
