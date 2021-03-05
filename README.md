@@ -24,4 +24,5 @@ See the current progress of this project in the [Roadmap](https://github.com/pro
 
 ## Merch
 ![Leek-Shirt](https://github.com/project-leek/project-leek/blob/master/docs/images/Shirt_Front.png "Leek-Shirt")
-Das Leek-Box Shirt: [Zum T-Shirt](https://sprd.co/X6To7hb)
+
+The Leek-Box shirt: [To the shop](https://sprd.co/X6To7hb)
