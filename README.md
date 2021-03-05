@@ -6,7 +6,7 @@ Leek is a music box which can be used to play songs from different providers by 
 
 ## Screenshots
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-![Screenshots](https://github.com/project-leek/project-leek/blob/master/docs/images/3-Screenshots.png "Leek Screenshots")
+![alt text](https://github.com/project-leek/project-leek/blob/master/docs/images/3-Screenshots.png "Leek Screenshots")
 
 ## Features
 
