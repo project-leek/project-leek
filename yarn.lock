@@ -2281,16 +2281,16 @@
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^2.1.2"
 
-"@windicss/plugin-utils@0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-0.6.2.tgz#8fc76d9f2a1e3de123ffd54fdd9d1583801bb087"
-  integrity sha512-qR2h/vDn3LZtL0cC3id9nxPwhYqCtkcwASs63sHTUOzLhxz+zkG4xR+odndbR6PTjrlTgBC7n5hLjpq0lxRksg==
+"@windicss/plugin-utils@0.6.11":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-0.6.11.tgz#9d2a2f5ba3170700ad4b223435b8796cff934167"
+  integrity sha512-UBPe1yb4ZzGjISjbHV+e9/sj3+bvK2Bb+Mcn18qSW4mUfPnTY+tXBV7yvoaYILgZat9BOppHrRk9dwrI2DJD3w==
   dependencies:
-    esbuild "^0.8.52"
-    esbuild-register "^2.0.0"
+    esbuild "^0.8.56"
+    esbuild-register "^2.2.0"
     fast-glob "^3.2.5"
     micromatch "^4.0.2"
-    windicss "^2.2.0"
+    windicss "^2.2.6"
 
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
@@ -4216,20 +4216,17 @@ es6-promisify@^5.0.0:
   dependencies:
     es6-promise "^4.0.3"
 
-esbuild-register@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/esbuild-register/-/esbuild-register-2.0.0.tgz#579a6eff4e5713a318602b4d305bcb6f8c5b08f9"
-  integrity sha512-98i1+7OnCURCbKaWw5wnY05e4v7uknFEER7LtVxi/lCs8U+sl6/LnITvfeoDLrsqxlA3O6BjxK8QqsirfYULfA==
+esbuild-register@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/esbuild-register/-/esbuild-register-2.2.0.tgz#1c68af6e8e6c4a23af01825224e71bcbd3c85d83"
+  integrity sha512-27039YMtpC3lI8yYGGm78SAQBtBo/4IPMReWVsNh4++VtvozmasBd1a2HiTdk0297iuA2pMzrzvL5cZJqQCKxQ==
   dependencies:
-    joycon "^2.2.5"
-    pirates "^4.0.1"
-    source-map-support "^0.5.19"
-    strip-json-comments "^3.1.1"
+    jsonc-parser "^3.0.0"
 
-esbuild@^0.8.47, esbuild@^0.8.52:
-  version "0.8.54"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.54.tgz#2f32ff80e95c69a0f25b799d76a27c05e2857cdf"
-  integrity sha512-DJH38OiTgXJxFb/EhHrCrY8eGmtdkTtWymHpN9IYN9AF+4jykT0dQArr7wzFejpVbaB0TMIq2+vfNRWr3LXpvw==
+esbuild@^0.8.47, esbuild@^0.8.56:
+  version "0.8.57"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.57.tgz#a42d02bc2b57c70bcd0ef897fe244766bb6dd926"
+  integrity sha512-j02SFrUwFTRUqiY0Kjplwjm1psuzO1d6AjaXKuOR9hrY0HuPsT6sV42B6myW34h1q4CRy+Y3g4RU/cGJeI/nNA==
 
 escape-goat@^2.0.0:
   version "2.1.1"
@@ -4685,19 +4682,7 @@ fast-glob@^2.2.6:
     merge2 "^1.2.3"
     micromatch "^3.1.10"
 
-fast-glob@^3.1.1, fast-glob@^3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.4.tgz#d20aefbf99579383e7f3cc66529158c9b98554d3"
-  integrity sha512-kr/Oo6PX51265qeuCYsyGypiO5uJFgBS0jksyG7FUeCyQzNwYnzrNIMR1NXfkZXsMYXYLRAHgISHBz8gQcxKHQ==
-  dependencies:
-    "@nodelib/fs.stat" "^2.0.2"
-    "@nodelib/fs.walk" "^1.2.3"
-    glob-parent "^5.1.0"
-    merge2 "^1.3.0"
-    micromatch "^4.0.2"
-    picomatch "^2.2.1"
-
-fast-glob@^3.2.5:
+fast-glob@^3.1.1, fast-glob@^3.2.4, fast-glob@^3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.5.tgz#7939af2a656de79a4f1901903ee8adcaa7cb9661"
   integrity sha512-2DtFcgT68wiTTiwZ2hNdJfcHNke9XOfnwmBRWXhmeKM8rF0TGwmC/Qto3S7RoZKp5cilZbxzO5iTNTQsJ+EeDg==
@@ -6436,11 +6421,6 @@ jest@26.6.3:
     import-local "^3.0.2"
     jest-cli "^26.6.3"
 
-joycon@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/joycon/-/joycon-2.2.5.tgz#8d4cf4cbb2544d7b7583c216fcdfec19f6be1615"
-  integrity sha512-YqvUxoOcVPnCp0VU1/56f+iKSdvIRJYPznH22BdXV3xMk75SFXhWeJkZ8C9XxUWt1b5x2X1SxuFygW1U0FmkEQ==
-
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -6544,6 +6524,11 @@ json5@^1.0.1:
   integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
   dependencies:
     minimist "^1.2.0"
+
+jsonc-parser@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz#abdd785701c7e7eaca8a9ec8cf070ca51a745a22"
+  integrity sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -9273,7 +9258,7 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.5.17, source-map-support@^0.5.19, source-map-support@^0.5.6:
+source-map-support@^0.5.17, source-map-support@^0.5.6:
   version "0.5.19"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
@@ -10265,13 +10250,13 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-windicss@0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.6.2.tgz#2b406c65768ce7df22451dc7b47c0026abd4bb24"
-  integrity sha512-V4WnjkxvriJSVQjswY+SrDKogOLNq1eG6dQw1wWcJRV+0QUz9pAGrMolSwed4d4MwSSbJrCA7If8xa+EFLUigw==
+vite-plugin-windicss@0.6.11:
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.6.11.tgz#62156e30d9ae1dd9d0a1664686c263ef36092f27"
+  integrity sha512-cFHyEVyCHGZ5Bu7L3EmiMKVsYtsI23+YBEd/bggEbdhdbv93bBk0M3j8ZVwZxwvKgJhLVG9Fthl3jAE+FVl0EA==
   dependencies:
-    "@windicss/plugin-utils" "0.6.2"
-    windicss "^2.2.0"
+    "@windicss/plugin-utils" "0.6.11"
+    windicss "^2.2.6"
 
 vite@2.0.3:
   version "2.0.3"
@@ -10432,10 +10417,10 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-windicss@^2.2.0:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.2.2.tgz#ca1f8907fb086ff5fd63f21b9a4a10b543027397"
-  integrity sha512-+yOlyx+j3/MJaoqhZb6BjjXnGMJcIdjaKs8cIYXkCr5t/wJLFBS35uDrqxo31IaSHOo/gtw+fcMyw8D+3oq6qg==
+windicss@^2.2.6:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.3.1.tgz#3f82d6869bfb130d17bb02ea8bac8be61a1350c1"
+  integrity sha512-srYre86Qlwfb3pRqslFOEq9U9H+zrT6DIuV4DkTj8+JO1+yy8CrksDYqTUXr2985k+ORF0mj5YJMVjoKCuCQTg==
 
 windows-release@^3.1.0:
   version "3.3.3"
