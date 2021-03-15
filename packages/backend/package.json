@@ -62,7 +62,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/nedb": "1.8.11",
     "@types/serve-favicon": "2.5.2",
-    "@types/spotify-web-api-node": "5.0.0",
+    "@types/spotify-web-api-node": "5.0.2",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "4.15.1",
     "@vercel/ncc": "0.27.0",
