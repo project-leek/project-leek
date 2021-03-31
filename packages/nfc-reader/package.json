@@ -19,7 +19,7 @@
     "@types/lowdb": "^1.0.9",
     "evdev": "git://github.com/anbraten/node-evdev.git",
     "lowdb": "^1.0.0",
-    "socket.io-client": "2.4.0"
+    "socket.io-client": "4.0.1"
   },
   "devDependencies": {
     "@vercel/ncc": "0.27.0",
