@@ -53,7 +53,7 @@ jobs:
           yarn build:app
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: master
           repository-name: project-leek/project-leek.github.io
